@@ -6,8 +6,9 @@ import photo from "./asdf.jpg";
 export const RecipeCard: React.FC = () => {
   return (
     <div
-      className="h-96 col-span-4 w-5/6 md:col-span-1 md:w-5/6 | flex flex-col | shadow-lg justify-self-center rounded-3xl | mt-24 md:mt-0"
+      className="col-span-4 w-5/6 md:col-span-1 md:w-5/6 | flex flex-col | shadow-lg justify-self-center rounded-3xl | mt-24 md:mt-0"
       style={{
+        height: "28rem",
         background: `url('${photo}')`,
         backgroundSize: "cover",
         objectFit: "cover",
