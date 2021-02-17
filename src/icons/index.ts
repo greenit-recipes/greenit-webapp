@@ -16,6 +16,14 @@ import fifteenMin from "./fifteen_min_icon.png";
 import oneHour from "./one_hour_icon.png";
 import thirtyMin from "./thirty_min_icon.png";
 
+// LOGO
+import logo from "./logo.png";
+
+// LANDING PAGE BUTTON ICONS
+import toStart from "./to_start_icon.png";
+import zeroWaste from "./zero_waste_icon.png";
+import fridge from "./icon_fridge.png";
+
 export {
   wellbeing,
   body,
@@ -29,4 +37,8 @@ export {
   fifteenMin,
   oneHour,
   thirtyMin,
+  logo,
+  toStart,
+  zeroWaste,
+  fridge,
 };
