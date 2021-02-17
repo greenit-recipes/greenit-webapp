@@ -3,6 +3,8 @@ import { RecipeCard } from "../components";
 import { Navbar } from "../components/misc";
 import useIsMobile from "../hooks/isMobile";
 import { landingPageCategories } from "../icons";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.min.css";
 
 const SearchBar = () => {
   return (
@@ -25,8 +27,8 @@ interface CategoryCircleProps {
 
 const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
   return (
-    <div className="flex flex-col | items-center">
-      <div className="w-28 h-28 | rounded-full shadow-lg">
+    <div className="flex flex-col | items-center | max-w-28">
+      <div className="w-20 h-20 md:w-28 md:h-28 | rounded-full shadow-lg">
         <img
           className="max-h-full max-w-full | ml-auto mr-auto | flex place-self-center | rounded-full"
           src={icon}
@@ -48,11 +50,30 @@ const LandingPage = () => {
         </h1>
         <SearchBar />
       </div>
-      <div className="w-4/5 | items-center | grid grid-cols-9 gap-4 | pt-28 pb-32 | ml-auto">
-        {landingPageCategories.map((item) => (
-          <CategoryCircle name={item.title} icon={item.icon} key={item.title} />
-        ))}
+      <div className="md:w-4/5 | items-center | grid grid-cols-9 gap-4 | pt-14 pb-16 | md:ml-auto">
+        {isMobile ? (
+          <Swiper slidesPerView={3}>
+            {landingPageCategories.map((item) => (
+              <SwiperSlide>
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          landingPageCategories.map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))
+        )}
       </div>
+
       <div className="flex flex-col | items-center">
         <h1 className="text-3xl md:text-5xl | pb-10">Recipes of the week</h1>
         <div className="w-3/5 | grid grid-cols-3 gap-4">
