@@ -2,6 +2,7 @@ import React from "react";
 import { RecipeCard } from "../components";
 import { Navbar } from "../components/misc";
 import useIsMobile from "../hooks/isMobile";
+import { landingPageCategories } from "../icons";
 
 const SearchBar = () => {
   return (
@@ -19,13 +20,19 @@ const SearchBar = () => {
 
 interface CategoryCircleProps {
   name: string;
+  icon: string;
 }
 
-const CategoryCircle: React.FC<CategoryCircleProps> = () => {
+const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
   return (
     <div className="flex flex-col | items-center">
-      <div className="h-28 w-28 | bg-gray-400 | rounded-full"></div>
-      <h3 className="pt-2"> Something </h3>
+      <div className="w-28 h-28 | rounded-full shadow-lg">
+        <img
+          className="max-h-full max-w-full | ml-auto mr-auto | flex place-self-center | rounded-full"
+          src={icon}
+        ></img>
+      </div>
+      <h3 className="pt-2 text-lg"> {name} </h3>
     </div>
   );
 };
@@ -41,9 +48,9 @@ const LandingPage = () => {
         </h1>
         <SearchBar />
       </div>
-      <div className="w-4/5 | items-center | grid grid-cols-9 gap-4 | pt-28 pb-32">
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-          <CategoryCircle name={`${item}`} />
+      <div className="w-4/5 | items-center | grid grid-cols-9 gap-4 | pt-28 pb-32 | ml-auto">
+        {landingPageCategories.map((item) => (
+          <CategoryCircle name={item.title} icon={item.icon} key={item.title} />
         ))}
       </div>
       <div className="flex flex-col | items-center">

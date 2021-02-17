@@ -24,6 +24,37 @@ import toStart from "./to_start_icon.png";
 import zeroWaste from "./zero_waste_icon.png";
 import fridge from "./icon_fridge.png";
 
+export const landingPageCategories = [
+  {
+    icon: toStart,
+    title: "To Start",
+  },
+  {
+    icon: zeroWaste,
+    title: "Zero Waste",
+  },
+  {
+    icon: fridge,
+    title: "From Your Fridge",
+  },
+  {
+    icon: home,
+    title: "Home",
+  },
+  {
+    icon: face,
+    title: "Face",
+  },
+  {
+    icon: wellbeing,
+    title: "Wellbeing",
+  },
+  {
+    icon: body,
+    title: "Body",
+  },
+];
+
 export {
   wellbeing,
   body,
