@@ -1,7 +1,7 @@
 import { StarOutlined } from "@ant-design/icons";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Icon, Navbar } from "../../components/misc";
+import { Icon, Navbar } from "../../components";
 import photo from "../../components/recipe/asdf.jpg";
 
 const RecipeSinglePage = () => {

@@ -1,6 +1,5 @@
 import React from "react";
-import { RecipeCard } from "../components";
-import { Navbar } from "../components/misc";
+import { RecipeCard, Navbar } from "../components";
 import useIsMobile from "../hooks/isMobile";
 import { landingPageCategories } from "../icons";
 import { Swiper, SwiperSlide } from "swiper/react";
