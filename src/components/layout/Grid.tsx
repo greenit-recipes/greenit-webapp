@@ -1,16 +1,31 @@
 import React from "react";
 
 interface GridProps {
-  md?: string;
-  lg?: string;
-  type: "rows" | "cols";
+  type: "row" | "col";
+  gap: string;
+  className: string;
+  size: {
+    default: number;
+    [key: string]: number;
+  };
 }
-export const Grid: React.FC<GridProps> = ({ md, lg, type, children }) => {
+
+export const Grid: React.FC<GridProps> = ({
+  size,
+  type,
+  children,
+  gap,
+  className,
+}) => {
+  const sizes = Object.keys(size)
+    .filter((item) => item !== "default")
+    .map((item) => `${item}:grid-${type}-${size[item]}`);
+
   return (
     <div
-      className={`${md && `md:grid-${type}-${md}`} ${
-        lg && `lg:grid-type-${lg}`
-      }`}
+      className={`${className} grid ${sizes.join(" ")} grid-${type}s-${
+        size.default
+      } ${gap && `gap-${gap}`} `}
     >
       {children}
     </div>

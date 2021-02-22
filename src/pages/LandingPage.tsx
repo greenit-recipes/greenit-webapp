@@ -1,5 +1,5 @@
 import React from "react";
-import { RecipeCard, Navbar } from "../components";
+import { RecipeCard, Navbar, Grid } from "../components";
 import useIsMobile from "../hooks/isMobile";
 import { landingPageCategories } from "../icons";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -49,7 +49,14 @@ const LandingPage = () => {
         </h1>
         <SearchBar />
       </div>
-      <div className="md:w-4/5 | items-center | grid grid-cols-9 gap-4 | pt-14 pb-16 | md:ml-auto">
+      <Grid
+        type="col"
+        gap="4"
+        size={{
+          default: 9,
+        }}
+        className="md:w-4/5 | items-center pt-14 pb-16 | md:ml-auto"
+      >
         {isMobile ? (
           <Swiper slidesPerView={3}>
             {landingPageCategories.map((item) => (
@@ -71,15 +78,22 @@ const LandingPage = () => {
             />
           ))
         )}
-      </div>
+      </Grid>
 
       <div className="flex flex-col | items-center">
         <h1 className="text-3xl md:text-5xl | pb-10">Recipes of the week</h1>
-        <div className="w-3/5 | grid grid-cols-3 gap-4">
+        <Grid
+          type="col"
+          gap="4"
+          size={{
+            default: 3,
+          }}
+          className="w-3/5"
+        >
           <RecipeCard />
           <RecipeCard />
           <RecipeCard />
-        </div>
+        </Grid>
       </div>
     </div>
   );
