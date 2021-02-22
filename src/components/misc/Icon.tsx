@@ -11,6 +11,7 @@ import {
   fifteenMin,
   thirtyMin,
   oneHour,
+  logo,
 } from "../../icons";
 interface IconProps {
   type: string;
@@ -31,18 +32,19 @@ export const Icon: React.FC<IconProps> = ({ type, start }) => {
         "1 hour": oneHour,
       },
     ],
+    star: [{ Rating: logo }],
   };
   let item = Object.keys(types[type as keyof typeof types][0]);
   // @ts-ignore
   item = item[Math.floor(Math.random() * item.length)];
   return (
-    <div className={`col-span-2 ${start ? "col-start-2" : ""}`}>
+    <div className="pr-20">
       <img
         /* @ts-ignore */
         src={types[type as keyof typeof types][0][(item as unknown) as string]}
-        className="h-auto w-auto"
+        className="h-28 w-32"
       />
-      <h1 className="py-1 flex justify-center">{item}</h1>
+      <h1 className="py-1 flex justify-center text-2xl">{item}</h1>
     </div>
   );
 };
