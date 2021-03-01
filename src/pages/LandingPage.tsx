@@ -86,9 +86,10 @@ const LandingPage = () => {
           type="col"
           gap="4"
           size={{
-            default: 3,
+            default: 1,
+            md: 3,
           }}
-          className="w-3/5"
+          className="w-3/5 justify-items-center"
         >
           <RecipeCard />
           <RecipeCard />
