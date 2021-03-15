@@ -87,7 +87,7 @@ const LandingPage = () => {
           gap="2"
           size={{
             default: 1,
-            md: 5,
+            md: 4,
           }}
           className="min-w-full"
         >
