@@ -16,8 +16,10 @@ import {
 interface IconProps {
   type: string;
   start?: boolean;
+  height?: number;
+  width?: number
 }
-export const Icon: React.FC<IconProps> = ({ type, start }) => {
+export const Icon: React.FC<IconProps> = ({ type, start, height, width }) => {
   const types = {
     category: [
       { Home: home, Wellbeing: wellbeing, Body: body, Face: face, Hair: hair },
@@ -38,13 +40,13 @@ export const Icon: React.FC<IconProps> = ({ type, start }) => {
   // @ts-ignore
   item = item[Math.floor(Math.random() * item.length)];
   return (
-    <div className="pr-20">
+    <div>
       <img
         /* @ts-ignore */
         src={types[type as keyof typeof types][0][(item as unknown) as string]}
-        className="h-28 w-32"
+        className={`h-${height ?? 28} w-${width ?? 32}`}
       />
-      <h1 className="py-1 flex justify-center text-2xl">{item}</h1>
+      <h1 className="py-1 flex justify-center text-lg">{item}</h1>
     </div>
   );
 };

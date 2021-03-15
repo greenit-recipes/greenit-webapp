@@ -21,26 +21,26 @@ export const RecipeCard: React.FC = () => {
         <h2 className="mx-auto pt-1">4.5</h2>
       </div>
       <div className="w-auto h-auto | mt-auto | bg-white shadow-lg rounded-3xl ">
-        <div className="grid grid-cols-8 gap-4">
-          <h1 className="subpixel-antialiased col-span-8 flex py-3 justify-center text-2xl">
-            {
-              [
-                "Coconut Body Butter",
-                "Almond Body Scrub",
-                "Homemade Hydroalcoholic gel",
-                "Apricot Hair Mask",
-                "Bee Wrap",
-                "All-surfaces Cleaning",
-                "Shea Butter Shampoo",
-                "Make Up Remover Balm",
-                "After-Shave Olive Cream",
-                "Vanilla Candle",
-              ][Math.floor(Math.random() * 9)]
-            }
-          </h1>
-          <Icon type="category" start={true} />
-          <Icon type="difficulty" />
-          <Icon type="duration" />
+        <h1 className="subpixel-antialiased flex py-3 justify-center text-2xl">
+          {
+            [
+              "Coconut Body Butter",
+              "Almond Body Scrub",
+              "Homemade Hydroalcoholic gel",
+              "Apricot Hair Mask",
+              "Bee Wrap",
+              "All-surfaces Cleaning",
+              "Shea Butter Shampoo",
+              "Make Up Remover Balm",
+              "After-Shave Olive Cream",
+              "Vanilla Candle",
+            ][Math.floor(Math.random() * 9)]
+          }
+        </h1>
+        <div className="flex flex-row | justify-between | ml-4 mr-4">
+        <Icon type="category" height={22} width={20}/>
+        <Icon type="difficulty" height={22} width={20}/>
+        <Icon type="duration" height={22} width={20} />
         </div>
       </div>
     </div>
