@@ -81,16 +81,18 @@ const LandingPage = () => {
       </Grid>
 
       <div className="flex flex-col | items-center">
-        <h1 className="text-3xl md:text-5xl | pb-10">Recipes of the week</h1>
+        <h1 className="text-3xl md:text-5xl | md:pb-10">Recipes of the week</h1>
         <Grid
           type="col"
-          gap="4"
+          gap="2"
           size={{
             default: 1,
-            md: 3,
+            md: 5,
           }}
-          className="w-3/5 justify-items-center"
+          className="min-w-full"
         >
+          <RecipeCard />
+          <RecipeCard />
           <RecipeCard />
           <RecipeCard />
           <RecipeCard />
