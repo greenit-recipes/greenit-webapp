@@ -23,11 +23,12 @@ import logo from "./logo.png";
 import toStart from "./to_start_icon.png";
 import zeroWaste from "./zero_waste_icon.png";
 import fridge from "./icon_fridge.png";
+import search from "./search_icon.png";
 
 export const landingPageCategories = [
   {
     icon: toStart,
-    title: "To Start",
+    title: "Quick Start",
   },
   {
     icon: zeroWaste,
@@ -35,7 +36,7 @@ export const landingPageCategories = [
   },
   {
     icon: fridge,
-    title: "From Your Fridge",
+    title: "From The Fridge",
   },
   {
     icon: home,
@@ -72,4 +73,5 @@ export {
   toStart,
   zeroWaste,
   fridge,
+  search
 };

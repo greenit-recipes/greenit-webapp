@@ -2,13 +2,17 @@ import React from "react";
 import { StarOutlined } from "@ant-design/icons";
 import { Icon } from "../misc";
 import photo from "./asdf.jpg";
+import useIsMobile from "../../hooks/isMobile";
+
 
 export const RecipeCard: React.FC = () => {
+  const isMobile = useIsMobile();
   return (
     <div
-      className="w-5/6 | flex flex-col | shadow-lg rounded-3xl | mt-24 md:mt-0 justify-self-center"
+      className="flex flex-col | shadow-lg rounded-3xl | mt-24 md:mt-0 justify-self-center"
       style={{
         height: "28rem",
+        width:  `${isMobile ? 18:20}rem`,
         background: `url('${photo}')`,
         backgroundSize: "cover",
         objectFit: "cover",
@@ -21,7 +25,7 @@ export const RecipeCard: React.FC = () => {
         <h2 className="mx-auto pt-1">4.5</h2>
       </div>
       <div className="w-auto h-auto | mt-auto | bg-white shadow-lg rounded-3xl ">
-        <h1 className="subpixel-antialiased flex py-3 justify-center text-2xl">
+        <h1 className="subpixel-antialiased flex py-3 justify-center text-xl md:text-2xl">
           {
             [
               "Coconut Body Butter",

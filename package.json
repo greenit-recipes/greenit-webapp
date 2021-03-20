@@ -4,17 +4,20 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.5.0",
+    "@brainhubeu/react-carousel": "^2.0.2",
     "@craco/craco": "^6.1.1",
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/brainhubeu__react-carousel": "^2.0.2",
     "@types/history": "^4.7.8",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
+    "@types/react-swipeable-views": "^0.13.0",
     "autoprefixer": "^9",
     "postcss": "^7",
     "react": "^17.0.1",
@@ -22,6 +25,7 @@
     "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "react-swipeable-views": "^0.13.9",
     "sass": "^1.32.7",
     "swiper": "^6.4.14",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
@@ -29,7 +33,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "craco start --host 0.0.0.0",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"

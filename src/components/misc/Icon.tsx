@@ -13,11 +13,12 @@ import {
   oneHour,
   logo,
 } from "../../icons";
+
 interface IconProps {
   type: string;
   start?: boolean;
   height?: number;
-  width?: number
+  width?: number;
 }
 export const Icon: React.FC<IconProps> = ({ type, start, height, width }) => {
   const types = {
@@ -46,7 +47,7 @@ export const Icon: React.FC<IconProps> = ({ type, start, height, width }) => {
         src={types[type as keyof typeof types][0][(item as unknown) as string]}
         className={`h-${height ?? 28} w-${width ?? 32}`}
       />
-      <h1 className="py-1 flex justify-center text-lg">{item}</h1>
+      <h1 className="py-1 flex justify-center text-md md:text-lg">{item}</h1>
     </div>
   );
 };
