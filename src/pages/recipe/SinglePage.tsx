@@ -2,99 +2,110 @@ import React, { createRef } from "react";
 import ReactPlayer from "react-player";
 import { useParams } from "react-router-dom";
 
-import { Icon, Navbar } from "../../components";
+import { Icon, Navbar, Container, Grid } from "../../components";
 import photo from "../../components/recipe/asdf.jpg";
 
+interface InstructionProps {
+  index: number;
+  text: string;
+}
+const Instruction: React.FC<InstructionProps> = ({ index, text }) => {
+  return (
+    <div className="pt-5 flex flex-row items-center">
+      <div className="w-14 h-14 bg-gray-100 rounded-full flex items-center">
+        <h3 className="text-2xl flex flex ml-auto mr-auto">{index}</h3>
+      </div>
+      <h3 className="text-2xl pl-10">Stalin did nothing wrong</h3>
+    </div>
+  );
+};
 const RecipeSinglePage = () => {
   // @ts-ignore
   const { id } = useParams();
   const player = createRef<ReactPlayer>();
 
   return (
-    <div>
-      <Navbar />
-      <div className="w-5/6 h-full | ml-auto mr-auto mt-10  | flex flex-col">
-        <div className="grid grid-cols-8 gap-4 pt-20 pl-10 pr-10 justify-content-center">
-          <div className="col-start-3 pl-24 col-span-4">
-            <h1 className="text-6xl pt-10 pb-10 flex ml-auto mr-auto ">
-              Coconut Hair Mask
-            </h1>
-          </div>
+    <div className="flex flex-col | items-center self-center | ml-5 mr-5">
+      <div className="w-4/6">
+        <Container
+          className="md:pt-20 flex "
+          title="Lessive Express"
+          itemsCenter
+        ></Container>
+        <div className="flex items-center">
           <div
-            className="col-span-3 col-start-3 ml-32 rounded-3xl"
+            className="w-5/6 flex"
             style={{
-              height: "28em",
-              background: `url('${photo}')`,
-              backgroundSize: "cover",
-              objectFit: "cover",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
+              height: "28rem",
             }}
-          ></div>
-          <div className="col-start-3 pt-10 pb-20 col-span-4 flex flex-row">
-            <Icon type="star" />
-            <Icon type="category" />
-            <Icon type="duration" />
-            <Icon type="difficulty" />
-          </div>
-          <div className="col-start-2 col-span-4">
-            <h1 className="text-3xl text-gray-500 pb-10">Description</h1>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            lacinia pretium metus quis sollicitudin. Nulla rutrum porta enim, ac
-            vehicula lacus. Sed gravida magna diam, sed sodales lectus accumsan
-            quis. Etiam pharetra, massa eget consequat tincidunt, lorem neque
-            tincidunt justo, vitae aliquam enim dolor vel libero. Suspendisse
-            potenti. Vivamus et scelerisque enim. Aliquam ut ligula egestas,
-            ultricies massa quis, faucibus nisi. Donec laoreet cursus tortor sit
-            amet auctor. Donec ac imperdiet libero. Ut non bibendum mauris.
-            Nullam aliquet risus nec risus feugiat, non facilisis mi viverra.
-            Nam scelerisque nec lorem non consequat. Nullam eget dapibus dolor,
-            ac laoreet augue. Nulla at quam vitae dui ultricies elementum ut
-            quis diam.
-          </div>
-          <div className="col-start-7 col-span-1">
-            <h1 className="text-3xl text-gray-500">Ingredients</h1>
-            <h3 className="text-2xl text-gray-500 mt-1 pl-2">500ml water</h3>
-            <h3 className="text-2xl text-gray-500 mt-1 pl-2">400g flour</h3>
-            <h3 className="text-2xl text-gray-500 mt-1 pl-2">10g butter</h3>
-            <h1 className="text-3xl text-gray-500 pt-20">Utensils</h1>
-            <h3 className="text-2xl text-gray-500 mt-1 pl-2">Pot</h3>
-            <h3 className="text-2xl text-gray-500 mt-1 pl-2">Big Pan</h3>
-            <h3 className="text-2xl text-gray-500 mt-1 pl-2">Plate</h3>
-          </div>
-          <div className="col-start-2 col-span-5 pb-32">
-            <h1 className="text-3xl text-gray-500 pb-10">
-              Instructions{" "}
-              <small className="text-sm pl-2">Watch the video</small>
-            </h1>
-            <div className="pl-4 w-3/5">
-              {[1, 2, 3, 4, 4.5].map((item) => (
-                <div className="text-2xl shadow-lg h-20 cursor-pointer">
-                  <h3
-                    className="pl-10 pt-4"
-                    onClick={() => {
-                      // Has to be in seconds
-                      player.current?.seekTo(item * 60);
-                      player.current?.getInternalPlayer().playVideo();
-                    }}
-                  >
-                    {item}
-                  </h3>
+          >
+            <img src={photo} className="h-full w-80 rounded-3xl" />
+            <div className="flex flex-col pl-20 w-full">
+              <div className="pl-10 flex flex-row">
+                {[1, 2, 3, 4, 5].map((item) => (
+                  <div className={`${item !== 1 ? "pl-20" : ""}`}>Tag</div>
+                ))}
+              </div>
+              <div className="flex">
+                <div className="pl-10 pt-5 flex flex-col w-1/2">
+                  <h3 className="pb-2 text-2xl">Ingredients</h3>
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+                    <h3 className="text-xl pt-2">Something</h3>
+                  ))}
                 </div>
-              ))}
-              <ReactPlayer
-                ref={player}
-                url="https://www.youtube.com/watch?v=c4jOZp-EibM"
-                controls={true}
-                config={{
-                  youtube: {
-                    playerVars: { showinfo: 1, rel: 0 },
-                  },
-                }}
-              />
+                <div className="pl-10 pt-5 flex flex-col">
+                  <h3 className="pb-2 text-2xl">Utensils</h3>
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+                    <h3 className="text-xl pt-2">Something</h3>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <div className="pt-20 flex flex-col">
+          <h3 className="pb-2 text-2xl">Description</h3>
+          <p className="text-lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis
+            blandit tellus. In quis bibendum massa. Aliquam dictum velit nec
+            nisi consectetur euismod. Donec rhoncus arcu ante, ut aliquam quam
+            maximus vel. Vivamus blandit lobortis pulvinar. Curabitur id metus
+            nulla. Nullam vel diam elementum enim efficitur feugiat. Quisque
+            pharetra magna in tortor tincidunt feugiat
+          </p>
+          <h3 className="pt-5 pb-2 text-2xl">Conservation</h3>
+          <p className="text-lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis
+            blandit tellus. In quis bibendum massa. Aliquam dictum velit nec
+            nisi consectetur euismod. Donec rhoncus arcu ante, ut aliquam quam
+            maximus vel. Vivamus blandit lobortis pulvinar. Curabitur id metus
+            nulla. Nullam vel diam elementum enim efficitur feugiat. Quisque
+            pharetra magna in tortor tincidunt feugiat
+          </p>
+        </div>
+        <Grid type="col" size={{ default: 2 }} gap="0" className="pt-20">
+          <div className="h-96 w-full">
+            <ReactPlayer
+              url="https://www.youtube.com/watch?v=c4jOZp-EibM"
+              controls={true}
+              config={{
+                youtube: {
+                  playerVars: { showinfo: 1, rel: 0 },
+                },
+              }}
+              width="100%"
+              height="100%"
+            />
+          </div>
+          <div className="pl-20">
+            <h3 className="text-3xl">Instructions</h3>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
+              <div className="flex flex-col">
+                <Instruction index={index + 1} text={`${item}`} />
+              </div>
+            ))}
+          </div>
+        </Grid>
       </div>
     </div>
   );
