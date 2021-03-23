@@ -20,17 +20,23 @@ import thirtyMin from "./thirty_min_icon.png";
 import logo from "./logo.png";
 
 // LANDING PAGE BUTTON ICONS
-import toStart from "./to_start_icon.png";
+import getStarted from "./get_started_icon.png";
 import zeroWaste from "./zero_waste_icon.png";
 import fridge from "./icon_fridge.png";
 import search from "./search_icon.png";
 
 // MISC
 import money from "./money_icon.png";
+import planet from "./planet_icon.png";
+
+// FOOTER
+import footerChat from "./footer_chat_icon.png";
+import footerWorld from "./footer_world_icon.png";
+import footerValues from "./footer_values_icon.png";
 
 export const landingPageCategories = [
   {
-    icon: toStart,
+    icon: getStarted,
     title: "Quick Start",
   },
   {
@@ -73,9 +79,13 @@ export {
   oneHour,
   thirtyMin,
   logo,
-  toStart,
+  getStarted,
   zeroWaste,
   fridge,
   money,
+  planet,
+  footerChat,
+  footerValues,
+  footerWorld,
   search,
 };

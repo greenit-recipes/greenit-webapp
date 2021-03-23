@@ -11,6 +11,7 @@ import {
   zeroWaste,
   logo,
   money,
+  planet,
   search,
 } from "../icons";
 import ReactPlayer from "react-player";
@@ -243,7 +244,7 @@ const LandingPage = () => {
           className="pt-10"
         >
           {[
-            { text: "For The Planet", color: "#bae893", icon: zeroWaste },
+            { text: "For The Planet", color: "#a6f78d", icon: planet },
             { text: "For Your Body", color: "#ffe390", icon: body },
             { text: "For Your Finances", color: "#ffbea8", icon: money },
             { text: "For Your Wellbeing", color: "#93c5fe", icon: wellbeing },
