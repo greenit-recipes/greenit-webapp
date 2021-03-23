@@ -10,6 +10,7 @@ import {
   wellbeing,
   zeroWaste,
   logo,
+  money,
   search,
 } from "../icons";
 import ReactPlayer from "react-player";
@@ -104,7 +105,7 @@ const LandingPage = () => {
       </div>
       <Container title="Recipes of The Week" itemsCenter></Container>
       <div className="w-full md:w-5/6">
-        {/* TODO: FIX FOR DESKTOP */}
+        {/* TODO: FIX FOR DESKTOP AND MAKE SURE LAST CARD IS SHOWN ON MOBILE */}
         <AliceCarousel
           mouseTracking
           autoWidth
@@ -242,17 +243,19 @@ const LandingPage = () => {
           className="pt-10"
         >
           {[
-            { text: "For The Planet", icon: zeroWaste },
-            { text: "For Your Body", icon: body },
-            { text: "For Your Finances", icon: logo },
-            { text: "For Your Wellbeing", icon: wellbeing },
+            { text: "For The Planet", color: "#bae893", icon: zeroWaste },
+            { text: "For Your Body", color: "#ffe390", icon: body },
+            { text: "For Your Finances", color: "#ffbea8", icon: money },
+            { text: "For Your Wellbeing", color: "#93c5fe", icon: wellbeing },
           ].map((item) => (
             <div className="h-full w-full flex flex-col items-center">
               <img
                 src={item.icon}
                 className="w-28 md:w-40 md:h-40 h-28 hover:bg-gray-300 rounded-full pb-2"
               ></img>
-              <h3 className="text-md md:text-2xl">{item.text}</h3>
+              <h3 className="text-md md:text-2xl" style={{ color: item.color }}>
+                {item.text}
+              </h3>
             </div>
           ))}
         </Grid>

@@ -25,6 +25,9 @@ import zeroWaste from "./zero_waste_icon.png";
 import fridge from "./icon_fridge.png";
 import search from "./search_icon.png";
 
+// MISC
+import money from "./money_icon.png";
+
 export const landingPageCategories = [
   {
     icon: toStart,
@@ -73,5 +76,6 @@ export {
   toStart,
   zeroWaste,
   fridge,
-  search
+  money,
+  search,
 };
