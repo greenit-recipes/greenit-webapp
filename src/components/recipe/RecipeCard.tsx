@@ -4,15 +4,16 @@ import { Icon } from "../misc";
 import photo from "./asdf.jpg";
 import useIsMobile from "../../hooks/isMobile";
 
-
 export const RecipeCard: React.FC = () => {
   const isMobile = useIsMobile();
+  const iconHeight = isMobile ? 18 : 22;
+  const iconWidth = isMobile ? 14 : 20;
   return (
     <div
       className="flex flex-col | shadow-lg rounded-3xl | mt-24 md:mt-0 justify-self-center"
       style={{
         height: "28rem",
-        width:  `${isMobile ? 18:20}rem`,
+        width: `${isMobile ? 16 : 20}rem`,
         background: `url('${photo}')`,
         backgroundSize: "cover",
         objectFit: "cover",
@@ -20,12 +21,12 @@ export const RecipeCard: React.FC = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="h-10 w-20 | bg-white shadow | flex | text-center mx-auto rounded-lg">
+      <div className="h-10 w-16 md:w-20 | bg-white shadow | flex | text-center mx-auto rounded-lg">
         <StarOutlined className="mx-auto text-2xl" style={{ color: "gold" }} />
         <h2 className="mx-auto pt-1">4.5</h2>
       </div>
       <div className="w-auto h-auto | mt-auto | bg-white shadow-lg rounded-3xl ">
-        <h1 className="subpixel-antialiased flex py-3 justify-center text-xl md:text-2xl">
+        <h1 className="subpixel-antialiased flex py-3 justify-center text-lg md:text-2xl">
           {
             [
               "Coconut Body Butter",
@@ -41,10 +42,10 @@ export const RecipeCard: React.FC = () => {
             ][Math.floor(Math.random() * 9)]
           }
         </h1>
-        <div className="flex flex-row | justify-between | ml-4 mr-4">
-        <Icon type="category" height={22} width={20}/>
-        <Icon type="difficulty" height={22} width={20}/>
-        <Icon type="duration" height={22} width={20} />
+        <div className="flex flex-row | justify-between | ml-6 mr-6">
+          <Icon type="category" height={iconHeight} width={iconWidth} />
+          <Icon type="difficulty" height={iconHeight} width={iconWidth} />
+          <Icon type="duration" height={iconHeight} width={iconWidth} />
         </div>
       </div>
     </div>
