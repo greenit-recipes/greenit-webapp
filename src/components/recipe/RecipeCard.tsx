@@ -4,13 +4,20 @@ import { Icon } from "../misc";
 import photo from "./asdf.jpg";
 import useIsMobile from "../../hooks/isMobile";
 
-export const RecipeCard: React.FC = () => {
+interface RecipeCardProps {
+  enableShadow?: boolean;
+}
+export const RecipeCard: React.FC<RecipeCardProps> = ({
+  enableShadow = true,
+}) => {
   const isMobile = useIsMobile();
   const iconHeight = isMobile ? 18 : 22;
   const iconWidth = isMobile ? 14 : 20;
   return (
     <div
-      className="flex flex-col | shadow-lg rounded-3xl | mt-24 md:mt-0 justify-self-center"
+      className={`flex flex-col | ${
+        enableShadow && "shadow-lg"
+      } rounded-3xl | mt-24 md:mt-0 justify-self-center`}
       style={{
         height: "28rem",
         width: `${isMobile ? 16 : 20}rem`,
@@ -21,12 +28,12 @@ export const RecipeCard: React.FC = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="h-10 w-16 md:w-20 | bg-white shadow | flex | text-center mx-auto rounded-lg">
+      <div className="h-10 w-16 md:w-20 | bg-white | flex | text-center mx-auto rounded-lg">
         <StarOutlined className="mx-auto text-2xl" style={{ color: "gold" }} />
         <h2 className="mx-auto pt-1">4.5</h2>
       </div>
       <div className="w-auto h-auto | mt-auto | bg-white shadow-lg rounded-3xl ">
-        <h1 className="subpixel-antialiased flex py-3 justify-center text-lg md:text-2xl">
+        <h1 className="subpixel-antialiased flex py-3 justify-center text-lg md:text-xl">
           {
             [
               "Coconut Body Butter",

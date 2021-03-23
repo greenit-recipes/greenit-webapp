@@ -2,8 +2,6 @@ import React from "react";
 import { RecipeCard, Navbar, Grid, Container, Button } from "../components";
 import useIsMobile from "../hooks/isMobile";
 import { landingPageCategories } from "../icons";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.min.css";
 import {
   body,
   face,
@@ -15,6 +13,8 @@ import {
   search,
 } from "../icons";
 import ReactPlayer from "react-player";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
 
 const SearchBar = () => {
   return (
@@ -61,7 +61,7 @@ const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
 const LandingPage = () => {
   const isMobile = useIsMobile();
   return (
-    <div className="flex flex-col | items-center self-center | ml-5 mr-5">
+    <div className="flex flex-col | items-center self-center">
       {!isMobile && <Navbar />}
       <div className="flex flex-col | items-center | pt-32">
         <img src={logo} className="h-40 w-40 mb-10" />
@@ -71,18 +71,19 @@ const LandingPage = () => {
         <SearchBar />
       </div>
       <div className="w-screen md:w-4/5 | items-center pt-14 pb-16 | flex justify-center">
+        {/* TODO: FIX FOR PHONE */}
         {isMobile ? (
-          <Swiper slidesPerView={3}>
-            {landingPageCategories.map((item) => (
-              <SwiperSlide>
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              </SwiperSlide>
+          <AliceCarousel
+            mouseTracking
+            autoWidth
+            items={landingPageCategories.map((item) => (
+              <CategoryCircle
+                name={item.title}
+                icon={item.icon}
+                key={item.title}
+              />
             ))}
-          </Swiper>
+          />
         ) : (
           <Grid
             type="col"
@@ -101,22 +102,53 @@ const LandingPage = () => {
           </Grid>
         )}
       </div>
-      <Container title="Recipes of The Week" itemsCenter>
-        <Grid
-          type="col"
-          gap="0 md:gap-14"
-          size={{
-            default: 1,
-            md: 4,
-          }}
-        >
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-        </Grid>
-      </Container>
-
+      <Container title="Recipes of The Week" itemsCenter></Container>
+      <div className="w-full md:w-5/6">
+        {/* TODO: FIX FOR DESKTOP */}
+        <AliceCarousel
+          mouseTracking
+          autoWidth
+          activeIndex={1}
+          items={[
+            <div
+              className="ml-20 pb-2"
+              style={{ width: `${isMobile ? 17 : 22}rem` }}
+            >
+              <RecipeCard enableShadow={false} />
+            </div>,
+            <div
+              className="ml-20 pb-2"
+              style={{ width: `${isMobile ? 17 : 22}rem` }}
+            >
+              <RecipeCard enableShadow={false} />
+            </div>,
+            <div
+              className="ml-20 pb-2 self-center"
+              style={{ width: `${isMobile ? 17 : 22}rem` }}
+            >
+              <RecipeCard enableShadow={false} />
+            </div>,
+            <div
+              className="ml-20 pb-2"
+              style={{ width: `${isMobile ? 17 : 22}rem` }}
+            >
+              <RecipeCard enableShadow={false} />
+            </div>,
+            <div
+              className="ml-20 pb-2"
+              style={{ width: `${isMobile ? 17 : 22}rem` }}
+            >
+              <RecipeCard enableShadow={false} />
+            </div>,
+            <div
+              className="ml-20 pb-2"
+              style={{ width: `${isMobile ? 17 : 22}rem` }}
+            >
+              <RecipeCard enableShadow={false} />
+            </div>,
+          ]}
+        />
+      </div>
       <Container
         margin={20}
         title="Questionnaire"

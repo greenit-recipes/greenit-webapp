@@ -8,7 +8,6 @@ module.exports = {
       fontFamily: {
         body: ["Ubuntu"],
       },
-
       screens: {
         xs: "375px",
         sm: "640px",
