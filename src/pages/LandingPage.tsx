@@ -1,5 +1,12 @@
 import React from "react";
-import { RecipeCard, Navbar, Grid, Container, Button } from "../components";
+import {
+  RecipeCard,
+  Navbar,
+  Grid,
+  Container,
+  Button,
+  Footer,
+} from "../components";
 import useIsMobile from "../hooks/isMobile";
 import { landingPageCategories } from "../icons";
 import {
@@ -8,7 +15,6 @@ import {
   hair,
   home,
   wellbeing,
-  zeroWaste,
   logo,
   money,
   planet,
@@ -232,6 +238,7 @@ const LandingPage = () => {
       <Container
         className="w-full md:3/5 h-full pt-40"
         title="Why Greenit?"
+        margin={20}
         itemsCenter
       >
         <Grid
@@ -270,6 +277,7 @@ const LandingPage = () => {
           </a>
         </Button>
       </Container>
+      <Footer />
     </div>
   );
 };

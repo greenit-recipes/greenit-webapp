@@ -20,7 +20,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       } rounded-3xl | mt-24 md:mt-0 justify-self-center`}
       style={{
         height: "28rem",
-        width: `${isMobile ? 16 : 20}rem`,
+        maxWidth: `${isMobile ? 16 : 20}rem`,
         background: `url('${photo}')`,
         backgroundSize: "cover",
         objectFit: "cover",
