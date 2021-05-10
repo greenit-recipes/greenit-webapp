@@ -150,9 +150,7 @@ const RecipeListPage = () => {
         <div className="h-auto w-full | sticky top-0 pb-20">
           <div className="w-auto | flex flex-row flex-wrap gap-10 | py-10 lg:px-0 | justify-center">
             {recipes?.map((recipe, index) => (
-              <div className="pl-10">
-                <RecipeCard recipe={recipe ?? undefined} />
-              </div>
+              <RecipeCard recipe={recipe ?? undefined} />
             ))}
           </div>
         </div>
