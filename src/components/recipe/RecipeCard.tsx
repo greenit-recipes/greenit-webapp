@@ -31,20 +31,19 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   const iconHeight = isMobile ? 18 : 22;
   const iconWidth = isMobile ? 14 : 20;
   const categoryName = recipe?.category?.name;
-  console.log(`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`);
   return (
     <Link to={`/recipes/${recipe?.id}`}>
       <div
         className={`flex flex-col | ${
           enableShadow && "shadow-lg"
-        } rounded-3xl | mt-24 md:mt-0 justify-self-center`}
+        } rounded-3xl | justify-self-center`}
         style={{
           height: "28rem",
-          maxWidth: `${isMobile ? 16 : 20}rem`,
-          background: `url('${
-            `https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}` ||
-            photo
-          }')`,
+          width: "20rem",
+          background:
+            recipe?.image?.length !== 0
+              ? `url('${`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}')`
+              : photo,
           backgroundSize: "cover",
           objectFit: "cover",
           backgroundRepeat: "no-repeat",
@@ -59,7 +58,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           <h2 className="mx-auto pt-1">4.5</h2>
         </div>
         <div className="w-auto h-auto | mt-auto | bg-white shadow-lg rounded-3xl ">
-          <h1 className="subpixel-antialiased flex py-3 justify-center text-lg md:text-xl">
+          <h1 className="subpixel-antialiased| ml-2 mr-2 | flex py-3 justify-center text-lg md:text-xl">
             {recipe?.name}
           </h1>
           <div className="flex flex-row | justify-between | ml-6 mr-6">

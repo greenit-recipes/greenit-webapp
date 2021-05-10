@@ -75,7 +75,6 @@ const RecipeListPage = () => {
   const { error, loading, data, refetch } = useRecipesQuery();
   const isMobile = useIsMobile();
   const [currentFilters, setCurrentFilters] = useState<any[]>([]);
-
   const handleFilter = (item: { filter: string; value: string | number }) => {
     setCurrentFilters((prevState) => {
       const index = prevState.findIndex(
@@ -107,10 +106,9 @@ const RecipeListPage = () => {
   }
 
   const recipes = data.allRecipes;
-
   return (
     <>
-      <Navbar />
+      {!isMobile && <Navbar />}
       <div className="flex pt-10">
         {/* SIDEBAR */}
         {!isMobile && (
@@ -150,9 +148,11 @@ const RecipeListPage = () => {
         )}
         {/* CONTENT */}
         <div className="h-auto w-full | sticky top-0 pb-20">
-          <div className="w-auto | grid grid-cols-1 md:grid-cols-4 gap-y-10 | py-10 lg:px-0">
+          <div className="w-auto | flex flex-row flex-wrap gap-10 | py-10 lg:px-0 | justify-center">
             {recipes?.map((recipe, index) => (
-              <RecipeCard recipe={recipe ?? undefined} />
+              <div className="pl-10">
+                <RecipeCard recipe={recipe ?? undefined} />
+              </div>
             ))}
           </div>
         </div>

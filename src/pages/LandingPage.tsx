@@ -23,8 +23,10 @@ import {
 import ReactPlayer from "react-player";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+import { useRecipesQuery } from "../graphql";
 
 const SearchBar = () => {
+
   return (
     <div className="h-14 md:h-20 w-full | flex | relative">
       <input
@@ -68,6 +70,11 @@ const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
+  const { error, loading, data, refetch } = useRecipesQuery();
+  if (loading || !data) {
+    return <div>Loading</div>;
+  }
+  const recipes = data.allRecipes;
   return (
     <div className="flex flex-col | items-center self-center">
       {!isMobile && <Navbar />}
@@ -117,44 +124,10 @@ const LandingPage = () => {
           mouseTracking
           autoWidth
           activeIndex={1}
-          items={[
-            <div
-              className="ml-20 pb-2"
-              style={{ width: `${isMobile ? 17 : 22}rem` }}
-            >
-              <RecipeCard enableShadow={false} />
-            </div>,
-            <div
-              className="ml-20 pb-2"
-              style={{ width: `${isMobile ? 17 : 22}rem` }}
-            >
-              <RecipeCard enableShadow={false} />
-            </div>,
-            <div
-              className="ml-20 pb-2 self-center"
-              style={{ width: `${isMobile ? 17 : 22}rem` }}
-            >
-              <RecipeCard enableShadow={false} />
-            </div>,
-            <div
-              className="ml-20 pb-2"
-              style={{ width: `${isMobile ? 17 : 22}rem` }}
-            >
-              <RecipeCard enableShadow={false} />
-            </div>,
-            <div
-              className="ml-20 pb-2"
-              style={{ width: `${isMobile ? 17 : 22}rem` }}
-            >
-              <RecipeCard enableShadow={false} />
-            </div>,
-            <div
-              className="ml-20 pb-2"
-              style={{ width: `${isMobile ? 17 : 22}rem` }}
-            >
-              <RecipeCard enableShadow={false} />
-            </div>,
-          ]}
+          paddingLeft={10}
+          items={recipes?.filter((item, index) => index > 45).map((recipe) => (
+            <RecipeCard recipe={recipe ?? undefined} key={recipe?.id}/>
+          ))}
         />
       </div>
       <Container
