@@ -4,7 +4,7 @@ import { Button } from "../";
 
 export const Navbar: React.FC = () => {
   return (
-    <div className="h-20  w-screen | flex | align-items-center | text-gray-500 text-2xl">
+    <div className="h-20 w-full | flex | align-items-center | text-gray-500 text-2xl sticky top-0 bg-white z-10 backdrop-opacity-100">
       <div className="w-56 cursor-pointer">
         <img src={logo} className="h-20 w-20 | ml-10" alt="Greenit Logo" />
       </div>
