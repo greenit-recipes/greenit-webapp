@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { RecipeCard, Navbar, Footer } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
+import { useRecipesQuery, DifficultyChoice } from "../../graphql";
 
 const filters = [
   {
     title: "House",
     name: "house",
     options: [
-      { title: "Sanitation", value: "sanitation" },
-      { title: "Decoration", value: "decoration" },
+      { title: "Sanitation", value: "1cb1a8aa-d483-4c13-ae66-a71c7413c639" },
+      { title: "Decoration", value: "affe5a2e-a8e4-417b-b4fe-c94b74d97e79" },
       { title: "Utilites", value: "utilities" },
     ],
   },
@@ -16,7 +17,7 @@ const filters = [
     title: "Body",
     name: "body",
     options: [
-      { title: "Hygiene", value: "hygiene" },
+      { title: "Hygiene", value: "d811789c-5c6c-4a70-851b-773f774a2a92" },
       { title: "Care", value: "care" },
     ],
   },
@@ -45,9 +46,9 @@ const filters = [
     title: "Duration",
     name: "duration",
     options: [
-      { title: "Under 15 minutes", value: "15min" },
-      { title: "Under 30 minutes", value: "30min" },
-      { title: "Under 1 hour", value: "1hour" },
+      { title: "Under 15 minutes", value: 15 },
+      { title: "Under 30 minutes", value: 30 },
+      { title: "Under 1 hour", value: 60 },
     ],
   },
   {
@@ -63,36 +64,50 @@ const filters = [
     title: "Difficulty",
     name: "difficulty",
     options: [
-      { title: "Easy", value: "easy" },
-      { title: "Medium", value: "medium" },
-      { title: "Hard", value: "hard" },
+      { title: "Beginner", value: "BEGINNER" },
+      { title: "Intermediate", value: "INTERMEDIATE" },
+      { title: "Advanced", value: "ADVANCED" },
     ],
   },
 ];
 
 const RecipeListPage = () => {
+  const { error, loading, data, refetch } = useRecipesQuery();
   const isMobile = useIsMobile();
-  const [currentFilters, setCurrentFilters] = useState<string[]>([]);
+  const [currentFilters, setCurrentFilters] = useState<any[]>([]);
 
-  const handleFilter = ({
-    filter,
-    value,
-  }: {
-    filter: string;
-    value: string;
-  }) => {
+  const handleFilter = (item: { filter: string; value: string | number }) => {
     setCurrentFilters((prevState) => {
-      const item = `${filter}:${value}`;
-      const index = prevState.indexOf(item);
+      const index = prevState.findIndex(
+        ({ filter, value }) => filter === item.filter && value === item.value
+      );
       if (index === -1) {
         return [...prevState, item];
       } else {
         const _filters = [...prevState];
-        delete _filters[index];
+        _filters.splice(index, 1);
         return _filters;
       }
     });
   };
+  React.useEffect(() => {
+    const filter = {};
+    currentFilters.forEach((item) => {
+      // @ts-ignore
+      filter[item.filter] = item.value;
+    });
+    console.log(filter);
+    refetch({
+      filter,
+    });
+  }, [currentFilters]);
+
+  if (loading || !data) {
+    return <div>Loading</div>;
+  }
+
+  const recipes = data.allRecipes;
+
   return (
     <>
       <Navbar />
@@ -104,6 +119,7 @@ const RecipeListPage = () => {
             {filters.map((filter) => (
               <div className="pt-5">
                 <h1 className="text-xl">{filter.title}</h1>
+                {/* @ts-ignore */}
                 {filter.options.map((option) => (
                   <div
                     className="text-lg pt-1 cursor-pointer"
@@ -115,7 +131,9 @@ const RecipeListPage = () => {
                     }}
                   >
                     {currentFilters.some(
-                      (item) => item === `${filter.name}:${option.value}`
+                      (item) =>
+                        item.value === option.value &&
+                        item.filter === filter.name
                     ) ? (
                       <div className="flex flex-row">
                         <h3 className="text-black">{option.title}</h3>
@@ -132,22 +150,10 @@ const RecipeListPage = () => {
         )}
         {/* CONTENT */}
         <div className="h-auto w-full | sticky top-0 pb-20">
-          <div className="w-auto | grid grid-cols-1 md:grid-cols-5 gap-y-10 | py-10 lg:px-0">
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
+          <div className="w-auto | grid grid-cols-1 md:grid-cols-4 gap-y-10 | py-10 lg:px-0">
+            {recipes?.map((recipe, index) => (
+              <RecipeCard recipe={recipe ?? undefined} />
+            ))}
           </div>
         </div>
       </div>

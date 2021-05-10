@@ -7,6 +7,8 @@
     "@apollo/client": "^3.3.14",
     "@brainhubeu/react-carousel": "^2.0.2",
     "@craco/craco": "^6.1.1",
+    "@graphql-codegen/typescript": "^1.21.1",
+    "@graphql-codegen/typescript-operations": "^1.17.15",
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -20,6 +22,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/react-swipeable-views": "^0.13.0",
     "autoprefixer": "^9",
+    "graphql": "^15.5.0",
     "postcss": "^7",
     "react": "^17.0.1",
     "react-alice-carousel": "^2.4.0",
@@ -35,10 +38,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "craco start --host 0.0.0.0",
+    "start": "concurrently \"yarn generate --watch\" \"craco start --host 0.0.0.0\"",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate": "graphql-codegen --config codegen.yml",
+    "generate:watch": "yarn generate --watch"
   },
   "eslintConfig": {
     "extends": [
@@ -57,5 +62,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.3",
+    "@graphql-codegen/typescript-react-apollo": "^2.2.3",
+    "concurrently": "^6.0.1"
   }
 }

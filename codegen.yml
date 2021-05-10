@@ -1,0 +1,18 @@
+overwrite: true
+schema: http://127.0.0.1:8000/graphql/
+documents:
+  - 'src/pages/**/*.graphql'
+generates:
+  src/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      forceTypename: true
+      withComponent: false
+      withHOC: false
+      withHooks: true
+      hooksImportFrom: '@apollo/client'
+      preResolveTypes: true
+      reactApolloVersion: 3

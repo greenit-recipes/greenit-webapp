@@ -25,3 +25,4 @@ yarn-debug.log*
 yarn-error.log*
 
 TODO
+src/graphql.ts
