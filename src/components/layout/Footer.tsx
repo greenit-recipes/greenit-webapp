@@ -4,12 +4,13 @@ import { footerChat, footerWorld, footerValues } from "../../icons";
 
 export const Footer: React.FC = () => {
   return (
-    <div className="h-auto  w-full | flex flex-col | items-center | bg-gray-200">
+    <div className="h-auto w-full | flex flex-col | items-center | bg-gray-200 -mb-10">
       <Grid
         type="col"
         gap="8"
         size={{
-          default: 3,
+          default: 1,
+          md: 3,
         }}
         className="pt-10 w-4/6"
       >
@@ -46,10 +47,8 @@ export const Footer: React.FC = () => {
           </div>
         ))}
       </Grid>
-      <h3 className="text-xl pt-5">
-          hellogreenit@gmail.com
-      </h3>
-      <h3 className="text-md pt-5">
+      <h3 className="text-xl pt-5">hellogreenit@gmail.com</h3>
+      <h3 className="text-md pt-5 pb-5 ml-10 mr-10">
         © Copyright Greenit Community 2021. All rights reserved.
       </h3>
     </div>
