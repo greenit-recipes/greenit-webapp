@@ -29,7 +29,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const iconHeight = isMobile ? 18 : 22;
-  const iconWidth = isMobile ? 14 : 20;
+  const iconWidth = isMobile ? 16 : 20;
   const categoryName = recipe?.category?.name;
   return (
     <Link to={`/recipes/${recipe?.id}`}>
@@ -50,15 +50,17 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           backgroundPosition: "center",
         }}
       >
-        <div className="h-10 w-16 md:w-20 | bg-white | flex | text-center mx-auto rounded-lg">
-          <StarOutlined
-            className="mx-auto text-2xl"
-            style={{ color: "gold" }}
-          />
-          <h2 className="mx-auto pt-1">4.5</h2>
-        </div>
+        {/*
+            <div className="h-10 w-16 md:w-20 | bg-white | flex | text-center mx-auto rounded-lg">
+              <StarOutlined
+                className="mx-auto text-2xl"
+                style={{ color: "gold" }}
+              />
+              <h2 className="mx-auto pt-1">4.5</h2>
+            </div>
+          */}
         <div className="w-auto h-auto | mt-auto | bg-white shadow-lg rounded-3xl ">
-          <h1 className="subpixel-antialiased| ml-2 mr-2 | flex py-3 justify-center text-lg md:text-xl">
+          <h1 className="subpixel-antialiased| ml-10 mr-5 | flex py-3 justify-center text-lg md:text-xl">
             {recipe?.name}
           </h1>
           <div className="flex flex-row | justify-between | ml-6 mr-6">
