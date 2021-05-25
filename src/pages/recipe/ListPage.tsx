@@ -109,10 +109,12 @@ const RecipeListPage = () => {
   return (
     <>
       {!isMobile && <Navbar />}
-      <div className="flex pt-10">
-        {/* SIDEBAR */}
+      <div className="flex pt-10 items-start">
+        {/* SIDEBAR
+          TODO: FIX not showing full filterbar on scroll cause sticky
+          */}
         {!isMobile && (
-          <div className="sticky py-12 top-0 w-1/10 pl-10">
+          <div className="sticky py-12 top-12 w-1/10 pl-10">
             <h1 className="text-2xl">Filter</h1>
             {filters.map((filter) => (
               <div className="pt-5">
