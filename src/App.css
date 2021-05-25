@@ -4,3 +4,7 @@
 .alice-carousel__prev-btn-item {
   display: none !important;
 }
+
+.recipesOfTheWeekCarousel .alice-carousel__stage-item {
+  margin: 1rem 1rem 1rem 1rem !important;
+}

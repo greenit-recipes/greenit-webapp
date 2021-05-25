@@ -9,6 +9,3 @@ html {
   @apply font-body;
   /*background-color: #F4F4F5;*/
 }
-.alice-carousel__stage-item {
-  margin: 1rem 1rem 1rem 1rem !important;
-}

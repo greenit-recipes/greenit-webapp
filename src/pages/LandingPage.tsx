@@ -10,6 +10,7 @@ import {
 import useIsMobile from "../hooks/isMobile";
 import { landingPageCategories } from "../icons";
 import {
+  zeroWaste,
   body,
   face,
   hair,
@@ -26,7 +27,6 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { useRecipesQuery } from "../graphql";
 
 const SearchBar = () => {
-
   return (
     <div className="h-14 md:h-20 w-full | flex | relative">
       <input
@@ -118,16 +118,17 @@ const LandingPage = () => {
         )}
       </div>
       <Container title="Recipes of The Week" itemsCenter></Container>
-      <div className="w-full md:w-5/6">
-        {/* TODO: FIX FOR DESKTOP AND MAKE SURE LAST CARD IS SHOWN ON MOBILE */}
+      <div className="w-full md:w-5/6 recipesOfTheWeekCarousel">
         <AliceCarousel
           mouseTracking
           autoWidth
-          activeIndex={1}
+          activeIndex={0}
           paddingLeft={10}
-          items={recipes?.filter((item, index) => index > 45).map((recipe) => (
-            <RecipeCard recipe={recipe ?? undefined} key={recipe?.id}/>
-          ))}
+          items={recipes
+            ?.filter((item, index) => index > 35)
+            .map((recipe) => (
+              <RecipeCard recipe={recipe ?? undefined} key={recipe?.id} />
+            ))}
         />
       </div>
       <Container
@@ -141,15 +142,16 @@ const LandingPage = () => {
           type="col"
           gap="14"
           size={{
-            default: 5,
+            default: 3,
+            md: 6,
           }}
           className="mt-10 mb-10"
         >
-          {[home, face, wellbeing, hair, body].map((item, index) => (
+          {[zeroWaste, home, face, wellbeing, hair, body].map((item, index) => (
             <img
               src={item}
               key={index}
-              className="h-40 w-40 hover:bg-gray-300 rounded-full"
+              className="h-24 w-24 lg:h-32 lg:w-32 hover:bg-gray-300 rounded-full"
             ></img>
           ))}
         </Grid>
@@ -165,7 +167,7 @@ const LandingPage = () => {
       </Container>
       <Container
         title="Video tutorials to start"
-        className="w-full md:3/5 h-96"
+        className="w-screen md:3/5 h-96"
         itemsCenter={true}
       >
         <Grid
@@ -175,7 +177,7 @@ const LandingPage = () => {
             default: 1,
             md: 2,
           }}
-          className="pt-10 w-3/5"
+          className="pt-10 w-4/5 md:w-3/5"
         >
           <div className="relative" style={{ height: "23rem" }}>
             <ReactPlayer
@@ -191,20 +193,22 @@ const LandingPage = () => {
               height="100%"
             />
           </div>
-          <div className="relative">
-            <ReactPlayer
-              className="absolute top-0 left-0"
-              url="https://www.youtube.com/watch?v=c4jOZp-EibM"
-              controls={true}
-              config={{
-                youtube: {
-                  playerVars: { showinfo: 1, rel: 0 },
-                },
-              }}
-              width="100%"
-              height="100%"
-            />
-          </div>
+          {!isMobile && (
+            <div className="relative" style={{ height: "23rem" }}>
+              <ReactPlayer
+                url="https://www.youtube.com/watch?v=c4jOZp-EibM"
+                className="absolute top-0 left-0"
+                controls={true}
+                config={{
+                  youtube: {
+                    playerVars: { showinfo: 1, rel: 0 },
+                  },
+                }}
+                width="100%"
+                height="100%"
+              />
+            </div>
+          )}
         </Grid>
       </Container>
 
@@ -240,9 +244,9 @@ const LandingPage = () => {
             </div>
           ))}
         </Grid>
-        <h2 className="mt-20 mb-10 text-md md:text-2xl">
-          Greenit is an initiative to encourage individuals to consume in <br />
-          a sustainable, autonomous way
+        <h2 className="mt-20 mb-10 text-md md:text-2xl text-center">
+          Greenit is an initiative to encourage individuals to consume in a
+          sustainable, autonomous way
         </h2>
         <Button type="success" rounded="2xl" className="w-32 md:w-48 h-12">
           <a href="/personalizedSearch" className="text-xl md:text-2xl">
