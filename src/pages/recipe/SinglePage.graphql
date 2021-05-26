@@ -2,6 +2,7 @@ query recipe($id: String!){
   recipe(id: $id){
     id
     name
+    image
     ingredients {
       id
       name

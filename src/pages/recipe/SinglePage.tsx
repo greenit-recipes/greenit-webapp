@@ -2,8 +2,8 @@ import React, { createRef } from "react";
 import ReactPlayer from "react-player";
 import { useParams } from "react-router-dom";
 import { useRecipeQuery } from "../../graphql";
-import { Icon, Navbar, Container, Grid } from "../../components";
-import photo from "../../components/recipe/asdf.jpg";
+import { Container, Grid, Footer } from "../../components";
+import useIsMobile from "../../hooks/isMobile";
 
 interface InstructionProps {
   index: number;
@@ -11,11 +11,14 @@ interface InstructionProps {
 }
 const Instruction: React.FC<InstructionProps> = ({ index, text }) => {
   return (
-    <div className="pt-5 flex flex-row items-center">
-      <div className="w-14 h-14 bg-gray-100 rounded-full flex items-center">
-        <h3 className="text-2xl flex flex ml-auto mr-auto">{index}</h3>
+    <div className="mt-5 flex inline-flex">
+      <div
+        className="h-10 text-xl mr-5 rounded-full inline-flex items-center justify-center bg-gray-200"
+        style={{ minWidth: "2.5rem" }}
+      >
+        {index}
       </div>
-      <h3 className="text-2xl pl-10">{text}</h3>
+      <h3 className="text-lg lg:text-xl">{text}</h3>
     </div>
   );
 };
@@ -23,6 +26,8 @@ const Instruction: React.FC<InstructionProps> = ({ index, text }) => {
 const RecipeSinglePage = () => {
   // @ts-ignore
   const { id } = useParams();
+  const isMobile = useIsMobile();
+
   const { error, loading, data } = useRecipeQuery({
     variables: {
       id: id ?? "",
@@ -34,60 +39,96 @@ const RecipeSinglePage = () => {
   }
   const { recipe } = data;
   return (
-    <div className="flex flex-col | items-center self-center | ml-5 mr-5">
-      <div className="w-4/6">
+    <div className="flex flex-col | items-center">
+      <div className="w-5/6 md:w-4/6 mb-10">
         <Container
-          className="md:pt-20 flex "
+          className="mt-10 md:mt-20 flex"
           title={recipe?.name}
           itemsCenter
-        ></Container>
-        <div className="flex items-center">
-          <div
-            className="w-5/6 flex"
-            style={{
-              height: "28rem",
-            }}
-          >
-            <img src={photo} className="h-full w-80 rounded-3xl" />
-            <div className="flex flex-col pl-20 w-full">
-              <div className="pl-10 flex flex-row">
+        >
+          {isMobile ? (
+            <>
+              <img
+                src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
+                className="h-96 w-5/6 rounded-3xl mt-10"
+              />
+              <div className="w-full mt-10 whitespace-pre break-all flex-wrap inline-flex h-auto">
                 {recipe?.tags.map((item, index) => (
-                  <div className={`${index !== 0 ? "ml-2" : ""}`}>
+                  <div
+                    className="mr-2 mb-2 mt-2 bg-black text-white pl-3 pr-3 text-md rounded-lg"
+                    style={{ backgroundColor: "#888888" }}
+                  >
                     {item.name}
                   </div>
                 ))}
               </div>
-              <div className="flex">
-                <div className="pl-10 pt-5 flex flex-col w-1/2">
-                  <h3 className="pb-2 text-2xl">Ingredients</h3>
-                  {recipe?.ingredients.map((item) => (
-                    <h3 className="text-xl pt-2">{item.name}</h3>
-                  ))}
-                </div>
-                <div className="pl-10 pt-5 flex flex-col">
-                  <h3 className="pb-2 text-2xl">Utensils</h3>
-                  {recipe?.utensils.map((item) => (
-                    <h3 className="text-xl pt-2">{item.name}</h3>
-                  ))}
+              <div className="mt-5 flex flex-col self-start">
+                <h3 className="pb-1 text-2xl">Ingredients</h3>
+                {recipe?.ingredients.map((item) => (
+                  <h3 className="text-xl pt-2">{item.name}</h3>
+                ))}
+              </div>
+              <div className="mt-5 flex flex-col self-start">
+                <h3 className="pb-1 text-2xl">Utensils</h3>
+                {recipe?.utensils.map((item) => (
+                  <h3 className="text-xl pt-2">{item.name}</h3>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="w-full h-auto">
+              <div className="flex flex-row">
+                <img
+                  src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
+                  className="w-1/4 rounded-3xl mt-10 self-start"
+                  style={{ height: "28rem" }}
+                />
+                <div className="flex flex-col ml-10 mt-10 w-full">
+                  <div className="w-full whitespace-pre break-all flex-wrap inline-flex h-11">
+                    {recipe?.tags.map((item, index) => (
+                      <div
+                        className="mr-2 mb-2 mt-2 bg-black text-white pl-3 pr-3 text-md rounded-lg"
+                        style={{ backgroundColor: "#888888" }}
+                      >
+                        {item.name}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-row w-full">
+                    <div className="mt-5 flex flex-col self-start w-1/2">
+                      <h3 className="pb-1 text-2xl">Ingredients</h3>
+                      {recipe?.ingredients.map((item) => (
+                        <h3 className="text-xl pt-2">{item.name}</h3>
+                      ))}
+                    </div>
+                    <div className="mt-5 flex flex-col self-start">
+                      <h3 className="pb-1 text-2xl">Utensils</h3>
+                      {recipe?.utensils.map((item) => (
+                        <h3 className="text-xl pt-2">{item.name}</h3>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="pt-20 flex flex-col">
-          <h3 className="pb-2 text-2xl">Description</h3>
-          <p className="text-lg">{recipe?.description}</p>
-          <h3 className="pt-5 pb-2 text-2xl">Conservation</h3>
-          <p className="text-lg">
+          )}
+        </Container>
+        <div className="mt-10 flex flex-col">
+          <h3 className="pb-2 text-2xl lg:text-3xl">Description</h3>
+          <p className="text-lg lg:text-xl">{recipe?.description}</p>
+          <h3 className="pt-5 pb-2 text-2xl lg:text-3xl">Conservation</h3>
+          <p className="text-lg lg:text-xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis
             blandit tellus. In quis bibendum massa. Aliquam dictum velit nec
-            nisi consectetur euismod. Donec rhoncus arcu ante, ut aliquam quam
-            maximus vel. Vivamus blandit lobortis pulvinar. Curabitur id metus
-            nulla. Nullam vel diam elementum enim efficitur feugiat. Quisque
-            pharetra magna in tortor tincidunt feugiat
+            nisi consectetur euismod.
           </p>
         </div>
-        <Grid type="col" size={{ default: 2 }} gap="0" className="pt-20">
+        <Grid
+          type="col"
+          size={{ default: 1, lg: 2 }}
+          gap={isMobile ? "0" : "20"}
+          className="mt-10"
+        >
           <div className="h-96 w-full">
             <ReactPlayer
               url="https://www.youtube.com/watch?v=c4jOZp-EibM"
@@ -101,8 +142,8 @@ const RecipeSinglePage = () => {
               height="100%"
             />
           </div>
-          <div className="pl-20">
-            <h3 className="text-3xl">Instructions</h3>
+          <div className="mt-10 lg:mt-0">
+            <h3 className="text-2xl lg:text-3xl">Instructions</h3>
             {recipe?.instructions.map((item: any, index: number) => (
               <div className="flex flex-col">
                 <Instruction index={index + 1} text={`${item.content}`} />
@@ -110,7 +151,16 @@ const RecipeSinglePage = () => {
             ))}
           </div>
         </Grid>
+        <div className="pt-14 flex flex-col">
+          <h3 className="pb-2 text-2xl lg:text-3xl">Notes from the Author</h3>
+          <p className="text-md lg:text-lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis
+            blandit tellus. In quis bibendum massa. Aliquam dictum velit nec
+            nisi consectetur euismod.
+          </p>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };

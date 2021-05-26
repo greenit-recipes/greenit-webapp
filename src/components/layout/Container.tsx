@@ -17,7 +17,7 @@ export const Container: React.FC<ContainerProps> = ({
   return (
     <div className={`${className} mt-${margin} mb-${margin} ${itemsCenter ? "flex flex-col items-center": ""}`}>
       {title && (
-        <h1 className="text-3xl md:text-5xl | md:mb-10">
+        <h1 className="text-2xl lg:text-5xl | md:mb-10">
           {title}
         </h1>
       )}
