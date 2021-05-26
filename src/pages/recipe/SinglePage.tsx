@@ -64,8 +64,10 @@ const RecipeSinglePage = () => {
               </div>
               <div className="mt-5 flex flex-col self-start">
                 <h3 className="pb-1 text-2xl">Ingredients</h3>
+                {/* TODO Fix this weird bug "Object is possibly null or undefined." */}
+                {/* @ts-ignore */}
                 {recipe?.ingredients.map((item) => (
-                  <h3 className="text-xl pt-2">{item.name}</h3>
+                  <h3 className="text-xl pt-2">{item.amount} {item.name}</h3>
                 ))}
               </div>
               <div className="mt-5 flex flex-col self-start">
@@ -97,8 +99,11 @@ const RecipeSinglePage = () => {
                   <div className="flex flex-row w-full">
                     <div className="mt-5 flex flex-col self-start w-1/2">
                       <h3 className="pb-1 text-2xl">Ingredients</h3>
-                      {recipe?.ingredients.map((item) => (
-                        <h3 className="text-xl pt-2">{item.name}</h3>
+                      {/* @ts-ignore */}
+                      {recipe.ingredients.map((item) => (
+                        <h3 className="text-xl pt-2">
+                          {item.amount} {item.name}
+                        </h3>
                       ))}
                     </div>
                     <div className="mt-5 flex flex-col self-start">

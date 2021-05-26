@@ -1,11 +1,12 @@
-query recipe($id: String!){
-  recipe(id: $id){
+query recipe($id: String!) {
+  recipe(id: $id) {
     id
     name
     image
     ingredients {
       id
       name
+      amount
     }
     utensils {
       id
