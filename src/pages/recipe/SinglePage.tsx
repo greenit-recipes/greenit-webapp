@@ -55,7 +55,7 @@ const RecipeSinglePage = () => {
               <div className="w-full mt-10 whitespace-pre break-all flex-wrap inline-flex h-auto">
                 {recipe?.tags.map((item, index) => (
                   <div
-                    className="mr-2 mb-2 mt-2 bg-black text-white pl-3 pr-3 text-md rounded-lg"
+                    className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center h-8"
                     style={{ backgroundColor: "#888888" }}
                   >
                     {item.name}
@@ -89,14 +89,14 @@ const RecipeSinglePage = () => {
                   <div className="w-full whitespace-pre break-all flex-wrap inline-flex h-11">
                     {recipe?.tags.map((item, index) => (
                       <div
-                        className="mr-2 mb-2 mt-2 bg-black text-white pl-3 pr-3 text-md rounded-lg"
+                        className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center"
                         style={{ backgroundColor: "#888888" }}
                       >
                         {item.name}
                       </div>
                     ))}
                   </div>
-                  <div className="flex flex-row w-full">
+                  <div className="flex flex-row w-full mt-10">
                     <div className="mt-5 flex flex-col self-start w-1/2">
                       <h3 className="pb-1 text-2xl">Ingredients</h3>
                       {/* @ts-ignore */}
