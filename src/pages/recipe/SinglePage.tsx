@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useRecipeQuery } from "../../graphql";
 import { Container, Grid, Footer } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
+import { getSecondsFromDuration } from "../../utils";
 
 interface InstructionProps {
   index: number;
@@ -67,7 +68,9 @@ const RecipeSinglePage = () => {
                 {/* TODO Fix this weird bug "Object is possibly null or undefined." */}
                 {/* @ts-ignore */}
                 {recipe?.ingredients.map((item) => (
-                  <h3 className="text-xl pt-2">{item.amount} {item.name}</h3>
+                  <h3 className="text-xl pt-2">
+                    {item.amount} {item.name}
+                  </h3>
                 ))}
               </div>
               <div className="mt-5 flex flex-col self-start">
@@ -138,6 +141,7 @@ const RecipeSinglePage = () => {
             <ReactPlayer
               url="https://www.youtube.com/watch?v=c4jOZp-EibM"
               controls={true}
+              ref={player}
               config={{
                 youtube: {
                   playerVars: { showinfo: 1, rel: 0 },
@@ -150,8 +154,20 @@ const RecipeSinglePage = () => {
           <div className="mt-10 lg:mt-0">
             <h3 className="text-2xl lg:text-3xl">Instructions</h3>
             {recipe?.instructions.map((item: any, index: number) => (
-              <div className="flex flex-col cursor-pointer">
-                <Instruction index={index + 1} text={`${item.content}`} />
+              <div
+                className="flex flex-col cursor-pointer"
+                onClick={() => {
+                  console.log('up')
+                  player.current?.seekTo(getSecondsFromDuration(item.timestamp));
+                  player.current?.getInternalPlayer().playVideo();
+                }}
+              >
+
+                <Instruction
+                  index={index + 1}
+                  text={`${item.content}`}
+                  key={index}
+                />
               </div>
             ))}
           </div>

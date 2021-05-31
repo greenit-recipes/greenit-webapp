@@ -27,3 +27,27 @@ export const getBreakpoint = (screen = "") => {
   const breakpoints = matches[screen];
   return breakpoints;
 };
+
+export const getSecondsFromDuration = (duration: string) => {
+  const getNumber = (item: string | null) => {
+    return item
+      ? item.length === 2
+        ? parseInt(item.substr(0, 1))
+        : parseInt(item.substr(0, 2))
+      : 0;
+  };
+  let amount: number = 0;
+  const hours = duration.match(/([0-9]{1,2}h)/g);
+  const minutes = duration.match(/([0-9]{1,2}m)/g);
+  const seconds = duration.match(/([0-9]{1,2}s)/g);
+  if (hours) {
+    amount += getNumber(hours[0]) * 3600;
+  }
+  if (minutes) {
+    amount += getNumber(minutes[0]) * 60;
+  }
+  if (seconds) {
+    amount += getNumber(seconds[0]);
+  }
+  return amount;
+};
