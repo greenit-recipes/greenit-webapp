@@ -1,112 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RecipeCard, Navbar, Footer } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
-import { useRecipesQuery, DifficultyChoice } from "../../graphql";
+import { useRecipesQuery, useRecipeFilterQuery } from "../../graphql";
 import { Loading } from "../../components";
-
-const filters = [
-  {
-    title: "House",
-    name: "house",
-    options: [
-      { title: "Sanitation", value: "1cb1a8aa-d483-4c13-ae66-a71c7413c639" },
-      { title: "Decoration", value: "affe5a2e-a8e4-417b-b4fe-c94b74d97e79" },
-      { title: "Utilites", value: "utilities" },
-    ],
-  },
-  {
-    title: "Body",
-    name: "body",
-    options: [
-      { title: "Hygiene", value: "d811789c-5c6c-4a70-851b-773f774a2a92" },
-      { title: "Care", value: "care" },
-    ],
-  },
-  {
-    title: "Face",
-    name: "face",
-    options: [
-      { title: "Care", value: "care" },
-      { title: "Make up", value: "make_up" },
-    ],
-  },
-  {
-    title: "Hair",
-    name: "hair",
-    options: [{ title: "Care", value: "care" }],
-  },
-  {
-    title: "Wellbeing",
-    name: "wellbeing",
-    options: [
-      { title: "Health", value: "health" },
-      { title: "Relaxation", value: "relaxation" },
-    ],
-  },
-  {
-    title: "Duration",
-    name: "duration",
-    options: [
-      { title: "Under 15 minutes", value: 15 },
-      { title: "Under 30 minutes", value: 30 },
-      { title: "Under 1 hour", value: 60 },
-    ],
-  },
-  {
-    title: "Additional Categories",
-    name: "additional_categories",
-    options: [
-      { title: "Quick start", value: "quick_start" }, // TODO find  a more appropriate word
-      { title: "Zero waste", value: "zero_waste" },
-      { title: "Easily available ingredients", value: "easily_available" },
-    ],
-  },
-  {
-    title: "Difficulty",
-    name: "difficulty",
-    options: [
-      { title: "Beginner", value: "BEGINNER" },
-      { title: "Intermediate", value: "INTERMEDIATE" },
-      { title: "Advanced", value: "ADVANCED" },
-    ],
-  },
-];
 
 const RecipeListPage = () => {
   const { error, loading, data, refetch } = useRecipesQuery();
+  const { loading: loadingFilter, data: filterData } = useRecipeFilterQuery();
   const isMobile = useIsMobile();
-  const [currentFilters, setCurrentFilters] = useState<any[]>([]);
-  const handleFilter = (item: { filter: string; value: string | number }) => {
-    setCurrentFilters((prevState) => {
-      const index = prevState.findIndex(
-        ({ filter, value }) => filter === item.filter && value === item.value
-      );
-      if (index === -1) {
-        return [...prevState, item];
-      } else {
-        const _filters = [...prevState];
-        _filters.splice(index, 1);
-        return _filters;
-      }
-    });
-  };
-  React.useEffect(() => {
-    const filter = {};
-    currentFilters.forEach((item) => {
-      // @ts-ignore
-      filter[item.filter] = item.value;
-    });
-    console.log(filter);
+  const [currentFilters, setCurrentFilters] = useState<any>({});
+  useEffect(() => {
+    const filter = { ...currentFilters };
+    if (filter.categoryTag) {
+      filter.tags = filter.tags
+        ? [filter.tags, filter.categoryTag]
+        : [filter.categoryTag];
+    }
+    delete filter.categoryTag;
+    console.log(filter)
     refetch({
       filter,
     });
-  }, [currentFilters]);
+  }, [currentFilters, refetch]);
 
-  if (loading || !data) {
+  if (loading || !data || loadingFilter || !filterData) {
     return <Loading />;
   }
 
   const recipes = data.allRecipes;
+  const { filter } = filterData;
   return (
     <>
       {!isMobile && <Navbar />}
@@ -115,36 +37,85 @@ const RecipeListPage = () => {
           TODO: FIX not showing full filterbar on scroll cause sticky
           */}
         {!isMobile && (
-          <div className="sticky py-12 top-12 w-1/10 pl-10">
+          <div className=" py-12 top-12 w-1/10 pl-10">
             <h1 className="text-2xl">Filter</h1>
-            {filters.map((filter) => (
+            {filter.map((item: any) => (
               <div className="pt-5">
-                <h1 className="text-xl">{filter.title}</h1>
-                {/* @ts-ignore */}
-                {filter.options.map((option) => (
-                  <div
-                    className="text-lg pt-1 cursor-pointer"
-                    onClick={() => {
-                      handleFilter({
-                        filter: filter.name,
-                        value: option.value,
-                      });
-                    }}
-                  >
-                    {currentFilters.some(
-                      (item) =>
-                        item.value === option.value &&
-                        item.filter === filter.name
-                    ) ? (
-                      <div className="flex flex-row">
-                        <h3 className="text-black">{option.title}</h3>
-                        <h3 className="text-black pl-2">X</h3>
-                      </div>
-                    ) : (
-                      <h3 className="text-gray-500">{option.title}</h3>
-                    )}
-                  </div>
-                ))}
+                {currentFilters["category"] === item.value ? (
+                  <h1 className="text-xl text-black">{item.title}</h1>
+                ) : (
+                  <h1 className="text-xl text-gray-600">{item.title}</h1>
+                )}
+                {item.options.map(
+                  (option: { title: string; value: string }) => (
+                    <div className="text-lg pt-1 cursor-pointer">
+                      {currentFilters[item.name] === option.value ||
+                      currentFilters.categoryTag === option.value ||
+                      currentFilters.tags?.some(
+                        (item: string) => item === option.value
+                      ) ? (
+                        <h3
+                          className="text-black"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setCurrentFilters((prevState: any) => {
+                              const state: { [k: string]: any } = {
+                                ...prevState,
+                              };
+                              if (item.name === "additional_categories") {
+                                if (state.tags && state.tags.length > 1) {
+                                  state.tags = state.tags.filter(
+                                    (tag: string) => tag !== option.value
+                                  );
+                                } else {
+                                  delete state.tags;
+                                }
+                              } else if (!item.value) {
+                                delete state[item.name];
+                              } else {
+                                delete state.category;
+                                delete state.categoryTag;
+                              }
+                              return state;
+                            });
+                          }}
+                        >
+                          {option.title}
+                        </h3>
+                      ) : (
+                        <h3
+                          className="text-gray-500"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setCurrentFilters((prevState: any) => {
+                              const state: { [k: string]: string } = {
+                                ...prevState,
+                                ...(item.value
+                                  ? {
+                                      category: item.value,
+                                      categoryTag: option.value,
+                                    }
+                                  : {}),
+                                ...(item.name === "additional_categories"
+                                  ? { tags: [option.value] }
+                                  : {}),
+                                ...(item.name === "duration"
+                                  ? { duration: option.value }
+                                  : {}),
+                                ...(item.name === "difficulty"
+                                  ? { difficulty: option.value }
+                                  : {}),
+                              };
+                              return state;
+                            });
+                          }}
+                        >
+                          {option.title}
+                        </h3>
+                      )}
+                    </div>
+                  )
+                )}
               </div>
             ))}
           </div>

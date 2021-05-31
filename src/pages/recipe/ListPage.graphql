@@ -12,3 +12,7 @@ query recipes($filter: RecipeFilterInput) {
     }
   }
 }
+
+query recipeFilter {
+  filter
+}
