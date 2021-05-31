@@ -150,7 +150,7 @@ const RecipeSinglePage = () => {
           <div className="mt-10 lg:mt-0">
             <h3 className="text-2xl lg:text-3xl">Instructions</h3>
             {recipe?.instructions.map((item: any, index: number) => (
-              <div className="flex flex-col">
+              <div className="flex flex-col cursor-pointer">
                 <Instruction index={index + 1} text={`${item.content}`} />
               </div>
             ))}
