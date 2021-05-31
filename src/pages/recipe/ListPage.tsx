@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RecipeCard, Navbar, Footer } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 import { useRecipesQuery, DifficultyChoice } from "../../graphql";
+import { Loading } from "../../components";
 
 const filters = [
   {
@@ -102,7 +103,7 @@ const RecipeListPage = () => {
   }, [currentFilters]);
 
   if (loading || !data) {
-    return <div>Loading</div>;
+    return <Loading />;
   }
 
   const recipes = data.allRecipes;

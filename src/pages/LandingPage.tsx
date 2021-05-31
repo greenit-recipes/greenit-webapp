@@ -4,6 +4,7 @@ import {
   Navbar,
   Grid,
   Container,
+  Loading,
   Button,
   Footer,
 } from "../components";
@@ -71,10 +72,7 @@ const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
 const LandingPage = () => {
   const isMobile = useIsMobile();
   const { error, loading, data, refetch } = useRecipesQuery();
-  if (loading || !data) {
-    return <div>Loading</div>;
-  }
-  const recipes = data.allRecipes;
+  const recipes = data?.allRecipes || null;
   return (
     <div className="flex flex-col | items-center self-center">
       {!isMobile && <Navbar />}
@@ -124,11 +122,11 @@ const LandingPage = () => {
           autoWidth
           activeIndex={0}
           paddingLeft={10}
-          items={recipes
+          items={recipes ? recipes
             ?.filter((item, index) => index > 35)
             .map((recipe) => (
               <RecipeCard recipe={recipe ?? undefined} key={recipe?.id} />
-            ))}
+            )):([<Loading />])}
         />
       </div>
       <Container

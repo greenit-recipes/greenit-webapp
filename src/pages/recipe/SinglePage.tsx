@@ -2,7 +2,7 @@ import React, { createRef } from "react";
 import ReactPlayer from "react-player";
 import { useParams } from "react-router-dom";
 import { useRecipeQuery } from "../../graphql";
-import { Container, Grid, Footer } from "../../components";
+import { Container, Grid, Footer, Loading } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 import { getSecondsFromDuration } from "../../utils";
 
@@ -36,7 +36,7 @@ const RecipeSinglePage = () => {
   });
   const player = createRef<ReactPlayer>();
   if (loading || !data) {
-    return <>Loading</>;
+    return <Loading />;
   }
   const { recipe } = data;
   return (
@@ -157,12 +157,13 @@ const RecipeSinglePage = () => {
               <div
                 className="flex flex-col cursor-pointer"
                 onClick={() => {
-                  console.log('up')
-                  player.current?.seekTo(getSecondsFromDuration(item.timestamp));
+                  console.log("up");
+                  player.current?.seekTo(
+                    getSecondsFromDuration(item.timestamp)
+                  );
                   player.current?.getInternalPlayer().playVideo();
                 }}
               >
-
                 <Instruction
                   index={index + 1}
                   text={`${item.content}`}
