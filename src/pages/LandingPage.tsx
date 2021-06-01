@@ -71,8 +71,9 @@ const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
-  const { error, loading, data, refetch } = useRecipesQuery();
-  const recipes = data?.allRecipes || null;
+  const { error, loading, data, refetch } = useRecipesQuery({
+    variables: { first: 10 },
+  });
   return (
     <div className="flex flex-col | items-center self-center">
       {!isMobile && <Navbar />}
@@ -122,11 +123,13 @@ const LandingPage = () => {
           autoWidth
           activeIndex={0}
           paddingLeft={10}
-          items={recipes ? recipes
-            ?.filter((item, index) => index > 35)
-            .map((recipe) => (
-              <RecipeCard recipe={recipe ?? undefined} key={recipe?.id} />
-            )):([<Loading />])}
+          items={
+            data?.allRecipes
+              ? data.allRecipes?.edges.map((recipe, index) => (
+                  <RecipeCard recipe={recipe?.node} key={index} />
+                ))
+              : [<Loading />]
+          }
         />
       </div>
       <Container

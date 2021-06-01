@@ -1,15 +1,26 @@
-query recipes($filter: RecipeFilterInput) {
-  allRecipes(filter: $filter) {
+query recipes($filter: RecipeFilterInput, $first: Int, $after: String) {
+  allRecipes(filter: $filter, after: $after, first: $first) {
+    pageInfo {
+      hasNextPage
+    }
+    edges {
+      cursor
+      node {
+        ...recipe
+      }
+    }
+  }
+}
+
+fragment recipe on RecipeType {
+  id
+  name
+  difficulty
+  duration
+  image
+  category {
     id
     name
-    difficulty
-    duration
-    rating
-    image
-    category {
-      id
-      name
-    }
   }
 }
 

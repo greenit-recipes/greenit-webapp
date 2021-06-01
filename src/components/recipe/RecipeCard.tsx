@@ -1,28 +1,16 @@
 import React from "react";
-import { StarOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+
 import { Icon } from "../misc";
 import photo from "./asdf.jpg";
 import useIsMobile from "../../hooks/isMobile";
-import { Link } from "react-router-dom";
+import { RecipeFragment } from "../../graphql";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
-  recipe?: {
-    id: string;
-    difficulty: string;
-    name: string;
-    duration: number;
-    rating?: number | null | undefined;
-    image?: string | null | undefined;
-    category?:
-      | {
-          id: string;
-          name: string;
-        }
-      | null
-      | undefined;
-  };
+  recipe: RecipeFragment | null | undefined;
 }
+
 export const RecipeCard: React.FC<RecipeCardProps> = ({
   enableShadow = true,
   recipe,
