@@ -34,6 +34,9 @@ import footerChat from "./footer_chat_icon.png";
 import footerWorld from "./footer_world_icon.png";
 import footerValues from "./footer_values_icon.png";
 
+// FILTERBAR
+import filterIcon from "./filter_icon.png"
+
 export const landingPageCategories = [
   {
     icon: getStarted,
@@ -88,4 +91,5 @@ export {
   footerValues,
   footerWorld,
   search,
+  filterIcon,
 };

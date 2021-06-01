@@ -20,7 +20,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   const iconWidth = isMobile ? 16 : 20;
   const categoryName = recipe?.category?.name;
   return (
-    <Link to={`/recipes/${recipe?.id}`}>
+    <Link to={`/recipes/${recipe?.urlId}`}>
       <div
         className={`flex flex-col | ${
           enableShadow && "shadow-lg"

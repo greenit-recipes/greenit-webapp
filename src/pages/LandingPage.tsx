@@ -26,14 +26,17 @@ import ReactPlayer from "react-player";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useRecipesQuery } from "../graphql";
+import { useHistory } from "react-router";
 
 const SearchBar = () => {
+  const history = useHistory();
   return (
     <div className="h-14 md:h-20 w-full | flex | relative">
       <input
         type="text"
         className="w-full h-full | rounded-full shadow-lg | text-xl md:text-3xl | pl-5"
         placeholder="Search ..."
+        id="search"
       />
       <div
         className="w-16 md:w-20 h-14 md:h-20 md:h-16 | flex absolute -right-0 | rounded-full cursor-pointer"
@@ -42,6 +45,13 @@ const SearchBar = () => {
         <img
           src={search}
           className="w-10 h-10 md:h-10 md:w-10 | self-center | ml-auto mr-auto"
+          onClick={() => {
+            history.push(
+              `/recipes/?search=${
+                (document.getElementById("search") as HTMLInputElement)?.value
+              }`
+            );
+          }}
         />
       </div>
     </div>

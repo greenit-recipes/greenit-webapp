@@ -8,21 +8,27 @@ import {
 } from "../../graphql";
 import { Loading } from "../../components";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { filterIcon } from "../../icons";
 
 const RecipeListPage = () => {
+  const params = new URLSearchParams(window.location.search);
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
     variables: {
       first: 10,
+      filter: { search: params.get("search") || "" },
     },
   });
   const { loading: loadingFilter, data: filterData } = useRecipeFilterQuery();
   const isMobile = useIsMobile();
-  const [currentFilters, setCurrentFilters] = useState<any>({});
+  const [currentFilters, setCurrentFilters] = useState<any>({
+    search: params.get("search") || "",
+  });
   const [toggle, setToggle] = useState(false);
   useEffect(() => {
-    refetch({ filter: currentFilters });
+    if (!loading) {
+      refetch({ filter: currentFilters });
+    }
   }, [currentFilters, refetch]);
-
   if (loading || !data || loadingFilter || !filterData) {
     return <Loading />;
   }
@@ -34,98 +40,58 @@ const RecipeListPage = () => {
       {!isMobile ? (
         <Navbar />
       ) : (
-        <div
+        <img
+          src={filterIcon}
+          className="h-14 w-14"
           onClick={() => {
             setToggle((prevState) => !prevState);
           }}
-        >
-          TOGGLE TOGGLE
-        </div>
+        ></img>
       )}
 
-      <div className="flex pt-10 items-start">
+      <div className="flex lg:mt-10 items-start">
         {/* SIDEBAR
           TODO: FIX not showing full filterbar on scroll cause sticky
           */}
-        {isMobile ? (
-          <div
-            className={`py-12 pl-10 ${
-              toggle ? "filterBar_fadeIn" : "filterBar_fadeOut"
-            }`}
-          >
-            <h1 className="text-2xl">Filter</h1>
-            {filter.map((item: any) => (
-              <div className="pt-5">
-                <h1 className="text-xl text-gray-600 mb-2">{item.title}</h1>
-                {item.options.map(
-                  (option: { title: string; value: string }) => {
-                    const isSelected =
-                      currentFilters[item.name] === option.value;
-                    return (
-                      <div className="text-lg mb-1 cursor-pointer">
-                        <h3
-                          className={
-                            isSelected ? "text-black" : "text-gray-600"
+        <div
+          className={
+            isMobile
+              ? `${
+                  toggle ? "pl-10 filterBar_fadeIn py-12" : "filterBar_fadeOut"
+                }`
+              : "py-12 top-12 w-1/10 pl-10"
+          }
+        >
+          <h1 className="text-2xl">Filter</h1>
+          {filter.map((item: any) => (
+            <div className="lg:pt-5">
+              <h1 className="text-xl text-gray-600 mb-2">{item.title}</h1>
+              {item.options.map((option: { title: string; value: string }) => {
+                const isSelected = currentFilters[item.name] === option.value;
+                return (
+                  <div className="text-lg mb-1 cursor-pointer">
+                    <h3
+                      className={isSelected ? "text-black" : "text-gray-600"}
+                      onClick={() => {
+                        setCurrentFilters((prevState: any) => {
+                          const state = { ...prevState };
+                          if (!isSelected) {
+                            state[item.name] = option.value;
+                          } else {
+                            delete state[item.name];
                           }
-                          onClick={() => {
-                            setCurrentFilters((prevState: any) => {
-                              const state = { ...prevState };
-                              if (!isSelected) {
-                                state[item.name] = option.value;
-                              } else {
-                                delete state[item.name];
-                              }
-                              return state;
-                            });
-                          }}
-                        >
-                          {option.title}
-                        </h3>
-                      </div>
-                    );
-                  }
-                )}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="py-12 top-12 w-1/10 pl-10 ">
-            <h1 className="text-2xl">Filter</h1>
-            {filter.map((item: any) => (
-              <div className="pt-5">
-                <h1 className="text-xl text-gray-600 mb-2">{item.title}</h1>
-                {item.options.map(
-                  (option: { title: string; value: string }) => {
-                    const isSelected =
-                      currentFilters[item.name] === option.value;
-                    return (
-                      <div className="text-lg mb-1 cursor-pointer">
-                        <h3
-                          className={
-                            isSelected ? "text-black" : "text-gray-600"
-                          }
-                          onClick={() => {
-                            setCurrentFilters((prevState: any) => {
-                              const state = { ...prevState };
-                              if (!isSelected) {
-                                state[item.name] = option.value;
-                              } else {
-                                delete state[item.name];
-                              }
-                              return state;
-                            });
-                          }}
-                        >
-                          {option.title}
-                        </h3>
-                      </div>
-                    );
-                  }
-                )}
-              </div>
-            ))}
-          </div>
-        )}
+                          return state;
+                        });
+                      }}
+                    >
+                      {option.title}
+                    </h3>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
         {/* CONTENT */}
         <div className="h-auto w-full | sticky top-0 pb-20">
           <InfiniteScroll

@@ -10,7 +10,7 @@
 }
 
 .filterBar_fadeOut {
-  min-width: 0;
+  width: 0;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 300ms, opacity 300ms;
