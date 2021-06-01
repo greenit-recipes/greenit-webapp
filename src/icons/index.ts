@@ -37,6 +37,9 @@ import footerValues from "./footer_values_icon.png";
 // FILTERBAR
 import filterIcon from "./filter_icon.png"
 
+//MISC
+import emptyIcon from "./empty_icon.png"
+
 export const landingPageCategories = [
   {
     icon: getStarted,
@@ -92,4 +95,5 @@ export {
   footerWorld,
   search,
   filterIcon,
+  emptyIcon,
 };

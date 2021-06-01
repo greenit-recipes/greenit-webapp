@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { RecipeCard, Navbar, Footer } from "../../components";
+import { RecipeCard, Navbar, Footer, Empty } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 import {
   useRecipesQuery,
@@ -93,7 +93,7 @@ const RecipeListPage = () => {
           ))}
         </div>
         {/* CONTENT */}
-        <div className="h-auto w-full | sticky top-0 pb-20">
+        <div className="h-auto w-full | sticky top-0 pb-20 flex flex-col items-center">
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
@@ -134,6 +134,9 @@ const RecipeListPage = () => {
               ))}
             </div>
           </InfiniteScroll>
+          {recipes?.length === 0 && (
+            <Empty />
+          )}
         </div>
       </div>
       <Footer />
