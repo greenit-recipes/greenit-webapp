@@ -8,3 +8,16 @@
 .recipesOfTheWeekCarousel .alice-carousel__stage-item {
   margin: 1rem 1rem 1rem 1rem !important;
 }
+
+.filterBar_fadeOut {
+  min-width: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+}
+.filterBar_fadeIn {
+  min-width: 300px;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
+}
