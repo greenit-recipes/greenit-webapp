@@ -15,44 +15,37 @@ import {
 } from "../../icons";
 
 interface IconProps {
-  type: string;
-  start?: boolean;
+  text?: string;
   height?: number;
   width?: number;
   icon?: string;
 }
-export const Icon: React.FC<IconProps> = ({
-  type,
-  start,
-  height,
-  width,
-  icon,
-}) => {
+export const Icon: React.FC<IconProps> = ({ text, height, width, icon }) => {
   const types = {
     // category
-    Home: home,
-    Wellbeing: wellbeing,
-    Body: body,
-    Face: face,
-    Hair: hair,
+    Maison: home,
+    "Bien-être": wellbeing,
+    Corps: body,
+    Visage: face,
+    Cheveux: hair,
 
     // difficulty
-    Beginner: beginner,
-    Intermediate: intermediate,
-    Advanced: advanced,
+    Facile: beginner,
+    Intermediaire: intermediate,
+    Expert: advanced,
 
     // duration
     "15 min": fifteenMin,
     "30 min": thirtyMin,
-    "1 hour": oneHour,
+    "1 heure": oneHour,
     Rating: logo,
   };
   const item = types[icon as keyof typeof types];
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <img src={item} className={`h-${height ?? 28} w-${width ?? 32}`} />
-      <h1 className="py-1 flex justify-center text-sm md:text-lg">{icon}</h1>
+      <h1 className="py-1 text-sm md:text-lg">{icon}</h1>
     </div>
   );
 };

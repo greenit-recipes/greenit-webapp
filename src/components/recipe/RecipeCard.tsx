@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Icon } from "../misc";
 import photo from "./asdf.jpg";
 import useIsMobile from "../../hooks/isMobile";
-import { RecipeFragment } from "../../graphql";
+import { RecipeDifficulty, RecipeFragment } from "../../graphql";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
@@ -16,9 +16,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
 }) => {
   const isMobile = useIsMobile();
-  const iconHeight = isMobile ? 18 : 22;
-  const iconWidth = isMobile ? 16 : 20;
-  const categoryName = recipe?.category?.name;
+  const iconHeight = isMobile ? 18 : 20;
+  const iconWidth = isMobile ? 16 : 18;
+
   return (
     <Link to={`/recipes/${recipe?.urlId}`}>
       <div
@@ -53,32 +53,22 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           </h1>
           <div className="flex flex-row | justify-between | ml-6 mr-6">
             <Icon
-              type="category"
+              height={iconHeight}
+              width={iconWidth}
+              icon={recipe?.category?.name}
+            />
+            <Icon
               height={iconHeight}
               width={iconWidth}
               icon={
-                categoryName?.includes("Corps")
-                  ? "Body"
-                  : categoryName?.includes("Maison")
-                  ? "Home"
-                  : categoryName?.includes("Bien-être")
-                  ? "Wellbeing"
-                  : categoryName?.includes("Cheveux")
-                  ? "Hair"
-                  : "Face"
+                recipe?.difficulty === RecipeDifficulty.Beginner
+                  ? "Facile"
+                  : recipe?.difficulty === RecipeDifficulty.Intermediate
+                  ? "Intermediaire"
+                  : "Expert"
               }
             />
             <Icon
-              type="difficulty"
-              height={iconHeight}
-              width={iconWidth}
-              icon={`${recipe?.difficulty.substr(
-                0,
-                1
-              )}${recipe?.difficulty.substr(1).toLowerCase()}`}
-            />
-            <Icon
-              type="duration"
               height={iconHeight}
               width={iconWidth}
               icon={
@@ -87,7 +77,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
                     ? "15 min"
                     : recipe?.duration < 30
                     ? "30 min"
-                    : "1 hour"
+                    : "1 heure"
                   : undefined
               }
             />
