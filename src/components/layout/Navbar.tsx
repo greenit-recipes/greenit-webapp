@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { hamburgerIcon, logo } from "../../icons";
 import { Button } from "../";
 import useIsMobile from "../../hooks/isMobile";
+import { Link } from "react-router-dom";
 
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
@@ -16,7 +17,9 @@ export const Navbar: React.FC = () => {
           className="flex flex-row items-center justify-between"
         >
           <img src={hamburgerIcon} className="h-12 w-12" />
-          <img src={logo} className="h-20 w-20" alt="Greenit Logo" />
+          <Link to="/">
+            <img src={logo} className="h-20 w-20" alt="Greenit Logo" />
+          </Link>
           <div className="invisible">Toggle</div>
         </div>
         <div
@@ -27,10 +30,18 @@ export const Navbar: React.FC = () => {
           }
         >
           <div className="flex flex-col | cursor-pointer space-y-4 text-xl text-gray-500 mb-5">
-            <h1 className="mt-5">Recipes</h1>
-            <h1>Why Greenit?</h1>
-            <h1>Talk To Us</h1>
-            <h1>Submit a Recipe</h1>
+            <Link to="/recipes">
+              <h1 className="mt-5">Recipes</h1>
+            </Link>
+            <Link to="#">
+              <h1>Why Greenit?</h1>
+            </Link>
+            <Link to="#">
+              <h1>Talk To Us</h1>
+            </Link>
+            <Link to="#">
+              <h1>Submit a Recipe</h1>
+            </Link>
           </div>
         </div>
       </div>
@@ -39,12 +50,20 @@ export const Navbar: React.FC = () => {
   return (
     <div className="h-20 w-full | flex | items-center | text-gray-500 text-2xl sticky top-0 bg-white z-10 backdrop-opacity-100">
       <div className="w-56 cursor-pointer">
-        <img src={logo} className="h-20 w-20 | ml-10" alt="Greenit Logo" />
+        <Link to="/">
+          <img src={logo} className="h-20 w-20 | ml-10" alt="Greenit Logo" />
+        </Link>
       </div>
       <div className="flex | ml-auto mr-auto | self-center cursor-pointer">
-        <h1 className="pr-10">Recipes</h1>
-        <h1 className="pr-10">Why Greenit?</h1>
-        <h1>Talk To Us</h1>
+        <Link to="/recipes">
+          <h1 className="pr-10">Recipes</h1>
+        </Link>
+        <Link to="#">
+          <h1 className="pr-10">Why Greenit?</h1>
+        </Link>
+        <Link to="#">
+          <h1>Talk To Us</h1>
+        </Link>
       </div>
 
       <Button
@@ -52,7 +71,9 @@ export const Navbar: React.FC = () => {
         rounded="3xl"
         className="w-64 h-12 | flex justify-end self-center | mr-4 cursor-pointer"
       >
-        <h1>Submit Your Recipe</h1>
+        <Link to="#">
+          <h1>Submit Your Recipe</h1>
+        </Link>
       </Button>
     </div>
   );
