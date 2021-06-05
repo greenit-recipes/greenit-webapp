@@ -12,26 +12,27 @@ export const Footer: React.FC = () => {
           default: 1,
           md: 3,
         }}
-        className="pt-10 w-4/6"
+        className="mt-10 w-4/6"
       >
         {[
           {
             icon: footerWorld,
             title: "Multidisciplinary",
             text:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas feugiat tortor velit, lacinia vulputate sapien maximus vel. Pellentesque metus enim, porta varius est id, suscipit viverra neque. Maecenas consequat lectus vel dui convallis, malesuada semper dolor tincidunt. Nam et neque nunc.",
+              "Greenit est une solution sociale, économique et écologique aux problèmes  de pollution et climatiques auxquels nous sommes confronté. Greenit est une solution pour remplacer la production industrielle par une production artisanale et locale.",
           },
           {
             icon: footerChat,
             title: "Collective",
             text:
-              "Maecenas malesuada semper pulvinar. Suspendisse interdum vehicula metus, non imperdiet nunc imperdiet in. Sed facilisis felis in nisl condimentum, eget faucibus mauris rhoncus. Cras enim neque, vestibulum sed dui vel, auctor dignissim lectus. Pellentesque ac purus malesuada, hendrerit purus vel, ultrices metus. ",
+              "Notre première mission ensemble est de developper une communauté qui soutient le partage des connaissances pour une consommation et une production saines.",
           },
           {
             icon: footerValues,
             title: "Transparent",
             text:
-              "Nulla nibh ante, pharetra nec magna eu, varius egestas libero. Sed tincidunt magna odio, nec molestie magna ultrices tincidunt. Proin orci tellus, varius quis est nec, ornare imperdiet lorem. Nunc convallis non augue at scelerisque. Morbi mi arcu, rhoncus at risus in, commodo suscipit metus.",
+              "Ici il n’y pas de collection de données personnelles, pas de publicités et pas d’Amazon ou de Google pour héberger notre site. Greenit est aussi un projet open-source disponible sur Github. \
+N’hésites pas à poser tes questions et à voter pour les prochaines functionalités Greenit.",
           },
         ].map((item) => (
           <div className="flex flex-col">
@@ -43,12 +44,20 @@ export const Footer: React.FC = () => {
               />
               <h3 className="text-2xl pl-2 flex self-center">{item.title}</h3>
             </div>
-            <div className="pt-5">{item.text}</div>
+            <div className="mt-5">{item.text}</div>
           </div>
         ))}
       </Grid>
-      <h3 className="text-xl pt-5">hellogreenit@gmail.com</h3>
-      <h3 className="text-md pt-5 pb-5 ml-10 mr-10">
+      <h3 className="text-xl mt-5 mb-20">hellogreenit@gmail.com</h3>
+      <p>Directeur de la Rédaction et de la Publication : Adrien Sosson</p>
+      <p className="w-4/6 mt-5">
+        En utilisant Greenit vous acceptez notre politique de confidentialité.
+        Droit d’auteur : le contenu est disponible et protégé sous licence
+        Creative Commons attribution, partage dans les mêmes conditions. Pour
+        quelconque utilisation de notre contenu veuillez nous contacter au
+        préalable. Voyez les conditions d’utilisation.
+      </p>
+      <h3 className="text-md mt-5 pb-5 ml-10 mr-10">
         © Copyright Greenit Community 2021. All rights reserved.
       </h3>
     </div>
