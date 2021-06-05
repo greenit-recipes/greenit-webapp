@@ -35,11 +35,12 @@ import footerWorld from "./footer_world_icon.png";
 import footerValues from "./footer_values_icon.png";
 
 // FILTERBAR
-import filterIcon from "./filter_icon.png"
+import filterIcon from "./filter_icon.png";
 
 //MISC
-import emptyIcon from "./empty_icon.png"
-import hamburgerIcon from "./hamburger_icon.png"
+import emptyIcon from "./empty_icon.png";
+import hamburgerIcon from "./hamburger_icon.png";
+import scrollToTop from "./scroll_top_icon.png";
 
 export const landingPageCategories = [
   {
@@ -97,5 +98,6 @@ export {
   search,
   filterIcon,
   emptyIcon,
-  hamburgerIcon
+  hamburgerIcon,
+  scrollToTop,
 };

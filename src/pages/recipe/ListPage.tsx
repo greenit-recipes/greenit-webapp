@@ -4,7 +4,7 @@ import useIsMobile from "../../hooks/isMobile";
 import { useRecipesQuery, RecipesQuery } from "../../graphql";
 import { Loading } from "../../components";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { filterIcon } from "../../icons";
+import { filterIcon, scrollToTop } from "../../icons";
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -176,6 +176,7 @@ const RecipeListPage = () => {
     ...(params.get("category") ? { category: params.get("category") } : {}),
   });
   const [toggle, setToggle] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
   useEffect(() => {
     if (!loading) {
@@ -216,6 +217,15 @@ const RecipeListPage = () => {
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
             loader={<></>}
+            onScroll={(e) => {
+              if (!isMobile){
+                if (window.pageYOffset > 800) {
+                  setShowScrollTop(true);
+                } else {
+                  setShowScrollTop(false);
+                }
+              }
+            }}
             next={() => {
               fetchMore({
                 variables: {
@@ -272,6 +282,19 @@ const RecipeListPage = () => {
                 behavior: "smooth",
               });
             }, 100);
+          }}
+        />
+      )}
+      {showScrollTop && (
+        <img
+          src={scrollToTop}
+          className="fixed bottom-10 right-10 z-20 h-16 w-16 cursor-pointer"
+          id="scrollToTop"
+          onClick={() => {
+            window.scrollTo({
+              top: scrollOffset,
+              behavior: "smooth",
+            });
           }}
         />
       )}
