@@ -137,7 +137,7 @@ const RecipeSinglePage = () => {
         >
           <div className="h-96 w-full">
             <ReactPlayer
-              url="https://www.youtube.com/watch?v=c4jOZp-EibM"
+              url={recipe?.videoUrl}
               controls={true}
               ref={player}
               config={{
