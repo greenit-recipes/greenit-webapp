@@ -39,6 +39,7 @@ import filterIcon from "./filter_icon.png"
 
 //MISC
 import emptyIcon from "./empty_icon.png"
+import hamburgerIcon from "./hamburger_icon.png"
 
 export const landingPageCategories = [
   {
@@ -96,4 +97,5 @@ export {
   search,
   filterIcon,
   emptyIcon,
+  hamburgerIcon
 };

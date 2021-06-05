@@ -10,13 +10,26 @@
 }
 
 .filterBar_fadeOut {
-  width: 0;
   visibility: hidden;
   opacity: 0;
+  max-height: 0px;
   transition: visibility 0s linear 300ms, opacity 300ms;
 }
 .filterBar_fadeIn {
   min-width: 300px;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
+}
+.navBar_fadeOut {
+  /* width: 0; */
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0px;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+}
+.navBar_fadeIn {
+  min-width: 150px;
   visibility: visible;
   opacity: 1;
   transition: visibility 0s linear 0s, opacity 300ms;
