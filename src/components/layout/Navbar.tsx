@@ -31,16 +31,16 @@ export const Navbar: React.FC = () => {
         >
           <div className="flex flex-col | cursor-pointer space-y-4 text-xl text-gray-500 mb-5">
             <Link to="/recipes">
-              <h1 className="mt-5">Recipes</h1>
+              <h1 className="mt-5">Recettes</h1>
             </Link>
             <Link to="#">
-              <h1>Why Greenit?</h1>
+              <h1>Nos engagements</h1>
             </Link>
             <Link to="#">
-              <h1>Talk To Us</h1>
+              <h1>Contactez-nous</h1>
             </Link>
             <Link to="#">
-              <h1>Submit a Recipe</h1>
+              <h1>Partagez vos recettes</h1>
             </Link>
           </div>
         </div>
@@ -56,13 +56,13 @@ export const Navbar: React.FC = () => {
       </div>
       <div className="flex | ml-auto mr-auto | self-center cursor-pointer">
         <Link to="/recipes">
-          <h1 className="pr-10">Recipes</h1>
+          <h1 className="pr-10">Recettes</h1>
         </Link>
         <Link to="#">
-          <h1 className="pr-10">Why Greenit?</h1>
+          <h1 className="pr-10">Nos engagements</h1>
         </Link>
         <Link to="#">
-          <h1>Talk To Us</h1>
+        <h1>Contactez-nous</h1>
         </Link>
       </div>
 
@@ -72,7 +72,7 @@ export const Navbar: React.FC = () => {
         className="w-64 h-12 | flex justify-end self-center | mr-4 cursor-pointer"
       >
         <Link to="#">
-          <h1>Submit Your Recipe</h1>
+          <h1>Partagez vos recettes</h1>
         </Link>
       </Button>
     </div>
