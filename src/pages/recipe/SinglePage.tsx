@@ -126,9 +126,7 @@ const RecipeSinglePage = () => {
           <p className="text-lg lg:text-xl">{recipe?.description}</p>
           <h3 className="pt-5 pb-2 text-2xl lg:text-3xl">Conservation</h3>
           <p className="text-lg lg:text-xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis
-            blandit tellus. In quis bibendum massa. Aliquam dictum velit nec
-            nisi consectetur euismod.
+            {recipe?.expiry}
           </p>
         </div>
         <Grid
@@ -176,9 +174,7 @@ const RecipeSinglePage = () => {
         <div className="pt-14 flex flex-col">
           <h3 className="pb-2 text-2xl lg:text-3xl">Notes from the Author</h3>
           <p className="text-md lg:text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis
-            blandit tellus. In quis bibendum massa. Aliquam dictum velit nec
-            nisi consectetur euismod.
+          {recipe?.notesFromAuthor}
           </p>
         </div>
       </div>

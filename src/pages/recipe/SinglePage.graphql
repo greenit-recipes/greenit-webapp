@@ -12,6 +12,8 @@ query recipe($id: String!) {
       id
       name
     }
+    notesFromAuthor
+    expiry
     description
     tags {
       id
