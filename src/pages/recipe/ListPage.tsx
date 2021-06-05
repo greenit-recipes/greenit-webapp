@@ -16,6 +16,7 @@ interface FilterBarProps {
   setCurrentFilters: (filter: Record<string, any>) => void;
   isMobile?: boolean;
   toggle?: boolean;
+  setScrollOffset: (val: number) => void;
 }
 
 interface FilterBarItem {
@@ -63,6 +64,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
   setCurrentFilters,
   isMobile,
   toggle,
+  setScrollOffset,
 }) => {
   const handleFilter = (
     isSelected: boolean,
@@ -78,6 +80,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
       }
       return state;
     });
+    setScrollOffset(0);
   };
 
   if (isMobile) {
@@ -128,6 +131,7 @@ const RecipeListPage = () => {
     search: params.get("search") || "",
   });
   const [toggle, setToggle] = useState(false);
+  const [scrollOffset, setScrollOffset] = useState(0);
   useEffect(() => {
     if (!loading) {
       refetch({ filter: currentFilters });
@@ -149,6 +153,7 @@ const RecipeListPage = () => {
           setCurrentFilters={setCurrentFilters}
           isMobile={isMobile}
           toggle={toggle}
+          setScrollOffset={setScrollOffset}
         />
       )}
       <div className="flex lg:mt-10 items-start">
@@ -159,6 +164,7 @@ const RecipeListPage = () => {
             setCurrentFilters={setCurrentFilters}
             isMobile={isMobile}
             toggle={toggle}
+            setScrollOffset={setScrollOffset}
           />
         )}
         <div className="h-auto w-full | sticky top-0 pb-20 flex flex-col items-center">
@@ -212,7 +218,16 @@ const RecipeListPage = () => {
           className="fixed bottom-10 right-10 z-20 h-16 w-16"
           onClick={(e) => {
             e.stopPropagation();
+            if (!toggle) {
+              setScrollOffset(window.pageYOffset);
+            }
             setToggle((prevState) => !prevState);
+            setTimeout(() => {
+              window.scrollTo({
+                top: scrollOffset,
+                behavior: "smooth",
+              });
+            }, 100);
           }}
         />
       )}
