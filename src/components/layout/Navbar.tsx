@@ -20,7 +20,7 @@ export const Navbar: React.FC = () => {
           <Link to="/">
             <img src={logo} className="h-20 w-20" alt="Greenit Logo" />
           </Link>
-          <div className="invisible">Toggle</div>
+          <div className="invisible">_____</div>
         </div>
         <div
           className={
