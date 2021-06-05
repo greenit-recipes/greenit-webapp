@@ -188,6 +188,13 @@ const RecipeListPage = () => {
   }
   const recipes = data.allRecipes?.edges || [];
   const hasMore = data.allRecipes?.pageInfo.hasNextPage || false;
+  if (
+    params.get("tag") &&
+    !filterData[1].options.some((option) => option.title === params.get("tag"))
+  ) {
+    // @ts-ignore
+    filterData[1].options.push({ title: params.get("tag") });
+  }
   return (
     <div className={isMobile && toggle ? "overflow-hidden fixed" : ""}>
       <Navbar />
@@ -218,7 +225,7 @@ const RecipeListPage = () => {
             hasMore={hasMore}
             loader={<></>}
             onScroll={(e) => {
-              if (!isMobile){
+              if (!isMobile) {
                 if (window.pageYOffset > 800) {
                   setShowScrollTop(true);
                 } else {

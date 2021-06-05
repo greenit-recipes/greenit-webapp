@@ -1,6 +1,6 @@
 import React, { createRef } from "react";
 import ReactPlayer from "react-player";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useRecipeQuery } from "../../graphql";
 import { Container, Grid, Footer, Loading } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
@@ -28,7 +28,7 @@ const RecipeSinglePage = () => {
   // @ts-ignore
   const { id } = useParams();
   const isMobile = useIsMobile();
-
+  const history = useHistory();
   const { error, loading, data } = useRecipeQuery({
     variables: {
       id: id ?? "",
@@ -56,8 +56,11 @@ const RecipeSinglePage = () => {
               <div className="w-full mt-10 whitespace-pre break-all flex-wrap inline-flex h-auto">
                 {recipe?.tags.map((item, index) => (
                   <div
-                    className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center h-8"
+                    className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center h-8 cursor-pointer"
                     style={{ backgroundColor: "#888888" }}
+                    onClick={() => {
+                      history.push(`/recipes?tag=${item.name}`);
+                    }}
                   >
                     {item.name}
                   </div>
@@ -65,8 +68,6 @@ const RecipeSinglePage = () => {
               </div>
               <div className="mt-5 flex flex-col self-start">
                 <h3 className="pb-1 text-2xl">Ingredients</h3>
-                {/* TODO Fix this weird bug "Object is possibly null or undefined." */}
-                {/* @ts-ignore */}
                 {recipe?.ingredients.map((item) => (
                   <h3 className="text-xl pt-2">
                     {item.amount} {item.name}
@@ -92,8 +93,11 @@ const RecipeSinglePage = () => {
                   <div className="w-full whitespace-pre break-all flex-wrap inline-flex h-11">
                     {recipe?.tags.map((item, index) => (
                       <div
-                        className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center"
+                        className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
                         style={{ backgroundColor: "#888888" }}
+                        onClick={() => {
+                          history.push(`/recipes?tag=${item.name}`);
+                        }}
                       >
                         {item.name}
                       </div>
@@ -102,7 +106,7 @@ const RecipeSinglePage = () => {
                   <div className="flex flex-row w-full mt-10">
                     <div className="mt-5 flex flex-col self-start w-1/2">
                       <h3 className="pb-1 text-2xl">Ingredients</h3>
-                      {/* @ts-ignore */}
+                      {/* @ts-ignore*/}
                       {recipe.ingredients.map((item) => (
                         <h3 className="text-xl pt-2">
                           {item.amount} {item.name}
@@ -125,9 +129,7 @@ const RecipeSinglePage = () => {
           <h3 className="pb-2 text-2xl lg:text-3xl">Description</h3>
           <p className="text-lg lg:text-xl">{recipe?.description}</p>
           <h3 className="pt-5 pb-2 text-2xl lg:text-3xl">Conservation</h3>
-          <p className="text-lg lg:text-xl">
-            {recipe?.expiry}
-          </p>
+          <p className="text-lg lg:text-xl">{recipe?.expiry}</p>
         </div>
         <Grid
           type="col"
@@ -173,9 +175,7 @@ const RecipeSinglePage = () => {
         </Grid>
         <div className="pt-14 flex flex-col">
           <h3 className="pb-2 text-2xl lg:text-3xl">Notes from the Author</h3>
-          <p className="text-md lg:text-lg">
-          {recipe?.notesFromAuthor}
-          </p>
+          <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
         </div>
       </div>
       <Footer />
