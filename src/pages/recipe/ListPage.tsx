@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RecipeCard, Navbar, Footer, Empty } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
-import {
-  useRecipesQuery,
-  useRecipeFilterQuery,
-  RecipesQuery,
-} from "../../graphql";
+import { useRecipesQuery, RecipesQuery } from "../../graphql";
 import { Loading } from "../../components";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { filterIcon } from "../../icons";
@@ -38,7 +34,8 @@ const FilterBarItem: React.FC<FilterBarItem> = ({
     <div className="lg:pt-5 mb-5 content-center text-center lg:text-left">
       <h1 className="text-2xl text-gray-600 mb-2">{item.title}</h1>
       {item.options.map((option: { title: string; value: string }) => {
-        const isSelected = currentFilters[item.name] === option.value;
+        const isSelected =
+          currentFilters[item.name] === (option.value || option.title);
         return (
           <div className="text-xl mb-2 cursor-pointer">
             <h3
@@ -74,7 +71,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
     setCurrentFilters((prevState: Record<string, any>) => {
       const state = { ...prevState };
       if (!isSelected) {
-        state[item.name] = option.value;
+        state[item.name] = option.value || option.title;
       } else {
         delete state[item.name];
       }
@@ -117,18 +114,66 @@ const FilterBar: React.FC<FilterBarProps> = ({
   );
 };
 
+const filterData = [
+  {
+    title: "Category",
+    name: "category",
+    options: [
+      { title: "Maison" },
+      { title: "Corps" },
+      { title: "Visage" },
+      { title: "Cheveux" },
+      { title: "Bien-être" },
+    ],
+  },
+  {
+    title: "Tag",
+    name: "tags",
+    options: [
+      { title: "Permier pas" },
+      { title: "Zéro-déchet" },
+      {
+        title: "Ingrédients du frigo",
+      },
+    ],
+  },
+  {
+    title: "Temps",
+    name: "duration",
+    options: [
+      { title: "Moins de 15 min", value: 15 },
+      { title: "Moins de 30 min", value: 30 },
+      { title: "Moins de 1 heure", value: 60 },
+    ],
+  },
+  {
+    title: "Difficulté",
+    name: "difficulty",
+    options: [
+      { title: "Facile", value: "BEGINNER" },
+      { title: "Intermediaire", value: "INTERMEDIATE" },
+      { title: "Expert", value: "ADVANCED" },
+    ],
+  },
+];
+
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
     variables: {
       first: 10,
-      filter: { search: params.get("search") || "" },
+      filter: {
+        search: params.get("search") || "",
+        ...(params.get("tags") ? { tags: [params.get("tags")] } : {}),
+        ...(params.get("category") ? { category: params.get("category") } : {}),
+      },
     },
   });
-  const { loading: loadingFilter, data: filterData } = useRecipeFilterQuery();
   const isMobile = useIsMobile();
   const [currentFilters, setCurrentFilters] = useState<any>({
     search: params.get("search") || "",
+    ...(params.get("tag") ? { tags: params.get("tag") } : {}),
+    ...(params.get("category") ? { category: params.get("category") } : {}),
   });
   const [toggle, setToggle] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
@@ -137,18 +182,17 @@ const RecipeListPage = () => {
       refetch({ filter: currentFilters });
     }
   }, [currentFilters, refetch]);
-  if (loading || !data || loadingFilter || !filterData) {
+  if (loading || !data) {
     return <Loading />;
   }
   const recipes = data.allRecipes?.edges || [];
   const hasMore = data.allRecipes?.pageInfo.hasNextPage || false;
-  const { filter } = filterData;
   return (
     <div className={isMobile && toggle ? "overflow-hidden fixed" : ""}>
       <Navbar />
       {isMobile && (
         <FilterBar
-          filter={filter}
+          filter={filterData}
           currentFilters={currentFilters}
           setCurrentFilters={setCurrentFilters}
           isMobile={isMobile}
@@ -159,7 +203,7 @@ const RecipeListPage = () => {
       <div className="flex lg:mt-10 items-start">
         {!isMobile && (
           <FilterBar
-            filter={filter}
+            filter={filterData}
             currentFilters={currentFilters}
             setCurrentFilters={setCurrentFilters}
             isMobile={isMobile}

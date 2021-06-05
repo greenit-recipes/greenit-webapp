@@ -44,31 +44,31 @@ import hamburgerIcon from "./hamburger_icon.png"
 export const landingPageCategories = [
   {
     icon: getStarted,
-    title: "Quick Start",
+    title: "Premier Pas",
   },
   {
     icon: zeroWaste,
-    title: "Zero Waste",
+    title: "Zéro-déchet",
   },
   {
     icon: fridge,
-    title: "From The Fridge",
+    title: "Ingrédients du frigo",
   },
   {
     icon: home,
-    title: "Home",
+    title: "Maison",
   },
   {
     icon: face,
-    title: "Face",
+    title: "Visage",
   },
   {
     icon: wellbeing,
-    title: "Wellbeing",
+    title: "Bien-être",
   },
   {
     icon: body,
-    title: "Body",
+    title: "Corps",
   },
 ];
 

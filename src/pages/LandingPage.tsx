@@ -27,6 +27,7 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useRecipesQuery } from "../graphql";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   const history = useHistory();
@@ -64,15 +65,19 @@ interface CategoryCircleProps {
 }
 
 const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
+  console.log(name)
+  const isTag = ["Permier Pas", "Zéro-déchet", "Ingrédients du frigo"].includes(
+    name
+  );
   return (
     <div className="flex flex-col | items-center | max-w-28">
       <div className="w-20 h-20 md:w-28 md:h-28 | rounded-full shadow-lg">
-        <a href="/recipes">
+        <Link to={`/recipes?${isTag ? `tags=${name}` : `category=${name}`}`}>
           <img
             className="max-h-full max-w-full | ml-auto mr-auto | flex place-self-center | rounded-full"
             src={icon}
           ></img>
-        </a>
+        </Link>
       </div>
       <h3 className="pt-2 text-md md:text-lg"> {name} </h3>
     </div>
@@ -95,7 +100,6 @@ const LandingPage = () => {
         <SearchBar />
       </div>
       <div className="w-screen md:w-4/5 | items-center pt-14 pb-16 | flex justify-center">
-        {/* TODO: FIX FOR PHONE */}
         {isMobile ? (
           <AliceCarousel
             mouseTracking
@@ -136,7 +140,11 @@ const LandingPage = () => {
           items={
             data?.allRecipes
               ? data.allRecipes?.edges.map((recipe, index) => (
-                  <RecipeCard recipe={recipe?.node} key={index} inCarousel={true}/>
+                  <RecipeCard
+                    recipe={recipe?.node}
+                    key={index}
+                    inCarousel={true}
+                  />
                 ))
               : [<Loading />]
           }
