@@ -136,7 +136,7 @@ const LandingPage = () => {
           items={
             data?.allRecipes
               ? data.allRecipes?.edges.map((recipe, index) => (
-                  <RecipeCard recipe={recipe?.node} key={index} />
+                  <RecipeCard recipe={recipe?.node} key={index} inCarousel={true}/>
                 ))
               : [<Loading />]
           }
