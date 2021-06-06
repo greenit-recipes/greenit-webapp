@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
             <Link to="#">
               <h1>Nos engagements</h1>
             </Link>
-            <Link to="#">
+            <Link to="/contact">
               <h1>Contactez-nous</h1>
             </Link>
             <Link to="#">
@@ -61,7 +61,7 @@ export const Navbar: React.FC = () => {
         <Link to="#">
           <h1 className="pr-10">Nos engagements</h1>
         </Link>
-        <Link to="#">
+        <Link to="/contact">
         <h1>Contactez-nous</h1>
         </Link>
       </div>

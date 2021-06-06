@@ -4,6 +4,8 @@ interface ButtonProps {
   type: "primary" | "secondary" | "info" | "success" | "orange";
   rounded?: string;
   className?: string;
+  onClick? : () => void;
+
 }
 
 const BUTTON_COLOURS = {
@@ -18,6 +20,7 @@ export const Button: React.FC<ButtonProps> = ({
   rounded,
   className,
   children,
+  onClick
 }) => {
   return (
     <div
@@ -25,6 +28,11 @@ export const Button: React.FC<ButtonProps> = ({
         backgroundColor: BUTTON_COLOURS[type],
       }}
       className={`flex justify-center items-center rounded-${rounded} text-white ${className}`}
+      onClick={() => {
+        if (onClick){
+          onClick()
+        }
+      }}
     >
       {children}
     </div>

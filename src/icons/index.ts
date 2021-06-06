@@ -42,6 +42,9 @@ import emptyIcon from "./empty_icon.png";
 import hamburgerIcon from "./hamburger_icon.png";
 import scrollToTop from "./scroll_top_icon.png";
 
+import tiktokIcon from "./tiktok.svg";
+import pinterestIcon from "./pinterest.svg";
+
 export const landingPageCategories = [
   {
     icon: getStarted,
@@ -100,4 +103,6 @@ export {
   emptyIcon,
   hamburgerIcon,
   scrollToTop,
+  tiktokIcon,
+  pinterestIcon,
 };
