@@ -18,32 +18,64 @@ import { useRecipesQuery } from "../graphql";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
-const SearchBar = () => {
+export const SearchBar: React.FC<{
+  size?: "small" | "large";
+  setValue?: (val: string) => void;
+  value?: string;
+  onSubmit?: () => void;
+  hideSearchIcon?: boolean;
+}> = ({ size = "large", value, setValue, onSubmit, hideSearchIcon }) => {
+  const isLarge = size === "large";
   const history = useHistory();
+  const totalSize = `w-full h-14 md:h-${isLarge ? "20" : "14"}`;
+  const iconSize = `w-16 md:w-${isLarge ? "20" : "14"} h-14 md:h-${
+    isLarge ? "20" : "14"
+  }`;
   return (
-    <div className="h-14 md:h-20 w-full | flex | relative">
+    <div className={`${totalSize} | flex | relative`}>
       <input
         type="text"
-        className="w-full h-full | rounded-full shadow-lg | text-xl md:text-3xl | pl-5"
+        className={`w-full h-full | rounded-full shadow-lg | text-xl md:${
+          isLarge ? "md:text-2xl" : "text-xl"
+        } | pl-5`}
         placeholder="Recherche ..."
         id="search"
+        onChange={(e) => {
+          if (setValue) {
+            setValue(e.target.value);
+          }
+        }}
+        {...(value
+          ? {
+              value,
+            }
+          : {})}
       />
-      <div
-        className="w-16 md:w-20 h-14 md:h-20 md:h-16 | flex absolute -right-0 | rounded-full cursor-pointer"
-        style={{ backgroundColor: "#c0e0fb" }}
-      >
-        <img
-          src={search}
-          className="w-10 h-10 md:h-10 md:w-10 | self-center | ml-auto mr-auto"
-          onClick={() => {
-            history.push(
-              `/recipes/?search=${
-                (document.getElementById("search") as HTMLInputElement)?.value
-              }`
-            );
-          }}
-        />
-      </div>
+      {!hideSearchIcon && (
+        <div
+          className={`${iconSize} | flex absolute -right-0 | rounded-full cursor-pointer`}
+          style={{ backgroundColor: "#c0e0fb" }}
+        >
+          <img
+            src={search}
+            className={`w-10 h-10 md:h-${isLarge ? "10" : "9"} md:w-${
+              isLarge ? "10" : "9"
+            } | self-center | ml-auto mr-auto`}
+            onClick={() => {
+              if (!onSubmit) {
+                history.push(
+                  `/recipes/?search=${
+                    (document.getElementById("search") as HTMLInputElement)
+                      ?.value
+                  }`
+                );
+              } else {
+                onSubmit();
+              }
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -80,7 +112,10 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
-      <Container className="flex flex-col | items-center | mt-16 lg:mt-32" padding>
+      <Container
+        className="flex flex-col | items-center | mt-16 lg:mt-32"
+        padding
+      >
         <img src={logo} className="h-40 w-40 mb-10" />
         <h1 className="text-2xl md:text-5xl | pb-10 text-center">
           Toutes les recettes pour nos produits faits maison

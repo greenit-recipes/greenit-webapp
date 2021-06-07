@@ -6,6 +6,7 @@ import { Loading } from "../../components";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { filterIcon, scrollToTop } from "../../icons";
 import { filterData } from "../../utils";
+import { SearchBar } from "../LandingPage";
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -14,6 +15,7 @@ interface FilterBarProps {
   isMobile?: boolean;
   toggle?: boolean;
   setScrollOffset: (val: number) => void;
+  params: URLSearchParams;
 }
 
 interface FilterBarItem {
@@ -56,14 +58,51 @@ const FilterBarItem: React.FC<FilterBarItem> = ({
   );
 };
 
+const FilterBarSearch: React.FC<{
+  setCurrentFilters: (data: Record<string, any>) => void;
+  search: string;
+  setSearch: (val: string) => void;
+}> = ({ setCurrentFilters, search, setSearch }) => {
+  const isMobile = useIsMobile()
+  return (
+    <div className="lg:-ml-5 mb-5 mt-2 mt-3">
+      <SearchBar
+        size="small"
+        value={search}
+        setValue={setSearch}
+        hideSearchIcon={isMobile}
+        onSubmit={() => {
+          setCurrentFilters((prevState: Record<string, any>) => {
+            return {
+              ...prevState,
+              search: search,
+            };
+          });
+        }}
+      />
+    </div>
+  );
+};
 const FilterBar: React.FC<FilterBarProps> = ({
   filter,
+  params,
   currentFilters,
   setCurrentFilters,
   isMobile,
   toggle,
   setScrollOffset,
 }) => {
+  const [search, setSearch] = useState(params.get("search") || "");
+  useEffect(() => {
+    if (isMobile && !toggle){
+      setCurrentFilters((prevState: Record<string, any>) => {
+        return {
+          ...prevState,
+          search
+        }
+      })
+    }
+  }, [toggle, search]);
   const handleFilter = (
     isSelected: boolean,
     option: { title: string; value: string },
@@ -89,6 +128,11 @@ const FilterBar: React.FC<FilterBarProps> = ({
         } fixed min-w-screen min-h-screen flex flex-col items-center`}
       >
         <h1 className="text-2xl mb-5">Filtre</h1>
+        <FilterBarSearch
+          setCurrentFilters={setCurrentFilters}
+          search={search}
+          setSearch={setSearch}
+        />
         <div className="grid grid-cols-2 w-screen">
           {filter.map((item: any) => (
             <FilterBarItem
@@ -104,6 +148,11 @@ const FilterBar: React.FC<FilterBarProps> = ({
   return (
     <div className="py-12 top-12 w-1/10 pl-10">
       <h1 className="text-2xl mb-5">Filtre</h1>
+      <FilterBarSearch
+        search={search}
+        setSearch={setSearch}
+        setCurrentFilters={setCurrentFilters}
+      />
       {filter.map((item: any) => (
         <FilterBarItem
           item={item}
@@ -164,6 +213,7 @@ const RecipeListPage = () => {
           isMobile={isMobile}
           toggle={toggle}
           setScrollOffset={setScrollOffset}
+          params={params}
         />
       )}
       <div className="flex lg:mt-10 items-start">
@@ -175,6 +225,7 @@ const RecipeListPage = () => {
             isMobile={isMobile}
             toggle={toggle}
             setScrollOffset={setScrollOffset}
+            params={params}
           />
         )}
         <div className="h-auto w-full | sticky top-0 pb-20 flex flex-col items-center">
