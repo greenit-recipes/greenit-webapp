@@ -153,7 +153,7 @@ const ContactPage = () => {
             <div className="flex flex-row gap-x-4 justify-center mt-3">
               {[
                 {
-                  href: " https://www.instagram.com/greenitcommunity/",
+                  href: "https://www.instagram.com/greenitcommunity/",
                   children: <InstagramOutlined className="pr-2" />,
                 },
                 {
