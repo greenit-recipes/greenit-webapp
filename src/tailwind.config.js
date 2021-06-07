@@ -13,6 +13,7 @@ module.exports = {
         "rounded-2xl",
         "rounded-3xl",
         "relative",
+        "md:text-2xl",
         "z-10",
         "h-18",
         "h-20",
