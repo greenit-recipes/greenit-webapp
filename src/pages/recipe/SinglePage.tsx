@@ -128,7 +128,7 @@ const RecipeSinglePage = () => {
         </Container>
         <div className="mt-10 flex flex-col">
           <h3 className="pb-2 text-2xl lg:text-3xl">Description</h3>
-          <p className="text-lg lg:text-xl">{recipe?.description}</p>
+          <p className="text-lg lg:text-xl leading-relaxed">{recipe?.description}</p>
           <h3 className="pt-5 pb-2 text-2xl lg:text-3xl">Conservation</h3>
           <p className="text-lg lg:text-xl">{recipe?.expiry}</p>
         </div>
@@ -175,7 +175,7 @@ const RecipeSinglePage = () => {
           </div>
         </Grid>
         <div className="pt-14 flex flex-col">
-          <h3 className="pb-2 text-2xl lg:text-3xl">Notes from the Author</h3>
+          <h3 className="pb-2 text-2xl lg:text-3xl">Conseils de l'auteur</h3>
           <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
         </div>
       </div>
