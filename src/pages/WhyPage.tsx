@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Footer, Navbar } from "../components";
 import useIsMobile from "../hooks/isMobile";
 import { body, logo, money, planet, wellbeing } from "../icons";
@@ -44,6 +44,14 @@ const WhyBlock: React.FC<{
 };
 const WhyPage: React.FC = () => {
   const isMobile = useIsMobile();
+  useEffect(() => {
+    if (window.pageYOffset > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
   return (
     <div className="min-h-screen min-w-screen">
       <Navbar />

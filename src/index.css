@@ -9,3 +9,6 @@ html {
   @apply font-body;
   /*background-color: #F4F4F5;*/
 }
+button:hover {
+  background: transparent;
+}
