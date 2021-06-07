@@ -83,10 +83,10 @@ const ContactPage = () => {
     onCompleted: (data) => {
       setMessage(
         data.sendMessage?.ok
-          ? "Success!"
+          ? "Envoyé avec succès!"
           : data.sendMessage?.message === "Internal Error"
-          ? "Internal Error! Please try again later."
-          : "Invalid Captcha!"
+          ? "Erreur interne, merci d'essayer plus tard."
+          : "Captcha non valide!"
       );
     },
   });
@@ -206,6 +206,7 @@ const ContactPage = () => {
             />
             <div className="self-start mt-5">
               <HCaptcha
+                languageOverride="fr"
                 sitekey={process.env.REACT_APP_HCAPTCHA_ID ?? ""}
                 onVerify={(token) => {
                   setState((prevState) => {
@@ -219,8 +220,8 @@ const ContactPage = () => {
             </div>
             <input
               type="submit"
-              value="Send"
-              className="w-20 h-8 mt-5 text-xl ml-auto rounded-lg text-white mb-5"
+              value="Envoyer"
+              className="w-24 h-8 mt-5 text-xl ml-auto rounded-lg text-white mb-5"
               style={{
                 backgroundColor: "#95cdfb",
                 cursor: state.token ? "pointer" : "not-allowed",
