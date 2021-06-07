@@ -225,7 +225,7 @@ const LandingPage = () => {
         title="Pourquoi Greenit?"
         margin={20}
         itemsCenter
-        padding
+        padding={isMobile}
       >
         <Grid
           type="col"
