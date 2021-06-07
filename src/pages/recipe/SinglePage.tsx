@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import React, { createRef, useEffect } from "react";
 import ReactPlayer from "react-player";
 import { useHistory, useParams } from "react-router-dom";
 import { useRecipeQuery } from "../../graphql";
@@ -36,8 +36,10 @@ const RecipeSinglePage = () => {
   });
   useEffect(() => {
     if (window.pageYOffset > 0) {
-      top: 0,
-      behavior: "smooth",
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   }, []);
   const player = createRef<ReactPlayer>();
@@ -134,7 +136,9 @@ const RecipeSinglePage = () => {
         </Container>
         <div className="mt-10 flex flex-col">
           <h3 className="pb-2 text-2xl lg:text-3xl">Description</h3>
-          <p className="text-lg lg:text-xl leading-relaxed">{recipe?.description}</p>
+          <p className="text-lg lg:text-xl leading-relaxed">
+            {recipe?.description}
+          </p>
           <h3 className="pt-5 pb-2 text-2xl lg:text-3xl">Conservation</h3>
           <p className="text-lg lg:text-xl">{recipe?.expiry}</p>
         </div>

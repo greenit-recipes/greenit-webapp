@@ -179,8 +179,10 @@ const RecipeListPage = () => {
   const isMobile = useIsMobile();
   useEffect(() => {
     if (window.pageYOffset > 0) {
-      top: 0,
-      behavior: "smooth",
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   }, []);
   const [currentFilters, setCurrentFilters] = useState<any>({
