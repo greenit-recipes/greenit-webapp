@@ -88,7 +88,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
           toggle ? "filterBar_fadeIn" : "filterBar_fadeOut"
         } fixed min-w-screen min-h-screen flex flex-col items-center`}
       >
-        <h1 className="text-2xl mb-5">Filter</h1>
+        <h1 className="text-2xl mb-5">Filtre</h1>
         <div className="grid grid-cols-2 w-screen">
           {filter.map((item: any) => (
             <FilterBarItem
@@ -103,7 +103,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
   }
   return (
     <div className="py-12 top-12 w-1/10 pl-10">
-      <h1 className="text-2xl mb-5">Filter</h1>
+      <h1 className="text-2xl mb-5">Filtre</h1>
       {filter.map((item: any) => (
         <FilterBarItem
           item={item}
