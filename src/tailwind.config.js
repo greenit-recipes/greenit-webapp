@@ -6,6 +6,7 @@ module.exports = {
     options: {
       safelist: [
         "overflow-hidden",
+        "gap-14",
         "order-last",
         "fixed",
         "gap-20",
