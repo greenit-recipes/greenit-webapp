@@ -10,18 +10,7 @@ import {
 } from "../components";
 import useIsMobile from "../hooks/isMobile";
 import { landingPageCategories } from "../icons";
-import {
-  zeroWaste,
-  body,
-  face,
-  hair,
-  home,
-  wellbeing,
-  logo,
-  money,
-  planet,
-  search,
-} from "../icons";
+import { body, wellbeing, logo, money, planet, search } from "../icons";
 import ReactPlayer from "react-player";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -36,7 +25,7 @@ const SearchBar = () => {
       <input
         type="text"
         className="w-full h-full | rounded-full shadow-lg | text-xl md:text-3xl | pl-5"
-        placeholder="Search ..."
+        placeholder="Recherche ..."
         id="search"
       />
       <div
@@ -65,7 +54,6 @@ interface CategoryCircleProps {
 }
 
 const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
-  console.log(name)
   const isTag = ["Permier Pas", "Zéro-déchet", "Ingrédients du frigo"].includes(
     name
   );
@@ -95,7 +83,7 @@ const LandingPage = () => {
       <div className="flex flex-col | items-center | pt-32">
         <img src={logo} className="h-40 w-40 mb-10" />
         <h1 className="text-2xl md:text-5xl | pb-10">
-          Recipes For Homemade Products
+        Toutes les recettes pour nos produits faits maison
         </h1>
         <SearchBar />
       </div>
@@ -130,7 +118,7 @@ const LandingPage = () => {
           </Grid>
         )}
       </div>
-      <Container title="Recipes of The Week" itemsCenter></Container>
+      <Container title="Les recettes de la semaines" itemsCenter></Container>
       <div className="w-full md:w-5/6 recipesOfTheWeekCarousel">
         <AliceCarousel
           mouseTracking
@@ -151,41 +139,7 @@ const LandingPage = () => {
         />
       </div>
       <Container
-        margin={20}
-        title="Questionnaire"
-        itemsCenter={true}
-        className="w-full md:3/5 h-auto"
-      >
-        <h1 className="text-2xl">Find Recipes tailored for you!</h1>
-        <Grid
-          type="col"
-          gap="14"
-          size={{
-            default: 3,
-            md: 6,
-          }}
-          className="mt-10 mb-10"
-        >
-          {[zeroWaste, home, face, wellbeing, hair, body].map((item, index) => (
-            <img
-              src={item}
-              key={index}
-              className="h-24 w-24 lg:h-32 lg:w-32 hover:bg-gray-300 rounded-full"
-            ></img>
-          ))}
-        </Grid>
-        <Button
-          type="primary"
-          rounded="2xl"
-          className="w-24 sm:w-48 h-12 | flex self-center"
-        >
-          <a href="/personalizedSearch" className="text-2xl">
-            Start
-          </a>
-        </Button>
-      </Container>
-      <Container
-        title="Video tutorials to start"
+        title="Nos Tutos vidéos pour commencer"
         className="w-screen md:3/5 h-96"
         itemsCenter={true}
       >
@@ -233,7 +187,7 @@ const LandingPage = () => {
 
       <Container
         className="w-full md:3/5 h-full pt-40"
-        title="Why Greenit?"
+        title="Pourquoi Greenit?"
         margin={20}
         itemsCenter
       >
@@ -247,10 +201,10 @@ const LandingPage = () => {
           className="pt-10"
         >
           {[
-            { text: "For The Planet", color: "#a6f78d", icon: planet },
-            { text: "For Your Body", color: "#ffe390", icon: body },
-            { text: "For Your Finances", color: "#ffbea8", icon: money },
-            { text: "For Your Wellbeing", color: "#93c5fe", icon: wellbeing },
+            { text: "Pour la planète", color: "#a6f78d", icon: planet },
+            { text: "Pour ton corps", color: "#ffe390", icon: body },
+            { text: "Pour tes èconomie", color: "#ffbea8", icon: money },
+            { text: "Pour ton espirit", color: "#93c5fe", icon: wellbeing },
           ].map((item) => (
             <div className="h-full w-full flex flex-col items-center">
               <img
@@ -264,13 +218,13 @@ const LandingPage = () => {
           ))}
         </Grid>
         <h2 className="mt-20 mb-10 text-md md:text-2xl text-center">
-          Greenit is an initiative to encourage individuals to consume in a
-          sustainable, autonomous way
+        Greenit est une initiative visant à encourager les citoyens à consommer de manière
+        durable et autonome
         </h2>
         <Button type="success" rounded="2xl" className="w-32 md:w-48 h-12">
-          <a href="/personalizedSearch" className="text-xl md:text-2xl">
-            Read More
-          </a>
+          <Link to="/why" className="text-xl md:text-2xl">
+            En savoir plus
+          </Link>
         </Button>
       </Container>
       <Footer />
