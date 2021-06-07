@@ -63,7 +63,7 @@ const FilterBarSearch: React.FC<{
   search: string;
   setSearch: (val: string) => void;
 }> = ({ setCurrentFilters, search, setSearch }) => {
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
   return (
     <div className="lg:-ml-5 mb-5 mt-2 mt-3">
       <SearchBar
@@ -94,13 +94,13 @@ const FilterBar: React.FC<FilterBarProps> = ({
 }) => {
   const [search, setSearch] = useState(params.get("search") || "");
   useEffect(() => {
-    if (isMobile && !toggle){
+    if (isMobile && !toggle) {
       setCurrentFilters((prevState: Record<string, any>) => {
         return {
           ...prevState,
-          search
-        }
-      })
+          search,
+        };
+      });
     }
   }, [toggle, search]);
   const handleFilter = (
@@ -177,6 +177,12 @@ const RecipeListPage = () => {
     },
   });
   const isMobile = useIsMobile();
+  useEffect(() => {
+    if (window.pageYOffset > 0) {
+      top: 0,
+      behavior: "smooth",
+    }
+  }, []);
   const [currentFilters, setCurrentFilters] = useState<any>({
     search: params.get("search") || "",
     ...(params.get("tags") ? { tags: params.get("tags") } : {}),

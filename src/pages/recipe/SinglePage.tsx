@@ -34,6 +34,12 @@ const RecipeSinglePage = () => {
       id: id ?? "",
     },
   });
+  useEffect(() => {
+    if (window.pageYOffset > 0) {
+      top: 0,
+      behavior: "smooth",
+    }
+  }, []);
   const player = createRef<ReactPlayer>();
   if (loading || !data) {
     return <Loading />;
