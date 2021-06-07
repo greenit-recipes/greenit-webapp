@@ -55,6 +55,7 @@ const FormItem: React.FC<FormItemProps> = ({
 };
 
 const ContactPage = () => {
+  const params = new URLSearchParams(window.location.search);
   const isMobile = useIsMobile();
   const [message, setMessage] = useState<string | null>(null);
   const [state, setState] = useState<Record<string, string>>({
@@ -121,9 +122,23 @@ const ContactPage = () => {
             </div>
           </h3>
         </div>
-        <h1 className="ml-auto mr-auto text-2xl text-center lg:text-4xl mt-10 lg:mt-20 mb-10">
-          Tous vos retours sont les bienvenue
+        <h1 className="ml-auto mr-auto text-2xl text-center lg:text-4xl mt-10 lg:mt-20 mb-5">
+          {params.get("addRecipe")
+            ? "Nous travaillons actuellement sur cette fonctionnalité."
+            : "Tous vos retours sont les bienvenue"}
         </h1>
+        {params.get("addRecipe") && (
+          <h3
+            className="mb-10 text-xl ml-auto mr-auto leading-relaxed"
+            style={{
+              paddingLeft: isMobile ? "10%" : "30%",
+              paddingRight: isMobile ? "10%" : "30%",
+            }}
+          >
+            Bientôt nous pourrons tous partager directement nos recettes avec la
+            communauté ! En attendant tu peux partager tes recettes ci-dessous
+          </h3>
+        )}
         <div className="rounded-3xl h-auto text-center items-center pl-10 pr-10 flex flex-col text-3xl shadow-xl self-center lg:w-2/6 ">
           <div className="flex flex-col mb-10">
             <a
