@@ -5,6 +5,7 @@ import { useRecipesQuery, RecipesQuery } from "../../graphql";
 import { Loading } from "../../components";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { filterIcon, scrollToTop } from "../../icons";
+import { filterData } from "../../utils";
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -114,49 +115,6 @@ const FilterBar: React.FC<FilterBarProps> = ({
   );
 };
 
-const filterData = [
-  {
-    title: "Category",
-    name: "category",
-    options: [
-      { title: "Maison" },
-      { title: "Corps" },
-      { title: "Visage" },
-      { title: "Cheveux" },
-      { title: "Bien-être" },
-    ],
-  },
-  {
-    title: "Tag",
-    name: "tags",
-    options: [
-      { title: "Permier pas" },
-      { title: "Zéro-déchet" },
-      {
-        title: "Ingrédients du frigo",
-      },
-    ],
-  },
-  {
-    title: "Temps",
-    name: "duration",
-    options: [
-      { title: "Moins de 15 min", value: 15 },
-      { title: "Moins de 30 min", value: 30 },
-      { title: "Moins de 1 heure", value: 60 },
-    ],
-  },
-  {
-    title: "Difficulté",
-    name: "difficulty",
-    options: [
-      { title: "Facile", value: "BEGINNER" },
-      { title: "Intermediaire", value: "INTERMEDIATE" },
-      { title: "Expert", value: "ADVANCED" },
-    ],
-  },
-];
-
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
@@ -172,7 +130,7 @@ const RecipeListPage = () => {
   const isMobile = useIsMobile();
   const [currentFilters, setCurrentFilters] = useState<any>({
     search: params.get("search") || "",
-    ...(params.get("tag") ? { tags: params.get("tag") } : {}),
+    ...(params.get("tags") ? { tags: params.get("tags") } : {}),
     ...(params.get("category") ? { category: params.get("category") } : {}),
   });
   const [toggle, setToggle] = useState(false);
@@ -189,11 +147,11 @@ const RecipeListPage = () => {
   const recipes = data.allRecipes?.edges || [];
   const hasMore = data.allRecipes?.pageInfo.hasNextPage || false;
   if (
-    params.get("tag") &&
-    !filterData[1].options.some((option) => option.title === params.get("tag"))
+    params.get("tags") &&
+    !filterData[1].options.some((option) => option.title === params.get("tags"))
   ) {
     // @ts-ignore
-    filterData[1].options.push({ title: params.get("tag") });
+    filterData[1].options.push({ title: params.get("tags") });
   }
   return (
     <div className={isMobile && toggle ? "overflow-hidden fixed" : ""}>

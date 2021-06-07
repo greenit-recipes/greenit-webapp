@@ -51,3 +51,46 @@ export const getSecondsFromDuration = (duration: string) => {
   }
   return amount;
 };
+
+export const filterData = [
+  {
+    title: "Category",
+    name: "category",
+    options: [
+      { title: "Maison" },
+      { title: "Corps" },
+      { title: "Visage" },
+      { title: "Cheveux" },
+      { title: "Bien-être" },
+    ],
+  },
+  {
+    title: "Tag",
+    name: "tags",
+    options: [
+      { title: "Permier pas" },
+      { title: "Zéro-déchet" },
+      {
+        title: "Ingrédients du frigo",
+      },
+    ],
+  },
+  {
+    title: "Temps",
+    name: "duration",
+    options: [
+      { title: "Moins de 15 min", value: 15 },
+      { title: "Moins de 30 min", value: 30 },
+      { title: "Moins de 1 heure", value: 60 },
+    ],
+  },
+  {
+    title: "Difficulté",
+    name: "difficulty",
+    options: [
+      { title: "Facile", value: "BEGINNER" },
+      { title: "Intermediaire", value: "INTERMEDIATE" },
+      { title: "Expert", value: "ADVANCED" },
+    ],
+  },
+];
