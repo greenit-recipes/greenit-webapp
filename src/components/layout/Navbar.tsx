@@ -33,13 +33,13 @@ export const Navbar: React.FC = () => {
             <Link to="/recipes">
               <h1 className="mt-5">Recettes</h1>
             </Link>
-            <Link to="#">
+            <Link to="/why">
               <h1>Nos engagements</h1>
             </Link>
             <Link to="/contact">
               <h1>Contactez-nous</h1>
             </Link>
-            <Link to="#">
+            <Link to="/contact?addRecipe=true">
               <h1>Partagez vos recettes</h1>
             </Link>
           </div>
@@ -58,7 +58,7 @@ export const Navbar: React.FC = () => {
         <Link to="/recipes">
           <h1 className="pr-10">Recettes</h1>
         </Link>
-        <Link to="#">
+        <Link to="/why">
           <h1 className="pr-10">Nos engagements</h1>
         </Link>
         <Link to="/contact">
@@ -71,7 +71,7 @@ export const Navbar: React.FC = () => {
         rounded="3xl"
         className="w-64 h-12 | flex justify-end self-center | mr-4 cursor-pointer"
       >
-        <Link to="#">
+        <Link to="/contact?addRecipe=true">
           <h1>Partagez vos recettes</h1>
         </Link>
       </Button>
