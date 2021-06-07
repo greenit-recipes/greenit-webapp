@@ -82,7 +82,7 @@ const LandingPage = () => {
       <Navbar />
       <Container className="flex flex-col | items-center | mt-16 lg:mt-32" padding>
         <img src={logo} className="h-40 w-40 mb-10" />
-        <h1 className="text-2xl md:text-5xl | pb-10">
+        <h1 className="text-2xl md:text-5xl | pb-10 text-center">
           Toutes les recettes pour nos produits faits maison
         </h1>
         <SearchBar />
@@ -154,7 +154,7 @@ const LandingPage = () => {
         >
           <div className="relative" style={{ height: "23rem" }}>
             <ReactPlayer
-              url="https://www.youtube.com/watch?v=c4jOZp-EibM"
+              url="https://youtu.be/ZeNRzJg0CKo"
               className="absolute top-0 left-0"
               controls={true}
               config={{
@@ -169,7 +169,7 @@ const LandingPage = () => {
           {!isMobile && (
             <div className="relative" style={{ height: "23rem" }}>
               <ReactPlayer
-                url="https://www.youtube.com/watch?v=c4jOZp-EibM"
+                url="https://youtu.be/tHAWH6fUqEo"
                 className="absolute top-0 left-0"
                 controls={true}
                 config={{
