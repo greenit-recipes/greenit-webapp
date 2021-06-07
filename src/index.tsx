@@ -8,7 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "http://localhost:8000/graphql/",
+  uri: process.env.REACT_APP_API_URL,
 });
 
 ReactDOM.render(
