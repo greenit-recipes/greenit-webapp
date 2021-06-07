@@ -1,6 +1,7 @@
 import { InstagramOutlined, MailOutlined } from "@ant-design/icons";
 import React from "react";
 import { Grid } from "../";
+import privacyPdf from "../../privacy.pdf";
 import {
   footerChat,
   footerWorld,
@@ -94,7 +95,10 @@ N’hésites pas à poser tes questions et à voter pour les prochaines function
             ))}
           </div>
         </div>
-        <p>Directeur de la Rédaction et de la Publication : Adrien Sosson</p>
+        <a href={privacyPdf} target="_blank" className="text-xl underline">
+          Privacy Policy
+        </a>
+        <p className="mt-5">Directeur de la Rédaction et de la Publication : Adrien Sosson</p>
         <div className="mt-10 mb-10">
           <a
             rel="license"
