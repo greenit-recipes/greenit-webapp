@@ -79,14 +79,14 @@ const LandingPage = () => {
   });
   return (
     <div className="flex flex-col | items-center self-center">
-      {!isMobile && <Navbar />}
-      <div className="flex flex-col | items-center | pt-32">
+      <Navbar />
+      <Container className="flex flex-col | items-center | mt-16 lg:mt-32" padding>
         <img src={logo} className="h-40 w-40 mb-10" />
         <h1 className="text-2xl md:text-5xl | pb-10">
-        Toutes les recettes pour nos produits faits maison
+          Toutes les recettes pour nos produits faits maison
         </h1>
         <SearchBar />
-      </div>
+      </Container>
       <div className="w-screen md:w-4/5 | items-center pt-14 pb-16 | flex justify-center">
         {isMobile ? (
           <AliceCarousel
@@ -190,6 +190,7 @@ const LandingPage = () => {
         title="Pourquoi Greenit?"
         margin={20}
         itemsCenter
+        padding
       >
         <Grid
           type="col"
@@ -218,10 +219,10 @@ const LandingPage = () => {
           ))}
         </Grid>
         <h2 className="mt-20 mb-10 text-md md:text-2xl text-center">
-        Greenit est une initiative visant à encourager les citoyens à consommer de manière
-        durable et autonome
+          Greenit est une initiative visant à encourager les citoyens à
+          consommer de manière durable et autonome
         </h2>
-        <Button type="success" rounded="2xl" className="w-32 md:w-48 h-12">
+        <Button type="success" rounded="2xl" className="w-36 md:w-48 h-12">
           <Link to="/why" className="text-xl md:text-2xl">
             En savoir plus
           </Link>
