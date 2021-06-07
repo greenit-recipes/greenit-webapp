@@ -2,7 +2,7 @@ import React, { createRef } from "react";
 import ReactPlayer from "react-player";
 import { useHistory, useParams } from "react-router-dom";
 import { useRecipeQuery } from "../../graphql";
-import { Container, Grid, Footer, Loading } from "../../components";
+import { Container, Grid, Footer, Loading, Navbar } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 import { getSecondsFromDuration } from "../../utils";
 
@@ -41,6 +41,7 @@ const RecipeSinglePage = () => {
   const { recipe } = data;
   return (
     <div className="flex flex-col | items-center">
+      <Navbar />
       <div className="w-5/6 md:w-4/6 mb-10">
         <Container
           className="mt-10 md:mt-20 flex"
