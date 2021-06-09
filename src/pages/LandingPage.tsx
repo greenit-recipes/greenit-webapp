@@ -246,7 +246,7 @@ const LandingPage = () => {
             <div className="h-full w-full flex flex-col items-center">
               <img
                 src={item.icon}
-                className="w-28 md:w-40 md:h-40 h-28 hover:bg-gray-300 rounded-full pb-2"
+                className="w-28 md:w-40 md:h-40 h-28 rounded-full pb-2"
               ></img>
               <h3 className="text-md md:text-2xl" style={{ color: item.color }}>
                 {item.text}
