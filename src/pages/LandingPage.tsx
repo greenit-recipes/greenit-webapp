@@ -133,6 +133,8 @@ const LandingPage = () => {
           <AliceCarousel
             mouseTracking
             autoWidth
+            infinite
+            disableButtonsControls={isMobile}
             items={landingPageCategories.map((item) => (
               <CategoryCircle
                 name={item.title}
@@ -166,6 +168,7 @@ const LandingPage = () => {
           autoWidth
           infinite
           activeIndex={0}
+          disableButtonsControls={isMobile}
           paddingLeft={10}
           items={
             data?.allRecipes
