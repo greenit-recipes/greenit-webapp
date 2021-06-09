@@ -9,6 +9,7 @@ import RecipeSinglePage from "./pages/recipe/SinglePage";
 import PersonalizedSearch from "./pages/PersonalizedSearch";
 import ContactPage from "./pages/ContactPage";
 import WhyPage from "./pages/WhyPage";
+import NotFoundPage from "./pages/misc/NotFoundPage";
 
 const App: React.FC = () => {
   const history = createBrowserHistory();
@@ -25,6 +26,7 @@ const App: React.FC = () => {
           path="/personalizedSearch"
           component={PersonalizedSearch}
         />
+        <Route component={NotFoundPage} />
       </Switch>
     </Router>
   );
