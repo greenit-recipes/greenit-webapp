@@ -29,6 +29,8 @@ module.exports = {
         "grid-cols-2",
         "sm:grid-cols-4",
         "lg:grid-cols-2",
+        "text-green-400",
+        "text-pink-700",
       ],
     },
   },

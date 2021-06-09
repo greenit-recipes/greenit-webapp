@@ -107,13 +107,12 @@ const ContactPage = () => {
         >
           <h3
             className={`text-base lg:text-lg ${
-              message === "Success!" ? "text-green-400" : "text-pink-700"
+              data.sendMessage?.ok ? "text-green-400" : "text - pink - 700;
+"
             }`}
           >
             <div className="inline-flex gap-x-2 items-center">
-              {!message ? (
-                <></>
-              ) : message === "Success!" ? (
+              {data.sendMessage?.ok ? (
                 <CheckCircleOutlined />
               ) : (
                 <ExclamationCircleOutlined />
