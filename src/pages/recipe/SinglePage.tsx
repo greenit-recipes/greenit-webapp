@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { useHistory, useParams } from "react-router-dom";
 import { useRecipeQuery } from "../../graphql";
@@ -9,12 +9,19 @@ import { getSecondsFromDuration } from "../../utils";
 interface InstructionProps {
   index: number;
   text: string;
+  isHighlighted: boolean;
 }
-const Instruction: React.FC<InstructionProps> = ({ index, text }) => {
+const Instruction: React.FC<InstructionProps> = ({
+  index,
+  text,
+  isHighlighted,
+}) => {
   return (
     <div className="mt-5 flex inline-flex">
       <div
-        className="h-10 text-xl mr-5 rounded-full inline-flex items-center justify-center bg-gray-200"
+        className={`h-10 text-xl mr-5 rounded-full inline-flex items-center justify-center ${
+          isHighlighted ? "text-white bg-black" : "text-black bg-gray-200"
+        }`}
         style={{ minWidth: "2.5rem" }}
       >
         {index}
@@ -22,6 +29,18 @@ const Instruction: React.FC<InstructionProps> = ({ index, text }) => {
       <h3 className="text-lg lg:text-xl">{text}</h3>
     </div>
   );
+};
+
+const closest = (needle: number, haystack: any[]) => {
+  return haystack.reduce((a: any, b: any) => {
+    let aDiff = Math.abs(a - needle);
+    let bDiff = Math.abs(b - needle);
+    if (aDiff == bDiff) {
+      return a > b ? a : b;
+    } else {
+      return bDiff < aDiff ? b : a;
+    }
+  });
 };
 
 const RecipeSinglePage = () => {
@@ -34,6 +53,7 @@ const RecipeSinglePage = () => {
       id: id ?? "",
     },
   });
+  const [videoDuration, setVideoDuration] = useState<number>(0);
   useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
@@ -43,6 +63,15 @@ const RecipeSinglePage = () => {
     }
   }, []);
   const player = createRef<ReactPlayer>();
+  const getPlayer = () => {
+    return player;
+  };
+  useEffect(() => {
+    const timeoutID = window.setInterval(() => {
+      setVideoDuration(getPlayer().current?.getCurrentTime() ?? 0);
+    }, 2000);
+    return () => window.clearInterval(timeoutID);
+  }, [getPlayer]);
   if (loading || !data) {
     return <Loading />;
   }
@@ -96,7 +125,7 @@ const RecipeSinglePage = () => {
                 <img
                   src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
                   className="w-1/4 rounded-3xl mt-10 self-start"
-                  style={{ height: "28rem", minWidth: '320px' }}
+                  style={{ height: "28rem", minWidth: "320px" }}
                 />
                 <div className="flex flex-col ml-10 mt-10 w-full">
                   <div className="w-full whitespace-pre break-all flex-wrap inline-flex h-11">
@@ -164,24 +193,33 @@ const RecipeSinglePage = () => {
           </div>
           <div className="mt-10 lg:mt-0">
             <h3 className="text-2xl lg:text-3xl">Instructions</h3>
-            {recipe?.instructions.map((item: any, index: number) => (
-              <div
-                className="flex flex-col cursor-pointer"
-                onClick={() => {
-                  console.log("up");
-                  player.current?.seekTo(
-                    getSecondsFromDuration(item.timestamp)
-                  );
-                  player.current?.getInternalPlayer().playVideo();
-                }}
-              >
-                <Instruction
-                  index={index + 1}
-                  text={`${item.content}`}
-                  key={index}
-                />
-              </div>
-            ))}
+            {recipe?.instructions.map((item: any, index: number) => {
+              const timestamp = getSecondsFromDuration(item.timestamp);
+              return (
+                <div
+                  className="flex flex-col cursor-pointer"
+                  onClick={() => {
+                    setVideoDuration(timestamp);
+                    player.current?.seekTo(timestamp);
+                    player.current?.getInternalPlayer().playVideo();
+                  }}
+                >
+                  <Instruction
+                    index={index + 1}
+                    text={`${item.content}`}
+                    key={index}
+                    isHighlighted={
+                      closest(
+                        videoDuration,
+                        recipe.instructions.map((item: any) => {
+                          return getSecondsFromDuration(item.timestamp);
+                        })
+                      ) === timestamp
+                    }
+                  />
+                </div>
+              );
+            })}
           </div>
         </Grid>
         <div className="pt-14 flex flex-col">
