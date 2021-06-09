@@ -125,7 +125,7 @@ const ContactPage = () => {
         <h1 className="ml-auto mr-auto text-2xl text-center lg:text-4xl mt-10 lg:mt-20 mb-5">
           {params.get("addRecipe")
             ? "Nous travaillons actuellement sur cette fonctionnalité."
-            : "Tous vos retours sont les bienvenue"}
+            : "Tous vos retours sont les bienvenus !"}
         </h1>
         {params.get("addRecipe") && (
           <h3
@@ -135,8 +135,9 @@ const ContactPage = () => {
               paddingRight: isMobile ? "10%" : "30%",
             }}
           >
-            Bientôt nous pourrons tous partager directement nos recettes avec la
-            communauté ! En attendant tu peux partager tes recettes ci-dessous
+            Bientôt vous pourrez partager directement vos recettes avec la
+            communauté ! En attendant, tu peux partager tes recettes ci-dessous
+            et nous la publierons en te créditant.
           </h3>
         )}
         <div className="rounded-3xl h-auto text-center items-center pl-10 pr-10 flex flex-col text-3xl shadow-xl self-center lg:w-2/6 ">

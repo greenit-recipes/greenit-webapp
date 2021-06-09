@@ -66,12 +66,13 @@ const WhyPage: React.FC = () => {
           padding="30%"
         >
           <h2 className="mt-5 text-xl lg:text-2xl">
-            Un projet étudiant pour le developpement de modes de consommation
-            saine
+            Un projet étudiant pour le développement de modes de consommation
+            plus sains.
           </h2>
           <h3 className="mt-5 mb-5 text-xl">
-            Aujourd’hui, Greenit c’est une communauté d’humains engagés et
-            proactifs qui veulent reprendre le controle sur leur consommation.
+            Aujourd’hui, Greenit est une communauté d’humains engagés et
+            proactifs qui cherchent à reprendre le contrôle sur leurs
+            consommations.
           </h3>
         </Block>
 
@@ -82,15 +83,15 @@ const WhyPage: React.FC = () => {
 
         <Block title="Il était une fois…">
           <p className="mt-10 lg:text-xl">
-            En mars 2020 lorsque le covid confine Andrea chez elle, Andrea
-            s’intéresse à la composition de ses produits du quotidien, lassée de
-            ses irritations et allergies. Convaincue de la toxicité des produits
-            industriels Andrea se lance dans sa première crème maison: une
-            grande réussite! Stimulée par cette première victoire elle multiplie
-            les recherches et découvre une passion pour le DIY. Consciente des
-            bienfaits physiques et écologiques de ce mode consommation Andrea
-            s’entoure d’autre étudiants, Adrien, Idil, Aarnav et de Liam, dans
-            le but de developper Greenit: une communauté qui supporte la
+            En mars 2020, avec le confinement, Andréa s’intéresse à la
+            composition de ses produits du quotidien, lassée de ses irritations
+            et allergies. Convaincue de la toxicité des produits industriels,
+            elle se lance dans sa première crème maison : une grande réussite !
+            Stimulée par cette première victoire, elle multiplie les recherches
+            et découvre une passion pour le DIY. Consciente des bienfaits
+            physiques et écologiques de ce mode de consommation, Andrea
+            s’entoure d’autres étudiants, Adrien, Idil, Aarnav et de Liam, dans
+            le but de développer Greenit : une communauté qui supporte la
             production maison.
           </p>
         </Block>
@@ -106,25 +107,25 @@ const WhyPage: React.FC = () => {
                 title: "Pour la planète",
                 color: "#a6f78d",
                 text:
-                  "Parlons des compositions des shampoings, des lessives, des liquides vaiselles: sodium laureth sulfate, methylchloroisothiazolinone, polycarboxylates.. la liste est longue et leurs pollutions environnementales catastrophique. La production maison c’est zero dechet et pas de génocide de micro-organisme.",
+                  "Parlons des compositions des shampoings, des lessives, des liquides vaisselles : sodium laureth sulfate, methylchloroisothiazolinone, polycarboxylates.. la liste est longue et leurs pollutions environnementales sont catastrophiques. La production maison c’est zero dechet et pas de génocide de micro-organisme.",
               },
               {
                 icon: body,
                 title: "Pour ton corps",
                 color: "#F2D493",
                 text:
-                  "Ces même ingredients chimiques endommagent, irritent et vulnérabilisent ta peau et tes cheveux. Hélas même dans les produits les plus biologiques les conservateurs, alcool et aluminium attaquent nos corps. La production maison est aussi personnalisée et respecte les differences de chacun.",
+                  "Ces même ingrédients chimiques endommagent, irritent et vulnérabilisent ta peau et tes cheveux. Hélas, même dans les produits les plus biologiques, les conservateurs, alcool et aluminium attaquent nos corps. La production maison est aussi personnalisée et respecte les différences de chacun.",
               },
               {
                 icon: money,
                 title: "Pour tes èconomie",
                 color: "#FEC4B0",
                 text:
-                  "27,90€ le baume réparateur bio? 5,80€ le stick à lèvres naturel ? L’industrie des produits cosmétiques et ménagers ne respecte pas notre pouvoir d’achat. Sur Greenit le stick à lèvres revient à 1,50€ et le baume à 6€.",
+                  "Pour tes économies 27,90€ le baume réparateur bio? 5,80€ le stick à lèvres naturel ? L’industrie des produits cosmétiques et ménagers ne respecte pas notre pouvoir d’achat. Sur Greenit, le stick à lèvres revient à 1,50€ et le baume à 6€.",
               },
               {
                 icon: wellbeing,
-                title: "Pour ton espirit",
+                title: "Pour ton esprit",
                 color: "#95CDFB",
                 text:
                   "La production maison c’est aussi une activité manuelle et épanouissante. La création apporte une stimulation des sens, un sentiment d’accomplissement et une manière de se déconnecter, seul ou à plusieurs.",
