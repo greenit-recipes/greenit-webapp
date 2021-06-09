@@ -7,20 +7,23 @@ import { RecipeDifficulty, RecipeFragment } from "../../graphql";
 interface RecipeCardProps {
   enableShadow?: boolean;
   recipe: RecipeFragment | null | undefined;
-  inCarousel?: boolean
+  inCarousel?: boolean;
 }
 
 export const RecipeCard: React.FC<RecipeCardProps> = ({
   enableShadow = true,
   recipe,
-  inCarousel
+  inCarousel,
 }) => {
   const isMobile = useIsMobile();
   const iconHeight = isMobile ? 18 : 20;
   const iconWidth = isMobile ? 16 : 18;
 
   return (
-    <Link to={`/recipes/${recipe?.urlId}`} className={!inCarousel ? "relative z-10": ""}>
+    <Link
+      to={`/recipes/${recipe?.urlId}`}
+      className={!inCarousel ? "relative z-10" : ""}
+    >
       <img
         className={`flex flex-col | ${
           enableShadow && "shadow-lg"
@@ -30,9 +33,13 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           width: "20rem",
         }}
         src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
+      ></img>
+      <div
+        className="h-auto | mt-auto | bg-white shadow-lg rounded-3xl absolute bottom-0"
+        style={{
+          width: "20rem",
+        }}
       >
-      </img>
-      <div className="w-full h-auto | mt-auto | bg-white shadow-lg rounded-3xl absolute bottom-0">
         <h1 className="subpixel-antialiased| ml-10 mr-5 | flex py-3 justify-center text-lg md:text-xl">
           {recipe?.name}
         </h1>
