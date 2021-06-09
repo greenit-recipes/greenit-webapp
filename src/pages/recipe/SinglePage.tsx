@@ -96,7 +96,7 @@ const RecipeSinglePage = () => {
                 <img
                   src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
                   className="w-1/4 rounded-3xl mt-10 self-start"
-                  style={{ height: "28rem" }}
+                  style={{ height: "28rem", minWidth: '320px' }}
                 />
                 <div className="flex flex-col ml-10 mt-10 w-full">
                   <div className="w-full whitespace-pre break-all flex-wrap inline-flex h-11">
