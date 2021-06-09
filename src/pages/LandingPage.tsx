@@ -154,10 +154,11 @@ const LandingPage = () => {
         )}
       </div>
       <Container title="Les recettes de la semaine" itemsCenter></Container>
-      <div className="w-full md:w-5/6 recipesOfTheWeekCarousel">
+      <div className="w-full md:w-5/6 mb-10 recipesOfTheWeekCarousel flex flex-row">
         <AliceCarousel
           mouseTracking
           autoWidth
+          infinite
           activeIndex={0}
           paddingLeft={10}
           items={
@@ -221,7 +222,7 @@ const LandingPage = () => {
       </Container>
 
       <Container
-        className="w-full md:3/5 h-full pt-40"
+        className="w-full md:3/5 h-full pt-10 lg:pt-20"
         title="Pourquoi Greenit?"
         margin={20}
         itemsCenter
@@ -254,7 +255,8 @@ const LandingPage = () => {
           ))}
         </Grid>
         <h2 className="mt-20 mb-10 text-md md:text-2xl text-center">
-          Greenit est une initiative visant à encourager une consommation plus durable et responsable
+          Greenit est une initiative visant à encourager une consommation plus
+          durable et responsable
         </h2>
         <Button type="success" rounded="2xl" className="w-36 md:w-48 h-12">
           <Link to="/why" className="text-xl md:text-2xl">
