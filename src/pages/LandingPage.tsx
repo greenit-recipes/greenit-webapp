@@ -116,7 +116,6 @@ const LandingPage = () => {
         className="flex flex-col | items-center | mt-16 lg:mt-32"
         padding
       >
-        <img src={logo} className="h-40 w-40 mb-10" />
         <h1 className="text-2xl md:text-5xl | pb-10 text-center">
           Toutes les recettes pour vos produits faits maison
         </h1>

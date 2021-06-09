@@ -9,7 +9,7 @@ export const Navbar: React.FC = () => {
   const [toggle, setToggle] = useState(false);
   if (isMobile) {
     return (
-      <div className="sticky top-0 z-20 bg-white w-screen">
+      <div className="sticky top-0 z-20 bg-white w-screen  text-gray-500">
         <div
           onClick={() => {
             setToggle((prevState) => !prevState);
@@ -17,8 +17,9 @@ export const Navbar: React.FC = () => {
           className="flex flex-row items-center justify-between"
         >
           <img src={hamburgerIcon} className="h-12 w-12" />
-          <Link to="/">
+          <Link to="/" className="flex flex-col items-center">
             <img src={logo} className="h-20 w-20" alt="Greenit Logo" />
+            <h3 className="text-lg">Greenit</h3>
           </Link>
           <div className="invisible">_____</div>
         </div>
@@ -50,8 +51,9 @@ export const Navbar: React.FC = () => {
   return (
     <div className="h-20 w-full | flex | items-center | text-gray-500 text-2xl sticky top-0 bg-white z-10 backdrop-opacity-100">
       <div className="w-56 cursor-pointer">
-        <Link to="/">
+        <Link to="/" className="flex flex-row items-center">
           <img src={logo} className="h-20 w-20 | ml-10" alt="Greenit Logo" />
+          <h3 className="text-lg">Greenit</h3>
         </Link>
       </div>
       <div className="flex | ml-auto mr-auto | self-center cursor-pointer">
@@ -62,7 +64,7 @@ export const Navbar: React.FC = () => {
           <h1 className="pr-10">Nos engagements</h1>
         </Link>
         <Link to="/contact">
-        <h1>Contactez-nous</h1>
+          <h1>Contactez-nous</h1>
         </Link>
       </div>
 
