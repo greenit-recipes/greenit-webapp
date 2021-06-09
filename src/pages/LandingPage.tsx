@@ -31,6 +31,17 @@ export const SearchBar: React.FC<{
   const iconSize = `w-16 md:w-${isLarge ? "20" : "14"} h-14 md:h-${
     isLarge ? "20" : "14"
   }`;
+  const handleSubmit = () => {
+    if (!onSubmit) {
+      history.push(
+        `/recipes/?search=${
+          (document.getElementById("search") as HTMLInputElement)?.value
+        }`
+      );
+    } else {
+      onSubmit();
+    }
+  };
   return (
     <div className={`${totalSize} | flex | relative`}>
       <input
@@ -38,6 +49,11 @@ export const SearchBar: React.FC<{
         className={`w-full h-full | rounded-full shadow-lg | text-xl md:${
           isLarge ? "md:text-2xl" : "text-xl"
         } | pl-5`}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSubmit();
+          }
+        }}
         placeholder="Recherche ..."
         id="search"
         onChange={(e) => {
@@ -62,16 +78,7 @@ export const SearchBar: React.FC<{
               isLarge ? "10" : "9"
             } | self-center | ml-auto mr-auto`}
             onClick={() => {
-              if (!onSubmit) {
-                history.push(
-                  `/recipes/?search=${
-                    (document.getElementById("search") as HTMLInputElement)
-                      ?.value
-                  }`
-                );
-              } else {
-                onSubmit();
-              }
+              handleSubmit();
             }}
           />
         </div>
