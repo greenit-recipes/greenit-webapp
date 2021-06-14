@@ -107,8 +107,7 @@ const ContactPage = () => {
         >
           <h3
             className={`text-base lg:text-lg ${
-              data.sendMessage?.ok ? "text-green-400" : "text - pink - 700;
-"
+              data.sendMessage?.ok ? "text-green-400" : "text-pink-700"
             }`}
           >
             <div className="inline-flex gap-x-2 items-center">
@@ -202,7 +201,7 @@ const ContactPage = () => {
               />
               <FormItem
                 name="email"
-                title="Email Addresse"
+                title="Adresse email"
                 type="text"
                 value={state.email}
                 onChange={(e) => {

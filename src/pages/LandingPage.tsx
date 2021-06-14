@@ -184,7 +184,7 @@ const LandingPage = () => {
         />
       </div>
       <Container
-        title="nos tutos vidéos pour commencer"
+        title="Nos tutos vidéos pour commencer"
         className="w-screen md:3/5 h-96"
         itemsCenter={true}
       >
@@ -249,8 +249,8 @@ const LandingPage = () => {
           {[
             { text: "Pour la planète", color: "#a6f78d", icon: planet },
             { text: "Pour ton corps", color: "#ffe390", icon: body },
-            { text: "Pour tes èconomies", color: "#ffbea8", icon: money },
-            { text: "Pour ton espirt", color: "#93c5fe", icon: wellbeing },
+            { text: "Pour tes économies", color: "#ffbea8", icon: money },
+            { text: "Pour ton esprit", color: "#93c5fe", icon: wellbeing },
           ].map((item) => (
             <div className="h-full w-full flex flex-col items-center">
               <img
@@ -265,7 +265,7 @@ const LandingPage = () => {
         </Grid>
         <h2 className="mt-20 mb-10 text-md md:text-2xl text-center">
           Greenit est une initiative visant à encourager une consommation plus
-          durable et responsable
+          durable et responsable.
         </h2>
         <Button type="success" rounded="2xl" className="w-36 md:w-48 h-12">
           <Link to="/why" className="text-xl md:text-2xl">

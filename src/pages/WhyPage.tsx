@@ -107,21 +107,21 @@ const WhyPage: React.FC = () => {
                 title: "Pour la planète",
                 color: "#a6f78d",
                 text:
-                  "Parlons des compositions des shampoings, des lessives, des liquides vaisselles : sodium laureth sulfate, methylchloroisothiazolinone, polycarboxylates.. la liste est longue et leurs pollutions environnementales sont catastrophiques. La production maison c’est zero dechet et pas de génocide de micro-organisme.",
+                  "Parlons des compositions des shampoings, des lessives, des liquides vaisselles : sodium laureth sulfate, methylchloroisothiazolinone, polycarboxylates.. la liste est longue et leurs pollutions environnementales sont catastrophiques. La production maison c’est zero déchêt et pas de génocide de micro-organismes.",
               },
               {
                 icon: body,
                 title: "Pour ton corps",
                 color: "#F2D493",
                 text:
-                  "Ces même ingrédients chimiques endommagent, irritent et vulnérabilisent ta peau et tes cheveux. Hélas, même dans les produits les plus biologiques, les conservateurs, alcool et aluminium attaquent nos corps. La production maison est aussi personnalisée et respecte les différences de chacun.",
+                  "Ces mêmes ingrédients chimiques endommagent, irritent et vulnérabilisent ta peau et tes cheveux. Hélas, même dans les produits les plus biologiques, les conservateurs, alcool et aluminium attaquent nos corps. La production maison est aussi personnalisée et respecte les différences de chacun.",
               },
               {
                 icon: money,
-                title: "Pour tes èconomie",
+                title: "Pour tes économies",
                 color: "#FEC4B0",
                 text:
-                  "Pour tes économies 27,90€ le baume réparateur bio? 5,80€ le stick à lèvres naturel ? L’industrie des produits cosmétiques et ménagers ne respecte pas notre pouvoir d’achat. Sur Greenit, le stick à lèvres revient à 1,50€ et le baume à 6€.",
+                  "27,90€ le baume réparateur bio? 5,80€ le stick à lèvres naturel ? L’industrie des produits cosmétiques et ménagers ne respecte pas notre pouvoir d’achat. Sur Greenit, le stick à lèvres revient à 1,50€ et le baume à 6€.",
               },
               {
                 icon: wellbeing,

@@ -28,20 +28,19 @@ export const Footer: React.FC = () => {
               icon: footerWorld,
               title: "Ecolomique",
               text:
-                "Greenit est une solution sociale, économique et écologique aux problèmes  de pollution et climatiques auxquels nous sommes confronté. Greenit est une solution pour remplacer la production industrielle par une production artisanale et locale.",
+                "Greenit vise à remplacer la production industrielle de vos produits du quotidien par une production artisanale et locale. Une consommation plus durable et responsable qui réduit votre impact écologique et qui vous rapproche d’une communauté bienveillante de partage !",
             },
             {
               icon: footerChat,
               title: "Collectif",
               text:
-                "Notre première mission ensemble est de developper une communauté qui soutient le partage des connaissances pour une consommation et une production saines.",
+                "Notre première mission est de développer une communauté de partage des connaissances pour une consommation saine et une production durable.",
             },
             {
               icon: footerValues,
               title: "Transparent",
               text:
-                "Ici il n’y pas de collection de données personnelles, pas de publicités et pas d’Amazon ou de Google pour héberger notre site. Greenit est aussi un projet open-source disponible sur Github. \
-N’hésites pas à poser tes questions et à voter pour les prochaines functionalités Greenit.",
+                "Sur Greenit, nous ne collectons pas vos données personnelles, nous ne vous piégerons pas avec des publicités et nous utiliserons des solutions plus éthiques pour héberger le site. Greenit est open-source disponible sur Github. Nous vous donnons également la possibilité de choisir les prochaines fonctionnalités du site, contactez-nous !",
             },
           ].map((item) => (
             <div className="flex flex-col">
@@ -98,7 +97,7 @@ N’hésites pas à poser tes questions et à voter pour les prochaines function
         <a href={privacyPdf} target="_blank" className="text-xl underline">
           Privacy Policy
         </a>
-        <p className="mt-5">Directeur de la Rédaction et de la Publication : Adrien Sosson</p>
+        <p className="mt-5">Directrice de la Rédaction et de la Publication: Andréa Ribeiro</p>
         <div className="mt-10 mb-10">
           <a
             rel="license"
