@@ -13,7 +13,7 @@ import {
 export const Footer: React.FC = () => {
   return (
     <div className="h-auto w-full | flex flex-col | items-center | bg-gray-200 -mb-10">
-      <div className="w-4/6 text-center">
+      <div className="w-5/6 text-center">
         <Grid
           type="col"
           gap="8"
