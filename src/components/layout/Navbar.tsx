@@ -53,7 +53,7 @@ export const Navbar: React.FC = () => {
       <div className="w-56 cursor-pointer">
         <Link to="/" className="flex flex-row items-center">
           <img src={logo} className="h-20 w-20 | ml-10" alt="Greenit Logo" />
-          <h3 className="text-lg">Greenit</h3>
+          <h3 className="text-2xl">Greenit</h3>
         </Link>
       </div>
       <div className="flex | ml-auto mr-auto | self-center cursor-pointer">
