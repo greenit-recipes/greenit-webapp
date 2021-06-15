@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Footer, Navbar } from "../components";
 import useIsMobile from "../hooks/isMobile";
 import { body, logo, money, planet, wellbeing } from "../icons";
+import communityDesktop from "../icons/community_desktop.png";
+import communityMobile from "../icons/community_mobile.png";
 
 const Block: React.FC<{
   title: string;
@@ -136,6 +138,12 @@ const WhyPage: React.FC = () => {
               </div>
             ))}
           </div>
+        </Block>
+        <Block title="Merci à toutes celles et ceux qui nous aident" className="w-full lg:w-5/6 min-h-0 mt-10">
+          <img
+            src={isMobile ? communityMobile : communityDesktop}
+            className="h-full w-full mt-20 mb-10"
+          />
         </Block>
       </div>
       <Footer />
