@@ -34,7 +34,7 @@ const WhyBlock: React.FC<{
 }> = ({ item }) => {
   return (
     <div className="flex flex-col items-center">
-      <img src={item.icon} className="w-36 h-36" key="icon" />,
+      <img src={item.icon} className="w-36 h-36" key="icon" />
       <div className="flex flex-col" key="text">
         <h1 className="text-4xl" style={{ color: item.color }}>
           {item.title}
