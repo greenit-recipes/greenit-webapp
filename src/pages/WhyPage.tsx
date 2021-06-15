@@ -83,7 +83,7 @@ const WhyPage: React.FC = () => {
           className="h-24 w-24 lg:h-36 lg:w-36 -mt-10 lg:-mt-20"
         />
 
-        <Block title="Il était une fois…">
+        <Block title="">
           <p className="mt-10 lg:text-xl">
             En mars 2020, avec le confinement, Andréa s’intéresse à la
             composition de ses produits du quotidien, lassée de ses irritations
