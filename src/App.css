@@ -50,3 +50,8 @@
   opacity: 1;
   transition: visibility 0s linear 0s, opacity 300ms;
 }
+
+/* FUCK iOS AND FUCK APPLE*/
+.grid-gap-list-page {
+  grid-gap: 2.5rem;
+}
