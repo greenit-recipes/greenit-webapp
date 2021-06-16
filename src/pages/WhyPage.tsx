@@ -61,7 +61,7 @@ const WhyPage: React.FC = () => {
         <Block
           style={{
             backgroundColor: "#9ed1fb",
-            minHeight: isMobile ? "70vh" : "60vh",
+            minHeight: isMobile ? "75vh" : "60vh",
           }}
           className="text-white w-full lg:pt-10"
           title="Greenit"
