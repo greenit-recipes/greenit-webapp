@@ -48,7 +48,7 @@ import pinterestIcon from "./pinterest.svg";
 export const landingPageCategories = [
   {
     icon: getStarted,
-    title: "Premier Pas",
+    title: "Premiers Pas",
   },
   {
     icon: zeroWaste,

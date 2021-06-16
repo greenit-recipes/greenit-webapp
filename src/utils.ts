@@ -68,7 +68,7 @@ export const filterData = [
     title: "Tag",
     name: "tags",
     options: [
-      { title: "Premier pas" },
+      { title: "Premiers pas" },
       { title: "Zéro-déchet" },
       {
         title: "Ingrédients du frigo",
