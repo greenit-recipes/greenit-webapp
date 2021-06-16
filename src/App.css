@@ -20,7 +20,6 @@
   margin-left: -5rem;
 }
 
-
 @media only screen and (max-width: 768px) {
   .recipesOfTheWeekCarousel .alice-carousel__stage-item {
     width: 20rem;
@@ -41,6 +40,13 @@
 }
 .filterBar_fadeIn {
   min-width: 300px;
+  overflow-y: auto;
+  height: calc(100vh - 108px);
+  width: 100vw;
+  position: fixed;
+  top: 108px;
+  left: 0;
+  z-index: 1;
   visibility: visible;
   opacity: 1;
   transition: visibility 0s linear 0s, opacity 300ms;
