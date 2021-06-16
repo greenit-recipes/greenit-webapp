@@ -280,7 +280,7 @@ const RecipeListPage = () => {
               });
             }}
           >
-            <div className="w-auto | flex flex-row flex-wrap gap-x-10 gap-y-10  grid-gap-list-page | py-10 lg:px-0 | justify-center">
+            <div className="w-auto | flex flex-row flex-wrap | py-10 lg:px-0 | justify-center">
               {recipes?.map((recipe, index: number) => (
                 <RecipeCard recipe={recipe?.node} key={index} />
               ))}

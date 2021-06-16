@@ -22,7 +22,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   return (
     <Link
       to={`/recipes/${recipe?.urlId}`}
-      className={!inCarousel ? "relative z-10" : ""}
+      className={`${!inCarousel ? "relative z-10" : ""} mb-9 ${!isMobile && "ml-9"}`}
     >
       <img
         className={`flex flex-col | ${
