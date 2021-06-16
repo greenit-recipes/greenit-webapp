@@ -185,8 +185,9 @@ const LandingPage = () => {
       </div>
       <Container
         title="Nos tutos vidéos pour commencer"
-        className="w-screen md:3/5 h-96"
-        itemsCenter={true}
+        className="w-screen md:3/5 h-96 text-center"
+        itemsCenter
+        padding={isMobile}
       >
         <Grid
           type="col"
