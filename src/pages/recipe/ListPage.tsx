@@ -127,7 +127,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
           toggle ? "filterBar_fadeIn" : "filterBar_fadeOut"
         } fixed min-w-screen min-h-screen flex flex-col items-center`}
       >
-        <h1 className="text-2xl mb-5">Filtre</h1>
+        <h1 className="text-2xl mb-5"></h1>
         <FilterBarSearch
           setCurrentFilters={setCurrentFilters}
           search={search}
@@ -147,7 +147,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
   }
   return (
     <div className="py-12 top-12 w-1/10 pl-10">
-      <h1 className="text-2xl mb-5">Filtre</h1>
+      <h1 className="text-2xl mb-5"></h1>
       <FilterBarSearch
         search={search}
         setSearch={setSearch}

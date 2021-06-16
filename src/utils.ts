@@ -54,7 +54,7 @@ export const getSecondsFromDuration = (duration: string) => {
 
 export const filterData = [
   {
-    title: "Category",
+    title: "Catégories",
     name: "category",
     options: [
       { title: "Maison" },
@@ -65,7 +65,7 @@ export const filterData = [
     ],
   },
   {
-    title: "Tag",
+    title: "Filtres",
     name: "tags",
     options: [
       { title: "Premiers pas" },
