@@ -165,7 +165,7 @@ const LandingPage = () => {
       <div className="w-full md:w-5/6 mb-10 recipesOfTheWeekCarousel flex flex-row">
         <AliceCarousel
           mouseTracking
-          autoWidth
+          autoWidth={!isMobile}
           infinite
           activeIndex={0}
           disableButtonsControls={isMobile}
@@ -173,11 +173,28 @@ const LandingPage = () => {
           items={
             data?.allRecipes
               ? data.allRecipes?.edges.map((recipe, index) => (
-                  <RecipeCard
-                    recipe={recipe?.node}
-                    key={index}
-                    inCarousel={true}
-                  />
+                  <>
+                    {isMobile ? (
+                      <div
+                        key={index}
+                        className="w-full flex justify-center mb-2 pt-10"
+                      >
+                        <RecipeCard
+                          recipe={recipe?.node}
+                          key={index}
+                          inCarousel={true}
+                        />
+                      </div>
+                    ) : (
+
+                      <RecipeCard
+                        recipe={recipe?.node}
+                        key={index}
+                        inCarousel={true}
+                      />
+                      
+                    )}
+                  </>
                 ))
               : [<Loading />]
           }

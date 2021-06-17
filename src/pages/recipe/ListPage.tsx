@@ -122,12 +122,12 @@ const FilterBar: React.FC<FilterBarProps> = ({
 
   if (isMobile) {
     return (
+      <div className="overflow-y-scroll">
       <div
         className={`z-10 bg-white ${
           toggle ? "filterBar_fadeIn" : "filterBar_fadeOut"
-        } fixed min-w-screen min-h-screen flex flex-col items-center`}
+        } flex flex-col items-center`}
       >
-        <h1 className="text-2xl mb-5"></h1>
         <FilterBarSearch
           setCurrentFilters={setCurrentFilters}
           search={search}
@@ -143,11 +143,11 @@ const FilterBar: React.FC<FilterBarProps> = ({
           ))}
         </div>
       </div>
+      </div>
     );
   }
   return (
     <div className="py-12 top-12 w-1/10 pl-10">
-      <h1 className="text-2xl mb-5"></h1>
       <FilterBarSearch
         search={search}
         setSearch={setSearch}
@@ -211,7 +211,7 @@ const RecipeListPage = () => {
     filterData[1].options.push({ title: params.get("tags") });
   }
   return (
-    <div className={isMobile && toggle ? "overflow-hidden fixed" : ""}>
+    <div className={isMobile && toggle ? "overflow-hidden" : ""}>
       <Navbar />
       {isMobile && (
         <FilterBar
