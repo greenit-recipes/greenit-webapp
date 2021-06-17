@@ -93,7 +93,7 @@ interface CategoryCircleProps {
 }
 
 const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
-  const isTag = ["Permier Pas", "Zéro-déchet", "Ingrédients du frigo"].includes(
+  const isTag = ["Premiers pas", "Zéro-déchet", "Ingrédients du frigo"].includes(
     name
   );
   return (
@@ -192,7 +192,7 @@ const LandingPage = () => {
                         key={index}
                         inCarousel={true}
                       />
-                      
+
                     )}
                   </>
                 ))
