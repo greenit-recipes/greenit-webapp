@@ -113,7 +113,7 @@ const RecipeSinglePage = () => {
                 ))}
               </div>
               <div className="mt-5 flex flex-col self-start">
-                <h3 className="pb-1 text-2xl">Utensils</h3>
+                <h3 className="pb-1 text-2xl">Ustensiles</h3>
                 {recipe?.utensils.map((item) => (
                   <h3 className="text-xl pt-2">{item.name}</h3>
                 ))}
