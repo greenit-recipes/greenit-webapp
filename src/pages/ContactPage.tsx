@@ -184,7 +184,7 @@ const ContactPage = () => {
             onSubmit={(e) => {
               e.preventDefault();
               if (!state.token) {
-                setMessage("Please do the captcha!");
+                setMessage("Merci de faire la vérification!");
               } else {
                 sendMessage({ variables: { data: state } });
               }
