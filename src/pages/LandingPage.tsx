@@ -114,7 +114,7 @@ const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
 const LandingPage = () => {
   const isMobile = useIsMobile();
   const { error, loading, data, refetch } = useRecipesQuery({
-    variables: { first: 10 },
+    variables: { filter: {isFeatured: true} },
   });
   return (
     <div className="flex flex-col | items-center self-center">
@@ -133,7 +133,6 @@ const LandingPage = () => {
           <AliceCarousel
             mouseTracking
             autoWidth
-            infinite
             disableButtonsControls={isMobile}
             items={landingPageCategories.map((item) => (
               <CategoryCircle
