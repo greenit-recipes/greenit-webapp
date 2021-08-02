@@ -1,3 +1,4 @@
+import React, {useEffect, useState} from "react";
 import {
   RecipeCard,
   Navbar,
@@ -16,18 +17,186 @@ import {
   planet,
   landingPageCategories,
 } from "../../icons";
+  Icon,
+} from "../components";
+import {
+  CheckCircleOutlined,
+  ExclamationCircleOutlined,
+} from "@ant-design/icons";
+import useIsMobile from "../hooks/isMobile";
+import { landingPageCategories } from "../icons";
+import { body, wellbeing, logo, money, planet, search } from "../icons";
 import ReactPlayer from "react-player";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useRecipesQuery } from "../../graphql";
 import { Link } from "react-router-dom";
 import { CategoryCircle } from "./Components/CategoryCircle";
+import { useSendMessageMutation } from "../graphql";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+
+export const SearchBar: React.FC<{
+  size?: "small" | "large";
+  setValue?: (val: string) => void;
+  value?: string;
+  onSubmit?: () => void;
+  hideSearchIcon?: boolean;
+}> = ({ size = "large", value, setValue, onSubmit, hideSearchIcon }) => {
+  const isLarge = size === "large";
+  const history = useHistory();
+  const totalSize = `w-full h-14 md:h-${isLarge ? "16" : "14"}`;
+  const iconSize = `w-16 md:w-${isLarge ? "16" : "14"} h-14 md:h-${
+    isLarge ? "16" : "14"
+  }`;
+  const handleSubmit = () => {
+    if (!onSubmit) {
+      history.push(
+        `/recipes/?search=${
+          (document.getElementById("search") as HTMLInputElement)?.value
+        }`
+      );
+    } else {
+      onSubmit();
+    }
+  };
+  return (
+    <div className={`${totalSize} | flex | relative`}>
+      <input
+        type="text"
+        className={`w-full h-full focus:outline-none | rounded-full shadow-xl | text-xs md:text-xl | pl-5`}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSubmit();
+          }
+        }}
+        placeholder="Recherche une recette, un ingrédient..."
+        id="search"
+        onChange={(e) => {
+          if (setValue) {
+            setValue(e.target.value);
+          }
+        }}
+        {...(value
+          ? {
+              value,
+            }
+          : {})}
+      />
+      {!hideSearchIcon && (
+        <div
+          className={`${iconSize} | flex absolute -right-0 | rounded-full cursor-pointer`}
+          style={{ backgroundColor: "" }}
+        >
+          <img
+            src={search}
+            className={`w-10 h-10 md:h-${isLarge ? "10" : "9"} md:w-${
+              isLarge ? "10" : "9"
+            } | self-center | ml-auto mr-auto | md:mr-10`}
+            onClick={() => {
+              handleSubmit();
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
+
+interface CategoryCircleProps {
+  name: string;
+  icon: string;
+}
+
+const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
+  const isTag = ["Premiers pas", "Zéro-déchet", "Ingrédients du frigo"].includes(
+    name
+  );
+  return (
+    <div className="flex flex-col | items-center | max-w-28">
+      <div className="w-20 h-20 md:w-28 md:h-28 | bg-white rounded-full shadow-lg">
+        <Link to={`/recipes?${isTag ? `tags=${name}` : `category=${name}`}`}>
+          <img
+            className="max-h-full max-w-full p-3 | ml-auto mr-auto | flex place-self-center"
+            src={icon}
+          ></img>
+        </Link>
+      </div>
+      <h3 className="pt-2 text-md md:text-lg"> {name} </h3>
+    </div>
+  );
+};
+
+interface NewsletterRegProps{
+  name: string;
+  value: string;
+  type: "textarea" | "text";
+  onChange: (e: any) => void;
+}
+
+const NewsletterReg: React.FC<NewsletterRegProps> = ({
+  name,
+  type,
+  value,
+  onChange,
+}) => {
+  const fieldClass = "text-xl h-full shadow-lg rounded-lg pl-4";
+  return (
+    <div>
+        <input
+          type="text"
+          placeholder="@"
+          name={name}
+          className={fieldClass}
+          value={value}
+          onChange={onChange}
+        ></input>
+    </div>
+  );
+};
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
   const { error, loading, data, refetch } = useRecipesQuery({
     variables: { first: 10 },
   });
+  const [message, setMessage] = useState<string | null>(null);
+  const [state, setState] = useState<Record<string, string>>({
+    email: "",
+  });
+  const handleChange = (e: any) => {
+    setState((prevState: Record<string, string>) => {
+      return {
+        ...prevState,
+        [(e.target as HTMLTextAreaElement)
+          .name]: (e.target as HTMLTextAreaElement).value,
+      };
+    });
+  };
+  useEffect(() => {
+    if (message !== null) {
+      toggleMessage();
+    }
+  }, [message]);
+  const [sendMessage] = useSendMessageMutation({
+    onError: (err) => {
+      console.log("err", err);
+    },
+    onCompleted: (data) => {
+      setMessage(
+        data.sendMessage?.ok
+          ? "Envoyé avec succès!"
+          : data.sendMessage?.message === "Internal Error"
+          ? "Erreur interne, merci d'essayer plus tard."
+          : "Captcha non valide!"
+      );
+    },
+  });
+  const toggleMessage = () => {
+    setTimeout(() => {
+      setMessage(null);
+    }, 2000);
+  };
+  const isSuccess = message === "Envoyé avec succès!";
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
@@ -79,7 +248,7 @@ const LandingPage = () => {
           </Grid>
         )}
       </div>
-      <Container title="Les recettes de la semaine" itemsCenter></Container>
+      <Container title="Les recettes de la semaine" itemsCenter padding={isMobile}></Container>
       <div className="w-full md:w-5/6 mb-10 recipesOfTheWeekCarousel flex flex-row">
         <AliceCarousel
           mouseTracking
@@ -164,9 +333,98 @@ const LandingPage = () => {
       </Container>
 
       <Container
-        className="w-full md:3/5 h-full pt-10 md:mt-40"
-        title="Pourquoi Greenit?"
+        className="w-screen md:3/5 h-full pt-16 lg:pt-32 text-center"
         margin={20}
+        itemsCenter
+        padding={isMobile}
+      >
+        <h1 className="text-2xl md:text-5xl | pb-10 text-center whitespace-pre-line">
+        Si tu veux suivre Greenit de près, {"\n"} laisse-nous ton email !
+        </h1>
+        <div className="h-auto w-screen flex flex-col">
+          <div
+            className={`${
+              message ? "navBar_fadeIn" : "navBar_fadeOut"
+            } w-4/5 lg:w-96 h-10 mt-5 self-center items-center fixed text-center shadow-lg bg-white`}
+          >
+            <h3
+              className={`text-base lg:text-lg ${
+                isSuccess ? "text-green-400" : "text-pink-700"
+              }`}
+            >
+              <div className="inline-flex gap-x-2 items-center">
+                {isSuccess ? (
+                  <CheckCircleOutlined />
+                ) : (
+                  <ExclamationCircleOutlined />
+                )}
+                <h3>{message}</h3>
+              </div>
+            </h3>
+          </div>
+          <div className="h-auto text-center items-center px-10 text-3xl self-center md:w-3/6">
+            <form
+              className={`flex flex-col ${isMobile && "order-last"}`}
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (!state.token) {
+                  setMessage("Merci de faire la vérification!");
+                } else {
+                  sendMessage({ variables: { data: state } });
+                }
+              }}
+            >
+            <div className="md:flex md:flex-row justify-center self-center mt-10 md:gap-x-4 md:w-4/6">
+                <NewsletterReg
+                  name="email"
+                  type="text"
+                  value={state.email}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
+                <input
+                  type="submit"
+                  value="Rejoindre"
+                  className="w-36 h-12 text-xl rounded-lg text-white"
+                  style={{
+                    backgroundColor: "#C2E69C",
+                    cursor: state.token ? "pointer" : "not-allowed",
+                  }}
+                ></input>
+            </div>
+            <div className="self-start mt-10 self-center">
+              <HCaptcha
+                  languageOverride="fr"
+                  sitekey={process.env.REACT_APP_HCAPTCHA_ID ?? ""}
+                  onVerify={(token) => {
+                    setState((prevState) => {
+                      return {
+                        ...prevState,
+                        token,
+                      };
+                    });
+                  }}
+                />
+            </div>
+          </form>
+        </div>
+      </div>
+
+        <div className="text-xs md:text-sm text-center lg:mx-80 pt-10 md:w-2/6">
+          Nous utilisons cette newsletter uniquement pour garder notre communauté
+          informée des évolutions de Greenit ainsi que pour connaître vos avis
+          sur certaines décisions. Nous vous invitons à prendre connaissance
+          de notre politique de confidentialité. Vous pouvez vous désinscrire
+          à tout moment en nous contactant à hellogreenit@gmail.com.
+        </div>
+
+      </Container>
+
+      <Container
+        className="w-full md:3/5 h-full"
+        title="Pourquoi Greenit?"
+        margin={5}
         itemsCenter
         padding={isMobile}
       >
