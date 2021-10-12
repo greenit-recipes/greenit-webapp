@@ -123,7 +123,7 @@ const LandingPage = () => {
         className="flex flex-col | items-center | mt-16 lg:mt-32"
         padding
       >
-        <h1 className="text-2xl md:text-5xl | pb-10 text-center">
+        <h1 className="text-2xl md:text-4xl | pb-10 text-center">
           Toutes les recettes pour vos produits faits maison
         </h1>
         <SearchBar />

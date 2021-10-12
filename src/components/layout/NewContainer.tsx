@@ -9,7 +9,7 @@ interface ContainerProps {
   padding?: boolean;
 }
 
-export const Container: React.FC<ContainerProps> = ({
+export const NewContainer: React.FC<ContainerProps> = ({
   className,
   margin,
   title,
@@ -26,8 +26,8 @@ export const Container: React.FC<ContainerProps> = ({
       style={{
         ...(padding
           ? {
-              paddingLeft: isMobile ? "10%" : "30%",
-              paddingRight: isMobile ? "10%" : "30%",
+              paddingLeft: isMobile ? "10%" : "10%",
+              paddingRight: isMobile ? "10%" : "10%",
             }
           : {}),
       }}

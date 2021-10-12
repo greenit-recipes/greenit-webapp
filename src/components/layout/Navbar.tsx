@@ -40,8 +40,11 @@ export const Navbar: React.FC = () => {
             <Link to="/contact">
               <h1>Contactez-nous</h1>
             </Link>
-            <Link to="/contact?addRecipe=true">
-              <h1>Partagez vos recettes</h1>
+            <Link to="/profil">
+              <h1>Profil</h1>
+            </Link>
+            <Link to="/workshops">
+              <h1>Ateliers</h1>
             </Link>
           </div>
         </div>
@@ -64,17 +67,20 @@ export const Navbar: React.FC = () => {
           <h1 className="pr-10">Nos engagements</h1>
         </Link>
         <Link to="/contact">
-          <h1>Contactez-nous</h1>
+          <h1 className="pr-10">Contactez-nous</h1>
+        </Link>
+        <Link to="/workshops">
+              <h1>Ateliers</h1>
         </Link>
       </div>
 
       <Button
         type="orange"
-        rounded="3xl"
-        className="w-64 h-12 | flex justify-end self-center | mr-4 cursor-pointer"
+        rounded="2xl"
+        className="w-44 h-12 | flex justify-end self-center | mr-4 cursor-pointer"
       >
-        <Link to="/contact?addRecipe=true">
-          <h1>Partagez vos recettes</h1>
+        <Link to="/profil">
+          <h1>Profil</h1>
         </Link>
       </Button>
     </div>
