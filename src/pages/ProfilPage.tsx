@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "/Users/adrien/Documents/Greenit/greenit-webapp/src/App.css";
+import "../App.css";
 import { useState } from "react";
 import {
   RecipeCard,
