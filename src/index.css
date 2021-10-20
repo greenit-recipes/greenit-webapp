@@ -2,13 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 @font-face {
-  font-family: "Ubuntu";
-  src: local("Ubuntu"), url(./fonts/Ubuntu-Regular.ttf) format("truetype");
+  font-family: "Quicksand";
+  src: local("Quicksand-Regular"), url(./fonts/Quicksand-Regular.ttf) format("truetype");
 }
+
 html {
-  @apply font-body;
+  font-family: Quicksand;
   background-color: #FDFDFD;
-}
-button:hover {
-  background: transparent;
 }
