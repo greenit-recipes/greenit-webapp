@@ -124,7 +124,7 @@ const LandingPage = () => {
         padding
       >
         <h1 className="text-2xl md:text-4xl | pb-10 text-center">
-          Toutes les recettes pour vos produits faits maison
+        L’espace de la production maison, <br/> pour une consommation plus durable 
         </h1>
         <SearchBar />
       </Container>

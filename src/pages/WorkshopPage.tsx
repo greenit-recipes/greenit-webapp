@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   RecipeCard,
   Navbar,
   Grid,
   Container,
-  NewContainer,
   Loading,
   Button,
   Footer,
@@ -17,10 +16,18 @@ import { Link } from "react-router-dom";
 
 const WorkshopPage = () => {
   const isMobile = useIsMobile();
+  useEffect(() => {
+    if (window.pageYOffset > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
-      <NewContainer
+      <Container
         className="flex flex-col | items-center | mt-16 lg:mt-28"
         padding
       >
@@ -32,7 +39,7 @@ const WorkshopPage = () => {
           Fais-toi aider et rencontre d’autres passionnés
         </h2>
 
-      </NewContainer>
+      </Container>
 
       <div className="w-4/5 mt-10 flex flex-col">
         <div className="grid md:grid-cols-2">
@@ -59,9 +66,9 @@ const WorkshopPage = () => {
           </div>
           <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
-                <button className="bg-green-500 text-white py-1 px-4 border-2 border-green-500 shadow-lg rounded | hover:bg-transparent hover:text-green-500 hover:border-green-500 md:mt-4 md:py-1.5">
+                <button className="button_contact">
                   <h2 className="text-base md:text-xl">Contacter</h2>
-                </button>  
+                </button>
               </div>
           </div>
           <div className="bg-transparent mt-4 rounded md:col-span-2">
@@ -95,7 +102,7 @@ const WorkshopPage = () => {
                 <h5 className="text-sm">10h - 10h40 (CEST)</h5>
                 <h5 className="text-sm">Gratuit 0€</h5>
                 <div className="flex justify-center items-center align-middle">
-                  <button className="bg-blue-300 mt-4 text-white py-1 px-4 border-2 border-blue-300 hover:bg-transparent hover:text-blue-300 hover:border-blue-300 rounded">
+                  <button className="button_reserver">
                     Reserver
                   </button>
                 </div>
@@ -118,7 +125,7 @@ const WorkshopPage = () => {
                 <h5 className="text-sm">11h - 11h30 (CEST</h5>
                 <h5 className="text-sm">Gratuit 0€</h5>
                 <div className="flex justify-center items-center align-middle">
-                  <button className="bg-blue-300 mt-4 text-white py-1 px-4 border-2 border-blue-300 hover:bg-transparent hover:text-blue-300 hover:border-blue-300 rounded">
+                  <button className="button_reserver">
                     Reserver
                   </button>
                 </div>
@@ -162,7 +169,7 @@ const WorkshopPage = () => {
           </div>
           <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
-                <button className="bg-green-500 text-white py-1 px-4 border-2 border-green-500 shadow-lg rounded | hover:bg-transparent hover:text-green-500 hover:border-green-500 md:mt-4 md:py-1.5">
+                <button className="button_contact">
                   <h2 className="text-base md:text-xl">Contacter</h2>
                 </button>  
               </div>
@@ -198,7 +205,7 @@ const WorkshopPage = () => {
                 <h5 className="text-sm">10h - 10h40 (CEST)</h5>
                 <h5 className="text-sm">Gratuit 0€</h5>
                 <div className="flex justify-center items-center align-middle">
-                  <button className="bg-blue-300 mt-4 text-white py-1 px-4 border-2 border-blue-300 hover:bg-transparent hover:text-blue-300 hover:border-blue-300 rounded">
+                  <button className="button_reserver">
                     Reserver
                   </button>
                 </div>
@@ -221,7 +228,7 @@ const WorkshopPage = () => {
                 <h5 className="text-sm">11h - 11h30 (CEST</h5>
                 <h5 className="text-sm">Gratuit 0€</h5>
                 <div className="flex justify-center items-center align-middle">
-                  <button className="bg-blue-300 mt-4 text-white py-1 px-4 border-2 border-blue-300 hover:bg-transparent hover:text-blue-300 hover:border-blue-300 rounded">
+                  <button className="button_reserver">
                     Reserver
                   </button>
                 </div>
@@ -240,76 +247,76 @@ const WorkshopPage = () => {
         </div>
       </div>
     
-      <NewContainer
+      <Container
         className="flex flex-col | items-center | mt-6 md:mt-16"
         padding
       >
         <h2 className="mt-10 text-1xl md:text-2xl | text-center">
         Clique sur la region où tu aimerais avoir un atelier :      
         </h2>
-      </NewContainer>
+      </Container>
 
       <div className="p-5 mb-10 mt-4 flex items-center justify-center">
         <div className=" grid grid-cols-2 md:grid-cols-4 gap-3">
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+        <button className="button_region text-sm | md:text-base">
           Ile-de-France
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           Grand-Est
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           Auvergne-Rhône Alpes
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           Bourgogne-Franche Comté
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           Pays de la Loire
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           Bretagne
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           Occitanie
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           Normandie
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           Hauts-de-France
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           Nouvelle-Aquitaine
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           Centre-Val de Loire
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           PACA
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
+          <button className="button_region text-sm | md:text-base">
           Corse
           </button>
-          <button className="text-sm bg-white text-black py-4 px-4 border-2 border-white shadow-xl rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
-          Régions Outre-mer
+          <button className="button_region text-sm | md:text-base">
+            Régions Outre-mer
           </button>
         </div>
       </div>
       
-      <NewContainer
+      <Container
         className="flex flex-col | items-center | mt-6 mb-40 md:mt-10 md:mb-50"
         padding
       >
-        <h2 className=" p-2 text-xl md:text-2xl | text-center">
+        <h2 className=" p-2 text-xl mb-10 | md:text-2xl | text-center">
           Tu es un.e passioné.e de DIY et tu aimerais proposer des ateliers ? <br/>
           Ça nous intéresse !  
         </h2> 
         
-        <button className="bg-green-400 mt-10 text-white p-3 px-4 border-2 border-green-400 rounded-lg hover:bg-transparent hover:text-green-400 hover:border-green-400 ">
-          <h2 className="text-base md:text-xl">Proposer un atelier</h2>
+        <button className="button_contact">
+          <h2 className="text-xl md:text-2xl">Proposer un atelier</h2>
         </button>
       
-      </NewContainer>
+      </Container>
 
       <Footer />
     </div>

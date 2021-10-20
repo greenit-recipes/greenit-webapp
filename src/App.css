@@ -1,3 +1,22 @@
+@font-face {
+  font-family: QuickSand_SemiBold;
+  src: url(./fonts/Quicksand-SemiBold.ttf);
+}
+@font-face {
+  font-family: QuickSand_Medium;
+  src: url(./fonts/Quicksand-Medium.ttf);
+}
+
+h1 {
+  color: black;
+  font-family: QuickSand_SemiBold;
+}
+
+.text_logo {
+  color: #83D489;
+  font-weight:500;
+}
+
 .alice-carousel__prev-btn,
 .alice-carousel__next-btn {
   position: absolute;
@@ -65,7 +84,55 @@
   transition: visibility 0s linear 0s, opacity 300ms;
 }
 
+.button_contact {
+  background-color:#83D489;
+  margin-top: 4px;
+  color: white;
+  border: 2px solid transparent;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+.button_contact:hover {
+  background-color: transparent;
+  color: #83D489;
+  border: 2px solid;
+  border-color: #83D489;
+}
+
+.button_reserver {
+  background-color:#8FB5E8;
+  margin-top: 12px;
+  color: white;
+  border: 2px solid transparent;
+  padding: 4px 15px;
+  border-radius: 5px;
+}
+
+.button_reserver:hover {
+  background-color: transparent;
+  color:#8FB5E8;
+  border: 2px solid;
+  border-color: #8FB5E8;
+}
+
+.button_region {
+  background-color:white;
+  color: black;
+  border: 2px solid transparent;
+  padding: 20px 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 15px 0 rgba(107, 107, 107, 0.226);
+}
+
+.button_region:hover {
+  background-color: #5C5C5C;
+  color:white;
+}
+
+
 /* FOR iOS AND FOR APPLE <3*/
 .grid-gap-list-page {
   grid-gap: 2.5rem;
 }
+

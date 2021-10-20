@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "/Users/adrien/Documents/Greenit/greenit-webapp/src/App.css";
 import { useState } from "react";
 import {
@@ -6,7 +6,6 @@ import {
   Navbar,
   Grid,
   Container,
-  NewContainer,
   Loading,
   Button,
   Footer,
@@ -17,13 +16,16 @@ import { useRecipesQuery, RecipesQuery } from "../graphql";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
-interface CategoryCircleProps {
-  name: string;
-  icon: string;
-}
-
-const ProfilPage: React.FunctionComponent = () => {
+const ProfilPage: React.FC = () => {
   const isMobile = useIsMobile();
+  useEffect(() => {
+    if (window.pageYOffset > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
 
   const [visible, setVisible] = React.useState(false);
   
@@ -32,7 +34,7 @@ const ProfilPage: React.FunctionComponent = () => {
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
-      <NewContainer
+      <Container
         className="flex flex-col | items-center | mt-8 md:mt-20"
         padding
       >
@@ -56,7 +58,7 @@ const ProfilPage: React.FunctionComponent = () => {
           </div>
         </div>
 
-      </NewContainer>  
+      </Container>  
   
       <div className="grid grid-cols-2 mb-10 px-4 gap-4 | md:px-20">
         <button className="py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue-400 |
@@ -75,7 +77,7 @@ const ProfilPage: React.FunctionComponent = () => {
         </button>
       </div>
 
-      <NewContainer className="flex flex-col mb-20 | items-center"
+      <Container className="flex flex-col mb-20 | items-center"
         padding>
         <div className="relative bg-blue-500 text-center">
           <h3 className="p-28 text-2xl">
@@ -89,7 +91,7 @@ const ProfilPage: React.FunctionComponent = () => {
             </h3>
           </div>
         } 
-      </NewContainer>
+      </Container>
       
 
       <Footer />

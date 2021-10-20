@@ -9,7 +9,7 @@ export const Navbar: React.FC = () => {
   const [toggle, setToggle] = useState(false);
   if (isMobile) {
     return (
-      <div className="sticky top-0 z-20 bg-white w-screen  text-gray-500">
+      <div className="sticky top-0 z-20 bg-white w-screen text-gray-500">
         <div
           onClick={() => {
             setToggle((prevState) => !prevState);
@@ -18,8 +18,7 @@ export const Navbar: React.FC = () => {
         >
           <img src={hamburgerIcon} className="h-12 w-12" />
           <Link to="/" className="flex flex-col items-center">
-            <img src={logo} className="h-20 w-20" alt="Greenit Logo" />
-            <h3 className="text-lg">Greenit</h3>
+            <img src={logo} className="h-14 w-14" alt="Greenit Logo" />
           </Link>
           <div className="invisible">_____</div>
         </div>
@@ -52,11 +51,11 @@ export const Navbar: React.FC = () => {
     );
   }
   return (
-    <div className="h-20 w-full | flex | items-center | text-gray-500 text-2xl sticky top-0 bg-white z-10 backdrop-opacity-100">
+    <div className="h-20 w-full | flex | items-center | text-2xl sticky top-0 bg-white z-10 backdrop-opacity-100">
       <div className="w-56 cursor-pointer">
         <Link to="/" className="flex flex-row items-center">
-          <img src={logo} className="h-20 w-20 | ml-10" alt="Greenit Logo" />
-          <h3 className="text-2xl">Greenit</h3>
+          <img src={logo} className="h-14 w-14 | ml-10" alt="Greenit Logo" />
+          <h4 className="text_logo text-4xl ml-1">Greenit</h4>
         </Link>
       </div>
       <div className="flex | ml-auto mr-auto | self-center cursor-pointer">
@@ -76,8 +75,8 @@ export const Navbar: React.FC = () => {
 
       <Button
         type="orange"
-        rounded="2xl"
-        className="w-44 h-12 | flex justify-end self-center | mr-4 cursor-pointer"
+        rounded="xl"
+        className="py-2 px-4 flex justify-end self-center | mr-4 cursor-pointer"
       >
         <Link to="/profil">
           <h1>Profil</h1>
