@@ -3,14 +3,31 @@
   src: url(./fonts/Quicksand-SemiBold.ttf);
 }
 @font-face {
+  font-family: QuickSand_Regular;
+  src: url(./fonts/Quicksand-Regular.ttf);
+}
+@font-face {
   font-family: QuickSand_Medium;
   src: url(./fonts/Quicksand-Medium.ttf);
+}
+@font-face {
+  font-family: QuickSand_Light;
+  src: url(./fonts/Quicksand-Light.ttf);
 }
 
 h1 {
   color: black;
+  font-family: QuickSand_Medium;
+}
+
+h2 {
   font-family: QuickSand_SemiBold;
 }
+
+h3 {
+  font-family: QuickSand_Regular;
+}
+
 
 .text_logo {
   color: #83D489;
@@ -130,6 +147,48 @@ h1 {
   color:white;
 }
 
+.landingpage_bg_1{
+  background-color: #83D489;
+  z-index:-1;
+  position: absolute;
+  margin-top: 10em;
+  filter: blur(3.5rem);
+  border-radius: 100%;
+  opacity: 40%;
+}
+
+.landingpage_bg_2{
+  background-color: #8FB5E8;
+  z-index:-1;
+  position: absolute;
+  left: 10%;
+  margin-top: 15em;
+  filter: blur(3.5rem);
+  border-radius: 100%;
+  opacity: 40%;
+}
+
+.landingpage_bg_3{
+  background-color:#FFB798;
+  z-index:-1;
+  position: absolute;
+  left: 20px;
+  margin-top: 30em;
+  filter: blur(3.5rem);
+  border-radius: 100%;
+  opacity: 40%;
+}
+
+.landingpage_bg_4{
+  background-color:#F9D58E;
+  z-index:-1;
+  position: absolute;
+  right: -5%;
+  margin-top: 20em;
+  filter: blur(3.5rem);
+  border-radius: 100%;
+  opacity: 40%;
+}
 
 /* FOR iOS AND FOR APPLE <3*/
 .grid-gap-list-page {

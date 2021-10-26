@@ -67,10 +67,6 @@ export const landingPageCategories = [
     title: "Visage",
   },
   {
-    icon: wellbeing,
-    title: "Bien-être",
-  },
-  {
     icon: body,
     title: "Corps",
   },

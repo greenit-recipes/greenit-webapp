@@ -56,7 +56,7 @@ const WorkshopPage = () => {
           <div className="bg-transparent rounded-lg mt-5 p-2 shadow-lg md:p-4"> 
             <div className="flex justify-start ...">
                 <div>
-                  <img src="/static/media/logo.61b805cb.png" className="w-full h-16 lg:h-18" alt="Greenit Logo"/>
+                  <img src="/static/media/logo.223c90e0.png" className="w-full h-16 lg:h-18" alt="Greenit Logo"/>
                 </div>
                 <div className="items-center self-center">
                   <h3 className="pl-3 text-xl md:text-2xl text-center">Les Ateliers Greenit</h3>
