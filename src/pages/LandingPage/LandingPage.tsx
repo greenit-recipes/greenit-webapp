@@ -21,12 +21,10 @@ import {
 } from "../components";
 import {
   CheckCircleOutlined,
-  ExclamationCircleOutlined,
+  ExclamationCircleOutlined
 } from "@ant-design/icons";
-import useIsMobile from "../hooks/isMobile";
-import { landingPageCategories } from "../icons";
-import { body, wellbeing, logo, money, planet, search } from "../icons";
-import ReactPlayer from "react-player";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+import React, { useEffect, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useRecipesQuery } from "../../graphql";
@@ -333,7 +331,8 @@ const LandingPage = () => {
       </Container>
 
       <Container
-        className="w-screen md:3/5 h-full pt-16 lg:pt-32 text-center"
+        className="w-full md:3/5 h-full pt-10 md:mt-40"
+        title="Pourquoi Greenit?"
         margin={20}
         itemsCenter
         padding={isMobile}
