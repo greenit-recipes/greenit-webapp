@@ -7,6 +7,7 @@ import {
   Loading,
   Button,
   Footer,
+  Icon,
 } from "../components";
 import {
   CheckCircleOutlined,
@@ -21,8 +22,11 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { useRecipesQuery } from "../graphql";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+
 import { useSendMessageMutation } from "../graphql";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
+import { title } from "process";
+
 
 export const SearchBar: React.FC<{
   size?: "small" | "large";
@@ -33,9 +37,9 @@ export const SearchBar: React.FC<{
 }> = ({ size = "large", value, setValue, onSubmit, hideSearchIcon }) => {
   const isLarge = size === "large";
   const history = useHistory();
-  const totalSize = `w-full h-14 md:h-${isLarge ? "20" : "14"}`;
-  const iconSize = `w-16 md:w-${isLarge ? "20" : "14"} h-14 md:h-${
-    isLarge ? "20" : "14"
+  const totalSize = `w-full h-14 md:h-${isLarge ? "16" : "14"}`;
+  const iconSize = `w-16 md:w-${isLarge ? "16" : "14"} h-14 md:h-${
+    isLarge ? "16" : "14"
   }`;
   const handleSubmit = () => {
     if (!onSubmit) {
@@ -52,15 +56,13 @@ export const SearchBar: React.FC<{
     <div className={`${totalSize} | flex | relative`}>
       <input
         type="text"
-        className={`w-full h-full | rounded-full shadow-lg | text-xl md:${
-          isLarge ? "md:text-2xl" : "text-xl"
-        } | pl-5`}
+        className={`w-full h-full focus:outline-none | rounded-full shadow-xl | text-xs md:text-xl | pl-5`}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             handleSubmit();
           }
         }}
-        placeholder="Recherche ..."
+        placeholder="Recherche une recette, un ingrédient..."
         id="search"
         onChange={(e) => {
           if (setValue) {
@@ -76,13 +78,13 @@ export const SearchBar: React.FC<{
       {!hideSearchIcon && (
         <div
           className={`${iconSize} | flex absolute -right-0 | rounded-full cursor-pointer`}
-          style={{ backgroundColor: "#c0e0fb" }}
+          style={{ backgroundColor: "" }}
         >
           <img
             src={search}
             className={`w-10 h-10 md:h-${isLarge ? "10" : "9"} md:w-${
               isLarge ? "10" : "9"
-            } | self-center | ml-auto mr-auto`}
+            } | self-center | ml-auto mr-auto | md:mr-10`}
             onClick={() => {
               handleSubmit();
             }}
@@ -104,10 +106,10 @@ const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
   );
   return (
     <div className="flex flex-col | items-center | max-w-28">
-      <div className="w-20 h-20 md:w-28 md:h-28 | rounded-full shadow-lg">
+      <div className="w-20 h-20 md:w-28 md:h-28 | bg-white rounded-full shadow-lg">
         <Link to={`/recipes?${isTag ? `tags=${name}` : `category=${name}`}`}>
           <img
-            className="max-h-full max-w-full | ml-auto mr-auto | flex place-self-center | rounded-full"
+            className="max-h-full max-w-full p-3 | ml-auto mr-auto | flex place-self-center"
             src={icon}
           ></img>
         </Link>
@@ -191,16 +193,22 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
+      <div className="landingpage_bg_1 | w-32 h-32 md:w-56 md:h-56"></div>
+      <div className="landingpage_bg_2 | w-36 h-36 md:w-72 md:h-72"></div>
+      <div className="landingpage_bg_3 | w-32 h-32 md:w-56 md:h-56"></div>
+      <div className="landingpage_bg_4 | w-32 h-32 md:w-56 md:h-56"></div>
       <Container
-        className="flex flex-col | items-center | mt-16 lg:mt-32"
+        className="flex flex-col | items-center | mt-16 lg:mt-28"
         padding
       >
-        <h1 className="text-2xl md:text-5xl | pb-10 text-center">
-          Toutes les recettes pour vos produits faits maison
+        <h1 className="text-3xl md:text-5xl | pb-16 text-center">
+          L’espace de la production maison, <br/> pour une nouvelle consommation 
         </h1>
-        <SearchBar />
+        <div className="w-full | md:w-9/12">
+          <SearchBar />
+        </div>
       </Container>
-      <div className="w-screen md:w-4/5 | items-center pt-14 pb-16 | flex justify-center">
+      <div className="w-screen md:w-3/5 | items-center pt-14 pb-16 | flex justify-center">
         {isMobile ? (
           <AliceCarousel
             mouseTracking
@@ -220,7 +228,7 @@ const LandingPage = () => {
             type="col"
             gap="8"
             size={{
-              default: 7,
+              default: 6,
             }}
           >
             {landingPageCategories.map((item) => (
@@ -274,9 +282,8 @@ const LandingPage = () => {
       </div>
       <Container
         title="Nos tutos vidéos pour commencer"
-        className="w-screen md:3/5 h-96 text-center"
+        className="w-screen md:3/5 h-96 text-center mt-8"
         itemsCenter
-        padding={isMobile}
       >
         <Grid
           type="col"
@@ -285,7 +292,7 @@ const LandingPage = () => {
             default: 1,
             md: 2,
           }}
-          className="pt-10 w-4/5 md:w-3/5"
+          className="pt-4 w-4/5 md:w-3/5"
         >
           <div className="relative" style={{ height: "23rem" }}>
             <ReactPlayer
@@ -321,7 +328,8 @@ const LandingPage = () => {
       </Container>
 
       <Container
-        className="w-screen md:3/5 h-full pt-16 lg:pt-32 text-center"
+        className="w-full md:3/5 h-full pt-10 md:mt-40"
+        title="Pourquoi Greenit?"
         margin={20}
         itemsCenter
         padding={isMobile}
@@ -418,15 +426,15 @@ const LandingPage = () => {
       >
         <Grid
           type="col"
-          gap="8 md:gap-24"
+          gap="8 md:gap-15"
           size={{
             default: 2,
             sm: 4,
           }}
-          className="pt-10"
+          className="text-center mt-8 md:mt-0"
         >
           {[
-            { text: "Pour la planète", color: "#a6f78d", icon: planet },
+            { text: "Pour la planète", color: "#c2e69c", icon: planet },
             { text: "Pour ton corps", color: "#ffe390", icon: body },
             { text: "Pour tes économies", color: "#ffbea8", icon: money },
             { text: "Pour ton esprit", color: "#93c5fe", icon: wellbeing },
@@ -434,21 +442,21 @@ const LandingPage = () => {
             <div className="h-full w-full flex flex-col items-center">
               <img
                 src={item.icon}
-                className="w-28 md:w-40 md:h-40 h-28 rounded-full pb-2"
+                className="w-28 h-28 md:w-32 md:h-32 pb-2"
               ></img>
-              <h3 className="text-md md:text-2xl" style={{ color: item.color }}>
+              <h2 className="text-md md:text-xl" style={{ color: item.color }}>
                 {item.text}
-              </h3>
+              </h2>
             </div>
           ))}
         </Grid>
-        <h2 className="mt-20 mb-10 text-md md:text-2xl text-center">
-          Greenit est une initiative visant à encourager une consommation plus
-          durable et responsable.
-        </h2>
-        <Button type="success" rounded="2xl" className="w-36 md:w-48 h-12">
-          <Link to="/why" className="text-xl md:text-2xl">
-            En savoir plus
+        <h3 className="mt-10 mb-10 text-md md:text-xl text-center">
+          Greenit est une initiative visant à encourager une consommation <br/> 
+          plus durable et responsable.
+        </h3>
+        <Button type="success" rounded="xl" className="w-36 md:w-48 h-12">
+          <Link to="/why" className="text-md md:text-xl">
+            <h2>En savoir plus</h2>
           </Link>
         </Button>
       </Container>

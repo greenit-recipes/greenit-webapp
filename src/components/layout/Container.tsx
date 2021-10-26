@@ -26,13 +26,13 @@ export const Container: React.FC<ContainerProps> = ({
       style={{
         ...(padding
           ? {
-              paddingLeft: isMobile ? "10%" : "30%",
-              paddingRight: isMobile ? "10%" : "30%",
+              paddingLeft: isMobile ? "10%" : "10%",
+              paddingRight: isMobile ? "10%" : "10%",
             }
           : {}),
       }}
     >
-      {title && <h1 className="text-2xl lg:text-5xl | md:mb-10">{title}</h1>}
+      {title && <h1 className="text-2xl lg:text-3xl | md:mb-10">{title}</h1>}
       {children}
     </div>
   );
