@@ -36,11 +36,11 @@ const FilterBarItem: React.FC<FilterBarItem> = ({
   return (
     <div className="lg:pt-5 mb-5 content-center text-center lg:text-left">
       <h1 className="text-2xl text-gray-600 mb-2">{item.title}</h1>
-      {item.options.map((option: { title: string; value: string }) => {
+      {item.options.map((option: { title: string; value: string }, index: any) => {
         const isSelected =
           currentFilters[item.name] === (option.value || option.title);
         return (
-          <div className="text-xl mb-2 cursor-pointer">
+          <div className="text-xl mb-2 cursor-pointer" key={index}>
             <h3
               className={
                 isSelected ? "text-black bold underline" : "text-gray-600"
@@ -153,9 +153,10 @@ const FilterBar: React.FC<FilterBarProps> = ({
         setSearch={setSearch}
         setCurrentFilters={setCurrentFilters}
       />
-      {filter.map((item: any) => (
+      {filter.map((item: any, index: any) => (
         <FilterBarItem
           item={item}
+          key={index}
           currentFilters={currentFilters}
           handleFilter={handleFilter}
         />
