@@ -42,8 +42,8 @@ export const Footer: React.FC = () => {
               text:
                 "Sur Greenit, nous ne collectons pas vos données personnelles, nous ne vous piégerons pas avec des publicités et nous utiliserons des solutions plus éthiques pour héberger le site. Greenit est open-source disponible sur Github. Nous vous donnons également la possibilité de choisir les prochaines fonctionnalités du site, contactez-nous !",
             },
-          ].map((item) => (
-            <div className="flex flex-col">
+          ].map((item, index) => (
+            <div className="flex flex-col" key={index}>
               <div className="flex">
                 <img
                   src={item.icon}
@@ -87,8 +87,8 @@ export const Footer: React.FC = () => {
                   <img src={tiktokIcon} className="w-8 h-8 mt-2 self-start" />
                 ),
               },
-            ].map((item) => (
-              <a href={item.href} target="_blank" rel="norefferer">
+            ].map((item, index) => (
+              <a href={item.href} target="_blank" rel="norefferer" key={index}>
                 {item.children}
               </a>
             ))}

@@ -1,0 +1,76 @@
+{
+  "name": "front-end",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^4.5.0",
+    "@apollo/client": "^3.3.14",
+    "@brainhubeu/react-carousel": "^2.0.2",
+    "@craco/craco": "^6.1.1",
+    "@graphql-codegen/typescript": "^1.21.1",
+    "@graphql-codegen/typescript-operations": "^1.17.15",
+    "@hcaptcha/react-hcaptcha": "^0.3.6",
+    "@tailwindcss/postcss7-compat": "^2.0.3",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/brainhubeu__react-carousel": "^2.0.2",
+    "@types/history": "^4.7.8",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-pdf": "^5.0.2",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-swipeable-views": "^0.13.0",
+    "autoprefixer": "^9",
+    "graphql": "^15.5.0",
+    "lodash": "^4.17.21",
+    "postcss": "^7",
+    "react": "^17.0.1",
+    "react-alice-carousel": "^2.4.0",
+    "react-dom": "^17.0.1",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-player": "^2.9.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.2",
+    "react-swipeable-views": "^0.13.9",
+    "sass": "^1.32.7",
+    "swiper": "^6.4.14",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "concurrently \"yarn generate --watch\" \"craco start --host 0.0.0.0\"",
+    "build": "yarn generate && craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "generate": "graphql-codegen --config codegen.yml",
+    "generate:watch": "yarn generate --watch"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.3",
+    "@graphql-codegen/typescript-react-apollo": "^2.2.3",
+    "@types/lodash": "^4.14.176",
+    "concurrently": "^6.0.1"
+  }
+}

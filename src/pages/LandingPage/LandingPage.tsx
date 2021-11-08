@@ -1,4 +1,3 @@
-import React from "react";
 import {
   RecipeCard,
   Navbar,
@@ -7,109 +6,22 @@ import {
   Loading,
   Button,
   Footer,
-  Icon,
-} from "../components";
-import useIsMobile from "../hooks/isMobile";
-import { landingPageCategories } from "../icons";
-import { body, wellbeing, logo, money, planet, search } from "../icons";
+  SearchBar,
+} from "../../components";
+import useIsMobile from "../../hooks/isMobile";
+import {
+  body,
+  wellbeing,
+  money,
+  planet,
+  landingPageCategories,
+} from "../../icons";
 import ReactPlayer from "react-player";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import { useRecipesQuery } from "../graphql";
-import { useHistory } from "react-router";
+import { useRecipesQuery } from "../../graphql";
 import { Link } from "react-router-dom";
-import { title } from "process";
-
-export const SearchBar: React.FC<{
-  size?: "small" | "large";
-  setValue?: (val: string) => void;
-  value?: string;
-  onSubmit?: () => void;
-  hideSearchIcon?: boolean;
-}> = ({ size = "large", value, setValue, onSubmit, hideSearchIcon }) => {
-  const isLarge = size === "large";
-  const history = useHistory();
-  const totalSize = `w-full h-14 md:h-${isLarge ? "16" : "14"}`;
-  const iconSize = `w-16 md:w-${isLarge ? "16" : "14"} h-14 md:h-${
-    isLarge ? "16" : "14"
-  }`;
-  const handleSubmit = () => {
-    if (!onSubmit) {
-      history.push(
-        `/recipes/?search=${
-          (document.getElementById("search") as HTMLInputElement)?.value
-        }`
-      );
-    } else {
-      onSubmit();
-    }
-  };
-  return (
-    <div className={`${totalSize} | flex | relative`}>
-      <input
-        type="text"
-        className={`w-full h-full focus:outline-none | rounded-full shadow-xl | text-xs md:text-xl | pl-5`}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            handleSubmit();
-          }
-        }}
-        placeholder="Recherche une recette, un ingrédient..."
-        id="search"
-        onChange={(e) => {
-          if (setValue) {
-            setValue(e.target.value);
-          }
-        }}
-        {...(value
-          ? {
-              value,
-            }
-          : {})}
-      />
-      {!hideSearchIcon && (
-        <div
-          className={`${iconSize} | flex absolute -right-0 | rounded-full cursor-pointer`}
-          style={{ backgroundColor: "" }}
-        >
-          <img
-            src={search}
-            className={`w-10 h-10 md:h-${isLarge ? "10" : "9"} md:w-${
-              isLarge ? "10" : "9"
-            } | self-center | ml-auto mr-auto | md:mr-10`}
-            onClick={() => {
-              handleSubmit();
-            }}
-          />
-        </div>
-      )}
-    </div>
-  );
-};
-
-interface CategoryCircleProps {
-  name: string;
-  icon: string;
-}
-
-const CategoryCircle: React.FC<CategoryCircleProps> = ({ name, icon }) => {
-  const isTag = ["Premiers pas", "Zéro-déchet", "Ingrédients du frigo"].includes(
-    name
-  );
-  return (
-    <div className="flex flex-col | items-center | max-w-28">
-      <div className="w-20 h-20 md:w-28 md:h-28 | bg-white rounded-full shadow-lg">
-        <Link to={`/recipes?${isTag ? `tags=${name}` : `category=${name}`}`}>
-          <img
-            className="max-h-full max-w-full p-3 | ml-auto mr-auto | flex place-self-center"
-            src={icon}
-          ></img>
-        </Link>
-      </div>
-      <h3 className="pt-2 text-md md:text-lg"> {name} </h3>
-    </div>
-  );
-};
+import { CategoryCircle } from "./Components/CategoryCircle";
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
@@ -192,13 +104,11 @@ const LandingPage = () => {
                         />
                       </div>
                     ) : (
-
                       <RecipeCard
                         recipe={recipe?.node}
                         key={index}
                         inCarousel={true}
                       />
-
                     )}
                   </>
                 ))

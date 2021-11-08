@@ -1,6 +1,6 @@
 import React, { createRef, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useRecipeQuery } from "../../graphql";
 import { Container, Grid, Footer, Loading, Navbar } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
@@ -35,7 +35,7 @@ const closest = (needle: number, haystack: any[]) => {
   return haystack.reduce((a: any, b: any) => {
     let aDiff = Math.abs(a - needle);
     let bDiff = Math.abs(b - needle);
-    if (aDiff == bDiff) {
+    if (aDiff === bDiff) {
       return a > b ? a : b;
     } else {
       return bDiff < aDiff ? b : a;
@@ -45,12 +45,13 @@ const closest = (needle: number, haystack: any[]) => {
 
 const RecipeSinglePage = () => {
   // @ts-ignore
-  const { id } = useParams();
+  const location = useLocation<{ recipeId: string }>();
+  const { recipeId } = location.state;
   const isMobile = useIsMobile();
   const history = useHistory();
   const { error, loading, data } = useRecipeQuery({
     variables: {
-      id: id ?? "",
+      id: recipeId ?? "",
     },
   });
   const [videoDuration, setVideoDuration] = useState<number>(0);
@@ -94,6 +95,7 @@ const RecipeSinglePage = () => {
               <div className="w-full mt-10 whitespace-pre break-all flex-wrap inline-flex h-auto">
                 {recipe?.tags.map((item, index) => (
                   <div
+                    key={index}
                     className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center h-8 cursor-pointer"
                     style={{ backgroundColor: "#888888" }}
                     onClick={() => {
@@ -106,16 +108,16 @@ const RecipeSinglePage = () => {
               </div>
               <div className="mt-5 flex flex-col self-start">
                 <h3 className="pb-1 text-2xl">Ingredients</h3>
-                {recipe?.ingredients.map((item) => (
-                  <h3 className="text-xl pt-2">
+                {recipe?.ingredients.map((item, index) => (
+                  <h3 className="text-xl pt-2" key={index}>
                     {item.amount} {item.name}
                   </h3>
                 ))}
               </div>
               <div className="mt-5 flex flex-col self-start">
                 <h3 className="pb-1 text-2xl">Ustensiles</h3>
-                {recipe?.utensils.map((item) => (
-                  <h3 className="text-xl pt-2">{item.name}</h3>
+                {recipe?.utensils.map((item, index) => (
+                  <h3 className="text-xl pt-2" key={index}>{item.name}</h3>
                 ))}
               </div>
             </>
@@ -131,6 +133,7 @@ const RecipeSinglePage = () => {
                   <div className="w-full whitespace-pre break-all flex-wrap inline-flex h-11">
                     {recipe?.tags.map((item, index) => (
                       <div
+                        key={index}
                         className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
                         style={{ backgroundColor: "#888888" }}
                         onClick={() => {
@@ -145,16 +148,18 @@ const RecipeSinglePage = () => {
                     <div className="mt-5 flex flex-col self-start w-1/2">
                       <h3 className="pb-1 text-2xl">Ingredients</h3>
                       {/* @ts-ignore*/}
-                      {recipe.ingredients.map((item) => (
-                        <h3 className="text-xl pt-2">
+                      {recipe.ingredients.map((item, index) => (
+                        <h3 className="text-xl pt-2" key={index}>
                           {item.amount} {item.name}
                         </h3>
                       ))}
                     </div>
                     <div className="mt-5 flex flex-col self-start">
                       <h3 className="pb-1 text-2xl">Ustensiles</h3>
-                      {recipe?.utensils.map((item) => (
-                        <h3 className="text-xl pt-2">{item.name}</h3>
+                      {recipe?.utensils.map((item, index) => (
+                        <h3 className="text-xl pt-2" key={index}>
+                          {item.name}
+                        </h3>
                       ))}
                     </div>
                   </div>
@@ -197,6 +202,7 @@ const RecipeSinglePage = () => {
               const timestamp = getSecondsFromDuration(item.timestamp);
               return (
                 <div
+                  key={index}
                   className="flex flex-col cursor-pointer"
                   onClick={() => {
                     setVideoDuration(timestamp);
@@ -207,7 +213,6 @@ const RecipeSinglePage = () => {
                   <Instruction
                     index={index + 1}
                     text={`${item.content}`}
-                    key={index}
                     isHighlighted={
                       closest(
                         videoDuration,

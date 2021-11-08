@@ -6,11 +6,12 @@ import communityDesktop from "../icons/community_desktop.png";
 import communityMobile from "../icons/community_mobile.png";
 
 const Block: React.FC<{
+  id: string;
   title: string;
   className?: string;
   style?: React.CSSProperties;
   padding?: string;
-}> = ({ children, title, style, className, padding }) => {
+}> = ({ id, children, title, style, className, padding }) => {
   const isMobile = useIsMobile();
   return (
     <div
@@ -30,12 +31,18 @@ const Block: React.FC<{
 };
 
 const WhyBlock: React.FC<{
-  item: Record<string, string>;
+  item: {
+    id: number;
+    icon: string;
+    title: string;
+    color: string;
+    text: string;
+  };
 }> = ({ item }) => {
   return (
-    <div className="flex flex-col items-center">
-      <img src={item.icon} className="w-36 h-36" key="icon" />
-      <div className="flex flex-col" key="text">
+    <div className="flex flex-col items-center" key={item.id.toString()}>
+      <img src={item.icon} className="w-36 h-36" />
+      <div className="flex flex-col">
         <h1 className="text-4xl" style={{ color: item.color }}>
           {item.title}
         </h1>
@@ -63,6 +70,7 @@ const WhyPage: React.FC = () => {
             backgroundColor: "#9ed1fb",
             minHeight: isMobile ? "75vh" : "60vh",
           }}
+          id="1"
           className="text-white w-full lg:pt-10"
           title="Greenit"
           padding="30%"
@@ -83,7 +91,7 @@ const WhyPage: React.FC = () => {
           className="h-24 w-24 lg:h-36 lg:w-36 -mt-10 lg:-mt-20"
         />
 
-        <Block title="">
+        <Block title="" id="2">
           <p className="mt-10 lg:text-xl">
             En mars 2020, avec le confinement, Andréa s’intéresse à la
             composition de ses produits du quotidien, lassée de ses irritations
@@ -98,6 +106,7 @@ const WhyPage: React.FC = () => {
           </p>
         </Block>
         <Block
+          id="3"
           title="Pourquoi faire ses produits maison?"
           className="flex flex-col items-center gap-y-12"
           padding="10%"
@@ -105,41 +114,48 @@ const WhyPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {[
               {
+                id: 1,
                 icon: planet,
                 title: "Pour la planète",
                 color: "#a6f78d",
-                text:
-                  "Parlons des compositions des shampoings, des lessives, des liquides vaisselles : sodium laureth sulfate, methylchloroisothiazolinone, polycarboxylates.. la liste est longue et leurs pollutions environnementales sont catastrophiques. La production maison c’est zero déchêt et pas de génocide de micro-organismes.",
+                text: "Parlons des compositions des shampoings, des lessives, des liquides vaisselles : sodium laureth sulfate, methylchloroisothiazolinone, polycarboxylates.. la liste est longue et leurs pollutions environnementales sont catastrophiques. La production maison c’est zero déchêt et pas de génocide de micro-organismes.",
               },
               {
+                id: 2,
                 icon: body,
                 title: "Pour ton corps",
                 color: "#F2D493",
-                text:
-                  "Ces mêmes ingrédients chimiques endommagent, irritent et vulnérabilisent ta peau et tes cheveux. Hélas, même dans les produits les plus biologiques, les conservateurs, alcool et aluminium attaquent nos corps. La production maison est aussi personnalisée et respecte les différences de chacun.",
+                text: "Ces mêmes ingrédients chimiques endommagent, irritent et vulnérabilisent ta peau et tes cheveux. Hélas, même dans les produits les plus biologiques, les conservateurs, alcool et aluminium attaquent nos corps. La production maison est aussi personnalisée et respecte les différences de chacun.",
               },
               {
+                id: 3,
                 icon: money,
                 title: "Pour tes économies",
                 color: "#FEC4B0",
-                text:
-                  "27,90€ le baume réparateur bio? 5,80€ le stick à lèvres naturel ? L’industrie des produits cosmétiques et ménagers ne respecte pas notre pouvoir d’achat. Sur Greenit, le stick à lèvres revient à 1,50€ et le baume à 6€.",
+                text: "27,90€ le baume réparateur bio? 5,80€ le stick à lèvres naturel ? L’industrie des produits cosmétiques et ménagers ne respecte pas notre pouvoir d’achat. Sur Greenit, le stick à lèvres revient à 1,50€ et le baume à 6€.",
               },
               {
+                id: 4,
                 icon: wellbeing,
                 title: "Pour ton esprit",
                 color: "#95CDFB",
-                text:
-                  "La production maison c’est aussi une activité manuelle et épanouissante. La création apporte une stimulation des sens, un sentiment d’accomplissement et une manière de se déconnecter, seul ou à plusieurs.",
+                text: "La production maison c’est aussi une activité manuelle et épanouissante. La création apporte une stimulation des sens, un sentiment d’accomplissement et une manière de se déconnecter, seul ou à plusieurs.",
               },
             ].map((item) => (
-              <div className="flex flex-col gap-x-22 mt-10">
+              <div
+                key={item.id.toString()}
+                className="flex flex-col gap-x-22 mt-10"
+              >
                 <WhyBlock item={item} />
               </div>
             ))}
           </div>
         </Block>
-        <Block title="Merci à toutes celles et ceux qui nous aident" className="w-full lg:w-5/6 min-h-0 mt-10">
+        <Block
+          id="4"
+          title="Merci à toutes celles et ceux qui nous aident"
+          className="w-full lg:w-5/6 min-h-0 mt-10"
+        >
           <img
             src={isMobile ? communityMobile : communityDesktop}
             className="h-full w-full mt-20 mb-10"
