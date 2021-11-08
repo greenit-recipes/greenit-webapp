@@ -7,6 +7,15 @@ import { ME } from "services/auth.service";
 import "../App.css";
 import { Container, Footer, Navbar } from "../components";
 import useIsMobile from "../hooks/isMobile";
+<<<<<<< HEAD
+=======
+import ReactPlayer from "react-player";
+import { useRecipesQuery, RecipesQuery } from "../graphql";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+import {likedIconOff} from "../icons";
+import {likedIconOn} from "../icons";
+>>>>>>> 87c9901 (Add the like icons + resize the recipe cards)
 
 const ProfilPage: React.FC = () => {
   const isMobile = useIsMobile();
@@ -154,7 +163,11 @@ const ProfilPage: React.FC = () => {
           </div>
         )}
       </Container>
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 87c9901 (Add the like icons + resize the recipe cards)
       <Footer />
     </div>
   );

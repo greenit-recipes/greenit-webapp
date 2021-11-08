@@ -45,7 +45,7 @@ export const Icon: React.FC<IconProps> = ({ text, height, width, icon }) => {
   return (
     <div className="flex flex-col items-center">
       <img src={item} className={`h-${height ?? 28} w-${width ?? 32}`} />
-      <h1 className="py-1 text-sm md:text-lg">{icon}</h1>
+      <h1 className="mb-2 text-sm md:text-sm">{icon}</h1>
     </div>
   );
 };

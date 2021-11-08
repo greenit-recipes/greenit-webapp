@@ -23,8 +23,10 @@ import {
   CheckCircleOutlined,
   ExclamationCircleOutlined
 } from "@ant-design/icons";
-import HCaptcha from "@hcaptcha/react-hcaptcha";
-import React, { useEffect, useState } from "react";
+import useIsMobile from "../hooks/isMobile";
+import { landingPageCategories } from "../icons";
+import { body, wellbeing, logo, money, planet, search, likedIconOn, likedIconOff, } from "../icons";
+import ReactPlayer from "react-player";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useRecipesQuery } from "../../graphql";
@@ -137,9 +139,9 @@ const NewsletterReg: React.FC<NewsletterRegProps> = ({
   value,
   onChange,
 }) => {
-  const fieldClass = "text-xl h-full shadow-lg rounded-lg pl-4";
+  const fieldClass = "mb-8 text-xl h-12 w-full shadow-lg rounded-lg pl-4";
   return (
-    <div>
+    <div className="w-full h-full">
         <input
           type="text"
           placeholder="@"
@@ -213,7 +215,7 @@ const LandingPage = () => {
           <SearchBar />
         </div>
       </Container>
-      <div className="w-screen md:w-3/5 | items-center pt-14 pb-16 | flex justify-center">
+      <div className="w-screen md:w-3/5 | items-center pt-14 pb-16 text-center">
         {isMobile ? (
           <AliceCarousel
             mouseTracking
@@ -285,7 +287,7 @@ const LandingPage = () => {
       </div>
       <Container
         title="Nos tutos vidéos pour commencer"
-        className="w-screen md:3/5 h-96 text-center mt-8"
+        className="w-screen md:3/5 h-80 md:h-96 text-center mt-8"
         itemsCenter
       >
         <Grid
@@ -295,9 +297,9 @@ const LandingPage = () => {
             default: 1,
             md: 2,
           }}
-          className="pt-4 w-4/5 md:w-3/5"
+          className="pt-4 w-11/12 max-w-5xl h-full"
         >
-          <div className="relative" style={{ height: "23rem" }}>
+          <div className="relative">
             <ReactPlayer
               url="https://youtu.be/ZeNRzJg0CKo"
               className="absolute top-0 left-0"
@@ -312,7 +314,7 @@ const LandingPage = () => {
             />
           </div>
           {!isMobile && (
-            <div className="relative" style={{ height: "23rem" }}>
+            <div className="relative">
               <ReactPlayer
                 url="https://youtu.be/tHAWH6fUqEo"
                 className="absolute top-0 left-0"
@@ -331,97 +333,42 @@ const LandingPage = () => {
       </Container>
 
       <Container
-        className="w-full md:3/5 h-full pt-10 md:mt-40"
-        title="Pourquoi Greenit?"
+        className="w-full md:3/5 h-full mt-28"
         margin={20}
+        title="Crée ton espace perso"
         itemsCenter
         padding={isMobile}
       >
-        <h1 className="text-2xl md:text-5xl | pb-10 text-center whitespace-pre-line">
-        Si tu veux suivre Greenit de près, {"\n"} laisse-nous ton email !
-        </h1>
-        <div className="h-auto w-screen flex flex-col">
-          <div
-            className={`${
-              message ? "navBar_fadeIn" : "navBar_fadeOut"
-            } w-4/5 lg:w-96 h-10 mt-5 self-center items-center fixed text-center shadow-lg bg-white`}
-          >
-            <h3
-              className={`text-base lg:text-lg ${
-                isSuccess ? "text-green-400" : "text-pink-700"
-              }`}
-            >
-              <div className="inline-flex gap-x-2 items-center">
-                {isSuccess ? (
-                  <CheckCircleOutlined />
-                ) : (
-                  <ExclamationCircleOutlined />
-                )}
-                <h3>{message}</h3>
-              </div>
+        <Grid
+          type="row"
+          gap="0"
+          size={{
+            default: 2,
+          }}
+        >
+          <div className="grid mb-8">
+            <h3 className="text-lg md:text-xl | text-center whitespace-pre-line">
+              Commence ton carnet de recettes,
+              {"\n"} et partage ton savoir
             </h3>
           </div>
-          <div className="h-auto text-center items-center px-10 text-3xl self-center md:w-3/6">
-            <form
-              className={`flex flex-col ${isMobile && "order-last"}`}
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (!state.token) {
-                  setMessage("Merci de faire la vérification!");
-                } else {
-                  sendMessage({ variables: { data: state } });
-                }
-              }}
-            >
-            <div className="md:flex md:flex-row justify-center self-center mt-10 md:gap-x-4 md:w-4/6">
-                <NewsletterReg
-                  name="email"
-                  type="text"
-                  value={state.email}
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                />
-                <input
-                  type="submit"
-                  value="Rejoindre"
-                  className="w-36 h-12 text-xl rounded-lg text-white"
-                  style={{
-                    backgroundColor: "#C2E69C",
-                    cursor: state.token ? "pointer" : "not-allowed",
-                  }}
-                ></input>
-            </div>
-            <div className="self-start mt-10 self-center">
-              <HCaptcha
-                  languageOverride="fr"
-                  sitekey={process.env.REACT_APP_HCAPTCHA_ID ?? ""}
-                  onVerify={(token) => {
-                    setState((prevState) => {
-                      return {
-                        ...prevState,
-                        token,
-                      };
-                    });
-                  }}
-                />
-            </div>
-          </form>
-        </div>
-      </div>
+          <div className="flex justify-center h-22">
+            <img src={likedIconOff} className="-ml-6 w-16 h-16" alt="liked button"/>
+            <img src={likedIconOn} className="absolute ml-8 | w-16 h-16" alt="liked button"/>
+          </div>
+          
+        </Grid>
 
-        <div className="text-xs md:text-sm text-center lg:mx-80 pt-10 md:w-2/6">
-          Nous utilisons cette newsletter uniquement pour garder notre communauté
-          informée des évolutions de Greenit ainsi que pour connaître vos avis
-          sur certaines décisions. Nous vous invitons à prendre connaissance
-          de notre politique de confidentialité. Vous pouvez vous désinscrire
-          à tout moment en nous contactant à hellogreenit@gmail.com.
+        <div className="">
+          <button className="button_orange">
+            <h2 className="text-lg md:text-xl">Créer mon profil</h2>
+          </button>
         </div>
 
       </Container>
 
       <Container
-        className="w-full md:3/5 h-full"
+        className="mt-26"
         title="Pourquoi Greenit?"
         margin={5}
         itemsCenter
@@ -453,16 +400,87 @@ const LandingPage = () => {
             </div>
           ))}
         </Grid>
-        <h3 className="mt-10 mb-10 text-md md:text-xl text-center">
+        <h3 className="mt-10 mb-6 text-md md:text-xl text-center">
           Greenit est une initiative visant à encourager une consommation <br/> 
           plus durable et responsable.
         </h3>
-        <Button type="success" rounded="xl" className="w-36 md:w-48 h-12">
-          <Link to="/why" className="text-md md:text-xl">
-            <h2>En savoir plus</h2>
+        <button className="button_reserver">
+          <Link to="/why" className="text-lg md:text-xl">
+            <h3> En savoir plus </h3>
           </Link>
-        </Button>
+        </button>
       </Container>
+
+      <Container
+        className="w-full md:3/5 h-full mt-26"
+        margin={20}
+        itemsCenter
+        padding={isMobile}
+      >
+        <h1 className="text-xl md:text-3xl | text-center whitespace-pre-line">
+        Inscris toi à la newsletter pour découvrir des astuces DIY
+        {"\n"} et être au courant des nouvelles recettes !
+        </h1>
+        <div className="h-auto w-screen flex flex-col">
+          <div
+            className={`${
+              message ? "navBar_fadeIn" : "navBar_fadeOut"
+            } w-4/5 md:w-96 h-10 mt-5 self-center items-center fixed text-center shadow-lg bg-white`}
+          >
+            <h3
+              className={`text-base lg:text-lg ${
+                isSuccess ? "text-green-400" : "text-pink-700"
+              }`}
+            >
+              <div className="inline-flex gap-x-2 items-center">
+                {isSuccess ? (
+                  <CheckCircleOutlined />
+                ) : (
+                  <ExclamationCircleOutlined />
+                )}
+                <h3>{message}</h3>
+              </div>
+            </h3>
+          </div>
+          <div className="h-auto text-center items-center px-10 text-3xl self-center md:w-2/6">
+            <form
+              className={`flex flex-col ${isMobile && "order-last"}`}
+              onSubmit={(e) => {
+                e.preventDefault();
+                  sendMessage({ variables: { data: state } });
+              }}
+            >
+              <div className="md:flex md:flex-row justify-center self-center mt-10 md:gap-x-4 w-full md:max-h-12">
+                <NewsletterReg
+                  name="email"
+                  type="text"
+                  value={state.email}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
+                <input
+                  type="submit"
+                  value="Rejoindre"
+                  className="button_contact | text-xl shadow-lg"
+                  style={{
+                    cursor: state.token ? "pointer" : "not-allowed",
+                  }}
+                ></input>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div className="text-xs md:text-sm text-center lg:mx-80 pt-8 md:w-2/6">
+          Nous utilisons cette newsletter uniquement pour garder notre communauté
+          informée des évolutions de Greenit ainsi que pour connaître vos avis
+          sur certaines décisions. Vous pouvez vous désinscrire
+          à tout moment en nous contactant à hellogreenit@gmail.com.
+        </div>
+
+      </Container>
+
       <Footer />
     </div>
   );

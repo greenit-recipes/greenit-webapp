@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import { Icon } from "../misc";
 import useIsMobile from "../../hooks/isMobile";
 import { RecipeDifficulty, RecipeFragment } from "../../graphql";
+<<<<<<< HEAD
 import { useMutation } from "@apollo/client";
 import {
   ADD_OR_REMOVE_FAVORITE_RECIPE,
   ADD_OR_REMOVE_LIKE_RECIPE,
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import authService from "services/auth.service";
+=======
+import {likedIconOff} from "../../icons";
+import {likedIconOn} from "../../icons";
+>>>>>>> 87c9901 (Add the like icons + resize the recipe cards)
 
 interface RecipeCardProps {
   enableShadow?: boolean;
@@ -24,6 +29,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   isProfilPage,
 }) => {
   const isMobile = useIsMobile();
+<<<<<<< HEAD
   const [isLiked, setLiked] = useState(recipe?.isLikedByCurrentUser);
   const [isFavorite, setFavorite] = useState(
     recipe?.isAddToFavoriteByCurrentUser
@@ -140,6 +146,71 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           {recipe?.numberOfIngredients && (
             <div>nbr ingredients === {recipe?.numberOfIngredients}</div>
           )}
+=======
+  const iconHeight = isMobile ? 18 : 18;
+  const iconWidth = isMobile ? 16 : 16;
+
+  return (
+    <Link
+      to={`/recipes/${recipe?.urlId}`}
+      className={`${!inCarousel ? "relative z-10" : ""} mb-9 ${!isMobile && "ml-9"}`}
+    >
+      <img
+        className={`flex flex-col | ${
+          enableShadow && "shadow-lg"
+        } rounded-3xl | justify-self-center`}
+        style={{
+          height: "25rem",
+          width: "18rem",
+        }}
+        src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
+      ></img>
+
+      <div
+        className="h-auto | mt-auto | bg-white shadow-lg rounded-2xl absolute bottom-0"
+        style={{
+          width: "18rem",
+        }}
+      > 
+        <div className="grid justify-items-center w-full mb-5 bg-white">
+          <img src={likedIconOff} className="absolute -top-6 w-12 h-12" alt="liked button"/>
+        </div>
+        
+        <h2 className="subpixel-antialiased| ml-10 mr-5 | flex py-2 justify-center text-center text-lg md:text-lg">
+          {recipe?.name}
+        </h2>
+
+        <div className="flex flex-row | justify-between | ml-6 mr-6">
+          <Icon
+            height={iconHeight}
+            width={iconWidth}
+            icon={recipe?.category?.name}
+          />
+          <Icon
+            height={iconHeight}
+            width={iconWidth}
+            icon={
+              recipe?.difficulty === RecipeDifficulty.Beginner
+                ? "Facile"
+                : recipe?.difficulty === RecipeDifficulty.Intermediate
+                ? "Intermediaire"
+                : "Expert"
+            }
+          />
+          <Icon
+            height={iconHeight}
+            width={iconWidth}
+            icon={
+              recipe
+                ? recipe?.duration < 15
+                  ? "15 min"
+                  : recipe?.duration < 30
+                  ? "30 min"
+                  : "1 heure"
+                : undefined
+            }
+          />
+>>>>>>> 87c9901 (Add the like icons + resize the recipe cards)
         </div>
       </div>
     </div>

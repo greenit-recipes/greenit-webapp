@@ -474,6 +474,14 @@ const RecipeSinglePage = () => {
           </div>
         </form>
       </div>
+      <div className="pt-20 pb-10 w-11/12">
+        <p className="text-xs md:text-sm">
+        Quelques précautions sont à prendre lors de la confection de vos produits. 
+        Pour chaque recette postée, nous passons du temps à les vérifier (et  modifier si nécessaire). 
+        Toutefois, certaines personnes peuvent réagir différemment. Il est recommandé de tester les  produits sur votre poignet 48h 
+        avant l’utilisation sur votre peau. Greenit n’est pas responsable en cas d’allergies ou problèmes lié à l’exécution de la recette.
+        </p>
+      </div>
       <Footer />
     </div>
   );

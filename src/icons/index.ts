@@ -37,6 +37,10 @@ import footerValues from "./footer_values_icon.png";
 // FILTERBAR
 import filterIcon from "./filter_icon.png";
 
+// RECIPE CARD
+import likedIconOff from "./liked_recipe_off.png"
+import likedIconOn from "./liked_recipe_on.png"
+
 //MISC
 import emptyIcon from "./empty_icon.png";
 import hamburgerIcon from "./hamburger_icon.png";
@@ -101,4 +105,6 @@ export {
   scrollToTop,
   tiktokIcon,
   pinterestIcon,
+  likedIconOff,
+  likedIconOn,
 };
