@@ -5,6 +5,7 @@ import { useRecipeQuery } from "../../graphql";
 import { Container, Grid, Footer, Loading, Navbar } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 import { getSecondsFromDuration } from "../../utils";
+import { isEmpty } from 'lodash'
 
 interface InstructionProps {
   index: number;
@@ -170,9 +171,15 @@ const RecipeSinglePage = () => {
         </Container>
         <div className="mt-10 flex flex-col">
           <h3 className="pb-2 text-2xl lg:text-3xl">Description</h3>
-          <p className="text-lg lg:text-xl leading-relaxed">
-            {recipe?.description}
-          </p>
+          {!isEmpty(recipe?.description) ? (
+            <p
+              className="text-lg lg:text-xl leading-relaxed"
+              // @ts-ignore: Object is possibly 'null'.
+              dangerouslySetInnerHTML={{ __html: recipe?.description }}
+            ></p>
+          ) : (
+            ""
+          )}
           <h3 className="pt-5 pb-2 text-2xl lg:text-3xl">Conservation</h3>
           <p className="text-lg lg:text-xl">{recipe?.expiry}</p>
         </div>
