@@ -5,7 +5,8 @@ import { useRecipeQuery } from "../../graphql";
 import { Container, Grid, Footer, Loading, Navbar } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 import { getSecondsFromDuration } from "../../utils";
-import { isEmpty } from 'lodash'
+import { isEmpty } from "lodash";
+import HTMLReactParser from "html-react-parser";
 
 interface InstructionProps {
   index: number;
@@ -89,41 +90,57 @@ const RecipeSinglePage = () => {
         >
           {isMobile ? (
             <>
-              <img
-                src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
-                className="h-96 w-5/6 rounded-3xl mt-10"
-              />
-              <div className="w-full mt-10 whitespace-pre break-all flex-wrap inline-flex h-auto">
-                {recipe?.tags.map((item, index) => (
-                  <div
-                    key={index}
-                    className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center h-8 cursor-pointer"
-                    style={{ backgroundColor: "#888888" }}
-                    onClick={() => {
-                      history.push(`/recipes?tags=${item.name}`);
-                    }}
-                  >
-                    {item.name}
-                  </div>
-                ))}
+              <div className="flex justify-center">
+                {
+                  // @ts-ignore: Object is possibly 'null'.
+                  recipe && HTMLReactParser(recipe?.textAssociate)
+                }
               </div>
-              <div className="mt-5 flex flex-col self-start">
-                <h3 className="pb-1 text-2xl">Ingredients</h3>
-                {recipe?.ingredients.map((item, index) => (
-                  <h3 className="text-xl pt-2" key={index}>
-                    {item.amount} {item.name}
-                  </h3>
-                ))}
-              </div>
-              <div className="mt-5 flex flex-col self-start">
-                <h3 className="pb-1 text-2xl">Ustensiles</h3>
-                {recipe?.utensils.map((item, index) => (
-                  <h3 className="text-xl pt-2" key={index}>{item.name}</h3>
-                ))}
+              <div>
+                <img
+                  src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
+                  className="h-96 w-5/6 rounded-3xl mt-10"
+                />
+                <div className="w-full mt-10 whitespace-pre break-all flex-wrap inline-flex h-auto">
+                  {recipe?.tags.map((item, index) => (
+                    <div
+                      key={index}
+                      className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center h-8 cursor-pointer"
+                      style={{ backgroundColor: "#888888" }}
+                      onClick={() => {
+                        history.push(`/recipes?tags=${item.name}`);
+                      }}
+                    >
+                      {item.name}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 flex flex-col self-start">
+                  <h3 className="pb-1 text-2xl">Ingredients</h3>
+                  {recipe?.ingredients.map((item, index) => (
+                    <h3 className="text-xl pt-2" key={index}>
+                      {item.amount} {item.name}
+                    </h3>
+                  ))}
+                </div>
+                <div className="mt-5 flex flex-col self-start">
+                  <h3 className="pb-1 text-2xl">Ustensiles</h3>
+                  {recipe?.utensils.map((item, index) => (
+                    <h3 className="text-xl pt-2" key={index}>
+                      {item.name}
+                    </h3>
+                  ))}
+                </div>
               </div>
             </>
           ) : (
             <div className="w-full h-auto">
+              <div className="flex justify-center">
+                {
+                  // @ts-ignore: Object is possibly 'null'.
+                  recipe && HTMLReactParser(recipe?.textAssociate)
+                }
+              </div>
               <div className="flex flex-row">
                 <img
                   src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
@@ -172,11 +189,12 @@ const RecipeSinglePage = () => {
         <div className="mt-10 flex flex-col">
           <h3 className="pb-2 text-2xl lg:text-3xl">Description</h3>
           {!isEmpty(recipe?.description) ? (
-            <p
-              className="text-lg lg:text-xl leading-relaxed"
-              // @ts-ignore: Object is possibly 'null'.
-              dangerouslySetInnerHTML={{ __html: recipe?.description }}
-            ></p>
+            <div className="text-lg lg:text-xl leading-relaxed">
+              {
+                // @ts-ignore: Object is possibly 'null'.
+                recipe && HTMLReactParser(recipe?.description)
+              }
+            </div>
           ) : (
             ""
           )}

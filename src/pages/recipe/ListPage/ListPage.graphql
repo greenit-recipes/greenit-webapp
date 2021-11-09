@@ -18,6 +18,7 @@ fragment recipe on RecipeType {
   difficulty
   duration
   image
+  textAssociate
   urlId
   category {
     id

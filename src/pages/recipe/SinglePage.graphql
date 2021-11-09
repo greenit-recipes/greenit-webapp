@@ -3,6 +3,7 @@ query recipe($id: String!) {
     id
     name
     image
+    textAssociate
     ingredients {
       id
       name
