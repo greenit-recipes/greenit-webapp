@@ -12,6 +12,8 @@ import WhyPage from "./pages/WhyPage";
 import NotFoundPage from "./pages/misc/NotFoundPage";
 import WorkshopPage from "./pages/WorkshopPage";
 import ProfilPage from "./pages/ProfilPage";
+import Register from "./pages/Register/register";
+import Login from "pages/Login/Login";
 
 const App: React.FC = () => {
   const history = createBrowserHistory();
@@ -29,6 +31,8 @@ const App: React.FC = () => {
           component={PersonalizedSearch}
         />
         <Route exact path="/workshops" component={WorkshopPage} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/connexion" component={Login} />
         <Route exact path="/profil" component={ProfilPage} />
         <Route component={NotFoundPage} />
       </Switch>
