@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
-import { useLocation } from "react-router-dom";
 import { Container, Footer, Navbar } from "../components";
 import useIsMobile from "../hooks/isMobile";
 import { useQuery } from "@apollo/client";
-import { ME } from "services/authService.service";
+import { ME } from "services/auth.service";
 
 const ProfilPage: React.FC = () => {
   const isMobile = useIsMobile();
@@ -20,19 +19,10 @@ const ProfilPage: React.FC = () => {
   // Soit il est dans le storage et c'est good
 
   // Soit je recois les informations pas le chemin
-  const location = useLocation<{
-    detail: {
-      id: string;
-      username: string;
-    };
-  }>();
   const { loading, error, data } = useQuery(ME);
   console.log("data", data)
   console.log("loading", loading)
   console.log("error", error)
-  if (!data?.me) {
-    
-  }
   const [visible, setVisible] = React.useState(false);
 
   const [clickedButton, setClickedButton] = useState("");
@@ -54,7 +44,7 @@ const ProfilPage: React.FC = () => {
           </div>
           <div className="flex flex-col | self-center">
             <div className="flex-inline overflow-clip overflow-hidden ...">
-              <h2 className="text-xl md:text-2xl">{ location?.state?.detail?.username}</h2>
+              <h2 className="text-xl md:text-2xl">{ data?.me?.username}</h2>
             </div>
             <div className="mt-3">
               <button className="text-xs bg-white text-black p-2 border-2 border-gray-600 shadow-md rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">

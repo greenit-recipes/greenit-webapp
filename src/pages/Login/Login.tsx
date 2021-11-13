@@ -5,7 +5,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import authServiceService, {
   LOGIN_ACCOUNT,
-} from "services/authService.service";
+} from "services/auth.service";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
@@ -66,8 +66,8 @@ const Login: React.FC = () => {
     }).then((response) => {
         console.log('response -->', response)
       if (response?.data?.tokenAuth?.token) {
-        authServiceService.storageLoginToken(response?.data?.tokenAuth?.token);
-        authServiceService.storageLoginRefreshToken(response?.data?.tokenAuth?.refreshToken);
+        authServiceService.setStorageLoginToken(response?.data?.tokenAuth?.token);
+        authServiceService.setStorageLoginRefreshToken(response?.data?.tokenAuth?.refreshToken);
         history.push({
           pathname: '/profil',
           state: { detail: response?.data?.tokenAuth?.user },

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMutation } from "@apollo/client";
-import { CREATE_ACCOUNT } from "services/authService.service";
+import { CREATE_ACCOUNT } from "services/auth.service";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),

@@ -15,8 +15,9 @@ import ProfilPage from "./pages/ProfilPage";
 import Register from "./pages/Register/register";
 import Login from "pages/Login/Login";
 
+export const history = createBrowserHistory();
+
 const App: React.FC = () => {
-  const history = createBrowserHistory();
   return (
     <Router history={history}>
       <Switch>

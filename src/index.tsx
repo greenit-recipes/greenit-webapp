@@ -1,62 +1,87 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ApolloClient, createHttpLink, InMemoryCache, from, ApolloProvider } from "@apollo/client";
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+  from,
+  ApolloProvider,
+  fromPromise,
+} from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import { setContext } from '@apollo/client/link/context';
+import { setContext } from "@apollo/client/link/context";
 import "./index.css";
-import App from "./App";
+import App, { history } from "./App";
 import reportWebVitals from "./reportWebVitals";
+import authService from "services/auth.service";
 
-const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) => {
-  if (graphQLErrors) {
-    console.log('graphQLErrors->', graphQLErrors)
-    for (let err of graphQLErrors) {
+const errorLink = onError(
+  ({ graphQLErrors, networkError, operation, forward }) => {
+    if (graphQLErrors) {
+      for (let err of graphQLErrors) {
+        console.log("err -->", err);
+        switch (err.message) {
+          case "Signature has expired":
+            return fromPromise(
+              authService.requestRefreshToken().catch((error) => {
+                history.push({
+                  pathname: "/connexion",
+                });
+                return;
+              })
+            )
+              .filter((value) => Boolean(value))
+              .flatMap((accessToken: any) => {
+                console.log(
+                  "accessToken -->",
+                  accessToken.data.refreshToken.token
+                );
+                const newToken = accessToken.data.refreshToken.token;
+                const newrefreshToken =
+                  accessToken.data.refreshToken.refreshToken;
+                authService.setStorageLoginToken(newToken);
+                authService.setStorageLoginRefreshToken(newrefreshToken);
+                const oldHeaders = operation.getContext().headers;
+                // modify the operation context with a new token
+                operation.setContext({
+                  headers: {
+                    ...oldHeaders,
+                    authorization: `JWT ${newToken}`,
+                  },
+                });
 
-      switch (err.extensions.code) {
-        // Apollo Server sets code to UNAUTHENTICATED
-        // when an AuthenticationError is thrown in a resolver
-        case 'UNAUTHENTICATED':
-
-          // Modify the operation context with a new token
-          /*const oldHeaders = operation.getContext().headers;
-          operation.setContext({
-            headers: {
-              ...oldHeaders,
-              authorization: getNewToken(),
-            },
-          });*/
-          // Retry the request, returning the new observable
-          return forward(operation);
+                // retry the request, returning the new observable
+                return forward(operation);
+              });
+          default:
+            history.push({
+              pathname: "/connexion",
+            });
+        }
       }
     }
   }
-
-  // To retry on network errors, we recommend the RetryLink
-  // instead of the onError link. This just logs the error.
-  if (networkError) {
-    console.log(`[Network error]: ${networkError}`);
-  }
-});
+);
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('token');
-  console.log('token -->', token)
+  const token = authService.getToken();
+  console.log("token -->", token);
   // return the headers to the context so httpLink can read them
 
   return {
     headers: {
       ...headers,
-      authorization: token ? token : "",
-    }
-  }
+      authorization: token ? `JWT ${token}` : "",
+    },
+  };
 });
 
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_API_URL,
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: from([errorLink, authLink.concat(httpLink)]),
   uri: process.env.REACT_APP_API_URL,
