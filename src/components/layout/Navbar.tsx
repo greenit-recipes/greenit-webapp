@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { hamburgerIcon, logo } from "../../icons";
+import { Link } from "react-router-dom";
+import authService from "services/auth.service";
 import { Button } from "../";
 import useIsMobile from "../../hooks/isMobile";
-import { Link } from "react-router-dom";
+import { hamburgerIcon, logo } from "../../icons";
 
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const [toggle, setToggle] = useState(false);
+
+  const isLoggedIn = authService.isLoggedIn();
+
   if (isMobile) {
     return (
       <div className="sticky top-0 z-20 bg-white w-screen text-gray-500">
@@ -69,7 +73,7 @@ export const Navbar: React.FC = () => {
           <h1 className="pr-10">Contactez-nous</h1>
         </Link>
         <Link to="/workshops">
-              <h1>Ateliers</h1>
+          <h1>Ateliers</h1>
         </Link>
       </div>
 
@@ -78,10 +82,28 @@ export const Navbar: React.FC = () => {
         rounded="xl"
         className="py-2 px-4 flex justify-end self-center | mr-4 cursor-pointer"
       >
-        <Link to="/profil">
-          <h1>Profil</h1>
-        </Link>
+        {isLoggedIn ? (
+          <Link to="/profil">
+            <h1>Profil</h1>
+          </Link>
+        ) : (
+          <Link to="/connexion">
+            <h1>Se connecter</h1>
+          </Link>
+        )}
       </Button>
+
+      {!isLoggedIn &&
+        <Button
+        type="orange"
+        rounded="xl"
+        className="py-2 px-4 flex justify-end self-center | mr-4 cursor-pointer"
+      >
+          <Link to="/register">
+            <h1>Créer un compte</h1>
+          </Link>
+      </Button>
+      }
     </div>
   );
 };

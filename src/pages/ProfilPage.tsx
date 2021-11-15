@@ -4,6 +4,8 @@ import { Container, Footer, Navbar } from "../components";
 import useIsMobile from "../hooks/isMobile";
 import { useQuery } from "@apollo/client";
 import { ME } from "services/auth.service";
+import { isEmpty } from "lodash";
+import { useHistory } from "react-router-dom";
 
 const ProfilPage: React.FC = () => {
   const isMobile = useIsMobile();
@@ -20,6 +22,13 @@ const ProfilPage: React.FC = () => {
 
   // Soit je recois les informations pas le chemin
   const { loading, error, data } = useQuery(ME);
+  const history = useHistory();
+
+  if(!loading && isEmpty(data?.me)) {
+    history.push({
+      pathname: '/',
+    });
+  }
   console.log("data", data)
   console.log("loading", loading)
   console.log("error", error)

@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { history } from "App";
 import { client } from "index";
 import { isEmpty } from "lodash";
 
@@ -8,17 +9,30 @@ export const CREATE_ACCOUNT = gql`
     $username: String!
     $password1: String!
     $password2: String!
+    $userCategoryLvl: String!
+    $userCategoryAge: String!
+    $userWantFromGreenit: String!
   ) {
     register(
       email: $email
       username: $username
       password1: $password1
       password2: $password2
+      userCategoryLvl: $userCategoryLvl
+      userCategoryAge: $userCategoryAge
+      userWantFromGreenit: $userWantFromGreenit
     ) {
       success
       errors
-      token
-      refreshToken
+    }
+  }
+`;
+
+export const RESEND_ACTIVATION_EMAIL = gql`
+  mutation ResendActivationEmail($email: String!) {
+    resendActivationEmail(email: $email) {
+      success
+      errors
     }
   }
 `;
@@ -64,15 +78,23 @@ export const REFRESH_TOKEN = gql`
 `;
 
 export const VERIFY_TOKEN = gql`
-mutation {
-  verifyToken(
-    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InNreXdhbGtlciIsImV4cCI6MTU3OTQ1ODY3Miwib3JpZ0lhdCI6MTU3OTQ1ODM3Mn0.rrB4sMA-v7asrr8Z2ru69U1x-d98DuEJVBnG2F1C1S0"
-  ) {
-    success,
-    errors,
-    payload
+  mutation VerifyToken($token: String!) {
+    verifyToken(token: $token) {
+      success
+      errors
+      payload
+    }
   }
-}`;
+`;
+
+export const VERIFY_ACCOUNT = gql`
+  mutation VerifyAccount($token: String!) {
+    verifyAccount(token: $token) {
+      success
+      errors
+    }
+  }
+`;
 
 class Auth {
   setStorageLoginToken(token: string) {
@@ -93,8 +115,18 @@ class Auth {
 
   logout() {
     // Ne pas oublier de révoquer les tokens
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
+    history.push("/");
+  }
+
+  removeToken() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
+  }
+
+  isLoggedIn() {
+    return !isEmpty(this.getToken());
   }
 
   requestRefreshToken = async () => {

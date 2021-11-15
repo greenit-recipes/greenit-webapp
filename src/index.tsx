@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 import React from "react";
 import ReactDOM from "react-dom";
 import {
@@ -15,6 +16,14 @@ import App, { history } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import authService from "services/auth.service";
 
+let isRefreshing = false;
+let pendingRequests: any = [];
+
+const resolvePendingRequests = () => {
+  pendingRequests.map((callback: () => any) => callback());
+  pendingRequests = [];
+};
+
 const errorLink = onError(
   ({ graphQLErrors, networkError, operation, forward }) => {
     if (graphQLErrors) {
@@ -22,41 +31,56 @@ const errorLink = onError(
         console.log("err -->", err);
         switch (err.message) {
           case "Signature has expired":
-            return fromPromise(
-              authService.requestRefreshToken().catch((error) => {
-                history.push({
-                  pathname: "/connexion",
-                });
-                return;
-              })
-            )
-              .filter((value) => Boolean(value))
-              .flatMap((accessToken: any) => {
-                console.log(
-                  "accessToken -->",
-                  accessToken.data.refreshToken.token
-                );
-                const newToken = accessToken.data.refreshToken.token;
-                const newrefreshToken =
-                  accessToken.data.refreshToken.refreshToken;
-                authService.setStorageLoginToken(newToken);
-                authService.setStorageLoginRefreshToken(newrefreshToken);
-                const oldHeaders = operation.getContext().headers;
-                // modify the operation context with a new token
-                operation.setContext({
-                  headers: {
-                    ...oldHeaders,
-                    authorization: `JWT ${newToken}`,
-                  },
-                });
-
-                // retry the request, returning the new observable
-                return forward(operation);
-              });
-          default:
-            history.push({
-              pathname: "/connexion",
+            let forward$;
+            if (!isRefreshing) {
+              isRefreshing = true;
+              forward$ = fromPromise(
+                authService
+                  .requestRefreshToken()
+                  .then((accessToken: any) => {
+                    // Store the new tokens for your auth link
+                    console.log(
+                      "accessToken -->",
+                      accessToken.data.refreshToken.token
+                    );
+                    const newToken = accessToken.data.refreshToken.token;
+                    const newrefreshToken =
+                      accessToken.data.refreshToken.refreshToken;
+                    authService.setStorageLoginToken(newToken);
+                    authService.setStorageLoginRefreshToken(newrefreshToken);
+                    const oldHeaders = operation.getContext().headers;
+                    // modify the operation context with a new token
+                    operation.setContext({
+                      headers: {
+                        ...oldHeaders,
+                        authorization: `JWT ${newToken}`,
+                      },
+                    });
+                    resolvePendingRequests();
+                    return accessToken.data.refreshToken.token;
+                  })
+                  .catch((error) => {
+                    pendingRequests = [];
+                    authService.logout();
+                    return;
+                  })
+                  .finally(() => {
+                    isRefreshing = false;
+                  })
+              ).filter((value) => Boolean(value));
+            } else {
+              forward$ = fromPromise(
+                new Promise<void>((resolve) => {
+                  pendingRequests.push(() => resolve());
+                })
+              );
+            }
+            return forward$.flatMap(() => {
+              console.log("PASSE LA");
+              return forward(operation);
             });
+          default:
+            authService.logout();
         }
       }
     }

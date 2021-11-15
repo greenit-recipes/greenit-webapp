@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMutation } from "@apollo/client";
-import { CREATE_ACCOUNT } from "services/auth.service";
+import authService, {
+  CREATE_ACCOUNT,
+  RESEND_ACTIVATION_EMAIL,
+} from "services/auth.service";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -48,24 +51,31 @@ const Register: React.FC = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  authService.removeToken();
   const [createAccount, { data, loading, error }] = useMutation(
     CREATE_ACCOUNT,
     { errorPolicy: "all" }
   );
-  console.log("data -->", data);
+
+  const [resendActivationEMail] = useMutation(RESEND_ACTIVATION_EMAIL, {
+    errorPolicy: "all",
+  });
+
+  const [email, setEmail] = useState<string>("");
+
   React.useEffect(() => {
     if (data?.register?.success === false || error) {
-        if (data?.register?.errors?.email[0]?.code === "unique") {
-          setError("email", {
-            message: "Cet email éxiste déjà.",
-          });
-        }
-        if (data?.register?.errors?.username[0]?.code === "unique") {
-            setError("utilisateur", {
-              message: "Ce nom existe déjà.",
-            });
-          }
+      if (data?.register?.errors?.email[0]?.code === "unique") {
+        setError("email", {
+          message: "Cet email éxiste déjà.",
+        });
       }
+      if (data?.register?.errors?.username[0]?.code === "unique") {
+        setError("utilisateur", {
+          message: "Ce nom existe déjà.",
+        });
+      }
+    }
   }, [setError, error, data]);
   console.log("errors", errors);
   const onSubmitHandler = (data: {
@@ -73,13 +83,20 @@ const Register: React.FC = () => {
     utilisateur: string;
     password: string;
     passwordConfirmation: string;
+    userCategoryLvl: string;
+    userCategoryAge: string;
+    userWantFromGreenit: string;
   }) => {
+    setEmail(data.email)
     createAccount({
       variables: {
         email: data.email,
         username: data.utilisateur,
         password1: data.password,
         password2: data.passwordConfirmation,
+        userCategoryLvl: data.userCategoryLvl,
+        userCategoryAge: data.userCategoryAge,
+        userWantFromGreenit: data.userWantFromGreenit,
       },
     });
   };
@@ -148,6 +165,58 @@ const Register: React.FC = () => {
             {errors.passwordConfirmation?.message}
           </p>
         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            A quelle catégorie t'identifies-tu ?
+          </label>
+
+          <select {...register("userCategoryLvl")}>
+            <option value="beginner">
+              Petit.e curieux.se, je débute dans le DIY.
+            </option>
+            <option value="intermediate">
+              Explorateur.ice avisé.e, j'ai déjà des notions en DIY.
+            </option>
+            <option value="advanced">
+              Adepte convaincu.e, adepte convaincu.e
+            </option>
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Pour quoi Greenit peut-il t'aider ?
+          </label>
+
+          <select {...register("userWantFromGreenit")}>
+            <option value="shared_talk">
+              Partager et discuter mes connaissances sur le DIY
+            </option>
+            <option value="meet">Rencontrer des adeptes du DIY</option>
+            <option value="find_inspiration">
+              Trouver de l'inspiration auprès de la communauté
+            </option>
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            A quel groupe t'identifies-tu ?
+          </label>
+
+          <select {...register("userCategoryAge")}>
+            <option value="young">Jeune mais pas trop (Moins de 20 ans)</option>
+            <option value="young_adult">
+              Adulte mais pas trop non plus (Adulte mais pas trop non plus)
+            </option>
+            <option value="adult">
+              Adulte dynamique et j'aime ça (Entre 35 et 50 ans)
+            </option>
+            <option value="senior">
+              Je vous interdis de m'appeler senior (Plus de 50 ans)
+            </option>
+          </select>
+        </div>
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -157,6 +226,20 @@ const Register: React.FC = () => {
           </button>
         </div>
       </form>
+      <div>
+        {data?.register?.success && (
+          <div>
+            <p>Un mail à été envoyé afin de confirmer votre compte</p>
+            <button
+              onClick={() => {
+                resendActivationEMail({ variables: { email: email } });
+              }}
+            >
+              Renvoyer l'email
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -37,7 +37,6 @@ const Login: React.FC = () => {
   const [loginAccount, { data, loading, error }] = useMutation(LOGIN_ACCOUNT, {
     errorPolicy: "all",
   });
-
   // Error for graphql call
   React.useEffect(() => {
     console.log("-->", data);

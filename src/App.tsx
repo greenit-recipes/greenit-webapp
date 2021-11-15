@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import "./index.css";
 import { createBrowserHistory } from "history";
-import { Route, Router, Switch } from "react-router-dom";
+import { Redirect, Route, Router, Switch } from "react-router-dom";
 import RecipeListPage from "./pages/recipe/ListPage/ListPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import RecipeSinglePage from "./pages/recipe/SinglePage";
@@ -14,27 +14,36 @@ import WorkshopPage from "./pages/WorkshopPage";
 import ProfilPage from "./pages/ProfilPage";
 import Register from "./pages/Register/register";
 import Login from "pages/Login/Login";
+import Activate from "pages/activate";
+import PrivateRoute from "components/route/PrivateRoute";
+import PublicRoute from "components/route/PublicRoute";
 
-export const history = createBrowserHistory();
+export const history = createBrowserHistory()
 
 const App: React.FC = () => {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/why" component={WhyPage} />
-        <Route exact path="/contact" component={ContactPage} />
-        <Route exact path="/recipes" component={RecipeListPage} />
-        <Route exact path="/recipes/:id" component={RecipeSinglePage} />
-        <Route
-          exact
+        <PublicRoute path="/" component={LandingPage} exact/>
+        <PublicRoute path="/why" component={WhyPage} exact/>
+        <PublicRoute path="/contact" component={ContactPage} exact/>
+        <PublicRoute path="/recipes" component={RecipeListPage} exact/>
+        <PublicRoute path="/recipes/:id" component={RecipeSinglePage} exact/>
+        <PublicRoute
           path="/personalizedSearch"
           component={PersonalizedSearch}
+          exact
         />
-        <Route exact path="/workshops" component={WorkshopPage} />
+        <PublicRoute path="/workshops" component={WorkshopPage} exact/>
+        <PrivateRoute path="/créer-une-recette" component={WorkshopPage} exact/>
         <Route exact path="/register" component={Register} />
         <Route exact path="/connexion" component={Login} />
-        <Route exact path="/profil" component={ProfilPage} />
+        <PrivateRoute component={ProfilPage} path="/profil" exact />
+        <Route
+          exact
+          path="/activate/:tokenActivationAccount"
+          component={Activate}
+        />
         <Route component={NotFoundPage} />
       </Switch>
     </Router>
