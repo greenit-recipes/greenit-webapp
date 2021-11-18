@@ -61,6 +61,17 @@ export const ME = gql`
       lastName
       email
       verified
+      recipeAuthor {
+        id
+        urlId
+        name
+        image
+        duration
+        difficulty
+        category {
+          name
+        }
+      }
     }
   }
 `;

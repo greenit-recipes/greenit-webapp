@@ -20,66 +20,68 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   const iconWidth = isMobile ? 16 : 18;
 
   return (
-    <Link
-      to={{
-        pathname: `/recipes/${recipe?.urlId}`,
-        state: { recipeId: recipe?.id },
-      }}
-      className={`${!inCarousel ? "relative z-10" : ""} mb-9 ${
-        !isMobile && "ml-9"
-      }`}
-    >
-      <img
-        className={`flex flex-col | ${
-          enableShadow && "shadow-lg"
-        } rounded-3xl | justify-self-center`}
-        style={{
-          height: "28rem",
-          width: "20rem",
+    <div className="relative">
+      <Link
+        to={{
+          pathname: `/recipes/${recipe?.urlId}`,
+          state: { recipeId: recipe?.id },
         }}
-        src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
-      ></img>
-      <div
-        className="h-auto | mt-auto | bg-white shadow-lg rounded-3xl absolute bottom-0"
-        style={{
-          width: "20rem",
-        }}
+        className={`mb-9 ${
+          !isMobile && "ml-9"
+        }`}
       >
-        <h1 className="subpixel-antialiased| ml-10 mr-5 | flex py-3 justify-center text-lg md:text-xl">
-          {recipe?.name}
-        </h1>
-        <div className="flex flex-row | justify-between | ml-6 mr-6">
-          <Icon
-            height={iconHeight}
-            width={iconWidth}
-            icon={recipe?.category?.name}
-          />
-          <Icon
-            height={iconHeight}
-            width={iconWidth}
-            icon={
-              recipe?.difficulty === RecipeDifficulty.Beginner
-                ? "Facile"
-                : recipe?.difficulty === RecipeDifficulty.Intermediate
-                ? "Intermediaire"
-                : "Expert"
-            }
-          />
-          <Icon
-            height={iconHeight}
-            width={iconWidth}
-            icon={
-              recipe
-                ? recipe?.duration < 15
-                  ? "15 min"
-                  : recipe?.duration < 30
-                  ? "30 min"
-                  : "1 heure"
-                : undefined
-            }
-          />
+        <img
+          className={`flex flex-col | ${
+            enableShadow && "shadow-lg"
+          } rounded-3xl | justify-self-center`}
+          style={{
+            height: "28rem",
+            width: "20rem",
+          }}
+          src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
+        ></img>
+        <div
+          className="h-auto | mt-auto | bg-white shadow-lg rounded-3xl absolute bottom-0"
+          style={{
+            width: "20rem",
+          }}
+        >
+          <h1 className="subpixel-antialiased| ml-10 mr-5 | flex py-3 justify-center text-lg md:text-xl">
+            {recipe?.name}
+          </h1>
+          <div className="flex flex-row | justify-between | ml-6 mr-6">
+            <Icon
+              height={iconHeight}
+              width={iconWidth}
+              icon={recipe?.category?.name}
+            />
+            <Icon
+              height={iconHeight}
+              width={iconWidth}
+              icon={
+                recipe?.difficulty === RecipeDifficulty.Beginner
+                  ? "Facile"
+                  : recipe?.difficulty === RecipeDifficulty.Intermediate
+                  ? "Intermediaire"
+                  : "Expert"
+              }
+            />
+            <Icon
+              height={iconHeight}
+              width={iconWidth}
+              icon={
+                recipe
+                  ? recipe?.duration < 15
+                    ? "15 min"
+                    : recipe?.duration < 30
+                    ? "30 min"
+                    : "1 heure"
+                  : undefined
+              }
+            />
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };

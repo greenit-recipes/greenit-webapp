@@ -1,20 +1,15 @@
 /* eslint-disable no-loop-func */
+import {
+  ApolloClient, ApolloProvider, createHttpLink, from, fromPromise, gql, InMemoryCache
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { onError } from "@apollo/client/link/error";
 import React from "react";
 import ReactDOM from "react-dom";
-import {
-  ApolloClient,
-  createHttpLink,
-  InMemoryCache,
-  from,
-  ApolloProvider,
-  fromPromise,
-} from "@apollo/client";
-import { onError } from "@apollo/client/link/error";
-import { setContext } from "@apollo/client/link/context";
-import "./index.css";
-import App, { history } from "./App";
-import reportWebVitals from "./reportWebVitals";
 import authService from "services/auth.service";
+import App from "./App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 
 let isRefreshing = false;
 let pendingRequests: any = [];
@@ -47,15 +42,7 @@ const errorLink = onError(
                     const newrefreshToken =
                       accessToken.data.refreshToken.refreshToken;
                     authService.setStorageLoginToken(newToken);
-                    authService.setStorageLoginRefreshToken(newrefreshToken);
-                    const oldHeaders = operation.getContext().headers;
-                    // modify the operation context with a new token
-                    operation.setContext({
-                      headers: {
-                        ...oldHeaders,
-                        authorization: `JWT ${newToken}`,
-                      },
-                    });
+                    authService.setStorageLoginRefreshToken(newrefreshToken)
                     resolvePendingRequests();
                     return accessToken.data.refreshToken.token;
                   })
@@ -76,7 +63,6 @@ const errorLink = onError(
               );
             }
             return forward$.flatMap(() => {
-              console.log("PASSE LA");
               return forward(operation);
             });
           default:
@@ -90,7 +76,6 @@ const errorLink = onError(
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = authService.getToken();
-  console.log("token -->", token);
   // return the headers to the context so httpLink can read them
 
   return {
@@ -116,7 +101,6 @@ ReactDOM.render(
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
-    ,
   </React.StrictMode>,
   document.getElementById("root")
 );

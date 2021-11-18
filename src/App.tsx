@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import "./index.css";
 import { createBrowserHistory } from "history";
-import { Redirect, Route, Router, Switch } from "react-router-dom";
+import { Route, Router, Switch } from "react-router-dom";
 import RecipeListPage from "./pages/recipe/ListPage/ListPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import RecipeSinglePage from "./pages/recipe/SinglePage";
@@ -17,6 +17,7 @@ import Login from "pages/Login/Login";
 import Activate from "pages/activate";
 import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
+import CreateRecipe from "pages/CreateRecipe/CreateRecipe";
 
 export const history = createBrowserHistory()
 
@@ -35,7 +36,7 @@ const App: React.FC = () => {
           exact
         />
         <PublicRoute path="/workshops" component={WorkshopPage} exact/>
-        <PrivateRoute path="/créer-une-recette" component={WorkshopPage} exact/>
+        <PrivateRoute path="/créer-une-recette" component={CreateRecipe} exact/>
         <Route exact path="/register" component={Register} />
         <Route exact path="/connexion" component={Login} />
         <PrivateRoute component={ProfilPage} path="/profil" exact />
