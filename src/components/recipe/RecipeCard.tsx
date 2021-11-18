@@ -1,34 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "../misc";
 import useIsMobile from "../../hooks/isMobile";
 import { RecipeDifficulty, RecipeFragment } from "../../graphql";
+import { useMutation } from "@apollo/client";
+import {
+  ADD_OR_REMOVE_FAVORITE_RECIPE,
+  ADD_OR_REMOVE_LIKE_RECIPE,
+} from "pages/CreateRecipe/CreateRecipeRequest";
+import authService from "services/auth.service";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
   recipe: RecipeFragment | null | undefined;
   inCarousel?: boolean;
+  isProfilPage?: boolean;
 }
 
 export const RecipeCard: React.FC<RecipeCardProps> = ({
   enableShadow = true,
   recipe,
   inCarousel,
+  isProfilPage,
 }) => {
   const isMobile = useIsMobile();
+  const [isLiked, setLiked] = useState(recipe?.isLikedByCurrentUser);
+  const [isFavorite, setFavorite] = useState(
+    recipe?.isAddToFavoriteByCurrentUser
+  );
+  const [nbrLiked, setNbrLiked] = useState(recipe?.numberOfLikes);
   const iconHeight = isMobile ? 18 : 20;
   const iconWidth = isMobile ? 16 : 18;
+  const isLoggedIn = authService.isLoggedIn();
+
+  const [addOrRemoveLikeRecipe] = useMutation(ADD_OR_REMOVE_LIKE_RECIPE);
+  const [addOrRemoveFavoriteRecipe] = useMutation(
+    ADD_OR_REMOVE_FAVORITE_RECIPE
+  );
 
   return (
     <div className="relative">
+      <div className="absolute text-xl">nombre like === {nbrLiked}</div>
       <Link
         to={{
           pathname: `/recipes/${recipe?.urlId}`,
           state: { recipeId: recipe?.id },
         }}
-        className={`mb-9 ${
-          !isMobile && "ml-9"
-        }`}
+        className={`mb-9 ${!isMobile && "ml-9"}`}
       >
         <img
           className={`flex flex-col | ${
@@ -82,6 +100,48 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           </div>
         </div>
       </Link>
+      <div className="relative">
+        <div>
+          {isLoggedIn && (
+            <button
+              onClick={() => {
+                setLiked(!isLiked);
+                // @ts-ignore: Object is possibly 'null'.
+                setNbrLiked(!isLiked ? nbrLiked + 1 : nbrLiked - 1);
+                addOrRemoveLikeRecipe({
+                  variables: {
+                    recipeId: recipe?.id,
+                  },
+                });
+              }}
+            >
+              {isLiked ? "dislike" : "like batard"}
+            </button>
+          )}
+        </div>
+        <div>
+          {isLoggedIn && (
+            <button
+              onClick={() => {
+                setFavorite(!isFavorite);
+                // @ts-ignore: Object is possibly 'null'.
+                addOrRemoveFavoriteRecipe({
+                  variables: {
+                    recipeId: recipe?.id,
+                  },
+                });
+              }}
+            >
+              {isFavorite ? "Enlever des favoris" : "Ajouter au favoris"}
+            </button>
+          )}
+        </div>
+        <div>
+          {recipe?.numberOfIngredients && (
+            <div>nbr ingredients === {recipe?.numberOfIngredients}</div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

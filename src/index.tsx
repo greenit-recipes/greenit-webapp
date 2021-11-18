@@ -1,4 +1,5 @@
 /* eslint-disable no-loop-func */
+import { DefaultOptions } from "@apollo/client";
 import {
   ApolloClient, ApolloProvider, createHttpLink, from, fromPromise, gql, InMemoryCache
 } from "@apollo/client";
@@ -66,7 +67,9 @@ const errorLink = onError(
               return forward(operation);
             });
           default:
-            authService.logout();
+            // Afficher une pop up en disant qu'on à eu un problème
+            // authService.logout();
+            return;
         }
       }
     }
@@ -90,10 +93,22 @@ const httpLink = createHttpLink({
   uri: process.env.REACT_APP_API_URL,
 });
 
+const defaultOptions: DefaultOptions = {
+  watchQuery: {
+    fetchPolicy: 'no-cache',
+    errorPolicy: 'ignore',
+  },
+  query: {
+    fetchPolicy: 'no-cache',
+    errorPolicy: 'all',
+  },
+}
+
 export const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: from([errorLink, authLink.concat(httpLink)]),
   uri: process.env.REACT_APP_API_URL,
+  defaultOptions: defaultOptions,
 });
 
 ReactDOM.render(

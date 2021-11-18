@@ -7,6 +7,12 @@ import useIsMobile from "../../hooks/isMobile";
 import { getSecondsFromDuration } from "../../utils";
 import { isEmpty } from "lodash";
 import HTMLReactParser from "html-react-parser";
+import authService from "services/auth.service";
+import { useMutation } from "@apollo/client";
+import {
+  ADD_OR_REMOVE_FAVORITE_RECIPE,
+  ADD_OR_REMOVE_LIKE_RECIPE,
+} from "pages/CreateRecipe/CreateRecipeRequest";
 
 interface InstructionProps {
   index: number;
@@ -56,6 +62,20 @@ const RecipeSinglePage = () => {
       id: recipeId ?? "",
     },
   });
+  // Favorites
+  const [isFavorite, setFavorite] = useState(
+    data?.recipe?.isAddToFavoriteByCurrentUser
+  );
+  const [addOrRemoveFavoriteRecipe] = useMutation(
+    ADD_OR_REMOVE_FAVORITE_RECIPE
+  );
+
+  // Like
+  const [isLiked, setLiked] = useState(data?.recipe?.isLikedByCurrentUser);
+  const [nbrLiked, setNbrLiked] = useState(data?.recipe?.numberOfLikes);
+  const isLoggedIn = authService.isLoggedIn();
+  const [addOrRemoveLikeRecipe] = useMutation(ADD_OR_REMOVE_LIKE_RECIPE);
+
   const [videoDuration, setVideoDuration] = useState<number>(0);
   useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -65,16 +85,26 @@ const RecipeSinglePage = () => {
       });
     }
   }, []);
+
+  useEffect(() => {
+    setLiked(data?.recipe?.isLikedByCurrentUser);
+    setNbrLiked(data?.recipe?.numberOfLikes);
+
+    setFavorite(data?.recipe?.isAddToFavoriteByCurrentUser);
+  }, [data]);
+
   const player = createRef<ReactPlayer>();
   const getPlayer = () => {
     return player;
   };
+
   useEffect(() => {
     const timeoutID = window.setInterval(() => {
       setVideoDuration(getPlayer().current?.getCurrentTime() ?? 0);
     }, 2000);
     return () => window.clearInterval(timeoutID);
   }, [getPlayer]);
+
   if (loading || !data) {
     return <Loading />;
   }
@@ -95,6 +125,42 @@ const RecipeSinglePage = () => {
                   // @ts-ignore: Object is possibly 'null'.
                   recipe && HTMLReactParser(recipe?.textAssociate)
                 }
+              </div>
+              <div className="text-xl">nombre like === {nbrLiked}</div>
+              <div>
+                {isLoggedIn && (
+                  <button
+                    onClick={() => {
+                      setLiked(!isLiked);
+                      // @ts-ignore: Object is possibly 'null'.
+                      setNbrLiked(!isLiked ? nbrLiked + 1 : nbrLiked - 1);
+                      addOrRemoveLikeRecipe({
+                        variables: {
+                          recipeId: recipe?.id,
+                        },
+                      });
+                    }}
+                  >
+                    {isLiked ? "dislike" : "like batard"}
+                  </button>
+                )}
+              </div>
+              <div>
+                {isLoggedIn && (
+                  <button
+                    onClick={() => {
+                      setFavorite(!isFavorite);
+                      // @ts-ignore: Object is possibly 'null'.
+                      addOrRemoveFavoriteRecipe({
+                        variables: {
+                          recipeId: recipe?.id,
+                        },
+                      });
+                    }}
+                  >
+                    {isFavorite ? "Enlever des favoris" : "Ajouter au favoris"}
+                  </button>
+                )}
               </div>
               <div>
                 <img
@@ -140,6 +206,42 @@ const RecipeSinglePage = () => {
                   // @ts-ignore: Object is possibly 'null'.
                   recipe && HTMLReactParser(recipe?.textAssociate)
                 }
+              </div>
+              <div className="text-xl">nombre like === {nbrLiked}</div>
+              <div>
+                {isLoggedIn && (
+                  <button
+                    onClick={() => {
+                      setLiked(!isLiked);
+                      // @ts-ignore: Object is possibly 'null'.
+                      setNbrLiked(!isLiked ? nbrLiked + 1 : nbrLiked - 1);
+                      addOrRemoveLikeRecipe({
+                        variables: {
+                          recipeId: recipe?.id,
+                        },
+                      });
+                    }}
+                  >
+                    {isLiked ? "dislike" : "like batard"}
+                  </button>
+                )}
+              </div>
+              <div>
+                {isLoggedIn && (
+                  <button
+                    onClick={() => {
+                      setFavorite(!isFavorite);
+                      // @ts-ignore: Object is possibly 'null'.
+                      addOrRemoveFavoriteRecipe({
+                        variables: {
+                          recipeId: recipe?.id,
+                        },
+                      });
+                    }}
+                  >
+                    {isFavorite ? "Enlever des favoris" : "Ajouter au favoris"}
+                  </button>
+                )}
               </div>
               <div className="flex flex-row">
                 <img

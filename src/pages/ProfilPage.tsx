@@ -31,7 +31,7 @@ const ProfilPage: React.FC = () => {
     });
   }
 
-  const [visible, setVisible] = React.useState(true);
+  const [visible, setVisible] = React.useState(false);
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -84,7 +84,40 @@ const ProfilPage: React.FC = () => {
 
       <Container className="flex flex-col mb-20 | items-center" padding>
         <div className={"bg-blue-500 text-center" + (visible ? " hidden" : "")}>
-          <h3 className="p-28 text-2xl">Recettes favorites</h3>
+          {!visible && (
+          <div>
+            {!data?.me?.recipeFavorite && (
+              <div
+                className={
+                  "bg-green-600 text-center" + (visible ? " hidden" : "")
+                }
+              >
+                <h3 className="p-36 text-2xl">
+                  Vous n'avez pas de recette favorites o
+                </h3>
+              </div>
+            )}
+            {data?.me?.recipeFavorite?.map((recipe: any, index: any) => (
+              <>
+                {isMobile ? (
+                  <div
+                    key={index}
+                    className="w-full flex justify-center mb-2 pt-10"
+                  >
+                    <RecipeCard
+                      recipe={recipe}
+                      key={index}
+                      inCarousel={false}
+                      isProfilPage={true}
+                    />
+                  </div>
+                ) : (
+                  <RecipeCard recipe={recipe} key={index} inCarousel={false} isProfilPage={true}/>
+                )}
+              </>
+            ))}
+          </div>
+        )}
         </div>
         {visible && (
           <div>
@@ -99,7 +132,7 @@ const ProfilPage: React.FC = () => {
                 </h3>
               </div>
             )}
-            {data?.me?.recipeAuthor.map((recipe: any, index: any) => (
+            {data?.me?.recipeAuthor?.map((recipe: any, index: any) => (
               <>
                 {isMobile ? (
                   <div
@@ -109,11 +142,12 @@ const ProfilPage: React.FC = () => {
                     <RecipeCard
                       recipe={recipe}
                       key={index}
+                      isProfilPage={true}
                       inCarousel={false}
                     />
                   </div>
                 ) : (
-                  <RecipeCard recipe={recipe} key={index} inCarousel={false} />
+                  <RecipeCard recipe={recipe} key={index} isProfilPage={true} inCarousel={false} />
                 )}
               </>
             ))}

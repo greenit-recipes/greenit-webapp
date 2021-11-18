@@ -96,3 +96,20 @@ export const GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS = gql`
     }
   }
 `;
+
+export const ADD_OR_REMOVE_LIKE_RECIPE = gql`
+  mutation addOrRemoveLikeRecipe($recipeId: String!) {
+    addOrRemoveLikeRecipe(recipeId: $recipeId) {
+      success
+    }
+  }
+`;
+
+
+export const ADD_OR_REMOVE_FAVORITE_RECIPE = gql`
+  mutation addOrRemoveFavoriteRecipe($recipeId: String!) {
+    addOrRemoveFavoriteRecipe(recipeId: $recipeId) {
+      success
+    }
+  }
+`;

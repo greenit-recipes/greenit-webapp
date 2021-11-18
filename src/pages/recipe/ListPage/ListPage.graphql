@@ -19,6 +19,10 @@ fragment recipe on RecipeType {
   duration
   image
   textAssociate
+  numberOfLikes
+  isLikedByCurrentUser
+  isAddToFavoriteByCurrentUser
+  numberOfIngredients
   urlId
   category {
     id

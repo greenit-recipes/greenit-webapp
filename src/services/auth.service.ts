@@ -68,6 +68,20 @@ export const ME = gql`
         image
         duration
         difficulty
+        numberOfLikes
+        category {
+          name
+        }
+      }
+      recipeFavorite {
+        id
+        urlId
+        name
+        image
+        duration
+        difficulty
+        numberOfLikes
+        numberOfFavorites
         category {
           name
         }
