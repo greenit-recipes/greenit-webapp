@@ -15,15 +15,31 @@ query recipe($id: String!) {
     }
     notesFromAuthor
     numberOfLikes
+    numberOfComments
     isLikedByCurrentUser
     isAddToFavoriteByCurrentUser
     expiry
     videoUrl
+    comments {
+      id
+      comment
+      numberOfLikes
+      isLikedByCurrentUser
+      createdAt
+      author {
+        imageProfile
+        username
+      }
+    }
     description
     tags {
       id
       name
     }
     instructions
+  }
+  me {
+    username
+    email
   }
 }

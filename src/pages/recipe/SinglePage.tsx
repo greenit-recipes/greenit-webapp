@@ -9,10 +9,17 @@ import { isEmpty } from "lodash";
 import HTMLReactParser from "html-react-parser";
 import authService from "services/auth.service";
 import { useMutation } from "@apollo/client";
+import { useForm } from "react-hook-form";
 import {
   ADD_OR_REMOVE_FAVORITE_RECIPE,
   ADD_OR_REMOVE_LIKE_RECIPE,
 } from "pages/CreateRecipe/CreateRecipeRequest";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import {
+  ADD_COMMENT_TO_RECIPE,
+  ADD_OR_REMOVE_LIKE_COMMENT,
+} from "pages/recipe/SinglePageRequest";
 
 interface InstructionProps {
   index: number;
@@ -51,10 +58,23 @@ const closest = (needle: number, haystack: any[]) => {
   });
 };
 
+const schema = yup.object().shape({});
+
 const RecipeSinglePage = () => {
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+    reset,
+    control,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   // @ts-ignore
   const location = useLocation<{ recipeId: string }>();
-  const { recipeId } = location.state;
+  const recipeId = location.state?.recipeId;
   const isMobile = useIsMobile();
   const history = useHistory();
   const { error, loading, data } = useRecipeQuery({
@@ -70,12 +90,18 @@ const RecipeSinglePage = () => {
     ADD_OR_REMOVE_FAVORITE_RECIPE
   );
 
-  // Like
+  const [addOrRemoveLikeComment] = useMutation(ADD_OR_REMOVE_LIKE_COMMENT);
+
+  // Likes
   const [isLiked, setLiked] = useState(data?.recipe?.isLikedByCurrentUser);
   const [nbrLiked, setNbrLiked] = useState(data?.recipe?.numberOfLikes);
-  const isLoggedIn = authService.isLoggedIn();
-  const [addOrRemoveLikeRecipe] = useMutation(ADD_OR_REMOVE_LIKE_RECIPE);
 
+  // Comments
+  const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
+  const [nbrComment, setNbrComment] = useState(data?.recipe?.numberOfComments);
+
+
+  const isLoggedIn = authService.isLoggedIn();
   const [videoDuration, setVideoDuration] = useState<number>(0);
   useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -89,7 +115,7 @@ const RecipeSinglePage = () => {
   useEffect(() => {
     setLiked(data?.recipe?.isLikedByCurrentUser);
     setNbrLiked(data?.recipe?.numberOfLikes);
-
+    setNbrComment(data?.recipe?.numberOfComments);
     setFavorite(data?.recipe?.isAddToFavoriteByCurrentUser);
   }, [data]);
 
@@ -104,6 +130,31 @@ const RecipeSinglePage = () => {
     }, 2000);
     return () => window.clearInterval(timeoutID);
   }, [getPlayer]);
+
+  const [addOrRemoveLikeRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
+
+  const onSubmitHandler = (dataForm: { comment: string }) => {
+    const toto = {
+      comment: dataForm?.comment,
+      numberOfLikes: 0,
+      isLikedByCurrentUser: false,
+      createdAt: "changer par la date actuelle quand on ajoute un commentaire !!!",
+      author: {
+        username: data?.me?.username,
+      }
+    };
+    // @ts-ignore
+    recipe?.comments?.unshift(toto)
+    // @ts-ignore: Object is possibly 'null'.
+    setNbrComment(nbrComment + 1)
+    console.log("recipe -->", recipe)
+    addCommentToRecipe({
+      variables: {
+        recipeId: data?.recipe?.id,
+        comment: dataForm?.comment,
+      },
+    });
+  };
 
   if (loading || !data) {
     return <Loading />;
@@ -127,6 +178,7 @@ const RecipeSinglePage = () => {
                 }
               </div>
               <div className="text-xl">nombre like === {nbrLiked}</div>
+              <div className="text-xl">nombre de commentaire === {nbrComment}</div>
               <div>
                 {isLoggedIn && (
                   <button
@@ -183,7 +235,7 @@ const RecipeSinglePage = () => {
                 </div>
                 <div className="mt-5 flex flex-col self-start">
                   <h3 className="pb-1 text-2xl">Ingredients</h3>
-                  {recipe?.ingredients.map((item, index) => (
+                  {recipe?.ingredients?.map((item, index) => (
                     <h3 className="text-xl pt-2" key={index}>
                       {item.amount} {item.name}
                     </h3>
@@ -191,7 +243,7 @@ const RecipeSinglePage = () => {
                 </div>
                 <div className="mt-5 flex flex-col self-start">
                   <h3 className="pb-1 text-2xl">Ustensiles</h3>
-                  {recipe?.utensils.map((item, index) => (
+                  {recipe?.utensils?.map((item, index) => (
                     <h3 className="text-xl pt-2" key={index}>
                       {item.name}
                     </h3>
@@ -208,6 +260,7 @@ const RecipeSinglePage = () => {
                 }
               </div>
               <div className="text-xl">nombre like === {nbrLiked}</div>
+              <div className="text-xl">nombre de commentaire === {nbrComment}</div>
               <div>
                 {isLoggedIn && (
                   <button
@@ -268,7 +321,7 @@ const RecipeSinglePage = () => {
                     <div className="mt-5 flex flex-col self-start w-1/2">
                       <h3 className="pb-1 text-2xl">Ingredients</h3>
                       {/* @ts-ignore*/}
-                      {recipe.ingredients.map((item, index) => (
+                      {recipe?.ingredients?.map((item, index) => (
                         <h3 className="text-xl pt-2" key={index}>
                           {item.amount} {item.name}
                         </h3>
@@ -276,7 +329,7 @@ const RecipeSinglePage = () => {
                     </div>
                     <div className="mt-5 flex flex-col self-start">
                       <h3 className="pb-1 text-2xl">Ustensiles</h3>
-                      {recipe?.utensils.map((item, index) => (
+                      {recipe?.utensils?.map((item, index) => (
                         <h3 className="text-xl pt-2" key={index}>
                           {item.name}
                         </h3>
@@ -358,6 +411,68 @@ const RecipeSinglePage = () => {
           <h3 className="pb-2 text-2xl lg:text-3xl">Conseils de l'auteur</h3>
           <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
         </div>
+        <div className="pt-14 flex flex-col">
+          <h3 className="pb-2 text-2xl lg:text-3xl">Commentaire</h3>
+          {recipe?.comments?.map((comment: any, index: number) => {
+            return (
+              <div className="pt-14 flex flex-col">
+                <p className="text-md lg:text-lg">
+                  Par: {comment?.author?.username}
+                </p>
+
+                <p className="text-md lg:text-lg">
+                  Commentaire: {comment?.comment}
+                </p>
+                <p className="text-md lg:text-lg">
+                  Date de publication: {comment?.createdAt}
+                </p>
+                <p className="text-md lg:text-lg">
+                  Nombre de like par commentaire: {comment?.numberOfLikes}
+                </p>
+                <button
+                  className="text-md lg:text-lg"
+                  onClick={() => {
+                    addOrRemoveLikeComment({
+                      variables: {
+                        commentId: comment?.id,
+                      },
+                    });
+                  }}
+                >
+                  Like moi grand fou
+                </button>
+              </div>
+            );
+          })}
+        </div>
+        <form
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          onSubmit={handleSubmit(onSubmitHandler)}
+        >
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Nom de la recette
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="comment"
+              placeholder="comment"
+              type="text"
+              {...register("comment")}
+            ></input>
+            <p className="text-red-500 text-xs italic">
+              {errors.name?.message}
+            </p>
+          </div>
+          <div className="flex items-center justify-between">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Envoyer le commentaire
+            </button>
+          </div>
+        </form>
       </div>
       <Footer />
     </div>
