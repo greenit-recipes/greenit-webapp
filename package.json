@@ -10,6 +10,7 @@
     "@graphql-codegen/typescript": "^1.21.1",
     "@graphql-codegen/typescript-operations": "^1.17.15",
     "@hcaptcha/react-hcaptcha": "^0.3.6",
+    "@hookform/resolvers": "^2.8.3",
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -31,6 +32,7 @@
     "react": "^17.0.1",
     "react-alice-carousel": "^2.4.0",
     "react-dom": "^17.0.1",
+    "react-hook-form": "^7.19.4",
     "react-infinite-scroll-component": "^6.1.0",
     "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
@@ -40,7 +42,8 @@
     "swiper": "^6.4.14",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "concurrently \"yarn generate --watch\" \"craco start --host 0.0.0.0\"",

@@ -12,24 +12,39 @@ import WhyPage from "./pages/WhyPage";
 import NotFoundPage from "./pages/misc/NotFoundPage";
 import WorkshopPage from "./pages/WorkshopPage";
 import ProfilPage from "./pages/ProfilPage";
+import Register from "./pages/Register/register";
+import Login from "pages/Login/Login";
+import Activate from "pages/activate";
+import PrivateRoute from "components/route/PrivateRoute";
+import PublicRoute from "components/route/PublicRoute";
+import CreateRecipe from "pages/CreateRecipe/CreateRecipe";
+
+export const history = createBrowserHistory()
 
 const App: React.FC = () => {
-  const history = createBrowserHistory();
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/why" component={WhyPage} />
-        <Route exact path="/contact" component={ContactPage} />
-        <Route exact path="/recipes" component={RecipeListPage} />
-        <Route exact path="/recipes/:id" component={RecipeSinglePage} />
-        <Route
-          exact
+        <PublicRoute path="/" component={LandingPage} exact/>
+        <PublicRoute path="/why" component={WhyPage} exact/>
+        <PublicRoute path="/contact" component={ContactPage} exact/>
+        <PublicRoute path="/recipes" component={RecipeListPage} exact/>
+        <PublicRoute path="/recipes/:id" component={RecipeSinglePage} exact/>
+        <PublicRoute
           path="/personalizedSearch"
           component={PersonalizedSearch}
+          exact
         />
-        <Route exact path="/workshops" component={WorkshopPage} />
-        <Route exact path="/profil" component={ProfilPage} />
+        <PublicRoute path="/workshops" component={WorkshopPage} exact/>
+        <PrivateRoute path="/créer-une-recette" component={CreateRecipe} exact/>
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/connexion" component={Login} />
+        <PrivateRoute component={ProfilPage} path="/profil" exact />
+        <Route
+          exact
+          path="/activate/:tokenActivationAccount"
+          component={Activate}
+        />
         <Route component={NotFoundPage} />
       </Switch>
     </Router>
