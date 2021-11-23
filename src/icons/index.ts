@@ -7,14 +7,10 @@ import home from "./home_icon.png";
 import allCategories from "./all_categories_icon.png";
 
 // DIFFICULTY
-import beginner from "./beginner_icon.png";
-import advanced from "./advanced_icon.png";
-import intermediate from "./intermediate_icon.png";
+import débutant from "./débutant_icon.png";
 
-// DURATION
-import fifteenMin from "./fifteen_min_icon.png";
-import oneHour from "./one_hour_icon.png";
-import thirtyMin from "./thirty_min_icon.png";
+//INGREDIENTS
+import ingredients from "./ingredients.png"
 
 // LOGO
 import logo from "./logo.png";
@@ -81,12 +77,8 @@ export {
   hair,
   home,
   allCategories,
-  beginner,
-  advanced,
-  intermediate,
-  fifteenMin,
-  oneHour,
-  thirtyMin,
+  débutant,
+  ingredients,
   logo,
   getStarted,
   zeroWaste,

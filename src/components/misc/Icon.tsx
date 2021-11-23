@@ -1,51 +1,60 @@
 import React from "react";
+import { useState } from "react";
 import {
-  home,
-  wellbeing,
-  body,
-  face,
-  hair,
-  advanced,
-  intermediate,
-  beginner,
-  fifteenMin,
-  thirtyMin,
-  oneHour,
   logo,
+  débutant,
+  ingredients
 } from "../../icons";
+import { RecipeFragment } from "../../graphql";
 
 interface IconProps {
   text?: string;
   height?: number;
   width?: number;
-  icon?: string;
+  nbOfIngredient?: number | null | undefined;
+  difficulty?: string;
 }
-export const Icon: React.FC<IconProps> = ({ text, height, width, icon }) => {
+
+export const Icon: React.FC<IconProps> = ({
+  text,
+  height,
+  width,
+  nbOfIngredient,
+  difficulty,
+}) => {
   const types = {
-    // category
-    Maison: home,
-    "Bien-être": wellbeing,
-    Corps: body,
-    Visage: face,
-    Cheveux: hair,
-
     // difficulty
-    Facile: beginner,
-    Intermediaire: intermediate,
-    Expert: advanced,
+    Facile: débutant,
+    Intermediaire: débutant,
+    Expert: débutant,
 
-    // duration
-    "15 min": fifteenMin,
-    "30 min": thirtyMin,
-    "1 heure": oneHour,
+    //ingredients
+    1: ingredients,
+    2: ingredients,
+    3: ingredients,
+
     Rating: logo,
   };
-  const item = types[icon as keyof typeof types];
 
-  return (
-    <div className="flex flex-col items-center">
-      <img src={item} className={`h-${height ?? 28} w-${width ?? 32}`} />
-      <h1 className="py-1 text-sm md:text-lg">{icon}</h1>
-    </div>
-  );
+  // pas d'icon pour le nb of ingredients
+  const itemNbOfIngredeints = types[nbOfIngredient as keyof typeof types];
+  const itemDifficulty = types[difficulty as keyof typeof types];
+
+  let child;
+  if (nbOfIngredient && difficulty) {
+    child = <div className="grid grid-cols-2 justify-item-center pl-6 pr-6 pb-2">
+              <div className="span-col-1 flex flex-col items-center">
+                <img src={itemDifficulty} className={`h-${height ?? 26} w-${width ?? 30}`} />
+                <h1 className="py-1 text-sm md:text-base">{difficulty}</h1>
+              </div>
+              <div className="span-col-1 flex flex-col items-center">
+                <img src={itemNbOfIngredeints} className={`h-${height ?? 26} w-${width ?? 30}`} />
+                <h1 className="py-1 text-sm md:text-base">{nbOfIngredient} ingredients</h1>
+              </div>
+            </div>
+  } else {
+    child = <p>0 ingredients</p>;
+  }
+
+  return <div>{child}</div>;
 };
