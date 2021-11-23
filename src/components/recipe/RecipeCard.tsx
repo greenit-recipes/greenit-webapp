@@ -10,6 +10,8 @@ import {
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import authService from "services/auth.service";
 import { getImagePath } from "helpers/image.helper";
+import { LikeField } from "./Components/LikeField";
+
 
 interface RecipeCardProps {
   enableShadow?: boolean;
@@ -43,7 +45,6 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
   return (
     <div className="relative">
-      <div className="absolute text-xl">nombre like === {nbrLiked}</div>
       <Link
         to={{
           pathname: `/recipes/${recipe?.urlId}`,
@@ -51,17 +52,21 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         }}
         className={`mb-9 ${!isMobile && "ml-9"}`}
       >
+        <LikeField>
+          {nbrLiked}
+        </LikeField>
+        
         <img
-          // @ts-ignore
-          src={getImagePath(recipe?.image)}
-          className={`flex flex-col | ${
-            enableShadow && "shadow-lg"
-          } rounded-3xl | justify-self-center`}
-          style={{
-            height: "28rem",
-            width: "20rem",
-          }}
-        ></img>
+        className={`flex flex-col | ${
+          enableShadow && "shadow-lg"
+        } rounded-3xl | justify-self-center`}
+        style={{
+          height: "28rem",
+          width: "20rem",
+        }}
+        src={getImagePath(recipe?.image)}
+        ></img>        
+        
         <div
           className="h-auto | mt-auto | bg-white shadow-lg rounded-3xl absolute bottom-0"
           style={{

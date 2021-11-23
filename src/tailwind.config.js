@@ -49,6 +49,10 @@ module.exports = {
       colors: {
         "light-blue": colors.lightBlue,
         cyan: colors.cyan,
+        blue: "#8fb5e7",
+        yellow: "#f9d58e",
+        orange: "#fec4b0",
+        green: "83d489"
       },
     },
   },

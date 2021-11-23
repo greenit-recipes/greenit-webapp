@@ -5,8 +5,21 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      maxWidth: {
+        '26': '26rem',
+      },
+      minWidth: {
+        '18': '18rem',
+      },
       fontFamily: {
-        body: ["Ubuntu"],
+        'body': ["Quicksand-Medium"],
+        'legend': ["Quicksand-Light"],
+
+        'light': ['Quicksand-Light'],
+        'medium': ['Quicksand-Medium'],
+        'regular': ['Quicksand-Regular'],
+        'semiBold': ['Quicksand-SemiBold'],
+        'bold': ['Quicksand-Bold'],
       },
       screens: {
         xs: "375px",
@@ -17,8 +30,16 @@ module.exports = {
         "2xl": "1536px",
       },
       colors: {
-        "light-blue": colors.lightBlue,
-        cyan: colors.cyan,
+      
+        signin: "#8fb5e7",
+        success: "#f9d58e",
+        error: "#fec4b0",
+        info: "83d489",
+
+        blue: "#8fb5e7",
+        yellow: "#f9d58e",
+        orange: "#fec4b0",
+        green: "#83d489"
       },
     },
   },
