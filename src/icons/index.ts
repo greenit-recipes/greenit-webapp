@@ -37,11 +37,12 @@ import filterIcon from "./filter_icon.png";
 import emptyIcon from "./empty_icon.png";
 import hamburgerIcon from "./hamburger_icon.png";
 import scrollToTop from "./scroll_top_icon.png";
-import likedIconOn from "./liked_recipe_on.png"
-import likedIconOff from "./liked_recipe_off.png"
+import likedIconOn from "./liked_recipe_on.png";
+import likedIconOff from "./liked_recipe_off.png";
 
 import tiktokIcon from "./tiktok.svg";
 import pinterestIcon from "./pinterest.svg";
+import clapIcon from "./clap_icon.png";
 
 export const landingPageCategories = [
   {
@@ -97,4 +98,5 @@ export {
   pinterestIcon,
   likedIconOn,
   likedIconOff,
+  clapIcon,
 };

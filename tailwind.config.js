@@ -6,7 +6,10 @@ module.exports = {
   theme: {
     extend: {
       inset: {
-        '50': '12.6rem'
+        '26': '6.5rem',
+        '38': '9.5rem',
+        '50': '12.6rem',
+        '66': '18rem'
       },
       maxWidth: {
         '26': '26rem',

@@ -1,10 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import {
-  logo,
-  débutant,
-  ingredients
-} from "../../icons";
+import { logo, débutant, ingredients } from "../../icons";
 import { RecipeFragment } from "../../graphql";
 
 interface IconProps {
@@ -42,16 +38,26 @@ export const Icon: React.FC<IconProps> = ({
 
   let child;
   if (nbOfIngredient && difficulty) {
-    child = <div className="grid grid-cols-2 justify-item-center pl-6 pr-6 pb-2">
-              <div className="span-col-1 flex flex-col items-center">
-                <img src={itemDifficulty} className={`h-${height ?? 26} w-${width ?? 30}`} />
-                <h1 className="py-1 text-sm md:text-base">{difficulty}</h1>
-              </div>
-              <div className="span-col-1 flex flex-col items-center">
-                <img src={itemNbOfIngredeints} className={`h-${height ?? 26} w-${width ?? 30}`} />
-                <h1 className="py-1 text-sm md:text-base">{nbOfIngredient} ingredients</h1>
-              </div>
-            </div>
+    child = (
+      <div className="grid grid-cols-2 justify-item-center px-4 pb-1">
+        <div className="span-col-1 flex flex-col items-center">
+          <img
+            src={itemDifficulty}
+            className={`h-${height ?? 26} w-${width ?? 30}`}
+          />
+          <h1 className="py-1 text-sm md:text-base">{difficulty}</h1>
+        </div>
+        <div className="span-col-1 flex flex-col items-center">
+          <img
+            src={itemNbOfIngredeints}
+            className={`h-${height ?? 26} w-${width ?? 30}`}
+          />
+          <h1 className="py-1 text-sm md:text-base">
+            {nbOfIngredient} ingredients
+          </h1>
+        </div>
+      </div>
+    );
   } else {
     child = <p>0 ingredients</p>;
   }
