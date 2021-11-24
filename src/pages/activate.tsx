@@ -33,7 +33,7 @@ const Activate: React.FC = () => {
     <div className="flex flex-col | items-center self-center">
       <Navbar />
 
-      <div>plplpl {data?.verifyAccount?.success}</div>
+      <div>Oh yeah! {data?.verifyAccount?.success}</div>
       {data?.verifyAccount?.success ? (
         <div>
           <h1>Votre compte est activé, connecté vous !!!</h1>

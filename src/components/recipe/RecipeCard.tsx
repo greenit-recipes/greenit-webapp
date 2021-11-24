@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "../misc";
-import { likedIconOn, likedIconOff } from "../../icons";
 import useIsMobile from "../../hooks/isMobile";
 import { RecipeDifficulty, RecipeFragment } from "../../graphql";
+<<<<<<< HEAD
 import { useMutation } from "@apollo/client";
 import {
   ADD_OR_REMOVE_FAVORITE_RECIPE,
@@ -11,7 +11,10 @@ import {
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import authService from "services/auth.service";
 import { getImagePath } from "helpers/image.helper";
+=======
+>>>>>>> bf42135 (recipecards responsive + login)
 import { LikeField } from "./Components/LikeField";
+import { FavouriteField } from "./Components/FavouriteField";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
@@ -29,25 +32,16 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   parentFunction = null,
 }) => {
   const isMobile = useIsMobile();
-  const [isLiked, setLiked] = useState(recipe?.isLikedByCurrentUser);
-  const [isFavorite, setFavorite] = useState(
-    recipe?.isAddToFavoriteByCurrentUser
-  );
+
   const [nbrLiked, setNbrLiked] = useState(recipe?.numberOfLikes);
-  const iconHeight = isMobile ? 12 : 16;
+  const iconHeight = isMobile ? 10 : 16;
   const imageHeight = isMobile ? 60 : 96;
   const imageWidth = isMobile ? 40 : 60;
   const bandeauWidth = isMobile ? 40 : 60;
-  const isLoggedIn = authService.isLoggedIn();
   const nbOfIngredients = recipe?.numberOfIngredients;
 
-  const [addOrRemoveLikeRecipe] = useMutation(ADD_OR_REMOVE_LIKE_RECIPE);
-  const [addOrRemoveFavoriteRecipe] = useMutation(
-    ADD_OR_REMOVE_FAVORITE_RECIPE
-  );
-
   return (
-    <div className="relative mb-20">
+    <div className="relative m-2 mb-14 lg:m-4">
       <Link
         to={{
           pathname: `/recipes/${recipe?.urlId}`,
@@ -59,7 +53,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
         <div>
           <img
-            className={`flex flex-col | ${
+            className={`flex flex-col object-cover | ${
               enableShadow && "shadow-lg"
             } ${`h-${imageHeight} w-${imageWidth}`}
             rounded-3xl | justify-self-center`}
@@ -67,33 +61,15 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             ></img>
         </div>
       </Link>
-      <div className="absolute bottom-26 w-64 z-10">
-        <div className="grid justify-items-center">
-          {isLoggedIn && (
-            <button
-              onClick={() => {
-                setFavorite(!isFavorite);
-                // @ts-ignore: Object is possibly 'null'.
-                addOrRemoveFavoriteRecipe({
-                  variables: {
-                    recipeId: recipe?.id,
-                  },
-                }).then(() => parentFunction ? parentFunction() : null);
-              }}
-            >
-              {isFavorite ? (
-                <img className="w-12 h-12" src={likedIconOn} />
-              ) : (
-                <img className="w-12 h-12" src={likedIconOff} />
-              )}
-            </button>
-          )}
-        </div>
+      <div className={`absolute bottom-2/7 w-${imageWidth} z-10`}>
+        <FavouriteField
+         recipe={recipe}
+        />
       </div>
       <div
-        className={`h-auto | mt-auto | bg-white shadow-lg rounded-3xl absolute top-64 ${`w-${bandeauWidth}`}`}
+        className={`h-auto | mt-auto | bg-white shadow-lg rounded-3xl absolute top-40 lg:top-64 ${`w-${bandeauWidth}`}`}
       >
-        <h1 className="subpixel-antialiased | text-center mt-5 p-1 text-base md:text-xl">
+        <h1 className="subpixel-antialiased | text-center mt-5 p-1 text-sm lg:text-xl">
           {recipe?.name}
         </h1>
         <Icon

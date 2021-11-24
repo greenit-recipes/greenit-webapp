@@ -91,6 +91,8 @@ export const ME = gql`
         difficulty
         numberOfLikes
         numberOfFavorites
+        numberOfIngredients
+        isAddToFavoriteByCurrentUser
         category {
           name
         }

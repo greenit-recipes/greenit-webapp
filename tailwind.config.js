@@ -6,10 +6,11 @@ module.exports = {
   theme: {
     extend: {
       inset: {
+        '2/7': '28%',
         '26': '6.5rem',
         '38': '9.5rem',
         '50': '12.6rem',
-        '66': '18rem'
+        '66': '18rem',
       },
       maxWidth: {
         '26': '26rem',
@@ -20,12 +21,7 @@ module.exports = {
       fontFamily: {
         'body': ["Quicksand-Medium"],
         'legend': ["Quicksand-Light"],
-
-        'light': ['Quicksand-Light'],
-        'medium': ['Quicksand-Medium'],
-        'regular': ['Quicksand-Regular'],
-        'semiBold': ['Quicksand-SemiBold'],
-        'bold': ['Quicksand-Bold'],
+      
       },
       screens: {
         xs: "375px",
@@ -37,7 +33,7 @@ module.exports = {
       },
       colors: {
       
-        signin: "#8fb5e7",
+        submit: "#8fb5e7",
         success: "#f9d58e",
         error: "#fec4b0",
         info: "83d489",
