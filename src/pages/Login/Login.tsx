@@ -1,4 +1,4 @@
-import { Button } from "../../components";
+import { Button, Navbar } from "../../components";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -82,18 +82,19 @@ const Login: React.FC = () => {
   };
   return (
     <div className="grid justify-items-center w-screen">
+      <Navbar />
       <BackgroundImage className="overflow-hidden" />
-      <div className="flex max-w-sm">
+      <div className="flex max-w-xs md:max-w-sm">
         <form
-          className="bg-white shadow-lg rounded p-10 mb-4  mt-36"
+          className="bg-white shadow-lg rounded p-10 mb-4 mt-36"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
-            <label className="block text-gray-700 text-xl font-bold mb-2">
+            <label className="block text-gray-700 text-lg font-bold mb-2">
               Email
             </label>
             <input
-              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-8"
+              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-6"
               id="email"
               placeholder="email"
               type="email"
@@ -104,8 +105,8 @@ const Login: React.FC = () => {
             </p>
           </div>
           <div className="mb-10">
-            <label className="block text-gray-700 text-xl font-bold mb-2">
-              Mot de Passe
+            <label className="block text-gray-700 text-lg font-bold mb-2">
+              Mot de passe
             </label>
             <input
               className="shadow-lg appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -124,10 +125,9 @@ const Login: React.FC = () => {
           </div>
           <div className="flex items-center justify-between">
             <Button
-              className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
-              Sign In
+              Connexion
             </Button>
             <a
               className="inline-block align-baseline font-medium text-sm text-blue-500 hover:text-blue-800"

@@ -1,3 +1,5 @@
+import { Button, Navbar } from "../../components";
+import { likedIconOn, likedIconOff } from "../../icons";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,6 +9,7 @@ import authService, {
   CREATE_ACCOUNT,
   RESEND_ACTIVATION_EMAIL,
 } from "services/auth.service";
+import { BackgroundImage } from "../LandingPage/Components/BackgroundImage";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -86,7 +89,7 @@ const Register: React.FC = () => {
     userCategoryAge: string;
     userWantFromGreenit: string;
   }) => {
-    setEmail(data.email)
+    setEmail(data.email);
     createAccount({
       variables: {
         email: data.email,
@@ -100,144 +103,156 @@ const Register: React.FC = () => {
     });
   };
   return (
-    <div className="w-full  max-w-xs">
-      <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-        onSubmit={handleSubmit(onSubmitHandler)}
-      >
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Email
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            placeholder="email"
-            type="email"
-            {...register("email")}
-          ></input>
-          <p className="text-red-500 text-xs italic">{errors.email?.message}</p>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Nom d'utilisateur
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="utilisateur"
-            placeholder="nom utilisateur"
-            type="text"
-            {...register("utilisateur")}
-          ></input>
-          <p className="text-red-500 text-xs italic">
-            {errors.utilisateur?.message}
-          </p>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Mot de passe (Le mot de passe doit contenir 8 caractères, une
-            majuscule, une minuscule)
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            type="password"
-            placeholder="******************"
-            {...register("password")}
-          />
-          <p className="text-red-500 text-xs italic">
-            {errors.password?.message}
-          </p>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Confirmation mot de passe
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            id="passwordConfirmation"
-            type="password"
-            placeholder="******************"
-            {...register("passwordConfirmation")}
-          />
-          <p className="text-red-500 text-xs italic">
-            {errors.passwordConfirmation?.message}
-          </p>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            A quelle catégorie t'identifies-tu ?
-          </label>
-
-          <select {...register("userCategoryLvl")}>
-            <option value="beginner">
-              Petit.e curieux.se, je débute dans le DIY.
-            </option>
-            <option value="intermediate">
-              Explorateur.ice avisé.e, j'ai déjà des notions en DIY.
-            </option>
-            <option value="advanced">
-              Adepte convaincu.e, adepte convaincu.e
-            </option>
-          </select>
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Pour quoi Greenit peut-il t'aider ?
-          </label>
-
-          <select {...register("userWantFromGreenit")}>
-            <option value="shared_talk">
-              Partager et discuter mes connaissances sur le DIY
-            </option>
-            <option value="meet">Rencontrer des adeptes du DIY</option>
-            <option value="find_inspiration">
-              Trouver de l'inspiration auprès de la communauté
-            </option>
-          </select>
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            A quel groupe t'identifies-tu ?
-          </label>
-
-          <select {...register("userCategoryAge")}>
-            <option value="young">Jeune mais pas trop (Moins de 20 ans)</option>
-            <option value="young_adult">
-              Adulte mais pas trop non plus (Adulte mais pas trop non plus)
-            </option>
-            <option value="adult">
-              Adulte dynamique et j'aime ça (Entre 35 et 50 ans)
-            </option>
-            <option value="senior">
-              Je vous interdis de m'appeler senior (Plus de 50 ans)
-            </option>
-          </select>
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Sign In
-          </button>
-        </div>
-      </form>
-      <div>
-        {data?.register?.success && (
-          <div>
-            <p>Un mail à été envoyé afin de confirmer votre compte</p>
-            <button
-              onClick={() => {
-                resendActivationEMail({ variables: { email: email } });
-              }}
-            >
-              Renvoyer l'email
-            </button>
+    <div className="grid justify-items-center w-screen">
+      <Navbar />
+      <BackgroundImage className="overflow-hidden" />
+      <div className="w-full max-w-xs md:max-w-sm">
+        <form
+          className="bg-white shadow-lg rounded p-10 mb-4 mt-10 md:mt-28"
+          onSubmit={handleSubmit(onSubmitHandler)}
+        >
+          <div className="mb-4">
+            <label className="block text-gray-700 text-lg font-bold mb-2">
+              Email
+            </label>
+            <input
+              className="shadow-lg appearance-none rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              placeholder="email"
+              type="email"
+              {...register("email")}
+            ></input>
+            <p className="text-red-500 text-xs italic">
+              {errors.email?.message}
+            </p>
           </div>
-        )}
+          <div className="mb-4">
+            <label className="block text-gray-700 text-lg font-bold mb-2">
+              Nom d'utilisateur
+            </label>
+            <input
+              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
+              id="utilisateur"
+              placeholder="nom utilisateur"
+              type="text"
+              {...register("utilisateur")}
+            ></input>
+            <p className="text-red-500 text-xs italic">
+              {errors.utilisateur?.message}
+            </p>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-lg font-bold mb-2">
+              Mot de passe
+            </label>
+            <input
+              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              placeholder="******************"
+              {...register("password")}
+            />
+            <p className="text-red-500 text-xs italic">
+              {errors.password?.message}
+            </p>
+            <label className="block text-gray-700 text-sm mb-2">
+              Le mot de passe doit contenir 8 caractères, une majuscule, une
+              minuscule
+            </label>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-lg font-bold mb-2">
+              Confirmation mot de passe
+            </label>
+            <input
+              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
+              id="passwordConfirmation"
+              type="password"
+              placeholder="******************"
+              {...register("passwordConfirmation")}
+            />
+            <p className="text-red-500 text-xs italic">
+              {errors.passwordConfirmation?.message}
+            </p>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              A quelle catégorie t'identifies-tu ?
+            </label>
+
+            <select {...register("userCategoryLvl")}>
+              <option value="beginner">
+                Petit.e curieux.se, je débute dans le DIY.
+              </option>
+              <option value="intermediate">
+                Explorateur.ice avisé.e, j'ai déjà des notions en DIY.
+              </option>
+              <option value="advanced">
+                Adepte convaincu.e, adepte convaincu.e
+              </option>
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Pour quoi Greenit peut-il t'aider ?
+            </label>
+
+            <select {...register("userWantFromGreenit")}>
+              <option 
+                value="shared_talk"
+              >
+                Partager et discuter mes connaissances sur le DIY
+              </option>
+              <option value="meet">Rencontrer des adeptes du DIY</option>
+              <option value="find_inspiration">
+                Trouver de l'inspiration auprès de la communauté
+              </option>
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              A quel groupe t'identifies-tu ?
+            </label>
+
+            <select {...register("userCategoryAge")}>
+              <option value="young">
+                Jeune mais pas trop (Moins de 20 ans)
+              </option>
+              <option value="young_adult">
+                Adulte mais pas trop non plus (Adulte mais pas trop non plus)
+              </option>
+              <option value="adult">
+                Adulte dynamique et j'aime ça (Entre 35 et 50 ans)
+              </option>
+              <option value="senior">
+                Je vous interdis de m'appeler senior (Plus de 50 ans)
+              </option>
+            </select>
+          </div>
+          <div className="flex items-center justify-between">
+            <Button
+              type="submit"
+            >
+              Sign In
+            </Button>
+          </div>
+        </form>
+        <div>
+          {data?.register?.success && (
+            <div>
+              <p>Un mail à été envoyé afin de confirmer votre compte</p>
+              <button
+                onClick={() => {
+                  resendActivationEMail({ variables: { email: email } });
+                }}
+              >
+                Renvoyer l'email
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

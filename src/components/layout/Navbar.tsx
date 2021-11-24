@@ -13,7 +13,7 @@ export const Navbar: React.FC = () => {
 
   if (isMobile) {
     return (
-      <div className="sticky top-0 z-20 bg-white w-screen text-gray-500">
+      <div className="sticky top-0 z-20 bg-white w-screen">
         <div
           onClick={() => {
             setToggle((prevState) => !prevState);
@@ -80,15 +80,15 @@ export const Navbar: React.FC = () => {
       <Button
         type="orange"
         rounded="xl"
-        className="py-2 px-4 flex justify-end self-center | mr-4 cursor-pointer"
+        className="flex justify-end self-center | mr-4 cursor-pointer"
       >
         {isLoggedIn ? (
           <Link to="/profil">
-            <h1>Profil</h1>
+            Profil
           </Link>
         ) : (
           <Link to="/connexion">
-            <h1>Se connecter</h1>
+            Se connecter
           </Link>
         )}
       </Button>
@@ -100,7 +100,7 @@ export const Navbar: React.FC = () => {
         className="py-2 px-4 flex justify-end self-center | mr-4 cursor-pointer"
       >
           <Link to="/register">
-            <h1>Créer un compte</h1>
+            Créer un compte
           </Link>
       </Button>
       }

@@ -7,7 +7,7 @@ import communityMobile from "../icons/community_mobile.png";
 
 const Block: React.FC<{
   id: string;
-  title: string;
+  title?: string;
   className?: string;
   style?: React.CSSProperties;
   padding?: string;
@@ -68,13 +68,15 @@ const WhyPage: React.FC = () => {
         <Block
           style={{
             backgroundColor: "#9ed1fb",
-            minHeight: isMobile ? "75vh" : "60vh",
+            minHeight: isMobile ? "62vh" : "60vh",
           }}
           id="1"
           className="text-white w-full lg:pt-10"
-          title="Greenit"
           padding="30%"
         >
+          <h1 className="text-4xl md:text-5xl font-bold text-white">
+            Greenit
+          </h1>
           <h2 className="mt-5 text-xl lg:text-2xl">
             Un projet étudiant pour le développement de modes de consommation
             plus sains.
