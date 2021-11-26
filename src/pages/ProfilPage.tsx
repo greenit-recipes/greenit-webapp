@@ -1,15 +1,35 @@
-import { useQuery } from "@apollo/client";
-import { RecipeCard } from "components";
+import { useMutation, useQuery } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Loading, RecipeCard } from "components";
+import { getImagePath } from "helpers/image.helper";
+import { imageValidation, videoValidation } from "helpers/yup-validation.helper";
 import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { ME } from "services/auth.service";
+import { ME, UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
+import * as yup from "yup";
 import "../App.css";
 import { Container, Footer, Navbar } from "../components";
 import useIsMobile from "../hooks/isMobile";
 
 const ProfilPage: React.FC = () => {
   const isMobile = useIsMobile();
+
+  const schema = yup.object().shape({
+    image: imageValidation(),
+  }); // _ - .
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
@@ -19,10 +39,9 @@ const ProfilPage: React.FC = () => {
     }
   }, []);
 
-  // Soit il est dans le storage et c'est good
 
-  // Soit je recois les informations pas le chemin
-  const { loading, error, data } = useQuery(ME);
+
+  const { loading, error, data, refetch, networkStatus } = useQuery(ME);
   const history = useHistory();
 
   if (!loading && isEmpty(data?.me)) {
@@ -30,8 +49,36 @@ const ProfilPage: React.FC = () => {
       pathname: "/",
     });
   }
+  const user = data?.me;
+
+  const [updatePhoto, { data: dataImageUpdate }] = useMutation(UPDATE_IMAGE_ACCOUNT, {
+    errorPolicy: "all",
+  });
+
+    // Image
+  const [userImage, setImage] = useState(
+    user?.imageProfile
+  );
+  
+  useEffect(() => {
+     setImage(getImagePath(user?.imageProfile));
+  }, [user]);
+
+  const onSubmitHandler = (dataForm: { image: string[]; }) => {
+    updatePhoto({
+      variables: {
+        imageProfile: dataForm.image,
+      },
+    }).then(() => refetch());
+  };
+
+  const refetchMe = () => refetch();
 
   const [visible, setVisible] = React.useState(false);
+
+  if (loading || !data) {
+    return <Loading />;
+  }
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -43,20 +90,45 @@ const ProfilPage: React.FC = () => {
         <div className="grid grid-cols-2 gap-4 mb-8 max-w-xs md:mb-20">
           <div className="">
             <img
-              src="https://www.babelio.com/users/AVT_Albert-Einstein_407.jpeg"
+              src={ userImage }
               className="border-4 border-white shadow-xl | rounded-full"
               alt="photo profil"
             />
           </div>
           <div className="flex flex-col | self-center">
             <div className="flex-inline overflow-clip overflow-hidden ...">
-              <h2 className="text-xl md:text-2xl">{data?.me?.username}</h2>
+              <h2 className="text-xl md:text-2xl">{user?.username}</h2>
             </div>
             <div className="mt-3">
               <button className="text-xs bg-white text-black p-2 border-2 border-gray-600 shadow-md rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
                 Paramètres
               </button>
             </div>
+
+            <form
+              className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+              onSubmit={handleSubmit(onSubmitHandler)}
+            >
+              <div>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Upload l'image
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="file"
+                  {...register("image")}
+                ></input>
+              </div>
+              <p className="text-red-500 text-xs italic">
+            {errors?.image?.message}
+          </p>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                Envoi ta photo belle bête
+              </button>
+            </form>
           </div>
         </div>
       </Container>
@@ -85,43 +157,50 @@ const ProfilPage: React.FC = () => {
       <Container className="flex flex-col mb-20 | items-center" padding>
         <div className={"bg-blue-500 text-center" + (visible ? " hidden" : "")}>
           {!visible && (
-          <div>
-            {!data?.me?.recipeFavorite && (
-              <div
-                className={
-                  "bg-green-600 text-center" + (visible ? " hidden" : "")
-                }
-              >
-                <h3 className="p-36 text-2xl">
-                  Vous n'avez pas de recette favorites o
-                </h3>
-              </div>
-            )}
-            {data?.me?.recipeFavorite?.map((recipe: any, index: any) => (
-              <>
-                {isMobile ? (
-                  <div
-                    key={index}
-                    className="w-full flex justify-center mb-2 pt-10"
-                  >
+            <div>
+              {isEmpty(user?.recipeFavorite) && (
+                <div
+                  className={
+                    "bg-green-600 text-center" + (visible ? " hidden" : "")
+                  }
+                >
+                  <h3 className="p-36 text-2xl">
+                    Vous n'avez pas de recette favorites 
+                  </h3>
+                </div>
+              )}
+              {user?.recipeFavorite?.map((recipe: any, index: any) => (
+                <>
+                  {isMobile ? (
+                    <div
+                      key={index}
+                      className="w-full flex justify-center mb-2 pt-10"
+                    >
+                      <RecipeCard
+                        parentFunction={refetchMe}
+                        recipe={recipe}
+                        key={index}
+                        inCarousel={false}
+                        isProfilPage={true}
+                      />
+                    </div>
+                  ) : (
                     <RecipeCard
+                      parentFunction={refetchMe}
                       recipe={recipe}
                       key={index}
                       inCarousel={false}
                       isProfilPage={true}
                     />
-                  </div>
-                ) : (
-                  <RecipeCard recipe={recipe} key={index} inCarousel={false} isProfilPage={true}/>
-                )}
-              </>
-            ))}
-          </div>
-        )}
+                  )}
+                </>
+              ))}
+            </div>
+          )}
         </div>
         {visible && (
           <div>
-            {!data?.me?.recipeAuthor && (
+            {isEmpty(user?.recipeAuthor) && (
               <div
                 className={
                   "bg-green-600 text-center" + (!visible ? " hidden" : "")
@@ -132,7 +211,7 @@ const ProfilPage: React.FC = () => {
                 </h3>
               </div>
             )}
-            {data?.me?.recipeAuthor?.map((recipe: any, index: any) => (
+            {user?.recipeAuthor?.map((recipe: any, index: any) => (
               <>
                 {isMobile ? (
                   <div
@@ -140,6 +219,7 @@ const ProfilPage: React.FC = () => {
                     className="w-full flex justify-center mb-2 pt-10"
                   >
                     <RecipeCard
+                      parentFunction={refetchMe}
                       recipe={recipe}
                       key={index}
                       isProfilPage={true}
@@ -147,7 +227,13 @@ const ProfilPage: React.FC = () => {
                     />
                   </div>
                 ) : (
-                  <RecipeCard recipe={recipe} key={index} isProfilPage={true} inCarousel={false} />
+                  <RecipeCard
+                    parentFunction={refetchMe}
+                    recipe={recipe}
+                    key={index}
+                    isProfilPage={true}
+                    inCarousel={false}
+                  />
                 )}
               </>
             ))}

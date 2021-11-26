@@ -1,7 +1,7 @@
 /* eslint-disable no-loop-func */
 import { DefaultOptions } from "@apollo/client";
 import {
-  ApolloClient, ApolloProvider, createHttpLink, from, fromPromise, gql, InMemoryCache
+  ApolloClient, ApolloProvider, createHttpLink, ApolloLink, from, fromPromise, gql, InMemoryCache
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
@@ -11,6 +11,7 @@ import authService from "services/auth.service";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { createUploadLink } from 'apollo-upload-client';
 
 let isRefreshing = false;
 let pendingRequests: any = [];
@@ -89,9 +90,7 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-const httpLink = createHttpLink({
-  uri: process.env.REACT_APP_API_URL,
-});
+const uploadLink = createUploadLink({ uri: process.env.REACT_APP_API_URL });
 
 const defaultOptions: DefaultOptions = {
   watchQuery: {
@@ -106,7 +105,8 @@ const defaultOptions: DefaultOptions = {
 
 export const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: from([errorLink, authLink.concat(httpLink)]),
+  // @ts-ignore
+  link: ApolloLink.from([errorLink, authLink.concat(uploadLink)]),
   uri: process.env.REACT_APP_API_URL,
   defaultOptions: defaultOptions,
 });

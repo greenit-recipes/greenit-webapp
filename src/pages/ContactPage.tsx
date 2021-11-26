@@ -79,7 +79,6 @@ const ContactPage = () => {
   }, [message]);
   const [sendMessage] = useSendMessageMutation({
     onError: (err) => {
-      console.log("err", err);
     },
     onCompleted: (data) => {
       setMessage(

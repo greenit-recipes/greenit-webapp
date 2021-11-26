@@ -5,7 +5,6 @@ import { createBrowserHistory } from "history";
 import { Route, Router, Switch } from "react-router-dom";
 import RecipeListPage from "./pages/recipe/ListPage/ListPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
-import RecipeSinglePage from "./pages/recipe/SinglePage";
 import PersonalizedSearch from "./pages/PersonalizedSearch";
 import ContactPage from "./pages/ContactPage";
 import WhyPage from "./pages/WhyPage";
@@ -18,6 +17,7 @@ import Activate from "pages/activate";
 import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
 import CreateRecipe from "pages/CreateRecipe/CreateRecipe";
+import RecipeSinglePage from "pages/recipe/SinglePage/SinglePage";
 
 export const history = createBrowserHistory()
 
