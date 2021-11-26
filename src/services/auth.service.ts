@@ -78,6 +78,7 @@ export const ME = gql`
         duration
         difficulty
         numberOfLikes
+        numberOfIngredients
         category {
           name
         }

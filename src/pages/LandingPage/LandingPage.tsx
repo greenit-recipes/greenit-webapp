@@ -26,8 +26,10 @@ import { Link } from "react-router-dom";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
 import { BackgroundImage } from "./Components/BackgroundImage";
+import authService from "services/auth.service";
 
 const LandingPage = () => {
+  const isLoggedIn = authService.isLoggedIn();
   const isMobile = useIsMobile();
   const { error, loading, data, refetch } = useRecipesQuery({
     variables: { first: 10 },
@@ -36,7 +38,7 @@ const LandingPage = () => {
     <div className="flex flex-col | items-center self-center">
       <Navbar />
 
-      <BackgroundImage className="overflow-hidden"/>
+      <BackgroundImage className="overflow-hidden" />
 
       <Container
         className="flex flex-col | items-center | mt-16 lg:mt-28"
@@ -167,44 +169,46 @@ const LandingPage = () => {
         </Grid>
       </Container>
 
-      <Container
-        margin={20}
-        title="Crée ton espace perso"
-        itemsCenter
-        padding={isMobile}
-      >
-        <Grid
-          type="row"
-          gap="0"
-          size={{
-            default: 2,
-          }}
+      {isLoggedIn ? (
+        <div/>
+      ) : (
+        <Container
+          margin={20}
+          title="Créee ton espace personnel"
+          itemsCenter
+          padding={isMobile}
         >
-          <div className="grid mb-8">
-            <h3 className="text-lg md:text-xl | text-center whitespace-pre-line">
-              Commence ton carnet de recettes,
-              {"\n"} et partage ton savoir
-            </h3>
-          </div>
-          <div className="flex justify-center h-22">
-            <img
-              src={likedIconOff}
-              className="-ml-6 w-16 h-16"
-              alt="liked button"
-            />
-            <img
-              src={likedIconOn}
-              className="absolute ml-8 | w-16 h-16"
-              alt="liked button"
-            />
-          </div>
-        </Grid>
-
-        <Button type="orange">
-          Créer mon profil
-        </Button>
-
-      </Container>
+          <Grid
+            type="row"
+            gap="0"
+            size={{
+              default: 2,
+            }}
+          >
+            <div className="grid mb-8">
+              <h3 className="text-lg md:text-xl | text-center whitespace-pre-line">
+                Commence ton carnet de recettes,
+                {"\n"} et partage ton savoir
+              </h3>
+            </div>
+            <div className="flex justify-center h-22">
+              <img
+                src={likedIconOff}
+                className="-ml-6 w-16 h-16"
+                alt="liked button"
+              />
+              <img
+                src={likedIconOn}
+                className="absolute ml-8 | w-16 h-16"
+                alt="liked button"
+              />
+            </div>
+          </Grid>
+          <Link to="/register">
+            <Button type="orange">Créer mon profil</Button>
+          </Link>
+        </Container>
+      )}
 
       <Container
         className="w-full md:3/5 h-full"
@@ -244,9 +248,7 @@ const LandingPage = () => {
           plus durable et responsable.
         </h3>
         <Link to="/why">
-          <Button type="blue">
-            En savoir plus
-          </Button>
+          <Button type="blue">En savoir plus</Button>
         </Link>
       </Container>
 

@@ -77,33 +77,39 @@ export const Navbar: React.FC = () => {
         </Link>
       </div>
 
-      <Button
-        type="orange"
-        rounded="xl"
-        className="flex justify-end self-center | mr-4 cursor-pointer"
-      >
-        {isLoggedIn ? (
-          <Link to="/profil">
+      {isLoggedIn ? (
+        <Link to="/profil">
+          <Button
+            type="orange"
+            rounded="xl"
+            className="flex justify-end self-center | mr-4 cursor-pointer"
+          >
             Profil
-          </Link>
-        ) : (
-          <Link to="/connexion">
+          </Button>
+        </Link>
+      ) : (
+        <Link to="/connexion">
+          <Button
+            type="orange"
+            rounded="xl"
+            className="flex justify-end self-center | mr-4 cursor-pointer"
+          >
             Se connecter
-          </Link>
-        )}
-      </Button>
+          </Button>
+        </Link>
+      )}
 
-      {!isLoggedIn &&
-        <Button
-        type="orange"
-        rounded="xl"
-        className="py-2 px-4 flex justify-end self-center | mr-4 cursor-pointer"
-      >
-          <Link to="/register">
+      <Link to="/register">
+        {!isLoggedIn && (
+          <Button
+            type="orange"
+            rounded="xl"
+            className="py-2 px-4 flex justify-end self-center | mr-4 cursor-pointer"
+          >
             Créer un compte
-          </Link>
-      </Button>
-      }
+          </Button>
+        )}
+      </Link>
     </div>
   );
 };

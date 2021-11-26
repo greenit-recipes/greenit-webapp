@@ -85,7 +85,7 @@ const WorkshopPage = () => {
 
       <div className="w-4/5 mb-10 mt-5 flex flex-col">
         <div className="grid md:grid-cols-4">
-          <div className="bg-white rounded md:row-span-2">
+          <div className="rounded md:row-span-2">
             <div className="flex justify-center items-center align-middle h-full">
               <img
                   src={`https://i0.wp.com/manayin.com/wp-content/uploads/2019/02/recette-savon-maison-diy-fete-des-meres-11.jpg?resize=1440%2C2160&ssl=1`}
@@ -94,7 +94,7 @@ const WorkshopPage = () => {
               />
             </div>
           </div>
-          <div className="bg-white mt-6 rounded">
+          <div className="mt-6 rounded">
             <div className="h-9/12 static ...">
               <div className="static ..."><h2>Prochain ateliers :</h2></div>
               <div className="p-4 inline-block shadow-lg rounded-2xl">
@@ -118,7 +118,7 @@ const WorkshopPage = () => {
               </h5>
             </div>
           </div>
-          <div className="bg-white mt-8 rounded">
+          <div className="mt-8 rounded">
             <div className="h-9/12 static ...">
               <div className="p-4 inline-block shadow-lg rounded-2xl">
                 <h5 className="text-base">Samedi 16 octobre</h5>
@@ -188,7 +188,7 @@ const WorkshopPage = () => {
 
       <div className="w-4/5 mb-10 mt-5 flex flex-col">
         <div className="grid md:grid-cols-4">
-          <div className="bg-white rounded md:row-span-2">
+          <div className="rounded md:row-span-2">
             <div className="flex justify-center items-center align-middle h-full">
               <img
                   src={`https://i0.wp.com/manayin.com/wp-content/uploads/2019/02/recette-savon-maison-diy-fete-des-meres-11.jpg?resize=1440%2C2160&ssl=1`}
@@ -197,7 +197,7 @@ const WorkshopPage = () => {
               />
             </div>
           </div>
-          <div className="bg-white mt-6 rounded">
+          <div className="mt-6 rounded">
             <div className="h-9/12 static ...">
               <div className="static ..."><h2>Prochain ateliers :</h2></div>
               <div className="p-4 inline-block shadow-lg rounded-2xl">
@@ -221,7 +221,7 @@ const WorkshopPage = () => {
               </h5>
             </div>
           </div>
-          <div className="bg-white mt-8 rounded">
+          <div className="mt-8 rounded">
             <div className="h-9/12 static ...">
               <div className="p-4 inline-block shadow-lg rounded-2xl">
                 <h5 className="text-base">Samedi 16 octobre</h5>
@@ -252,7 +252,7 @@ const WorkshopPage = () => {
         padding
       >
         <h2 className="mt-10 text-1xl md:text-2xl | text-center">
-        Clique sur la region où tu aimerais avoir un atelier :      
+          Clique sur la region où tu aimerais avoir un atelier :      
         </h2>
       </Container>
 

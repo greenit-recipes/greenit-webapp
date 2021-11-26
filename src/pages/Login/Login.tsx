@@ -124,11 +124,13 @@ const Login: React.FC = () => {
             </label>
           </div>
           <div className="flex items-center justify-between">
-            <Button
-              type="submit"
+            <button
+              className="flex justify-center items-center cursor-pointer
+              bg-blue rounded-lg p-3 h-12 text-xl bold text-white border-2 border-transparent
+              hover:bg-white hover:border-blue hover:text-blue"
             >
               Connexion
-            </Button>
+            </button>
             <a
               className="inline-block align-baseline font-medium text-sm text-blue-500 hover:text-blue-800"
               href="#"

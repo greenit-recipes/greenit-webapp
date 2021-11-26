@@ -199,9 +199,7 @@ const Register: React.FC = () => {
             </label>
 
             <select {...register("userWantFromGreenit")}>
-              <option 
-                value="shared_talk"
-              >
+              <option value="shared_talk">
                 Partager et discuter mes connaissances sur le DIY
               </option>
               <option value="meet">Rencontrer des adeptes du DIY</option>
@@ -232,11 +230,14 @@ const Register: React.FC = () => {
             </select>
           </div>
           <div className="flex items-center justify-between">
-            <Button
+            <button
+              className="flex justify-center items-center cursor-pointer
+              bg-blue rounded-lg p-3 h-12 text-xl bold text-white border-2 border-transparent
+              hover:bg-white hover:border-blue hover:text-blue"
               type="submit"
             >
               Sign In
-            </Button>
+            </button>
           </div>
         </form>
         <div>
