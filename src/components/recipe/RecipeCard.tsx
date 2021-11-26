@@ -9,12 +9,14 @@ import {
   ADD_OR_REMOVE_LIKE_RECIPE,
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import authService from "services/auth.service";
+import { getImagePath } from "helpers/image.helper";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
   recipe: RecipeFragment | null | undefined;
   inCarousel?: boolean;
   isProfilPage?: boolean;
+  parentFunction?: any;
 }
 
 export const RecipeCard: React.FC<RecipeCardProps> = ({
@@ -22,6 +24,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
   inCarousel,
   isProfilPage,
+  parentFunction = null,
 }) => {
   const isMobile = useIsMobile();
   const [isLiked, setLiked] = useState(recipe?.isLikedByCurrentUser);
@@ -49,6 +52,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         className={`mb-9 ${!isMobile && "ml-9"}`}
       >
         <img
+          // @ts-ignore
+          src={getImagePath(recipe?.image)}
           className={`flex flex-col | ${
             enableShadow && "shadow-lg"
           } rounded-3xl | justify-self-center`}
@@ -56,7 +61,6 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             height: "28rem",
             width: "20rem",
           }}
-          src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
         ></img>
         <div
           className="h-auto | mt-auto | bg-white shadow-lg rounded-3xl absolute bottom-0"
@@ -112,7 +116,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
                   variables: {
                     recipeId: recipe?.id,
                   },
-                });
+                }).then(() => parentFunction ? parentFunction() : null);
               }}
             >
               {isLiked ? "dislike" : "like batard"}
@@ -129,7 +133,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
                   variables: {
                     recipeId: recipe?.id,
                   },
-                });
+                }).then(() => parentFunction ? parentFunction() : null);
               }}
             >
               {isFavorite ? "Enlever des favoris" : "Ajouter au favoris"}

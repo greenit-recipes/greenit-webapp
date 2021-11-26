@@ -1,25 +1,27 @@
 import React, { createRef, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { useHistory, useLocation } from "react-router-dom";
-import { useRecipeQuery } from "../../graphql";
-import { Container, Grid, Footer, Loading, Navbar } from "../../components";
-import useIsMobile from "../../hooks/isMobile";
-import { getSecondsFromDuration } from "../../utils";
+import { useRecipeQuery } from "../../../graphql";
+import { Container, Grid, Footer, Loading, Navbar } from "../../../components";
+import useIsMobile from "../../../hooks/isMobile";
+import { getSecondsFromDuration } from "../../../utils";
 import { isEmpty } from "lodash";
 import HTMLReactParser from "html-react-parser";
 import authService from "services/auth.service";
 import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
-import {
-  ADD_OR_REMOVE_FAVORITE_RECIPE,
-  ADD_OR_REMOVE_LIKE_RECIPE,
-} from "pages/CreateRecipe/CreateRecipeRequest";
+import { Link } from "react-router-dom";
+import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {
   ADD_COMMENT_TO_RECIPE,
   ADD_OR_REMOVE_LIKE_COMMENT,
-} from "pages/recipe/SinglePageRequest";
+} from "pages/recipe/SinglePage/SinglePageRequest";
+import { getImagePath } from "helpers/image.helper";
+import { getUuidFromId } from "helpers/user.helper";
+import moment from "moment";
+import { momentGreenit } from "helpers/time.helper";
 
 interface InstructionProps {
   index: number;
@@ -100,7 +102,6 @@ const RecipeSinglePage = () => {
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
   const [nbrComment, setNbrComment] = useState(data?.recipe?.numberOfComments);
 
-
   const isLoggedIn = authService.isLoggedIn();
   const [videoDuration, setVideoDuration] = useState<number>(0);
   useEffect(() => {
@@ -134,20 +135,22 @@ const RecipeSinglePage = () => {
   const [addOrRemoveLikeRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
 
   const onSubmitHandler = (dataForm: { comment: string }) => {
-    const toto = {
+    const newCommentAddedByCurrentUser = {
       comment: dataForm?.comment,
       numberOfLikes: 0,
-      isLikedByCurrentUser: false,
-      createdAt: "changer par la date actuelle quand on ajoute un commentaire !!!",
+      createdAt: moment().locale("fr"),
+      isNewComment: true,
       author: {
+        // @ts-ignore
+        id: getUuidFromId(data?.me?.id),
+        imageProfile: data?.me?.imageProfile,
         username: data?.me?.username,
-      }
+      },
     };
     // @ts-ignore
-    recipe?.comments?.unshift(toto)
+    recipe?.comments?.unshift(newCommentAddedByCurrentUser);
     // @ts-ignore: Object is possibly 'null'.
-    setNbrComment(nbrComment + 1)
-    console.log("recipe -->", recipe)
+    setNbrComment(nbrComment + 1);
     addCommentToRecipe({
       variables: {
         recipeId: data?.recipe?.id,
@@ -169,61 +172,66 @@ const RecipeSinglePage = () => {
           title={recipe?.name}
           itemsCenter
         >
-          {isMobile ? (
-            <>
-              <div className="flex justify-center">
-                {
-                  // @ts-ignore: Object is possibly 'null'.
-                  recipe && HTMLReactParser(recipe?.textAssociate)
-                }
-              </div>
-              <div className="text-xl">nombre like === {nbrLiked}</div>
-              <div className="text-xl">nombre de commentaire === {nbrComment}</div>
-              <div>
-                {isLoggedIn && (
-                  <button
-                    onClick={() => {
-                      setLiked(!isLiked);
-                      // @ts-ignore: Object is possibly 'null'.
-                      setNbrLiked(!isLiked ? nbrLiked + 1 : nbrLiked - 1);
-                      addOrRemoveLikeRecipe({
-                        variables: {
-                          recipeId: recipe?.id,
-                        },
-                      });
-                    }}
-                  >
-                    {isLiked ? "dislike" : "like batard"}
-                  </button>
-                )}
-              </div>
-              <div>
-                {isLoggedIn && (
-                  <button
-                    onClick={() => {
-                      setFavorite(!isFavorite);
-                      // @ts-ignore: Object is possibly 'null'.
-                      addOrRemoveFavoriteRecipe({
-                        variables: {
-                          recipeId: recipe?.id,
-                        },
-                      });
-                    }}
-                  >
-                    {isFavorite ? "Enlever des favoris" : "Ajouter au favoris"}
-                  </button>
-                )}
-              </div>
-              <div>
-                <img
-                  src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
-                  className="h-96 w-5/6 rounded-3xl mt-10"
-                />
-                <div className="w-full mt-10 whitespace-pre break-all flex-wrap inline-flex h-auto">
+          <div className="w-full h-auto">
+            <div className="flex justify-center">
+              {
+                // @ts-ignore: Object is possibly 'null'.
+                recipe && HTMLReactParser(recipe?.textAssociate)
+              }
+            </div>
+            <div className="text-xl">nombre like === {nbrLiked}</div>
+            <div className="text-xl">
+              nombre de commentaire === {nbrComment}
+            </div>
+            <div>
+              {isLoggedIn && (
+                <button
+                  onClick={() => {
+                    setLiked(!isLiked);
+                    // @ts-ignore: Object is possibly 'null'.
+                    setNbrLiked(!isLiked ? nbrLiked + 1 : nbrLiked - 1);
+
+                    addOrRemoveLikeRecipe({
+                      variables: {
+                        recipeId: recipe?.id,
+                      },
+                    });
+                  }}
+                >
+                  {isLiked ? "dislike" : "like batard"}
+                </button>
+              )}
+            </div>
+            <div>
+              {isLoggedIn && (
+                <button
+                  onClick={() => {
+                    setFavorite(!isFavorite);
+                    // @ts-ignore: Object is possibly 'null'.
+                    addOrRemoveFavoriteRecipe({
+                      variables: {
+                        recipeId: recipe?.id,
+                      },
+                    });
+                  }}
+                >
+                  {isFavorite ? "Enlever des favoris" : "Ajouter au favoris"}
+                </button>
+              )}
+            </div>
+            <div className="flex flex-row">
+              <img
+                // @ts-ignore
+                src={getImagePath(recipe?.image)}
+                className="w-1/4 rounded-3xl mt-10 self-start"
+                style={{ height: "28rem", minWidth: "320px" }}
+              />
+              <div className="flex flex-col ml-10 mt-10 w-full">
+                <div className="w-full whitespace-pre break-all flex-wrap inline-flex h-11">
                   {recipe?.tags.map((item, index) => (
                     <div
                       key={index}
-                      className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center h-8 cursor-pointer"
+                      className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
                       style={{ backgroundColor: "#888888" }}
                       onClick={() => {
                         history.push(`/recipes?tags=${item.name}`);
@@ -233,113 +241,28 @@ const RecipeSinglePage = () => {
                     </div>
                   ))}
                 </div>
-                <div className="mt-5 flex flex-col self-start">
-                  <h3 className="pb-1 text-2xl">Ingredients</h3>
-                  {recipe?.ingredients?.map((item, index) => (
-                    <h3 className="text-xl pt-2" key={index}>
-                      {item.amount} {item.name}
-                    </h3>
-                  ))}
-                </div>
-                <div className="mt-5 flex flex-col self-start">
-                  <h3 className="pb-1 text-2xl">Ustensiles</h3>
-                  {recipe?.utensils?.map((item, index) => (
-                    <h3 className="text-xl pt-2" key={index}>
-                      {item.name}
-                    </h3>
-                  ))}
-                </div>
-              </div>
-            </>
-          ) : (
-            <div className="w-full h-auto">
-              <div className="flex justify-center">
-                {
-                  // @ts-ignore: Object is possibly 'null'.
-                  recipe && HTMLReactParser(recipe?.textAssociate)
-                }
-              </div>
-              <div className="text-xl">nombre like === {nbrLiked}</div>
-              <div className="text-xl">nombre de commentaire === {nbrComment}</div>
-              <div>
-                {isLoggedIn && (
-                  <button
-                    onClick={() => {
-                      setLiked(!isLiked);
-                      // @ts-ignore: Object is possibly 'null'.
-                      setNbrLiked(!isLiked ? nbrLiked + 1 : nbrLiked - 1);
-                      addOrRemoveLikeRecipe({
-                        variables: {
-                          recipeId: recipe?.id,
-                        },
-                      });
-                    }}
-                  >
-                    {isLiked ? "dislike" : "like batard"}
-                  </button>
-                )}
-              </div>
-              <div>
-                {isLoggedIn && (
-                  <button
-                    onClick={() => {
-                      setFavorite(!isFavorite);
-                      // @ts-ignore: Object is possibly 'null'.
-                      addOrRemoveFavoriteRecipe({
-                        variables: {
-                          recipeId: recipe?.id,
-                        },
-                      });
-                    }}
-                  >
-                    {isFavorite ? "Enlever des favoris" : "Ajouter au favoris"}
-                  </button>
-                )}
-              </div>
-              <div className="flex flex-row">
-                <img
-                  src={`https://fra1.digitaloceanspaces.com/greenit/greenit/${recipe?.image}`}
-                  className="w-1/4 rounded-3xl mt-10 self-start"
-                  style={{ height: "28rem", minWidth: "320px" }}
-                />
-                <div className="flex flex-col ml-10 mt-10 w-full">
-                  <div className="w-full whitespace-pre break-all flex-wrap inline-flex h-11">
-                    {recipe?.tags.map((item, index) => (
-                      <div
-                        key={index}
-                        className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
-                        style={{ backgroundColor: "#888888" }}
-                        onClick={() => {
-                          history.push(`/recipes?tags=${item.name}`);
-                        }}
-                      >
-                        {item.name}
-                      </div>
+                <div className="flex flex-row w-full mt-10">
+                  <div className="mt-5 flex flex-col self-start w-1/2">
+                    <h3 className="pb-1 text-2xl">Ingredients</h3>
+                    {/* @ts-ignore*/}
+                    {recipe?.ingredients?.map((item, index) => (
+                      <h3 className="text-xl pt-2" key={index}>
+                        {item.amount} {item.name}
+                      </h3>
                     ))}
                   </div>
-                  <div className="flex flex-row w-full mt-10">
-                    <div className="mt-5 flex flex-col self-start w-1/2">
-                      <h3 className="pb-1 text-2xl">Ingredients</h3>
-                      {/* @ts-ignore*/}
-                      {recipe?.ingredients?.map((item, index) => (
-                        <h3 className="text-xl pt-2" key={index}>
-                          {item.amount} {item.name}
-                        </h3>
-                      ))}
-                    </div>
-                    <div className="mt-5 flex flex-col self-start">
-                      <h3 className="pb-1 text-2xl">Ustensiles</h3>
-                      {recipe?.utensils?.map((item, index) => (
-                        <h3 className="text-xl pt-2" key={index}>
-                          {item.name}
-                        </h3>
-                      ))}
-                    </div>
+                  <div className="mt-5 flex flex-col self-start">
+                    <h3 className="pb-1 text-2xl">Ustensiles</h3>
+                    {recipe?.utensils?.map((item, index) => (
+                      <h3 className="text-xl pt-2" key={index}>
+                        {item.name}
+                      </h3>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
-          )}
+          </div>
         </Container>
         <div className="mt-10 flex flex-col">
           <h3 className="pb-2 text-2xl lg:text-3xl">Description</h3>
@@ -364,6 +287,7 @@ const RecipeSinglePage = () => {
         >
           <div className="h-96 w-full">
             <ReactPlayer
+              // @ts-ignore
               url={recipe?.videoUrl}
               controls={true}
               ref={player}
@@ -414,8 +338,15 @@ const RecipeSinglePage = () => {
         <div className="pt-14 flex flex-col">
           <h3 className="pb-2 text-2xl lg:text-3xl">Commentaire</h3>
           {recipe?.comments?.map((comment: any, index: number) => {
+            // @ts-ignore
+            const canLike = comment?.author?.id !== getUuidFromId(data?.me?.id)
             return (
-              <div className="pt-14 flex flex-col">
+              <div className="pt-14 flex flex-col" key={index}>
+                <img
+                  src={getImagePath(comment?.author?.imageProfile)}
+                  className="w-1/4 rounded-3xl mt-10 self-start"
+                  style={{ height: "4rem", width: "4rem", minWidth: "20px" }}
+                />
                 <p className="text-md lg:text-lg">
                   Par: {comment?.author?.username}
                 </p>
@@ -424,23 +355,32 @@ const RecipeSinglePage = () => {
                   Commentaire: {comment?.comment}
                 </p>
                 <p className="text-md lg:text-lg">
-                  Date de publication: {comment?.createdAt}
+                  Date de publication: {momentGreenit(comment?.createdAt)}
                 </p>
                 <p className="text-md lg:text-lg">
                   Nombre de like par commentaire: {comment?.numberOfLikes}
                 </p>
-                <button
-                  className="text-md lg:text-lg"
-                  onClick={() => {
-                    addOrRemoveLikeComment({
-                      variables: {
-                        commentId: comment?.id,
-                      },
-                    });
-                  }}
-                >
-                  Like moi grand fou
-                </button>
+                {isLoggedIn ? (
+                  // @ts-ignore
+                  canLike && (
+                    <button
+                      className="text-md lg:text-lg"
+                      onClick={() => {
+                        addOrRemoveLikeComment({
+                          variables: {
+                            commentId: comment?.id,
+                          },
+                        });
+                      }}
+                    >
+                      Like moi grand fou
+                    </button>
+                  )
+                ) : (
+                  <Link to="/connexion">
+                    <h1>Like (pas connecté à changer a la place de l'icon)</h1>
+                  </Link>
+                )}
               </div>
             );
           })}
@@ -465,12 +405,21 @@ const RecipeSinglePage = () => {
             </p>
           </div>
           <div className="flex items-center justify-between">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Envoyer le commentaire
-            </button>
+            {isLoggedIn ? (
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                Envoyer le commentaire
+              </button>
+            ) : (
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                Se connecter pour envoyer un commentaire (rajouter le lien)
+              </button>
+            )}
           </div>
         </form>
       </div>

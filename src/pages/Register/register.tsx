@@ -77,7 +77,6 @@ const Register: React.FC = () => {
       }
     }
   }, [setError, error, data]);
-  console.log("errors", errors);
   const onSubmitHandler = (data: {
     email: string;
     utilisateur: string;

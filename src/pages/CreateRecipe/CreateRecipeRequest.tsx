@@ -38,6 +38,8 @@ export const CREATE_EMAIL_RECIPE = gql`
     $userUsername: String!
     $userId: String!
     $description: String!
+    $image: Upload!
+    $video: Upload!
     $duration: Int!
     $tags: [String]!
     $ingredients: [String]!
@@ -54,6 +56,8 @@ export const CREATE_EMAIL_RECIPE = gql`
       userUsername: $userUsername
       userId: $userId
       description: $description
+      image: $image
+      video: $video
       duration: $duration
       tags: $tags
       ingredients: $ingredients

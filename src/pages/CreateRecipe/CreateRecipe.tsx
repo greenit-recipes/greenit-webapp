@@ -1,14 +1,19 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { imageValidation, videoValidation } from "helpers/yup-validation.helper";
 import {
-  CREATE_EMAIL_RECIPE, GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
+  CREATE_EMAIL_RECIPE,
+  GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { RecipeDifficulty } from "../../graphql";
 
-const schema = yup.object().shape({});
+const schema = yup.object().shape({
+  image: imageValidation(),
+  video: videoValidation(),
+});
 
 const CreateRecipe: React.FC = () => {
   const {
@@ -52,7 +57,7 @@ const CreateRecipe: React.FC = () => {
   const { loading, error, data } = useQuery(
     GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
   );
-  const [createEmailRecipe] = useMutation(CREATE_EMAIL_RECIPE)
+  const [createEmailRecipe] = useMutation(CREATE_EMAIL_RECIPE);
 
   useEffect(() => {
     if (data?.register?.success === false || error) {
@@ -75,6 +80,8 @@ const CreateRecipe: React.FC = () => {
     userUsername: string;
     userId: string;
     description: string;
+    image: string[];
+    video: string[];
     difficulty: string;
     ingredients: string[];
     duration: number;
@@ -91,6 +98,8 @@ const CreateRecipe: React.FC = () => {
         userEmail: data.me.email,
         userUsername: data.me.username,
         userId: data.me.id,
+        image: dataForm.image,
+        video: dataForm.video,
         description: dataForm.description,
         difficulty: dataForm.difficulty,
         ingredients: dataForm.ingredients,
@@ -190,7 +199,7 @@ const CreateRecipe: React.FC = () => {
         {/* dynamic */}
 
         <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
             Séléctionner les ingrédients et la quantité
           </label>
           <ul>
@@ -244,7 +253,6 @@ const CreateRecipe: React.FC = () => {
             <ul>
               {instructionsFields.map((item, index) => (
                 <li key={item.id}>
-
                   <input {...register(`instructions.${index}.instruction`)} />
 
                   <button
@@ -263,16 +271,13 @@ const CreateRecipe: React.FC = () => {
         </div>
 
         <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
             Séléctionner les ustensiles et la quantité
           </label>
           <ul>
             {utensilsFields.map((item, index) => (
               <li key={item.id}>
-                <select
-                  {...register(`utensils.${index}.name`)}
-                  id="utensils"
-                >
+                <select {...register(`utensils.${index}.name`)} id="utensils">
                   {data?.allUtensils?.map((ingredient: any, i: number) => (
                     <option value={ingredient?.name} key={i}>
                       {" "}
@@ -321,6 +326,28 @@ const CreateRecipe: React.FC = () => {
             {...register("notes_from_author")}
           ></input>
           <p className="text-red-500 text-xs italic">{errors.name?.message}</p>
+        </div>
+        <div>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Upload l'image
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="file"
+            {...register("image")}
+          ></input>
+          <p className="text-red-500 text-xs italic">{errors.image?.message}</p>
+        </div>
+        <div>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Upload video
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="file"
+            {...register("video")}
+          ></input>
+          <p className="text-red-500 text-xs italic">{errors.video?.message}</p>
         </div>
 
         {/* Submit */}

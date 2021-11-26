@@ -54,6 +54,14 @@ export const LOGIN_ACCOUNT = gql`
   }
 `;
 
+export const UPDATE_IMAGE_ACCOUNT = gql`
+  mutation UpdateImageAccount($imageProfile: Upload!) {
+  updateImageAccount(imageProfile: $imageProfile) {
+      success
+    }
+  }
+`;
+
 export const ME = gql`
   query Me {
     me {
@@ -61,6 +69,7 @@ export const ME = gql`
       lastName
       email
       verified
+      imageProfile
       recipeAuthor {
         id
         urlId

@@ -28,6 +28,7 @@ query recipe($id: String!) {
       createdAt
       author {
         imageProfile
+        id
         username
       }
     }
@@ -39,7 +40,9 @@ query recipe($id: String!) {
     instructions
   }
   me {
+    id
     username
+    imageProfile
     email
   }
 }

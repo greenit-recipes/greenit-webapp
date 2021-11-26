@@ -39,9 +39,7 @@ const Login: React.FC = () => {
   });
   // Error for graphql call
   React.useEffect(() => {
-    console.log("-->", data);
     if (data?.tokenAuth?.success === false || error) {
-      console.log("---- ERROR ----");
       if (
         data?.tokenAuth?.errors?.nonFieldErrors[0]?.code ===
         "invalid_credentials"
@@ -63,7 +61,6 @@ const Login: React.FC = () => {
         password: data.password,
       },
     }).then((response) => {
-        console.log('response -->', response)
       if (response?.data?.tokenAuth?.token) {
         authServiceService.setStorageLoginToken(response?.data?.tokenAuth?.token);
         authServiceService.setStorageLoginRefreshToken(response?.data?.tokenAuth?.refreshToken);
