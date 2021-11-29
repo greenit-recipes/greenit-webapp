@@ -15,6 +15,8 @@ import {
   money,
   planet,
   landingPageCategories,
+  likedIconOn,
+  likedIconOff,
 } from "../../icons";
 import ReactPlayer from "react-player";
 import AliceCarousel from "react-alice-carousel";
@@ -22,8 +24,12 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { useRecipesQuery } from "../../graphql";
 import { Link } from "react-router-dom";
 import { CategoryCircle } from "./Components/CategoryCircle";
+import { Newsletter } from "./Components/Newsletter";
+import { BackgroundImage } from "./Components/BackgroundImage";
+import authService from "services/auth.service";
 
 const LandingPage = () => {
+  const isLoggedIn = authService.isLoggedIn();
   const isMobile = useIsMobile();
   const { error, loading, data, refetch } = useRecipesQuery({
     variables: { first: 10 },
@@ -31,16 +37,16 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
-      <div className="landingpage_bg_1 | w-32 h-32 md:w-56 md:h-56"></div>
-      <div className="landingpage_bg_2 | w-36 h-36 md:w-72 md:h-72"></div>
-      <div className="landingpage_bg_3 | w-32 h-32 md:w-56 md:h-56"></div>
-      <div className="landingpage_bg_4 | w-32 h-32 md:w-56 md:h-56"></div>
+
+      <BackgroundImage className="overflow-hidden" />
+
       <Container
         className="flex flex-col | items-center | mt-16 lg:mt-28"
         padding
       >
         <h1 className="text-3xl md:text-5xl | pb-16 text-center">
-          L’espace de la production maison, <br/> pour une nouvelle consommation 
+          L’espace de la production maison, <br /> pour une nouvelle
+          consommation
         </h1>
         <div className="w-full | md:w-9/12">
           <SearchBar />
@@ -118,7 +124,7 @@ const LandingPage = () => {
       </div>
       <Container
         title="Nos tutos vidéos pour commencer"
-        className="w-screen md:3/5 h-96 text-center mt-8"
+        className="w-screen md:3/5 text-center mt-8"
         itemsCenter
       >
         <Grid
@@ -163,10 +169,51 @@ const LandingPage = () => {
         </Grid>
       </Container>
 
+      {isLoggedIn ? (
+        <div/>
+      ) : (
+        <Container
+          margin={20}
+          title="Créee ton espace personnel"
+          itemsCenter
+          padding={isMobile}
+        >
+          <Grid
+            type="row"
+            gap="0"
+            size={{
+              default: 2,
+            }}
+          >
+            <div className="grid mb-8">
+              <h3 className="text-lg md:text-xl | text-center whitespace-pre-line">
+                Commence ton carnet de recettes,
+                {"\n"} et partage ton savoir
+              </h3>
+            </div>
+            <div className="flex justify-center h-22">
+              <img
+                src={likedIconOff}
+                className="-ml-6 w-16 h-16"
+                alt="liked button"
+              />
+              <img
+                src={likedIconOn}
+                className="absolute ml-8 | w-16 h-16"
+                alt="liked button"
+              />
+            </div>
+          </Grid>
+          <Link to="/register">
+            <Button type="orange">Créer mon profil</Button>
+          </Link>
+        </Container>
+      )}
+
       <Container
-        className="w-full md:3/5 h-full pt-10 md:mt-40"
+        className="w-full md:3/5 h-full"
         title="Pourquoi Greenit?"
-        margin={20}
+        margin={10}
         itemsCenter
         padding={isMobile}
       >
@@ -197,15 +244,16 @@ const LandingPage = () => {
           ))}
         </Grid>
         <h3 className="mt-10 mb-10 text-md md:text-xl text-center">
-          Greenit est une initiative visant à encourager une consommation <br/> 
+          Greenit est une initiative visant à encourager une consommation <br />
           plus durable et responsable.
         </h3>
-        <Button type="success" rounded="xl" className="w-36 md:w-48 h-12">
-          <Link to="/why" className="text-md md:text-xl">
-            <h2>En savoir plus</h2>
-          </Link>
-        </Button>
+        <Link to="/why">
+          <Button type="blue">En savoir plus</Button>
+        </Link>
       </Container>
+
+      <Newsletter />
+
       <Footer />
     </div>
   );

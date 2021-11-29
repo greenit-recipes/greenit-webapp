@@ -28,10 +28,9 @@ h3 {
   font-family: QuickSand_Regular;
 }
 
-
 .text_logo {
-  color: #83D489;
-  font-weight:500;
+  color: #83d489;
+  font-weight: 500;
 }
 
 .alice-carousel__prev-btn,
@@ -102,7 +101,7 @@ h3 {
 }
 
 .button_contact {
-  background-color:#83D489;
+  background-color: #83d489;
   margin-top: 4px;
   color: white;
   border: 2px solid transparent;
@@ -112,13 +111,13 @@ h3 {
 
 .button_contact:hover {
   background-color: transparent;
-  color: #83D489;
+  color: #83d489;
   border: 2px solid;
-  border-color: #83D489;
+  border-color: #83d489;
 }
 
 .button_reserver {
-  background-color:#8FB5E8;
+  background-color: #8fb5e8;
   margin-top: 12px;
   color: white;
   border: 2px solid transparent;
@@ -128,13 +127,13 @@ h3 {
 
 .button_reserver:hover {
   background-color: transparent;
-  color:#8FB5E8;
+  color: #8fb5e8;
   border: 2px solid;
-  border-color: #8FB5E8;
+  border-color: #8fb5e8;
 }
 
 .button_region {
-  background-color:white;
+  background-color: white;
   color: black;
   border: 2px solid transparent;
   padding: 20px 15px;
@@ -143,24 +142,24 @@ h3 {
 }
 
 .button_region:hover {
-  background-color: #5C5C5C;
-  color:white;
+  background-color: #5c5c5c;
+  color: white;
 }
 
-.landingpage_bg_1{
-  background-color: #83D489;
-  z-index:-1;
-  position: absolute;
+.landingpage_bg_1 {
+  background-color: #83d489;
+  z-index: -1;
+  position: fixed;
   margin-top: 10em;
   filter: blur(3.5rem);
   border-radius: 100%;
   opacity: 40%;
 }
 
-.landingpage_bg_2{
-  background-color: #8FB5E8;
-  z-index:-1;
-  position: absolute;
+.landingpage_bg_2 {
+  background-color: #8fb5e8;
+  z-index: -1;
+  position: fixed;
   left: 10%;
   margin-top: 15em;
   filter: blur(3.5rem);
@@ -168,10 +167,10 @@ h3 {
   opacity: 40%;
 }
 
-.landingpage_bg_3{
-  background-color:#FFB798;
-  z-index:-1;
-  position: absolute;
+.landingpage_bg_3 {
+  background-color: #ffb798;
+  z-index: -1;
+  position: fixed;
   left: 20px;
   margin-top: 30em;
   filter: blur(3.5rem);
@@ -179,10 +178,10 @@ h3 {
   opacity: 40%;
 }
 
-.landingpage_bg_4{
-  background-color:#F9D58E;
-  z-index:-1;
-  position: absolute;
+.landingpage_bg_4 {
+  background-color: #f9d58e;
+  z-index: -1;
+  position: fixed;
   right: -5%;
   margin-top: 20em;
   filter: blur(3.5rem);
@@ -194,4 +193,3 @@ h3 {
 .grid-gap-list-page {
   grid-gap: 2.5rem;
 }
-

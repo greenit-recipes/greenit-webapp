@@ -1,12 +1,12 @@
+import { Button, Navbar } from "../../components";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
 import { useForm } from "react-hook-form";
-import authServiceService, {
-  LOGIN_ACCOUNT,
-} from "services/auth.service";
+import authServiceService, { LOGIN_ACCOUNT } from "services/auth.service";
 import * as yup from "yup";
+import { BackgroundImage } from "../LandingPage/Components/BackgroundImage";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -62,10 +62,14 @@ const Login: React.FC = () => {
       },
     }).then((response) => {
       if (response?.data?.tokenAuth?.token) {
-        authServiceService.setStorageLoginToken(response?.data?.tokenAuth?.token);
-        authServiceService.setStorageLoginRefreshToken(response?.data?.tokenAuth?.refreshToken);
+        authServiceService.setStorageLoginToken(
+          response?.data?.tokenAuth?.token
+        );
+        authServiceService.setStorageLoginRefreshToken(
+          response?.data?.tokenAuth?.refreshToken
+        );
         history.push({
-          pathname: '/profil',
+          pathname: "/profil",
           state: { detail: response?.data?.tokenAuth?.user },
         });
       }
@@ -73,55 +77,65 @@ const Login: React.FC = () => {
     reset();
   };
   return (
-    <div className="w-full  max-w-xs">
-      <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-        onSubmit={handleSubmit(onSubmitHandler)}
-      >
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Email
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            placeholder="email"
-            type="email"
-            {...register("email")}
-          ></input>
-          <p className="text-red-500 text-xs italic">{errors.email?.message}</p>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Mot de passe (Le mot de passe doit contenir 8 caractères, une
-            majuscule, une minuscule)
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            type="password"
-            placeholder="******************"
-            {...register("password")}
-          />
-          <p className="text-red-500 text-xs italic">
-            {errors.password?.message}
-          </p>
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Sign In
-          </button>
-          <a
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            href="#"
-          >
-            Forgot Password?
-          </a>
-        </div>
-      </form>
+    <div className="grid justify-items-center w-screen">
+      <Navbar />
+      <BackgroundImage className="overflow-hidden" />
+      <div className="flex max-w-xs md:max-w-sm">
+        <form
+          className="bg-white shadow-lg rounded p-10 mb-4 mt-36"
+          onSubmit={handleSubmit(onSubmitHandler)}
+        >
+          <div className="mb-4">
+            <label className="block text-gray-700 text-lg font-bold mb-2">
+              Email
+            </label>
+            <input
+              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-6"
+              id="email"
+              placeholder="email"
+              type="email"
+              {...register("email")}
+            ></input>
+            <p className="text-red-500 text-xs italic">
+              {errors.email?.message}
+            </p>
+          </div>
+          <div className="mb-10">
+            <label className="block text-gray-700 text-lg font-bold mb-2">
+              Mot de passe
+            </label>
+            <input
+              className="shadow-lg appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              placeholder="******************"
+              {...register("password")}
+            />
+            <p className="text-red-500 text-xs italic">
+              {errors.password?.message}
+            </p>
+            <label className="block text-gray-700 text-sm mb-2">
+              Mot de passe (Le mot de passe doit contenir 8 caractères, une
+              majuscule, une minuscule)
+            </label>
+          </div>
+          <div className="flex items-center justify-between">
+            <button
+              className="flex justify-center items-center cursor-pointer
+              bg-blue rounded-lg p-3 h-12 text-xl bold text-white border-2 border-transparent
+              hover:bg-white hover:border-blue hover:text-blue"
+            >
+              Connexion
+            </button>
+            <a
+              className="inline-block align-baseline font-medium text-sm text-blue-500 hover:text-blue-800"
+              href="#"
+            >
+              Mot de passe oublié ?
+            </a>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

@@ -13,7 +13,7 @@ export const Navbar: React.FC = () => {
 
   if (isMobile) {
     return (
-      <div className="sticky top-0 z-20 bg-white w-screen text-gray-500">
+      <div className="sticky top-0 z-20 bg-white w-screen">
         <div
           onClick={() => {
             setToggle((prevState) => !prevState);
@@ -77,33 +77,39 @@ export const Navbar: React.FC = () => {
         </Link>
       </div>
 
-      <Button
-        type="orange"
-        rounded="xl"
-        className="py-2 px-4 flex justify-end self-center | mr-4 cursor-pointer"
-      >
-        {isLoggedIn ? (
-          <Link to="/profil">
-            <h1>Profil</h1>
-          </Link>
-        ) : (
-          <Link to="/connexion">
-            <h1>Se connecter</h1>
-          </Link>
-        )}
-      </Button>
+      {isLoggedIn ? (
+        <Link to="/profil">
+          <Button
+            type="orange"
+            rounded="xl"
+            className="flex justify-end self-center | mr-4 cursor-pointer"
+          >
+            Profil
+          </Button>
+        </Link>
+      ) : (
+        <Link to="/connexion">
+          <Button
+            type="orange"
+            rounded="xl"
+            className="flex justify-end self-center | mr-4 cursor-pointer"
+          >
+            Se connecter
+          </Button>
+        </Link>
+      )}
 
-      {!isLoggedIn &&
-        <Button
-        type="orange"
-        rounded="xl"
-        className="py-2 px-4 flex justify-end self-center | mr-4 cursor-pointer"
-      >
-          <Link to="/register">
-            <h1>Créer un compte</h1>
-          </Link>
-      </Button>
-      }
+      <Link to="/register">
+        {!isLoggedIn && (
+          <Button
+            type="orange"
+            rounded="xl"
+            className="py-2 px-4 flex justify-end self-center | mr-4 cursor-pointer"
+          >
+            Créer un compte
+          </Button>
+        )}
+      </Link>
     </div>
   );
 };
