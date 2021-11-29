@@ -1,20 +1,11 @@
+import { getImagePath } from "helpers/image.helper";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Icon } from "../misc";
-import useIsMobile from "../../hooks/isMobile";
 import { RecipeDifficulty, RecipeFragment } from "../../graphql";
-<<<<<<< HEAD
-import { useMutation } from "@apollo/client";
-import {
-  ADD_OR_REMOVE_FAVORITE_RECIPE,
-  ADD_OR_REMOVE_LIKE_RECIPE,
-} from "pages/CreateRecipe/CreateRecipeRequest";
-import authService from "services/auth.service";
-import { getImagePath } from "helpers/image.helper";
-=======
->>>>>>> bf42135 (recipecards responsive + login)
-import { LikeField } from "./Components/LikeField";
+import useIsMobile from "../../hooks/isMobile";
+import { Icon } from "../misc";
 import { FavouriteField } from "./Components/FavouriteField";
+import { LikeField } from "./Components/LikeField";
 
 interface RecipeCardProps {
   enableShadow?: boolean;

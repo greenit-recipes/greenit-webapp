@@ -61,10 +61,6 @@ const Login: React.FC = () => {
         password: data.password,
       },
     }).then((response) => {
-<<<<<<< HEAD
-=======
-      console.log("response -->", response);
->>>>>>> bf42135 (recipecards responsive + login)
       if (response?.data?.tokenAuth?.token) {
         authServiceService.setStorageLoginToken(
           response?.data?.tokenAuth?.token
