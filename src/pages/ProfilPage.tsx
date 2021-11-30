@@ -155,13 +155,13 @@ const ProfilPage: React.FC = () => {
       </div>
 
       <Container className="flex flex-col mb-20 | items-center" padding>
-        <div className={"bg-blue text-center" + (visible ? " hidden" : "")}>
+        <div className={"text-center" + (visible ? " hidden" : "")}>
           {!visible && (
             <div>
               {isEmpty(user?.recipeFavorite) && (
                 <div
                   className={
-                    "bg-green text-center" + (visible ? " hidden" : "")
+                    "text-center" + (visible ? " hidden" : "")
                   }
                 >
                   <h3 className="p-36 text-2xl">
@@ -203,7 +203,7 @@ const ProfilPage: React.FC = () => {
             {isEmpty(user?.recipeAuthor) && (
               <div
                 className={
-                  "bg-green text-center" + (!visible ? " hidden" : "")
+                  "text-center" + (!visible ? " hidden" : "")
                 }
               >
                 <h3 className="p-36 text-2xl">
