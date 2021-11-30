@@ -46,6 +46,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
               enableShadow && "shadow-lg"
             } ${`h-${imageHeight} w-${imageWidth}`}
             rounded-3xl | justify-self-center`}
+            // @ts-ignore
             src={getImagePath(recipe?.image)}
           ></img>
         </div>

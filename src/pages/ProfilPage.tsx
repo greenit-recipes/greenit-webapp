@@ -123,7 +123,7 @@ const ProfilPage: React.FC = () => {
             {errors?.image?.message}
           </p>
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-blue hover:bg-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Envoi ta photo belle bête
@@ -136,8 +136,8 @@ const ProfilPage: React.FC = () => {
       <div className="grid grid-cols-2 mb-10 px-4 gap-4 | md:px-20">
         <button
           className={
-            "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue-400" +
-            (!visible ? "outline-none border-blue-500" : "")
+            "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue" +
+            (!visible ? "outline-none border-blue" : "")
           }
           onClick={() => setVisible(false)}
         >
@@ -145,8 +145,8 @@ const ProfilPage: React.FC = () => {
         </button>
         <button
           className={
-            "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-green-600 |" +
-            (visible ? "outline-none border-green-600" : "")
+            "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-green |" +
+            (visible ? "outline-none border-green" : "")
           }
           onClick={() => setVisible(true)}
         >
@@ -155,13 +155,13 @@ const ProfilPage: React.FC = () => {
       </div>
 
       <Container className="flex flex-col mb-20 | items-center" padding>
-        <div className={"bg-blue-500 text-center" + (visible ? " hidden" : "")}>
+        <div className={"text-center" + (visible ? " hidden" : "")}>
           {!visible && (
             <div>
               {isEmpty(user?.recipeFavorite) && (
                 <div
                   className={
-                    "bg-green-600 text-center" + (visible ? " hidden" : "")
+                    "text-center" + (visible ? " hidden" : "")
                   }
                 >
                   <h3 className="p-36 text-2xl">
@@ -203,7 +203,7 @@ const ProfilPage: React.FC = () => {
             {isEmpty(user?.recipeAuthor) && (
               <div
                 className={
-                  "bg-green-600 text-center" + (!visible ? " hidden" : "")
+                  "text-center" + (!visible ? " hidden" : "")
                 }
               >
                 <h3 className="p-36 text-2xl">
