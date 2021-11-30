@@ -22,6 +22,8 @@ import { getImagePath } from "helpers/image.helper";
 import { getUuidFromId } from "helpers/user.helper";
 import moment from "moment";
 import { momentGreenit } from "helpers/time.helper";
+import { LikeField } from "components/layout/LikeField";
+import { FavouriteField } from "components/layout/FavouriteField";
 
 interface InstructionProps {
   index: number;
@@ -84,19 +86,8 @@ const RecipeSinglePage = () => {
       id: recipeId ?? "",
     },
   });
-  // Favorites
-  const [isFavorite, setFavorite] = useState(
-    data?.recipe?.isAddToFavoriteByCurrentUser
-  );
-  const [addOrRemoveFavoriteRecipe] = useMutation(
-    ADD_OR_REMOVE_FAVORITE_RECIPE
-  );
 
   const [addOrRemoveLikeComment] = useMutation(ADD_OR_REMOVE_LIKE_COMMENT);
-
-  // Likes
-  const [isLiked, setLiked] = useState(data?.recipe?.isLikedByCurrentUser);
-  const [nbrLiked, setNbrLiked] = useState(data?.recipe?.numberOfLikes);
 
   // Comments
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
@@ -114,10 +105,7 @@ const RecipeSinglePage = () => {
   }, []);
 
   useEffect(() => {
-    setLiked(data?.recipe?.isLikedByCurrentUser);
-    setNbrLiked(data?.recipe?.numberOfLikes);
     setNbrComment(data?.recipe?.numberOfComments);
-    setFavorite(data?.recipe?.isAddToFavoriteByCurrentUser);
   }, [data]);
 
   const player = createRef<ReactPlayer>();
@@ -179,46 +167,11 @@ const RecipeSinglePage = () => {
                 recipe && HTMLReactParser(recipe?.textAssociate)
               }
             </div>
-            <div className="text-xl">nombre like === {nbrLiked}</div>
             <div className="text-xl">
               nombre de commentaire === {nbrComment}
             </div>
-            <div>
-              {isLoggedIn && (
-                <button
-                  onClick={() => {
-                    setLiked(!isLiked);
-                    // @ts-ignore: Object is possibly 'null'.
-                    setNbrLiked(!isLiked ? nbrLiked + 1 : nbrLiked - 1);
-
-                    addOrRemoveLikeRecipe({
-                      variables: {
-                        recipeId: recipe?.id,
-                      },
-                    });
-                  }}
-                >
-                  {isLiked ? "dislike" : "like batard"}
-                </button>
-              )}
-            </div>
-            <div>
-              {isLoggedIn && (
-                <button
-                  onClick={() => {
-                    setFavorite(!isFavorite);
-                    // @ts-ignore: Object is possibly 'null'.
-                    addOrRemoveFavoriteRecipe({
-                      variables: {
-                        recipeId: recipe?.id,
-                      },
-                    });
-                  }}
-                >
-                  {isFavorite ? "Enlever des favoris" : "Ajouter au favoris"}
-                </button>
-              )}
-            </div>
+            <LikeField recipe={data?.recipe} isRecipeCard={false}></LikeField>
+            <FavouriteField recipe={data?.recipe}></FavouriteField>
             <div className="flex flex-row">
               <img
                 // @ts-ignore

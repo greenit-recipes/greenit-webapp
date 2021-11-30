@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { RecipeDifficulty, RecipeFragment } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
 import { Icon } from "../misc";
-import { FavouriteField } from "./Components/FavouriteField";
-import { LikeField } from "./Components/LikeField";
+import { FavouriteField } from "../layout/FavouriteField";
+import { LikeField } from "../layout/LikeField";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
@@ -40,8 +40,6 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         }}
         className={`inline-block ${!isMobile}`}
       >
-        <LikeField>{nbrLiked}</LikeField>
-
         <div>
           <img
             className={`flex flex-col object-cover | ${
@@ -49,13 +47,11 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             } ${`h-${imageHeight} w-${imageWidth}`}
             rounded-3xl | justify-self-center`}
             src={getImagePath(recipe?.image)}
-            ></img>
+          ></img>
         </div>
       </Link>
       <div className={`absolute bottom-2/7 w-${imageWidth} z-10`}>
-        <FavouriteField
-         recipe={recipe}
-        />
+        <FavouriteField parentFunction={parentFunction} recipe={recipe} />
       </div>
       <div
         className={`h-auto | mt-auto | bg-white shadow-lg rounded-3xl absolute top-40 lg:top-64 ${`w-${bandeauWidth}`}`}
