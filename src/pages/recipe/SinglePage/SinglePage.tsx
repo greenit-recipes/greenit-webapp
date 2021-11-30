@@ -25,6 +25,9 @@ import moment from "moment";
 import { momentGreenit } from "helpers/time.helper";
 import { LikeField } from "components/layout/LikeField";
 import { FavouriteField } from "components/layout/FavouriteField";
+import { CommentField } from "components/layout/CommentField";
+import { UserBadge } from "components/layout/UserBadge";
+import  {shareIcon } from "../../../icons"
 
 interface InstructionProps {
   index: number;
@@ -154,72 +157,77 @@ const RecipeSinglePage = () => {
     <div className="flex flex-col | items-center">
       <Navbar />
       <div className="w-5/6 md:w-4/6 mb-10">
-        <Container
-          className="mt-10 md:mt-20 flex"
-          title={recipe?.name}
-          itemsCenter
-        >
+        <Container className="mt-10 md:mt-16 flex" itemsCenter>
           <div className="w-full h-auto">
-            <div className="flex justify-center">
-              {
-                // @ts-ignore: Object is possibly 'null'.
-                recipe && HTMLReactParser(recipe?.textAssociate)
-              }
-            </div>
-            <div className="text-xl">
-              nombre de commentaire === {nbrComment}
-            </div>
-            <LikeField recipe={data?.recipe} isRecipeCard={false}></LikeField>
-            <FavouriteField recipe={data?.recipe}></FavouriteField>
-            <div className="flex flex-row">
-              <img
-                // @ts-ignore
-                src={getImagePath(recipe?.image)}
-                className="w-1/4 rounded-3xl mt-10 self-start"
-                style={{ height: "28rem", minWidth: "320px" }}
-              />
-              <div className="flex flex-col ml-10 mt-10 w-full">
-                <div className="w-full whitespace-pre break-all flex-wrap inline-flex h-11">
-                  {recipe?.tags.map((item, index) => (
-                    <div
-                      key={index}
-                      className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
-                      style={{ backgroundColor: "#888888" }}
-                      onClick={() => {
-                        history.push(`/recipes?tags=${item.name}`);
-                      }}
-                    >
-                      {item.name}
-                    </div>
-                  ))}
-                </div>
-                <div className="flex flex-row w-full mt-10">
-                  <div className="mt-5 flex flex-col self-start w-1/2">
-                    <h3 className="pb-1 text-2xl">Ingredients</h3>
-                    {/* @ts-ignore*/}
-                    {recipe?.ingredients?.map((item, index) => (
-                      <h3 className="text-xl pt-2" key={index}>
-                        {item.amount} {item.name}
-                      </h3>
-                    ))}
-                  </div>
-                  <div className="mt-5 flex flex-col self-start">
-                    <h3 className="pb-1 text-2xl">Ustensiles</h3>
-                    {recipe?.utensils?.map((item, index) => (
-                      <h3 className="text-xl pt-2" key={index}>
-                        {item.name}
-                      </h3>
-                    ))}
-                  </div>
-                </div>
+            <div className="grid grid-flow-row justify-center">
+              <h1 className="text-2xl md:text-5xl text-center">
+                {recipe?.name}
+              </h1>
+              <h3 className="text-base md:text-lg mt-2 text-center">
+                {
+                  // @ts-ignore: Object is possibly 'null'.
+                  recipe && HTMLReactParser(recipe?.textAssociate)
+                }
+              </h3>
+              <div className="flex mt-4 justify-center">
+                <UserBadge recipe={data?.recipe}></UserBadge>
+                <LikeField
+                  recipe={data?.recipe}
+                  isRecipeCard={false}
+                ></LikeField>
+                <CommentField>{nbrComment}</CommentField>
               </div>
             </div>
+            <Grid
+              type="col"
+              size={{ default: 1, lg: 2 }}
+              className="gap-2 md:gap-10 mt-4"
+            >
+              <div className="flex justify-center">
+                <img
+                  // @ts-ignore
+                  src={getImagePath(recipe?.image)}
+                  className="h-96 rounded-3xl"
+                />
+              </div>
+              <div className="w-full whitespace-pre break-all flex-wrap inline-flex h-11">
+                {recipe?.tags.map((item, index) => (
+                  <div
+                    key={index}
+                    className="m-1 mt-2 bg-black text-white pl-3 pr-3 text-md rounded flex items-center cursor-pointer"
+                    style={{ backgroundColor: "#888888" }}
+                    onClick={() => {
+                      history.push(`/recipes?tags=${item.name}`);
+                    }}
+                  >
+                    {item.name}
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col self-start mt-5">
+                <h1 className="pb-1 text-xl md:text-2xl">Ingredients</h1>
+                {/* @ts-ignore*/}
+                {recipe?.ingredients?.map((item, index) => (
+                  <h3 className="text-lg md:text-xl pt-2" key={index}>
+                    {item.amount} {item.name}
+                  </h3>
+                ))}
+              </div>
+              <div className="flex flex-col self-start mt-5">
+                <h1 className="pb-1 text-xl md:text-2xl">Ustensiles</h1>
+                {recipe?.utensils?.map((item, index) => (
+                  <h3 className="text-lg md:text-xl pt-2" key={index}>
+                    {item.name}
+                  </h3>
+                ))}
+              </div>
+            </Grid>
           </div>
         </Container>
         <div className="mt-10 flex flex-col">
-          <h3 className="pb-2 text-2xl lg:text-3xl">Description</h3>
+          <h1 className="pb-2 text-xl md:text-2xl">Description</h1>
           {!isEmpty(recipe?.description) ? (
-            <div className="text-lg lg:text-xl leading-relaxed">
+            <div className="text-lg md:text-xl md:text-xl leading-relaxed">
               {
                 // @ts-ignore: Object is possibly 'null'.
                 recipe && HTMLReactParser(recipe?.description)
@@ -228,16 +236,15 @@ const RecipeSinglePage = () => {
           ) : (
             ""
           )}
-          <h3 className="pt-5 pb-2 text-2xl lg:text-3xl">Conservation</h3>
+          <h1 className="pt-5 pb-2 text-xl md:text-2xl">Conservation</h1>
           <p className="text-lg lg:text-xl">{recipe?.expiry}</p>
         </div>
         <Grid
           type="col"
           size={{ default: 1, lg: 2 }}
-          gap={isMobile ? "0" : "20"}
           className="mt-10"
         >
-          <div className="h-96 w-full">
+          <div className="h-60 md:h-80 w-auto rounded-2xl">
             <ReactPlayer
               // @ts-ignore
               url={recipe?.videoUrl}
@@ -253,8 +260,8 @@ const RecipeSinglePage = () => {
               height="100%"
             />
           </div>
-          <div className="mt-10 lg:mt-0">
-            <h3 className="text-2xl lg:text-3xl">Instructions</h3>
+          <div className="mt-5 lg:mt-0">
+            <h1 className="text-xl md:text-2xl">Instructions</h1>
             {recipe?.instructions.map((item: any, index: number) => {
               const timestamp = getSecondsFromDuration(item.timestamp);
               return (
@@ -284,20 +291,32 @@ const RecipeSinglePage = () => {
             })}
           </div>
         </Grid>
-        <div className="pt-14 flex flex-col">
-          <h3 className="pb-2 text-2xl lg:text-3xl">Conseils de l'auteur</h3>
+        <div className="mt-8 flex flex-col">
+          <h1 className="pb-2 text-xl md:text-2xl">Conseils de l'auteur</h1>
           <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
         </div>
-        <div className="pt-14 flex flex-col">
-          <h3 className="pb-2 text-2xl lg:text-3xl">Commentaire</h3>
+        <div className="grid justify-center w-full">
+          <div className="grid grid-cols-2 gap-2 m-10 justify-center">
+            <div className="grid">
+              <FavouriteField recipe={data?.recipe}></FavouriteField>
+              <h1 className="text-center text-base"> Ajouter au favoris</h1>
+            </div>
+            <div className="grid">
+              <img src={shareIcon} className="grid justify-self-center w-9 h-9 lg:w-12 lg:h-12"/>
+              <h1 className="text-center text-base"> Partager </h1>
+            </div>
+          </div>
+        </div>
+        <div className="mt-6 flex flex-col">
+          <h1 className="text-xl md:text-2xl">Discussion</h1>
           {recipe?.comments?.map((comment: any, index: number) => {
             // @ts-ignore
-            const canLike = comment?.author?.id !== getUuidFromId(data?.me?.id)
+            const canLike = comment?.author?.id !== getUuidFromId(data?.me?.id);
             return (
-              <div className="pt-14 flex flex-col" key={index}>
+              <div className="mt-5 flex flex-col" key={index}>
                 <img
                   src={getImagePath(comment?.author?.imageProfile)}
-                  className="w-1/4 rounded-3xl mt-10 self-start"
+                  className="w-1/4 rounded-3xl self-start"
                   style={{ height: "4rem", width: "4rem", minWidth: "20px" }}
                 />
                 <p className="text-md lg:text-lg">

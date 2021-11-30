@@ -2,7 +2,7 @@ import React from "react";
 
 interface GridProps {
   type: "row" | "col";
-  gap: string;
+  gap?: string;
   className?: string;
   size: {
     default: number;

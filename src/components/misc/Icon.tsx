@@ -39,7 +39,7 @@ export const Icon: React.FC<IconProps> = ({
   let child;
   if (nbOfIngredient && difficulty) {
     child = (
-      <div className="grid grid-cols-2 justify-item-center md:px-4 pb-1">
+      <div className="grid grid-cols-2 justify-item-center lg:px-4 pb-1">
         <div className="span-col-1 flex flex-col items-center">
           <img
             src={itemDifficulty}
