@@ -25,7 +25,7 @@ export const LikeField: React.FC<LikeField> = ({
 
   return (
     <div
-      className={isRecipeCard ? `flex absolute top-2 left-1/2 lg:left-36 w-2/5 lg:w-20 h-10 bg-white rounded-xl p-4 ${className}` : `flex top-2 left-1/2 lg:left-36 w-2/5 lg:w-20 h-10 bg-white rounded-xl p-4 ${className}`}
+      className={isRecipeCard ? `absolute top-2 left-1/2 lg:left-36 w-2/5 lg:w-20 h-10 bg-white rounded-xl p-4 ${className}` : `flex top-2 left-1/2 lg:left-36 w-2/5 lg:w-20 h-10 bg-white rounded-xl p-4 ${className}`}
     >
       {isLoggedIn ? (
         <button
