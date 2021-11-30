@@ -33,8 +33,6 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
   return (
     <div className="relative m-2 mb-14 lg:m-4">
-      <LikeField recipe={recipe} parentFunction={parentFunction}></LikeField>
-
       <Link
         to={{
           pathname: `/recipes/${recipe?.urlId}`,
