@@ -1,35 +1,35 @@
 import React, { useState } from "react";
-import { likedIconOn, likedIconOff } from "../../../icons";
-import useIsMobile from "../../../hooks/isMobile";
+import { likedIconOn, likedIconOff } from "../../icons";
 import authService from "services/auth.service";
-import { RecipeFragment } from "../../../graphql";
+import { RecipeFragment } from "../../graphql";
 import { useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
 import {
   ADD_OR_REMOVE_FAVORITE_RECIPE,
-  ADD_OR_REMOVE_LIKE_RECIPE,
 } from "pages/CreateRecipe/CreateRecipeRequest";
 
 interface FavouriteField {
   className?: string;
-  recipe: RecipeFragment | null | undefined;
+  recipe: any;
+  parentFunction?: any;
 }
 
-export const FavouriteField: React.FC<FavouriteField> = ({ recipe }) => {
+export const FavouriteField: React.FC<FavouriteField> = ({
+  recipe,
+  parentFunction = null,
+}) => {
   const isLoggedIn = authService.isLoggedIn();
-  const isMobile = useIsMobile();
-  const [isLiked, setLiked] = useState(recipe?.isLikedByCurrentUser);
   const [isFavorite, setFavorite] = useState(
     recipe?.isAddToFavoriteByCurrentUser
   );
 
-  const [addOrRemoveLikeRecipe] = useMutation(ADD_OR_REMOVE_LIKE_RECIPE);
   const [addOrRemoveFavoriteRecipe] = useMutation(
     ADD_OR_REMOVE_FAVORITE_RECIPE
   );
 
   return (
     <div className="grid justify-items-center">
-      {isLoggedIn && (
+      {isLoggedIn ? (
         <button
           onClick={() => {
             setFavorite(!isFavorite);
@@ -38,15 +38,19 @@ export const FavouriteField: React.FC<FavouriteField> = ({ recipe }) => {
               variables: {
                 recipeId: recipe?.id,
               },
-            });
+            }).then(() => (parentFunction ? parentFunction() : null));
           }}
         >
           {isFavorite ? (
-            <img className="w-8 h-8 lg:w-12 lg:h-12" src={likedIconOn} />
+            <img className="w-8 h-8 lg:w-12 lg:h-12" alt="like" src={likedIconOn} />
           ) : (
-            <img className="w-8 h-8 lg:w-12 lg:h-12" src={likedIconOff} />
+            <img className="w-8 h-8 lg:w-12 lg:h-12" alt="dislike" src={likedIconOff} />
           )}
         </button>
+      ) : (
+        <Link to="/connexion">
+          <img className="w-8 h-8 lg:w-12 lg:h-12" src={likedIconOff} />
+        </Link>
       )}
     </div>
   );
