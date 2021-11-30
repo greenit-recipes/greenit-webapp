@@ -27,7 +27,7 @@ import { LikeField } from "components/layout/LikeField";
 import { FavouriteField } from "components/layout/FavouriteField";
 import { CommentField } from "components/layout/CommentField";
 import { UserBadge } from "components/layout/UserBadge";
-import  {shareIcon } from "../../../icons"
+import { shareIcon } from "../../../icons";
 
 interface InstructionProps {
   index: number;
@@ -169,7 +169,7 @@ const RecipeSinglePage = () => {
                   recipe && HTMLReactParser(recipe?.textAssociate)
                 }
               </h3>
-              <div className="flex mt-4 justify-center">
+              <div className="flex justify-center">
                 <UserBadge recipe={data?.recipe}></UserBadge>
                 <LikeField
                   recipe={data?.recipe}
@@ -178,23 +178,16 @@ const RecipeSinglePage = () => {
                 <CommentField>{nbrComment}</CommentField>
               </div>
             </div>
-            <Grid
-              type="col"
-              size={{ default: 1, lg: 2 }}
-              className="gap-2 md:gap-10 mt-4"
-            >
-              <div className="flex justify-center">
-                <img
-                  // @ts-ignore
-                  src={getImagePath(recipe?.image)}
-                  className="h-96 rounded-3xl"
-                />
-              </div>
-              <div className="w-full whitespace-pre break-all flex-wrap inline-flex h-11">
+            <div className="grid grid-cols-1 grid-flow-row auto-rows-max md:grid-cols-3 gap-6 mt-10">
+              <img
+                // @ts-ignore
+                src={getImagePath(recipe?.image)}
+                className="row-span-3 h-96 rounded-3xl"
+              />
+              <div className="md:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex h-11">
                 {recipe?.tags.map((item, index) => (
                   <div
-                    key={index}
-                    className="m-1 mt-2 bg-black text-white pl-3 pr-3 text-md rounded flex items-center cursor-pointer"
+                    className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
                     style={{ backgroundColor: "#888888" }}
                     onClick={() => {
                       history.push(`/recipes?tags=${item.name}`);
@@ -204,30 +197,28 @@ const RecipeSinglePage = () => {
                   </div>
                 ))}
               </div>
-              <div className="flex flex-col self-start mt-5">
+              <div className="mt-5 flex flex-col self-start mr-10">
                 <h1 className="pb-1 text-xl md:text-2xl">Ingredients</h1>
                 {/* @ts-ignore*/}
-                {recipe?.ingredients?.map((item, index) => (
-                  <h3 className="text-lg md:text-xl pt-2" key={index}>
+                {recipe.ingredients.map((item) => (
+                  <h3 className="text-lg md:text-xl pt-2">
                     {item.amount} {item.name}
                   </h3>
                 ))}
               </div>
-              <div className="flex flex-col self-start mt-5">
+              <div className="mt-5 flex flex-col self-start">
                 <h1 className="pb-1 text-xl md:text-2xl">Ustensiles</h1>
-                {recipe?.utensils?.map((item, index) => (
-                  <h3 className="text-lg md:text-xl pt-2" key={index}>
-                    {item.name}
-                  </h3>
+                {recipe?.utensils.map((item) => (
+                  <h3 className="text-lg md:text-xl pt-2">{item.name}</h3>
                 ))}
               </div>
-            </Grid>
+            </div>
           </div>
         </Container>
         <div className="mt-10 flex flex-col">
           <h1 className="pb-2 text-xl md:text-2xl">Description</h1>
           {!isEmpty(recipe?.description) ? (
-            <div className="text-lg md:text-xl md:text-xl leading-relaxed">
+            <div className="text-lg md:text-xl leading-relaxed">
               {
                 // @ts-ignore: Object is possibly 'null'.
                 recipe && HTMLReactParser(recipe?.description)
@@ -237,13 +228,9 @@ const RecipeSinglePage = () => {
             ""
           )}
           <h1 className="pt-5 pb-2 text-xl md:text-2xl">Conservation</h1>
-          <p className="text-lg lg:text-xl">{recipe?.expiry}</p>
+          <p className="text-lg md:text-xl">{recipe?.expiry}</p>
         </div>
-        <Grid
-          type="col"
-          size={{ default: 1, lg: 2 }}
-          className="mt-10"
-        >
+        <Grid type="col" size={{ default: 1, lg: 2 }} className="mt-10">
           <div className="h-60 md:h-80 w-auto rounded-2xl">
             <ReactPlayer
               // @ts-ignore
@@ -302,7 +289,10 @@ const RecipeSinglePage = () => {
               <h1 className="text-center text-base"> Ajouter au favoris</h1>
             </div>
             <div className="grid">
-              <img src={shareIcon} className="grid justify-self-center w-9 h-9 lg:w-12 lg:h-12"/>
+              <img
+                src={shareIcon}
+                className="grid justify-self-center w-9 h-9 lg:w-12 lg:h-12"
+              />
               <h1 className="text-center text-base"> Partager </h1>
             </div>
           </div>
