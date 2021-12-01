@@ -35,6 +35,11 @@ const LandingPage = () => {
     fetchPolicy: "no-cache",
     variables: { first: 10 },
   });
+
+  if (loading || !data) {
+    return <Loading />;
+  }
+  
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
