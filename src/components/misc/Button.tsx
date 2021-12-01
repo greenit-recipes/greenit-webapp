@@ -15,7 +15,7 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
 }) => {
   return (
-    <div
+    <button
       className={`flex justify-center items-center cursor-pointer
       p-3 h-12 text-xl bold text-white border-2 border-transparent
       bg-${type ? type: "blue"} 
@@ -31,6 +31,6 @@ export const Button: React.FC<ButtonProps> = ({
       }}
     >
       {children}
-    </div>
+    </button>
   );
 };
