@@ -95,6 +95,7 @@ const RecipeSinglePage = () => {
   const isMobile = useIsMobile();
   const history = useHistory();
   const { error, loading, data } = useRecipeQuery({
+    fetchPolicy: "no-cache",
     variables: {
       id: recipeId ?? "",
     },
@@ -391,13 +392,12 @@ const RecipeSinglePage = () => {
           <div className="flex items-center justify-between">
             {isLoggedIn ? (
               <div className="mb-4 w-full">
-                <input
+                <textarea
                   className="appearance-none rounded w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="comment"
                   placeholder="comment"
-                  type="text"
                   {...register("comment")}
-                ></input>
+                ></textarea>
                 <p className="text-red-500 text-xs italic">
                   {errors.comment?.message}
                 </p>

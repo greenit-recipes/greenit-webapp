@@ -5,6 +5,7 @@ import { RecipeDifficulty, RecipeFragment } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
 import { Icon } from "../misc";
 import { FavouriteField } from "../layout/FavouriteField";
+import { LikeField } from "components/layout/LikeField";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
@@ -23,12 +24,10 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 }) => {
   const isMobile = useIsMobile();
 
-  const [nbrLiked, setNbrLiked] = useState(recipe?.numberOfLikes);
   const iconHeight = isMobile ? 10 : 16;
   const imageHeight = isMobile ? 60 : 96;
   const imageWidth = isMobile ? 44 : 60;
   const bandeauWidth = isMobile ? 44 : 60;
-  const nbOfIngredients = recipe?.numberOfIngredients;
 
   return (
     <div className="relative m-2 mb-14 lg:m-4">
