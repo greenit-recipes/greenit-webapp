@@ -13,8 +13,8 @@ export const UserBadge: React.FC<UserBadge> = ({ className, user }) => {
     <div className={`flex mr-5 ${className}`}>
       <div className="rounded-full bg-white shadow-lg mr-2">
         <img
-          // src={getImagePath(recipe?.author?.imageProfile)}
           src={logo}
+          alt="badge"
           className="w-10 min-w-10 h-10 md:w-12 md:h-12 self-center"
         />
       </div>

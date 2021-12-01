@@ -74,7 +74,7 @@ const closest = (needle: number, haystack: any[]) => {
 };
 
 const schema = yup.object().shape({
-  comment: yup.string().min(2, "Réponse trop courte"),
+  comment: yup.string().min(2, "Commentaire trop court"),
 });
 
 const RecipeSinglePage = () => {
