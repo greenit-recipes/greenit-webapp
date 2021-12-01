@@ -17,8 +17,8 @@ const schema = yup.object().shape({
     .string()
     .min(4, "Le nom d'utilisateur doit contenir au moins 4 caractères.")
     .max(
-      20,
-      "Le nom d'utilisateur est trop long, il doit être moins de 20 caractères maximum."
+      16,
+      "Le nom d'utilisateur est trop long, il doit être moins de 16 caractères maximum."
     )
     .required("Le nom d'utilisateur est obligatoire.")
     .matches(
