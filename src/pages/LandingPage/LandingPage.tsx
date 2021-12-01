@@ -32,6 +32,7 @@ const LandingPage = () => {
   const isLoggedIn = authService.isLoggedIn();
   const isMobile = useIsMobile();
   const { error, loading, data, refetch } = useRecipesQuery({
+    fetchPolicy: "no-cache",
     variables: { first: 10 },
   });
   return (

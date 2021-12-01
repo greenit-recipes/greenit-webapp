@@ -2,7 +2,10 @@ import { useMutation, useQuery } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Loading, RecipeCard } from "components";
 import { getImagePath } from "helpers/image.helper";
-import { imageValidation, videoValidation } from "helpers/yup-validation.helper";
+import {
+  imageValidation,
+  videoValidation,
+} from "helpers/yup-validation.helper";
 import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -39,9 +42,9 @@ const ProfilPage: React.FC = () => {
     }
   }, []);
 
-
-
-  const { loading, error, data, refetch, networkStatus } = useQuery(ME);
+  const { loading, error, data, refetch, networkStatus } = useQuery(ME, {
+    fetchPolicy: "no-cache",
+  });
   const history = useHistory();
 
   if (!loading && isEmpty(data?.me)) {
@@ -51,20 +54,21 @@ const ProfilPage: React.FC = () => {
   }
   const user = data?.me;
 
-  const [updatePhoto, { data: dataImageUpdate }] = useMutation(UPDATE_IMAGE_ACCOUNT, {
-    errorPolicy: "all",
-  });
-
-    // Image
-  const [userImage, setImage] = useState(
-    user?.imageProfile
+  const [updatePhoto, { data: dataImageUpdate }] = useMutation(
+    UPDATE_IMAGE_ACCOUNT,
+    {
+      errorPolicy: "all",
+    }
   );
-  
+
+  // Image
+  const [userImage, setImage] = useState(user?.imageProfile);
+
   useEffect(() => {
-     setImage(getImagePath(user?.imageProfile));
+    setImage(getImagePath(user?.imageProfile));
   }, [user]);
 
-  const onSubmitHandler = (dataForm: { image: string[]; }) => {
+  const onSubmitHandler = (dataForm: { image: string[] }) => {
     updatePhoto({
       variables: {
         imageProfile: dataForm.image,
@@ -90,7 +94,7 @@ const ProfilPage: React.FC = () => {
         <div className="grid grid-cols-2 gap-4 mb-8 max-w-xs md:mb-20">
           <div className="">
             <img
-              src={ userImage }
+              src={userImage}
               className="border-4 border-white shadow-xl | rounded-full"
               alt="photo profil"
             />
@@ -120,8 +124,8 @@ const ProfilPage: React.FC = () => {
                 ></input>
               </div>
               <p className="text-red-500 text-xs italic">
-            {errors?.image?.message}
-          </p>
+                {errors?.image?.message}
+              </p>
               <button
                 className="bg-blue hover:bg-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
@@ -159,13 +163,9 @@ const ProfilPage: React.FC = () => {
           {!visible && (
             <div>
               {isEmpty(user?.recipeFavorite) && (
-                <div
-                  className={
-                    "text-center" + (visible ? " hidden" : "")
-                  }
-                >
+                <div className={"text-center" + (visible ? " hidden" : "")}>
                   <h3 className="p-36 text-2xl">
-                    Vous n'avez pas de recette favorites 
+                    Vous n'avez pas de recette favorites
                   </h3>
                 </div>
               )}
@@ -201,11 +201,7 @@ const ProfilPage: React.FC = () => {
         {visible && (
           <div>
             {isEmpty(user?.recipeAuthor) && (
-              <div
-                className={
-                  "text-center" + (!visible ? " hidden" : "")
-                }
-              >
+              <div className={"text-center" + (!visible ? " hidden" : "")}>
                 <h3 className="p-36 text-2xl">
                   Vous n'avez pas de recette pour l'instant
                 </h3>
