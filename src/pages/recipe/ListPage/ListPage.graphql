@@ -2,6 +2,8 @@ query recipes($filter: RecipeFilterInput, $first: Int, $after: String) {
   allRecipes(filter: $filter, after: $after, first: $first) {
     pageInfo {
       hasNextPage
+      startCursor
+      endCursor
     }
     edges {
       cursor

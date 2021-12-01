@@ -84,10 +84,10 @@ const RecipeListPage = () => {
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
-            loader={<></>}
+            loader={<Loading isForLoadingPage={false} />}
             onScroll={(e) => {
               if (!isMobile) {
-                if (window.pageYOffset > 800) {
+                if (window.pageYOffset > 400) {
                   setShowScrollTop(true);
                 } else {
                   setShowScrollTop(false);
@@ -98,7 +98,7 @@ const RecipeListPage = () => {
               fetchMore({
                 variables: {
                   filter: currentFilters,
-                  after: recipes[recipes.length - 1]?.cursor || "",
+                  after: data.allRecipes?.pageInfo?.endCursor,
                   first: 10,
                 },
                 updateQuery: (prev, next) => {
@@ -124,7 +124,7 @@ const RecipeListPage = () => {
               });
             }}
           >
-            <div className="w-auto | flex flex-row flex-wrap | py-10 lg:px-0 | justify-center">
+            <div className="w-auto | flex flex-row flex-wrap | py-10 lg:px-0 ">
               {recipes?.map((recipe, index: number) => (
                 <RecipeCard recipe={recipe?.node} key={index} />
               ))}

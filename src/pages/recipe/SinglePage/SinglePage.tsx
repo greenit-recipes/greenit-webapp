@@ -120,8 +120,6 @@ const RecipeSinglePage = () => {
     return () => window.clearInterval(timeoutID);
   }, [getPlayer]);
 
-  const [addOrRemoveLikeRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
-
   const onSubmitHandler = (dataForm: { comment: string }) => {
     const newCommentAddedByCurrentUser = {
       comment: dataForm?.comment,

@@ -5,7 +5,6 @@ import { RecipeDifficulty, RecipeFragment } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
 import { Icon } from "../misc";
 import { FavouriteField } from "../layout/FavouriteField";
-import { LikeField } from "../layout/LikeField";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
