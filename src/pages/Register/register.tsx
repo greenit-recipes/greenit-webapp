@@ -88,6 +88,7 @@ const Register: React.FC = () => {
     userCategoryLvl: string;
     userCategoryAge: string;
     userWantFromGreenit: string;
+    isFollowNewsletter: boolean;
   }) => {
     setEmail(data.email);
     createAccount({
@@ -99,6 +100,7 @@ const Register: React.FC = () => {
         userCategoryLvl: data.userCategoryLvl,
         userCategoryAge: data.userCategoryAge,
         userWantFromGreenit: data.userWantFromGreenit,
+        isFollowNewsletter: data.isFollowNewsletter,
       },
     });
   };
@@ -229,6 +231,13 @@ const Register: React.FC = () => {
               </option>
             </select>
           </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+            Je souhaite recevoir la newsletter Greenit Community. Nouvelles fonctionnalités, astuces DIY et recettes garanties !
+            </label>
+            <input type="checkbox" {...register('isFollowNewsletter')} id="isFollowNewsletter"/>
+            </div>
+
           <div className="flex items-center justify-between">
             <button
               className="flex justify-center items-center cursor-pointer

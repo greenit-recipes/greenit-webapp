@@ -12,6 +12,7 @@ export const CREATE_ACCOUNT = gql`
     $userCategoryLvl: String!
     $userCategoryAge: String!
     $userWantFromGreenit: String!
+    $isFollowNewsletter: String!
   ) {
     register(
       email: $email
@@ -21,6 +22,7 @@ export const CREATE_ACCOUNT = gql`
       userCategoryLvl: $userCategoryLvl
       userCategoryAge: $userCategoryAge
       userWantFromGreenit: $userWantFromGreenit
+      isFollowNewsletter: $isFollowNewsletter
     ) {
       success
       errors
