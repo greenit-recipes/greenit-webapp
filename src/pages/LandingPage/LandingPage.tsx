@@ -18,6 +18,7 @@ import {
   likedIconOn,
   likedIconOff,
 } from "../../icons";
+import "../../pages/recipe/SinglePage/SinglePage.css";
 import ReactPlayer from "react-player";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -147,7 +148,7 @@ const LandingPage = () => {
           <div className="relative" style={{ height: "23rem" }}>
             <ReactPlayer
               url="https://youtu.be/ZeNRzJg0CKo"
-              className="absolute top-0 left-0"
+              className="absolute top-0 left-0 react-player"
               controls={true}
               config={{
                 youtube: {
@@ -159,10 +160,10 @@ const LandingPage = () => {
             />
           </div>
           {!isMobile && (
-            <div className="relative" style={{ height: "12rem" }}>
+            <div className="relative" style={{ height: "23rem" }}>
               <ReactPlayer
                 url="https://youtu.be/tHAWH6fUqEo"
-                className="absolute top-0 left-0"
+                className="absolute top-0 left-0 react-player"
                 controls={true}
                 config={{
                   youtube: {

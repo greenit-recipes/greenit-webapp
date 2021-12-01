@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import './SinglePage.css'
+import "./SinglePage.css";
 import {
   ADD_COMMENT_TO_RECIPE,
   ADD_OR_REMOVE_LIKE_COMMENT,
@@ -185,7 +185,10 @@ const RecipeSinglePage = () => {
                 }
               </h3>
               <div className="flex justify-center mt-5">
-                <UserBadge recipe={data?.recipe}></UserBadge>
+                <UserBadge
+                  image={recipe?.author?.imageProfile}
+                  name={recipe?.author?.username}
+                ></UserBadge>
                 <LikeField
                   recipe={data?.recipe}
                   isRecipeCard={false}
@@ -197,7 +200,7 @@ const RecipeSinglePage = () => {
               <img
                 // @ts-ignore
                 src={getImagePath(recipe?.image)}
-                className="row-span-3 md:col-span-2 lg:col-span-1 h-96 min-w-64 w-64 rounded-3xl | object-cover flex justify-self-center md:justify-self-start"
+                className="row-span-3 md:col-span-2 lg:col-span-1 h-96 min-w-64s w-64 rounded-3xl | object-cover flex justify-self-center md:justify-self-start"
               />
               <div className="col-span-1 lg:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex h-11">
                 {recipe?.tags.map((item, index) => (
@@ -250,7 +253,7 @@ const RecipeSinglePage = () => {
             <ReactPlayer
               // @ts-ignore
               url={recipe?.videoUrl}
-              className='react-player'
+              className="react-player"
               controls={true}
               ref={player}
               config={{
@@ -324,7 +327,8 @@ const RecipeSinglePage = () => {
               <div className="mt-5 flex flex-col" key={index}>
                 <div className="relative bg-orange bg-opacity-10 rounded-3xl px-6 py-4">
                   <UserBadge
-                    user={getImagePath(comment?.author?.imageProfile)}
+                    image={comment?.author?.imageProfile}
+                    name={comment?.author?.username}
                     className="mb-2"
                   ></UserBadge>
                   <div className="text-md lg:text-lg">
