@@ -92,9 +92,9 @@ const RecipeSinglePage = () => {
   // @ts-ignore
   const location = useLocation<{ recipeId: string }>();
   const recipeId = location.state?.recipeId;
-  const isMobile = useIsMobile();
   const history = useHistory();
   const { error, loading, data } = useRecipeQuery({
+    fetchPolicy: "no-cache",
     variables: {
       id: recipeId ?? "",
     },
@@ -185,7 +185,7 @@ const RecipeSinglePage = () => {
                 }
               </h3>
               <div className="flex justify-center mt-5">
-                <UserBadge recipe={data?.recipe}></UserBadge>
+                <UserBadge image={recipe?.image}></UserBadge>
                 <LikeField
                   recipe={data?.recipe}
                   isRecipeCard={false}
@@ -318,13 +318,16 @@ const RecipeSinglePage = () => {
         <div className="mt-6 flex flex-col">
           <h1 className="text-xl md:text-2xl">Discussion</h1>
           {recipe?.comments?.map((comment: any, index: number) => {
-            // @ts-ignore
+            console.log('comment -->', comment)
+            console.log('author -->', comment?.author)
+             // @ts-ignore
             const canLike = comment?.author?.id !== getUuidFromId(data?.me?.id);
             return (
               <div className="mt-5 flex flex-col" key={index}>
                 <div className="relative bg-orange bg-opacity-10 rounded-3xl px-6 py-4">
                   <UserBadge
-                    user={getImagePath(comment?.author?.imageProfile)}
+                    image={comment?.author?.imageProfile}
+                    title={comment?.author?.username}
                     className="mb-2"
                   ></UserBadge>
                   <div className="text-md lg:text-lg">
@@ -387,13 +390,12 @@ const RecipeSinglePage = () => {
           <div className="flex items-center justify-between">
             {isLoggedIn ? (
               <div className="mb-4 w-full">
-                <input
+                <textarea
                   className="appearance-none rounded w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="comment"
                   placeholder="comment"
-                  type="text"
                   {...register("comment")}
-                ></input>
+                ></textarea>
                 <p className="text-red-500 text-xs italic">
                   {errors.comment?.message}
                 </p>
