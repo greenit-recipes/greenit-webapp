@@ -27,7 +27,7 @@ import { LikeField } from "components/layout/LikeField";
 import { FavouriteField } from "components/layout/FavouriteField";
 import { CommentField } from "components/layout/CommentField";
 import { UserBadge } from "components/layout/UserBadge";
-import { shareIcon } from "../../../icons";
+import { shareIcon, commentaireIcon, likedIconOn } from "../../../icons";
 
 interface InstructionProps {
   index: number;
@@ -182,7 +182,7 @@ const RecipeSinglePage = () => {
               <img
                 // @ts-ignore
                 src={getImagePath(recipe?.image)}
-                className="row-span-3 h-96 rounded-3xl"
+                className="row-span-3 h-96 w-64 rounded-3xl | object-cover"
               />
               <div className="md:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex h-11">
                 {recipe?.tags.map((item, index) => (
@@ -247,7 +247,7 @@ const RecipeSinglePage = () => {
               height="100%"
             />
           </div>
-          <div className="mt-5 lg:mt-0">
+          <div className="mt-5 lg:mt-0 md:ml-10">
             <h1 className="text-xl md:text-2xl">Instructions</h1>
             {recipe?.instructions.map((item: any, index: number) => {
               const timestamp = getSecondsFromDuration(item.timestamp);
@@ -283,7 +283,7 @@ const RecipeSinglePage = () => {
           <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
         </div>
         <div className="grid justify-center w-full">
-          <div className="grid grid-cols-2 gap-2 m-10 justify-center">
+          <div className="grid grid-cols-2 gap-2 lg:gap-10 m-10 justify-center md:w-1/2">
             <div className="grid">
               <FavouriteField recipe={data?.recipe}></FavouriteField>
               <h1 className="text-center text-base"> Ajouter au favoris</h1>
@@ -304,24 +304,31 @@ const RecipeSinglePage = () => {
             const canLike = comment?.author?.id !== getUuidFromId(data?.me?.id);
             return (
               <div className="mt-5 flex flex-col" key={index}>
-                <img
-                  src={getImagePath(comment?.author?.imageProfile)}
-                  className="w-1/4 rounded-3xl self-start"
-                  style={{ height: "4rem", width: "4rem", minWidth: "20px" }}
-                />
-                <p className="text-md lg:text-lg">
-                  Par: {comment?.author?.username}
-                </p>
+                <div className="relative bg-orange bg-opacity-10 rounded-3xl px-6 py-4">
+                  <UserBadge
+                    user={getImagePath(comment?.author?.imageProfile)}
+                    className="mb-2"
+                  ></UserBadge>
+                  <div className="text-md lg:text-lg">
+                    <h3 className="text-base"> {comment?.comment} </h3>
+                  </div>
+                  <h3 className="absolute top-0 right-0 m-6 | text-base">
+                    {momentGreenit(comment?.createdAt)}
+                  </h3>
+                  <div className="absolute -bottom-1 -right-1">
+                    <div className="flex bg-white w-20 h-12 rounded-tl-2xl p-3">
+                      <img
+                        src={likedIconOn}
+                        className="self-center w-7 h-7 lg:w-8 lg:h-8"
+                        alt="likes"
+                      />
+                      <h1 className="self-center text-lg md:text-xl ml-1">
+                        {comment?.numberOfLikes}
+                      </h1>
+                    </div>
+                  </div>
+                </div>
 
-                <p className="text-md lg:text-lg">
-                  Commentaire: {comment?.comment}
-                </p>
-                <p className="text-md lg:text-lg">
-                  Date de publication: {momentGreenit(comment?.createdAt)}
-                </p>
-                <p className="text-md lg:text-lg">
-                  Nombre de like par commentaire: {comment?.numberOfLikes}
-                </p>
                 {isLoggedIn ? (
                   // @ts-ignore
                   canLike && (
@@ -348,15 +355,15 @@ const RecipeSinglePage = () => {
           })}
         </div>
         <form
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          className="bg-white shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4 mt-10"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Nom de la recette
+            <label className="block text-gray-700 text-base mb-2">
+              Commence la discussion
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow border-2 appearance-none rounded w-full p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="comment"
               placeholder="comment"
               type="text"
@@ -369,10 +376,10 @@ const RecipeSinglePage = () => {
           <div className="flex items-center justify-between">
             {isLoggedIn ? (
               <button
-                className="bg-blue hover:bg-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-blue hover:bg-blue text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
-                Envoyer le commentaire
+                Publier
               </button>
             ) : (
               <button

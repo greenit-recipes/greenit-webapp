@@ -116,11 +116,13 @@ const LandingPage = () => {
                         />
                       </div>
                     ) : (
-                      <RecipeCard
-                        recipe={recipe?.node}
-                        key={index}
-                        inCarousel={true}
-                      />
+                      <div key={index} className="mb-10">
+                        <RecipeCard
+                          recipe={recipe?.node}
+                          key={index}
+                          inCarousel={true}
+                        />
+                      </div>
                     )}
                   </>
                 ))
@@ -176,7 +178,7 @@ const LandingPage = () => {
       </Container>
 
       {isLoggedIn ? (
-        <div/>
+        <div />
       ) : (
         <Container
           margin={20}
