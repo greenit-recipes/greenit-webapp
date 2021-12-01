@@ -48,7 +48,7 @@ export const FavouriteField: React.FC<FavouriteField> = ({
           )}
         </button>
       ) : (
-        <Link to="/connexion">
+        <Link to="/register">
           <img className="w-9 h-9 lg:w-12 lg:h-12" src={likedIconOff} />
         </Link>
       )}

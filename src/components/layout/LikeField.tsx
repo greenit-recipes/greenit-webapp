@@ -62,7 +62,7 @@ export const LikeField: React.FC<LikeField> = ({
           <h1 className="flex self-center text-lg lg:text-xl ml-1">{nbrLiked}</h1>
         </button>
       ) : (
-        <Link to="/connexion" className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mr-3">
+        <Link to="/register" className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mr-3">
           <img
             src={clapIconOff}
             className="flex self-center w-7 h-7 lg:w-8 lg:h-8"

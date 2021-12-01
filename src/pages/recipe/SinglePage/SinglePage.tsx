@@ -356,7 +356,7 @@ const RecipeSinglePage = () => {
                         </div>
                       )
                     ) : (
-                      <Link to="/connexion">
+                      <Link to="/register">
                         <div className="flex bg-white w-20 h-12 rounded-tl-2xl p-3">
                           <img
                             src={likedIconOn}
@@ -406,7 +406,7 @@ const RecipeSinglePage = () => {
                 </Button>
               </div>
             ) : (
-              <Link to="/connexion">
+              <Link to="/register">
                 <Button
                   className="rounded focus:outline-none focus:shadow-outline"
                   type="submit"

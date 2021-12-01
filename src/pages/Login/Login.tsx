@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import authServiceService, { LOGIN_ACCOUNT } from "services/auth.service";
 import * as yup from "yup";
 import { BackgroundImage } from "../LandingPage/Components/BackgroundImage";
+import { Link } from "react-router-dom";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -80,9 +81,26 @@ const Login: React.FC = () => {
     <div className="grid justify-items-center w-screen">
       <Navbar />
       <BackgroundImage className="overflow-hidden" />
-      <div className="flex max-w-xs md:max-w-sm">
+      <h3 className="text-2xl w-2/3 md:text-3xl | mt-16 text-center">
+        Connection vers ton espace DIY <br />
+      </h3>
+      <div className="w-full max-w-xs md:max-w-lg mt-10">
+        <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 w-4/5">
+          <h3 className="text-sm md:text-base self-center">
+            Si tu veux créer un compte:
+          </h3>
+          <Link to="/register">
+            <button
+              className="flex items-center cursor-pointer
+              bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
+            hover:bg-white hover:border-green hover:text-green"
+            >
+              <h3 className="text-sm">Créer un compte</h3>
+            </button>
+          </Link>
+        </div>
         <form
-          className="bg-white shadow-lg rounded p-10 mb-4 mt-36"
+          className="bg-white shadow-lg rounded-xl p-10 mb-4 mt-5"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
@@ -122,13 +140,13 @@ const Login: React.FC = () => {
           <div className="flex items-center justify-between">
             <button
               className="flex justify-center items-center cursor-pointer
-              bg-blue rounded-lg p-3 h-12 text-xl bold text-white border-2 border-transparent
+              bg-blue rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
               hover:bg-white hover:border-blue hover:text-blue"
             >
               Connexion
             </button>
             <a
-              className="inline-block align-baseline font-medium text-sm text-blue-500 hover:text-blue-800"
+              className="inline-block align-baseline font-medium text-sm hover:text-blue"
               href="#"
             >
               Mot de passe oublié ?
