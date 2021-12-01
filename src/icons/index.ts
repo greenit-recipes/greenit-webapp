@@ -42,8 +42,10 @@ import likedIconOff from "./liked_recipe_off.png";
 
 import tiktokIcon from "./tiktok.svg";
 import pinterestIcon from "./pinterest.svg";
-import clapIcon from "./clap_icon.png";
+import clapIconOn from "./clap_icon_on.png";
+import clapIconOff from "./clap_icon_off.png";
 import commentaireIcon from "./commentaire_icon.png"
+import shareIcon from "./share_icon.png"
 
 export const landingPageCategories = [
   {
@@ -99,6 +101,8 @@ export {
   pinterestIcon,
   likedIconOn,
   likedIconOff,
-  clapIcon,
+  clapIconOn,
+  clapIconOff,
   commentaireIcon,
+  shareIcon,
 };

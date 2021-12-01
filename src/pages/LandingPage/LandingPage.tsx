@@ -116,11 +116,13 @@ const LandingPage = () => {
                         />
                       </div>
                     ) : (
-                      <RecipeCard
-                        recipe={recipe?.node}
-                        key={index}
-                        inCarousel={true}
-                      />
+                      <div key={index} className="mb-10">
+                        <RecipeCard
+                          recipe={recipe?.node}
+                          key={index}
+                          inCarousel={true}
+                        />
+                      </div>
                     )}
                   </>
                 ))
@@ -157,7 +159,7 @@ const LandingPage = () => {
             />
           </div>
           {!isMobile && (
-            <div className="relative" style={{ height: "23rem" }}>
+            <div className="relative" style={{ height: "12rem" }}>
               <ReactPlayer
                 url="https://youtu.be/tHAWH6fUqEo"
                 className="absolute top-0 left-0"
@@ -176,7 +178,7 @@ const LandingPage = () => {
       </Container>
 
       {isLoggedIn ? (
-        <div/>
+        <div />
       ) : (
         <Container
           margin={20}

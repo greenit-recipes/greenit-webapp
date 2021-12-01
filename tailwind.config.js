@@ -11,12 +11,16 @@ module.exports = {
         '38': '9.5rem',
         '50': '12.6rem',
         '66': '18rem',
+        '84': '22rem',
       },
       maxWidth: {
         '26': '26rem',
       },
       minWidth: {
+        '10': '2.5rem',
         '18': '18rem',
+        '64': '16rem',
+        '96': '24rem',
       },
       fontFamily: {
         'body': ["Quicksand-Medium"],

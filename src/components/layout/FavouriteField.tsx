@@ -42,14 +42,14 @@ export const FavouriteField: React.FC<FavouriteField> = ({
           }}
         >
           {isFavorite ? (
-            <img className="w-8 h-8 lg:w-12 lg:h-12" alt="like" src={likedIconOn} />
+            <img className="w-9 h-9 lg:w-12 lg:h-12" alt="like" src={likedIconOn} />
           ) : (
-            <img className="w-8 h-8 lg:w-12 lg:h-12" alt="dislike" src={likedIconOff} />
+            <img className="w-9 h-9 lg:w-12 lg:h-12" alt="dislike" src={likedIconOff} />
           )}
         </button>
       ) : (
-        <Link to="/connexion">
-          <img className="w-8 h-8 lg:w-12 lg:h-12" src={likedIconOff} />
+        <Link to="/register">
+          <img className="w-9 h-9 lg:w-12 lg:h-12" src={likedIconOff} />
         </Link>
       )}
     </div>

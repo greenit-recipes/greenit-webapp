@@ -17,7 +17,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       className={`flex justify-center items-center cursor-pointer
-      p-3 h-12 text-xl bold text-white border-2 border-transparent
+      p-3 h-12 text-base md:text-lg bold text-white border-2 border-transparent
       bg-${type ? type: "blue"} 
       hover:bg-white hover:border-${
         type ? type : "blue"

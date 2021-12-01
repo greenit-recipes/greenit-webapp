@@ -26,8 +26,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   const [nbrLiked, setNbrLiked] = useState(recipe?.numberOfLikes);
   const iconHeight = isMobile ? 10 : 16;
   const imageHeight = isMobile ? 60 : 96;
-  const imageWidth = isMobile ? 40 : 60;
-  const bandeauWidth = isMobile ? 40 : 60;
+  const imageWidth = isMobile ? 44 : 60;
+  const bandeauWidth = isMobile ? 44 : 60;
   const nbOfIngredients = recipe?.numberOfIngredients;
 
   return (
@@ -50,6 +50,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           ></img>
         </div>
       </Link>
+      <LikeField recipe={recipe} isRecipeCard={true}></LikeField>
       <div className={`absolute bottom-2/7 w-${imageWidth} z-10`}>
         <FavouriteField parentFunction={parentFunction} recipe={recipe} />
       </div>

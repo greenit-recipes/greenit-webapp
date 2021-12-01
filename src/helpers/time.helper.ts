@@ -2,7 +2,7 @@ import moment from 'moment'
 import 'moment/locale/fr';
 
 export const momentGreenit = (date: string) => {
-    return moment(date).locale('fr').format('llll')
+    return moment(date).locale('fr').format('l')
 }
 
 

@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import { clapIcon } from "../../icons";
+import { clapIconOn, clapIconOff } from "../../icons";
 import { ADD_OR_REMOVE_LIKE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import authService from "services/auth.service";
 import { Link } from "react-router-dom";
@@ -25,7 +25,11 @@ export const LikeField: React.FC<LikeField> = ({
 
   return (
     <div
-      className={isRecipeCard ? `absolute top-2 left-1/2 lg:left-36 w-2/5 lg:w-20 h-10 bg-white rounded-xl p-4 ${className}` : `flex top-2 left-1/2 lg:left-36 w-2/5 lg:w-20 h-10 bg-white rounded-xl p-4 ${className}`}
+      className={
+        isRecipeCard
+          ? `absolute h-9 lg:h-10 w-16 top-2 left-26 lg:left-38 lg:w-20 | grid justify-items-center | bg-white rounded-xl ${className}`
+          : `flex ${className}`
+      }
     >
       {isLoggedIn ? (
         <button
@@ -44,24 +48,30 @@ export const LikeField: React.FC<LikeField> = ({
         >
           {isLiked ? (
             <img
-              src={clapIcon}
-              className="self-center w-6 h-6 lg:w-8 lg:h-8 mb-1"
+              src={clapIconOn}
+              className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mb-1"
               alt="likes"
             />
           ) : (
-            <p>Change l'image quand pas like</p>
+            <img
+              src={clapIconOff}
+              className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mb-1"
+              alt="likes"
+            />
           )}
+          <h1 className="flex self-center text-lg lg:text-xl ml-1">{nbrLiked}</h1>
         </button>
       ) : (
-        <Link to="/connexion">
+        <Link to="/register" className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mr-3">
           <img
-            src={clapIcon}
-            className="self-center w-6 h-6 lg:w-8 lg:h-8 mb-1"
+            src={clapIconOff}
+            className="flex self-center w-7 h-7 lg:w-8 lg:h-8"
             alt="likes"
           />
+          <h1 className="flex self-center text-lg lg:text-xl ml-1">{nbrLiked}</h1>
         </Link>
       )}
-      <div className="self-center text-sm lg:text-xl ml-1">{nbrLiked}</div>
+      
     </div>
   );
 };

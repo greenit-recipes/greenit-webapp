@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
 import authService, {
   CREATE_ACCOUNT,
   RESEND_ACTIVATION_EMAIL,
@@ -108,9 +109,27 @@ const Register: React.FC = () => {
     <div className="grid justify-items-center w-screen">
       <Navbar />
       <BackgroundImage className="overflow-hidden" />
-      <div className="w-full max-w-xs md:max-w-sm">
+      <h3 className="text-xl w-2/3 md:text-3xl | mt-16 text-center">
+        Création de ton espace DIY <br />
+      </h3>
+
+      <div className="w-full max-w-xs md:max-w-lg mt-10">
+        <div className="grid grid-cols-2 md:w-96">
+          <h3 className="text-sm md:text-base self-center">
+            Si tu as déjà un compte:
+          </h3>
+          <Link to="/connexion">
+            <button
+              className="flex items-center cursor-pointer
+              bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
+              hover:bg-white hover:border-green hover:text-green"
+            >
+              <h3 className="text-sm">Se connecter</h3>
+            </button>
+          </Link>
+        </div>
         <form
-          className="bg-white shadow-lg rounded p-10 mb-4 mt-10 md:mt-28"
+          className="bg-white shadow-lg rounded-xl p-12 mb-4 mt-2"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
@@ -241,11 +260,10 @@ const Register: React.FC = () => {
           <div className="flex items-center justify-between">
             <button
               className="flex justify-center items-center cursor-pointer
-              bg-blue rounded-lg p-3 h-12 text-xl bold text-white border-2 border-transparent
+              bg-blue rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
               hover:bg-white hover:border-blue hover:text-blue"
-              type="submit"
             >
-              Sign In
+              Sign in
             </button>
           </div>
         </form>
