@@ -1,0 +1,8 @@
+.player-wrapper {
+  border-radius: 5px;
+}
+
+.react-player {
+  border-radius: 20px;
+  overflow: hidden;
+}
