@@ -131,7 +131,7 @@ const CreateRecipe: React.FC = () => {
             type="text"
             {...register("name")}
           ></input>
-          <p className="text-red text-xs italic">{errors.name?.message}</p>
+          <p className="text-red-500 text-xs italic">{errors.name?.message}</p>
         </div>
 
         <div className="mb-4">
@@ -145,7 +145,7 @@ const CreateRecipe: React.FC = () => {
             type="text"
             {...register("description")}
           ></input>
-          <p className="text-red text-xs italic">
+          <p className="text-red-500 text-xs italic">
             {errors.description?.message}
           </p>
         </div>
@@ -325,7 +325,7 @@ const CreateRecipe: React.FC = () => {
             type="text"
             {...register("notes_from_author")}
           ></input>
-          <p className="text-red text-xs italic">{errors.name?.message}</p>
+          <p className="text-red-500 text-xs italic">{errors.name?.message}</p>
         </div>
         <div>
           <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -336,7 +336,7 @@ const CreateRecipe: React.FC = () => {
             type="file"
             {...register("image")}
           ></input>
-          <p className="text-red text-xs italic">{errors.image?.message}</p>
+          <p className="text-red-500 text-xs italic">{errors.image?.message}</p>
         </div>
         <div>
           <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -347,7 +347,7 @@ const CreateRecipe: React.FC = () => {
             type="file"
             {...register("video")}
           ></input>
-          <p className="text-red text-xs italic">{errors.video?.message}</p>
+          <p className="text-red-500 text-xs italic">{errors.video?.message}</p>
         </div>
 
         {/* Submit */}
