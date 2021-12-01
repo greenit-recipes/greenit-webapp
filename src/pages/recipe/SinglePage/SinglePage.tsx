@@ -127,6 +127,14 @@ const RecipeSinglePage = () => {
     return player;
   };
 
+  const scrollIntoComment = () => {
+    if (!fieldRef) return;
+    // @ts-ignore
+    fieldRef?.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   useEffect(() => {
     const timeoutID = window.setInterval(() => {
       setVideoDuration(getPlayer().current?.getCurrentTime() ?? 0);
@@ -158,9 +166,7 @@ const RecipeSinglePage = () => {
       },
     }).then(() => {
       // @ts-ignore
-      fieldRef.current.scrollIntoView({
-        behavior: "smooth",
-      });
+      scrollIntoComment();
       reset();
     });
   };
@@ -194,7 +200,12 @@ const RecipeSinglePage = () => {
                   recipe={data?.recipe}
                   isRecipeCard={false}
                 ></LikeField>
-                <CommentField>{nbrComment}</CommentField>
+                <CommentField
+                  // @ts-ignore
+                  parentFunction={scrollIntoComment}
+                >
+                  {nbrComment}
+                </CommentField>
               </div>
             </div>
             <div className="grid grid-cols-1 grid-flow-row auto-rows-max md:grid-cols-3 gap-6 mt-8">
