@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import './SinglePage.css'
 import {
   ADD_COMMENT_TO_RECIPE,
   ADD_OR_REMOVE_LIKE_COMMENT,
@@ -240,6 +241,7 @@ const RecipeSinglePage = () => {
             <ReactPlayer
               // @ts-ignore
               url={recipe?.videoUrl}
+              className='react-player'
               controls={true}
               ref={player}
               config={{
