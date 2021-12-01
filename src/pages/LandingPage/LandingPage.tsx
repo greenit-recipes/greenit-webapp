@@ -159,7 +159,7 @@ const LandingPage = () => {
             />
           </div>
           {!isMobile && (
-            <div className="relative" style={{ height: "23rem" }}>
+            <div className="relative" style={{ height: "12rem" }}>
               <ReactPlayer
                 url="https://youtu.be/tHAWH6fUqEo"
                 className="absolute top-0 left-0"

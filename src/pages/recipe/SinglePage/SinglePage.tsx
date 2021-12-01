@@ -2,7 +2,14 @@ import React, { createRef, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { useHistory, useLocation } from "react-router-dom";
 import { useRecipeQuery } from "../../../graphql";
-import { Container, Grid, Footer, Loading, Navbar } from "../../../components";
+import {
+  Container,
+  Grid,
+  Footer,
+  Loading,
+  Navbar,
+  Button,
+} from "../../../components";
 import useIsMobile from "../../../hooks/isMobile";
 import { getSecondsFromDuration } from "../../../utils";
 import { isEmpty } from "lodash";
@@ -66,7 +73,9 @@ const closest = (needle: number, haystack: any[]) => {
   });
 };
 
-const schema = yup.object().shape({});
+const schema = yup.object().shape({
+  comment: yup.string().min(2, "Réponse trop courte"),
+});
 
 const RecipeSinglePage = () => {
   const {
@@ -79,7 +88,7 @@ const RecipeSinglePage = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
+  const fieldRef = React.useRef<HTMLInputElement>(null);
   // @ts-ignore
   const location = useLocation<{ recipeId: string }>();
   const recipeId = location.state?.recipeId;
@@ -146,6 +155,12 @@ const RecipeSinglePage = () => {
         recipeId: data?.recipe?.id,
         comment: dataForm?.comment,
       },
+    }).then(() => {
+      // @ts-ignore
+      fieldRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+      reset();
     });
   };
 
@@ -169,7 +184,7 @@ const RecipeSinglePage = () => {
                   recipe && HTMLReactParser(recipe?.textAssociate)
                 }
               </h3>
-              <div className="flex justify-center">
+              <div className="flex justify-center mt-5">
                 <UserBadge recipe={data?.recipe}></UserBadge>
                 <LikeField
                   recipe={data?.recipe}
@@ -178,13 +193,13 @@ const RecipeSinglePage = () => {
                 <CommentField>{nbrComment}</CommentField>
               </div>
             </div>
-            <div className="grid grid-cols-1 grid-flow-row auto-rows-max md:grid-cols-3 gap-6 mt-10">
+            <div className="grid grid-cols-1 grid-flow-row auto-rows-max md:grid-cols-3 gap-6 mt-8">
               <img
                 // @ts-ignore
                 src={getImagePath(recipe?.image)}
-                className="row-span-3 h-96 w-64 rounded-3xl | object-cover"
+                className="row-span-3 md:col-span-2 lg:col-span-1 h-96 min-w-64 w-64 rounded-3xl | object-cover flex justify-self-center md:justify-self-start"
               />
-              <div className="md:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex h-11">
+              <div className="col-span-1 lg:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex h-11">
                 {recipe?.tags.map((item, index) => (
                   <div
                     className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
@@ -283,10 +298,13 @@ const RecipeSinglePage = () => {
           <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
         </div>
         <div className="grid justify-center w-full">
-          <div className="grid grid-cols-2 gap-2 lg:gap-10 m-10 justify-center md:w-1/2">
+          <div className="grid grid-cols-2 gap-2 lg:gap-10 m-10 justify-center md:w-52">
             <div className="grid">
               <FavouriteField recipe={data?.recipe}></FavouriteField>
-              <h1 className="text-center text-base"> Ajouter au favoris</h1>
+              <h1 className="text-center text-base" ref={fieldRef}>
+                {" "}
+                Ajouter au favoris
+              </h1>
             </div>
             <div className="grid">
               <img
@@ -316,78 +334,86 @@ const RecipeSinglePage = () => {
                     {momentGreenit(comment?.createdAt)}
                   </h3>
                   <div className="absolute -bottom-1 -right-1">
-                    <div className="flex bg-white w-20 h-12 rounded-tl-2xl p-3">
-                      <img
-                        src={likedIconOn}
-                        className="self-center w-7 h-7 lg:w-8 lg:h-8"
-                        alt="likes"
-                      />
-                      <h1 className="self-center text-lg md:text-xl ml-1">
-                        {comment?.numberOfLikes}
-                      </h1>
-                    </div>
+                    {isLoggedIn ? (
+                      // @ts-ignore
+                      canLike && (
+                        <div className="flex bg-white w-20 h-12 rounded-tl-2xl p-3">
+                          <img
+                            src={likedIconOn}
+                            className="self-center w-7 h-7 lg:w-8 lg:h-8"
+                            alt="likes"
+                            onClick={() => {
+                              addOrRemoveLikeComment({
+                                variables: {
+                                  commentId: comment?.id,
+                                },
+                              });
+                            }}
+                          />
+                          <h1 className="self-center text-lg md:text-xl ml-1">
+                            {comment?.numberOfLikes}
+                          </h1>
+                        </div>
+                      )
+                    ) : (
+                      <Link to="/connexion">
+                        <div className="flex bg-white w-20 h-12 rounded-tl-2xl p-3">
+                          <img
+                            src={likedIconOn}
+                            className="self-center w-7 h-7 lg:w-8 lg:h-8"
+                            alt="likes"
+                          />
+                          <h1 className="self-center text-lg md:text-xl ml-1">
+                            {comment?.numberOfLikes}
+                          </h1>
+                        </div>
+                      </Link>
+                    )}
                   </div>
                 </div>
-
-                {isLoggedIn ? (
-                  // @ts-ignore
-                  canLike && (
-                    <button
-                      className="text-md lg:text-lg"
-                      onClick={() => {
-                        addOrRemoveLikeComment({
-                          variables: {
-                            commentId: comment?.id,
-                          },
-                        });
-                      }}
-                    >
-                      Like moi grand fou
-                    </button>
-                  )
-                ) : (
-                  <Link to="/connexion">
-                    <h1>Like (pas connecté à changer a la place de l'icon)</h1>
-                  </Link>
-                )}
               </div>
             );
           })}
         </div>
         <form
-          className="bg-white shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4 mt-10"
+          className="filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10 p-6 mb-4 mt-10"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
-            <label className="block text-gray-700 text-base mb-2">
-              Commence la discussion
+            <label className="block text-gray-700 text-base md:text-lg mb-2">
+              Pour discuter c'est ici
             </label>
-            <input
-              className="shadow border-2 appearance-none rounded w-full p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="comment"
-              placeholder="comment"
-              type="text"
-              {...register("comment")}
-            ></input>
-            <p className="text-red-500 text-xs italic">
-              {errors.name?.message}
-            </p>
           </div>
           <div className="flex items-center justify-between">
             {isLoggedIn ? (
-              <button
-                className="bg-blue hover:bg-blue text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-              >
-                Publier
-              </button>
+              <div className="mb-4 w-full">
+                <input
+                  className="appearance-none rounded w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="comment"
+                  placeholder="comment"
+                  type="text"
+                  {...register("comment")}
+                ></input>
+                <p className="text-red-500 text-xs italic">
+                  {errors.comment?.message}
+                </p>
+
+                <Button
+                  className="w-24 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                >
+                  Publier
+                </Button>
+              </div>
             ) : (
-              <button
-                className="bg-blue hover:bg-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-              >
-                Se connecter pour envoyer un commentaire (rajouter le lien)
-              </button>
+              <Link to="/connexion">
+                <Button
+                  className="rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                >
+                  Se connecter pour discuter
+                </Button>
+              </Link>
             )}
           </div>
         </form>
