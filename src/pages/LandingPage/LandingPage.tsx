@@ -10,7 +10,7 @@ import {
 } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 import {
-  body,
+  corps,
   wellbeing,
   money,
   planet,
@@ -27,6 +27,7 @@ import { Link } from "react-router-dom";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
 import { BackgroundImage } from "./Components/BackgroundImage";
+import { BugFormulaire } from "components/layout/BugFormulaire";
 import authService from "services/auth.service";
 
 const LandingPage = () => {
@@ -40,13 +41,12 @@ const LandingPage = () => {
   if (loading || !data) {
     return <Loading />;
   }
-  
+
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
-
+      <BugFormulaire/>
       <BackgroundImage className="overflow-hidden" />
-
       <Container
         className="flex flex-col | items-center | mt-16 lg:mt-28"
         padding
@@ -77,7 +77,7 @@ const LandingPage = () => {
         ) : (
           <Grid
             type="col"
-            gap="8"
+            gap="6"
             size={{
               default: 6,
             }}
@@ -237,7 +237,7 @@ const LandingPage = () => {
         >
           {[
             { text: "Pour la planète", color: "#c2e69c", icon: planet },
-            { text: "Pour ton corps", color: "#ffe390", icon: body },
+            { text: "Pour ton corps", color: "#ffe390", icon: corps },
             { text: "Pour tes économies", color: "#ffbea8", icon: money },
             { text: "Pour ton esprit", color: "#93c5fe", icon: wellbeing },
           ].map((item) => (
@@ -260,9 +260,7 @@ const LandingPage = () => {
           <Button type="blue">En savoir plus</Button>
         </Link>
       </Container>
-
       <Newsletter />
-
       <Footer />
     </div>
   );

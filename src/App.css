@@ -149,6 +149,7 @@ h3 {
 .landingpage_bg_1 {
   background-color: #83d489;
   z-index: -1;
+  left: 45%;
   position: fixed;
   margin-top: 10em;
   filter: blur(3.5rem);

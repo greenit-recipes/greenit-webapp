@@ -1,6 +1,6 @@
 import { Button, Navbar } from "../../components";
 import { likedIconOn, likedIconOff } from "../../icons";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -68,6 +68,14 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState<string>("");
 
   React.useEffect(() => {
+
+      if (window.pageYOffset > 0) {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+
     if (createAccountData?.register?.success === false || error) {
       if (createAccountData?.register?.errors?.email[0]?.code === "unique") {
         setError("email", {

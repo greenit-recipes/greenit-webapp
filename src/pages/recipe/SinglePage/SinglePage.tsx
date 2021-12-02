@@ -11,9 +11,7 @@ import { getUuidFromId } from "helpers/user.helper";
 import HTMLReactParser from "html-react-parser";
 import { isEmpty } from "lodash";
 import moment from "moment";
-import {
-  ADD_COMMENT_TO_RECIPE
-} from "pages/recipe/SinglePage/SinglePageRequest";
+import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest";
 import React, { createRef, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ReactPlayer from "react-player";
@@ -21,8 +19,12 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import authService from "services/auth.service";
 import * as yup from "yup";
 import {
-  Button, Container, Footer, Grid, Loading,
-  Navbar
+  Button,
+  Container,
+  Footer,
+  Grid,
+  Loading,
+  Navbar,
 } from "../../../components";
 import { useRecipeQuery } from "../../../graphql";
 import useIsMobile from "../../../hooks/isMobile";
@@ -341,7 +343,7 @@ const RecipeSinglePage = () => {
                     {momentGreenit(comment?.createdAt)}
                   </h3>
                   <div className="absolute -bottom-1 -right-1">
-<LikeComment comment={comment}></LikeComment>
+                    <LikeComment comment={comment}></LikeComment>
                   </div>
                 </div>
               </div>

@@ -2,7 +2,7 @@ import { Button, Navbar } from "../../components";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import authServiceService, { LOGIN_ACCOUNT } from "services/auth.service";
 import * as yup from "yup";
@@ -26,6 +26,12 @@ const schema = yup.object().shape({
 }); // _ - .
 
 const Login: React.FC = () => {
+  if (window.pageYOffset > 0) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
   const {
     register,
     handleSubmit,

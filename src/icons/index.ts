@@ -1,9 +1,9 @@
 // CATEGORIES
 import wellbeing from "./wellbeing_icon.png";
-import body from "./body_icon.png";
-import face from "./face_icon.png";
-import hair from "./hair_icon.png";
-import home from "./home_icon.png";
+import corps from "./corps_recette.png";
+import visage from "./visage_recette.png";
+import cheuveux from "./hair_icon.png";
+import maison from "./maison_recette.png";
 import allCategories from "./all_categories_icon.png";
 
 // DIFFICULTY
@@ -16,9 +16,9 @@ import ingredients from "./ingredients.png"
 import logo from "./logo.png";
 
 // LANDING PAGE BUTTON ICONS
-import getStarted from "./get_started_icon.png";
-import zeroWaste from "./zero_waste_icon.png";
-import fridge from "./icon_fridge.png";
+import premierspas from "./premiers_pas_recette.png";
+import zeroWaste from "./zero_dechet_recette.png";
+import fridge from "./ingredients_cuisine_recette.png";
 import search from "./search_icon.png";
 
 // MISC
@@ -40,16 +40,22 @@ import scrollToTop from "./scroll_top_icon.png";
 import likedIconOn from "./liked_recipe_on.png";
 import likedIconOff from "./liked_recipe_off.png";
 
+// CONTACT
+import InstagramIcon from "./instagram_icon.png"
+import FBIcon from "./fb_icon.png"
+import MailIcon from "./mail_icon.png"
 import tiktokIcon from "./tiktok.svg";
 import pinterestIcon from "./pinterest.svg";
+
 import clapIconOn from "./clap_icon_on.png";
 import clapIconOff from "./clap_icon_off.png";
 import commentaireIcon from "./commentaire_icon.png"
 import shareIcon from "./share_icon.png"
+import bugIcon from "./bug_icon.png"
 
 export const landingPageCategories = [
   {
-    icon: getStarted,
+    icon: premierspas,
     title: "Premiers pas",
   },
   {
@@ -58,33 +64,33 @@ export const landingPageCategories = [
   },
   {
     icon: fridge,
-    title: "Ingrédients du frigo",
+    title: "Ingrédients de la cuisine",
   },
   {
-    icon: home,
+    icon: maison,
     title: "Maison",
   },
   {
-    icon: face,
+    icon: visage,
     title: "Visage",
   },
   {
-    icon: body,
+    icon: corps,
     title: "Corps",
   },
 ];
 
 export {
   wellbeing,
-  body,
-  face,
-  hair,
-  home,
+  corps,
+  visage,
+  cheuveux,
+  maison,
   allCategories,
   débutant,
   ingredients,
   logo,
-  getStarted,
+  premierspas,
   zeroWaste,
   fridge,
   money,
@@ -105,4 +111,8 @@ export {
   clapIconOff,
   commentaireIcon,
   shareIcon,
+  bugIcon,
+  InstagramIcon,
+  FBIcon,
+  MailIcon,
 };
