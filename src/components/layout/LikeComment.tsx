@@ -52,7 +52,7 @@ export const LikeComment: React.FC<LikeComment> = ({ comment }) => {
         </div>
       ) : (
         <Link to="/register">
-          <div className="flex bg-white w-20 h-12 rounded-tl-2xl p-3">
+          <div className="flex cursor-pointer bg-white w-20 h-12 rounded-tl-2xl p-3">
             <img
               src={likedIconOff}
               className="self-center w-7 h-7 lg:w-8 lg:h-8"
