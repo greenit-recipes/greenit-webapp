@@ -1,17 +1,16 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect } from "react";
 import { useLocation, useParams } from "react-router";
-import { VERIFY_ACCOUNT } from "services/auth.service";
+import authService, { VERIFY_ACCOUNT, WELCOME_NEW_USER } from "services/auth.service";
 import "../App.css";
 import { Footer, Navbar } from "../components";
 
 const Activate: React.FC = () => {
-  const location = useLocation();
   const { tokenActivationAccount } =
     useParams<{ tokenActivationAccount: string }>();
 
-  console.log("tokenActivationAccount -->", tokenActivationAccount);
-  console.log("path", location.pathname);
+  const [welcomeNewUser] = useMutation(WELCOME_NEW_USER);
+
   const [verifyAccount, { data, loading, error }] = useMutation(
     VERIFY_ACCOUNT,
     {
@@ -21,11 +20,15 @@ const Activate: React.FC = () => {
     }
   );
 
-  console.log("data", data);
-  console.log("error", error);
-
   useEffect(() => {
-    verifyAccount();
+    verifyAccount().then(() => {
+      if (!authService.getEmail()) return;
+      welcomeNewUser({
+        variables: {
+          email: authService.getEmail(),
+        },
+      });
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- empty dependency array
 

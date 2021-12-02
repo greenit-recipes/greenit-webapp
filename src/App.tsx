@@ -18,8 +18,14 @@ import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
 import CreateRecipe from "pages/CreateRecipe/CreateRecipe";
 import RecipeSinglePage from "pages/recipe/SinglePage/SinglePage";
+import ForgetPassword from "pages/Login/ForgetPassword";
+import ActivateResetPassword from "pages/ActivateResetPassword";
 
 export const history = createBrowserHistory()
+
+export const RouteName = {
+  resetPassword: "/mot-de-passe-oublié"
+}
 
 const App: React.FC = () => {
   return (
@@ -39,11 +45,17 @@ const App: React.FC = () => {
         <PrivateRoute path="/créer-une-recette" component={CreateRecipe} exact/>
         <Route exact path="/register" component={Register} />
         <Route exact path="/connexion" component={Login} />
+        <Route exact path={RouteName.resetPassword} component={ForgetPassword} />
         <PrivateRoute component={ProfilPage} path="/profil" exact />
         <Route
           exact
           path="/activate/:tokenActivationAccount"
           component={Activate}
+        />
+               <Route
+          exact
+          path="/activate/mot-de-passe-oublié/:tokenActivationAccount"
+          component={ActivateResetPassword}
         />
         <Route component={NotFoundPage} />
       </Switch>

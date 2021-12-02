@@ -39,6 +39,32 @@ export const RESEND_ACTIVATION_EMAIL = gql`
   }
 `;
 
+export const RESET_PASSWORD = gql`
+  mutation ResetPassword(
+    $token: String!
+    $password1: String!
+    $password2: String!
+  ) {
+    passwordReset(
+      token: $token
+      newPassword1: $password1
+      newPassword2: $password2
+    ) {
+      success
+      errors
+    }
+  }
+`;
+
+export const SEND_EMAIL_RESET_PASSWORD = gql`
+  mutation SendEmailResetPassword($email: String!) {
+    sendPasswordResetEmail(email: $email) {
+      success
+      errors
+    }
+  }
+`;
+
 export const LOGIN_ACCOUNT = gql`
   mutation LoginAccount($email: String!, $password: String!) {
     tokenAuth(email: $email, password: $password) {
@@ -58,7 +84,7 @@ export const LOGIN_ACCOUNT = gql`
 
 export const UPDATE_IMAGE_ACCOUNT = gql`
   mutation UpdateImageAccount($imageProfile: Upload!) {
-  updateImageAccount(imageProfile: $imageProfile) {
+    updateImageAccount(imageProfile: $imageProfile) {
       success
     }
   }
@@ -135,6 +161,14 @@ export const VERIFY_ACCOUNT = gql`
   }
 `;
 
+export const WELCOME_NEW_USER = gql`
+  mutation EmailWelcomeNewUser($email: String!) {
+    emailWelcomeNewUser(email: $email) {
+      success
+    }
+  }
+`;
+
 class Auth {
   setStorageLoginToken(token: string) {
     localStorage.setItem("token", token);
@@ -142,6 +176,14 @@ class Auth {
 
   setStorageLoginRefreshToken(token: string) {
     localStorage.setItem("refreshToken", token);
+  }
+
+  setStorageEmail(email: string) {
+    localStorage.setItem("email", email);
+  }
+  
+  getEmail(): string | null {
+    return localStorage.getItem("email");
   }
 
   getToken(): string | null {
@@ -153,7 +195,6 @@ class Auth {
   }
 
   logout() {
-    // Ne pas oublier de révoquer les tokens
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
     history.push("/");

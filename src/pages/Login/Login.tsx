@@ -8,6 +8,7 @@ import authServiceService, { LOGIN_ACCOUNT } from "services/auth.service";
 import * as yup from "yup";
 import { BackgroundImage } from "../LandingPage/Components/BackgroundImage";
 import { Link } from "react-router-dom";
+import { RouteName } from "App";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -147,7 +148,7 @@ const Login: React.FC = () => {
             </button>
             <a
               className="inline-block align-baseline font-medium text-sm hover:text-blue"
-              href="#"
+              href={RouteName.resetPassword}
             >
               Mot de passe oublié ?
             </a>
