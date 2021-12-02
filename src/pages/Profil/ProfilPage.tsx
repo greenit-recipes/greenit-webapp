@@ -8,13 +8,15 @@ import {
 } from "helpers/yup-validation.helper";
 import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
+import "reactjs-popup/dist/index.css";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import authService, { ME, UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
 import * as yup from "yup";
-import "../App.css";
-import { Container, Footer, Navbar } from "../components";
-import useIsMobile from "../hooks/isMobile";
+import "App.css";
+import { Container, Footer, Navbar } from "../../components";
+import useIsMobile from "../../hooks/isMobile";
+import { Modal } from "pages/Profil/ModalProfil"
 
 const ProfilPage: React.FC = () => {
   const isMobile = useIsMobile();
@@ -78,6 +80,9 @@ const ProfilPage: React.FC = () => {
 
   const refetchMe = () => refetch();
 
+  const imageHeight = isMobile ? 44 : 40;
+  const imageWidth = isMobile ? 44 : 40;
+
   const [visible, setVisible] = React.useState(false);
 
   if (loading || !data) {
@@ -92,30 +97,20 @@ const ProfilPage: React.FC = () => {
         padding
       >
         <div className="grid grid-cols-2 gap-4 mb-8 max-w-xs md:mb-20">
-          <div className="">
+          <div className="h-40 rounded-full bg-white p-2 shadow-xl">
             <img
+              className={`flex flex-col object-cover shadow-lg ${`h-${imageHeight} w-${imageWidth}`}
+              rounded-full | justify-self-center`}
+              // @ts-ignore
               src={userImage}
-              className="border-4 border-white shadow-xl | rounded-full"
-              alt="photo profil"
-            />
+            ></img>
           </div>
           <div className="flex flex-col | self-center">
             <div className="flex-inline overflow-clip overflow-hidden ...">
               <h2 className="text-xl md:text-2xl">{user?.username}</h2>
             </div>
-            <div className="mt-3">
-              <button className="text-xs bg-white text-black p-2 border-2 border-gray-600 shadow-md rounded-lg hover:bg-gray-500 hover:border-gray-500 hover:text-white md:text-base">
-                Paramètres
-              </button>
-            </div>
-            <button
-              className={
-                "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue"
-              }
-              onClick={() => authService.logout()}
-            >
-              Déconnexion
-            </button>
+
+            <Modal/>
 
             <form
               className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"

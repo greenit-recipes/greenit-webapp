@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ButtonProps {
-  type: "blue" | "green" | "yellow" | "orange" | "submit";
+  type: "blue" | "green" | "yellow" | "orange" | "grey" | "submit";
   rounded?: string;
   className?: string;
   onClick?: () => void;
@@ -17,7 +17,8 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       className={`flex justify-center items-center cursor-pointer
-      p-3 h-12 text-base md:text-lg bold text-white border-2 border-transparent
+      p-3 h-10 bold text-white border-2 border-transparent
+      text-${className} text-sm md:text-base
       bg-${type ? type: "blue"} 
       hover:bg-white hover:border-${
         type ? type : "blue"
