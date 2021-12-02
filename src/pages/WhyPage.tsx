@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Footer, Navbar } from "../components";
 import useIsMobile from "../hooks/isMobile";
-import { body, logo, money, planet, wellbeing } from "../icons";
+import { corps, logo, money, planet, wellbeing } from "../icons";
 import communityDesktop from "../icons/community_desktop.png";
 import communityMobile from "../icons/community_mobile.png";
 
@@ -124,7 +124,7 @@ const WhyPage: React.FC = () => {
               },
               {
                 id: 2,
-                icon: body,
+                icon: corps,
                 title: "Pour ton corps",
                 color: "#F2D493",
                 text: "Ces mêmes ingrédients chimiques endommagent, irritent et vulnérabilisent ta peau et tes cheveux. Hélas, même dans les produits les plus biologiques, les conservateurs, alcool et aluminium attaquent nos corps. La production maison est aussi personnalisée et respecte les différences de chacun.",

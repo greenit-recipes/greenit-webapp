@@ -57,19 +57,18 @@ export const Newsletter: React.FC = () => {
           <p className="text-red-500 text-xs italic">{errors.email?.message}</p>
         </div>
       </form>
-
+      {data?.createNewsletter?.success && (
+        <div className="text-green text-base md:text-base mb-2 | text-center whitespace-pre-line">
+          Votre inscription a bien été prise en compte. À très vite dans votre
+          boite mail !
+        </div>
+      )}
       <div className="w-3/4 mb-20 text-xs md:text-sm text-center lg:mx-80">
         Nous utilisons cette newsletter uniquement pour garder notre communauté
         informée des évolutions de Greenit ainsi que pour connaître vos avis sur
         certaines décisions. Vous pouvez vous désinscrire à tout moment en nous
         contactant à hello@greenitcommunity.com
       </div>
-      {data?.createNewsletter?.success && (
-        <div className="text-blue text-xl md:text-2xl | text-center whitespace-pre-line">
-          Votre inscription a bien été prise en compte. À très vite dans votre
-          boite mail !
-        </div>
-      )}
     </Container>
   );
 };

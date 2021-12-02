@@ -1,248 +1,83 @@
-import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/layout/Navbar";
+import { UXFormulaire } from "components/layout/UXFormulaire";
+import { Footer } from "components/layout/Footer";
 import {
-  CheckCircleOutlined,
-  ExclamationCircleOutlined,
-  InstagramOutlined,
-  MailOutlined,
-} from "@ant-design/icons";
-import useIsMobile from "../hooks/isMobile";
-import { useSendMessageMutation } from "../graphql";
-import HCaptcha from "@hcaptcha/react-hcaptcha";
-import { pinterestIcon, tiktokIcon } from "../icons";
-
-interface FormItemProps {
-  name: string;
-  title: string;
-  value: string;
-  type: "textarea" | "text";
-  onChange: (e: any) => void;
-}
-const FormItem: React.FC<FormItemProps> = ({
-  name,
-  title,
-  type,
-  value,
-  onChange,
-}) => {
-  const fieldClass = "w-full text-lg border-2 pl-2 border-2 border-gray-500";
-  return (
-    <div
-      className={`${
-        type === "textarea" ? "w-full" : ""
-      } flex flex-col gap-x-4 self-start`}
-    >
-      <h3 className="text-xl self-start">{title}</h3>
-      {type === "text" ? (
-        <input
-          type="text"
-          name={name}
-          className={fieldClass}
-          value={value}
-          onChange={onChange}
-        ></input>
-      ) : (
-        <textarea
-          rows={5}
-          name={name}
-          className={fieldClass}
-          value={value}
-          onChange={onChange}
-        ></textarea>
-      )}
-    </div>
-  );
-};
+  pinterestIcon,
+  tiktokIcon,
+  InstagramIcon,
+  MailIcon,
+  FBIcon,
+} from "../icons";
+import { BackgroundImage } from "./LandingPage/Components/BackgroundImage";
 
 const ContactPage = () => {
   const params = new URLSearchParams(window.location.search);
-  const isMobile = useIsMobile();
-  const [message, setMessage] = useState<string | null>(null);
-  const [state, setState] = useState<Record<string, string>>({
-    message: "",
-    name: "",
-    email: "",
-  });
-  const handleChange = (e: any) => {
-    setState((prevState: Record<string, string>) => {
-      return {
-        ...prevState,
-        [(e.target as HTMLTextAreaElement)
-          .name]: (e.target as HTMLTextAreaElement).value,
-      };
-    });
-  };
-  useEffect(() => {
-    if (message !== null) {
-      toggleMessage();
-    }
-  }, [message]);
-  const [sendMessage] = useSendMessageMutation({
-    onError: (err) => {
-    },
-    onCompleted: (data) => {
-      setMessage(
-        data.sendMessage?.ok
-          ? "Envoyé avec succès!"
-          : data.sendMessage?.message === "Internal Error"
-          ? "Erreur interne, merci d'essayer plus tard."
-          : "Captcha non valide!"
-      );
-    },
-  });
-  const toggleMessage = () => {
-    setTimeout(() => {
-      setMessage(null);
-    }, 2000);
-  };
-  const isSuccess = message === "Envoyé avec succès!";
   return (
     <div>
+      <BackgroundImage />
       <Navbar />
-      <div className="h-auto w-screen flex flex-col">
-        <div
-          className={`${
-            message ? "navBar_fadeIn" : "navBar_fadeOut"
-          } w-4/5 lg:w-96 h-10 mt-5 self-center items-center fixed text-center shadow-lg bg-white`}
-        >
-          <h3
-            className={`text-base lg:text-lg ${
-              isSuccess ? "text-green" : "text-pink-700"
-            }`}
-          >
-            <div className="inline-flex gap-x-2 items-center">
-              {isSuccess ? (
-                <CheckCircleOutlined />
-              ) : (
-                <ExclamationCircleOutlined />
-              )}
-              <h3>{message}</h3>
-            </div>
+      <div className="grid justify-items-center auto-rows-max h-screen">
+        <div className="w-4/5">
+          <h1 className="text-center text-xl md:text-2xl md:text-3xl mt-16">
+            Tous vos retours sont les bienvenus !
+          </h1>
+          <h3 className="text-center text-lg md:text-xl mt-2">
+            Merci à toutes celles et ceux qui nous aident.
           </h3>
         </div>
-        <h1 className="ml-auto mr-auto text-2xl text-center lg:text-4xl mt-10 lg:mt-20 mb-5">
-          {params.get("addRecipe")
-            ? "Nous travaillons actuellement sur cette fonctionnalité."
-            : "Tous vos retours sont les bienvenus !"}
-        </h1>
-        {params.get("addRecipe") && (
-          <h3
-            className="mb-10 text-xl ml-auto mr-auto leading-relaxed"
-            style={{
-              paddingLeft: isMobile ? "10%" : "30%",
-              paddingRight: isMobile ? "10%" : "30%",
-            }}
-          >
-            Bientôt vous pourrez partager directement vos recettes avec la
-            communauté ! En attendant, tu peux partager tes recettes ci-dessous
-            et nous la publierons en te créditant.
-          </h3>
-        )}
-        <div className="rounded-3xl h-auto text-center items-center pl-10 pr-10 flex flex-col text-3xl shadow-xl self-center lg:w-2/6 ">
-          <div className="flex flex-col mb-10">
-            <a
-              href="mailto:hellogreenit@gmail.com"
-              className="inline-flex gap-x-4"
-            >
-              <MailOutlined />
-              <h3 className="text-lg self-center pt-1">
-                hellogreenit@gmail.com
-              </h3>
-            </a>
-            <div className="flex flex-row gap-x-4 justify-center mt-3">
-              {[
-                {
-                  href: "https://www.instagram.com/greenitcommunity/",
-                  children: <InstagramOutlined className="pr-2" />,
-                },
-                {
-                  href: "https://www.pinterest.fr/greenitcommunity/",
-                  children: (
-                    <img
-                      src={pinterestIcon}
-                      className="w-8 h-8 mt-2 self-start"
-                    />
-                  ),
-                },
-                {
-                  href: "https://www.tiktok.com/@greenitcommunity",
-                  children: (
-                    <img src={tiktokIcon} className="w-8 h-8 mt-2 self-start" />
-                  ),
-                },
-              ].map((item) => (
-                <a href={item.href} target="_blank" rel="norefferer">
-                  {item.children}
-                </a>
-              ))}
-            </div>
-          </div>
 
-          <form
-            className={`flex flex-col ${isMobile && "order-last"}`}
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (!state.token) {
-                setMessage("Please do the captcha!");
-              } else {
-                sendMessage({ variables: { data: state } });
-              }
-            }}
+        <div className=" grid justify-items-center w-4/5 md:w-auto p-10 shadow-xl rounded-xl mt-10 mb-14 bg-white">
+          <h1 className="text-2xl mb-5">Contacte-nous !</h1>
+          <a
+            href="mailto:hello@greenitcommunity.com"
+            className="inline-flex gap-x-4"
           >
-            <div className="lg:flex lg:flex-row lg:gap-x-8">
-              <FormItem
-                name="name"
-                title="Nom"
-                type="text"
-                value={state.name}
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-              />
-              <FormItem
-                name="email"
-                title="Adresse email"
-                type="text"
-                value={state.email}
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-              />
-            </div>
-            <FormItem
-              name="message"
-              title="Message"
-              value={state.message}
-              type="textarea"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-            />
-            <div className="self-start mt-5">
-              <HCaptcha
-                languageOverride="fr"
-                sitekey={process.env.REACT_APP_HCAPTCHA_ID ?? ""}
-                onVerify={(token) => {
-                  setState((prevState) => {
-                    return {
-                      ...prevState,
-                      token,
-                    };
-                  });
-                }}
-              />
-            </div>
-            <input
-              type="submit"
-              value="Envoyer"
-              className="w-24 h-8 mt-5 text-xl ml-auto rounded-lg text-white mb-5"
-              style={{
-                backgroundColor: "#95cdfb",
-                cursor: state.token ? "pointer" : "not-allowed",
-              }}
-            ></input>
-          </form>
+            <img src={MailIcon} className="w-7 h-7 self-center" />
+            <h1 className="text-xs md:text-lg self-center pt-1">
+              hello@greenitcommunity.com
+            </h1>
+          </a>
+          <div className="flex flex-row gap-x-4 justify-center mt-3">
+            {[
+              {
+                href: "https://www.instagram.com/greenitcommunity/",
+                children: (
+                  <img
+                    src={InstagramIcon}
+                    className="w-8 h-8 mt-2 self-start"
+                  />
+                ),
+              },
+              {
+                href: "https://www.facebook.com/greenitcommunity/",
+                children: (
+                  <img src={FBIcon} className="w-6 h-6 mt-2 self-start mt-3" />
+                ),
+              },
+              {
+                href: "https://www.pinterest.fr/greenitcommunity/",
+                children: (
+                  <img
+                    src={pinterestIcon}
+                    className="w-8 h-8 mt-2 self-start"
+                  />
+                ),
+              },
+              {
+                href: "https://www.tiktok.com/@greenitcommunity",
+                children: (
+                  <img src={tiktokIcon} className="w-8 h-8 mt-2 self-start" />
+                ),
+              },
+            ].map((item) => (
+              <a href={item.href} target="_blank" rel="norefferer">
+                {item.children}
+              </a>
+            ))}
+          </div>
         </div>
+        <UXFormulaire />
+        <Footer />
       </div>
     </div>
   );

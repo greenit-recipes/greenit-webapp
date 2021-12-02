@@ -5,6 +5,20 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      width: {
+        '26': '6.5rem',
+        '38': '9.5rem',
+        '50': '12.6rem',
+        '66': '18rem',
+        '84': '22rem',
+      },
+      height: {
+        '26': '6.5rem',
+        '38': '9.5rem',
+        '50': '12.6rem',
+        '66': '18rem',
+        '84': '22rem',
+      },
       inset: {
         '2/7': '28%',
         '26': '6.5rem',
@@ -50,7 +64,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      animation: ['motion-safe'],
+    },
   },
   plugins: [],
 };
