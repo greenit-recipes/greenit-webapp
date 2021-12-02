@@ -24,7 +24,7 @@ const schema = yup.object().shape({
     .required("Le nom d'utilisateur est obligatoire.")
     .matches(
       /^[^$&+,:;=?@#¨|'<>^()%!¿§«»ω⊙¤°℃℉€¥£¢¡®©]*$/,
-      "Le mot de passe ne doit pas contenir de caractère spécial sauf('.', '_', '-')"
+      "Le mot de passe ne doit pas contenir de caractères spéciaux sauf('.', '_', '-')"
     ),
   password: yup
     .string()
@@ -56,7 +56,7 @@ const Register: React.FC = () => {
     resolver: yupResolver(schema),
   });
   authService.removeToken();
-  const [createAccount, { data, loading, error }] = useMutation(
+  const [createAccount, { data: createAccountData, loading, error }] = useMutation(
     CREATE_ACCOUNT,
     { errorPolicy: "all" }
   );
@@ -68,19 +68,19 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState<string>("");
 
   React.useEffect(() => {
-    if (data?.register?.success === false || error) {
-      if (data?.register?.errors?.email[0]?.code === "unique") {
+    if (createAccountData?.register?.success === false || error) {
+      if (createAccountData?.register?.errors?.email[0]?.code === "unique") {
         setError("email", {
           message: "Cet email éxiste déjà.",
         });
       }
-      if (data?.register?.errors?.username[0]?.code === "unique") {
+      if (createAccountData?.register?.errors?.username[0]?.code === "unique") {
         setError("utilisateur", {
           message: "Ce nom existe déjà.",
         });
       }
     }
-  }, [setError, error, data]);
+  }, [setError, error, createAccountData]);
   const onSubmitHandler = (data: {
     email: string;
     utilisateur: string;
@@ -103,6 +103,9 @@ const Register: React.FC = () => {
         userWantFromGreenit: data.userWantFromGreenit,
         isFollowNewsletter: data.isFollowNewsletter,
       },
+    }).then((dataAccount) => {
+      if(!dataAccount?.data?.register?.success) return;
+      authService.setStorageEmail(email)
     });
   };
   return (
@@ -268,7 +271,7 @@ const Register: React.FC = () => {
           </div>
         </form>
         <div>
-          {data?.register?.success && (
+          {createAccountData?.register?.success && (
             <div>
               <p>Un mail à été envoyé afin de confirmer votre compte</p>
               <button

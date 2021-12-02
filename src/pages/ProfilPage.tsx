@@ -10,7 +10,7 @@ import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { ME, UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
+import authService, { ME, UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
 import * as yup from "yup";
 import "../App.css";
 import { Container, Footer, Navbar } from "../components";
@@ -108,6 +108,14 @@ const ProfilPage: React.FC = () => {
                 Paramètres
               </button>
             </div>
+            <button
+              className={
+                "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue"
+              }
+              onClick={() => authService.logout()}
+            >
+              Déconnexion
+            </button>
 
             <form
               className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
