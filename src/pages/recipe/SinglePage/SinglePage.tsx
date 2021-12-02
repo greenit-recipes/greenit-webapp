@@ -1,40 +1,34 @@
-import React, { createRef, useEffect, useState } from "react";
-import ReactPlayer from "react-player";
-import { useHistory, useLocation } from "react-router-dom";
-import { useRecipeQuery } from "../../../graphql";
-import {
-  Container,
-  Grid,
-  Footer,
-  Loading,
-  Navbar,
-  Button,
-} from "../../../components";
-import useIsMobile from "../../../hooks/isMobile";
-import { getSecondsFromDuration } from "../../../utils";
-import { isEmpty } from "lodash";
-import HTMLReactParser from "html-react-parser";
-import authService from "services/auth.service";
 import { useMutation } from "@apollo/client";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import "./SinglePage.css";
-import {
-  ADD_COMMENT_TO_RECIPE,
-  ADD_OR_REMOVE_LIKE_COMMENT,
-} from "pages/recipe/SinglePage/SinglePageRequest";
-import { getImagePath } from "helpers/image.helper";
-import { getUuidFromId } from "helpers/user.helper";
-import moment from "moment";
-import { momentGreenit } from "helpers/time.helper";
-import { LikeField } from "components/layout/LikeField";
-import { FavouriteField } from "components/layout/FavouriteField";
 import { CommentField } from "components/layout/CommentField";
+import { FavouriteField } from "components/layout/FavouriteField";
+import { LikeComment } from "components/layout/LikeComment";
+import { LikeField } from "components/layout/LikeField";
 import { UserBadge } from "components/layout/UserBadge";
-import { shareIcon, commentaireIcon, likedIconOn } from "../../../icons";
+import { getImagePath } from "helpers/image.helper";
+import { momentGreenit } from "helpers/time.helper";
+import { getUuidFromId } from "helpers/user.helper";
+import HTMLReactParser from "html-react-parser";
+import { isEmpty } from "lodash";
+import moment from "moment";
+import {
+  ADD_COMMENT_TO_RECIPE
+} from "pages/recipe/SinglePage/SinglePageRequest";
+import React, { createRef, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import ReactPlayer from "react-player";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import authService from "services/auth.service";
+import * as yup from "yup";
+import {
+  Button, Container, Footer, Grid, Loading,
+  Navbar
+} from "../../../components";
+import { useRecipeQuery } from "../../../graphql";
+import useIsMobile from "../../../hooks/isMobile";
+import { shareIcon } from "../../../icons";
+import { getSecondsFromDuration } from "../../../utils";
+import "./SinglePage.css";
 
 interface InstructionProps {
   index: number;
@@ -100,8 +94,6 @@ const RecipeSinglePage = () => {
       id: recipeId ?? "",
     },
   });
-
-  const [addOrRemoveLikeComment] = useMutation(ADD_OR_REMOVE_LIKE_COMMENT);
 
   // Comments
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
@@ -334,7 +326,6 @@ const RecipeSinglePage = () => {
           <h1 className="text-xl md:text-2xl">Discussion</h1>
           {recipe?.comments?.map((comment: any, index: number) => {
             // @ts-ignore
-            const canLike = comment?.author?.id !== getUuidFromId(data?.me?.id);
             return (
               <div className="mt-5 flex flex-col" key={index}>
                 <div className="relative bg-orange bg-opacity-10 rounded-3xl px-6 py-4">
@@ -350,41 +341,7 @@ const RecipeSinglePage = () => {
                     {momentGreenit(comment?.createdAt)}
                   </h3>
                   <div className="absolute -bottom-1 -right-1">
-                    {isLoggedIn ? (
-                      // @ts-ignore
-                      canLike && (
-                        <div className="flex bg-white w-20 h-12 rounded-tl-2xl p-3">
-                          <img
-                            src={likedIconOn}
-                            className="self-center w-7 h-7 lg:w-8 lg:h-8"
-                            alt="likes"
-                            onClick={() => {
-                              addOrRemoveLikeComment({
-                                variables: {
-                                  commentId: comment?.id,
-                                },
-                              });
-                            }}
-                          />
-                          <h1 className="self-center text-lg md:text-xl ml-1">
-                            {comment?.numberOfLikes}
-                          </h1>
-                        </div>
-                      )
-                    ) : (
-                      <Link to="/register">
-                        <div className="flex bg-white w-20 h-12 rounded-tl-2xl p-3">
-                          <img
-                            src={likedIconOn}
-                            className="self-center w-7 h-7 lg:w-8 lg:h-8"
-                            alt="likes"
-                          />
-                          <h1 className="self-center text-lg md:text-xl ml-1">
-                            {comment?.numberOfLikes}
-                          </h1>
-                        </div>
-                      </Link>
-                    )}
+<LikeComment comment={comment}></LikeComment>
                   </div>
                 </div>
               </div>

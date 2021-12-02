@@ -70,10 +70,7 @@ const Login: React.FC = () => {
         authServiceService.setStorageLoginRefreshToken(
           response?.data?.tokenAuth?.refreshToken
         );
-        history.push({
-          pathname: "/profil",
-          state: { detail: response?.data?.tokenAuth?.user },
-        });
+        history.goBack()
       }
     });
     reset();
