@@ -10,6 +10,7 @@ import {
 } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 import {
+  corpsWhy,
   corps,
   wellbeing,
   money,
@@ -235,7 +236,7 @@ const LandingPage = () => {
         >
           {[
             { text: "Pour la planète", color: "#8AD554", icon: planet },
-            { text: "Pour ton corps", color: "#93c5fe", icon: corps },
+            { text: "Pour ton corps", color: "#7EAADD", icon: corpsWhy },
             { text: "Pour tes économies", color: "#ffd460", icon: money },
             { text: "Pour ton esprit", color: "#EA9875", icon: wellbeing },
           ].map((item) => (

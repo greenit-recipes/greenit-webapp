@@ -24,6 +24,7 @@ import search from "./search_icon.png";
 // MISC
 import money from "./argent_icon.png";
 import planet from "./pour_la_planètre_icon.png";
+import corpsWhy from "./pour_mon_corps_icon.png"
 
 // FOOTER
 import footerChat from "./footer_chat_icon.png";
@@ -115,4 +116,5 @@ export {
   InstagramIcon,
   FBIcon,
   MailIcon,
+  corpsWhy,
 };
