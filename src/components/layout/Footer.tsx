@@ -16,7 +16,9 @@ export const Footer: React.FC = () => {
       <div className="w-5/6 text-center">
         <Grid
           type="col"
-          gap="8"
+          gap={{
+            default: 8,
+          }}
           size={{
             default: 1,
             md: 3,

@@ -24,17 +24,15 @@ export const Newsletter: React.FC = () => {
   });
 
   const onSubmitHandler = (data: { email: string }) => {
-    addUserToNewsletter(
-      {
-        variables: {
-          data,
-        },
-      }
-    ).then(() => reset());
+    addUserToNewsletter({
+      variables: {
+        data,
+      },
+    }).then(() => reset());
   };
   return (
-    <Container className="w-full md:w-3/5 h-full mt-26" margin={20} itemsCenter>
-      <h1 className="text-xl md:text-2xl | text-center whitespace-pre-line">
+    <Container className="w-full md:w-3/5 h-full" margin={10} itemsCenter>
+      <h1 className="text-xl md:text-2xl sm:w-3/4 | p-5 text-center">
         Inscris toi à la newsletter pour découvrir des astuces DIY
         {"\n"} et être au courant des nouvelles recettes !
       </h1>
@@ -49,7 +47,7 @@ export const Newsletter: React.FC = () => {
         ></input>
 
         <div className="grid w-full justify-items-center mt-4 md:mt-0 md:ml-4">
-          <Button type="green" className="w-32">
+          <Button type="green" className="p-4 sm:h-12">
             Rejoindre
           </Button>
         </div>

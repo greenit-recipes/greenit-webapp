@@ -7,13 +7,14 @@ import * as yup from "yup";
 import { ME, UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
 import { imageValidation } from "helpers/yup-validation.helper";
 
-export const ModalImageProfil: React.FC = ({ children }) => {
+interface ModalImageProfil {
+  parentFunction?: any;
+}
+
+export const ModalImageProfil: React.FC <ModalImageProfil>= ({ parentFunction }) => {
   const schema = yup.object().shape({
     image: imageValidation(),
   }); // _ - .
-  const { loading, error, data, refetch, networkStatus } = useQuery(ME, {
-    fetchPolicy: "no-cache",
-  });
   const [updatePhoto, { data: dataImageUpdate }] = useMutation(
     UPDATE_IMAGE_ACCOUNT,
     {
@@ -25,7 +26,9 @@ export const ModalImageProfil: React.FC = ({ children }) => {
       variables: {
         imageProfile: dataForm.image,
       },
-    }).then(() => refetch());
+    }).then(() => {
+      parentFunction().then(() => setShowModal(false));
+    });
   };
   const {
     register,
@@ -68,7 +71,6 @@ export const ModalImageProfil: React.FC = ({ children }) => {
                   </p>
                   <Button
                     type="blue"
-                    onClick={() => setShowModal(false)}
                   >
                     Valider
                   </Button>

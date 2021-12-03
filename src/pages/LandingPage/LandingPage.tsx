@@ -45,7 +45,7 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
-      <BugFormulaire/>
+      <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
       <Container
         className="flex flex-col | items-center | mt-16 lg:mt-28"
@@ -77,7 +77,9 @@ const LandingPage = () => {
         ) : (
           <Grid
             type="col"
-            gap="6"
+            gap={{
+              default: 6,
+            }}
             size={{
               default: 6,
             }}
@@ -131,21 +133,13 @@ const LandingPage = () => {
           }
         />
       </div>
-      <Container
-        title="Nos tutos vidéos pour commencer"
-        className="w-screen md:3/5 text-center mt-8"
-        itemsCenter
-      >
-        <Grid
-          type="col"
-          gap="14"
-          size={{
-            default: 1,
-            md: 2,
-          }}
-          className="pt-4 w-4/5 md:w-3/5"
-        >
-          <div className="relative" style={{ height: "23rem" }}>
+      <Container className="w-screen md:3/5 text-center mt-8 sm:mb-14" itemsCenter>
+        <h1 className="text-2xl md:text-3xl | p-5 text-center">
+          Nos tutos vidéos pour commencer
+        </h1>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 sm:grid-rows-1 gap-2 md:gap-8 pt-4 w-4/5 xl:w-3/5">
+          <div className="relative h-64 md:h-80">
             <ReactPlayer
               url="https://youtu.be/ZeNRzJg0CKo"
               className="absolute top-0 left-0 react-player"
@@ -159,23 +153,22 @@ const LandingPage = () => {
               height="100%"
             />
           </div>
-          {!isMobile && (
-            <div className="relative" style={{ height: "23rem" }}>
-              <ReactPlayer
-                url="https://youtu.be/tHAWH6fUqEo"
-                className="absolute top-0 left-0 react-player"
-                controls={true}
-                config={{
-                  youtube: {
-                    playerVars: { showinfo: 1, rel: 0 },
-                  },
-                }}
-                width="100%"
-                height="100%"
-              />
-            </div>
-          )}
-        </Grid>
+
+          <div className="relative h-64 md:h-80">
+            <ReactPlayer
+              url="https://youtu.be/tHAWH6fUqEo"
+              className="absolute top-0 left-0 react-player"
+              controls={true}
+              config={{
+                youtube: {
+                  playerVars: { showinfo: 1, rel: 0 },
+                },
+              }}
+              width="100%"
+              height="100%"
+            />
+          </div>
+        </div>
       </Container>
 
       {isLoggedIn ? (
@@ -189,7 +182,9 @@ const LandingPage = () => {
         >
           <Grid
             type="row"
-            gap="0"
+            gap={{
+              default: 0,
+            }}
             size={{
               default: 2,
             }}
@@ -220,7 +215,7 @@ const LandingPage = () => {
       )}
 
       <Container
-        className="w-full md:3/5 h-full"
+        className="w-full md:w-3/5 h-full"
         title="Pourquoi Greenit?"
         margin={10}
         itemsCenter
@@ -228,7 +223,10 @@ const LandingPage = () => {
       >
         <Grid
           type="col"
-          gap="8 md:gap-15"
+          gap={{
+            default: 8,
+            md: 16,
+          }}
           size={{
             default: 2,
             sm: 4,
@@ -236,10 +234,10 @@ const LandingPage = () => {
           className="text-center mt-8 md:mt-0"
         >
           {[
-            { text: "Pour la planète", color: "#c2e69c", icon: planet },
-            { text: "Pour ton corps", color: "#ffe390", icon: corps },
-            { text: "Pour tes économies", color: "#ffbea8", icon: money },
-            { text: "Pour ton esprit", color: "#93c5fe", icon: wellbeing },
+            { text: "Pour la planète", color: "#8AD554", icon: planet },
+            { text: "Pour ton corps", color: "#93c5fe", icon: corps },
+            { text: "Pour tes économies", color: "#ffd460", icon: money },
+            { text: "Pour ton esprit", color: "#EA9875", icon: wellbeing },
           ].map((item) => (
             <div className="h-full w-full flex flex-col items-center">
               <img

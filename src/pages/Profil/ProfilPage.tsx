@@ -15,12 +15,10 @@ import authService, { ME, UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
 import * as yup from "yup";
 import "App.css";
 import { Container, Footer, Navbar } from "../../components";
-import useIsMobile from "../../hooks/isMobile";
 import { Modal } from "pages/Profil/ModalProfil";
 import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
 
 const ProfilPage: React.FC = () => {
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -34,6 +32,7 @@ const ProfilPage: React.FC = () => {
   const { loading, error, data, refetch, networkStatus } = useQuery(ME, {
     fetchPolicy: "no-cache",
   });
+
   const history = useHistory();
 
   if (!loading && isEmpty(data?.me)) {
@@ -67,13 +66,14 @@ const ProfilPage: React.FC = () => {
       >
         <div className="grid grid-cols-2 gap-4 mb-8 md:mb-20">
           <div className="h-32 w-32 md:h-40 md:w-40 rounded-full bg-white shadow-xl">
-            <ModalImageProfil />
+            <ModalImageProfil parentFunction={refetch} />
             <img
               className={`object-cover h-32 w-32 md:h-40 md:w-40
               rounded-full | justify-self-center`}
               // @ts-ignore
               src={userImage}
             ></img>
+            {/* userImage == "defaultImage" && (<div></div>)*/}
           </div>
           <div className="flex flex-col | self-center">
             <div className="flex-inline overflow-clip overflow-hidden ...">
@@ -84,7 +84,7 @@ const ProfilPage: React.FC = () => {
         </div>
       </Container>
 
-      <div className="grid grid-cols-2 mb-10 px-4 gap-4 | md:px-20">
+      <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
         <button
           className={
             "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue" +
@@ -108,30 +108,21 @@ const ProfilPage: React.FC = () => {
       <Container className="flex flex-col mb-20 | items-center" padding>
         <div className={"text-center" + (visible ? " hidden" : "")}>
           {!visible && (
-            <div>
+            <div className="grid grid-cols-3 gap-y-4 auto-rows-auto">
               {isEmpty(user?.recipeFavorite) && (
                 <div className={"text-center" + (visible ? " hidden" : "")}>
                   <h3 className="p-36 text-2xl">
-                    Vous n'avez pas de recette favorites
+                    Tu n'as pas de recette favorites
                   </h3>
                 </div>
               )}
+
               {user?.recipeFavorite?.map((recipe: any, index: any) => (
                 <>
-                  {isMobile ? (
-                    <div
-                      key={index}
-                      className="w-full flex justify-center mb-2 pt-10"
-                    >
-                      <RecipeCard
-                        parentFunction={refetchMe}
-                        recipe={recipe}
-                        key={index}
-                        inCarousel={false}
-                        isProfilPage={true}
-                      />
-                    </div>
-                  ) : (
+                  <div
+                    key={index}
+                    className="col-span-1 w-full justify-center mb-2 mt-5"
+                  >
                     <RecipeCard
                       parentFunction={refetchMe}
                       recipe={recipe}
@@ -139,37 +130,25 @@ const ProfilPage: React.FC = () => {
                       inCarousel={false}
                       isProfilPage={true}
                     />
-                  )}
+                  </div>
                 </>
               ))}
             </div>
           )}
         </div>
         {visible && (
-          <div>
+          <div className="grid grid-cols-3 gap-y-4 auto-rows-auto">
             {isEmpty(user?.recipeAuthor) && (
               <div className={"text-center" + (!visible ? " hidden" : "")}>
-                <h3 className="p-36 text-2xl">
-                  Vous n'avez pas de recette pour l'instant
-                </h3>
+                <h3 className="p-36 text-2xl">Publie ta première recette !</h3>
               </div>
             )}
             {user?.recipeAuthor?.map((recipe: any, index: any) => (
               <>
-                {isMobile ? (
-                  <div
-                    key={index}
-                    className="w-full flex justify-center mb-2 pt-10"
+                <div
+                  key={index}
+                  className="col-span-1 w-full justify-center mb-2 mt-5"
                   >
-                    <RecipeCard
-                      parentFunction={refetchMe}
-                      recipe={recipe}
-                      key={index}
-                      isProfilPage={true}
-                      inCarousel={false}
-                    />
-                  </div>
-                ) : (
                   <RecipeCard
                     parentFunction={refetchMe}
                     recipe={recipe}
@@ -177,7 +156,7 @@ const ProfilPage: React.FC = () => {
                     isProfilPage={true}
                     inCarousel={false}
                   />
-                )}
+                </div>
               </>
             ))}
           </div>
