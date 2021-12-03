@@ -10,7 +10,7 @@ import ContactPage from "./pages/ContactPage";
 import WhyPage from "./pages/WhyPage";
 import NotFoundPage from "./pages/misc/NotFoundPage";
 import WorkshopPage from "./pages/WorkshopPage";
-import ProfilPage from "./pages/ProfilPage";
+import ProfilPage from "./pages/Profil/ProfilPage";
 import Register from "./pages/Register/register";
 import Login from "pages/Login/Login";
 import Activate from "pages/activate";

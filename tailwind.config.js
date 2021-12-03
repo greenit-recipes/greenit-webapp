@@ -29,6 +29,7 @@ module.exports = {
       },
       maxWidth: {
         '26': '26rem',
+        '12': '16rem',
       },
       minWidth: {
         '10': '2.5rem',
@@ -59,7 +60,8 @@ module.exports = {
         blue: "#8fb5e7",
         yellow: "#f9d58e",
         orange: "#fec4b0",
-        green: "#83d489"
+        green: "#83d489",
+        grey: "#a3a3a3"
       },
     },
   },

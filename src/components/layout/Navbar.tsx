@@ -13,7 +13,7 @@ export const Navbar: React.FC = () => {
 
   if (isMobile) {
     return (
-      <div className="sticky top-0 z-20 bg-white w-screen">
+      <div className="sticky top-0 z-50 bg-white w-screen">
         <div
           onClick={() => {
             setToggle((prevState) => !prevState);
@@ -55,7 +55,7 @@ export const Navbar: React.FC = () => {
     );
   }
   return (
-    <div className="h-20 w-full | flex | items-center | text-2xl sticky top-0 bg-white z-10 backdrop-opacity-100">
+    <div className="h-20 w-full | flex | items-center | text-2xl sticky top-0 bg-white z-50 backdrop-opacity-100">
       <div className="w-56 cursor-pointer">
         <Link to="/" className="flex flex-row items-center">
           <img src={logo} className="h-14 w-14 | ml-10" alt="Greenit Logo" />

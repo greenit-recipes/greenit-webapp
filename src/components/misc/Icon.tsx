@@ -37,7 +37,6 @@ export const Icon: React.FC<IconProps> = ({
   const itemDifficulty = types[difficulty as keyof typeof types];
 
   let child;
-  if (nbOfIngredient && difficulty) {
     child = (
       <div className="grid grid-cols-2 justify-item-center lg:px-4 pb-1">
         <div className="span-col-1 flex flex-col items-center">
@@ -49,7 +48,7 @@ export const Icon: React.FC<IconProps> = ({
         </div>
         <div className="span-col-1 flex flex-col items-center">
           <img
-            src={itemNbOfIngredeints}
+            src={ingredients}
             className={`h-${height ?? 26} w-${width ?? 30}`}
           />
           <h1 className="py-1 text-xs lg:text-base">
@@ -58,9 +57,6 @@ export const Icon: React.FC<IconProps> = ({
         </div>
       </div>
     );
-  } else {
-    child = <p>0 ingredients</p>;
-  }
 
   return <div>{child}</div>;
 };

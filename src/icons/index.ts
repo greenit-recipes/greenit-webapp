@@ -1,5 +1,5 @@
 // CATEGORIES
-import wellbeing from "./wellbeing_icon.png";
+import wellbeing from "./bien-être_icon.png";
 import corps from "./corps_recette.png";
 import visage from "./visage_recette.png";
 import cheuveux from "./hair_icon.png";
@@ -22,8 +22,9 @@ import fridge from "./ingredients_cuisine_recette.png";
 import search from "./search_icon.png";
 
 // MISC
-import money from "./money_icon.png";
-import planet from "./planet_icon.png";
+import money from "./argent_icon.png";
+import planet from "./pour_la_planètre_icon.png";
+import corpsWhy from "./pour_mon_corps_icon.png"
 
 // FOOTER
 import footerChat from "./footer_chat_icon.png";
@@ -115,4 +116,5 @@ export {
   InstagramIcon,
   FBIcon,
   MailIcon,
+  corpsWhy,
 };
