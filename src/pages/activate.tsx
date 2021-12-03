@@ -70,7 +70,7 @@ const Activate: React.FC = () => {
               On t'invite à réessayer de créer un compte
             </h4>
             <h4 className="text-center text-sm md:text-lg mt-2 mb-10">
-              Notre codeur sera fouetter en guise de pardon.
+              N'hesite pas à nous informer si le problème persiste
             </h4>
           </div>
           <Link to="/register">
