@@ -9,6 +9,8 @@ export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const [toggle, setToggle] = useState(false);
 
+  const [visible, setVisible] = React.useState(false);
+
   const isLoggedIn = authService.isLoggedIn();
 
   if (isMobile) {
@@ -22,7 +24,7 @@ export const Navbar: React.FC = () => {
         >
           <img src={hamburgerIcon} className="h-12 w-12" />
           <Link to="/" className="flex flex-col items-center">
-            <img src={logo} className="h-14 w-14" alt="Greenit Logo" />
+            <img src={logo} className="h-12 w-12" alt="Greenit Logo" />
           </Link>
           <div className="invisible">_____</div>
         </div>
@@ -35,19 +37,13 @@ export const Navbar: React.FC = () => {
         >
           <div className="flex flex-col | cursor-pointer space-y-4 text-xl text-gray-500 mb-5">
             <Link to="/recipes">
-              <h1 className="mt-5">Recettes</h1>
-            </Link>
-            <Link to="/why">
-              <h1>Nos engagements</h1>
-            </Link>
-            <Link to="/contact">
-              <h1>Contactez-nous</h1>
-            </Link>
-            <Link to="/profil">
-              <h1>Profil</h1>
+              <h1>Recettes</h1>
             </Link>
             <Link to="/workshops">
               <h1>Ateliers</h1>
+            </Link>
+            <Link to="/profil">
+              <h1>Profil</h1>
             </Link>
           </div>
         </div>
@@ -55,61 +51,82 @@ export const Navbar: React.FC = () => {
     );
   }
   return (
-    <div className="h-20 w-full | flex | items-center | text-2xl sticky top-0 bg-white z-50 backdrop-opacity-100">
+    <div className="grid grid-rows-1 grid-cols-3 h-16 w-full | flex | items-center | text-2xl sticky top-0 bg-white z-50 backdrop-opacity-100">
       <div className="w-56 cursor-pointer">
         <Link to="/" className="flex flex-row items-center">
-          <img src={logo} className="h-14 w-14 | ml-10" alt="Greenit Logo" />
-          <h3 className="text_logo text-4xl ml-1">Greenit</h3>
+          <img
+            src={logo}
+            className="h-12 w-12 | ml-4 self-center"
+            alt="Greenit Logo"
+          />
+          <h3 className="text-4xl text-green ml-1 self-center">Greenit</h3>
         </Link>
       </div>
-      <div className="flex | ml-auto mr-auto | self-center cursor-pointer">
+      <div className="flex | justify-self-center cursor-pointer">
         <Link to="/recipes">
-          <h1 className="pr-10">Recettes</h1>
-        </Link>
-        <Link to="/why">
-          <h1 className="pr-10">Nos engagements</h1>
-        </Link>
-        <Link to="/contact">
-          <h1 className="pr-10">Contactez-nous</h1>
+          <button
+            className={
+              "mr-4 w-32 cursor-pointer border-b-4 | hover:border-blue" +
+              (!visible ? "outline-none border-blue" : "")
+            }
+            onClick={() => setVisible(false)}
+          >
+            <h1 className="mb-1">Recettes</h1>
+          </button>
         </Link>
         <Link to="/workshops">
-          <h1>Ateliers</h1>
+          <button
+            className={
+              "w-32 cursor-pointer border-b-4 | hover:border-blue |" +
+              (visible ? "outline-none border-blue" : "")
+            }
+            onClick={() => setVisible(true)}
+          >
+            <h1 className="mb-1">Ateliers</h1>
+          </button>
         </Link>
       </div>
+      <div className="grid w-full">
+        <div className="flex justify-self-end">
+          {isLoggedIn ? (
+            <Link className="" to="/profil">
+              <Button
+                type="blue"
+                rounded="lg"
+                className="flex justify-end self-center | mr-4 cursor-pointer"
+              >
+                <h1 className="text-white hover:text-blue text-xl">Profil</h1>
+              </Button>
+            </Link>
+          ) : (
+            <Link className="justify-self-end" to="/connexion">
+              <Button
+                type="orange"
+                rounded="lg"
+                className="inline justify-end self-center | cursor-pointer mr-2"
+              >
+                <h1 className="text-white hover:text-orange text-xl">
+                  Se connecter
+                </h1>
+              </Button>
+            </Link>
+          )}
 
-      {isLoggedIn ? (
-        <Link to="/profil">
-          <Button
-            type="orange"
-            rounded="xl"
-            className="flex justify-end self-center | mr-4 cursor-pointer"
-          >
-            Profil
-          </Button>
-        </Link>
-      ) : (
-        <Link to="/connexion">
-          <Button
-            type="orange"
-            rounded="xl"
-            className="flex justify-end self-center | mr-4 cursor-pointer"
-          >
-            Se connecter
-          </Button>
-        </Link>
-      )}
-
-      <Link to="/register">
-        {!isLoggedIn && (
-          <Button
-            type="orange"
-            rounded="xl"
-            className="py-2 px-4 flex justify-end self-center | mr-4 cursor-pointer"
-          >
-            Créer un compte
-          </Button>
-        )}
-      </Link>
+          <Link className="justify-self-end" to="/register">
+            {!isLoggedIn && (
+              <Button
+                type="orange"
+                rounded="lg"
+                className="inline justify-end self-center | cursor-pointer mr-3"
+              >
+                <h1 className="text-white hover:text-orange text-xl">
+                  Créer son profil
+                </h1>
+              </Button>
+            )}
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
