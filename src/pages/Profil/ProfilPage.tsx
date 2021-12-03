@@ -16,24 +16,11 @@ import * as yup from "yup";
 import "App.css";
 import { Container, Footer, Navbar } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
-import { Modal } from "pages/Profil/ModalProfil"
+import { Modal } from "pages/Profil/ModalProfil";
+import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
 
 const ProfilPage: React.FC = () => {
   const isMobile = useIsMobile();
-
-  const schema = yup.object().shape({
-    image: imageValidation(),
-  }); // _ - .
-
-  const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors },
-    reset,
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
 
   useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -56,13 +43,6 @@ const ProfilPage: React.FC = () => {
   }
   const user = data?.me;
 
-  const [updatePhoto, { data: dataImageUpdate }] = useMutation(
-    UPDATE_IMAGE_ACCOUNT,
-    {
-      errorPolicy: "all",
-    }
-  );
-
   // Image
   const [userImage, setImage] = useState(user?.imageProfile);
 
@@ -70,18 +50,7 @@ const ProfilPage: React.FC = () => {
     setImage(getImagePath(user?.imageProfile));
   }, [user]);
 
-  const onSubmitHandler = (dataForm: { image: string[] }) => {
-    updatePhoto({
-      variables: {
-        imageProfile: dataForm.image,
-      },
-    }).then(() => refetch());
-  };
-
   const refetchMe = () => refetch();
-
-  const imageHeight = isMobile ? 44 : 40;
-  const imageWidth = isMobile ? 44 : 40;
 
   const [visible, setVisible] = React.useState(false);
 
@@ -96,10 +65,11 @@ const ProfilPage: React.FC = () => {
         className="flex flex-col | items-center | mt-8 md:mt-20"
         padding
       >
-        <div className="grid grid-cols-2 gap-4 mb-8 max-w-xs md:mb-20">
-          <div className="h-40 rounded-full bg-white p-2 shadow-xl">
+        <div className="grid grid-cols-2 gap-4 mb-8 md:mb-20">
+          <div className="h-32 w-32 md:h-40 md:w-40 rounded-full bg-white shadow-xl">
+            <ModalImageProfil />
             <img
-              className={`flex flex-col object-cover shadow-lg ${`h-${imageHeight} w-${imageWidth}`}
+              className={`object-cover h-32 w-32 md:h-40 md:w-40
               rounded-full | justify-self-center`}
               // @ts-ignore
               src={userImage}
@@ -109,33 +79,7 @@ const ProfilPage: React.FC = () => {
             <div className="flex-inline overflow-clip overflow-hidden ...">
               <h2 className="text-xl md:text-2xl">{user?.username}</h2>
             </div>
-
-            <Modal/>
-
-            <form
-              className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-              onSubmit={handleSubmit(onSubmitHandler)}
-            >
-              <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Upload l'image
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  type="file"
-                  {...register("image")}
-                ></input>
-              </div>
-              <p className="text-red-500 text-xs italic">
-                {errors?.image?.message}
-              </p>
-              <button
-                className="bg-blue hover:bg-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-              >
-                Envoi ta photo belle bête
-              </button>
-            </form>
+            <Modal />
           </div>
         </div>
       </Container>
