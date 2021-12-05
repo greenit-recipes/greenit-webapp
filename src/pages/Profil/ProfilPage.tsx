@@ -1,7 +1,8 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Loading, RecipeCard } from "components";
+import { Loading, RecipeCard, Button } from "components";
 import { getImagePath } from "helpers/image.helper";
+import { Link } from "react-router-dom";
 import {
   imageValidation,
   videoValidation,
@@ -17,9 +18,9 @@ import "App.css";
 import { Container, Footer, Navbar } from "../../components";
 import { Modal } from "pages/Profil/ModalProfil";
 import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
+import { CTACard } from "pages/recipe/ListPage/Components/CTACard";
 
 const ProfilPage: React.FC = () => {
-
   useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
@@ -65,11 +66,11 @@ const ProfilPage: React.FC = () => {
         padding
       >
         <div className="grid grid-cols-2 gap-4 mb-8 md:mb-20">
-          <div className="h-32 w-32 md:h-40 md:w-40 rounded-full bg-white shadow-xl">
+          <div className="grid justify-items-center bg-transparent h-32 w-32 md:h-40 md:w-40 rounded-full border-2 border-transparent hover:border-gray-400">
             <ModalImageProfil parentFunction={refetch} />
             <img
-              className={`object-cover h-32 w-32 md:h-40 md:w-40
-              rounded-full | justify-self-center`}
+              className={`object-cover h-32 w-32 md:h-36 md:w-36
+              rounded-full | self-center`}
               // @ts-ignore
               src={userImage}
             ></img>
@@ -108,21 +109,28 @@ const ProfilPage: React.FC = () => {
       <Container className="flex flex-col mb-20 | items-center" padding>
         <div className={"text-center" + (visible ? " hidden" : "")}>
           {!visible && (
-            <div className="grid grid-cols-3 gap-y-4 auto-rows-auto">
+            <div className="grid grid-cols-2 gap-2 md:grid-cols-3 auto-rows-auto justify-items-center mt-5">
               {isEmpty(user?.recipeFavorite) && (
-                <div className={"text-center" + (visible ? " hidden" : "")}>
-                  <h3 className="p-36 text-2xl">
-                    Tu n'as pas de recette favorites
+                <div
+                  className={
+                    "grid text-center col-span-3 w-2/3 mt-8 justify-items-center" +
+                    (visible ? " hidden" : "")
+                  }
+                >
+                  <h3 className="text-base md:text-2xl">
+                    Tu n'as pas de recette favorite
                   </h3>
+                  <Link to="/recipes">
+                    <Button className="mt-5" type="blue">
+                      Explorer des recettes
+                    </Button>
+                  </Link>
                 </div>
               )}
 
               {user?.recipeFavorite?.map((recipe: any, index: any) => (
                 <>
-                  <div
-                    key={index}
-                    className="col-span-1 w-full justify-center mb-2 mt-5"
-                  >
+                  <div key={index} className="col-span-1 w-full justify-center">
                     <RecipeCard
                       parentFunction={refetchMe}
                       recipe={recipe}
@@ -137,18 +145,19 @@ const ProfilPage: React.FC = () => {
           )}
         </div>
         {visible && (
-          <div className="grid grid-cols-3 gap-y-4 auto-rows-auto">
-            {isEmpty(user?.recipeAuthor) && (
-              <div className={"text-center" + (!visible ? " hidden" : "")}>
-                <h3 className="p-36 text-2xl">Publie ta première recette !</h3>
-              </div>
-            )}
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 auto-rows-auto justify-items-center mt-5">
+            <CTACard
+              className="mt-10 lg:mt-2 lg:mb-6"
+              type="blue"
+              link="/créer-une-recette"
+            >
+              <h1 className="w-11/12 text-center text-xl lg:text-2xl text-white mt-24 lg:mt-40">
+                Publier une nouvelle recette
+              </h1>
+            </CTACard>
             {user?.recipeAuthor?.map((recipe: any, index: any) => (
               <>
-                <div
-                  key={index}
-                  className="col-span-1 w-full justify-center mb-2 mt-5"
-                  >
+                <div key={index} className="col-span-1 w-full justify-center">
                   <RecipeCard
                     parentFunction={refetchMe}
                     recipe={recipe}

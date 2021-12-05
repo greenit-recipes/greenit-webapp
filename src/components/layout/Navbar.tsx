@@ -67,11 +67,11 @@ export const Navbar: React.FC = () => {
           <button
             className={
               "mr-4 w-32 cursor-pointer border-b-4 | hover:border-blue" +
-              (!visible ? "outline-none border-blue" : "")
+              (visible ? "outline-none border-blue" : "")
             }
-            onClick={() => setVisible(false)}
+            onClick={() => setVisible(true)}
           >
-            <h1 className="mb-1">Recettes</h1>
+            <h1 className="mb-1 text-xl">Recettes</h1>
           </button>
         </Link>
         <Link to="/workshops">
@@ -82,7 +82,7 @@ export const Navbar: React.FC = () => {
             }
             onClick={() => setVisible(true)}
           >
-            <h1 className="mb-1">Ateliers</h1>
+            <h1 className="mb-1 text-xl">Ateliers</h1>
           </button>
         </Link>
       </div>
@@ -105,7 +105,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="inline justify-end self-center | cursor-pointer mr-2"
               >
-                <h1 className="text-white hover:text-orange text-xl">
+                <h1 className="text-white hover:text-orange text-base">
                   Se connecter
                 </h1>
               </Button>
@@ -119,7 +119,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="inline justify-end self-center | cursor-pointer mr-3"
               >
-                <h1 className="text-white hover:text-orange text-xl">
+                <h1 className="text-white hover:text-orange text-base">
                   Créer son profil
                 </h1>
               </Button>

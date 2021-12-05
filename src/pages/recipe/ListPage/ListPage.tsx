@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { filterIcon, scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
-import { CTACard } from "./Components/CTACard";
+import { CTACard } from "pages/recipe/ListPage/Components/CTACard";
 
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
