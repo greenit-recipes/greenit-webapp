@@ -10,7 +10,7 @@ import authService, {
   CREATE_ACCOUNT,
   RESEND_ACTIVATION_EMAIL,
 } from "services/auth.service";
-import { BackgroundImage } from "../LandingPage/Components/BackgroundImage";
+import { BackgroundImage } from "../../components/layout/BackgroundImage";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),

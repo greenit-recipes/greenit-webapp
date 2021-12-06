@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import authServiceService, { LOGIN_ACCOUNT } from "services/auth.service";
 import * as yup from "yup";
-import { BackgroundImage } from "../LandingPage/Components/BackgroundImage";
+import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import { Link } from "react-router-dom";
 import { RouteName } from "App";
 

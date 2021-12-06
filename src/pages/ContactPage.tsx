@@ -8,7 +8,7 @@ import {
   MailIcon,
   FBIcon,
 } from "../icons";
-import { BackgroundImage } from "./LandingPage/Components/BackgroundImage";
+import { BackgroundImage } from "../components/layout/BackgroundImage";
 
 const ContactPage = () => {
   const params = new URLSearchParams(window.location.search);

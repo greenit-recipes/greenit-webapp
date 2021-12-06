@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { SEND_EMAIL_RESET_PASSWORD } from "services/auth.service";
 import * as yup from "yup";
 import { Navbar } from "components/layout/Navbar";
-import { BackgroundImage } from "../LandingPage/Components/BackgroundImage";
+import { BackgroundImage } from "../../components/layout/BackgroundImage";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),

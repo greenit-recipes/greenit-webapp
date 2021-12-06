@@ -7,6 +7,7 @@ import {
   Button,
   Footer,
   SearchBar,
+  BackgroundImage,
 } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 import {
@@ -17,8 +18,6 @@ import {
   money,
   planet,
   landingPageCategories,
-  likedIconOn,
-  likedIconOff,
 } from "../../icons";
 import "../../pages/recipe/SinglePage/SinglePage.css";
 import ReactPlayer from "react-player";
@@ -28,7 +27,6 @@ import { useRecipesQuery } from "../../graphql";
 import { Link } from "react-router-dom";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
-import { BackgroundImage } from "./Components/BackgroundImage";
 import { BugFormulaire } from "components/layout/BugFormulaire";
 import authService from "services/auth.service";
 
