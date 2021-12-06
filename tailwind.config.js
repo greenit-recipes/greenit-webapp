@@ -64,11 +64,14 @@ module.exports = {
         green: "#83d489",
         grey: "#a3a3a3"
       },
-    },
-  },
-  variants: {
-    extend: {
-      animation: ['motion-safe'],
+      keyframes: {
+        rotate: {
+          "50%": { transform: "rotate(90deg)" },
+        }
+      },
+      animation: {
+        rotate: "rotate 200ms ease-in"
+      }
     },
   },
   plugins: [],

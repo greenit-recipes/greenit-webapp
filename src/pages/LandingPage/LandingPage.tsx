@@ -176,13 +176,13 @@ const LandingPage = () => {
         </div>
       </Container>
 
-      <Container margin={10} itemsCenter padding={isMobile}>
-        <div className="grid mb-8">
-          <h1 className="text-3xl mb-2">
+      <div className="mt-10 grid bg-orange w-screen py-12 justify-items-center">
+        <div className="grid mb-8 text-center">
+          <h1 className="text-white text-3xl mb-2">
             {" "}
             Tous les ateliers DIY proches de chez toi !{" "}
           </h1>
-          <h3 className="text-lg md:text-xl | text-center whitespace-pre-line">
+          <h3 className="text-white text-lg md:text-xl | text-center whitespace-pre-line">
             Fais-toi aider et rencontre d’autres passionnés
           </h3>
         </div>
@@ -191,10 +191,10 @@ const LandingPage = () => {
             <img src={atelier} className="w-56 h-56" alt="liked button" />
           </div>
           <Link className="self-top mt-5" to="/register">
-            <Button type="orange">Explorer des ateliers</Button>
+            <Button className="border-white" type="orange">Explorer des ateliers</Button>
           </Link>
         </div>
-      </Container>
+      </div>
 
       <Container
         className="w-full md:w-3/5 h-full"

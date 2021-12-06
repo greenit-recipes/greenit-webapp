@@ -8,7 +8,7 @@ import { hamburgerIcon, logo } from "../../icons";
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const [toggle, setToggle] = useState(false);
-
+  const [effect, setEffect] = useState(false);
   const [visible, setVisible] = React.useState(false);
 
   const isLoggedIn = authService.isLoggedIn();
@@ -22,9 +22,15 @@ export const Navbar: React.FC = () => {
           }}
           className="flex flex-row items-center justify-between"
         >
-          <img src={hamburgerIcon} className="h-12 w-12" />
+          <img
+            src={hamburgerIcon}
+            className={`h-12 w-12 ${effect && "animate-rotate"}`}
+            onClick={() => {
+              setEffect((prevState) => !prevState);
+            }}
+          />
           <Link to="/" className="flex flex-col items-center">
-            <img src={logo} className="h-12 w-12" alt="Greenit Logo" />
+            <img src={logo} className="h-12 w-12" alt="Greenit Logo"></img>
           </Link>
           <div className="invisible">_____</div>
         </div>
@@ -35,14 +41,14 @@ export const Navbar: React.FC = () => {
               : "navBar_fadeOut flex flex-col ml-5"
           }
         >
-          <div className="flex flex-col | cursor-pointer space-y-4 text-xl text-gray-500 mb-5">
-            <Link to="/recipes">
+          <div className="flex flex-col | cursor-pointer space-y-4 text-xl text-gray-500 m-5 w-1/3">
+            <Link className="p-2 border-b-2 border-blue" to="/recipes">
               <h1>Recettes</h1>
             </Link>
-            <Link to="/workshops">
+            <Link className="p-2 border-b-2 border-blue" to="/workshops">
               <h1>Ateliers</h1>
             </Link>
-            <Link to="/profil">
+            <Link className="p-2 border-b-2 border-blue" to="/profil">
               <h1>Profil</h1>
             </Link>
           </div>
