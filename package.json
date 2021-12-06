@@ -41,6 +41,7 @@
     "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "react-select": "^5.2.1",
     "react-swipeable-views": "^0.13.9",
     "reactjs-popup": "^2.0.5",
     "sass": "^1.32.7",

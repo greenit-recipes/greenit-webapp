@@ -1,18 +1,42 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { imageValidation, videoValidation } from "helpers/yup-validation.helper";
+import {
+  imageValidation,
+  videoValidation,
+} from "helpers/yup-validation.helper";
 import {
   CREATE_EMAIL_RECIPE,
   GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useEffect } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
+import Select from "react-select";
 import * as yup from "yup";
 import { RecipeDifficulty } from "../../graphql";
 
 const schema = yup.object().shape({
   image: imageValidation(),
   video: videoValidation(),
+  name: yup.string().required("Ce champ est obligatoire."),
+  duration: yup.string().required("Ce champ est obligatoire."),
+  description: yup.string().required("Ce champ est obligatoire."),
+  difficulty: yup.object().required("Ce champ est obligatoire."),
+  category: yup.object().required("Ce champ est obligatoire."),
+  expiry: yup.string().required("Ce champ est obligatoire."),
+  ingredients: yup // Ne marche pas
+    .array().min(1, "Ce champ est obligatoire")
+    .required("Ce champ est obligatoire."),
+  instructions: yup // Ne marche pas
+    .array(yup.string())
+    .min(1, "Ce champ est obligatoire")
+    .required("Ce champ est obligatoire."),
+  utensils: yup // Ne marche pas
+    .array()
+    .min(1, "Ce champ est obligatoire")
+    .required("Ce champ est obligatoire."),
+
+  tags: yup.array().required("Ce champ est obligatoire."),
+  notes_from_author: yup.string(),
 });
 
 const CreateRecipe: React.FC = () => {
@@ -57,7 +81,19 @@ const CreateRecipe: React.FC = () => {
   const { loading, error, data } = useQuery(
     GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
   );
-  const [createEmailRecipe] = useMutation(CREATE_EMAIL_RECIPE);
+  const [createEmailRecipe, { loading: loadingCreateRecipe}] = useMutation(CREATE_EMAIL_RECIPE);
+
+  const optionsDifficulty = [
+    { value: RecipeDifficulty.Beginner, label: "Facile" },
+    { value: RecipeDifficulty.Intermediate, label: "Moyen" },
+    { value: RecipeDifficulty.Advanced, label: "Difficile" },
+  ];
+
+  useEffect(() => {
+    ingredientsAppend({});
+    utensilsAppend({});
+  }, []);
+
 
   useEffect(() => {
     if (data?.register?.success === false || error) {
@@ -92,6 +128,9 @@ const CreateRecipe: React.FC = () => {
     utensils: string;
     notes_from_author: string;
   }) => {
+    if (loadingCreateRecipe) return;
+    const getValue = (field: any) => field.value;
+    const getValues = (field: any[]) => field.map((x) => x?.value);
     createEmailRecipe({
       variables: {
         name: dataForm.name,
@@ -101,11 +140,11 @@ const CreateRecipe: React.FC = () => {
         image: dataForm.image,
         video: dataForm.video,
         description: dataForm.description,
-        difficulty: dataForm.difficulty,
+        difficulty: getValue(dataForm.difficulty),
         ingredients: dataForm.ingredients,
         duration: dataForm.duration,
-        tags: dataForm.tags,
-        category: dataForm.category,
+        tags: getValues(dataForm.tags),
+        category: getValue(dataForm.category),
         instructions: dataForm.instructions,
         expiry: dataForm.expiry,
         utensils: dataForm.utensils,
@@ -138,13 +177,14 @@ const CreateRecipe: React.FC = () => {
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Description de la recette
           </label>
-          <input
+          <textarea
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="description"
             placeholder="description"
-            type="text"
+            rows={12}
+            cols={34}
             {...register("description")}
-          ></input>
+          ></textarea>
           <p className="text-red-500 text-xs italic">
             {errors.description?.message}
           </p>
@@ -155,30 +195,36 @@ const CreateRecipe: React.FC = () => {
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Difficulté de la recette
           </label>
-
-          <select {...register("difficulty")}>
-            <option value={RecipeDifficulty.Beginner}>Facile</option>
-            <option value={RecipeDifficulty.Intermediate}>Moyen</option>
-            <option value={RecipeDifficulty.Advanced}>Difficile</option>
-          </select>
+          <Controller
+            name="difficulty"
+            control={control}
+            render={({ field }) => (
+              <Select {...field} options={optionsDifficulty} />
+            )}
+          />
+          <p className="text-red-500 text-xs italic">
+            {errors.difficulty?.message}
+          </p>
         </div>
 
         {/* Time */}
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
-            Durée de la recette
+            Durée de la recette (minutes)
           </label>
 
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="duration"
             placeholder="duration"
             type="number"
             min="1"
-            max="300"
+            max="1000"
             {...register("duration")}
           ></input>
+          <p className="text-red-500 text-xs italic">
+            {errors.duration?.message}
+          </p>
         </div>
 
         {/* Select multiple */}
@@ -188,13 +234,18 @@ const CreateRecipe: React.FC = () => {
             Séléctionner le(s) tags de la recette
           </label>
 
-          <select {...register("tags")} id="tags" multiple>
-            {data?.allTags.map((tags: any, i: number) => (
-              <option value={tags?.name} key={i}>
-                {tags?.name}
-              </option>
-            ))}
-          </select>
+          <Controller
+            name="tags"
+            control={control}
+            render={({ field }) => {
+              const optionsTags = data?.allTags?.map((tags: any) => ({
+                value: tags?.name,
+                label: tags?.name,
+              }));
+              return <Select {...field} isMulti={true} options={optionsTags} />;
+            }}
+          />
+          <p className="text-red-500 text-xs italic">{errors.tags?.message}</p>
         </div>
         {/* dynamic */}
 
@@ -204,21 +255,24 @@ const CreateRecipe: React.FC = () => {
           </label>
           <ul>
             {ingredientsFields.map((item, index) => (
-              <li key={item.id}>
-                <select
-                  {...register(`ingredients.${index}.name`)}
-                  id="ingredients"
-                >
-                  {data?.allIngredients?.map((ingredient: any, i: number) => (
-                    <option value={ingredient?.name} key={i}>
-                      {" "}
-                      {/* A changer quand on sera plus par mail */}
-                      {ingredient?.name}
-                    </option>
-                  ))}
-                </select>
-                <input {...register(`ingredients.${index}.quantity`)} />
-
+              <li>
+                <Controller
+                  name={`ingredients.${index}.name`}
+                  control={control}
+                  render={({ field }) => {
+                    const optionsIngredients = data?.allIngredients?.map(
+                      (ingredient: any) => ({
+                        value: ingredient?.name,
+                        label: ingredient?.name,
+                      })
+                    );
+                    return <Select {...field} options={optionsIngredients} />;
+                  }}
+                />
+                <input
+                  placeholder="(kg,littre,cm)"
+                  {...register(`ingredients.${index}.quantity`)}
+                />
                 <button type="button" onClick={() => ingredientsRemove(index)}>
                   Delete
                 </button>
@@ -228,27 +282,37 @@ const CreateRecipe: React.FC = () => {
           <button type="button" onClick={() => ingredientsAppend({})}>
             Ajouter
           </button>
+          <p className="text-red-500 text-xs italic">
+            {errors.ingredients?.message}
+          </p>
         </div>
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Séléctionner la catégorie
           </label>
-
-          <select {...register("category")} id="category">
-            {data?.allCategories?.map((category: any, i: number) => (
-              <option value={category?.name} key={i}>
-                {category?.name}
-              </option>
-            ))}
-          </select>
+          <Controller
+            name="category"
+            control={control}
+            render={({ field }) => {
+              const optionsCategory = data?.allCategories?.map(
+                (category: any) => ({
+                  value: category?.name,
+                  label: category?.name,
+                })
+              );
+              return <Select {...field} options={optionsCategory} />;
+            }}
+          />
+          <p className="text-red-500 text-xs italic">
+            {errors.category?.message}
+          </p>
         </div>
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Liste d'instruction
           </label>
-
           <div className="mb-4">
             <ul>
               {instructionsFields.map((item, index) => (
@@ -268,6 +332,9 @@ const CreateRecipe: React.FC = () => {
               Ajouter
             </button>
           </div>
+          <p className="text-red-500 text-xs italic">
+            {errors.instructions?.message}
+          </p>
         </div>
 
         <div className="mb-4">
@@ -276,18 +343,24 @@ const CreateRecipe: React.FC = () => {
           </label>
           <ul>
             {utensilsFields.map((item, index) => (
-              <li key={item.id}>
-                <select {...register(`utensils.${index}.name`)} id="utensils">
-                  {data?.allUtensils?.map((ingredient: any, i: number) => (
-                    <option value={ingredient?.name} key={i}>
-                      {" "}
-                      {/* A changer quand on sera plus par mail */}
-                      {ingredient?.name}
-                    </option>
-                  ))}
-                </select>
-                <input {...register(`utensils.${index}.quantity`)} />
-
+              <li>
+                <Controller
+                  name={`utensils.${index}.name`}
+                  control={control}
+                  render={({ field }) => {
+                    const optionsUtensilss = data?.allUtensils?.map(
+                      (ustenil: any) => ({
+                        value: ustenil?.name,
+                        label: ustenil?.name,
+                      })
+                    );
+                    return <Select {...field} options={optionsUtensilss} />;
+                  }}
+                />
+                <input
+                  placeholder=""
+                  {...register(`utensils.${index}.quantity`)}
+                />
                 <button type="button" onClick={() => utensilsRemove(index)}>
                   Delete
                 </button>
@@ -297,6 +370,9 @@ const CreateRecipe: React.FC = () => {
           <button type="button" onClick={() => utensilsAppend({})}>
             Ajouter
           </button>
+          <p className="text-red-500 text-xs italic">
+            {errors.utensils?.message}
+          </p>
         </div>
 
         <div className="mb-4">
@@ -310,8 +386,12 @@ const CreateRecipe: React.FC = () => {
             placeholder="expiry"
             type="number"
             min="1"
+            max="1000"
             {...register("expiry")}
           ></input>
+          <p className="text-red-500 text-xs italic">
+            {errors.expiry?.message}
+          </p>
         </div>
 
         <div className="mb-4">
@@ -325,7 +405,9 @@ const CreateRecipe: React.FC = () => {
             type="text"
             {...register("notes_from_author")}
           ></input>
-          <p className="text-red-500 text-xs italic">{errors.name?.message}</p>
+          <p className="text-red-500 text-xs italic">
+            {errors.notes_from_author?.message}
+          </p>
         </div>
         <div>
           <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -356,6 +438,7 @@ const CreateRecipe: React.FC = () => {
           <button
             className="bg-blue hover:bg-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
+            disabled={loadingCreateRecipe}
           >
             Soumettre ma recette
           </button>
