@@ -30,7 +30,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   const bandeauWidth = isMobile ? 44 : 60;
 
   return (
-    <div className="transform hover:scale-105 ease-linear transition-all duration-150 sm:px-2 mb-24 md:mb-16 lg:mb-10">
+    <div className="transform hover:scale-105 ease-linear transition-all duration-150 px-2 mb-24 md:mb-16 lg:mb-10">
       <Link
         to={{
           pathname: `/recipes/${recipe?.urlId}`,
