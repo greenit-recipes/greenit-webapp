@@ -10,6 +10,7 @@ import {
 } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 import {
+  atelier,
   corpsWhy,
   corps,
   wellbeing,
@@ -134,7 +135,10 @@ const LandingPage = () => {
           }
         />
       </div>
-      <Container className="w-screen md:3/5 text-center mt-8 sm:mb-14" itemsCenter>
+      <Container
+        className="w-screen md:3/5 text-center mt-8 sm:mb-14"
+        itemsCenter
+      >
         <h1 className="text-2xl md:text-3xl | p-5 text-center">
           Nos tutos vidéos pour commencer
         </h1>
@@ -172,48 +176,25 @@ const LandingPage = () => {
         </div>
       </Container>
 
-      {isLoggedIn ? (
-        <div />
-      ) : (
-        <Container
-          margin={20}
-          title="Créee ton espace personnel"
-          itemsCenter
-          padding={isMobile}
-        >
-          <Grid
-            type="row"
-            gap={{
-              default: 0,
-            }}
-            size={{
-              default: 2,
-            }}
-          >
-            <div className="grid mb-8">
-              <h3 className="text-lg md:text-xl | text-center whitespace-pre-line">
-                Commence ton carnet de recettes,
-                {"\n"} et partage ton savoir
-              </h3>
-            </div>
-            <div className="flex justify-center h-22">
-              <img
-                src={likedIconOff}
-                className="-ml-6 w-16 h-16"
-                alt="liked button"
-              />
-              <img
-                src={likedIconOn}
-                className="absolute ml-8 | w-16 h-16"
-                alt="liked button"
-              />
-            </div>
-          </Grid>
-          <Link to="/register">
-            <Button type="orange">Créer mon profil</Button>
+      <div className="mt-10 grid bg-orange w-screen py-12 justify-items-center">
+        <div className="grid mb-8 text-center">
+          <h1 className="text-white text-3xl mb-2">
+            {" "}
+            Tous les ateliers DIY proches de chez toi !{" "}
+          </h1>
+          <h3 className="text-white text-lg md:text-xl | text-center whitespace-pre-line">
+            Fais-toi aider et rencontre d’autres passionnés
+          </h3>
+        </div>
+        <div className="grid grid-flow-row auto-rows-auto justify-items-center">
+          <div className="relative justify-center">
+            <img src={atelier} className="w-56 h-56" alt="liked button" />
+          </div>
+          <Link className="self-top mt-5" to="/register">
+            <Button className="border-white" type="orange">Explorer des ateliers</Button>
           </Link>
-        </Container>
-      )}
+        </div>
+      </div>
 
       <Container
         className="w-full md:w-3/5 h-full"

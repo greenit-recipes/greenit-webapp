@@ -363,7 +363,7 @@ const RecipeSinglePage = () => {
             {isLoggedIn ? (
               <div className="mb-4 w-full">
                 <textarea
-                  className="appearance-none rounded w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="appearance-none rounded w-full sm:w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="comment"
                   placeholder="comment"
                   {...register("comment")}

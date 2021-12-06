@@ -41,7 +41,7 @@ export const ModalImageProfil: React.FC <ModalImageProfil>= ({ parentFunction })
   return (
     <>
       <div
-        className="absolute h-32 w-32 md:h-40 md:w-40 bg-transparent rounded-full ease-linear transition-all duration-150 cursor-pointer"
+        className="absolute h-32 w-32 md:h-36 md:w-36 bg-transparent rounded-full ease-linear transition-all duration-150 cursor-pointer"
         onClick={() => setShowModal(true)}
       ></div>
       {showModal ? (
