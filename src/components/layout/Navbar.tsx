@@ -41,16 +41,28 @@ export const Navbar: React.FC = () => {
               : "navBar_fadeOut flex flex-col ml-5"
           }
         >
-          <div className="flex flex-col | cursor-pointer space-y-4 text-xl text-gray-500 m-5 w-1/3">
+          <div className="flex flex-col | cursor-pointer space-y-4 text-xl text-gray-500 m-5 w-1/2">
             <Link className="p-2 border-b-2 border-blue" to="/recipes">
               <h1>Recettes</h1>
             </Link>
             <Link className="p-2 border-b-2 border-blue" to="/workshops">
               <h1>Ateliers</h1>
             </Link>
-            <Link className="p-2 border-b-2 border-blue" to="/profil">
-              <h1>Profil</h1>
-            </Link>
+            {isLoggedIn ? (
+              <Link className="p-2 border-b-2 border-blue" to="/profil">
+                <h1>Profil</h1>
+              </Link>
+            ) : (
+              <Link className="p-2 border-b-2 border-blue" to="/connexion">
+                <h1>Se connecter</h1>
+              </Link>
+            )}
+
+            {!isLoggedIn && (
+              <Link className="p-2 border-b-2 border-blue" to="/register">
+                <h1>Créer un compte</h1>
+              </Link>
+            )}
           </div>
         </div>
       </div>
