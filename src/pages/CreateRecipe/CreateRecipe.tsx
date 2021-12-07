@@ -551,6 +551,7 @@ const CreateRecipe: React.FC = () => {
           <div className="grid justify-items-center w-full">
             <Button
               className="px-2 py-3"
+              href="/recette-créée"
               type="green"
               disabled={loadingCreateRecipe}
             >
