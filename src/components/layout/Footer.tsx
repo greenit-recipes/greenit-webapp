@@ -20,13 +20,13 @@ export const Footer: React.FC = () => {
         <div className="flex mt-10">
           <Link to="/Why">
             <h1 className="text-white md:text-xl self-center">
-              Qui sommes nous ?
+              Qui sommes-nous ?
             </h1>
           </Link>
           <h1 className="text-white md:text-xl self-center ml-6 mr-6"> | </h1>
           <Link to="/contact">
             <h1 className="text-white md:text-xl self-center">
-              Contacte nous !{" "}
+              Contacte-nous !{" "}
             </h1>
           </Link>
         </div>

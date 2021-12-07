@@ -73,15 +73,17 @@ const WhyPage: React.FC = () => {
           id="1"
           className="grid justify-items-center text-white w-full pb-20"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-white">Greenit</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-white">
+            Greenit Community
+          </h1>
           <h2 className="mt-5 text-xl lg:text-2xl md:w-2/3">
             Un projet étudiant pour le développement de modes de consommation
             plus sains.
           </h2>
           <h3 className="text-center mt-5 mb-5 text-xl md:w-2/3">
-            Aujourd’hui, Greenit est une communauté d’humains engagés et
-            proactifs qui cherchent à reprendre le contrôle sur leurs
-            consommations.
+            Aujourd’hui, Greenit c’est une communauté d’humains engagés et
+            proactifs qui veulent répandre un mode de production et consommation
+            plus conscient.
           </h3>
         </Block>
         <div className="grid justify-items-center bg-white rounded-full h-24 w-24 lg:h-32 lg:w-32 -mt-10 lg:-mt-16">
@@ -89,17 +91,30 @@ const WhyPage: React.FC = () => {
         </div>
 
         <div className="grid justify-items-center lg:w-2/3">
-          <p className="mt-5 text-base lg:text-xl text-center w-3/4">
-            En mars 2020, avec le confinement, Andréa s’intéresse à la
-            composition de ses produits du quotidien, lassée de ses irritations
-            et allergies. Convaincue de la toxicité des produits industriels,
-            elle se lance dans sa première crème maison : une grande réussite !
+          <p className="mt-5 text-base lg:text-xl w-3/4 text-justify">
+            En mars 2020, lorsque le Covid confine Andrea chez elle, Andrea
+            s’intéresse à la composition de ses produits du quotidien, lassée de
+            ses irritations et allergies.
+            <br />
+            <br />
+            Convaincue de la toxicité des produits industriels, Andrea se lance
+            dans sa première crème maison : une grande réussite ! <br />
+            <br />
             Stimulée par cette première victoire, elle multiplie les recherches
-            et découvre une passion pour le DIY. Consciente des bienfaits
-            physiques et écologiques de ce mode de consommation, Andrea
-            s’entoure d’autres étudiants, Adrien, Idil, Aarnav et de Liam, dans
-            le but de développer Greenit : une communauté qui supporte la
-            production maison.
+            et découvre une passion pour le DIY.
+            <br />
+            <br />
+            Consciente des bienfaits physiques et écologiques, elle crée avec
+            Adrien, entrepreneur dans l’âme et motivé par de profondes ambitions
+            écologiques, Greenit, une communauté qui supporte la production
+            maison. Ces derniers s’entourent d’étudiants qui apportent leurs
+            pierres à l’édifice en proposant un design, une identité de marque
+            et leur aide pour développer le premier site internet lancé en juin
+            2021. <br />
+            <br />
+            L’équipe s’agrandit à nouveau en novembre 2021 pour accueillir
+            Florian, le codeur fou, qui est venu booster les ambitions de
+            Greenit en apportant son savoir-faire.
           </p>
           <img
             src={
@@ -119,9 +134,7 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center md:mt-4 md:justify-self-end"
           ></img>
           <div className="">
-            <h1 className="text-md md:text-xl text-green">
-              Pour la planète
-            </h1>
+            <h1 className="text-md md:text-xl text-green">Pour la planète</h1>
             <h3 className="text-md md:text-base">
               Parlons des compositions des shampoings, des lessives, des
               liquides vaiselles : sodium laureth sulfate,
@@ -186,17 +199,18 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start hidden md:mt-4 md:flex"
           ></img>
         </div>
-        <Block
+      </div>
+      <Block
           id="4"
           title="Merci à toutes celles et ceux qui nous aident"
-          className="w-full lg:w-5/6 min-h-0"
+          className="grid w-screen bg-yellow p-6 justify-items-center"
         >
+          <div className="w-3/4 mt-20">
           <img
             src={isMobile ? communityMobile : communityDesktop}
-            className="h-full w-full mt-20 mb-10"
           />
+          </div>
         </Block>
-      </div>
       <Footer />
     </div>
   );

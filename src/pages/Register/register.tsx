@@ -1,5 +1,4 @@
-import { Button, Navbar } from "../../components";
-import { likedIconOn, likedIconOff } from "../../icons";
+import { Footer, Navbar } from "../../components";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -56,10 +55,8 @@ const Register: React.FC = () => {
     resolver: yupResolver(schema),
   });
   authService.removeToken();
-  const [createAccount, { data: createAccountData, loading, error }] = useMutation(
-    CREATE_ACCOUNT,
-    { errorPolicy: "all" }
-  );
+  const [createAccount, { data: createAccountData, loading, error }] =
+    useMutation(CREATE_ACCOUNT, { errorPolicy: "all" });
 
   const [resendActivationEMail] = useMutation(RESEND_ACTIVATION_EMAIL, {
     errorPolicy: "all",
@@ -68,13 +65,12 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState<string>("");
 
   React.useEffect(() => {
-
-      if (window.pageYOffset > 0) {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      }
+    if (window.pageYOffset > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
 
     if (createAccountData?.register?.success === false || error) {
       if (createAccountData?.register?.errors?.email[0]?.code === "unique") {
@@ -112,8 +108,8 @@ const Register: React.FC = () => {
         isFollowNewsletter: data.isFollowNewsletter,
       },
     }).then((dataAccount) => {
-      if(!dataAccount?.data?.register?.success) return;
-      authService.setStorageEmail(email)
+      if (!dataAccount?.data?.register?.success) return;
+      authService.setStorageEmail(email);
     });
   };
   return (
@@ -124,9 +120,9 @@ const Register: React.FC = () => {
         Création de ton espace DIY <br />
       </h3>
 
-      <div className="w-full max-w-xs md:max-w-lg mt-10">
-        <div className="grid grid-cols-2 md:w-96">
-          <h3 className="text-sm md:text-base self-center">
+      <div className="w-full w-screen sm:max-w-lg mt-10">
+        <div className="grid grid-cols-2">
+          <h3 className="text-sm md:text-base self-center place-self-end mr-4">
             Si tu as déjà un compte:
           </h3>
           <Link to="/connexion">
@@ -247,9 +243,12 @@ const Register: React.FC = () => {
             </label>
 
             <select {...register("userCategoryAge")}>
-              <option value="young">
-                Jeune mais pas trop (Moins de 20 ans)
-              </option>
+              <img
+                src={
+                  "https://images.unsplash.com/photo-1484712401471-05c7215830eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                }
+              />
+
               <option value="young_adult">
                 Adulte mais pas trop non plus (Adulte mais pas trop non plus)
               </option>
@@ -261,12 +260,18 @@ const Register: React.FC = () => {
               </option>
             </select>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-            Je souhaite recevoir la newsletter Greenit Community. Nouvelles fonctionnalités, astuces DIY et recettes garanties !
+          <div className="mb-4 flex">
+            <input
+              type="checkbox"
+              {...register("isFollowNewsletter")}
+              id="isFollowNewsletter"
+            />
+
+            <label className="block text-gray-700 text-sm mb-2 ml-4">
+              Coche la case si tu veux recevoir nos dernières actualités et les
+              tendances du secteur du DIY.
             </label>
-            <input type="checkbox" {...register('isFollowNewsletter')} id="isFollowNewsletter"/>
-            </div>
+          </div>
 
           <div className="flex items-center justify-between">
             <button
@@ -293,6 +298,7 @@ const Register: React.FC = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

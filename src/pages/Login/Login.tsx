@@ -1,4 +1,4 @@
-import { Button, Navbar } from "../../components";
+import { Footer, Navbar } from "../../components";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -88,7 +88,7 @@ const Login: React.FC = () => {
       <h3 className="text-2xl w-2/3 md:text-3xl | mt-16 text-center">
         Connection vers ton espace DIY <br />
       </h3>
-      <div className="w-full max-w-xs md:max-w-lg mt-10">
+      <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 w-4/5">
           <h3 className="text-sm md:text-base self-center">
             Si tu veux créer un compte:
@@ -158,6 +158,7 @@ const Login: React.FC = () => {
           </div>
         </form>
       </div>
+      <Footer/>
     </div>
   );
 };
