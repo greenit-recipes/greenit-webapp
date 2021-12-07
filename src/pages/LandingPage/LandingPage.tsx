@@ -176,7 +176,7 @@ const LandingPage = () => {
 
       <div className="mt-10 grid bg-orange w-screen py-12 justify-items-center">
         <div className="grid mb-8 text-center">
-          <h1 className="text-white text-3xl mb-2">
+          <h1 className="text-white text-2xl md:text-3xl mb-2">
             {" "}
             Tous les ateliers DIY proches de chez toi !{" "}
           </h1>
