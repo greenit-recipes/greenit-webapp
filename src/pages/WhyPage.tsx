@@ -113,13 +113,13 @@ const WhyPage: React.FC = () => {
           Pourquoi faire ses produits maison ?{" "}
         </h1>
 
-        <div className="grid grid-cols-1 grid-rows-8 md:grid-cols-2 md:grid-rows-4 items-center w-4/5 md:w-2/3 lg:w-1/2 md:gap-6 mt-10">
+        <div className="grid grid-cols-1 grid-rows-8 md:grid-cols-2 md:grid-rows-4 items-center w-4/5 md:w-2/3 md:gap-6 mt-10">
           <img
             src={planet}
-            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center md:justify-self-end"
+            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center md:mt-4 md:justify-self-end"
           ></img>
           <div className="">
-            <h1 className="text-md md:text-xl text-green md:mt-10">
+            <h1 className="text-md md:text-xl text-green">
               Pour la planète
             </h1>
             <h3 className="text-md md:text-base">
@@ -136,7 +136,7 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start mt-10 justify-self-center md:hidden"
           ></img>
           <div>
-            <h1 className="text-md md:text-xl text-blue text-right md:mt-10">
+            <h1 className="text-md md:text-xl text-blue text-right">
               Pour ton corps
             </h1>
             <h3 className="text-md md:text-base text-right">
@@ -149,14 +149,14 @@ const WhyPage: React.FC = () => {
           </div>
           <img
             src={corpsWhy}
-            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start hidden md:flex"
+            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start md:mt-4 hidden md:flex"
           ></img>
           <img
             src={money}
-            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center mt-10 md:mt-0 md:justify-self-end"
+            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center mt-10 md:mt-4 md:justify-self-end"
           ></img>
           <div>
-            <h1 className="text-md md:text-xl text-yellow md:mt-10">
+            <h1 className="text-md md:text-xl text-yellow">
               Pour tes économies
             </h1>
             <h3 className="text-md md:text-base">
@@ -171,7 +171,7 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start mt-10 justify-self-center md:hidden"
           ></img>
           <div>
-            <h1 className="text-md md:text-xl text-orange text-right md:mt-10">
+            <h1 className="text-md md:text-xl text-orange text-right">
               Pour ton esprit
             </h1>
             <h3 className="text-md md:text-base text-right">
@@ -183,7 +183,7 @@ const WhyPage: React.FC = () => {
           </div>
           <img
             src={wellbeing}
-            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start hidden md:flex"
+            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start hidden md:mt-4 md:flex"
           ></img>
         </div>
         <Block
