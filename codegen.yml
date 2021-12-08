@@ -1,6 +1,5 @@
-# THIS FILE NEED TO BE TRANSFER ON SERVEUR, IT S ADD ON GITIGNORE
 overwrite: true
-schema: http://127.0.0.1:8000/graphql/
+schema: ${REACT_APP_API_URL}
 documents:
   - 'src/pages/**/*.graphql'
 generates:
