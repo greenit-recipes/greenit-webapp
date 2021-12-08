@@ -1,5 +1,4 @@
 
-
 interface BackgroundImage {
   className?: string;
 }
