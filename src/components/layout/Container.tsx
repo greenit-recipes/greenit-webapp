@@ -26,8 +26,8 @@ export const Container: React.FC<ContainerProps> = ({
       style={{
         ...(padding
           ? {
-              paddingLeft: isMobile ? "10%" : "10%",
-              paddingRight: isMobile ? "10%" : "10%",
+              paddingLeft: isMobile ? "2%" : "10%",
+              paddingRight: isMobile ? "2%" : "10%",
             }
           : {}),
       }}

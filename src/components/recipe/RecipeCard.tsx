@@ -30,7 +30,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   const bandeauWidth = isMobile ? 44 : 60;
 
   return (
-    <div className="relative m-2 mb-14 lg:m-4">
+    <div className="transform hover:scale-105 ease-linear transition-all duration-150 px-2 mb-24 md:mb-16 lg:mb-10">
       <Link
         to={{
           pathname: `/recipes/${recipe?.urlId}`,
@@ -50,13 +50,13 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         </div>
       </Link>
       <LikeField recipe={recipe} isRecipeCard={true}></LikeField>
-      <div className={`absolute bottom-2/7 w-${imageWidth} z-10`}>
-        <FavouriteField parentFunction={parentFunction} recipe={recipe} />
-      </div>
       <div
-        className={`h-auto | mt-auto | bg-white shadow-lg rounded-3xl absolute top-40 lg:top-64 ${`w-${bandeauWidth}`}`}
+        className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-3xl -bottom-20 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
       >
-        <h1 className="subpixel-antialiased | text-center mt-5 p-1 text-sm lg:text-xl">
+        <div className={`absolute -top-4 lg:-top-6 w-${imageWidth} z-10`}>
+          <FavouriteField parentFunction={parentFunction} recipe={recipe} />
+        </div>
+        <h1 className="subpixel-antialiased | text-center mt-5 p-2 text-sm lg:text-xl">
           {recipe?.name}
         </h1>
         <Icon
