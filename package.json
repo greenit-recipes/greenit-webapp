@@ -28,6 +28,7 @@
     "@types/react-swipeable-views": "^0.13.0",
     "apollo-upload-client": "^16.0.0",
     "autoprefixer": "^9",
+    "dotenv": "^10.0.0",
     "graphql": "^15.5.0",
     "html-react-parser": "^1.4.0",
     "lodash": "^4.17.21",
@@ -56,7 +57,7 @@
     "build": "yarn generate && craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "generate": "graphql-codegen --config codegen.yml",
+    "generate": "DOTENV_CONFIG_PATH=./.env graphql-codegen -r dotenv/config --config codegen.yml",
     "generate:watch": "yarn generate --watch"
   },
   "eslintConfig": {

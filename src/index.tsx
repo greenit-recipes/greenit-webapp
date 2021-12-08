@@ -68,8 +68,7 @@ const errorLink = onError(
               return forward(operation);
             });
           default:
-            // Afficher une pop up en disant qu'on à eu un problème
-            // authService.logout();
+            authService.logout();
             return;
         }
       }

@@ -76,7 +76,7 @@ const Login: React.FC = () => {
         authServiceService.setStorageLoginRefreshToken(
           response?.data?.tokenAuth?.refreshToken
         );
-        history.goBack()
+        history.goBack();
       }
     });
     reset();
