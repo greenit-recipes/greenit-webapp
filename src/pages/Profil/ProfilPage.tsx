@@ -113,7 +113,7 @@ const ProfilPage: React.FC = () => {
               {isEmpty(user?.recipeFavorite) && (
                 <div
                   className={
-                    "grid text-center col-span-3 w-2/3 mt-8 justify-items-center" +
+                    "grid text-center col-span-3 w-2/3 mb-56 mt-8 justify-items-center" +
                     (visible ? " hidden" : "")
                   }
                 >

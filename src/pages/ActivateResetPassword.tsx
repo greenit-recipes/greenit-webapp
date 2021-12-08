@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { BackgroundImage } from "pages/LandingPage/Components/BackgroundImage";
+import { BackgroundImage } from "components/layout/BackgroundImage";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";

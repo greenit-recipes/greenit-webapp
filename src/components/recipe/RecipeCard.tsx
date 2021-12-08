@@ -56,7 +56,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         <div className={`absolute -top-4 lg:-top-6 w-${imageWidth} z-10`}>
           <FavouriteField parentFunction={parentFunction} recipe={recipe} />
         </div>
-        <h1 className="subpixel-antialiased | text-center mt-5 p-2 text-sm lg:text-xl">
+        <h1 className="subpixel-antialiased | text-center mt-5 p-2 text-sm lg:text-lg">
           {recipe?.name}
         </h1>
         <Icon

@@ -62,7 +62,8 @@ module.exports = {
         yellow: "#f9d58e",
         orange: "#fec4b0",
         green: "#83d489",
-        grey: "#a3a3a3"
+        grey: "#a3a3a3",
+        red: "#f07b73",
       },
       keyframes: {
         rotate: {
@@ -74,5 +75,4 @@ module.exports = {
       }
     },
   },
-  plugins: [],
 };

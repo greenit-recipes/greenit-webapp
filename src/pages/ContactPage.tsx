@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Navbar } from "../components/layout/Navbar";
 import { UXFormulaire } from "components/layout/UXFormulaire";
 import { Footer } from "components/layout/Footer";
@@ -8,10 +9,18 @@ import {
   MailIcon,
   FBIcon,
 } from "../icons";
-import { BackgroundImage } from "./LandingPage/Components/BackgroundImage";
+import { BackgroundImage } from "../components/layout/BackgroundImage";
 
 const ContactPage = () => {
   const params = new URLSearchParams(window.location.search);
+  useEffect(() => {
+    if (window.pageYOffset > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
   return (
     <div>
       <BackgroundImage />

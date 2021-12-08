@@ -7,6 +7,7 @@ import {
   Button,
   Footer,
   SearchBar,
+  BackgroundImage,
 } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 import {
@@ -17,8 +18,6 @@ import {
   money,
   planet,
   landingPageCategories,
-  likedIconOn,
-  likedIconOff,
 } from "../../icons";
 import "../../pages/recipe/SinglePage/SinglePage.css";
 import ReactPlayer from "react-player";
@@ -28,7 +27,6 @@ import { useRecipesQuery } from "../../graphql";
 import { Link } from "react-router-dom";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
-import { BackgroundImage } from "./Components/BackgroundImage";
 import { BugFormulaire } from "components/layout/BugFormulaire";
 import authService from "services/auth.service";
 
@@ -178,7 +176,7 @@ const LandingPage = () => {
 
       <div className="mt-10 grid bg-orange w-screen py-12 justify-items-center">
         <div className="grid mb-8 text-center">
-          <h1 className="text-white text-3xl mb-2">
+          <h1 className="text-white text-2xl md:text-3xl mb-2">
             {" "}
             Tous les ateliers DIY proches de chez toi !{" "}
           </h1>

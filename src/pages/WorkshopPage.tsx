@@ -35,9 +35,9 @@ const WorkshopPage = () => {
           Tous les ateliers DIY proches de chez toi !
         </h1>
       
-        <h2 className="mt-2 text-1xl md:text-2xl | pb-10 text-center">
+        <h3 className="mt-2 text-1xl md:text-2xl | pb-10 text-center">
           Fais-toi aider et rencontre d’autres passionnés
-        </h2>
+        </h3>
 
       </Container>
 
