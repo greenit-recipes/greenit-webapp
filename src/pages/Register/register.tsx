@@ -1,7 +1,7 @@
 import { Footer, Navbar } from "../../components";
 import Select from "react-select";
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMutation } from "@apollo/client";
@@ -55,6 +55,7 @@ const Register: React.FC = () => {
     setError,
     formState: { errors },
     reset,
+    control
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -67,6 +68,27 @@ const Register: React.FC = () => {
   });
 
   const [email, setEmail] = useState<string>("");
+
+
+  const optionsUserCategoryLvl = [
+    { value: "beginner", label: "Petit.e curieux.se, je débute dans le DIY." },
+    { value: "intermediate", label: "Explorateur.ice avisé.e, j'ai déjà des notions en DIY." },
+    { value: "advanced", label: "Adepte convaincu.e, adepte convaincu.e" },
+  ];
+
+  const optionsUserWantFromGreenit= [
+    { value: "shared_talk", label: "Partager et discuter mes connaissances sur le DIY." },
+    { value: "meet", label: "Rencontrer des adeptes du DIY." },
+    { value: "find_inspiration", label: "Trouver de l'inspiration auprès de la communauté." },
+  ];
+
+  const optionsUserCategoryAge= [
+    { value: "young", label: "Jeune mais pas trop (Moins de 20 ans)" },
+    { value: "young_adult", label: "Adulte mais pas trop non plus (Entre 20 et 35 ans)" },
+    { value: "adult", label: "Adulte dynamique et j'aime ça (Entre 35 et 50 ans)" },
+    { value: "senior", label: "Je vous interdis de m'appeler senior (Plus de 50 ans)" },
+  ];
+
 
   React.useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -99,21 +121,23 @@ const Register: React.FC = () => {
     userWantFromGreenit: string;
     isFollowNewsletter: boolean;
   }) => {
+    const getValue = (field: any) => field.value;
+
     setEmail(data.email);
+    authService.setStorageEmail(email);
     createAccount({
       variables: {
         email: data.email,
         username: data.utilisateur,
         password1: data.password,
         password2: data.passwordConfirmation,
-        userCategoryLvl: data.userCategoryLvl,
-        userCategoryAge: data.userCategoryAge,
-        userWantFromGreenit: data.userWantFromGreenit,
+        userCategoryLvl: getValue(data.userCategoryLvl),
+        userCategoryAge: getValue(data.userCategoryAge),
+        userWantFromGreenit: getValue(data.userWantFromGreenit),
         isFollowNewsletter: data.isFollowNewsletter,
       },
     }).then((dataAccount) => {
       if (!dataAccount?.data?.register?.success) return;
-      authService.setStorageEmail(email);
     });
   };
   return (
@@ -202,147 +226,66 @@ const Register: React.FC = () => {
               {errors.passwordConfirmation?.message}
             </p>
           </div>
-
-
-          <label className="block text-gray-700 text-lg font-bold mb-2 mt-10">
+          <div className="mb-10">
+            <label className="block text-gray-700 text-xl mb-2">
             A quelle catégorie t'identifies-tu ?
-          </label>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-            <div>
-              <input type="radio" name="emotion" id="sad" className="input-1" />
-              <label className="grid justify-items-center">
-                <img src="//placekitten.com/150/150" className="rounded-lg" />
-                <h3 className="mt-4 text-sm text-center">
-                  Petit.e curieux.se, je débute dans le DIY.
-                </h3>
-              </label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="emotion"
-                id="happy"
-                className="input-1"
-              />
-              <label className="grid justify-items-center">
-                <img src="//placekitten.com/150/150" className="rounded-lg" />
-                <h3 className="mt-4 text-sm">
-                  Explorateur.ice avisé.e, j'ai déjà des notions en DIY..
-                </h3>
-              </label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="emotion"
-                id="happy"
-                className="input-1"
-              />
-              <label className="grid justify-items-center">
-                <img src="//placekitten.com/151/151" className="rounded-lg" />
-                <h3 className="mt-4 text-sm">
-                  Adepte convaincu.e, adepte convaincu.e
-                </h3>
-              </label>
-            </div>
+                        </label>
+            <Controller
+              name="userCategoryLvl"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={optionsUserCategoryLvl}
+                  className={`w-2/3 md:w-1/2`}
+                />
+              )}
+            />
+            <p className="text-red-500 text-xs italic">
+              {errors.userCategoryLvl?.message}
+            </p>
           </div>
 
-          <label className="block text-gray-700 text-lg font-bold mb-2 mt-10">
+
+          <div className="mb-10">
+            <label className="block text-gray-700 text-xl mb-2">
             Pour quoi Greenit peut-il t'aider ?
-          </label>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center gap-4 mt-6">
-            <div>
-              <input type="radio" name="emotion" id="sad" className="input-1" />
-              <label className="grid justify-items-center">
-                <img src="//placekitten.com/150/150" className="rounded-lg" />
-                <h3 className="mt-4 text-sm text-center">
-                  Partager et discuter mes connaissances sur le DIY
-                </h3>
-              </label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="emotion"
-                id="happy"
-                className="input-1"
-              />
-              <label className="grid justify-items-center">
-                <img src="//placekitten.com/150/150" className="rounded-lg" />
-                <h3 className="mt-4 text-sm text-center">
-                  Rencontrer des adeptes du DIY
-                </h3>
-              </label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="emotion"
-                id="happy"
-                className="input-1"
-              />
-              <label className="grid justify-items-center">
-                <img src="//placekitten.com/151/151" className="rounded-lg" />
-                <h3 className="mt-4 text-sm text-center">
-                  Trouver de l'inspiration auprès de la communauté
-                </h3>
-              </label>
-            </div>
+                                    </label>
+            <Controller
+              name="userWantFromGreenit"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={optionsUserWantFromGreenit}
+                  className={`w-2/3 md:w-1/2`}
+                />
+              )}
+            />
+            <p className="text-red-500 text-xs italic">
+              {errors.userWantFromGreenit?.message}
+            </p>
           </div>
 
-          <label className="block text-gray-700 text-lg font-bold mb-2 mt-10">
-            A quel groupe t'identifies-tu ?
-          </label>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-            <div>
-              <input type="radio" name="3" id="A" className="input-1" />
-              <label className="grid justify-items-center">
-                <img src="//placekitten.com/150/150" className="rounded-lg" />
-                <h3 className="mt-4 text-sm">
-                  Jeune mais pas trop <br /> (Moins de 20 ans)
-                </h3>
-              </label>
-            </div>
-            <div>
-              <input type="radio" name="3" id="B" className="input-1" />
-              <label className="grid justify-items-center">
-                <img src="//placekitten.com/150/150" className="rounded-lg" />
-                <h3 className="mt-4 text-sm text-center">
-                  Adulte mais pas trop non plus <br /> (Entre 20 et 35 ans)
-                </h3>
-              </label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="3"
-                id="C"
-                className="input-1"
-              />
-              <label className="grid justify-items-center">
-                <img src="//placekitten.com/150/150" className="rounded-lg" />
-                <h3 className="mt-4 text-sm text-center">
-                  Adulte dynamique et j'aime ça <br /> (Entre 35 et 50 ans)
-                </h3>
-              </label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="3"
-                id="D"
-                className="input-1"
-              />
-              <label className="grid justify-items-center">
-                <img src="//placekitten.com/151/151" className="rounded-lg" />
-                <h3 className="mt-4 text-sm text-center">
-                  Je vous interdis de m'appeler senior <br /> (Plus de 50 ans)
-                </h3>
-              </label>
-            </div>
+          <div className="mb-10">
+            <label className="block text-gray-700 text-xl mb-2">
+            A quel groupe t'identifies-tu ?
+                                                </label>
+            <Controller
+              name="userCategoryAge"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={optionsUserCategoryAge}
+                  className={`w-2/3 md:w-1/2`}
+                />
+              )}
+            />
+            <p className="text-red-500 text-xs italic">
+              {errors.userCategoryAge?.message}
+            </p>
           </div>
 
           <div className="mb-4 flex mt-10 self-center">

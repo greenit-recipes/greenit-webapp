@@ -1,5 +1,5 @@
 overwrite: true
-schema: ${REACT_APP_API_URL}
+schema: http://127.0.0.1:8000/graphql/ #Change it when we build on serveur !!!
 documents:
   - 'src/pages/**/*.graphql'
 generates:

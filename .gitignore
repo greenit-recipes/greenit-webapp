@@ -18,6 +18,7 @@
 .env.test.local
 .env.production.local
 .env
+tailwind.generated.css
 
 yarn.lock
 
@@ -68,3 +69,5 @@ packages/react-devtools-shell/dist
 packages/react-devtools-timeline/dist
 
 .env.beta.front
+.env.prod
+.env.beta
