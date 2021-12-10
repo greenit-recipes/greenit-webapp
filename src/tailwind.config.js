@@ -3,9 +3,13 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   // purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   purge: {
+    enabled: true,
+    content: [
+      './src/**/*.{js,jsx,ts,tsx,css}', "./public/index.html"
+    ],
     options: {
       safelist: [
-        "overflow-hidden",
+        "overflow-hidden", 
         "gap-14",
         "order-last",
         "fixed",
