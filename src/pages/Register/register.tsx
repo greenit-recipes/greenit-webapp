@@ -13,8 +13,6 @@ import authService, {
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import "./register.css";
 
-
-
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
   utilisateur: yup
@@ -46,6 +44,9 @@ const schema = yup.object().shape({
       [yup.ref("password"), null],
       "Les mots de passe ne correspondent pas."
     ),
+  userCategoryLvl: yup.object().required("Ce champ est obligatoire."),
+  userWantFromGreenit: yup.object().required("Ce champ est obligatoire."),
+  userCategoryAge: yup.object().required("Ce champ est obligatoire."),
 }); // _ - .
 
 const Register: React.FC = () => {
@@ -55,7 +56,7 @@ const Register: React.FC = () => {
     setError,
     formState: { errors },
     reset,
-    control
+    control,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -69,26 +70,33 @@ const Register: React.FC = () => {
 
   const [email, setEmail] = useState<string>("");
 
-
   const optionsUserCategoryLvl = [
     { value: "beginner", label: "Petit.e curieux.se, je débute dans le DIY." },
-    { value: "intermediate", label: "Explorateur.ice avisé.e, j'ai déjà des notions en DIY." },
+    {
+      value: "intermediate",
+      label: "Explorateur.ice avisé.e, j'ai déjà des notions en DIY.",
+    },
     { value: "advanced", label: "Adepte convaincu.e, adepte convaincu.e" },
   ];
 
-  const optionsUserWantFromGreenit= [
-    { value: "shared_talk", label: "Partager et discuter mes connaissances sur le DIY." },
+  const optionsUserWantFromGreenit = [
+    {
+      value: "shared_talk",
+      label: "Partager et discuter mes connaissances sur le DIY.",
+    },
     { value: "meet", label: "Rencontrer des adeptes du DIY." },
-    { value: "find_inspiration", label: "Trouver de l'inspiration auprès de la communauté." },
+    {
+      value: "find_inspiration",
+      label: "Trouver de l'inspiration auprès de la communauté.",
+    },
   ];
 
-  const optionsUserCategoryAge= [
-    { value: "young", label: "Jeune mais pas trop (Moins de 20 ans)" },
-    { value: "young_adult", label: "Adulte mais pas trop non plus (Entre 20 et 35 ans)" },
-    { value: "adult", label: "Adulte dynamique et j'aime ça (Entre 35 et 50 ans)" },
-    { value: "senior", label: "Je vous interdis de m'appeler senior (Plus de 50 ans)" },
+  const optionsUserCategoryAge = [
+    { value: "young", label: "Moins de 20 ans" },
+    { value: "young_adult", label: "Entre 20 et 35 ans" },
+    { value: "adult", label: "Entre 35 et 50 ans" },
+    { value: "senior", label: "Plus de 50 ans" },
   ];
-
 
   React.useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -124,7 +132,6 @@ const Register: React.FC = () => {
     const getValue = (field: any) => field.value;
 
     setEmail(data.email);
-    authService.setStorageEmail(email);
     createAccount({
       variables: {
         email: data.email,
@@ -138,6 +145,7 @@ const Register: React.FC = () => {
       },
     }).then((dataAccount) => {
       if (!dataAccount?.data?.register?.success) return;
+      authService.setStorageEmail(email);
     });
   };
   return (
@@ -228,8 +236,8 @@ const Register: React.FC = () => {
           </div>
           <div className="mb-10">
             <label className="block text-gray-700 text-xl mb-2">
-            A quelle catégorie t'identifies-tu ?
-                        </label>
+              A quelle catégorie t'identifies-tu ?
+            </label>
             <Controller
               name="userCategoryLvl"
               control={control}
@@ -246,11 +254,10 @@ const Register: React.FC = () => {
             </p>
           </div>
 
-
           <div className="mb-10">
             <label className="block text-gray-700 text-xl mb-2">
-            Pour quoi Greenit peut-il t'aider ?
-                                    </label>
+              Pour quoi Greenit peut-il t'aider ?
+            </label>
             <Controller
               name="userWantFromGreenit"
               control={control}
@@ -267,11 +274,10 @@ const Register: React.FC = () => {
             </p>
           </div>
 
-
           <div className="mb-10">
             <label className="block text-gray-700 text-xl mb-2">
-            A quel groupe t'identifies-tu ?
-                                                </label>
+              A quel groupe t'identifies-tu ?
+            </label>
             <Controller
               name="userCategoryAge"
               control={control}

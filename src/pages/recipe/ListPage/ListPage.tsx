@@ -86,15 +86,6 @@ const RecipeListPage = () => {
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
             loader={<Loading isForLoadingPage={false} />}
-            onScroll={(e) => {
-              if (!isMobile) {
-                if (window.pageYOffset > 400) {
-                  setShowScrollTop(true);
-                } else {
-                  setShowScrollTop(false);
-                }
-              }
-            }}
             next={() => {
               fetchMore({
                 variables: {

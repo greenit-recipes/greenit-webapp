@@ -99,8 +99,8 @@ export const Footer: React.FC = () => {
                 <img src={tiktokIcon} className="w-8 h-8 mt-2 self-start" />
               ),
             },
-          ].map((item) => (
-            <a href={item.href} target="_blank" rel="norefferer">
+          ].map((item, index) => (
+            <a href={item.href} target="_blank" rel="norefferer" key={index}>
               {item.children}
             </a>
           ))}

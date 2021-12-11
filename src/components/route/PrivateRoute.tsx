@@ -1,7 +1,5 @@
-import { useMutation } from "@apollo/client";
-import { useEffect, useState } from "react";
-import { Route, Redirect } from "react-router-dom";
-import authService, { VERIFY_TOKEN } from "services/auth.service";
+import { Redirect, Route } from "react-router-dom";
+import authService from "services/auth.service";
 
 const PrivateRoute = ({ component: Component, ...rest }: any) => {
 

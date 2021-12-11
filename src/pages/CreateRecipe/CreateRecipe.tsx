@@ -26,21 +26,33 @@ const schema = yup.object().shape({
   category: yup.object().required("Ce champ est obligatoire."),
   expiry: yup.string().required("Ce champ est obligatoire."),
   ingredients: yup // Ne marche pas
-    .array()
-    .min(1, "Ce champ est obligatoire")
-    .required("Ce champ est obligatoire."),
-  instructions: yup // Ne marche pas
-    .array(yup.string())
-    .min(1, "Ce champ est obligatoire")
-    .required("Ce champ est obligatoire."),
-  utensils: yup // Ne marche pas
-    .array()
-    .min(1, "Ce champ est obligatoire")
-    .required("Ce champ est obligatoire."),
+  .array(
+    yup.object({
+      quantity: yup.string().required("Ce champ est obligatoire."),
+      name: yup.object().required("Ce champ est obligatoire."),
+    })
+  )
+  .min(1, "Ce champ est obligatoire"),
+  instructions: yup
+    .array(
+      yup.object({
+        instruction: yup.string().required("Ce champ est obligatoire."),
+      })
+    )
+    .min(1, "Ce champ est obligatoire"),
+  utensils: yup
+    .array(
+      yup.object({
+        quantity: yup.string().required("Ce champ est obligatoire."),
+        name: yup.object().required("Ce champ est obligatoire."),
+      })
+    )
+    .min(1, "Ce champ est obligatoire"),
 
   tags: yup.array().required("Ce champ est obligatoire."),
   notes_from_author: yup.string(),
 });
+
 
 const CreateRecipe: React.FC = () => {
   const {
@@ -96,6 +108,7 @@ const CreateRecipe: React.FC = () => {
   useEffect(() => {
     ingredientsAppend({});
     utensilsAppend({});
+    instructionsAppend({});
   }, []);
 
   useEffect(() => {
@@ -213,9 +226,7 @@ const CreateRecipe: React.FC = () => {
           </div>
 
           <div className="mb-10">
-            <label className="block text-gray-700 text-xl mb-2">
-              Photos
-            </label>
+            <label className="block text-gray-700 text-xl mb-2">Photos</label>
             <h4 className="block text-gray-700 text-sm mb-2">
               Upload une jolie photo du résultat !
             </h4>
@@ -292,8 +303,6 @@ const CreateRecipe: React.FC = () => {
               className="shadow appearance-none border rounded w-full text-sm lg:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="durée en minutes"
               type="number"
-              min="1"
-              max="1000"
               {...register("duration")}
             ></input>
             <p className="text-red-500 text-xs italic">
@@ -304,9 +313,7 @@ const CreateRecipe: React.FC = () => {
           {/* Select multiple */}
 
           <div className="mb-10">
-            <label className="block text-gray-700 text-xl mb-2">
-              Tags
-            </label>
+            <label className="block text-gray-700 text-xl mb-2">Tags</label>
             <h4 className="block text-gray-700 text-sm mb-2">
               Ces tags faciliteront le référencement de ta recette.
             </h4>
@@ -354,6 +361,9 @@ const CreateRecipe: React.FC = () => {
                     placeholder=" 10g 0.5l..."
                     {...register(`ingredients.${index}.quantity`)}
                   />
+                                    <p className="text-red-500 text-xs italic">
+                    {errors?.ingredients?.[index]?.quantity?.message}
+                  </p>
                   <Controller
                     name={`ingredients.${index}.name`}
                     control={control}
@@ -374,19 +384,21 @@ const CreateRecipe: React.FC = () => {
                       );
                     }}
                   />
-                  <Button
+                                                  <p className="text-red-500 text-xs italic">
+                    {errors?.ingredients?.[index]?.name?.message}
+                  </p>
+                  <div
                     className="col-span-3 | flex justify-self-end mb-2"
-                    type="red"
                     onClick={() => ingredientsRemove(index)}
                   >
                     Supprimer
-                  </Button>
+                  </div>
                 </li>
               ))}
             </ul>
-            <Button type="blue" onClick={() => ingredientsAppend({})}>
+            <div onClick={() => ingredientsAppend({}, { shouldFocus: true })}>
               Ajouter un ingrédient
-            </Button>
+            </div>
             <p className="text-red-500 text-xs italic">
               {errors.ingredients?.message}
             </p>
@@ -416,32 +428,41 @@ const CreateRecipe: React.FC = () => {
             <h4 className="block text-gray-700 text-sm mb-4">
               Par exemple : <br />
               1 Ajouter l'huile de noisette dans le chauffe-tout <br />
-              2 Remuer rapidement jusqu'à ce que la préparation devienne liquide <br />
-              3 ...
+              2 Remuer rapidement jusqu'à ce que la préparation devienne liquide{" "}
+              <br />3 ...
             </h4>
 
             <div className="mb-10">
               <ul>
                 {instructionsFields.map((item, index) => (
-                  <li key={item.id} className={`grid grid-rows-2 grid-cols-1`}>
-                    <input
-                      className={`border-2 mb-2`}
-                      {...register(`instructions.${index}.instruction`)}
-                    />
-
-                    <Button
-                      type="red"
-                      className="justify-self-end mb-2"
-                      onClick={() => instructionsRemove(index)}
+                  <>
+                    <li
+                      key={item.id}
+                      className={`grid grid-rows-2 grid-cols-1`}
                     >
-                      Delete
-                    </Button>
-                  </li>
+                      <input
+                        className={`border-2 mb-2`}
+                        {...register(`instructions.${index}.instruction`)}
+                      />
+
+                      <div
+                        className="justify-self-end mb-2"
+                        onClick={() => instructionsRemove(index)}
+                      >
+                        Delete
+                      </div>
+                    </li>
+                    <p className="text-red-500 text-xs italic">
+                      {errors?.instructions?.[index]?.instruction?.message}
+                    </p>
+                  </>
                 ))}
               </ul>
-              <Button type="blue" onClick={() => instructionsAppend({})}>
+              <div
+                onClick={() => instructionsAppend({}, { shouldFocus: true })}
+              >
                 Ajouter une étape
-              </Button>
+              </div>
             </div>
             <p className="text-red-500 text-xs italic">
               {errors.instructions?.message}
@@ -466,6 +487,9 @@ const CreateRecipe: React.FC = () => {
                     placeholder="nombre"
                     {...register(`utensils.${index}.quantity`)}
                   />
+                  <p className="text-red-500 text-xs italic">
+                    {errors?.utensils?.[index]?.quantity?.message}
+                  </p>
                   <Controller
                     name={`utensils.${index}.name`}
                     control={control}
@@ -486,19 +510,21 @@ const CreateRecipe: React.FC = () => {
                       );
                     }}
                   />
-                  <Button
-                    type="red"
+                  <p className="text-red-500 text-xs italic">
+                    {errors?.utensils?.[index]?.name?.message}
+                  </p>
+                  <div
                     onClick={() => utensilsRemove(index)}
                     className="col-span-3 | flex justify-self-end mb-2"
                   >
                     Supprimer
-                  </Button>
+                  </div>
                 </li>
               ))}
             </ul>
-            <Button type="blue" onClick={() => utensilsAppend({})}>
+            <div onClick={() => utensilsAppend({}, { shouldFocus: true })}>
               Ajouter un ustensile
-            </Button>
+            </div>
             <p className="text-red-500 text-xs italic">
               {errors.utensils?.message}
             </p>
@@ -532,7 +558,8 @@ const CreateRecipe: React.FC = () => {
               Note de l'auteur.e
             </label>
             <h4 className="block text-gray-700 text-sm mb-4 w-11/12">
-              Par exemple : Vous pouvez ajouter une huile de Jojoba si vous avez la peau grasse.
+              Par exemple : Vous pouvez ajouter une huile de Jojoba si vous avez
+              la peau grasse.
             </h4>
             <input
               className="shadow appearance-none border rounded w-full lg:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -555,12 +582,14 @@ const CreateRecipe: React.FC = () => {
               type="green"
               disabled={loadingCreateRecipe}
             >
-              <h1 className="text-lg text-white hover:text-green">Envoyer ma recette</h1>
+              <h1 className="text-lg text-white hover:text-green">
+                Envoyer ma recette
+              </h1>
             </Button>
           </div>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
