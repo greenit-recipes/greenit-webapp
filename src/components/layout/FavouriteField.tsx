@@ -12,11 +12,13 @@ interface FavouriteField {
   className?: string;
   recipe: any;
   parentFunction?: any;
+  isRefetchData?: boolean;
 }
 
 export const FavouriteField: React.FC<FavouriteField> = ({
   recipe,
   parentFunction = null,
+  isRefetchData = false,
 }) => {
   const isLoggedIn = authService.isLoggedIn();
   const [isFavorite, setFavorite] = useState(
@@ -32,13 +34,15 @@ export const FavouriteField: React.FC<FavouriteField> = ({
       {isLoggedIn ? (
         <button
           onClick={() => {
-            setFavorite(!isFavorite);
+            if(!isRefetchData) setFavorite(!isFavorite);
             // @ts-ignore: Object is possibly 'null'.
             addOrRemoveFavoriteRecipe({
               variables: {
                 recipeId: recipe?.id,
               },
-            }).then(() => (parentFunction ? parentFunction() : null));
+            }).then(() => {
+              return parentFunction ? parentFunction() : null
+            });
           }}
         >
           {isFavorite ? (

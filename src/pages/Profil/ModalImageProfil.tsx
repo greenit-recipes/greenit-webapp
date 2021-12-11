@@ -4,14 +4,18 @@ import { Button } from "components/misc/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { ME, UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
+import { UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
 import { imageValidation } from "helpers/yup-validation.helper";
 
 interface ModalImageProfil {
   parentFunction?: any;
+  hasImageProfile?: boolean;
 }
 
-export const ModalImageProfil: React.FC <ModalImageProfil>= ({ parentFunction }) => {
+export const ModalImageProfil: React.FC<ModalImageProfil> = ({
+  parentFunction,
+  hasImageProfile = true,
+}) => {
   const schema = yup.object().shape({
     image: imageValidation(),
   }); // _ - .
@@ -40,6 +44,7 @@ export const ModalImageProfil: React.FC <ModalImageProfil>= ({ parentFunction })
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>
+      {!hasImageProfile && <div>Ajoute ta photo</div>}
       <div
         className="absolute h-32 w-32 md:h-36 md:w-36 bg-transparent rounded-full ease-linear transition-all duration-150 cursor-pointer"
         onClick={() => setShowModal(true)}
@@ -69,11 +74,7 @@ export const ModalImageProfil: React.FC <ModalImageProfil>= ({ parentFunction })
                   <p className="text-red-500 text-xs italic">
                     {errors?.image?.message}
                   </p>
-                  <Button
-                    type="blue"
-                  >
-                    Valider
-                  </Button>
+                  <Button type="blue">Valider</Button>
                 </form>
 
                 {/*footer*/}

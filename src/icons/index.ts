@@ -54,6 +54,7 @@ import commentaireIcon from "./commentaire_icon.png"
 import shareIcon from "./share_icon.png"
 import bugIcon from "./bug_icon.png"
 import atelier from "./ateliers_icon.png"
+import defaultImageProfil from "./default_image_profil.png"
 
 export const landingPageCategories = [
   {
@@ -116,6 +117,7 @@ export {
   bugIcon,
   InstagramIcon,
   FBIcon,
+  defaultImageProfil,
   MailIcon,
   corpsWhy,
   atelier,

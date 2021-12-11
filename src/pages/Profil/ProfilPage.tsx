@@ -19,6 +19,7 @@ import { Container, Footer, Navbar } from "../../components";
 import { Modal } from "pages/Profil/ModalProfil";
 import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
 import { CTACard } from "pages/recipe/ListPage/Components/CTACard";
+import { defaultImageProfil } from "icons";
 
 const ProfilPage: React.FC = () => {
   useEffect(() => {
@@ -30,7 +31,7 @@ const ProfilPage: React.FC = () => {
     }
   }, []);
 
-  const { loading, error, data, refetch, networkStatus } = useQuery(ME, {
+  const { loading, data, refetch } = useQuery(ME, {
     fetchPolicy: "no-cache",
   });
 
@@ -67,14 +68,14 @@ const ProfilPage: React.FC = () => {
       >
         <div className="grid grid-cols-2 gap-4 mb-8 md:mb-20">
           <div className="grid justify-items-center bg-transparent h-32 w-32 md:h-40 md:w-40 rounded-full border-2 border-transparent hover:border-gray-400">
-            <ModalImageProfil parentFunction={refetch} />
+            <ModalImageProfil hasImageProfile={!!userImage} parentFunction={refetch} />
             <img
               className={`object-cover h-32 w-32 md:h-36 md:w-36
               rounded-full | self-center`}
               // @ts-ignore
-              src={userImage}
+              src={userImage ? userImage : defaultImageProfil}
             ></img>
-            {/* userImage == "defaultImage" && (<div></div>)*/}
+
           </div>
           <div className="flex flex-col | self-center">
             <div className="flex-inline overflow-clip overflow-hidden ...">
@@ -83,6 +84,7 @@ const ProfilPage: React.FC = () => {
             <Modal />
           </div>
         </div>
+        
       </Container>
 
       <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
@@ -134,6 +136,7 @@ const ProfilPage: React.FC = () => {
                     <RecipeCard
                       parentFunction={refetchMe}
                       recipe={recipe}
+                      isRefetchData={true}
                       key={index}
                       inCarousel={false}
                       isProfilPage={true}
@@ -160,6 +163,7 @@ const ProfilPage: React.FC = () => {
                 <div key={index} className="col-span-1 w-full justify-center">
                   <RecipeCard
                     parentFunction={refetchMe}
+                    disabledFavoriteRecipe={true}
                     recipe={recipe}
                     key={index}
                     isProfilPage={true}

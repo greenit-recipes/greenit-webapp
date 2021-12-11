@@ -13,6 +13,8 @@ interface RecipeCardProps {
   inCarousel?: boolean;
   isProfilPage?: boolean;
   parentFunction?: any;
+  disabledFavoriteRecipe?: boolean;
+  isRefetchData?: boolean;
 }
 
 export const RecipeCard: React.FC<RecipeCardProps> = ({
@@ -21,6 +23,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   inCarousel,
   isProfilPage,
   parentFunction = null,
+  disabledFavoriteRecipe = false,
+  isRefetchData = false,
 }) => {
   const isMobile = useIsMobile();
 
@@ -53,9 +57,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       <div
         className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-3xl -bottom-20 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
       >
-        <div className={`absolute -top-4 lg:-top-6 w-${imageWidth} z-10`}>
-          <FavouriteField parentFunction={parentFunction} recipe={recipe} />
-        </div>
+        { !disabledFavoriteRecipe && (<div className={`absolute -top-4 lg:-top-6 w-${imageWidth} z-10`}>
+          <FavouriteField isRefetchData={isRefetchData} parentFunction={parentFunction} recipe={recipe} />
+        </div>) }
         <h1 className="subpixel-antialiased | text-center mt-5 p-2 text-sm lg:text-lg">
           {recipe?.name}
         </h1>

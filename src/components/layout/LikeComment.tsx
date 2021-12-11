@@ -9,21 +9,25 @@ import {
 
 interface LikeComment {
   comment: any;
+  isMyComment: any;
 }
 
-export const LikeComment: React.FC<LikeComment> = ({ comment }) => {
+export const LikeComment: React.FC<LikeComment> = ({ comment, isMyComment=false }) => {
   const [isLiked, setLiked] = useState(comment?.isLikedByCurrentUser);
   const [nbrLiked, setNbrLiked] = useState(comment?.numberOfLikes);
   const [addOrRemoveLikeComment] = useMutation(ADD_OR_REMOVE_LIKE_COMMENT);
   const isLoggedIn = authService.isLoggedIn();
-
+  console.log("isMyComment -->", isMyComment)
   return (
     <>
       {isLoggedIn ? (
         // @ts-ignore
         <div
-          className="flex cursor-pointer bg-white w-20 h-12 rounded-tl-2xl p-3"
+          className={`flex bg-white w-20 h-12 rounded-tl-2xl p-3 ${
+            isMyComment ? "" : "cursor-pointer"
+          }`}
           onClick={() => {
+            if(isMyComment) return
             setLiked(!isLiked);
             // @ts-ignore
             setNbrLiked(!isLiked ? nbrLiked + 1 : nbrLiked - 1);

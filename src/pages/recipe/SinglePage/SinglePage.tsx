@@ -211,6 +211,7 @@ const RecipeSinglePage = () => {
               <div className="col-span-1 lg:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex h-11">
                 {recipe?.tags.map((item, index) => (
                   <div
+                    key={index}
                     className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
                     style={{ backgroundColor: "#888888" }}
                     onClick={() => {
@@ -224,16 +225,16 @@ const RecipeSinglePage = () => {
               <div className="mt-5 flex flex-col self-start mr-10">
                 <h1 className="pb-1 text-xl md:text-2xl">Ingredients</h1>
                 {/* @ts-ignore*/}
-                {recipe.ingredients.map((item) => (
-                  <h3 className="text-lg md:text-xl pt-2">
+                {recipe.ingredients.map((item, index) => (
+                  <h3 className="text-lg md:text-xl pt-2" key={index}>
                     {item.amount} {item.name}
                   </h3>
                 ))}
               </div>
               <div className="mt-5 flex flex-col self-start">
                 <h1 className="pb-1 text-xl md:text-2xl">Ustensiles</h1>
-                {recipe?.utensils.map((item) => (
-                  <h3 className="text-lg md:text-xl pt-2">{item.name}</h3>
+                {recipe?.utensils.map((item, index) => (
+                  <h3 className="text-lg md:text-xl pt-2" key={index}>{item.name}</h3>
                 ))}
               </div>
             </div>
@@ -336,6 +337,9 @@ const RecipeSinglePage = () => {
                     name={comment?.author?.username}
                     className="mb-2"
                   ></UserBadge>
+                   { 
+                           // @ts-ignore
+getUuidFromId(data?.me?.id) === recipe?.author?.id && (<div> (créateur de la recette) </div>)}
                   <div className="text-md lg:text-lg">
                     <h3 className="text-base"> {comment?.comment} </h3>
                   </div>
@@ -343,7 +347,8 @@ const RecipeSinglePage = () => {
                     {momentGreenit(comment?.createdAt)}
                   </h3>
                   <div className="absolute -bottom-1 -right-1">
-                    <LikeComment comment={comment}></LikeComment>
+                    { /* @ts-ignore */ }
+                    <LikeComment isMyComment={getUuidFromId(data?.me?.id) === comment?.author?.id} comment={comment}></LikeComment>
                   </div>
                 </div>
               </div>
