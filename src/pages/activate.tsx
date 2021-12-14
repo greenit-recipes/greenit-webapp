@@ -1,12 +1,12 @@
 import { useMutation } from "@apollo/client";
-import React, { useEffect } from "react";
 import { Button } from "components/misc/Button";
+import React, { useEffect } from "react";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { useLocation, useParams } from "react-router";
 import authService, {
   RESEND_ACTIVATION_EMAIL,
   VERIFY_ACCOUNT,
-  WELCOME_NEW_USER,
+  WELCOME_NEW_USER
 } from "services/auth.service";
 import "../App.css";
 import { Footer, Navbar } from "../components";

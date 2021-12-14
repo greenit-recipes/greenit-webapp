@@ -79,7 +79,7 @@ const Login: React.FC = () => {
         );
         history.listen((prev) => {
           console.log(prev);
-          if (prev?.pathname === RouteName.activateResetPassword || includes(prev?.pathname, RouteName.tokenActivationAccount) || prev?.pathname === RouteName.register) {
+          if (prev?.pathname === RouteName.activateResetPassword || includes(prev?.pathname,RouteName.resetPassword) || includes(prev?.pathname, RouteName.tokenActivationAccount) || prev?.pathname === RouteName.register) {
             history.push("/");
           }
         });

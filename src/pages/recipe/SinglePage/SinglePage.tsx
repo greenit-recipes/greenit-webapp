@@ -234,7 +234,9 @@ const RecipeSinglePage = () => {
               <div className="mt-5 flex flex-col self-start">
                 <h1 className="pb-1 text-xl md:text-2xl">Ustensiles</h1>
                 {recipe?.utensils.map((item, index) => (
-                  <h3 className="text-lg md:text-xl pt-2" key={index}>{item.name}</h3>
+                  <h3 className="text-lg md:text-xl pt-2" key={index}>
+                    {item.name}
+                  </h3>
                 ))}
               </div>
             </div>
@@ -337,9 +339,9 @@ const RecipeSinglePage = () => {
                     name={comment?.author?.username}
                     className="mb-2"
                   ></UserBadge>
-                   { 
-                           // @ts-ignore
-getUuidFromId(data?.me?.id) === recipe?.author?.id && (<div> (créateur de la recette) </div>)}
+                  {comment?.author?.id === recipe?.author?.id && (
+                    <div> (créateur de la recette) </div>
+                  )}
                   <div className="text-md lg:text-lg">
                     <h3 className="text-base"> {comment?.comment} </h3>
                   </div>
@@ -347,8 +349,14 @@ getUuidFromId(data?.me?.id) === recipe?.author?.id && (<div> (créateur de la re
                     {momentGreenit(comment?.createdAt)}
                   </h3>
                   <div className="absolute -bottom-1 -right-1">
-                    { /* @ts-ignore */ }
-                    <LikeComment isMyComment={getUuidFromId(data?.me?.id) === comment?.author?.id} comment={comment}></LikeComment>
+                    {/* @ts-ignore */}
+                    <LikeComment
+                      isMyComment={
+                        // @ts-ignore
+                        getUuidFromId(data?.me?.id) === comment?.author?.id
+                      }
+                      comment={comment}
+                    ></LikeComment>
                   </div>
                 </div>
               </div>
