@@ -6,6 +6,7 @@ import useIsMobile from "../../hooks/isMobile";
 import { Icon } from "../misc";
 import { FavouriteField } from "../layout/FavouriteField";
 import { LikeField } from "components/layout/LikeField";
+import "./RecipeCard.css";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
@@ -26,6 +27,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   disabledFavoriteRecipe = false,
   isRefetchData = false,
 }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   const isMobile = useIsMobile();
 
   const iconHeight = isMobile ? 10 : 16;
@@ -44,12 +47,15 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       >
         <div>
           <img
+            src={getImagePath(recipe?.image)}
             className={`flex flex-col object-cover | ${
               enableShadow && "shadow-lg"
             } ${`h-${imageHeight} w-${imageWidth}`}
-            rounded-3xl | justify-self-center`}
+            rounded-3xl | justify-self-center smooth-image image-${
+              imageLoaded ? "visible" : "hidden"
+            }`}
             // @ts-ignore
-            src={getImagePath(recipe?.image)}
+            onLoad={() => setImageLoaded(true)}
           ></img>
         </div>
       </Link>
@@ -57,9 +63,15 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       <div
         className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-3xl -bottom-20 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
       >
-        { !disabledFavoriteRecipe && (<div className={`absolute -top-4 lg:-top-6 w-${imageWidth} z-10`}>
-          <FavouriteField isRefetchData={isRefetchData} parentFunction={parentFunction} recipe={recipe} />
-        </div>) }
+        {!disabledFavoriteRecipe && (
+          <div className={`absolute -top-4 lg:-top-6 w-${imageWidth} z-10`}>
+            <FavouriteField
+              isRefetchData={isRefetchData}
+              parentFunction={parentFunction}
+              recipe={recipe}
+            />
+          </div>
+        )}
         <h1 className="subpixel-antialiased | text-center mt-5 p-2 text-sm lg:text-lg">
           {recipe?.name}
         </h1>

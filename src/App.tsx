@@ -13,7 +13,7 @@ import WorkshopPage from "./pages/WorkshopPage";
 import ProfilPage from "./pages/Profil/ProfilPage";
 import Register from "./pages/Register/register";
 import Login from "pages/Login/Login";
-import Activate from "pages/activate";
+import ActivateAccount from "pages/activate";
 import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
 import CreateRecipe from "pages/CreateRecipe/CreateRecipe";
@@ -21,11 +21,17 @@ import RecipeSinglePage from "pages/recipe/SinglePage/SinglePage";
 import ForgetPassword from "pages/Login/ForgetPassword";
 import ActivateResetPassword from "pages/ActivateResetPassword";
 import RecetteCrééePage from "pages/CreateRecipe/CreateRecipeSuccess";
+import AccountCreated from "pages/AccountCreated";
 
 export const history = createBrowserHistory();
 
 export const RouteName = {
   resetPassword: "/mot-de-passe-oublié",
+  tokenActivationAccount: "/activate/:tokenActivationAccount",
+  accountCreated: "/compte-crée",
+  activateResetPassword: "/activate/mot-de-passe-oublié/:tokenActivationAccount",
+  register: "/register",
+  recipeCreated: "/recette-créée",
 };
 
 const App: React.FC = () => {
@@ -49,11 +55,11 @@ const App: React.FC = () => {
           exact
         />
         <PrivateRoute
-          path="/recette-créée"
+          path={RouteName.recipeCreated}
           component={RecetteCrééePage}
           exact
         />
-        <Route exact path="/register" component={Register} />
+        <Route exact path={RouteName.register} component={Register} />
         <Route exact path="/connexion" component={Login} />
         <Route
           exact
@@ -63,12 +69,17 @@ const App: React.FC = () => {
         <PrivateRoute component={ProfilPage} path="/profil" exact />
         <Route
           exact
-          path="/activate/:tokenActivationAccount"
-          component={Activate}
+          path={RouteName.tokenActivationAccount}
+          component={ActivateAccount}
+        />
+                <Route
+          exact
+          path={RouteName.accountCreated}
+          component={AccountCreated}
         />
         <Route
           exact
-          path="/activate/mot-de-passe-oublié/:tokenActivationAccount"
+          path={RouteName.activateResetPassword}
           component={ActivateResetPassword}
         />
         <Route component={NotFoundPage} />

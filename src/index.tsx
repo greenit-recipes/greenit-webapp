@@ -1,17 +1,14 @@
 /* eslint-disable no-loop-func */
-import { DefaultOptions } from "@apollo/client";
-import {
-  ApolloClient, ApolloProvider, createHttpLink, ApolloLink, from, fromPromise, gql, InMemoryCache
-} from "@apollo/client";
+import { ApolloClient, ApolloLink, ApolloProvider, DefaultOptions, fromPromise, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
+import { createUploadLink } from 'apollo-upload-client';
 import React from "react";
 import ReactDOM from "react-dom";
 import authService from "services/auth.service";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { createUploadLink } from 'apollo-upload-client';
 
 let isRefreshing = false;
 let pendingRequests: any = [];

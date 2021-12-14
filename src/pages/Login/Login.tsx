@@ -1,6 +1,6 @@
 import { Footer, Navbar } from "../../components";
 import { useMutation } from "@apollo/client";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -9,6 +9,7 @@ import * as yup from "yup";
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import { Link } from "react-router-dom";
 import { RouteName } from "App";
+import { includes } from "lodash";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -76,6 +77,12 @@ const Login: React.FC = () => {
         authServiceService.setStorageLoginRefreshToken(
           response?.data?.tokenAuth?.refreshToken
         );
+        history.listen((prev) => {
+          console.log(prev);
+          if (prev?.pathname === RouteName.activateResetPassword || includes(prev?.pathname, RouteName.tokenActivationAccount) || prev?.pathname === RouteName.register) {
+            history.push("/");
+          }
+        });
         history.goBack();
       }
     });
