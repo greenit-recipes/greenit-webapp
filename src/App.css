@@ -150,48 +150,39 @@ h4 {
   color: white;
 }
 
+.landingpage_bg{
+  position: fixed;
+  filter: blur(3.5rem);
+  border-radius: 100%;
+  opacity: 0.4;
+}
+
 .landingpage_bg_1 {
   background-color: #83d489;
   z-index: -1;
   left: 45%;
-  position: fixed;
   margin-top: 10em;
-  filter: blur(3.5rem);
-  border-radius: 100%;
-  opacity: 40%;
 }
 
 .landingpage_bg_2 {
   background-color: #8fb5e8;
   z-index: -1;
-  position: fixed;
   left: 10%;
   margin-top: 15em;
-  filter: blur(3.5rem);
-  border-radius: 100%;
-  opacity: 40%;
 }
 
 .landingpage_bg_3 {
   background-color: #ffb798;
   z-index: -1;
-  position: fixed;
   left: 20px;
   margin-top: 30em;
-  filter: blur(3.5rem);
-  border-radius: 100%;
-  opacity: 40%;
 }
 
 .landingpage_bg_4 {
   background-color: #f9d58e;
   z-index: -1;
-  position: fixed;
   right: -5%;
   margin-top: 20em;
-  filter: blur(3.5rem);
-  border-radius: 100%;
-  opacity: 40%;
 }
 
 /* FOR iOS AND FOR APPLE <3*/

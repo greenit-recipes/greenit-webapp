@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { RouteName } from "App";
 import { Navbar, Button, Footer } from "components";
 import { BackgroundImage } from "components/layout/BackgroundImage";
 import {
@@ -12,6 +13,7 @@ import {
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useEffect } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import * as yup from "yup";
 import { RecipeDifficulty } from "../../graphql";
@@ -92,10 +94,12 @@ const CreateRecipe: React.FC = () => {
     control,
     name: "utensils",
   });
+  const history = useHistory();
 
   const { loading, error, data } = useQuery(
     GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
   );
+
   const [createEmailRecipe, { loading: loadingCreateRecipe }] =
     useMutation(CREATE_EMAIL_RECIPE);
 
@@ -167,6 +171,7 @@ const CreateRecipe: React.FC = () => {
         notesFromAuthor: dataForm.notes_from_author,
       },
     });
+    history.push(RouteName.recipeCreated)
   };
   return (
     <div className="w-screen">
@@ -578,7 +583,6 @@ const CreateRecipe: React.FC = () => {
           <div className="grid justify-items-center w-full">
             <Button
               className="px-2 py-3"
-              href="/recette-créée"
               type="green"
               disabled={loadingCreateRecipe}
             >

@@ -7,7 +7,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { filterIcon, scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
-import { CTACard } from "pages/recipe/ListPage/Components/CTACard";
 
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
@@ -118,55 +117,14 @@ const RecipeListPage = () => {
           >
             {isMobile ? (
               <div className="w-full | flex flex-row flex-wrap md:gap-y-10 | py-10 md:ml-6 lg:px-2 ">
-                {recipes?.slice(0, 4).map((recipe, index: number) => (
-                  <RecipeCard recipe={recipe?.node} key={index} />
-                ))}
-
-                <div className={toggle === true ? "hidden" : ""}>
-                  <CTACard type="blue" link="/profil">
-                    <h1 className="w-11/12 text-center text-xl lg:text-2xl text-white mt-24 lg:mt-36">
-                      Aide la communauté,
-                      <br />
-                      publie ta recette
-                    </h1>
-                  </CTACard>
-                </div>
-
-                <CTACard type="yellow" link="/register">
-                  <h1 className="w-11/12 text-center text-xl lg:text-2xl text-white mt-28">
-                    Trouve un atelier
-                    <br />
-                    près de chez toi
-                  </h1>
-                </CTACard>
-                {recipes?.slice(4).map((recipe, index: number) => (
-                  <RecipeCard recipe={recipe?.node} key={index} />
+                {recipes?.map((recipe) => (
+                  <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
                 ))}
               </div>
             ) : (
               <div className="w-auto | flex flex-row flex-wrap justify-items-center md:gap-y-10 | md:ml-6 lg:px-2 lg:py-4 mb-14">
-                {recipes?.slice(0, 5).map((recipe, index: number) => (
-                  <RecipeCard recipe={recipe?.node} key={index} />
-                ))}
-                <div className={toggle === true ? "hidden" : ""}>
-                  <CTACard type="blue" link="/profil">
-                    <h1 className="w-11/12 text-center text-2xl text-white mt-36">
-                      Aide la communauté,
-                      <br />
-                      publie ta recette
-                    </h1>
-                  </CTACard>
-                </div>
-
-                <CTACard type="yellow" link="/register">
-                  <h1 className="w-11/12 text-center text-2xl text-white lg:mt-44">
-                    Trouve un atelier
-                    <br />
-                    près de chez toi
-                  </h1>
-                </CTACard>
-                {recipes?.slice(5).map((recipe, index: number) => (
-                  <RecipeCard recipe={recipe?.node} key={index} />
+                {recipes?.map((recipe) => (
+                  <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
                 ))}
               </div>
             )}

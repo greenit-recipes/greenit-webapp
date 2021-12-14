@@ -16,9 +16,20 @@ export const ModalImageProfil: React.FC<ModalImageProfil> = ({
   parentFunction,
   hasImageProfile = true,
 }) => {
+
   const schema = yup.object().shape({
     image: imageValidation(),
-  }); // _ - .
+  });
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  
   const [updatePhoto, { data: dataImageUpdate }] = useMutation(
     UPDATE_IMAGE_ACCOUNT,
     {
@@ -31,16 +42,10 @@ export const ModalImageProfil: React.FC<ModalImageProfil> = ({
         imageProfile: dataForm.image,
       },
     }).then(() => {
+      reset()
       parentFunction().then(() => setShowModal(false));
     });
   };
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>

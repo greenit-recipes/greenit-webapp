@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <script async defer data-domain="greenitcommunity.com" src="https://analytics.greenitcommunity.com/js/plausible.js"></script>
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
@@ -26,6 +25,50 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Greenit | Toutes les recettes pour nos produits faits maison</title>
+    <!-- Matomo -->
+    <!-- Matomo -->
+    <script>
+      if (window.location.host === "greenitcommunity.com") {
+        var _paq = (window._paq = window._paq || []);
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["trackPageView"]);
+        _paq.push(["trackVisibleContentImpressions"]);
+        _paq.push(["enableLinkTracking"]);
+        (function () {
+          var u = "https://greenitcommunity.matomo.cloud/";
+          _paq.push(["setTrackerUrl", u + "matomo.php"]);
+          _paq.push(["setSiteId", "1"]);
+          var d = document,
+            g = d.createElement("script"),
+            s = d.getElementsByTagName("script")[0];
+          g.async = true;
+          g.src = "//cdn.matomo.cloud/greenitcommunity.matomo.cloud/matomo.js";
+          s.parentNode.insertBefore(g, s);
+        })();
+      }
+    </script>
+
+    <script>
+      if (window.location.host === "13.38.18.186") {
+        var _paq = (window._paq = window._paq || []);
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["trackPageView"]);
+        _paq.push(["trackVisibleContentImpressions"]);
+        _paq.push(["enableLinkTracking"]);
+        (function () {
+          var u = "https://greenitcommunity.matomo.cloud/";
+          _paq.push(["setTrackerUrl", u + "matomo.php"]);
+          _paq.push(["setSiteId", "2"]);
+          var d = document,
+            g = d.createElement("script"),
+            s = d.getElementsByTagName("script")[0];
+          g.async = true;
+          g.src = "//cdn.matomo.cloud/greenitcommunity.matomo.cloud/matomo.js";
+          s.parentNode.insertBefore(g, s);
+        })();
+      }
+    </script>
+    <!-- End Matomo Code -->
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

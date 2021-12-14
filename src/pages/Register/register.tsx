@@ -1,15 +1,15 @@
-import { Footer, Navbar } from "../../components";
-import Select from "react-select";
-import React, { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useMutation } from "@apollo/client";
-import { Link } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RouteName } from "App";
+import React, { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { Link, useHistory } from "react-router-dom";
+import Select from "react-select";
 import authService, {
-  CREATE_ACCOUNT,
-  RESEND_ACTIVATION_EMAIL,
+  CREATE_ACCOUNT
 } from "services/auth.service";
+import * as yup from "yup";
+import { Footer, Navbar } from "../../components";
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import "./register.css";
 
@@ -25,7 +25,7 @@ const schema = yup.object().shape({
     .required("Le nom d'utilisateur est obligatoire.")
     .matches(
       /^[^$&+,:;=?@#¨|'<>^()%!¿§«»ω⊙¤°℃℉€¥£¢¡®©]*$/,
-      "Le mot de passe ne doit pas contenir de caractères spéciaux sauf('.', '_', '-')"
+      "Le nom d'utilisateur ne doit pas contenir de caractères spéciaux sauf('.', '_', '-')"
     ),
   password: yup
     .string()
@@ -60,13 +60,9 @@ const Register: React.FC = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  authService.removeToken();
+  const history = useHistory();
   const [createAccount, { data: createAccountData, loading, error }] =
     useMutation(CREATE_ACCOUNT, { errorPolicy: "all" });
-
-  const [resendActivationEMail] = useMutation(RESEND_ACTIVATION_EMAIL, {
-    errorPolicy: "all",
-  });
 
   const [email, setEmail] = useState<string>("");
 
@@ -131,7 +127,8 @@ const Register: React.FC = () => {
   }) => {
     const getValue = (field: any) => field.value;
 
-    setEmail(data.email);
+    authService.removeToken();
+    authService.setStorageEmail(data.email);
     createAccount({
       variables: {
         email: data.email,
@@ -145,7 +142,9 @@ const Register: React.FC = () => {
       },
     }).then((dataAccount) => {
       if (!dataAccount?.data?.register?.success) return;
-      authService.setStorageEmail(email);
+      
+      console.log(authService.getEmail());
+      history.push(RouteName.accountCreated);
     });
   };
   return (
@@ -317,20 +316,6 @@ const Register: React.FC = () => {
             </button>
           </div>
         </form>
-        <div>
-          {createAccountData?.register?.success && (
-            <div>
-              <p>Un mail à été envoyé afin de confirmer votre compte</p>
-              <button
-                onClick={() => {
-                  resendActivationEMail({ variables: { email: email } });
-                }}
-              >
-                Renvoyer l'email
-              </button>
-            </div>
-          )}
-        </div>
       </div>
       <Footer />
     </div>

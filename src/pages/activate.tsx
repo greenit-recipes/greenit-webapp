@@ -4,13 +4,14 @@ import { Button } from "components/misc/Button";
 import { Link } from "react-router-dom";
 import { useLocation, useParams } from "react-router";
 import authService, {
+  RESEND_ACTIVATION_EMAIL,
   VERIFY_ACCOUNT,
   WELCOME_NEW_USER,
 } from "services/auth.service";
 import "../App.css";
 import { Footer, Navbar } from "../components";
 
-const Activate: React.FC = () => {
+const ActivateAccount: React.FC = () => {
   const { tokenActivationAccount } =
     useParams<{ tokenActivationAccount: string }>();
 
@@ -25,14 +26,21 @@ const Activate: React.FC = () => {
     }
   );
 
+  const [resendActivationEMail] = useMutation(RESEND_ACTIVATION_EMAIL, {
+    errorPolicy: "all",
+  });
+
   useEffect(() => {
-    verifyAccount().then(() => {
+    verifyAccount().then((dataReponse) => {
+      console.log(dataReponse)
       if (!authService.getEmail()) return;
-      welcomeNewUser({
-        variables: {
-          email: authService.getEmail(),
-        },
-      });
+      if (dataReponse?.data?.verifyAccount?.success) {
+        welcomeNewUser({
+          variables: {
+            email: authService.getEmail(),
+          },
+        });
+      }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- empty dependency array
@@ -44,16 +52,11 @@ const Activate: React.FC = () => {
         <div className="grid justify-items-center auto-rows-max h-screen mt-28">
           <div className="w-3/4">
             <h1 className="text-center text-2xl md:text-3xl">
-              Bienvenue au sein de la
+              Inscription finalisée !
             </h1>
-            <h1 className="text-center text-green text-2xl md:text-3xl">
-              Greenit Community !
-            </h1>
-            <h4 className="text-center text-xl md:text-2xl mt-10">
-              Jette un coup d’oeil à tes mails et confirme ton adresse.
-            </h4>
             <h4 className="text-center text-sm md:text-lg mt-2 mb-10">
-              L’e-mail de confirmation s’est peut-être glissé dans les spams.
+              Tu peux désormais soumettre tes recettes, liker, partager,
+              commenter… et bien plus !
             </h4>
           </div>
           <Link to="/">
@@ -74,8 +77,18 @@ const Activate: React.FC = () => {
             </h4>
           </div>
           <Link to="/register">
-            <Button type="green">Réessayer</Button>
+            <Button className="mb-5" type="green">Réessayer de créer un compte</Button>
           </Link>
+          <Button
+            onClick={() => {
+              resendActivationEMail({
+                variables: { email: authService.getEmail() },
+              });
+            }}
+            type="green"
+          >
+            Renvoyer l'email d'activation
+          </Button>
         </div>
       )}
 
@@ -84,4 +97,4 @@ const Activate: React.FC = () => {
   );
 };
 
-export default Activate;
+export default ActivateAccount;

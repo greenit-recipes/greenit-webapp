@@ -1,25 +1,17 @@
-import { useMutation, useQuery } from "@apollo/client";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Loading, RecipeCard, Button } from "components";
-import { getImagePath } from "helpers/image.helper";
-import { Link } from "react-router-dom";
-import {
-  imageValidation,
-  videoValidation,
-} from "helpers/yup-validation.helper";
-import { isEmpty } from "lodash";
-import React, { useEffect, useState } from "react";
-import "reactjs-popup/dist/index.css";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import authService, { ME, UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
-import * as yup from "yup";
+import { useQuery } from "@apollo/client";
 import "App.css";
-import { Container, Footer, Navbar } from "../../components";
-import { Modal } from "pages/Profil/ModalProfil";
-import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
-import { CTACard } from "pages/recipe/ListPage/Components/CTACard";
+import { Button, Loading, RecipeCard } from "components";
+import { getImagePath } from "helpers/image.helper";
 import { defaultImageProfil } from "icons";
+import { isEmpty } from "lodash";
+import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
+import { Modal } from "pages/Profil/ModalProfil";
+import { CTACard } from "pages/recipe/ListPage/Components/CTACard";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import "reactjs-popup/dist/index.css";
+import { ME } from "services/auth.service";
+import { Container, Footer, Navbar } from "../../components";
 
 const ProfilPage: React.FC = () => {
   useEffect(() => {
@@ -132,7 +124,7 @@ const ProfilPage: React.FC = () => {
 
               {user?.recipeFavorite?.map((recipe: any, index: any) => (
                 <>
-                  <div key={index} className="col-span-1 w-full justify-center">
+                  <div key={index} className="col-span-1 w-full mb-14 justify-center">
                     <RecipeCard
                       parentFunction={refetchMe}
                       recipe={recipe}
@@ -160,7 +152,7 @@ const ProfilPage: React.FC = () => {
             </CTACard>
             {user?.recipeAuthor?.map((recipe: any, index: any) => (
               <>
-                <div key={index} className="col-span-1 w-full justify-center">
+                <div key={index} className="col-span-1 w-full mb-14 justify-center">
                   <RecipeCard
                     parentFunction={refetchMe}
                     disabledFavoriteRecipe={true}
