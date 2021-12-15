@@ -20,7 +20,7 @@ import CreateRecipe from "pages/CreateRecipe/CreateRecipe";
 import RecipeSinglePage from "pages/recipe/SinglePage/SinglePage";
 import ForgetPassword from "pages/Login/ForgetPassword";
 import ActivateResetPassword from "pages/ActivateResetPassword";
-import RecetteCrééePage from "pages/CreateRecipe/CreateRecipeSuccess";
+import RecipeCreatedPage from "pages/CreateRecipe/CreateRecipeSuccess";
 import AccountCreated from "pages/AccountCreated";
 
 export const history = createBrowserHistory();
@@ -32,6 +32,9 @@ export const RouteName = {
   activateResetPassword: "/activate/mot-de-passe-oublié/:tokenActivationAccount",
   register: "/register",
   recipeCreated: "/recette-créée",
+  workshops: "/workshops",
+  why: "/why",
+  contact: "/contact",
 };
 
 const App: React.FC = () => {
@@ -39,8 +42,8 @@ const App: React.FC = () => {
     <Router history={history}>
       <Switch>
         <PublicRoute path="/" component={LandingPage} exact />
-        <PublicRoute path="/why" component={WhyPage} exact />
-        <PublicRoute path="/contact" component={ContactPage} exact />
+        <PublicRoute path={RouteName.why} component={WhyPage} exact />
+        <PublicRoute path={RouteName.contact} component={ContactPage} exact />
         <PublicRoute path="/recipes" component={RecipeListPage} exact />
         <PublicRoute path="/recipes/:id" component={RecipeSinglePage} exact />
         <PublicRoute
@@ -48,7 +51,7 @@ const App: React.FC = () => {
           component={PersonalizedSearch}
           exact
         />
-        <PublicRoute path="/workshops" component={WorkshopPage} exact />
+        <PublicRoute path={RouteName.workshops} component={WorkshopPage} exact />
         <PrivateRoute
           path="/créer-une-recette"
           component={CreateRecipe}
@@ -56,7 +59,7 @@ const App: React.FC = () => {
         />
         <PrivateRoute
           path={RouteName.recipeCreated}
-          component={RecetteCrééePage}
+          component={RecipeCreatedPage}
           exact
         />
         <Route exact path={RouteName.register} component={Register} />

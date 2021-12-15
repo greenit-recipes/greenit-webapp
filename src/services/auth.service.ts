@@ -121,6 +121,7 @@ export const ME = gql`
         numberOfLikes
         numberOfFavorites
         numberOfIngredients
+        isLikedByCurrentUser
         isAddToFavoriteByCurrentUser
         category {
           name

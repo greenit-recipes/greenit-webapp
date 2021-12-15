@@ -29,6 +29,7 @@ import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
 import { BugFormulaire } from "components/layout/BugFormulaire";
 import authService from "services/auth.service";
+import { RouteName } from "App";
 
 const LandingPage = () => {
   const isLoggedIn = authService.isLoggedIn();
@@ -188,7 +189,7 @@ const LandingPage = () => {
           <div className="relative justify-center">
             <img src={atelier} className="w-56 h-56" alt="liked button" />
           </div>
-          <Link className="self-top mt-5" to="/register">
+          <Link className="self-top mt-5" to={RouteName.workshops}>
             <Button className="border-white" type="orange">Explorer des ateliers</Button>
           </Link>
         </div>
@@ -234,7 +235,7 @@ const LandingPage = () => {
           Greenit est une initiative visant à encourager une consommation <br />
           plus durable et responsable.
         </h3>
-        <Link to="/why">
+        <Link to={RouteName.why}>
           <Button type="blue">En savoir plus</Button>
         </Link>
       </Container>

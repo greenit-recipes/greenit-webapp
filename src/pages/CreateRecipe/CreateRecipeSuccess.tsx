@@ -4,8 +4,7 @@ import { Button } from "components/misc/Button";
 import { Footer } from "components/layout/Footer";
 import { BackgroundImage } from "components";
 import { Link } from "react-router-dom";
-const RecetteCrééePage = () => {
-  const params = new URLSearchParams(window.location.search);
+const RecipeCreatedPage = () => {
   useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
@@ -46,4 +45,4 @@ const RecetteCrééePage = () => {
   );
 };
 
-export default RecetteCrééePage;
+export default RecipeCreatedPage;

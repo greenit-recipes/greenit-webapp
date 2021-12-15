@@ -309,6 +309,9 @@ const RecipeSinglePage = () => {
           <h1 className="pb-2 text-xl md:text-2xl">Conseils de l'auteur</h1>
           <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
         </div>
+        <div className="mt-8 flex flex-col">
+          <p className="text-xs text-grey">Quelques précautions sont à prendre lors de la confection de vos produits. Pour chaque recette postée, nous passons du temps à les vérifier (et modifier si nécessaire). Toutefois, certaines personnes peuvent réagir différemment. Il est recommandé de tester les produits sur votre poignet 48 h avant l’utilisation sur votre peau. Greenit n’est pas responsable en cas d’allergies ou problèmes liés à l’exécution et application de la recette.</p>
+        </div>
         <div className="grid justify-center w-full">
           <div className="grid grid-cols-2 gap-2 lg:gap-10 m-10 justify-center md:w-52">
             <div className="grid">

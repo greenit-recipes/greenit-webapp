@@ -12,19 +12,20 @@ import {
   InstagramIcon,
   MailIcon,
 } from "../../icons";
+import { RouteName } from "App";
 
 export const Footer: React.FC = () => {
   return (
     <div className="h-auto w-full | flex flex-col | items-center | bg-black bg-opacity-75 -mb-10">
       <div className="mb-4 w-full grid justify-items-center">
         <div className="flex mt-10">
-          <Link to="/Why">
+          <Link to={RouteName.why}>
             <h1 className="text-white md:text-xl self-center">
               Qui sommes-nous ?
             </h1>
           </Link>
           <h1 className="text-white md:text-xl self-center ml-6 mr-6"> | </h1>
-          <Link to="/contact">
+          <Link to={RouteName.contact}>
             <h1 className="text-white md:text-xl self-center">
               Contacte-nous !{" "}
             </h1>
@@ -36,7 +37,7 @@ export const Footer: React.FC = () => {
           {
             icon: footerWorld,
             title: "Ecolo(mique)",
-            text: "Greenit est une solution sociale, économique et écologique aux problèmes de pollution et climatiques auxquels nous sommes confrontés. Greenit est une solution pour remplacer la production industrielle par une production artisanale et locale.",
+            text: "Greenit est une solution sociale, économique et écologique aux problèmes environnementaux auxquels nous sommes confrontés. Notre mission ? Répandre un mode de consommation plus responsable et durable en remplaçant la production industrielle par une production plus locale et artisanale.",
           },
           {
             icon: footerChat,
@@ -46,7 +47,7 @@ export const Footer: React.FC = () => {
           {
             icon: footerValues,
             title: "Transparent",
-            text: "Ici il n’y pas de collections de données personnelles, pas de publicités et pas d’Amazon ou de Google pour héberger notre site. Greenit est aussi un projet open-source disponible sur Github. N’hésite pas à poser tes questions et à voter pour les prochaines fonctionalités Greenit.",
+            text: "Ici, il n’y a pas de collecte de tes données personnelles. Nous utilisons un analytics qui anonymise tes actions pour un plus grand respect de ta vie privée. N’hésite pas à poser tes questions et à voter pour les prochaines fonctionnalités Greenit.",
           },
         ].map((item, index) => (
           <div className="flex flex-col" key={index}>

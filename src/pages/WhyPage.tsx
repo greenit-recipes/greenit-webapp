@@ -137,11 +137,11 @@ const WhyPage: React.FC = () => {
             <h1 className="text-md md:text-xl text-green">Pour la planète</h1>
             <h3 className="text-md md:text-base">
               Parlons des compositions des shampoings, des lessives, des
-              liquides vaiselles : sodium laureth sulfate,
-              methylchloroisothiazolinone, polycarboxylates… La liste est longue
-              et leurs pollutions environnementales catastrophiques. La
-              production maison c’est zero déchet et pas de génocide de
-              micro-organisme.
+              liquides vaisselles : silicones, methylchloroisothiazolinone,
+              polycarboxylates… La liste est longue et leurs pollutions
+              environnementales catastrophiques. La production maison, c’est un
+              contrôle des ingrédients et des contenants. Consommons uniquement
+              le nécessaire !
             </h3>
           </div>
           <img
@@ -153,11 +153,11 @@ const WhyPage: React.FC = () => {
               Pour ton corps
             </h1>
             <h3 className="text-md md:text-base text-right">
-              Ces mêmes ingredients chimiques endommagent, irritent et
+              Ces mêmes ingrédients chimiques endommagent, irritent et
               vulnérabilisent ta peau et tes cheveux. Hélas, même dans les
-              produits les plus biologiques les conservateurs, alcool et
-              aluminium attaquent nos corps. La production maison est aussi
-              personnalisée et respecte les différences de chacun.{" "}
+              produits les plus biologiques : les perturbateurs endocriniens,
+              alcool et aluminium attaquent nos corps. La production maison est
+              aussi personnalisée et respecte les différences de chacun.{" "}
             </h3>
           </div>
           <img
@@ -175,8 +175,8 @@ const WhyPage: React.FC = () => {
             <h3 className="text-md md:text-base">
               27,90€ le baume réparateur bio ? 5,80€ le stick à lèvres naturel ?
               L’industrie des produits cosmétiques et ménagers ne respecte pas
-              notre pouvoir d’achat. Sur Greenit, le stick à lèvres revient à
-              1,50€ et le baume à 6€.
+              notre pouvoir d’achat. Sur Greenit, le baume revient à 6€ et le
+              stick à lèvres à 1,50€.
             </h3>
           </div>
           <img
@@ -201,16 +201,14 @@ const WhyPage: React.FC = () => {
         </div>
       </div>
       <Block
-          id="4"
-          title="Merci à toutes celles et ceux qui nous aident"
-          className="grid w-screen bg-yellow p-6 justify-items-center"
-        >
-          <div className="w-3/4 mt-20">
-          <img
-            src={isMobile ? communityMobile : communityDesktop}
-          />
-          </div>
-        </Block>
+        id="4"
+        title="Merci à toutes celles et ceux qui nous aident"
+        className="grid w-screen bg-yellow p-6 justify-items-center"
+      >
+        <div className="w-3/4 mt-20">
+          <img src={isMobile ? communityMobile : communityDesktop} />
+        </div>
+      </Block>
       <Footer />
     </div>
   );

@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { likedIconOn, likedIconOff } from "../../icons";
-import authService from "services/auth.service";
-import { RecipeFragment } from "../../graphql";
 import { useMutation } from "@apollo/client";
-import { Link } from "react-router-dom";
 import {
-  ADD_OR_REMOVE_FAVORITE_RECIPE,
+  ADD_OR_REMOVE_FAVORITE_RECIPE
 } from "pages/CreateRecipe/CreateRecipeRequest";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import authService from "services/auth.service";
+import { likedIconOff, likedIconOn } from "../../icons";
 
 interface FavouriteField {
   className?: string;

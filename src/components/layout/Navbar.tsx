@@ -1,3 +1,4 @@
+import { RouteName } from "App";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import authService from "services/auth.service";
@@ -45,7 +46,7 @@ export const Navbar: React.FC = () => {
             <Link className="p-2 border-b-2 border-blue" to="/recipes">
               <h1>Recettes</h1>
             </Link>
-            <Link className="p-2 border-b-2 border-blue" to="/workshops">
+            <Link className="p-2 border-b-2 border-blue" to={RouteName.workshops}>
               <h1>Ateliers</h1>
             </Link>
             {isLoggedIn ? (
@@ -92,7 +93,7 @@ export const Navbar: React.FC = () => {
             <h1 className="mb-1 text-xl">Recettes</h1>
           </button>
         </Link>
-        <Link to="/workshops">
+        <Link to={RouteName.workshops}>
           <button
             className={
               "w-32 cursor-pointer border-b-4 | hover:border-blue |" +
