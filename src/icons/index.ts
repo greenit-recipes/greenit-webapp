@@ -40,6 +40,7 @@ import hamburgerIcon from "./hamburger_icon.png";
 import scrollToTop from "./scroll_top_icon.png";
 import likedIconOn from "./liked_recipe_on.png";
 import likedIconOff from "./liked_recipe_off.png";
+import noVideo from "./pas_de_videos.png"
 
 // CONTACT
 import InstagramIcon from "./instagram_icon.png"
@@ -121,4 +122,5 @@ export {
   MailIcon,
   corpsWhy,
   atelier,
+  noVideo,
 };
