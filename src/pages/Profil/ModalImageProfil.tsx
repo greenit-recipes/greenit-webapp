@@ -16,7 +16,6 @@ export const ModalImageProfil: React.FC<ModalImageProfil> = ({
   parentFunction,
   hasImageProfile = true,
 }) => {
-
   const schema = yup.object().shape({
     image: imageValidation(),
   });
@@ -29,7 +28,7 @@ export const ModalImageProfil: React.FC<ModalImageProfil> = ({
   } = useForm({
     resolver: yupResolver(schema),
   });
-  
+
   const [updatePhoto, { data: dataImageUpdate }] = useMutation(
     UPDATE_IMAGE_ACCOUNT,
     {
@@ -42,18 +41,25 @@ export const ModalImageProfil: React.FC<ModalImageProfil> = ({
         imageProfile: dataForm.image,
       },
     }).then(() => {
-      reset()
+      reset();
       parentFunction().then(() => setShowModal(false));
     });
   };
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>
-      {!hasImageProfile && <div>Ajoute ta photo</div>}
       <div
         className="absolute h-32 w-32 md:h-36 md:w-36 bg-transparent rounded-full ease-linear transition-all duration-150 cursor-pointer"
         onClick={() => setShowModal(true)}
-      ></div>
+      >
+        {!hasImageProfile && (
+          <div className="grid w-full h-full justify-items-center items-center">
+            <h1 className="text-xs text-grey-700 bg-white p-2 rounded-3xl opacity-75">
+              Ajoute ta photo
+            </h1>
+          </div>
+        )}
+      </div>
       {showModal ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">

@@ -25,7 +25,7 @@ export const FilterBarItem: React.FC<FilterBarItem> = ({
               <div className="text-xl mb-2 cursor-pointer" key={index}>
                 <h3
                   className={
-                    isSelected ? "text-black bold underline" : "text-gray-600"
+                    isSelected ? "text-green underline" : "text-gray-700"
                   }
                   onClick={() => {
                     handleFilter(isSelected, option, item);

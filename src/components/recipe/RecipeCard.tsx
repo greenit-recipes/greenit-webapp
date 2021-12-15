@@ -37,7 +37,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   const bandeauWidth = isMobile ? 44 : 60;
 
   return (
-    <div className="transform hover:scale-105 ease-linear transition-all duration-150 px-2 mb-24 md:mb-16 lg:mb-10">
+    <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150 px-1 mb-24 md:mb-16 lg:mb-10">
       <Link
         to={{
           pathname: `/recipes/${recipe?.urlId}/${recipe?.id}`,
@@ -50,7 +50,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             className={`flex flex-col object-cover | ${
               enableShadow && "shadow-lg"
             } ${`h-${imageHeight} w-${imageWidth}`}
-            rounded-3xl | justify-self-center smooth-image image-${
+            rounded-2xl | justify-self-center smooth-image image-${
               imageLoaded ? "visible" : "hidden"
             }`}
             // @ts-ignore
@@ -60,7 +60,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       </Link>
       <LikeField recipe={recipe} isRecipeCard={true}></LikeField>
       <div
-        className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-3xl -bottom-20 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
+        className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-2xl -bottom-20 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
       >
         {!disabledFavoriteRecipe && (
           <div className={`absolute -top-4 lg:-top-6 w-${imageWidth} z-10`}>
@@ -71,7 +71,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             />
           </div>
         )}
-        <h1 className="subpixel-antialiased | text-center mt-5 p-2 text-sm lg:text-lg">
+        <h1 className="subpixel-antialiased | text-center mt-5 p-1 text-sm lg:text-lg">
           {recipe?.name}
         </h1>
         <Icon

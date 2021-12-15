@@ -125,7 +125,7 @@ const Login: React.FC = () => {
               type="email"
               {...register("email")}
             ></input>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.email?.message}
             </p>
           </div>
@@ -140,7 +140,7 @@ const Login: React.FC = () => {
               placeholder="******************"
               {...register("password")}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.password?.message}
             </p>
             <label className="block text-gray-700 text-sm mb-2">

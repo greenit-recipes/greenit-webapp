@@ -100,7 +100,7 @@ const ProfilPage: React.FC = () => {
         </button>
       </div>
 
-      <Container className="flex flex-col mb-20 | items-center" padding>
+      <div className="flex flex-col mb-20 | items-center">
         <div className={"text-center" + (visible ? " hidden" : "")}>
           {!visible && (
             <div className="grid grid-cols-2 gap-2 md:grid-cols-3 auto-rows-auto justify-items-center mt-5">
@@ -124,7 +124,7 @@ const ProfilPage: React.FC = () => {
 
               {user?.recipeFavorite?.map((recipe: any, index: any) => (
                 <>
-                  <div key={index} className="col-span-1 w-full mb-14 justify-center">
+                  <div key={index} className="col-span-1 w-full sm:mb-6 justify-center">
                     <RecipeCard
                       parentFunction={refetchMe}
                       recipe={recipe}
@@ -140,9 +140,9 @@ const ProfilPage: React.FC = () => {
           )}
         </div>
         {visible && (
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 auto-rows-auto justify-items-center mt-5">
+          <div className="grid grid-cols-2 sm:gap-2 md:grid-cols-3 auto-rows-auto justify-items-center mt-5">
             <CTACard
-              className="mt-10 lg:mt-2 lg:mb-6"
+              className="lg:mt-2 lg:mb-6"
               type="blue"
               link="/créer-une-recette"
             >
@@ -152,7 +152,7 @@ const ProfilPage: React.FC = () => {
             </CTACard>
             {user?.recipeAuthor?.map((recipe: any, index: any) => (
               <>
-                <div key={index} className="col-span-1 w-full mb-14 justify-center">
+                <div key={index} className="col-span-1 w-full mb-6 md:mb-12 justify-center">
                   <RecipeCard
                     parentFunction={refetchMe}
                     disabledFavoriteRecipe={true}
@@ -166,7 +166,7 @@ const ProfilPage: React.FC = () => {
             ))}
           </div>
         )}
-      </Container>
+      </div>
 
       <Footer />
     </div>

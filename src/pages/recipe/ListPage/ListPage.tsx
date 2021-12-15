@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { RecipeCard, Navbar, Footer, Empty } from "../../../components";
+import { RecipeCard, Navbar, Footer, Empty, Button } from "../../../components";
 import useIsMobile from "../../../hooks/isMobile";
 import { useRecipesQuery, RecipesQuery } from "../../../graphql";
+import authService from "services/auth.service";
 import { Loading } from "../../../components";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { filterIcon, scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
 import { merge, assign } from "lodash";
+import { Link } from "react-router-dom";
 
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
@@ -82,7 +84,7 @@ const RecipeListPage = () => {
             params={params}
           />
         )}
-        <div className="h-auto w-full justify-items-center | ml-1 top-0 mb-20 sm:p-4 flex flex-col items-center">
+        <div className="h-auto w-full justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
@@ -118,13 +120,13 @@ const RecipeListPage = () => {
             }}
           >
             {isMobile ? (
-              <div className="w-full | flex flex-row flex-wrap md:gap-y-10 | py-10 md:ml-6 lg:px-2 ">
+              <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
                 {recipes?.map((recipe) => (
                   <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
                 ))}
               </div>
             ) : (
-              <div className="w-auto | flex flex-row flex-wrap justify-items-center md:gap-y-10 | md:ml-6 lg:px-2 lg:py-4 mb-14">
+              <div className="w-auto | flex flex-row flex-wrap justify-items-center gap-y-10 gap-x-4 | py-4 px-8 mb-14">
                 {recipes?.map((recipe) => (
                   <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
                 ))}
