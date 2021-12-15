@@ -331,12 +331,20 @@ const CreateRecipe: React.FC = () => {
                   value: tags?.name,
                   label: tags?.name,
                 }));
+                const tagWithUserValue = _.cloneDeep(optionsTags)
+                const handleChange = (textType: string) => {
+                  tagWithUserValue.push({
+                    value: textType,
+                    label: textType,
+                  })
+                };
                 return (
                   <Select
                     {...field}
+                    onInputChange={handleChange}
                     placeholder={`sélectionne...`}
                     isMulti={true}
-                    options={optionsTags}
+                    options={tagWithUserValue}
                     className={`w-2/3 md:w-1/2`}
                   />
                 );
@@ -525,7 +533,7 @@ const CreateRecipe: React.FC = () => {
                           {...field}
                           onInputChange={handleChange}
                           placeholder={`sélectionne...`}
-                          options={optionsUtensilssUserValue}
+                          options={optionsUtensilss}
                           className={`col-span-2`}
                         />
                       );
