@@ -1,11 +1,10 @@
 import { RouteName } from "App";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Footer, Navbar } from "../components";
-import useIsMobile from "../hooks/isMobile";
 
 const WorkshopPage = () => {
-  const isMobile = useIsMobile();
+  const [isIncoming, setIsIncoming] = useState(false);
   useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
@@ -284,48 +283,98 @@ const WorkshopPage = () => {
 
       <div className="p-5 mb-10 mt-4 flex items-center justify-center">
         <div className=" grid grid-cols-2 md:grid-cols-4 gap-3">
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Ile-de-France
           </button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Grand-Est
           </button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Auvergne-Rhône Alpes
           </button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Bourgogne-Franche Comté
           </button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Pays de la Loire
           </button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Bretagne
           </button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Occitanie
           </button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Normandie
           </button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Hauts-de-France
           </button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Nouvelle-Aquitaine
           </button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Centre-Val de Loire
           </button>
-          <button className="button_region text-sm | md:text-base">PACA</button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
+            PACA
+          </button>
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Corse
           </button>
-          <button className="button_region text-sm | md:text-base">
+          <button
+            className="button_region text-sm | md:text-base"
+            onClick={() => setIsIncoming(true)}
+          >
             Régions Outre-mer
           </button>
         </div>
       </div>
+      {isIncoming && (
+        <div className="text-xl">
+          Ton avis est pris en compte ! Greenit étend ses ateliers, nous serons
+          bientôt dans ta région !
+        </div>
+      )}
 
       <Container
         className="flex flex-col | items-center | mt-6 mb-40 md:mt-10 md:mb-50"

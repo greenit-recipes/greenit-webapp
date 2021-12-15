@@ -7,12 +7,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { filterIcon, scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
+import { merge, assign } from "lodash";
 
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
+    fetchPolicy: 'network-only',
     variables: {
-      first: 10,
+      first: 15,
       filter: {
         search: params.get("search") || "",
         ...(params.get("tags") ? { tags: [params.get("tags")] } : {}),
@@ -97,14 +99,14 @@ const RecipeListPage = () => {
                     | RecipesQuery
                     | undefined;
                   if (!fetchMoreResult) {
-                    return prev;
+                    return data.allRecipes;
                   }
                   const newEdges = fetchMoreResult?.allRecipes?.edges;
                   const pageInfo = fetchMoreResult?.allRecipes?.pageInfo;
                   return {
                     allRecipes: {
                       edges: [
-                        ...((prev as RecipesQuery | undefined)?.allRecipes
+                        ...((data as RecipesQuery | undefined)?.allRecipes
                           ?.edges || []),
                         ...(newEdges || []),
                       ],

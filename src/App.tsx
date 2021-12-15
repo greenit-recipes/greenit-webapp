@@ -45,7 +45,7 @@ const App: React.FC = () => {
         <PublicRoute path={RouteName.why} component={WhyPage} exact />
         <PublicRoute path={RouteName.contact} component={ContactPage} exact />
         <PublicRoute path="/recipes" component={RecipeListPage} exact />
-        <PublicRoute path="/recipes/:id" component={RecipeSinglePage} exact />
+        <PublicRoute path="/recipes/:name/:id" component={RecipeSinglePage} exact />
         <PublicRoute
           path="/personalizedSearch"
           component={PersonalizedSearch}

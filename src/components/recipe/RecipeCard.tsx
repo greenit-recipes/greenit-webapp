@@ -40,8 +40,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
     <div className="transform hover:scale-105 ease-linear transition-all duration-150 px-2 mb-24 md:mb-16 lg:mb-10">
       <Link
         to={{
-          pathname: `/recipes/${recipe?.urlId}`,
-          state: { recipeId: recipe?.id },
+          pathname: `/recipes/${recipe?.urlId}/${recipe?.id}`,
         }}
         className={`inline-block ${!isMobile}`}
       >

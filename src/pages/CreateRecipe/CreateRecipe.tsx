@@ -1,15 +1,16 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
-import { Navbar, Button, Footer } from "components";
+import { Button, Footer, Navbar } from "components";
 import { BackgroundImage } from "components/layout/BackgroundImage";
 import {
   imageValidation,
-  videoValidation,
+  videoValidation
 } from "helpers/yup-validation.helper";
+import _ from "lodash";
 import {
   CREATE_EMAIL_RECIPE,
-  GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
+  GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useEffect } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
@@ -28,13 +29,13 @@ const schema = yup.object().shape({
   category: yup.object().required("Ce champ est obligatoire."),
   expiry: yup.string().required("Ce champ est obligatoire."),
   ingredients: yup // Ne marche pas
-  .array(
-    yup.object({
-      quantity: yup.string().required("Ce champ est obligatoire."),
-      name: yup.object().required("Ce champ est obligatoire."),
-    })
-  )
-  .min(1, "Ce champ est obligatoire"),
+    .array(
+      yup.object({
+        quantity: yup.string().required("Ce champ est obligatoire."),
+        name: yup.object().required("Ce champ est obligatoire."),
+      })
+    )
+    .min(1, "Ce champ est obligatoire"),
   instructions: yup
     .array(
       yup.object({
@@ -54,7 +55,6 @@ const schema = yup.object().shape({
   tags: yup.array().required("Ce champ est obligatoire."),
   notes_from_author: yup.string(),
 });
-
 
 const CreateRecipe: React.FC = () => {
   const {
@@ -171,7 +171,7 @@ const CreateRecipe: React.FC = () => {
         notesFromAuthor: dataForm.notes_from_author,
       },
     });
-    history.push(RouteName.recipeCreated)
+    history.push(RouteName.recipeCreated);
   };
   return (
     <div className="w-screen">
@@ -366,7 +366,7 @@ const CreateRecipe: React.FC = () => {
                     placeholder=" 10g 0.5l..."
                     {...register(`ingredients.${index}.quantity`)}
                   />
-                                    <p className="text-red-500 text-xs italic">
+                  <p className="text-red-500 text-xs italic">
                     {errors?.ingredients?.[index]?.quantity?.message}
                   </p>
                   <Controller
@@ -379,17 +379,25 @@ const CreateRecipe: React.FC = () => {
                           label: ingredient?.name,
                         })
                       );
+                      const ingredientsUserValue = _.cloneDeep(optionsIngredients)
+                      const handleChange = (textType: string) => {
+                        ingredientsUserValue.push({
+                          value: textType,
+                          label: textType,
+                        })
+                      };
                       return (
                         <Select
                           {...field}
+                          onInputChange={handleChange}
                           placeholder={`sélectionne...`}
-                          options={optionsIngredients}
+                          options={ingredientsUserValue}
                           className={`col-span-2`}
                         />
                       );
                     }}
                   />
-                                                  <p className="text-red-500 text-xs italic">
+                  <p className="text-red-500 text-xs italic">
                     {errors?.ingredients?.[index]?.name?.message}
                   </p>
                   <div
@@ -432,9 +440,9 @@ const CreateRecipe: React.FC = () => {
             </h4>
             <h4 className="block text-gray-700 text-sm mb-4">
               Par exemple : <br />
-              1 Ajouter l'huile de noisette dans le chauffe-tout <br />
-              2 Remuer rapidement jusqu'à ce que la préparation devienne liquide{" "}
-              <br />3 ...
+              1 Ajouter l'huile de noisette dans le chauffe-tout <br />2 Remuer
+              rapidement jusqu'à ce que la préparation devienne liquide <br />3
+              ...
             </h4>
 
             <div className="mb-10">
@@ -505,11 +513,19 @@ const CreateRecipe: React.FC = () => {
                           label: ustenil?.name,
                         })
                       );
+                      const optionsUtensilssUserValue = _.cloneDeep(optionsUtensilss)
+                      const handleChange = (textType: string) => {
+                        optionsUtensilssUserValue.push({
+                          value: textType,
+                          label: textType,
+                        })
+                      };
                       return (
                         <Select
                           {...field}
+                          onInputChange={handleChange}
                           placeholder={`sélectionne...`}
-                          options={optionsUtensilss}
+                          options={optionsUtensilssUserValue}
                           className={`col-span-2`}
                         />
                       );

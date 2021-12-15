@@ -1,8 +1,15 @@
 /* eslint-disable no-loop-func */
-import { ApolloClient, ApolloLink, ApolloProvider, DefaultOptions, fromPromise, InMemoryCache } from "@apollo/client";
+import {
+  ApolloClient,
+  ApolloLink,
+  ApolloProvider,
+  DefaultOptions,
+  fromPromise,
+  InMemoryCache,
+} from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
-import { createUploadLink } from 'apollo-upload-client';
+import { createUploadLink } from "apollo-upload-client";
 import React from "react";
 import ReactDOM from "react-dom";
 import authService from "services/auth.service";
@@ -41,7 +48,7 @@ const errorLink = onError(
                     const newrefreshToken =
                       accessToken.data.refreshToken.refreshToken;
                     authService.setStorageLoginToken(newToken);
-                    authService.setStorageLoginRefreshToken(newrefreshToken)
+                    authService.setStorageLoginRefreshToken(newrefreshToken);
                     resolvePendingRequests();
                     return accessToken.data.refreshToken.token;
                   })
@@ -90,15 +97,25 @@ const uploadLink = createUploadLink({ uri: process.env.REACT_APP_API_URL });
 
 const defaultOptions: DefaultOptions = {
   watchQuery: {
-    errorPolicy: 'ignore',
+    errorPolicy: "ignore",
   },
   query: {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   },
-}
+};
 
 export const client = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          allRecipes: {
+            merge: true,
+          },
+        },
+      },
+    },
+  }),
   // @ts-ignore
   link: ApolloLink.from([errorLink, authLink.concat(uploadLink)]),
   uri: process.env.REACT_APP_API_URL,
