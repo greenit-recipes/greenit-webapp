@@ -181,25 +181,14 @@ const LandingPage = () => {
         itemsCenter
         padding={isMobile}
       >
-        <Grid
-          type="col"
-          gap={{
-            default: 8,
-            md: 16,
-          }}
-          size={{
-            default: 2,
-            sm: 4,
-          }}
-          className="text-center mt-8 md:mt-0"
-        >
+        <div className="grid grid-cols-2 gap-8 md:gap-12 justify-items-center mt-8">
           {[
             { text: "Pour la planète", color: "#8AD554", icon: planet },
             { text: "Pour ton corps", color: "#7EAADD", icon: corpsWhy },
             { text: "Pour tes économies", color: "#ffd460", icon: money },
             { text: "Pour ton esprit", color: "#EA9875", icon: wellbeing },
           ].map((item) => (
-            <div className="h-full w-full flex flex-col items-center">
+            <div className="grid col-span-1 justify-items-center">
               <img
                 src={item.icon}
                 className="w-28 h-28 md:w-32 md:h-32 pb-2"
@@ -209,7 +198,7 @@ const LandingPage = () => {
               </h2>
             </div>
           ))}
-        </Grid>
+        </div>
         <h3 className="mt-10 mb-10 text-md md:text-xl text-center">
           Greenit est une initiative visant à encourager une consommation <br />
           plus durable et responsable.
