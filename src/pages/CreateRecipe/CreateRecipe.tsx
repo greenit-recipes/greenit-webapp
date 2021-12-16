@@ -116,6 +116,15 @@ const CreateRecipe: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    if (window.pageYOffset > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
+
+  useEffect(() => {
     if (data?.register?.success === false || error) {
       if (data?.register?.errors?.email[0]?.code === "unique") {
         setError("email", {
@@ -195,16 +204,16 @@ const CreateRecipe: React.FC = () => {
             <label className="block text-gray-700 text-xl">
               Nom de la recette
             </label>
-            <h4 className="block text-gray-700 text-sm mb-2">
+            <h3 className="block text-gray-700 text-sm mb-2">
               Par exemple : Masque à la coco
-            </h4>
+            </h3>
             <textarea
               className="shadow appearance-none border rounded w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="name"
               placeholder="nom de la recette"
               {...register("name")}
             ></textarea>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.name?.message}
             </p>
           </div>
@@ -213,10 +222,10 @@ const CreateRecipe: React.FC = () => {
             <label className="block text-gray-700 text-xl mb-2">
               Description
             </label>
-            <h4 className="block text-gray-700 text-sm mb-2">
+            <h3 className="block text-gray-700 text-sm mb-2">
               Pourquoi tu utilises ces ingrédients ?
               <br /> Comment tu utilises le produit ?
-            </h4>
+            </h3>
             <textarea
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="description"
@@ -225,22 +234,22 @@ const CreateRecipe: React.FC = () => {
               cols={34}
               {...register("description")}
             ></textarea>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.description?.message}
             </p>
           </div>
 
           <div className="mb-10">
             <label className="block text-gray-700 text-xl mb-2">Photos</label>
-            <h4 className="block text-gray-700 text-sm mb-2">
+            <h3 className="block text-gray-700 text-sm mb-2">
               Upload une jolie photo du résultat !
-            </h4>
+            </h3>
             <input
               className="p-4 border-2"
               type="file"
               {...register("image")}
             ></input>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.image?.message}
             </p>
           </div>
@@ -262,7 +271,7 @@ const CreateRecipe: React.FC = () => {
                 />
               )}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.difficulty?.message}
             </p>
           </div>
@@ -291,7 +300,7 @@ const CreateRecipe: React.FC = () => {
                 );
               }}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.category?.message}
             </p>
           </div>
@@ -300,9 +309,9 @@ const CreateRecipe: React.FC = () => {
 
           <div className="mb-10 w-2/3">
             <label className="block text-gray-700 text-xl mb-2">Durée</label>
-            <h4 className="block text-gray-700 text-sm mb-2">
+            <h3 className="block text-gray-700 text-sm mb-2">
               10m, 15m, 30m ...
-            </h4>
+            </h3>
 
             <input
               className="shadow appearance-none border rounded w-full text-sm lg:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -310,7 +319,7 @@ const CreateRecipe: React.FC = () => {
               type="number"
               {...register("duration")}
             ></input>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.duration?.message}
             </p>
           </div>
@@ -319,9 +328,9 @@ const CreateRecipe: React.FC = () => {
 
           <div className="mb-10">
             <label className="block text-gray-700 text-xl mb-2">Tags</label>
-            <h4 className="block text-gray-700 text-sm mb-2">
+            <h3 className="block text-gray-700 text-sm mb-2">
               Ces tags faciliteront le référencement de ta recette.
-            </h4>
+            </h3>
 
             <Controller
               name="tags"
@@ -350,7 +359,7 @@ const CreateRecipe: React.FC = () => {
                 );
               }}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.tags?.message}
             </p>
           </div>
@@ -360,12 +369,12 @@ const CreateRecipe: React.FC = () => {
             <label className="block text-gray-700 text-xl mb-2">
               Ingrédients et quantité
             </label>
-            <h4 className="block text-gray-700 text-sm mb-2">
+            <h3 className="block text-gray-700 text-sm mb-2">
               Ajoute les ingrédients ainsi que la quantité.
-            </h4>
-            <h4 className="block text-gray-700 text-sm mb-4">
+            </h3>
+            <h3 className="block text-gray-700 text-sm mb-4">
               Exemple : 2 cuillères à café | beurre de karité
-            </h4>
+            </h3>
             <ul>
               {ingredientsFields.map((item, index) => (
                 <li className="grid grid-cols-3 gap-2">
@@ -374,7 +383,7 @@ const CreateRecipe: React.FC = () => {
                     placeholder=" 10g 0.5l..."
                     {...register(`ingredients.${index}.quantity`)}
                   />
-                  <p className="text-red-500 text-xs italic">
+                  <p className="text-red text-xs italic">
                     {errors?.ingredients?.[index]?.quantity?.message}
                   </p>
                   <Controller
@@ -405,11 +414,11 @@ const CreateRecipe: React.FC = () => {
                       );
                     }}
                   />
-                  <p className="text-red-500 text-xs italic">
+                  <p className="text-red text-xs italic">
                     {errors?.ingredients?.[index]?.name?.message}
                   </p>
                   <div
-                    className="col-span-3 | flex justify-self-end mb-2"
+                    className="col-span-3 | cursor-pointer flex justify-self-end mb-2 bg-red text-white rounded-lg py-1 px-2"
                     onClick={() => ingredientsRemove(index)}
                   >
                     Supprimer
@@ -417,10 +426,13 @@ const CreateRecipe: React.FC = () => {
                 </li>
               ))}
             </ul>
-            <div onClick={() => ingredientsAppend({}, { shouldFocus: true })}>
+            <div
+              onClick={() => ingredientsAppend({}, { shouldFocus: true })}
+              className="bg-blue cursor-pointer text-white rounded-lg py-1 px-2 w-44 text-center"
+            >
               Ajouter un ingrédient
             </div>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.ingredients?.message}
             </p>
           </div>
@@ -434,7 +446,7 @@ const CreateRecipe: React.FC = () => {
               type="file"
               {...register("video")}
             ></input>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.video?.message}
             </p>
           </div>
@@ -443,15 +455,15 @@ const CreateRecipe: React.FC = () => {
             <label className="block text-gray-700 text-xl mb-2">
               Liste d'instructions
             </label>
-            <h4 className="block text-gray-700 text-sm mb-2">
+            <h3 className="block text-gray-700 text-sm mb-2">
               Comment réalises-tu ta recette ?
-            </h4>
-            <h4 className="block text-gray-700 text-sm mb-4">
+            </h3>
+            <h3 className="block text-gray-700 text-sm mb-4">
               Par exemple : <br />
               1 Ajouter l'huile de noisette dans le chauffe-tout <br />2 Remuer
               rapidement jusqu'à ce que la préparation devienne liquide <br />3
               ...
-            </h4>
+            </h3>
 
             <div className="mb-10">
               <ul>
@@ -466,26 +478,28 @@ const CreateRecipe: React.FC = () => {
                         {...register(`instructions.${index}.instruction`)}
                       />
 
+                      <p className="text-red text-xs italic">
+                        {errors?.instructions?.[index]?.instruction?.message}
+                      </p>
+
                       <div
-                        className="justify-self-end mb-2"
+                        className="justify-self-end cursor-pointer mb-2 bg-red text-white rounded-lg py-1 px-2"
                         onClick={() => instructionsRemove(index)}
                       >
-                        Delete
+                        Supprimer
                       </div>
                     </li>
-                    <p className="text-red-500 text-xs italic">
-                      {errors?.instructions?.[index]?.instruction?.message}
-                    </p>
                   </>
                 ))}
               </ul>
               <div
                 onClick={() => instructionsAppend({}, { shouldFocus: true })}
+                className="bg-blue cursor-pointer text-white rounded-lg py-1 px-2 w-40 text-center"
               >
                 Ajouter une étape
               </div>
             </div>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.instructions?.message}
             </p>
           </div>
@@ -494,12 +508,12 @@ const CreateRecipe: React.FC = () => {
             <label className="block text-gray-700 text-xl mb-2">
               Ustensiles et quantité
             </label>
-            <h4 className="block text-gray-700 text-sm mb-2">
+            <h3 className="block text-gray-700 text-sm mb-2">
               Indique les ustensiles et leurs quantités.
-            </h4>
-            <h4 className="block text-gray-700 text-sm mb-4">
+            </h3>
+            <h3 className="block text-gray-700 text-sm mb-4">
               Exemple: 2 fouets | 1 balance...
-            </h4>
+            </h3>
             <ul>
               {utensilsFields.map((item, index) => (
                 <li className="grid grid-cols-3 gap-2">
@@ -508,7 +522,7 @@ const CreateRecipe: React.FC = () => {
                     placeholder="nombre"
                     {...register(`utensils.${index}.quantity`)}
                   />
-                  <p className="text-red-500 text-xs italic">
+                  <p className="text-red text-xs italic">
                     {errors?.utensils?.[index]?.quantity?.message}
                   </p>
                   <Controller
@@ -539,22 +553,25 @@ const CreateRecipe: React.FC = () => {
                       );
                     }}
                   />
-                  <p className="text-red-500 text-xs italic">
+                  <p className="text-red text-xs italic">
                     {errors?.utensils?.[index]?.name?.message}
                   </p>
                   <div
                     onClick={() => utensilsRemove(index)}
-                    className="col-span-3 | flex justify-self-end mb-2"
+                    className="col-span-3 | flex cursor-pointer justify-self-end mb-2 bg-red text-white rounded-lg py-1 px-2"
                   >
                     Supprimer
                   </div>
                 </li>
               ))}
             </ul>
-            <div onClick={() => utensilsAppend({}, { shouldFocus: true })}>
+            <div
+              onClick={() => utensilsAppend({}, { shouldFocus: true })}
+              className="bg-blue cursor-pointer text-white rounded-lg py-1 px-2 w-44 text-center"
+            >
               Ajouter un ustensile
             </div>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.utensils?.message}
             </p>
           </div>
@@ -563,12 +580,12 @@ const CreateRecipe: React.FC = () => {
             <label className="block text-gray-700 text-xl mb-2">
               Conservation
             </label>
-            <h4 className="block text-gray-700 text-sm">
+            <h3 className="block text-gray-700 text-sm">
               Comment et combien de temps conserves-tu ton produit ?
-            </h4>
-            <h4 className="block text-gray-700 text-sm mb-4">
+            </h3>
+            <h3 className="block text-gray-700 text-sm mb-4">
               Exemple : 4 mois à température ambiante
-            </h4>
+            </h3>
 
             <input
               className="shadow appearance-none border rounded w-full lg:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -577,7 +594,7 @@ const CreateRecipe: React.FC = () => {
               type="text"
               {...register("expiry")}
             ></input>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.expiry?.message}
             </p>
           </div>
@@ -586,10 +603,10 @@ const CreateRecipe: React.FC = () => {
             <label className="block text-gray-700 text-xl mb-2">
               Note de l'auteur.e
             </label>
-            <h4 className="block text-gray-700 text-sm mb-4 w-11/12">
+            <h3 className="block text-gray-700 text-sm mb-4 w-11/12">
               Par exemple : Vous pouvez ajouter une huile de Jojoba si vous avez
               la peau grasse.
-            </h4>
+            </h3>
             <input
               className="shadow appearance-none border rounded w-full lg:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="notes_from_author"
@@ -597,7 +614,7 @@ const CreateRecipe: React.FC = () => {
               type="text"
               {...register("notes_from_author")}
             ></input>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.notes_from_author?.message}
             </p>
           </div>
@@ -606,13 +623,11 @@ const CreateRecipe: React.FC = () => {
 
           <div className="grid justify-items-center w-full">
             <Button
-              className="px-2 py-3"
+              className="px-2 py-3 text-lg"
               type="green"
               disabled={loadingCreateRecipe}
             >
-              <h1 className="text-lg text-white hover:text-green">
-                Envoyer ma recette
-              </h1>
+              Envoyer ma recette
             </Button>
           </div>
         </form>

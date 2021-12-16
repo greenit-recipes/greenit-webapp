@@ -36,7 +36,7 @@ const WorkshopPage = () => {
               <div>
                 <img
                   src="https://pic.onlinewebfonts.com/svg/img_280333.png"
-                  className="w-full h-6 lg:h-9"
+                  className="w-auto h-6 lg:h-9"
                   alt="icon Location"
                 />
               </div>
@@ -52,7 +52,7 @@ const WorkshopPage = () => {
               <div>
                 <img
                   src="/static/media/logo.223c90e0.png"
-                  className="w-full h-16 lg:h-18"
+                  className="w-auto h-16 lg:h-18"
                   alt="Greenit Logo"
                 />
               </div>
@@ -160,7 +160,7 @@ const WorkshopPage = () => {
               <div>
                 <img
                   src="https://pic.onlinewebfonts.com/svg/img_280333.png"
-                  className="w-full h-6 lg:h-9"
+                  className="h-6 lg:h-9"
                   alt="icon Location"
                 />
               </div>
@@ -176,7 +176,7 @@ const WorkshopPage = () => {
               <div>
                 <img
                   src="https://tse3.mm.bing.net/th?id=OIP.mVe87vPyxoj4NAcZD2RvJgDIDI&pid=Api"
-                  className="w-full h-16 lg:h-18 rounded-full"
+                  className="h-16 lg:h-18 rounded-full"
                   alt="Greenit Logo"
                 />
               </div>

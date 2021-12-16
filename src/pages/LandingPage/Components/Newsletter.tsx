@@ -39,7 +39,7 @@ export const Newsletter: React.FC = () => {
 
       <form className="md:flex p-6" onSubmit={handleSubmit(onSubmitHandler)}>
         <input
-          className="shadow-lg rounded-lg h-12 w-full px-3 text-gray-700 min-w-18 | focus:outline-none focus:shadow-outline"
+          className="shadow-lg rounded-lg h-12 w-full px-3 text-gray-700 min-w-18 border-2 border-grey-200 | focus:outline-none focus:shadow-outline"
           id="email"
           placeholder="Ton email"
           type="email"

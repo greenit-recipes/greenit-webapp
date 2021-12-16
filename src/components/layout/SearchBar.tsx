@@ -10,9 +10,9 @@ export const SearchBar: React.FC<{
   }> = ({ size = "large", value, setValue, onSubmit, hideSearchIcon }) => {
     const isLarge = size === "large";
     const history = useHistory();
-    const totalSize = `w-full h-14 md:h-${isLarge ? "20" : "14"}`;
+    const totalSize = `w-full h-14 md:h-${isLarge ? "16" : "14"}`;
     const iconSize = `w-16 md:w-${isLarge ? "20" : "14"} h-14 md:h-${
-      isLarge ? "20" : "14"
+      isLarge ? "16" : "14"
     }`;
     const handleSubmit = () => {
       if (!onSubmit) {
@@ -53,7 +53,7 @@ export const SearchBar: React.FC<{
         {!hideSearchIcon && (
           <div
             className={`${iconSize} | flex absolute -right-0 | rounded-full cursor-pointer`}
-            style={{ backgroundColor: "#c0e0fb" }}
+            style={{ backgroundColor: "white" }}
           >
             <img
               src={search}

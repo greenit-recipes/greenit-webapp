@@ -27,7 +27,8 @@ import {
   Navbar,
 } from "../../../components";
 import { useRecipeQuery } from "../../../graphql";
-import { shareIcon } from "../../../icons";
+import useIsMobile from "../../../hooks/isMobile";
+import { shareIcon, noVideo } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
 import "./SinglePage.css";
 
@@ -205,11 +206,11 @@ const RecipeSinglePage = () => {
                 src={getImagePath(recipe?.image)}
                 className="row-span-3 md:col-span-2 lg:col-span-1 h-96 min-w-64 w-64 rounded-3xl | object-cover flex justify-self-center md:justify-self-start"
               />
-              <div className="col-span-1 lg:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex h-11">
+              <div className="col-span-1 lg:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex">
                 {recipe?.tags.map((item, index) => (
                   <div
                     key={index}
-                    className="m-1 mb-2 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
+                    className="m-1 mb-1 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
                     style={{ backgroundColor: "#888888" }}
                     onClick={() => {
                       history.push(`/recipes?tags=${item.name}`);
@@ -219,7 +220,7 @@ const RecipeSinglePage = () => {
                   </div>
                 ))}
               </div>
-              <div className="mt-5 flex flex-col self-start mr-10">
+              <div className="mt-4 flex flex-col self-start mr-10">
                 <h1 className="pb-1 text-xl md:text-2xl">Ingredients</h1>
                 {/* @ts-ignore*/}
                 {recipe.ingredients.map((item, index) => (
@@ -256,6 +257,14 @@ const RecipeSinglePage = () => {
         </div>
         <Grid type="col" size={{ default: 1, lg: 2 }} className="mt-10">
           <div className="h-60 md:h-80 w-auto rounded-2xl">
+            {isEmpty(recipe?.videoUrl) ? (
+            <div className="grid w-full h-full bg-white justify-items-center items-center">
+              <img src={noVideo} className="h-60 md:h-80 object-cover rounded-lg opacity-25"></img>
+              <h1 className="absolute text-xs md:text-sm text-grey-600">
+                L'auteur.e n'a pas encore mis de vidéo
+              </h1>
+            </div>
+            ) : (
             <ReactPlayer
               // @ts-ignore
               url={recipe?.videoUrl}
@@ -270,6 +279,7 @@ const RecipeSinglePage = () => {
               width="100%"
               height="100%"
             />
+            )}
           </div>
           <div className="mt-5 lg:mt-0 md:ml-10">
             <h1 className="text-xl md:text-2xl">Instructions</h1>

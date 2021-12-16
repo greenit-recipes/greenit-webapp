@@ -72,7 +72,7 @@ const Register: React.FC = () => {
       value: "intermediate",
       label: "Explorateur.ice avisé.e, j'ai déjà des notions en DIY.",
     },
-    { value: "advanced", label: "Adepte convaincu.e, adepte convaincu.e" },
+    { value: "advanced", label: "Adepte convaincu.e, je suis passioné.e de DIY !" },
   ];
 
   const optionsUserWantFromGreenit = [
@@ -88,10 +88,10 @@ const Register: React.FC = () => {
   ];
 
   const optionsUserCategoryAge = [
-    { value: "young", label: "Moins de 20 ans" },
-    { value: "young_adult", label: "Entre 20 et 35 ans" },
-    { value: "adult", label: "Entre 35 et 50 ans" },
-    { value: "senior", label: "Plus de 50 ans" },
+    { value: "young", label: "Moins de 20 ans, jeune mais pas trop." },
+    { value: "young_adult", label: "Entre 20 et 35 ans, adulte mais pas trop non plus." },
+    { value: "adult", label: "Entre 35 et 50 ans, adulte mais pas que." },
+    { value: "senior", label: "Plus de 50 ans, interdit de m'appeler senior !" },
   ];
 
   React.useEffect(() => {
@@ -185,7 +185,7 @@ const Register: React.FC = () => {
               type="email"
               {...register("email")}
             ></input>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.email?.message}
             </p>
 
@@ -199,7 +199,7 @@ const Register: React.FC = () => {
               type="text"
               {...register("utilisateur")}
             ></input>
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.utilisateur?.message}
             </p>
             <label className="block text-gray-700 text-lg font-bold mb-2 mt-4">
@@ -212,7 +212,7 @@ const Register: React.FC = () => {
               placeholder="******************"
               {...register("password")}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.password?.message}
             </p>
             <label className="block text-gray-700 text-sm mb-2">
@@ -229,13 +229,13 @@ const Register: React.FC = () => {
               placeholder="******************"
               {...register("passwordConfirmation")}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.passwordConfirmation?.message}
             </p>
           </div>
           <div className="mb-10">
             <label className="block text-gray-700 text-xl mb-2">
-              A quelle catégorie t'identifies-tu ?
+              Qui es-tu ?
             </label>
             <Controller
               name="userCategoryLvl"
@@ -248,14 +248,14 @@ const Register: React.FC = () => {
                 />
               )}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.userCategoryLvl?.message}
             </p>
           </div>
 
           <div className="mb-10">
             <label className="block text-gray-700 text-xl mb-2">
-              Pour quoi Greenit peut-il t'aider ?
+              Pourquoi Greenit peut-il t'aider ?
             </label>
             <Controller
               name="userWantFromGreenit"
@@ -268,7 +268,7 @@ const Register: React.FC = () => {
                 />
               )}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.userWantFromGreenit?.message}
             </p>
           </div>
@@ -288,7 +288,7 @@ const Register: React.FC = () => {
                 />
               )}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red text-xs italic">
               {errors.userCategoryAge?.message}
             </p>
           </div>

@@ -21,8 +21,6 @@ import {
 } from "../../icons";
 import "../../pages/recipe/SinglePage/SinglePage.css";
 import ReactPlayer from "react-player";
-import AliceCarousel from "react-alice-carousel";
-import "react-alice-carousel/lib/alice-carousel.css";
 import { useRecipesQuery } from "../../graphql";
 import { Link } from "react-router-dom";
 import { CategoryCircle } from "./Components/CategoryCircle";
@@ -36,12 +34,14 @@ const LandingPage = () => {
   const isMobile = useIsMobile();
   const { error, loading, data, refetch } = useRecipesQuery({
     fetchPolicy: "no-cache",
-    variables: { first: 10 },
+    variables: { first: 8 },
   });
 
   if (loading || !data) {
     return <Loading />;
   }
+
+  const recipes = data.allRecipes?.edges || [];
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -52,29 +52,27 @@ const LandingPage = () => {
         className="flex flex-col | items-center | mt-16 lg:mt-28"
         padding
       >
-        <h1 className="text-3xl md:text-5xl | pb-16 text-center">
-          L’espace de la production maison, <br /> pour une nouvelle
-          consommation
-        </h1>
-        <div className="w-full | md:w-9/12">
+        <div className="max-w-20 sm:max-w-90">
+          <h1 className="text-3xl lg:text-5xl | pb-14 text-center">
+            L’espace de la production maison, <br /> pour une nouvelle
+            consommation
+          </h1>
+        </div>
+        <div className="w-10/12 | sm:w-8/12 | lg:w-1/2">
           <SearchBar />
         </div>
       </Container>
-      <div className="w-screen md:w-3/5 | items-center pt-14 pb-16 | flex justify-center">
+      <div className="w-screen | items-center py-8 mb-5 | flex justify-center">
         {isMobile ? (
-          <AliceCarousel
-            mouseTracking
-            autoWidth
-            infinite
-            disableButtonsControls={isMobile}
-            items={landingPageCategories.map((item) => (
+          <div className="flex overflow-x-auto pl-6">
+            {landingPageCategories.map((item) => (
               <CategoryCircle
                 name={item.title}
                 icon={item.icon}
                 key={item.title}
               />
             ))}
-          />
+          </div>
         ) : (
           <Grid
             type="col"
@@ -95,49 +93,30 @@ const LandingPage = () => {
           </Grid>
         )}
       </div>
-      <Container title="Les recettes de la semaine" itemsCenter></Container>
-      <div className="w-full md:w-5/6 mb-10 recipesOfTheWeekCarousel flex flex-row">
-        <AliceCarousel
-          mouseTracking
-          autoWidth={!isMobile}
-          infinite
-          activeIndex={0}
-          disableButtonsControls={isMobile}
-          paddingLeft={10}
-          items={
-            data?.allRecipes
-              ? data.allRecipes?.edges.map((recipe, index) => (
-                  <>
-                    {isMobile ? (
-                      <div
-                        key={index}
-                        className="w-full flex justify-center mb-2 pt-10"
-                      >
-                        <RecipeCard
-                          recipe={recipe?.node}
-                          key={index}
-                          inCarousel={true}
-                        />
-                      </div>
-                    ) : (
-                      <div key={index} className="mb-10">
-                        <RecipeCard
-                          recipe={recipe?.node}
-                          key={index}
-                          inCarousel={true}
-                        />
-                      </div>
-                    )}
-                  </>
-                ))
-              : [<Loading />]
-          }
-        />
-      </div>
       <Container
-        className="w-screen md:3/5 text-center mt-8 sm:mb-14"
+        className="mb-10"
+        title="Notre sélection de recettes"
         itemsCenter
       >
+        {isMobile ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 mt-6 md:grid-cols-4 md:gap-x-4 md:gap-y-10 mb-2">
+            {recipes?.slice(0, 6).map((recipe, index: number) => (
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-4 justify-items-center gap-y-10 gap-x-4 | py-4 px-8">
+            {recipes?.map((recipe) => (
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            ))}
+          </div>
+        )}
+        <Link to="/recipes" className="mt-6">
+          <Button type="green">Découvir plus</Button>
+        </Link>
+      </Container>
+
+      <Container className="w-screen text-center mt-8 sm:mb-14" itemsCenter>
         <h1 className="text-2xl md:text-3xl | p-5 text-center">
           Nos tutos vidéos pour commencer
         </h1>
@@ -202,25 +181,14 @@ const LandingPage = () => {
         itemsCenter
         padding={isMobile}
       >
-        <Grid
-          type="col"
-          gap={{
-            default: 8,
-            md: 16,
-          }}
-          size={{
-            default: 2,
-            sm: 4,
-          }}
-          className="text-center mt-8 md:mt-0"
-        >
+        <div className="grid grid-cols-2 gap-8 md:gap-12 justify-items-center mt-8">
           {[
             { text: "Pour la planète", color: "#8AD554", icon: planet },
             { text: "Pour ton corps", color: "#7EAADD", icon: corpsWhy },
             { text: "Pour tes économies", color: "#ffd460", icon: money },
             { text: "Pour ton esprit", color: "#EA9875", icon: wellbeing },
           ].map((item) => (
-            <div className="h-full w-full flex flex-col items-center">
+            <div className="grid col-span-1 justify-items-center">
               <img
                 src={item.icon}
                 className="w-28 h-28 md:w-32 md:h-32 pb-2"
@@ -230,7 +198,7 @@ const LandingPage = () => {
               </h2>
             </div>
           ))}
-        </Grid>
+        </div>
         <h3 className="mt-10 mb-10 text-md md:text-xl text-center">
           Greenit est une initiative visant à encourager une consommation <br />
           plus durable et responsable.

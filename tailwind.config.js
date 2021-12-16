@@ -30,8 +30,11 @@ module.exports = {
         '84': '22rem',
       },
       maxWidth: {
+        '90': '90rem',
         '26': '26rem',
+        '20': '20rem',
         '12': '16rem',
+        '8': '12rem',
       },
       minWidth: {
         '10': '2.5rem',
