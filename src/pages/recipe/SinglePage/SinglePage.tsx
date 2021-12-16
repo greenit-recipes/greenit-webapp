@@ -129,7 +129,7 @@ const RecipeSinglePage = () => {
 
   const [copied, setCopied] = useState(false);
 
-  const copy = () => {
+  function copy() {
     const el = document.createElement("input");
     el.value = window.location.href;
     document.body.appendChild(el);
@@ -269,7 +269,7 @@ const RecipeSinglePage = () => {
         </div>
         <Grid type="col" size={{ default: 1, lg: 2 }} className="mt-10">
           <div className="h-60 md:h-80 w-auto rounded-2xl">
-            {isEmpty(recipe?.videoUrl) ? (
+            {isEmpty(recipe?.videoUrl) && isEmpty(recipe?.video) ? (
               <div className="grid w-full h-full bg-white justify-items-center items-center">
                 <img
                   src={noVideo}
@@ -282,7 +282,7 @@ const RecipeSinglePage = () => {
             ) : (
               <ReactPlayer
                 // @ts-ignore
-                url={recipe?.videoUrl}
+                url={recipe?.video ? getImagePath(recipe?.video) : recipe?.videoUrl}
                 className="react-player"
                 controls={true}
                 ref={player}
