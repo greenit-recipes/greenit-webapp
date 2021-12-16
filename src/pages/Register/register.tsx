@@ -179,7 +179,7 @@ const Register: React.FC = () => {
               Email
             </label>
             <input
-              className="shadow-lg appearance-none rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow-lg appearance-none rounded w-full py-2 px-3 mb-4 text-gray-700 h-12 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               placeholder="email"
               type="email"
@@ -193,7 +193,7 @@ const Register: React.FC = () => {
               Nom d'utilisateur
             </label>
             <input
-              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline"
               id="utilisateur"
               placeholder="nom utilisateur"
               type="text"
@@ -206,7 +206,7 @@ const Register: React.FC = () => {
               Mot de passe
             </label>
             <input
-              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
               placeholder="******************"
@@ -223,7 +223,7 @@ const Register: React.FC = () => {
               Confirmation mot de passe
             </label>
             <input
-              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight h-12 focus:outline-none focus:shadow-outline"
               id="passwordConfirmation"
               type="password"
               placeholder="******************"
@@ -293,9 +293,10 @@ const Register: React.FC = () => {
             </p>
           </div>
 
-          <div className="mb-4 flex mt-10 self-center">
+          <div className="flex w-84 mb-4 mt-10 self-center ">
             <input
               type="checkbox"
+              className="w-6 h-6"
               {...register("isFollowNewsletter")}
               id="isFollowNewsletter"
             />

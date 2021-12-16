@@ -85,7 +85,7 @@ const RecipeSinglePage = () => {
     resolver: yupResolver(schema),
   });
   const fieldRef = React.useRef<HTMLInputElement>(null);
-  const { id } = useParams<{ id : string}>()
+  const { id } = useParams<{ id: string }>();
   const history = useHistory();
 
   const { error, loading, data } = useRecipeQuery({
@@ -126,6 +126,18 @@ const RecipeSinglePage = () => {
       behavior: "smooth",
     });
   };
+
+  const [copied, setCopied] = useState(false);
+
+  function copy() {
+    const el = document.createElement("input");
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    setCopied(true);
+  }
 
   useEffect(() => {
     const timeoutID = window.setInterval(() => {
@@ -257,28 +269,31 @@ const RecipeSinglePage = () => {
         </div>
         <Grid type="col" size={{ default: 1, lg: 2 }} className="mt-10">
           <div className="h-60 md:h-80 w-auto rounded-2xl">
-            {isEmpty(recipe?.videoUrl) && isEmpty(recipe?.video) ? (
-            <div className="grid w-full h-full bg-white justify-items-center items-center">
-              <img src={noVideo} className="h-60 md:h-80 object-cover rounded-lg opacity-25"></img>
-              <h1 className="absolute text-xs md:text-sm text-grey-600">
-                L'auteur.e n'a pas encore mis de vidéo
-              </h1>
-            </div>
+            {isEmpty(recipe?.videoUrl) ? (
+              <div className="grid w-full h-full bg-white justify-items-center items-center">
+                <img
+                  src={noVideo}
+                  className="h-60 md:h-80 object-cover rounded-lg opacity-25"
+                ></img>
+                <h1 className="absolute text-xs md:text-sm text-grey-600">
+                  L'auteur.e n'a pas encore mis de vidéo
+                </h1>
+              </div>
             ) : (
-            <ReactPlayer
-              // @ts-ignore
-              url={recipe?.video ? getImagePath(recipe?.video) : recipe?.videoUrl}
-              className="react-player"
-              controls={true}
-              ref={player}
-              config={{
-                youtube: {
-                  playerVars: { showinfo: 1, rel: 0 },
-                },
-              }}
-              width="100%"
-              height="100%"
-            />
+              <ReactPlayer
+                // @ts-ignore
+                url={recipe?.videoUrl}
+                className="react-player"
+                controls={true}
+                ref={player}
+                config={{
+                  youtube: {
+                    playerVars: { showinfo: 1, rel: 0 },
+                  },
+                }}
+                width="100%"
+                height="100%"
+              />
             )}
           </div>
           <div className="mt-5 lg:mt-0 md:ml-10">
@@ -317,7 +332,15 @@ const RecipeSinglePage = () => {
           <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
         </div>
         <div className="mt-8 flex flex-col">
-          <p className="text-xs text-grey">Quelques précautions sont à prendre lors de la confection de vos produits. Pour chaque recette postée, nous passons du temps à les vérifier (et modifier si nécessaire). Toutefois, certaines personnes peuvent réagir différemment. Il est recommandé de tester les produits sur votre poignet 48 h avant l’utilisation sur votre peau. Greenit n’est pas responsable en cas d’allergies ou problèmes liés à l’exécution et application de la recette.</p>
+          <p className="text-xs text-grey">
+            Quelques précautions sont à prendre lors de la confection de vos
+            produits. Pour chaque recette postée, nous passons du temps à les
+            vérifier (et modifier si nécessaire). Toutefois, certaines personnes
+            peuvent réagir différemment. Il est recommandé de tester les
+            produits sur votre poignet 48 h avant l’utilisation sur votre peau.
+            Greenit n’est pas responsable en cas d’allergies ou problèmes liés à
+            l’exécution et application de la recette.
+          </p>
         </div>
         <div className="grid justify-center w-full">
           <div className="grid grid-cols-2 gap-2 lg:gap-10 m-10 justify-center md:w-52">
@@ -328,13 +351,17 @@ const RecipeSinglePage = () => {
                 Ajouter au favoris
               </h1>
             </div>
-            <div className="grid">
+            <button className="grid" onClick={copy}>
               <img
                 src={shareIcon}
                 className="grid justify-self-center w-9 h-9 lg:w-12 lg:h-12"
               />
-              <h1 className="text-center text-base"> Partager </h1>
-            </div>
+              {!copied ? (
+                <h1 className="text-center text-base"> Partager </h1>
+              ) : (
+                <h1 className="text-center text-base"> Lien copié ! </h1>
+              )}
+            </button>
           </div>
         </div>
         <div className="mt-6 flex flex-col">
@@ -379,7 +406,7 @@ const RecipeSinglePage = () => {
         >
           <div className="mb-4">
             <label className="block text-gray-700 text-base md:text-lg mb-2">
-            Partage tes retours et tes astuces !
+              Partage tes retours et tes astuces !
             </label>
           </div>
           <div className="flex items-center justify-between">
