@@ -67,13 +67,10 @@ const ActivateAccount: React.FC = () => {
         <div className="grid justify-items-center auto-rows-max h-screen mt-28">
           <div className="w-full">
             <h1 className="text-center text-2xl md:text-3xl">
-              Un problème à eu lieu 😥
+            Il y a eu un problème avec la création de ton compte ! 😥
             </h1>
             <h4 className="text-center text-xl md:text-2xl mt-10">
-              On t'invite à réessayer de créer un compte
-            </h4>
-            <h4 className="text-center text-sm md:text-lg mt-2 mb-10">
-              N'hesite pas à nous informer si le problème persiste
+            Tu peux réessayer, si le problème persiste n’hésite pas à nous contacter.
             </h4>
           </div>
           <Link to="/register">

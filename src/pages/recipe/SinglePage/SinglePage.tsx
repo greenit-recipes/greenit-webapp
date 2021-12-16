@@ -369,7 +369,7 @@ const RecipeSinglePage = () => {
         >
           <div className="mb-4">
             <label className="block text-gray-700 text-base md:text-lg mb-2">
-              Pour discuter c'est ici
+            Partage tes retours et tes astuces !
             </label>
           </div>
           <div className="flex items-center justify-between">
@@ -378,7 +378,7 @@ const RecipeSinglePage = () => {
                 <textarea
                   className="appearance-none rounded w-full sm:w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="comment"
-                  placeholder="comment"
+                  placeholder="Commentaire"
                   {...register("comment")}
                 ></textarea>
                 <p className="text-red-500 text-xs italic">

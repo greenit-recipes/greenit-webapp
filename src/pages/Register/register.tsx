@@ -312,7 +312,7 @@ const Register: React.FC = () => {
               bg-blue rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
               hover:bg-white hover:border-blue hover:text-blue"
             >
-              Sign in
+              Crée ton profil
             </button>
           </div>
         </form>

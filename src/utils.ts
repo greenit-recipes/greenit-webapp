@@ -71,7 +71,7 @@ export const filterData = [
       { title: "Premiers pas" },
       { title: "Zéro-déchet" },
       {
-        title: "Ingrédients du frigo",
+        title: "Ingrédients de la cuisine",
       },
     ],
   },
