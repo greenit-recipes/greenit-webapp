@@ -52,7 +52,7 @@ const WorkshopPage = () => {
               <div>
                 <img
                   src="/static/media/logo.223c90e0.png"
-                  className="w-autoauto h-16 lg:h-18"
+                  className="w-auto h-16 lg:h-18"
                   alt="Greenit Logo"
                 />
               </div>
