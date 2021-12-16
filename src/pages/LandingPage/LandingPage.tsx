@@ -105,13 +105,13 @@ const LandingPage = () => {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-4 justify-items-center gap-y-10 gap-x-4 | py-4 px-8 mb-8">
+          <div className="grid grid-cols-4 justify-items-center gap-y-10 gap-x-4 | py-4 px-8">
             {recipes?.map((recipe) => (
               <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
             ))}
           </div>
         )}
-        <Link to="/recipes">
+        <Link to="/recipes" className="mt-6">
           <Button type="green">Découvir plus</Button>
         </Link>
       </Container>

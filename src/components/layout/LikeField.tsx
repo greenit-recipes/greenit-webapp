@@ -27,7 +27,7 @@ export const LikeField: React.FC<LikeField> = ({
     <div
       className={
         isRecipeCard
-          ? `absolute h-9 lg:h-10 w-16 top-2 left-26 lg:left-38 lg:w-20 | grid justify-items-center | bg-white rounded-xl ${className}`
+          ? `absolute h-9 lg:h-10 w-16 top-1 left-28 lg:left-40 lg:w-20 | grid justify-items-center | bg-white rounded-xl ${className}`
           : `flex ${className}`
       }
     >
