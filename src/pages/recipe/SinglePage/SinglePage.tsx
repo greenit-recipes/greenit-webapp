@@ -129,7 +129,7 @@ const RecipeSinglePage = () => {
 
   const [copied, setCopied] = useState(false);
 
-  function copy() {
+  const copy = () => {
     const el = document.createElement("input");
     el.value = window.location.href;
     document.body.appendChild(el);
