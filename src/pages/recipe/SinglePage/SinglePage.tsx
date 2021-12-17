@@ -342,19 +342,19 @@ const RecipeSinglePage = () => {
             l’exécution et application de la recette.
           </p>
         </div>
-        <div className="grid justify-center w-full">
+        <div className="grid justify-items-center w-full">
           <div className="grid grid-cols-2 gap-2 lg:gap-10 m-10 justify-center md:w-52">
-            <div className="grid">
+            <div className="grid justify-items-center">
               <FavouriteField recipe={data?.recipe}></FavouriteField>
               <h1 className="text-center text-base" ref={fieldRef}>
                 {" "}
                 Ajouter au favoris
               </h1>
             </div>
-            <button className="grid" onClick={copy}>
+            <button className="grid justify-items-center" onClick={copy}>
               <img
                 src={partageIcon}
-                className="grid justify-self-center w-9 h-9 lg:w-12 lg:h-12"
+                className="justify-self-center w-10 h-10 lg:w-12 lg:h-12"
               />
               {!copied ? (
                 <h1 className="text-center text-base"> Partager </h1>
