@@ -93,20 +93,20 @@ const Login: React.FC = () => {
       <Navbar />
       <BackgroundImage className="overflow-hidden" />
       <h3 className="text-2xl w-2/3 md:text-3xl | mt-16 text-center">
-        Connection vers ton espace DIY <br />
+        Connexion vers ton espace DIY <br />
       </h3>
       <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 w-4/5">
           <h3 className="text-sm md:text-base self-center">
-            Si tu veux créer un compte:
+            Si tu veux créer un compte : 
           </h3>
           <Link to="/register">
             <button
               className="flex items-center cursor-pointer
-              bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
+              ml-2 bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
             hover:bg-white hover:border-green hover:text-green"
             >
-              <h3 className="text-sm">Créer un compte</h3>
+              <h3 className="text-sm align-middle">Créer un compte</h3>
             </button>
           </Link>
         </div>
@@ -150,7 +150,7 @@ const Login: React.FC = () => {
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="flex justify-center items-center cursor-pointer
+              className="flex justify-center items-center cursor-pointer align-middle
               bg-blue rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
               hover:bg-white hover:border-blue hover:text-blue"
             >

@@ -370,7 +370,7 @@ const RecipeSinglePage = () => {
             // @ts-ignore
             return (
               <div className="mt-5 flex flex-col" key={index}>
-                <div className="relative bg-orange bg-opacity-10 rounded-3xl px-6 py-4">
+                <div className="relative bg-orange bg-opacity-10 rounded-3xl px-4 py-4">
                   <UserBadge
                     image={comment?.author?.imageProfile}
                     name={comment?.author?.username}
@@ -401,7 +401,7 @@ const RecipeSinglePage = () => {
           })}
         </div>
         <form
-          className="filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10 p-6 mb-4 mt-10"
+          className="filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10 p-4 mb-4 mt-10"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">

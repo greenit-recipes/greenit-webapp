@@ -155,18 +155,18 @@ const Register: React.FC = () => {
         Création de ton espace DIY <br />
       </h3>
 
-      <div className="w-screen md:w-2/3 mt-10">
+      <div className="w-screen md:w-auto mt-10">
         <div className="grid grid-cols-2">
           <h3 className="text-sm md:text-base self-center place-self-end mr-4">
             Si tu as déjà un compte:
           </h3>
           <Link to="/connexion">
             <button
-              className="flex items-center cursor-pointer
+              className="flex items-center cursor-pointer align-middle
               bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
               hover:bg-white hover:border-green hover:text-green"
             >
-              <h3 className="text-sm">Se connecter</h3>
+              <h3 className="text-sm align-middle">Se connecter</h3>
             </button>
           </Link>
         </div>
@@ -275,7 +275,7 @@ const Register: React.FC = () => {
 
           <div className="mb-10">
             <label className="block text-gray-700 text-xl mb-2">
-              A quel groupe t'identifies-tu ?
+              A quel groupe appartiens-tu ?
             </label>
             <Controller
               name="userCategoryAge"
@@ -309,7 +309,7 @@ const Register: React.FC = () => {
 
           <div className="flex items-center justify-between">
             <button
-              className="flex justify-center items-center cursor-pointer
+              className="flex justify-center items-center cursor-pointer align-middle
               bg-blue rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
               hover:bg-white hover:border-blue hover:text-blue"
             >
