@@ -14,7 +14,7 @@ export const UserBadge: React.FC<UserBadge> = ({ className, image, name}) => {
         <img
           src={image ? getImagePath(image) : defaultImageProfil}
           alt="badge"
-          className="rounded-full bg-white shadow-lg mr-2 w-10 min-w-10 h-10 md:w-12 md:h-12 self-center"
+          className="rounded-full bg-white shadow-lg mr-2 w-10 min-w-10 h-10 md:w-12 md:h-12 self-center object-cover"
         />
       </div>
 

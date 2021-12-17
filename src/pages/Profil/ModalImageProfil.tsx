@@ -49,11 +49,11 @@ export const ModalImageProfil: React.FC<ModalImageProfil> = ({
   return (
     <>
       <div
-        className="absolute h-32 w-32 md:h-36 md:w-36 bg-transparent rounded-full ease-linear transition-all duration-150 cursor-pointer"
+        className="absolute h-32 w-32 md:h-36 md:w-36 rounded-full ease-linear transition-all duration-150 cursor-pointer"
         onClick={() => setShowModal(true)}
       >
         {!hasImageProfile && (
-          <div className="grid w-full h-full justify-items-center items-center">
+          <div className="grid w-full h-full rounded-full justify-items-center items-center">
             <h1 className="text-xs text-grey-700 bg-white p-2 rounded-3xl opacity-75">
               Ajoute ta photo
             </h1>
