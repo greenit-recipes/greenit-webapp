@@ -28,7 +28,7 @@ import {
 } from "../../../components";
 import { useRecipeQuery } from "../../../graphql";
 import useIsMobile from "../../../hooks/isMobile";
-import { shareIcon, noVideo } from "../../../icons";
+import { partageIcon, noVideo } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
 import "./SinglePage.css";
 
@@ -353,7 +353,7 @@ const RecipeSinglePage = () => {
             </div>
             <button className="grid" onClick={copy}>
               <img
-                src={shareIcon}
+                src={partageIcon}
                 className="grid justify-self-center w-9 h-9 lg:w-12 lg:h-12"
               />
               {!copied ? (

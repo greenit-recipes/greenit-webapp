@@ -2,15 +2,21 @@
 import wellbeing from "./bien-être_icon.png";
 import corps from "./corps_recette.png";
 import visage from "./visage_recette.png";
-import cheuveux from "./hair_icon.png";
 import maison from "./maison_recette.png";
-import allCategories from "./all_categories_icon.png";
 
 // DIFFICULTY
-import débutant from "./débutant_icon.png";
+import facile from "./facile.png";
+import intermediaire from "./intermediaire.png";
+import difficile from "./difficile.png";
 
 //INGREDIENTS
-import ingredients from "./ingredients.png"
+import ingredients1 from "./ingredients1.png"
+import ingredients2 from "./ingredients2.png"
+import ingredients3 from "./ingredients3.png"
+import ingredients4 from "./ingredients4.png"
+import ingredients5 from "./ingredients5.png"
+import ingredients6 from "./ingredients6.png"
+
 
 // LOGO
 import logo from "./logo.png";
@@ -52,7 +58,7 @@ import pinterestIcon from "./pinterest.svg";
 import clapIconOn from "./clap_icon_on.png";
 import clapIconOff from "./clap_icon_off.png";
 import commentaireIcon from "./commentaire_icon.png"
-import shareIcon from "./share_icon.png"
+import partageIcon from "./partage_icon.png"
 import bugIcon from "./bug_icon.png"
 import atelier from "./ateliers_icon.png"
 import defaultImageProfil from "./default_image_profil.png"
@@ -88,11 +94,13 @@ export {
   wellbeing,
   corps,
   visage,
-  cheuveux,
   maison,
-  allCategories,
-  débutant,
-  ingredients,
+  ingredients1,
+  ingredients2,
+  ingredients3,
+  ingredients4,
+  ingredients5,
+  ingredients6,
   logo,
   premierspas,
   zeroWaste,
@@ -114,7 +122,7 @@ export {
   clapIconOn,
   clapIconOff,
   commentaireIcon,
-  shareIcon,
+  partageIcon,
   bugIcon,
   InstagramIcon,
   FBIcon,
@@ -123,4 +131,7 @@ export {
   corpsWhy,
   atelier,
   noVideo,
+  facile,
+  intermediaire,
+  difficile,
 };
