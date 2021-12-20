@@ -1,7 +1,5 @@
 import React from "react";
-import { useState } from "react";
-import { logo, débutant, ingredients } from "../../icons";
-import { RecipeFragment } from "../../graphql";
+import { logo, facile, intermediaire, difficile, ingredients1, ingredients2, ingredients3, ingredients4, ingredients5, ingredients6 } from "../../icons";
 
 interface IconProps {
   text?: string;
@@ -20,14 +18,26 @@ export const Icon: React.FC<IconProps> = ({
 }) => {
   const types = {
     // difficulty
-    Facile: débutant,
-    Intermediaire: débutant,
-    Expert: débutant,
+    Facile: facile,
+    Intermediaire: intermediaire,
+    Expert: difficile,
 
-    //ingredients
-    1: ingredients,
-    2: ingredients,
-    3: ingredients,
+    //NbIngredients avec icons asssociés, à refacto
+    1: ingredients1,
+    2: ingredients2,
+    3: ingredients3,
+    4: ingredients4,
+    5: ingredients5,
+    6: ingredients6,
+    7: ingredients6,
+    8: ingredients6,
+    9: ingredients6,
+    10: ingredients6,
+    11: ingredients6,
+    12: ingredients6,
+    13: ingredients6,
+    14: ingredients6,
+    15: ingredients6,
 
     Rating: logo,
   };
@@ -48,7 +58,7 @@ export const Icon: React.FC<IconProps> = ({
         </div>
         <div className="span-col-1 flex flex-col items-center">
           <img
-            src={ingredients}
+            src={itemNbOfIngredeints}
             className={`h-${height ?? 26} w-${width ?? 30}`}
           />
           <h1 className="py-1 text-xs lg:text-base">

@@ -281,7 +281,7 @@ const WorkshopPage = () => {
         </h2>
       </Container>
 
-      <div className="p-5 mb-10 mt-4 flex items-center justify-center">
+      <div className="p-5 mb-4 mt-4 flex items-center justify-center">
         <div className=" grid grid-cols-2 md:grid-cols-4 gap-3">
           <button
             className="button_region text-sm | md:text-base"
@@ -370,7 +370,7 @@ const WorkshopPage = () => {
         </div>
       </div>
       {isIncoming && (
-        <div className="text-xl">
+        <div className="text-lg p-4">
           Ton avis est pris en compte ! Greenit étend ses ateliers, nous serons
           bientôt dans ta région !
         </div>

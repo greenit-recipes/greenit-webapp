@@ -17,8 +17,8 @@ const RecipeCreatedPage = () => {
     <div>
       <BackgroundImage />
       <Navbar />
-      <div className="grid justify-items-center auto-rows-max h-screen">
-        <div className="w-2/5">
+      <div className="grid justify-items-center auto-rows-max h-auto">
+        <div className="w-2/3 md:w-2/5">
           <h1 className="text-center text-blue text-xl md:text-2xl md:text-3xl mt-20">
             Merci d’aider la communauté !
           </h1>
@@ -35,7 +35,7 @@ const RecipeCreatedPage = () => {
           </h3>
         </div>
         <Link to="/">
-          <Button className="mt-14 h-11" type="blue">
+          <Button className="mt-14 mb-10 h-11" type="blue">
             Revenir à la page d’accueil
           </Button>
         </Link>

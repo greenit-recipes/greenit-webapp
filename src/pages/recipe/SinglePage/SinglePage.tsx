@@ -28,7 +28,7 @@ import {
 } from "../../../components";
 import { useRecipeQuery } from "../../../graphql";
 import useIsMobile from "../../../hooks/isMobile";
-import { shareIcon, noVideo } from "../../../icons";
+import { partageIcon, noVideo } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
 import "./SinglePage.css";
 
@@ -342,19 +342,19 @@ const RecipeSinglePage = () => {
             l’exécution et application de la recette.
           </p>
         </div>
-        <div className="grid justify-center w-full">
+        <div className="grid justify-items-center w-full">
           <div className="grid grid-cols-2 gap-2 lg:gap-10 m-10 justify-center md:w-52">
-            <div className="grid">
+            <div className="grid justify-items-center">
               <FavouriteField recipe={data?.recipe}></FavouriteField>
               <h1 className="text-center text-base" ref={fieldRef}>
                 {" "}
                 Ajouter au favoris
               </h1>
             </div>
-            <button className="grid" onClick={copy}>
+            <button className="grid justify-items-center" onClick={copy}>
               <img
-                src={shareIcon}
-                className="grid justify-self-center w-9 h-9 lg:w-12 lg:h-12"
+                src={partageIcon}
+                className="justify-self-center w-10 h-10 lg:w-12 lg:h-12"
               />
               {!copied ? (
                 <h1 className="text-center text-base"> Partager </h1>
@@ -370,7 +370,7 @@ const RecipeSinglePage = () => {
             // @ts-ignore
             return (
               <div className="mt-5 flex flex-col" key={index}>
-                <div className="relative bg-orange bg-opacity-10 rounded-3xl px-6 py-4">
+                <div className="relative bg-orange bg-opacity-10 rounded-3xl px-4 py-4">
                   <UserBadge
                     image={comment?.author?.imageProfile}
                     name={comment?.author?.username}
@@ -401,7 +401,7 @@ const RecipeSinglePage = () => {
           })}
         </div>
         <form
-          className="filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10 p-6 mb-4 mt-10"
+          className="filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10 p-4 mb-4 mt-10"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
