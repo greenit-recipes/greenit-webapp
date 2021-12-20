@@ -22,7 +22,7 @@ export const Icon: React.FC<IconProps> = ({
     Intermediaire: intermediaire,
     Expert: difficile,
 
-    //ingredients
+    //NbIngredients avec icons asssociés, à refacto
     1: ingredients1,
     2: ingredients2,
     3: ingredients3,
