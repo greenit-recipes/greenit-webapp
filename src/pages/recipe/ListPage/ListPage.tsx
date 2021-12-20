@@ -88,7 +88,7 @@ const RecipeListPage = () => {
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
-            loader={<Loading isForLoadingPage={false} />}
+            loader={<></>}
             next={() => {
               fetchMore({
                 variables: {
