@@ -55,34 +55,37 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 
   if (isMobile) {
     return (
-      <div className="overflow-y-scroll">
+      // to refacto - we can scroll in the back + we have to click again on the filter icon to see the results
+      <div className="overflow-y-scroll absolute">
         <div
-          className={`z-10 bg-white ${
+          className={`z-10 bg-white top-0 h-full ${
             toggle ? "filterBar_fadeIn" : "filterBar_fadeOut"
-          } flex flex-col items-center rounded-xl pt-4`}
+          } grid justify-items-center items-align-center rounded-xl`}
         >
-          <FilterBarSearch
-            setCurrentFilters={setCurrentFilters}
-            search={search}
-            setSearch={setSearch}
-          />
-          {isLoggedIn ? (
-            <Link to="/créer-une-recette">
-              <Button type="green" className="mb-6 rounded-lg text-lg">
-                Partager une recette
-              </Button>
-            </Link>
-          ) : (
-            <div />
-          )}
-          <div className="grid grid-cols-2 w-screen">
-            {filter.map((item: any) => (
-              <FilterBarItem
-                item={item}
-                currentFilters={currentFilters}
-                handleFilter={handleFilter}
-              />
-            ))}
+          <div className="flex flex-col items-center mt-24">
+            <FilterBarSearch
+              setCurrentFilters={setCurrentFilters}
+              search={search}
+              setSearch={setSearch}
+            />
+            {isLoggedIn ? (
+              <Link to="/créer-une-recette">
+                <Button type="green" className="mb-6 rounded-lg text-lg">
+                  Partager une recette
+                </Button>
+              </Link>
+            ) : (
+              <div />
+            )}
+            <div className="grid grid-cols-2 w-screen">
+              {filter.map((item: any) => (
+                <FilterBarItem
+                  item={item}
+                  currentFilters={currentFilters}
+                  handleFilter={handleFilter}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

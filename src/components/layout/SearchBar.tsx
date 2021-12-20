@@ -52,7 +52,7 @@ export const SearchBar: React.FC<{
         />
         {!hideSearchIcon && (
           <div
-            className={`${iconSize} | flex absolute -right-0 | rounded-full cursor-pointer`}
+            className={`${iconSize} | flex absolute -right-0 | rounded-full cursor-pointer bg-white`}
             style={{ backgroundColor: "white" }}
           >
             <img

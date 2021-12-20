@@ -69,6 +69,9 @@ module.exports = {
         grey: "#a3a3a3",
         red: "#f07b73",
       },
+      opacity: {        
+        '97': '.97',
+      },
       keyframes: {
         rotate: {
           "50%": { transform: "rotate(90deg)" },
