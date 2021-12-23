@@ -59,7 +59,7 @@ const RecipeListPage = () => {
     filterData[1].options.push({ title: params.get("tags") });
   }
   return (
-    <div className={isMobile && toggle ? "overflow-hidden" : ""}>
+    <div className={""}>
       <Navbar />
       {isMobile && (
         <FilterBar
@@ -140,7 +140,7 @@ const RecipeListPage = () => {
       {isMobile && (
         <img
           src={filterIcon}
-          className="fixed bottom-10 right-10 z-20 h-16 w-16"
+          className="fixed top-14 left-4 z-20 h-14 w-14"
           onClick={(e) => {
             e.stopPropagation();
             if (!toggle) {

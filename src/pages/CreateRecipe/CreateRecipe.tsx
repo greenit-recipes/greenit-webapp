@@ -116,15 +116,6 @@ const CreateRecipe: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (window.pageYOffset > 0) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-  }, []);
-
-  useEffect(() => {
     if (data?.register?.success === false || error) {
       if (data?.register?.errors?.email[0]?.code === "unique") {
         setError("email", {
@@ -182,6 +173,19 @@ const CreateRecipe: React.FC = () => {
     });
     history.push(RouteName.recipeCreated);
   };
+  useEffect(() => {
+    if (window.pageYOffset > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
+  useEffect(() => {
+    ingredientsAppend({}, { shouldFocus: false});
+    utensilsAppend({}, { shouldFocus: false});
+    instructionsAppend({}, { shouldFocus: false});
+  }, []);
   return (
     <div className="w-screen">
       <Navbar></Navbar>

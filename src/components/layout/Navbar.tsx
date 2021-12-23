@@ -33,7 +33,19 @@ export const Navbar: React.FC = () => {
           <Link to="/" className="flex flex-col items-center">
             <img src={logo} className="h-12 w-12" alt="Greenit Logo"></img>
           </Link>
-          <div className="invisible">_____</div>
+          {isLoggedIn ? (
+            <Link className="" to="/profil">
+              <Button
+                type="blue"
+                rounded="lg"
+                className="flex justify-end | mr-4 cursor-pointer"
+              >
+                <h1 className="text-white hover:text-blue text-sm">Profil</h1>
+              </Button>
+            </Link>
+          ) : (
+            <div className="invisible">_____</div>
+          )}
         </div>
         <div
           className={
@@ -46,7 +58,10 @@ export const Navbar: React.FC = () => {
             <Link className="p-2 border-b-2 border-blue" to="/recipes">
               <h1>Recettes</h1>
             </Link>
-            <Link className="p-2 border-b-2 border-blue" to={RouteName.workshops}>
+            <Link
+              className="p-2 border-b-2 border-blue"
+              to={RouteName.workshops}
+            >
               <h1>Ateliers</h1>
             </Link>
             {isLoggedIn ? (
