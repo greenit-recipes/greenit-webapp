@@ -62,6 +62,7 @@ import partageIcon from "./partage_icon.png"
 import bugIcon from "./bug_icon.png"
 import atelier from "./ateliers_icon.png"
 import defaultImageProfil from "./default_image_profil.png"
+import PhotoAtelier from "./PhotoAtelier.jpg"
 
 export const landingPageCategories = [
   {
@@ -134,4 +135,5 @@ export {
   facile,
   intermediaire,
   difficile,
+  PhotoAtelier,
 };

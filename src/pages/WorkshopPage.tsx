@@ -2,6 +2,7 @@ import { RouteName } from "App";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Footer, Navbar } from "../components";
+import {PhotoAtelier} from "../../src/icons"
 
 const WorkshopPage = () => {
   const [isIncoming, setIsIncoming] = useState(false);
@@ -35,7 +36,7 @@ const WorkshopPage = () => {
             <div className="flex justify-start | md:mb-2">
               <div>
                 <img
-                  src="https://pic.onlinewebfonts.com/svg/img_280333.png"
+                  src={"https://pic.onlinewebfonts.com/svg/img_280333.png"}
                   className="w-auto h-6 lg:h-9"
                   alt="icon Location"
                 />
@@ -93,7 +94,7 @@ const WorkshopPage = () => {
           <div className="rounded md:row-span-2">
             <div className="flex justify-center items-center align-middle h-full">
               <img
-                src={`https://i0.wp.com/manayin.com/wp-content/uploads/2019/02/recette-savon-maison-diy-fete-des-meres-11.jpg?resize=1440%2C2160&ssl=1`}
+                src={PhotoAtelier}
                 className="rounded-2xl"
                 style={{ width: "100%", maxWidth: "200px" }}
               />
@@ -112,125 +113,6 @@ const WorkshopPage = () => {
                   <a href="https://www.eventbrite.fr/e/221952414647">
                     <button className="button_reserver">Reserver</button>
                   </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-4 md:col-span-2">
-            <div className="static ...">
-              <h2>Description :</h2>
-              <h5 className="text-sm mt-2 md:text-base">
-                Cet atelier est destiné aux débutants ! Quelles sont les
-                premières étapes ? Quelles huiles utiliser ? Quelles
-                compositions ? Où acheter ? Nous parlerons de l’expansion du
-                fait-maison, nous répondrons à vos questions !
-              </h5>
-            </div>
-          </div>
-          <div className="mt-8 rounded">
-            <div className="h-9/12 static ...">
-              <div className="p-4 inline-block shadow-lg rounded-2xl">
-                <h5 className="text-base">Samedi 16 octobre</h5>
-                <h5 className="text-sm">11h - 11h30 (CEST</h5>
-                <h5 className="text-sm">Gratuit 0€</h5>
-                <div className="flex justify-center items-center align-middle">
-                  <button className="button_reserver">Reserver</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-4 md:col-span-2">
-            <div className="static ...">
-              <h2>Description :</h2>
-              <h5 className="text-sm mt-2 md:text-base">
-                En continuité du premier atelier, nous vous proposons de
-                réaliser une recette de crème pour le corps au beurre de karité.
-                Simplissime. C’est l’occasion de faire un premier pas dans le
-                monde du DIY gratuitement.
-              </h5>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-4/5 mt-10 md:mt-10 flex flex-col">
-        <div className="grid md:grid-cols-2">
-          <div className="bg-transparent border-b-4 border-gray-600 | md:col-span-2">
-            <div className="flex justify-start | md:mb-2">
-              <div>
-                <img
-                  src="https://pic.onlinewebfonts.com/svg/img_280333.png"
-                  className="h-6 lg:h-9"
-                  alt="icon Location"
-                />
-              </div>
-              <div className="items-center self-center">
-                <h3 className="pl-3 pb-1 text-xl lg:text-2xl text-center">
-                  Hauts-de-France / Paris
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div className="bg-transparent rounded-lg mt-5 p-2 shadow-lg md:p-4">
-            <div className="flex justify-start ...">
-              <div>
-                <img
-                  src="https://tse3.mm.bing.net/th?id=OIP.mVe87vPyxoj4NAcZD2RvJgDIDI&pid=Api"
-                  className="h-16 lg:h-18 rounded-full"
-                  alt="Greenit Logo"
-                />
-              </div>
-              <div className="items-center self-center">
-                <h3 className="pl-3 text-xl md:text-2xl text-center">
-                  Les sens de la nature
-                </h3>
-                <h5 className="pl-3 text-base">Anne-Cécile Meriau</h5>
-              </div>
-            </div>
-          </div>
-          <div className="bg-transparent rounded mt-2">
-            <div className="flex items-center align-middle h-full md:justify-end">
-              <button className="button_contact">
-                <h2 className="text-base md:text-xl">Contacter</h2>
-              </button>
-            </div>
-          </div>
-          <div className="bg-transparent mt-4 rounded md:col-span-2">
-            <div>
-              <h3 className="text-ms md:text-base">
-                Je m'appelle Anne-Cécile, défenseur du fait-maison et du
-                zéro-déchet. <br />
-                J’ai à cœur de partager avec vous mon mode de vie au travers
-                d’ateliers de création de produits cosmétiques, ménagers, …
-                autour de valeurs écologiques.
-              </h3>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-4/5 mb-10 mt-5 flex flex-col">
-        <div className="grid md:grid-cols-4">
-          <div className="rounded md:row-span-2">
-            <div className="flex justify-center items-center align-middle h-full">
-              <img
-                src={`https://i0.wp.com/manayin.com/wp-content/uploads/2019/02/recette-savon-maison-diy-fete-des-meres-11.jpg?resize=1440%2C2160&ssl=1`}
-                className="rounded-2xl"
-                style={{ width: "100%", maxWidth: "200px" }}
-              />
-            </div>
-          </div>
-          <div className="mt-6 rounded">
-            <div className="h-9/12 static ...">
-              <div className="static ...">
-                <h2>Prochain ateliers :</h2>
-              </div>
-              <div className="p-4 inline-block shadow-lg rounded-2xl">
-                <h5 className="text-base">Samedi 16 octobre</h5>
-                <h5 className="text-sm">10h - 10h40 (CEST)</h5>
-                <h5 className="text-sm">Gratuit 0€</h5>
-                <div className="flex justify-center items-center align-middle">
-                  <button className="button_reserver">Reserver</button>
                 </div>
               </div>
             </div>

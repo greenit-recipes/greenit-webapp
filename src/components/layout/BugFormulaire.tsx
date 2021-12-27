@@ -13,14 +13,6 @@ export const BugFormulaire: React.FC<BugFormulaire> = ({ className }) => {
         style={{ fontSize: 20 }}
         className="w-14 h-14 bg-green rounded-full p-1 mb-1"
         size={60}
-        hidden={{
-          foo: "Foo Value",
-          bar: "Bar Value",
-        }}
-        onReady={() => {
-          console.log("form ready");
-        }}
-        enableSandbox
       >
         <img src={bugIcon} />
       </PopupButton>

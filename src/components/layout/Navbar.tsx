@@ -127,9 +127,9 @@ export const Navbar: React.FC = () => {
               <Button
                 type="blue"
                 rounded="lg"
-                className="flex justify-end self-center | mr-4 cursor-pointer"
+                className="flex justify-end self-center text-xl | mr-4 cursor-pointer"
               >
-                <h1 className="text-white hover:text-blue text-xl">Profil</h1>
+                Profil
               </Button>
             </Link>
           ) : (
@@ -139,9 +139,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="inline justify-end self-center | cursor-pointer mr-2"
               >
-                <h1 className="text-white hover:text-orange text-base">
                   Se connecter
-                </h1>
               </Button>
             </Link>
           )}
@@ -153,9 +151,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="inline justify-end self-center | cursor-pointer mr-3"
               >
-                <h1 className="text-white hover:text-orange text-base">
                   Créer son profil
-                </h1>
               </Button>
             )}
           </Link>
