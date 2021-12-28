@@ -114,7 +114,18 @@ const WorkshopPage = () => {
               </div>
             </div>
           </div>
-        </div>
+          <div className="mt-4 md:col-span-2">
+            <div className="static ...">
+              <h2>Description :</h2>
+              <h5 className="text-sm mt-2 md:text-base">
+                Cet atelier est destiné aux débutants ! Quelles sont les
+                premières étapes ? Quelles huiles utiliser ? Quelles
+                compositions ? Où acheter ? Nous parlerons de l’expansion du
+                fait-maison, nous répondrons à vos questions !
+              </h5>
+            </div>
+          </div>
+        </div> 
       </div>
 
       <Container
