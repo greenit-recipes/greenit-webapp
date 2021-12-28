@@ -1,40 +1,37 @@
+import { RouteName } from "App";
+import { BugFormulaire } from "components/layout/BugFormulaire";
+import ReactPlayer from "react-player";
+import { Link } from "react-router-dom";
 import {
-  RecipeCard,
-  Navbar,
-  Grid,
-  Container,
-  Loading,
-  Button,
-  Footer,
-  SearchBar,
   BackgroundImage,
+  Button,
+  Container,
+  Footer,
+  Grid,
+  Loading,
+  Navbar,
+  RecipeCard,
+  SearchBar,
 } from "../../components";
+import { useRecipesQuery } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
 import {
   atelier,
   corpsWhy,
-  corps,
-  wellbeing,
+  landingPageCategories,
   money,
   planet,
-  landingPageCategories,
+  wellbeing,
 } from "../../icons";
 import "../../pages/recipe/SinglePage/SinglePage.css";
-import ReactPlayer from "react-player";
-import { useRecipesQuery } from "../../graphql";
-import { Link } from "react-router-dom";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
-import { BugFormulaire } from "components/layout/BugFormulaire";
-import authService from "services/auth.service";
-import { RouteName } from "App";
 
 const LandingPage = () => {
-  const isLoggedIn = authService.isLoggedIn();
   const isMobile = useIsMobile();
   const { error, loading, data, refetch } = useRecipesQuery({
     fetchPolicy: "no-cache",
-    variables: { first: 8 },
+    variables: { first: 8, filter: { isDisplayHome: true } },
   });
 
   if (loading || !data) {
@@ -169,7 +166,9 @@ const LandingPage = () => {
             <img src={atelier} className="w-56 h-56" alt="liked button" />
           </div>
           <Link className="self-top mt-5" to={RouteName.workshops}>
-            <Button className="border-white" type="orange">Explorer des ateliers</Button>
+            <Button className="border-white" type="orange">
+              Explorer des ateliers
+            </Button>
           </Link>
         </div>
       </div>
