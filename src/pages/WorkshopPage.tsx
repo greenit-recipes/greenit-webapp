@@ -77,12 +77,9 @@ const WorkshopPage = () => {
           <div className="bg-transparent mt-4 rounded md:col-span-2">
             <div>
               <h3 className="text-ms md:text-base">
-                Nous sommes passionnés de fait-maison depuis de nombreuses
-                années Adrien et Andrea vous propose un atelier gratuit pensé
-                pour les curieux et nouveaux arrivants dans le monde du
-                fait-maison. C’est aussi l’occasion d’échanger sur ce mode de
-                consommation et comprendre les raisons et les motivations
-                associées !
+              Nous sommes passionnés de fait-maison depuis de nombreuses années. 
+              Adrien et Andrea vous proposent un atelier gratuit pensé pour les curieux et nouveaux arrivants dans le monde du fait-maison. 
+              C’est aussi l’occasion d’échanger sur ce mode de consommation et de comprendre les raisons et les motivations associées !
               </h3>
             </div>
           </div>
@@ -115,40 +112,6 @@ const WorkshopPage = () => {
                   </a>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="mt-4 md:col-span-2">
-            <div className="static ...">
-              <h2>Description :</h2>
-              <h5 className="text-sm mt-2 md:text-base">
-                Cet atelier est destiné aux débutants ! Quelles sont les
-                premières étapes ? Quelles huiles utiliser ? Quelles
-                compositions ? Où acheter ? Nous parlerons de l’expansion du
-                fait-maison, nous répondrons à vos questions !
-              </h5>
-            </div>
-          </div>
-          <div className="mt-8 rounded">
-            <div className="h-9/12 static ...">
-              <div className="p-4 inline-block shadow-lg rounded-2xl">
-                <h5 className="text-base">Samedi 16 octobre</h5>
-                <h5 className="text-sm">11h - 11h30 (CEST</h5>
-                <h5 className="text-sm">Gratuit 0€</h5>
-                <div className="flex justify-center items-center align-middle">
-                  <button className="button_reserver">Reserver</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-4 md:col-span-2">
-            <div className="static ...">
-              <h2>Description :</h2>
-              <h5 className="text-sm mt-2 md:text-base">
-                En continuité du premier atelier, nous vous proposons de
-                réaliser une recette de crème pour le corps au beurre de karité.
-                Simplissime. C’est l’occasion de faire un premier pas dans le
-                monde du DIY gratuitement.
-              </h5>
             </div>
           </div>
         </div>
