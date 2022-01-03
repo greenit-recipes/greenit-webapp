@@ -64,6 +64,14 @@ import atelier from "./ateliers_icon.png"
 import defaultImageProfil from "./default_image_profil.png"
 import PhotoAtelier from "./PhotoAtelier.jpg"
 
+// WORKSHOP & WHY IMAGE
+import KabaAtelier1 from "./KabaAtelier1.png"
+import KabaAtelier2 from "./KabaAtelier2.png"
+import KabaLogo from "./KabaLogo.svg"
+import MargauxAtelier from "./MargauxAtelier.png"
+import MargauxLogo from "./MargauxLogo.png"
+import GreenitTeam from "./GreenitTeam.jpeg"
+
 export const landingPageCategories = [
   {
     icon: premierspas,
@@ -136,4 +144,10 @@ export {
   intermediaire,
   difficile,
   PhotoAtelier,
+  KabaAtelier1,
+  KabaAtelier2,
+  KabaLogo,
+  MargauxAtelier,
+  MargauxLogo,
+  GreenitTeam,
 };
