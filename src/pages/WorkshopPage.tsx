@@ -2,10 +2,22 @@ import { RouteName } from "App";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Footer, Navbar } from "../components";
-import {PhotoAtelier} from "../../src/icons"
+import { PhotoAtelier } from "../../src/icons";
 
 const WorkshopPage = () => {
   const [isIncoming, setIsIncoming] = useState(false);
+
+  const fieldRef = React.useRef<HTMLInputElement>(null);
+
+  const scrollIntoReview = () => {
+    setIsIncoming(true);
+
+    if (!fieldRef) return;
+    // @ts-ignore
+    fieldRef?.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
   useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
@@ -77,9 +89,12 @@ const WorkshopPage = () => {
           <div className="bg-transparent mt-4 rounded md:col-span-2">
             <div>
               <h3 className="text-ms md:text-base">
-              Nous sommes passionnés de fait-maison depuis de nombreuses années. 
-              Adrien et Andrea vous proposent un atelier gratuit pensé pour les curieux et nouveaux arrivants dans le monde du fait-maison. 
-              C’est aussi l’occasion d’échanger sur ce mode de consommation et de comprendre les raisons et les motivations associées !
+                Nous sommes passionnés de fait-maison depuis de nombreuses
+                années. Adrien et Andrea vous proposent un atelier gratuit pensé
+                pour les curieux et nouveaux arrivants dans le monde du
+                fait-maison. C’est aussi l’occasion d’échanger sur ce mode de
+                consommation et de comprendre les raisons et les motivations
+                associées !
               </h3>
             </div>
           </div>
@@ -125,7 +140,7 @@ const WorkshopPage = () => {
               </h5>
             </div>
           </div>
-        </div> 
+        </div>
       </div>
 
       <Container
@@ -141,94 +156,95 @@ const WorkshopPage = () => {
         <div className=" grid grid-cols-2 md:grid-cols-4 gap-3">
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Ile-de-France
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Grand-Est
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Auvergne-Rhône Alpes
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Bourgogne-Franche Comté
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Pays de la Loire
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Bretagne
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Occitanie
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Normandie
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Hauts-de-France
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Nouvelle-Aquitaine
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
+            // @ts-ignore
+            ref={fieldRef}
           >
             Centre-Val de Loire
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             PACA
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Corse
           </button>
           <button
             className="button_region text-sm | md:text-base"
-            onClick={() => setIsIncoming(true)}
+            onClick={() => scrollIntoReview()}
           >
             Régions Outre-mer
           </button>
         </div>
       </div>
       {isIncoming && (
-        <div className="text-lg p-4">
-          Ton avis est pris en compte ! Greenit étend ses ateliers, nous serons
-          bientôt dans ta région !
+        <div className="text-lg p-4 text-blue">
+          Ton avis est pris en compte !
         </div>
       )}
 
