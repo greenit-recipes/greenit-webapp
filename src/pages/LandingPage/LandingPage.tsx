@@ -26,9 +26,11 @@ import {
 import "../../pages/recipe/SinglePage/SinglePage.css";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
+import {useTranslation} from "react-i18next";
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
+  const {t, i18n} = useTranslation('common');
   const { error, loading, data, refetch } = useRecipesQuery({
     fetchPolicy: "no-cache",
     variables: { first: 8, filter: { isDisplayHome: true } },
@@ -51,8 +53,7 @@ const LandingPage = () => {
       >
         <div className="max-w-20 sm:max-w-90">
           <h1 className="text-3xl lg:text-5xl | pb-14 text-center">
-            L’espace de la production maison, <br /> pour une nouvelle
-            consommation
+            {t('landingPage.title')}
           </h1>
         </div>
         <div className="w-10/12 | sm:w-8/12 | lg:w-1/2">
