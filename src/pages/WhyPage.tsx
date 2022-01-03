@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { Footer, Navbar } from "../components";
-import { Grid } from "components";
 import useIsMobile from "../hooks/isMobile";
-import { corpsWhy, logo, money, planet, wellbeing } from "../icons";
+import { corpsWhy, logo, money, planet, wellbeing, GreenitTeam } from "../icons";
 import communityDesktop from "../icons/community_desktop.png";
 import communityMobile from "../icons/community_mobile.png";
 
@@ -65,7 +64,7 @@ const WhyPage: React.FC = () => {
   return (
     <div className="min-h-screen min-w-screen">
       <Navbar />
-      <div className="h-auto w-full flex flex-col items-center mb-20 leading-loose">
+      <div className="h-auto w-full flex flex-col items-center mb-12 leading-loose">
         <Block
           style={{
             backgroundColor: "#8fb5e7",
@@ -117,9 +116,7 @@ const WhyPage: React.FC = () => {
             Greenit en apportant son savoir-faire.
           </p>
           <img
-            src={
-              "https://images.unsplash.com/photo-1484712401471-05c7215830eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-            }
+            src={GreenitTeam}
             className="rounded-lg w-full md:w-1/2 self-start justify-self-center mt-10 justify-self-center"
           ></img>
         </div>
@@ -202,10 +199,10 @@ const WhyPage: React.FC = () => {
       </div>
       <Block
         id="4"
-        title="Merci à toutes celles et ceux qui nous aident"
-        className="grid w-screen bg-yellow p-6 justify-items-center"
+        className="grid w-screen p-2 justify-items-center mb-20"
       >
-        <div className="w-3/4 mt-20">
+        <h1 className="text-2xl md:text-3xl"> Merci à toutes celles et ceux qui nous aident </h1>
+        <div className="w-full mt-12">
           <img src={isMobile ? communityMobile : communityDesktop} />
         </div>
       </Block>
