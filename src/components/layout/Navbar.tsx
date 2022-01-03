@@ -5,8 +5,10 @@ import authService from "services/auth.service";
 import { Button } from "../";
 import useIsMobile from "../../hooks/isMobile";
 import { hamburgerIcon, logo } from "../../icons";
+import { useTranslation } from "react-i18next";
 
 export const Navbar: React.FC = () => {
+  const { t, i18n } = useTranslation("common");
   const isMobile = useIsMobile();
   const [toggle, setToggle] = useState(false);
   const [effect, setEffect] = useState(false);
@@ -40,7 +42,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="flex justify-end | mr-4 cursor-pointer"
               >
-                <h1 className="text-white hover:text-blue text-sm">Profil</h1>
+                <h1 className="text-white hover:text-blue text-sm">{t("navbar.profil")}</h1>
               </Button>
             </Link>
           ) : (
@@ -56,27 +58,27 @@ export const Navbar: React.FC = () => {
         >
           <div className="flex flex-col | cursor-pointer space-y-4 text-xl text-gray-500 m-5 w-1/2">
             <Link className="p-2 border-b-2 border-blue" to="/recipes">
-              <h1>Recettes</h1>
+              <h1>{t("navbar.recipes")}</h1>
             </Link>
             <Link
               className="p-2 border-b-2 border-blue"
               to={RouteName.workshops}
             >
-              <h1>Ateliers</h1>
+              <h1>{t("navbar.workshop")}</h1>
             </Link>
             {isLoggedIn ? (
               <Link className="p-2 border-b-2 border-blue" to="/profil">
-                <h1>Profil</h1>
+                <h1>{t("navbar.profil")}</h1>
               </Link>
             ) : (
               <Link className="p-2 border-b-2 border-blue" to="/connexion">
-                <h1>Se connecter</h1>
+                <h1>{t("navbar.connect")}</h1>
               </Link>
             )}
 
             {!isLoggedIn && (
               <Link className="p-2 border-b-2 border-blue" to="/register">
-                <h1>Créer un compte</h1>
+                <h1>{t("navbar.createProfil")}</h1>
               </Link>
             )}
           </div>
@@ -93,7 +95,7 @@ export const Navbar: React.FC = () => {
             className="h-12 w-12 | ml-4 self-center"
             alt="Greenit Logo"
           />
-          <h3 className="text-4xl text-green ml-1 self-center">Greenit</h3>
+          <h3 className="text-4xl text-green ml-1 self-center">{t("navbar.greenit")}</h3>
         </Link>
       </div>
       <div className="flex | justify-self-center cursor-pointer">
@@ -105,7 +107,7 @@ export const Navbar: React.FC = () => {
             }
             onClick={() => setVisible(true)}
           >
-            <h1 className="mb-1 text-xl">Recettes</h1>
+            <h1 className="mb-1 text-xl">{t("navbar.recipes")}</h1>
           </button>
         </Link>
         <Link to={RouteName.workshops}>
@@ -116,7 +118,7 @@ export const Navbar: React.FC = () => {
             }
             onClick={() => setVisible(true)}
           >
-            <h1 className="mb-1 text-xl">Ateliers</h1>
+            <h1 className="mb-1 text-xl">{t("navbar.workshop")}</h1>
           </button>
         </Link>
       </div>
@@ -129,7 +131,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="flex justify-end self-center text-xl | mr-4 cursor-pointer"
               >
-                Profil
+                {t("navbar.profil")}
               </Button>
             </Link>
           ) : (
@@ -139,7 +141,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="inline justify-end self-center | cursor-pointer mr-2"
               >
-                  Se connecter
+                  {t("navbar.connect")}
               </Button>
             </Link>
           )}
@@ -151,7 +153,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="inline justify-end self-center | cursor-pointer mr-3"
               >
-                  Créer son profil
+                  {t("navbar.createProfil")}
               </Button>
             )}
           </Link>

@@ -13,21 +13,23 @@ import {
   MailIcon,
 } from "../../icons";
 import { RouteName } from "App";
+import { useTranslation } from "react-i18next";
 
 export const Footer: React.FC = () => {
+  const { t, i18n } = useTranslation("common");
   return (
     <div className="h-auto w-full | flex flex-col | items-center | bg-black bg-opacity-75 -mb-10">
       <div className="mb-4 w-full grid justify-items-center">
         <div className="flex mt-10">
           <Link to={RouteName.why}>
             <h1 className="text-white md:text-xl self-center">
-              Qui sommes-nous ?
+            {t("footer.title1")}
             </h1>
           </Link>
           <h1 className="text-white md:text-xl self-center ml-6 mr-6"> | </h1>
           <Link to={RouteName.contact}>
             <h1 className="text-white md:text-xl self-center">
-              Contacte-nous !{" "}
+            {t("footer.title2")}{" "}
             </h1>
           </Link>
         </div>
@@ -36,18 +38,18 @@ export const Footer: React.FC = () => {
         {[
           {
             icon: footerWorld,
-            title: "Ecolo(mique)",
-            text: "Greenit est une solution sociale, économique et écologique aux problèmes environnementaux auxquels nous sommes confrontés. Notre mission ? Répandre un mode de consommation plus responsable et durable en remplaçant la production industrielle par une production plus locale et artisanale.",
+            title: t("footer.category.title1"),
+            text: t("footer.category.label1"),
           },
           {
             icon: footerChat,
-            title: "Collectif",
-            text: "Notre première mission, ensemble, est de développer une communauté qui soutient le partage des connaissances pour une consommation et une production saines.",
+            title: t("footer.category.title2"),
+            text: t("footer.category.label2"),
           },
           {
             icon: footerValues,
-            title: "Transparent",
-            text: "Ici, il n’y a pas de collecte de tes données personnelles. Nous utilisons un analytics qui anonymise tes actions pour un plus grand respect de ta vie privée. N’hésite pas à poser tes questions et à voter pour les prochaines fonctionnalités Greenit.",
+            title: t("footer.category.title3"),
+            text: t("footer.category.label3"),
           },
         ].map((item, index) => (
           <div className="flex flex-col" key={index}>
@@ -64,14 +66,14 @@ export const Footer: React.FC = () => {
         ))}
       </div>
       <div className=" grid justify-items-center w-4/5 md:w-auto p-10 shadow-xl rounded-xl mt-10 mb-14 bg-white">
-        <h1 className="text-2xl mb-5">Contacte-nous !</h1>
+        <h1 className="text-2xl mb-5">{t("footer.contact.title")}{" "}</h1>
         <a
           href="mailto:hello@greenitcommunity.com"
           className="inline-flex gap-x-4"
         >
           <img src={MailIcon} className="w-7 h-7 self-center" />
           <h1 className="text-xs md:text-lg self-center pt-1">
-            hello@greenitcommunity.com
+          {t("footer.contact.email")}
           </h1>
         </a>
         <div className="flex flex-row gap-x-4 justify-center mt-3">
@@ -112,7 +114,7 @@ export const Footer: React.FC = () => {
         target="_blank"
         className="text-xl underline text-white mt-10"
       >
-        Privacy Policy
+        {t("footer.privatePolicy.title")}
       </a>
       <div className="mt-4 mb-5 self-start flex">
         <a
@@ -128,15 +130,14 @@ export const Footer: React.FC = () => {
         </a>
         <div className="w-44 sm:w-auto">
           <p className="text-xs md:text-sm text-white text-left relative inline">
-            All content is licensed under a{" "}
+          {t("footer.privatePolicy.content1")}{" "}
           </p>
           <a
             rel="license"
             href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
             className="text-white text-left text-xs md:text-sm"
           >
-            Creative Commons Attribution-NonCommercial-ShareAlike 4.0
-            International License
+            {t("footer.privatePolicy.content2")}
           </a>
         </div>
       </div>

@@ -26,11 +26,11 @@ import {
 import "../../pages/recipe/SinglePage/SinglePage.css";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
-  const {t, i18n} = useTranslation('common');
+  const { t, i18n } = useTranslation("common");
   const { error, loading, data, refetch } = useRecipesQuery({
     fetchPolicy: "no-cache",
     variables: { first: 8, filter: { isDisplayHome: true } },
@@ -53,7 +53,9 @@ const LandingPage = () => {
       >
         <div className="max-w-20 sm:max-w-90">
           <h1 className="text-3xl lg:text-5xl | pb-14 text-center">
-            {t('landingPage.title')}
+            {t("landingPage.main.title1")}
+            <br />
+            {t("landingPage.main.title2")}
           </h1>
         </div>
         <div className="w-10/12 | sm:w-8/12 | lg:w-1/2">
@@ -93,7 +95,7 @@ const LandingPage = () => {
       </div>
       <Container
         className="mb-10"
-        title="Notre sélection de recettes"
+        title={t("landingPage.main.selectionRecipe")}
         itemsCenter
       >
         {isMobile ? (
@@ -110,13 +112,13 @@ const LandingPage = () => {
           </div>
         )}
         <Link to="/recipes" className="mt-6">
-          <Button type="green">Découvrir plus</Button>
+          <Button type="green">{t("landingPage.main.learnMore")}</Button>
         </Link>
       </Container>
 
       <Container className="w-screen text-center mt-8 sm:mb-14" itemsCenter>
         <h1 className="text-2xl md:text-3xl | p-5 text-center">
-          Nos tutos vidéos pour commencer
+          {t("landingPage.video.videoStart")}
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 sm:grid-rows-1 gap-2 md:gap-8 pt-4 w-4/5 xl:w-3/5">
@@ -156,10 +158,10 @@ const LandingPage = () => {
         <div className="grid mb-8 text-center">
           <h1 className="text-white text-2xl md:text-3xl mb-2">
             {" "}
-            Tous les ateliers DIY proches de chez toi !{" "}
+            {t("landingPage.workshop.title")}{" "}
           </h1>
           <h3 className="text-white text-lg md:text-xl | text-center whitespace-pre-line">
-            Fais-toi aider et rencontre d’autres passionnés
+            {t("landingPage.workshop.label")}
           </h3>
         </div>
         <div className="grid grid-flow-row auto-rows-auto justify-items-center">
@@ -168,7 +170,7 @@ const LandingPage = () => {
           </div>
           <Link className="self-top mt-5" to={RouteName.workshops}>
             <Button className="border-white" type="orange">
-              Explorer des ateliers
+              {t("landingPage.workshop.button")}
             </Button>
           </Link>
         </div>
@@ -176,17 +178,33 @@ const LandingPage = () => {
 
       <Container
         className="w-full md:w-3/5 h-full"
-        title="Pourquoi Greenit?"
+        title={t("landingPage.whygreenit.title")}
         margin={10}
         itemsCenter
         padding={isMobile}
       >
         <div className="grid grid-cols-2 gap-8 md:gap-12 justify-items-center mt-8">
           {[
-            { text: "Pour la planète", color: "#8AD554", icon: planet },
-            { text: "Pour ton corps", color: "#7EAADD", icon: corpsWhy },
-            { text: "Pour tes économies", color: "#ffd460", icon: money },
-            { text: "Pour ton esprit", color: "#EA9875", icon: wellbeing },
+            {
+              text: t("landingPage.whygreenit.label1"),
+              color: "#8AD554",
+              icon: planet,
+            },
+            {
+              text: t("landingPage.whygreenit.label2"),
+              color: "#7EAADD",
+              icon: corpsWhy,
+            },
+            {
+              text: t("landingPage.whygreenit.label3"),
+              color: "#ffd460",
+              icon: money,
+            },
+            {
+              text: t("landingPage.whygreenit.label4"),
+              color: "#EA9875",
+              icon: wellbeing,
+            },
           ].map((item) => (
             <div className="grid col-span-1 justify-items-center">
               <img
@@ -200,11 +218,11 @@ const LandingPage = () => {
           ))}
         </div>
         <h3 className="mt-10 mb-10 text-md md:text-xl text-center">
-          Greenit est une initiative visant à encourager une consommation <br />
-          plus durable et responsable.
+          {t("landingPage.whygreenit.content1")} <br />
+          {t("landingPage.whygreenit.content2")}
         </h3>
         <Link to={RouteName.why}>
-          <Button type="blue">En savoir plus</Button>
+          <Button type="blue">{t("landingPage.whygreenit.button")}</Button>
         </Link>
       </Container>
       <Newsletter />

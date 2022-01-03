@@ -1,5 +1,65 @@
 {
+	"footer": {
+		"category": {
+			"label1": "Greenit est une solution sociale, économique et écologique aux problèmes environnementaux auxquels nous sommes confrontés. Notre mission ? Répandre un mode de consommation plus responsable et durable en remplaçant la production industrielle par une production plus locale et artisanale.",
+			"label2": "Notre première mission, ensemble, est de développer une communauté qui soutient le partage des connaissances pour une consommation et une production saines.",
+			"label3": "Ici, il n’y a pas de collecte de tes données personnelles. Nous utilisons un analytics qui anonymise tes actions pour un plus grand respect de ta vie privée. N’hésite pas à poser tes questions et à voter pour les prochaines fonctionnalités Greenit.",
+			"title1": "Ecolo(mique)",
+			"title2": "Collectif",
+			"title3": "Transparent"
+		},
+		"contact": {
+			"email": "hello@greenitcommunity.com",
+			"title": "Contacte-nous !"
+		},
+		"privatePolicy": {
+			"content1": "All content is licensed under a",
+			"content2": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License",
+			"title": "Privacy Policy"
+		},
+		"title1": "Qui sommes-nous ?",
+		"title2": "Contacte-nous !"
+	},
 	"landingPage": {
-		"title": "L’espace de la production maison, <br/> pour une nouvelle consommation"
+		"main": {
+			"learnMore": "Découvrir plus",
+			"selectionRecipe": "Notre sélection de recettes",
+			"title1": "L’espace de la production maison,",
+			"title2": "pour une nouvelle consommation",
+			"videoStart": "Nos tutos vidéos pour commencer"
+		},
+		"newsletter": {
+			"button": "Rejoindre",
+			"info": "Nous utilisons cette newsletter uniquement pour garder notre communauté informée des évolutions de Greenit ainsi que pour connaître vos avis sur certaines décisions. Vous pouvez vous désinscrire à tout moment en nous contactant à hello@greenitcommunity.com",
+			"success": "Votre inscription a bien été prise en compte. À très vite dans votre boite mail !",
+			"title1": "Inscris toi à la newsletter pour découvrir des astuces DIY",
+			"title2": "et être au courant des nouvelles recettes !"
+		},
+		"video": {
+			"videoStart": "Nos tutos vidéos pour commencer"
+		},
+		"whygreenit": {
+			"button": "En savoir plus",
+			"content1": "Greenit est une initiative visant à encourager une consommation",
+			"content2": "plus durable et responsable.",
+			"label1": "Pour la planète",
+			"label2": "Pour ton corps",
+			"label3": "Pour tes économies",
+			"label4": "Pour ton esprit",
+			"title": "Pourquoi Greenit ?"
+		},
+		"workshop": {
+			"button": "Explorer des ateliers",
+			"label": "Fais-toi aider et rencontre d’autres passionnés",
+			"title": "Tous les ateliers DIY proches de chez toi !"
+		}
+	},
+	"navbar": {
+		"connect": "Se connecter",
+		"createProfil": "Créer son profil",
+		"greenit": "Greenit",
+		"profil": "Profil",
+		"recipes": "Recettes",
+		"workshop": "Ateliers"
 	}
 }

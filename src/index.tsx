@@ -126,10 +126,6 @@ export const client = new ApolloClient({
 });
 
 i18next.init({
-  react: {
-    transSupportBasicHtmlNodes: true,
-    transKeepBasicHtmlNodesFor: ['u', 'a', 'br']
-  },
   interpolation: { escapeValue: false }, // React already does escaping
   lng: 'fr',                              // language to use
   resources: {

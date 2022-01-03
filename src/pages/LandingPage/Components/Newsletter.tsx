@@ -4,8 +4,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ADD_USER_TO_NEWSLETTER } from "pages/LandingPage/Components/NewsletterRequest";
 import { useMutation } from "@apollo/client";
+import { useTranslation } from "react-i18next";
 
 export const Newsletter: React.FC = () => {
+  const { t, i18n } = useTranslation("common");
+
   const schema = yup.object().shape({
     email: yup.string().email().required("L'email est obligatoire."),
   });
@@ -33,8 +36,8 @@ export const Newsletter: React.FC = () => {
   return (
     <Container className="w-full md:w-3/5 h-full" margin={10} itemsCenter>
       <h1 className="text-xl md:text-2xl sm:w-3/4 | p-5 text-center">
-        Inscris toi à la newsletter pour découvrir des astuces DIY
-        {"\n"} et être au courant des nouvelles recettes !
+        {t("landingPage.newsletter.title1")}
+        {"\n"} {t("landingPage.newsletter.title2")}
       </h1>
 
       <form className="md:flex p-6" onSubmit={handleSubmit(onSubmitHandler)}>
@@ -48,7 +51,7 @@ export const Newsletter: React.FC = () => {
 
         <div className="grid w-full justify-items-center mt-4 md:mt-0 md:ml-4">
           <Button type="green" className="p-4 sm:h-12">
-            Rejoindre
+          {t("landingPage.newsletter.button")}
           </Button>
         </div>
         <div>
@@ -57,15 +60,11 @@ export const Newsletter: React.FC = () => {
       </form>
       {data?.createNewsletter?.success && (
         <div className="text-green text-base md:text-base mb-2 | text-center whitespace-pre-line">
-          Votre inscription a bien été prise en compte. À très vite dans votre
-          boite mail !
+                    {t("landingPage.newsletter.success")}
         </div>
       )}
       <div className="w-3/4 mb-20 text-xs md:text-sm text-center lg:mx-80">
-        Nous utilisons cette newsletter uniquement pour garder notre communauté
-        informée des évolutions de Greenit ainsi que pour connaître vos avis sur
-        certaines décisions. Vous pouvez vous désinscrire à tout moment en nous
-        contactant à hello@greenitcommunity.com
+      {t("landingPage.newsletter.info")}
       </div>
     </Container>
   );
