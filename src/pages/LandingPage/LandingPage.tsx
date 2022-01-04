@@ -45,21 +45,17 @@ const LandingPage = () => {
       <Navbar />
       <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
-      <Container
-        className="flex flex-col | items-center | mt-16 lg:mt-28"
-        padding
-      >
-        <div className="max-w-20 sm:max-w-90">
-          <h1 className="text-3xl lg:text-5xl | pb-14 text-center">
-            L’espace de la production maison, <br /> pour une nouvelle
-            consommation
+      <Container className="flex flex-col | items-center | mt-12 lg:mt-20">
+        <div className="max-w-12 sm:max-w-90">
+          <h1 className="text-2xl lg:text-4xl | pb-12 text-center">
+            La communauté du fait maison, <br /> pour une nouvelle consommation
           </h1>
         </div>
-        <div className="w-10/12 | sm:w-8/12 | lg:w-1/2">
+        <div className="lg:w-2/3 mb-4">
           <SearchBar />
         </div>
       </Container>
-      <div className="w-full | items-center py-8 mb-5 | flex justify-center">
+      <div className="w-full | items-center py-8 mb-4 | flex justify-center">
         {isMobile ? (
           <div className="flex overflow-x-auto pl-6">
             {landingPageCategories.map((item) => (
@@ -92,9 +88,11 @@ const LandingPage = () => {
       </div>
       <Container
         className="mb-10"
-        title="Notre sélection de recettes"
         itemsCenter
       >
+        <h1 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
+          Notre sélection de recettes
+        </h1>
         {isMobile ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 mt-6 md:grid-cols-4 md:gap-x-4 md:gap-y-10 mb-2">
             {recipes?.slice(0, 6).map((recipe, index: number) => (
@@ -114,7 +112,7 @@ const LandingPage = () => {
       </Container>
 
       <Container className="w-full text-center mt-8 sm:mb-14" itemsCenter>
-        <h1 className="text-2xl md:text-3xl | p-5 text-center">
+        <h1 className="text-xl md:text-2xl | p-5 text-center">
           Nos tutos vidéos pour commencer
         </h1>
 
@@ -151,10 +149,9 @@ const LandingPage = () => {
         </div>
       </Container>
 
-      <div className="mt-10 grid bg-orange w-full py-12 justify-items-center">
+      <div className="mt-10 grid bg-orange w-full py-12 px-6 justify-items-center">
         <div className="grid mb-8 text-center">
-          <h1 className="text-white text-2xl md:text-3xl mb-2">
-            {" "}
+          <h1 className="text-white text-xl md:text-2xl mb-2">
             Tous les ateliers DIY proches de chez toi !{" "}
           </h1>
           <h3 className="text-white text-lg md:text-xl | text-center whitespace-pre-line">
@@ -175,11 +172,13 @@ const LandingPage = () => {
 
       <Container
         className="w-full md:w-3/5 h-full"
-        title="Pourquoi Greenit?"
         margin={10}
         itemsCenter
         padding={isMobile}
       >
+        <h1 className="text-xl md:text-2xl | mt-4 text-center">
+          Pourquoi Greenit ?
+        </h1>
         <div className="grid grid-cols-2 gap-8 md:gap-12 justify-items-center mt-8">
           {[
             { text: "Pour la planète", color: "#8AD554", icon: planet },

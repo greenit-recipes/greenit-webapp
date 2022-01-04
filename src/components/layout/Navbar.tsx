@@ -64,6 +64,36 @@ export const Navbar: React.FC = () => {
               : "navBar_fadeOut flex flex-col ml-5"
           }
         >
+          <div className="mt-5 ml-5">
+            {isLoggedIn ? (
+              <div className="invisible"></div>
+            ) : (
+              <div className="flex">
+                <Link className="" to="/connexion">
+                  <Button
+                    type="orange"
+                    rounded="lg"
+                    className="flex justify-end | mr-2 cursor-pointer"
+                  >
+                    <h1 className="text-white hover:text-blue text-sm">
+                      Connexion
+                    </h1>
+                  </Button>
+                </Link>
+                <Link className="" to="/register">
+                  <Button
+                    type="orange"
+                    rounded="lg"
+                    className="flex justify-end | mr-2 cursor-pointer"
+                  >
+                    <h1 className="text-white hover:text-blue text-sm">
+                      Créer un profil
+                    </h1>
+                  </Button>
+                </Link>
+              </div>
+            )}
+          </div>
           <div className="flex flex-col | cursor-pointer space-y-4 text-xl text-gray-500 m-5 w-1/2">
             <button className="p-2 border-b-2 border-blue"  onClick={() => {
               setVisible(true)
@@ -77,21 +107,6 @@ export const Navbar: React.FC = () => {
             >
               <h1>Ateliers</h1>
             </Link>
-            {isLoggedIn ? (
-              <Link className="p-2 border-b-2 border-blue" to="/profil">
-                <h1>Profil</h1>
-              </Link>
-            ) : (
-              <Link className="p-2 border-b-2 border-blue" to="/connexion">
-                <h1>Se connecter</h1>
-              </Link>
-            )}
-
-            {!isLoggedIn && (
-              <Link className="p-2 border-b-2 border-blue" to="/register">
-                <h1>Créer un compte</h1>
-              </Link>
-            )}
           </div>
         </div>
       </div>
@@ -153,7 +168,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="inline justify-end self-center | cursor-pointer mr-2"
               >
-                  Se connecter
+                Se connecter
               </Button>
             </Link>
           )}
@@ -165,7 +180,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="inline justify-end self-center | cursor-pointer mr-3"
               >
-                  Créer son profil
+                Créer son profil
               </Button>
             )}
           </Link>

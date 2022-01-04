@@ -115,11 +115,11 @@ const Login: React.FC = () => {
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
-            <label className="block text-gray-700 text-lg font-bold mb-2">
+            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2">
               Email
             </label>
             <input
-              className="shadow-lg appearance-none border rounded w-full py-2 px-3 text-gray-700 h-12 leading-tight focus:outline-none focus:shadow-outline mb-6"
+              className="shadow-lg appearance-none border rounded w-full sm:w-80 py-2 px-3 text-gray-700 h-12 leading-tight focus:outline-none focus:shadow-outline mb-6"
               id="email"
               placeholder="email"
               type="email"
@@ -130,11 +130,11 @@ const Login: React.FC = () => {
             </p>
           </div>
           <div className="mb-10">
-            <label className="block text-gray-700 text-lg font-bold mb-2">
+            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2">
               Mot de passe
             </label>
             <input
-              className="shadow-lg appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 h-12 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow-lg appearance-none border rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-3 h-12 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
               placeholder="******************"
@@ -151,7 +151,7 @@ const Login: React.FC = () => {
           <div className="flex items-center justify-between">
             <button
               className="flex justify-center items-center cursor-pointer align-middle
-              bg-blue rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
+              bg-blue rounded-lg p-3 h-10  mr-5 text-base md:text-lg bold text-white border-2 border-transparent
               hover:bg-white hover:border-blue hover:text-blue"
             >
               Connexion

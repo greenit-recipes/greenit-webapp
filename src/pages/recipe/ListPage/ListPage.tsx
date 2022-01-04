@@ -141,7 +141,7 @@ const RecipeListPage = () => {
       {isMobile && (
         <img
           src={filterIcon}
-          className="fixed top-14 left-4 z-20 h-14 w-14"
+          className="fixed top-14 right-4 z-20 h-12 w-12"
           onClick={(e) => {
             e.stopPropagation();
             if (!toggle) {

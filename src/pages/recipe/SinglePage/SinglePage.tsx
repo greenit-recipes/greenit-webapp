@@ -298,6 +298,7 @@ const RecipeSinglePage = () => {
           </div>
           <div className="mt-5 lg:mt-0 md:ml-10">
             <h1 className="text-xl md:text-2xl">Instructions</h1>
+            <h3 className="text-xs md:text-sm">⤹ Cliquer sur les numéros pour faire avancer la vidéo</h3>
             {recipe?.instructions.map((item: any, index: number) => {
               const timestamp = getSecondsFromDuration(item.timestamp);
               return (

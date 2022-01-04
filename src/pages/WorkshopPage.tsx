@@ -531,17 +531,17 @@ const WorkshopPage = () => {
         className="flex flex-col | items-center | mt-6 mb-40 md:mt-10 md:mb-50"
         padding
       >
-        <h2 className=" p-2 text-xl mb-10 | md:text-2xl | text-center">
+        <h1 className=" p-2 text-xl mb-10 | md:text-2xl | text-center">
           Tu es un.e passioné.e de DIY et tu aimerais proposer des ateliers ?{" "}
           <br />
           Ça nous intéresse !
-        </h2>
+        </h1>
         <a
           href="mailto:hello@greenitcommunity.com"
           className="inline-flex gap-x-4"
         >
           <button className="button_contact">
-            <h2 className="text-xl md:text-2xl">Proposer un atelier</h2>
+            <h3 className="text-lg md:text-xl">Proposer un atelier</h3>
           </button>
         </a>
       </Container>

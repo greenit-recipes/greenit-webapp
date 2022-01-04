@@ -77,14 +77,14 @@ const Register: React.FC = () => {
 
   const optionsUserWantFromGreenit = [
     {
-      value: "shared_talk",
-      label: "Partager et discuter mes connaissances sur le DIY.",
-    },
-    { value: "meet", label: "Rencontrer des adeptes du DIY." },
-    {
       value: "find_inspiration",
       label: "Trouver de l'inspiration auprès de la communauté.",
     },
+    {
+      value: "shared_talk",
+      label: "Discuter et partager mes connaissances sur le DIY.",
+    },
+    { value: "meet", label: "Rencontrer des adeptes du DIY." },
   ];
 
   const optionsUserCategoryAge = [
@@ -175,11 +175,11 @@ const Register: React.FC = () => {
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4 md:max-w-md">
-            <label className="block text-gray-700 text-lg font-bold mb-2">
+            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2">
               Email
             </label>
             <input
-              className="shadow-lg appearance-none rounded w-full py-2 px-3 mb-4 text-gray-700 h-12 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow-lg appearance-none rounded py-2 px-3 mb-4 text-gray-700 h-12 w-full sm:w-80 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               placeholder="email"
               type="email"
@@ -189,11 +189,11 @@ const Register: React.FC = () => {
               {errors.email?.message}
             </p>
 
-            <label className="block text-gray-700 text-lg font-bold mb-2 mt-4">
+            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2 mt-4">
               Nom d'utilisateur
             </label>
             <input
-              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline"
               id="utilisateur"
               placeholder="nom utilisateur"
               type="text"
@@ -202,11 +202,11 @@ const Register: React.FC = () => {
             <p className="text-red text-xs italic">
               {errors.utilisateur?.message}
             </p>
-            <label className="block text-gray-700 text-lg font-bold mb-2 mt-4">
+            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2 mt-4">
               Mot de passe
             </label>
             <input
-              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
               placeholder="******************"
@@ -215,15 +215,15 @@ const Register: React.FC = () => {
             <p className="text-red text-xs italic">
               {errors.password?.message}
             </p>
-            <label className="block text-gray-700 text-sm mb-2">
+            <label className="block text-gray-700 text-xs md:text-base mb-2">
               Le mot de passe doit contenir 8 caractères, une majuscule, une
               minuscule
             </label>
-            <label className="block text-gray-700 text-lg font-bold mb-2 mt-6">
-              Confirmation mot de passe
+            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2 mt-6">
+              Confirmation du mot de passe
             </label>
             <input
-              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight h-12 focus:outline-none focus:shadow-outline"
+              className="shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 leading-tight h-12 focus:outline-none focus:shadow-outline"
               id="passwordConfirmation"
               type="password"
               placeholder="******************"
@@ -234,7 +234,7 @@ const Register: React.FC = () => {
             </p>
           </div>
           <div className="mb-10">
-            <label className="block text-gray-700 text-xl mb-2">
+            <label className="block text-gray-700 text-base font-bold md:text-lg mb-2">
               Qui es-tu ?
             </label>
             <Controller
@@ -254,8 +254,8 @@ const Register: React.FC = () => {
           </div>
 
           <div className="mb-10">
-            <label className="block text-gray-700 text-xl mb-2">
-              Pourquoi Greenit peut-il t'aider ?
+            <label className="block text-gray-700 font-bold text-base md:text-lg mb-2">
+              En quoi Greenit peut-il t'aider ?
             </label>
             <Controller
               name="userWantFromGreenit"
@@ -274,7 +274,7 @@ const Register: React.FC = () => {
           </div>
 
           <div className="mb-10">
-            <label className="block text-gray-700 text-xl mb-2">
+            <label className="block text-gray-700 font-bold text-base md:text-lg mb-2">
               A quel groupe appartiens-tu ?
             </label>
             <Controller
