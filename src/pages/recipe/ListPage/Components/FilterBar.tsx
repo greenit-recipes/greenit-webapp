@@ -4,6 +4,7 @@ import { Button } from "components/misc/Button";
 import authService from "services/auth.service";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { RouteName } from "App";
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -69,7 +70,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               setSearch={setSearch}
             />
             {isLoggedIn ? (
-              <Link to="/créer-une-recette">
+              <Link to={RouteName.createRecipe}>
                 <Button type="green" className="mb-6 rounded-lg text-lg">
                   Partager une recette
                 </Button>
@@ -99,7 +100,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         setCurrentFilters={setCurrentFilters}
       />
       {isLoggedIn ? (
-        <Link to="/créer-une-recette">
+        <Link to={RouteName.createRecipe}>
           <Button
             type="green"
             className="justify-self-start mt-6 mb-2 h-10 rounded-xl"

@@ -7,6 +7,12 @@
 		"subtitle": "Greenit Community !",
 		"title": "Bienvenue au sein de la"
 	},
+	"contactPage": {
+		"contact": "Contacte-nous !",
+		"email": "hello@greenitcommunity.com",
+		"subtitle": "Merci à toutes celles et ceux qui nous aident.",
+		"title": " Tous vos retours sont les bienvenus !"
+	},
 	"createRecipeSuccess": {
 		"button": "Revenir à la page d’accueil",
 		"content1": "Ta recette est en attente de validation. Tu seras notifié une fois\n            la publication dans les 24/48h.",

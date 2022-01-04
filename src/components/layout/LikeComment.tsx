@@ -6,6 +6,7 @@ import authService from "services/auth.service";
 import {
     likedIconOff, likedIconOn
 } from "../../icons";
+import { RouteName } from "App";
 
 interface LikeComment {
   comment: any;
@@ -55,7 +56,7 @@ export const LikeComment: React.FC<LikeComment> = ({ comment, isMyComment=false 
           <h1 className="self-center text-lg md:text-xl ml-1">{nbrLiked}</h1>
         </div>
       ) : (
-        <Link to="/register">
+        <Link to={RouteName.register}>
           <div className="flex cursor-pointer bg-white w-20 h-12 rounded-tl-2xl p-3">
             <img
               src={likedIconOff}

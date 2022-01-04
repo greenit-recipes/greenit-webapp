@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import authService from "services/auth.service";
 import { likedIconOff, likedIconOn } from "../../icons";
+import { RouteName } from "App";
 
 interface FavouriteField {
   className?: string;
@@ -51,7 +52,7 @@ export const FavouriteField: React.FC<FavouriteField> = ({
           )}
         </button>
       ) : (
-        <Link to="/register">
+        <Link to={RouteName.register}>
           <img className="w-9 h-9 lg:w-12 lg:h-12" src={likedIconOff} />
         </Link>
       )}

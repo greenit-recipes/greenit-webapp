@@ -35,6 +35,9 @@ export const RouteName = {
   workshops: "/workshops",
   why: "/why",
   contact: "/contact",
+  createRecipe: "/créer-une-recette",
+  profil: "/profil",
+  login: "/login",
 };
 
 const App: React.FC = () => {
@@ -53,7 +56,7 @@ const App: React.FC = () => {
         />
         <PublicRoute path={RouteName.workshops} component={WorkshopPage} exact />
         <PrivateRoute
-          path="/créer-une-recette"
+          path={RouteName.createRecipe}
           component={CreateRecipe}
           exact
         />
@@ -63,13 +66,13 @@ const App: React.FC = () => {
           exact
         />
         <Route exact path={RouteName.register} component={Register} />
-        <Route exact path="/connexion" component={Login} />
+        <Route exact path={RouteName.login} component={Login} />
         <Route
           exact
           path={RouteName.resetPassword}
           component={ForgetPassword}
         />
-        <PrivateRoute component={ProfilPage} path="/profil" exact />
+        <PrivateRoute component={ProfilPage} path={RouteName.profil} exact />
         <Route
           exact
           path={RouteName.tokenActivationAccount}

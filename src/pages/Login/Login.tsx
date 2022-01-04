@@ -100,7 +100,7 @@ const Login: React.FC = () => {
           <h3 className="text-sm md:text-base self-center">
             Si tu veux créer un compte : 
           </h3>
-          <Link to="/register">
+          <Link to={RouteName.register}>
             <button
               className="flex items-center cursor-pointer
               ml-2 bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent

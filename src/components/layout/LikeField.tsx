@@ -4,6 +4,7 @@ import { clapIconOn, clapIconOff } from "../../icons";
 import { ADD_OR_REMOVE_LIKE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import authService from "services/auth.service";
 import { Link } from "react-router-dom";
+import { RouteName } from "App";
 
 interface LikeField {
   className?: string;
@@ -62,7 +63,7 @@ export const LikeField: React.FC<LikeField> = ({
           <h1 className="flex self-center text-lg lg:text-xl ml-1">{nbrLiked}</h1>
         </button>
       ) : (
-        <Link to="/register" className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mr-3">
+        <Link to={RouteName.register} className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mr-3">
           <img
             src={clapIconOff}
             className="flex self-center w-7 h-7 lg:w-8 lg:h-8"

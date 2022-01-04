@@ -10,6 +10,7 @@ import authService, {
 } from "services/auth.service";
 import "../App.css";
 import { Footer, Navbar } from "../components";
+import { RouteName } from "App";
 
 const ActivateAccount: React.FC = () => {
   const { tokenActivationAccount } =
@@ -73,7 +74,7 @@ const ActivateAccount: React.FC = () => {
             Tu peux réessayer, si le problème persiste n’hésite pas à nous contacter.
             </h4>
           </div>
-          <Link to="/register">
+          <Link to={RouteName.register}>
             <Button className="mb-5" type="green">Réessayer de créer un compte</Button>
           </Link>
           <Button

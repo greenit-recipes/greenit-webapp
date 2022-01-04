@@ -27,10 +27,10 @@ import {
   Navbar,
 } from "../../../components";
 import { useRecipeQuery } from "../../../graphql";
-import useIsMobile from "../../../hooks/isMobile";
 import { partageIcon, noVideo } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
 import "./SinglePage.css";
+import { RouteName } from "App";
 
 interface InstructionProps {
   index: number;
@@ -430,7 +430,7 @@ const RecipeSinglePage = () => {
                 </Button>
               </div>
             ) : (
-              <Link to="/register">
+              <Link to={RouteName.register}>
                 <Button
                   className="rounded focus:outline-none focus:shadow-outline"
                   type="submit"

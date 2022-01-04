@@ -10,9 +10,11 @@ import {
   FBIcon,
 } from "../icons";
 import { BackgroundImage } from "../components/layout/BackgroundImage";
+import { useTranslation } from "react-i18next";
 
 const ContactPage = () => {
   const params = new URLSearchParams(window.location.search);
+  const { t, i18n } = useTranslation("common");
   useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
@@ -28,22 +30,22 @@ const ContactPage = () => {
       <div className="grid justify-items-center auto-rows-max h-screen">
         <div className="w-4/5">
           <h1 className="text-center text-xl md:text-2xl md:text-3xl mt-16">
-            Tous vos retours sont les bienvenus !
+            {t("contactPage.title")}
           </h1>
           <h3 className="text-center text-lg md:text-xl mt-2">
-            Merci à toutes celles et ceux qui nous aident.
+            {t("contactPage.subtitle")}
           </h3>
         </div>
 
         <div className=" grid justify-items-center w-4/5 md:w-auto p-10 shadow-xl rounded-xl mt-10 mb-14 bg-white">
-          <h1 className="text-2xl mb-5">Contacte-nous !</h1>
+          <h1 className="text-2xl mb-5">{t("contactPage.contact")}</h1>
           <a
             href="mailto:hello@greenitcommunity.com"
             className="inline-flex gap-x-4"
           >
             <img src={MailIcon} className="w-7 h-7 self-center" />
             <h1 className="text-xs md:text-lg self-center pt-1">
-              hello@greenitcommunity.com
+              {t("contactPage.email")}
             </h1>
           </a>
           <div className="flex flex-row gap-x-4 justify-center mt-3">

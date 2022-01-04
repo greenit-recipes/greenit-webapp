@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
             <img src={logo} className="h-12 w-12" alt="Greenit Logo"></img>
           </Link>
           {isLoggedIn ? (
-            <Link className="" to="/profil">
+            <Link className="" to={RouteName.profil}>
               <Button
                 type="blue"
                 rounded="lg"
@@ -67,17 +67,17 @@ export const Navbar: React.FC = () => {
               <h1>{t("navbar.workshop")}</h1>
             </Link>
             {isLoggedIn ? (
-              <Link className="p-2 border-b-2 border-blue" to="/profil">
+              <Link className="p-2 border-b-2 border-blue" to={RouteName.profil}>
                 <h1>{t("navbar.profil")}</h1>
               </Link>
             ) : (
-              <Link className="p-2 border-b-2 border-blue" to="/connexion">
+              <Link className="p-2 border-b-2 border-blue" to={RouteName.login}>
                 <h1>{t("navbar.connect")}</h1>
               </Link>
             )}
 
             {!isLoggedIn && (
-              <Link className="p-2 border-b-2 border-blue" to="/register">
+              <Link className="p-2 border-b-2 border-blue" to={RouteName.register}>
                 <h1>{t("navbar.createProfil")}</h1>
               </Link>
             )}
@@ -125,7 +125,7 @@ export const Navbar: React.FC = () => {
       <div className="grid w-full">
         <div className="flex justify-self-end">
           {isLoggedIn ? (
-            <Link className="" to="/profil">
+            <Link className="" to={RouteName.profil}>
               <Button
                 type="blue"
                 rounded="lg"
@@ -135,7 +135,7 @@ export const Navbar: React.FC = () => {
               </Button>
             </Link>
           ) : (
-            <Link className="justify-self-end" to="/connexion">
+            <Link className="justify-self-end" to={RouteName.login}>
               <Button
                 type="orange"
                 rounded="lg"
@@ -146,7 +146,7 @@ export const Navbar: React.FC = () => {
             </Link>
           )}
 
-          <Link className="justify-self-end" to="/register">
+          <Link className="justify-self-end" to={RouteName.register}>
             {!isLoggedIn && (
               <Button
                 type="orange"

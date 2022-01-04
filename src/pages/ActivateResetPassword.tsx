@@ -70,7 +70,7 @@ const ActivateResetPassword: React.FC = () => {
 
       <div className="w-full max-w-xs md:max-w-lg mt-10">
         <div className="grid grid-cols-2 md:w-96">
-          <Link to="/connexion">
+          <Link to={RouteName.login}>
             <button
               className="flex items-center cursor-pointer
               bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent

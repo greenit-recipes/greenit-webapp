@@ -12,6 +12,7 @@ import { Link, useHistory } from "react-router-dom";
 import "reactjs-popup/dist/index.css";
 import { ME } from "services/auth.service";
 import { Container, Footer, Navbar } from "../../components";
+import { RouteName } from "App";
 
 const ProfilPage: React.FC = () => {
   useEffect(() => {
@@ -144,7 +145,7 @@ const ProfilPage: React.FC = () => {
             <CTACard
               className="lg:mt-2 lg:mb-6"
               type="blue"
-              link="/créer-une-recette"
+              link={RouteName.createRecipe}
             >
               <h1 className="w-11/12 text-center text-xl lg:text-2xl text-white mt-24 lg:mt-40">
                 Publier une nouvelle recette
