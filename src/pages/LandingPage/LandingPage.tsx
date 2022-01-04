@@ -47,15 +47,15 @@ const LandingPage = () => {
       <BackgroundImage className="overflow-hidden" />
       <Container className="flex flex-col | items-center | mt-12 lg:mt-20">
         <div className="max-w-12 sm:max-w-90">
-          <h1 className="text-2xl lg:text-4xl | pb-12 text-center">
+          <h1 className="text-2xl lg:text-4xl | pb-8 text-center">
             La communauté du fait maison, <br /> pour une nouvelle consommation
           </h1>
         </div>
-        <div className="lg:w-2/3 mb-4">
+        <div className="lg:w-2/3">
           <SearchBar />
         </div>
       </Container>
-      <div className="w-full | items-center py-8 mb-4 | flex justify-center">
+      <div className="w-full | items-center py-8 | flex justify-center">
         {isMobile ? (
           <div className="flex overflow-x-auto pl-6">
             {landingPageCategories.map((item) => (

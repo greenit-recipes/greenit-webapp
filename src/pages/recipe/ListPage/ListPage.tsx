@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
-import { RecipeCard, Navbar, Footer, Empty, Button } from "../../../components";
+import {
+  RecipeCard,
+  Navbar,
+  Footer,
+  Empty,
+  SearchBar,
+} from "../../../components";
 import useIsMobile from "../../../hooks/isMobile";
 import { useRecipesQuery, RecipesQuery } from "../../../graphql";
-import authService from "services/auth.service";
 import { Loading } from "../../../components";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { filterIcon, scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
-import { merge, assign } from "lodash";
-import { Link } from "react-router-dom";
 
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
-    fetchPolicy: 'network-only',
+    fetchPolicy: "network-only",
     variables: {
       first: 15,
       filter: {
@@ -39,7 +42,6 @@ const RecipeListPage = () => {
     ...(params.get("category") ? { category: params.get("category") } : {}),
   });
   const [toggle, setToggle] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
   useEffect(() => {
     if (!loading) {
@@ -85,6 +87,11 @@ const RecipeListPage = () => {
           />
         )}
         <div className="h-auto w-full justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
+          {isMobile && (
+            <div className="sm:w-2/5 mt-2">
+              <SearchBar />
+            </div>
+          )}
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
@@ -157,19 +164,17 @@ const RecipeListPage = () => {
           }}
         />
       )}
-      {showScrollTop && (
-        <img
-          src={scrollToTop}
-          className="fixed bottom-10 right-10 z-20 h-16 w-16 cursor-pointer"
-          id="scrollToTop"
-          onClick={() => {
-            window.scrollTo({
-              top: scrollOffset,
-              behavior: "smooth",
-            });
-          }}
-        />
-      )}
+      <img
+        src={scrollToTop}
+        className="fixed bottom-6 right-4 z-20 h-12 w-12 cursor-pointer"
+        id="scrollToTop"
+        onClick={() => {
+          window.scrollTo({
+            top: scrollOffset,
+            behavior: "smooth",
+          });
+        }}
+      />
       <Footer />
     </div>
   );
