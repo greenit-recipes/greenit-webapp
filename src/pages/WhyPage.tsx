@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Footer, Navbar } from "../components";
-import { Grid } from "components";
 import useIsMobile from "../hooks/isMobile";
 import { corpsWhy, logo, money, planet, wellbeing } from "../icons";
 import communityDesktop from "../icons/community_desktop.png";
 import communityMobile from "../icons/community_mobile.png";
+import { useTranslation } from "react-i18next";
 
 const Block: React.FC<{
   id: string;
@@ -53,6 +53,7 @@ const WhyBlock: React.FC<{
   );
 };
 const WhyPage: React.FC = () => {
+  const { t, i18n } = useTranslation("common");
   const isMobile = useIsMobile();
   useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -74,16 +75,13 @@ const WhyPage: React.FC = () => {
           className="grid justify-items-center text-white w-full pb-20"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-white">
-            Greenit Community
+          {t("whypage.main.title")}
           </h1>
           <h2 className="mt-5 text-xl lg:text-2xl md:w-2/3">
-            Un projet étudiant pour le développement de modes de consommation
-            plus sains.
+          {t("whypage.main.block1")}
           </h2>
           <h3 className="text-center mt-5 mb-5 text-xl md:w-2/3">
-            Aujourd’hui, Greenit c’est une communauté d’humains engagés et
-            proactifs qui veulent répandre un mode de production et consommation
-            plus conscient.
+          {t("whypage.main.block2")}
           </h3>
         </Block>
         <div className="grid justify-items-center bg-white rounded-full h-24 w-24 lg:h-32 lg:w-32 -mt-10 lg:-mt-16">
@@ -92,29 +90,17 @@ const WhyPage: React.FC = () => {
 
         <div className="grid justify-items-center lg:w-2/3">
           <p className="mt-5 text-base lg:text-xl w-3/4 text-justify">
-            En mars 2020, lorsque le Covid confine Andrea chez elle, Andrea
-            s’intéresse à la composition de ses produits du quotidien, lassée de
-            ses irritations et allergies.
+            {t("whypage.history.content1")}
             <br />
             <br />
-            Convaincue de la toxicité des produits industriels, Andrea se lance
-            dans sa première crème maison : une grande réussite ! <br />
+            {t("whypage.history.content2")} <br />
             <br />
-            Stimulée par cette première victoire, elle multiplie les recherches
-            et découvre une passion pour le DIY.
+            {t("whypage.history.content3")}
             <br />
             <br />
-            Consciente des bienfaits physiques et écologiques, elle crée avec
-            Adrien, entrepreneur dans l’âme et motivé par de profondes ambitions
-            écologiques, Greenit, une communauté qui supporte la production
-            maison. Ces derniers s’entourent d’étudiants qui apportent leurs
-            pierres à l’édifice en proposant un design, une identité de marque
-            et leur aide pour développer le premier site internet lancé en juin
-            2021. <br />
+            {t("whypage.history.content4")} <br />
             <br />
-            L’équipe s’agrandit à nouveau en novembre 2021 pour accueillir
-            Florian, le codeur fou, qui est venu booster les ambitions de
-            Greenit en apportant son savoir-faire.
+            {t("whypage.history.content5")}
           </p>
           <img
             src={
@@ -125,7 +111,7 @@ const WhyPage: React.FC = () => {
         </div>
 
         <h1 className=" text-center text-2xl md:text-3xl mt-20 w-3/4">
-          Pourquoi faire ses produits maison ?{" "}
+        {t("whypage.home.maintitle")}{" "}
         </h1>
 
         <div className="grid grid-cols-1 grid-rows-8 md:grid-cols-2 md:grid-rows-4 items-center w-4/5 md:w-2/3 md:gap-6 mt-10">
@@ -134,14 +120,9 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center md:mt-4 md:justify-self-end"
           ></img>
           <div className="">
-            <h1 className="text-md md:text-xl text-green">Pour la planète</h1>
+            <h1 className="text-md md:text-xl text-green">{t("whypage.home.title1")}</h1>
             <h3 className="text-md md:text-base">
-              Parlons des compositions des shampoings, des lessives, des
-              liquides vaisselles : silicones, methylchloroisothiazolinone,
-              polycarboxylates… La liste est longue et leurs pollutions
-              environnementales catastrophiques. La production maison, c’est un
-              contrôle des ingrédients et des contenants. Consommons uniquement
-              le nécessaire !
+            {t("whypage.home.content1")}
             </h3>
           </div>
           <img
@@ -150,14 +131,10 @@ const WhyPage: React.FC = () => {
           ></img>
           <div>
             <h1 className="text-md md:text-xl text-blue text-right">
-              Pour ton corps
+            {t("whypage.home.title2")}
             </h1>
             <h3 className="text-md md:text-base text-right">
-              Ces mêmes ingrédients chimiques endommagent, irritent et
-              vulnérabilisent ta peau et tes cheveux. Hélas, même dans les
-              produits les plus biologiques : les perturbateurs endocriniens,
-              alcool et aluminium attaquent nos corps. La production maison est
-              aussi personnalisée et respecte les différences de chacun.{" "}
+            {t("whypage.home.content2")}{" "}
             </h3>
           </div>
           <img
@@ -170,13 +147,10 @@ const WhyPage: React.FC = () => {
           ></img>
           <div>
             <h1 className="text-md md:text-xl text-yellow">
-              Pour tes économies
+            {t("whypage.home.title3")}
             </h1>
             <h3 className="text-md md:text-base">
-              27,90€ le baume réparateur bio ? 5,80€ le stick à lèvres naturel ?
-              L’industrie des produits cosmétiques et ménagers ne respecte pas
-              notre pouvoir d’achat. Sur Greenit, le baume revient à 6€ et le
-              stick à lèvres à 1,50€.
+            {t("whypage.home.content3")}
             </h3>
           </div>
           <img
@@ -185,13 +159,10 @@ const WhyPage: React.FC = () => {
           ></img>
           <div>
             <h1 className="text-md md:text-xl text-orange text-right">
-              Pour ton esprit
+            {t("whypage.home.title4")}
             </h1>
             <h3 className="text-md md:text-base text-right">
-              La production maison c’est aussi une activité manuelle et
-              épanouissante. La création apporte une stimulation des sens, un
-              sentiment d’accomplissement et une manière de se déconnecter, seul
-              ou à plusieurs.
+            {t("whypage.home.content4")}
             </h3>
           </div>
           <img

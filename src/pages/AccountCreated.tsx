@@ -4,8 +4,10 @@ import React from "react";
 import authService, { RESEND_ACTIVATION_EMAIL } from "services/auth.service";
 import "../App.css";
 import { Footer, Navbar } from "../components";
+import { useTranslation } from "react-i18next";
 
 const AccountCreated: React.FC = () => {
+  const { t, i18n } = useTranslation("common");
   const [resendActivationEMail] = useMutation(RESEND_ACTIVATION_EMAIL, {
     errorPolicy: "all",
   });
@@ -16,19 +18,19 @@ const AccountCreated: React.FC = () => {
       <div className="grid justify-items-center auto-rows-max h-screen mt-28">
         <div className="w-3/4">
           <h1 className="text-center text-2xl md:text-3xl">
-            Bienvenue au sein de la
+          {t("accountCreated.title")}
           </h1>
           <h1 className="text-center text-green text-2xl md:text-3xl">
-            Greenit Community !
+          {t("accountCreated.subtitle")}
           </h1>
           <h4 className="text-center text-xl md:text-2xl mt-10">
-            Une dernière étape est nécessaire pour finaliser ton inscription.
+          {t("accountCreated.content1")}
           </h4>
           <h4 className="text-center text-xl md:text-2xl mt-10">
-            Jette un coup d’oeil à tes mails et confirme ton adresse.
+          {t("accountCreated.content2")}
           </h4>
           <h4 className="text-center text-sm md:text-lg mt-2 mb-10">
-            L’e-mail de confirmation s’est peut-être glissé dans les spams.
+          {t("accountCreated.content3")}
           </h4>
         </div>
         <Button
@@ -39,7 +41,7 @@ const AccountCreated: React.FC = () => {
           }}
           type="green"
         >
-          Renvoyer l'email
+          {t("accountCreated.button")}
         </Button>
       </div>
       <Footer />

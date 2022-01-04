@@ -1,4 +1,19 @@
 {
+	"accountCreated": {
+		"button": "Renvoyer l'email",
+		"content1": "Une dernière étape est nécessaire pour finaliser ton inscription.",
+		"content2": "Jette un coup d’oeil à tes mails et confirme ton adresse.",
+		"content3": "L’e-mail de confirmation s’est peut-être glissé dans les spams.",
+		"subtitle": "Greenit Community !",
+		"title": "Bienvenue au sein de la"
+	},
+	"createRecipeSuccess": {
+		"button": "Revenir à la page d’accueil",
+		"content1": "Ta recette est en attente de validation. Tu seras notifié une fois\n            la publication dans les 24/48h.",
+		"content2": "Si tu souhaites la modifier, envoie-nous un email au plus vite à\n            hello@greenitcommunity.com.",
+		"subtitle": "Ta recette a été prise en compte.",
+		"title": "Merci d’aider la communauté !"
+	},
 	"footer": {
 		"category": {
 			"label1": "Greenit est une solution sociale, économique et écologique aux problèmes environnementaux auxquels nous sommes confrontés. Notre mission ? Répandre un mode de consommation plus responsable et durable en remplaçant la production industrielle par une production plus locale et artisanale.",
@@ -19,6 +34,12 @@
 		},
 		"title1": "Qui sommes-nous ?",
 		"title2": "Contacte-nous !"
+	},
+	"forgetPassword": {
+		"button": "Envoyer",
+		"email": "Email",
+		"mailSend": "Mail de réinitialisation de mot de passe envoyé",
+		"title": "Réinitialise ton mot de passe depuis ta boîte mail."
 	},
 	"landingPage": {
 		"main": {
@@ -61,5 +82,30 @@
 		"profil": "Profil",
 		"recipes": "Recettes",
 		"workshop": "Ateliers"
+	},
+	"whypage": {
+		"history": {
+			"content1": "En mars 2020, lorsque le Covid confine Andrea chez elle, Andrea s’intéresse à la composition de ses produits du quotidien, lassée de ses irritations et allergies.",
+			"content2": "Convaincue de la toxicité des produits industriels, Andrea se lance dans sa première crème maison : une grande réussite !",
+			"content3": "Stimulée par cette première victoire, elle multiplie les recherches et découvre une passion pour le DIY.",
+			"content4": "Consciente des bienfaits physiques et écologiques, elle crée avec Adrien, entrepreneur dans l’âme et motivé par de profondes ambitions écologiques, Greenit, une communauté qui supporte la production maison. Ces derniers s’entourent d’étudiants qui apportent leurs pierres à l’édifice en proposant un design, une identité de marque et leur aide pour développer le premier site internet lancé en juin 2021.",
+			"content5": "L’équipe s’agrandit à nouveau en novembre 2021 pour accueillir Florian, le codeur fou, qui est venu booster les ambitions de Greenit en apportant son savoir-faire."
+		},
+		"home": {
+			"content1": "Parlons des compositions des shampoings, des lessives, des\n              liquides vaisselles : silicones, methylchloroisothiazolinone,\n              polycarboxylates… La liste est longue et leurs pollutions\n              environnementales catastrophiques. La production maison, c’est un\n              contrôle des ingrédients et des contenants. Consommons uniquement\n              le nécessaire !",
+			"content2": "Ces mêmes ingrédients chimiques endommagent, irritent et\n              vulnérabilisent ta peau et tes cheveux. Hélas, même dans les\n              produits les plus biologiques : les perturbateurs endocriniens,\n              alcool et aluminium attaquent nos corps. La production maison est\n              aussi personnalisée et respecte les différences de chacun.",
+			"content3": "27,90€ le baume réparateur bio ? 5,80€ le stick à lèvres naturel ?\n              L’industrie des produits cosmétiques et ménagers ne respecte pas\n              notre pouvoir d’achat. Sur Greenit, le baume revient à 6€ et le\n              stick à lèvres à 1,50€.",
+			"content4": "La production maison c’est aussi une activité manuelle et\n              épanouissante. La création apporte une stimulation des sens, un\n              sentiment d’accomplissement et une manière de se déconnecter, seul\n              ou à plusieurs.",
+			"maintitle": "Pourquoi faire ses produits maison ?",
+			"title1": "Pour la planète",
+			"title2": "Pour ton corps",
+			"title3": "Pour tes économies",
+			"title4": "Pour ton esprit"
+		},
+		"main": {
+			"block1": "Un projet étudiant pour le développement de modes de consommation plus sains.",
+			"block2": "Aujourd’hui, Greenit c’est une communauté d’humains engagés et proactifs qui veulent répandre un mode de production et consommation plus conscient.",
+			"title": "Greenit Community"
+		}
 	}
 }
