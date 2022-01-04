@@ -42,7 +42,9 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="flex justify-end | mr-4 cursor-pointer"
               >
-                <h1 className="text-white hover:text-blue text-sm">{t("navbar.profil")}</h1>
+                <h1 className="text-white hover:text-blue text-sm">
+                  {t("navbar.profil")}
+                </h1>
               </Button>
             </Link>
           ) : (
@@ -67,7 +69,10 @@ export const Navbar: React.FC = () => {
               <h1>{t("navbar.workshop")}</h1>
             </Link>
             {isLoggedIn ? (
-              <Link className="p-2 border-b-2 border-blue" to={RouteName.profil}>
+              <Link
+                className="p-2 border-b-2 border-blue"
+                to={RouteName.profil}
+              >
                 <h1>{t("navbar.profil")}</h1>
               </Link>
             ) : (
@@ -77,7 +82,10 @@ export const Navbar: React.FC = () => {
             )}
 
             {!isLoggedIn && (
-              <Link className="p-2 border-b-2 border-blue" to={RouteName.register}>
+              <Link
+                className="p-2 border-b-2 border-blue"
+                to={RouteName.register}
+              >
                 <h1>{t("navbar.createProfil")}</h1>
               </Link>
             )}
@@ -95,7 +103,9 @@ export const Navbar: React.FC = () => {
             className="h-12 w-12 | ml-4 self-center"
             alt="Greenit Logo"
           />
-          <h3 className="text-4xl text-green ml-1 self-center">{t("navbar.greenit")}</h3>
+          <h3 className="text-4xl text-green ml-1 self-center">
+            {t("navbar.greenit")}
+          </h3>
         </Link>
       </div>
       <div className="flex | justify-self-center cursor-pointer">
@@ -141,7 +151,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="inline justify-end self-center | cursor-pointer mr-2"
               >
-                  {t("navbar.connect")}
+                {t("navbar.connect")}
               </Button>
             </Link>
           )}
@@ -153,7 +163,7 @@ export const Navbar: React.FC = () => {
                 rounded="lg"
                 className="inline justify-end self-center | cursor-pointer mr-3"
               >
-                  {t("navbar.createProfil")}
+                {t("navbar.createProfil")}
               </Button>
             )}
           </Link>

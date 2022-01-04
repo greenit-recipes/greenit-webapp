@@ -11,8 +11,10 @@ import authService, {
 import "../App.css";
 import { Footer, Navbar } from "../components";
 import { RouteName } from "App";
+import { useTranslation } from "react-i18next";
 
 const ActivateAccount: React.FC = () => {
+  const { t, i18n } = useTranslation("common");
   const { tokenActivationAccount } =
     useParams<{ tokenActivationAccount: string }>();
 
@@ -53,29 +55,35 @@ const ActivateAccount: React.FC = () => {
         <div className="grid justify-items-center auto-rows-max h-screen mt-28">
           <div className="w-3/4">
             <h1 className="text-center text-2xl md:text-3xl">
-              Inscription finalisée !
+              {t("activate.success.title")}
             </h1>
             <h4 className="text-center text-sm md:text-lg mt-2 mb-10">
-              Tu peux désormais soumettre tes recettes, liker, partager,
-              commenter… et bien plus !
+            {t("activate.success.subtitle")}
             </h4>
           </div>
           <Link to="/">
-            <Button type="green">Revenir à la page d’accueil</Button>
+            <Button type="green">{t("activate.success.button")}</Button>
           </Link>
         </div>
       ) : (
         <div className="grid justify-items-center auto-rows-max h-screen mt-28">
           <div className="w-full">
             <h1 className="text-center text-2xl md:text-3xl">
-            Il y a eu un problème avec la création de ton compte ! 😥
+            {t("activate.fail.title")}
             </h1>
             <h4 className="text-center text-xl md:text-2xl mt-10">
-            Tu peux réessayer, si le problème persiste n’hésite pas à nous contacter.
+            {t("activate.fail.subtitle1")}
+            </h4>
+            <h4 className="text-center text-xl md:text-2xl mt-10">
+            {t("activate.fail.subtitle1")}
             </h4>
           </div>
           <Link to={RouteName.register}>
-            <Button className="mb-5" type="green">Réessayer de créer un compte</Button>
+            <Button className="mb-5 mt-5" type="green">{t("activate.fail.buttonProfil")}l</Button>
+          </Link>
+
+          <Link to={RouteName.register}>
+            <Button className="mb-5 mt-5" type="green">{t("activate.fail.buttonRecreate")}</Button>
           </Link>
           <Button
             onClick={() => {
@@ -85,7 +93,7 @@ const ActivateAccount: React.FC = () => {
             }}
             type="green"
           >
-            Renvoyer l'email d'activation
+            {t("activate.fail.buttonResend")}
           </Button>
         </div>
       )}

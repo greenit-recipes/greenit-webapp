@@ -7,6 +7,21 @@
 		"subtitle": "Greenit Community !",
 		"title": "Bienvenue au sein de la"
 	},
+	"activate": {
+		"fail": {
+			"buttonProfil": "Se connecter au profil",
+			"buttonRecreate": "Réessayer de créer un compte",
+			"buttonResend": "Renvoyer l'email d'activation",
+			"subtitle1": "Tu peux réessayer, si le problème persiste n’hésite pas à nous contacter.",
+			"subtitle2": "Si tu as déjà activé ton compte, tu peux te connecter sur ton profil.",
+			"title": "Il y a eu un problème avec la création de ton compte ! 😥"
+		},
+		"success": {
+			"button": "Revenir à la page d’accueil",
+			"subtitle": "Tu peux désormais soumettre tes recettes, liker, partager, commenter… et bien plus !",
+			"title": "Inscription finalisée !"
+		}
+	},
 	"contactPage": {
 		"contact": "Contacte-nous !",
 		"email": "hello@greenitcommunity.com",
@@ -80,6 +95,20 @@
 			"label": "Fais-toi aider et rencontre d’autres passionnés",
 			"title": "Tous les ateliers DIY proches de chez toi !"
 		}
+	},
+	"login": {
+		"button": {
+			"createProfil": "Créer un compte",
+			"login": "Connexion"
+		},
+		"createCompte": "Si tu veux créer un compte :",
+		"forgetPassword": "Mot de passe oublié ?",
+		"form": {
+			"labelPassword": "Mot de passe (Le mot de passe doit contenir 8 caractères, une\n              majuscule, une minuscule)",
+			"mail": "Email",
+			"password": "Mot de passe"
+		},
+		"title": "Connexion vers ton espace DIY"
 	},
 	"navbar": {
 		"connect": "Se connecter",
