@@ -258,7 +258,7 @@ const WorkshopPage = () => {
               <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
                 <h5 className="text-base">Mardi 11 janvier</h5>
                 <h5 className="text-sm">12h - 13h30</h5>
-                <h5 className="text-sm">Gratuit 25€</h5>
+                <h5 className="text-sm">25€</h5>
                 <div className="flex justify-center items-center align-middle">
                   <a
                     href="https://www.eventbrite.fr/e/billets-les-classes-vertes-du-kaba-atelier-de-1h30-en-visio-pour-passer-a-laction-160817869577"
@@ -271,7 +271,7 @@ const WorkshopPage = () => {
               <div className="p-4 inline-block shadow-lg rounded-2xl w-44">
                 <h5 className="text-base">Mardi 1 février</h5>
                 <h5 className="text-sm">21h - 22h30</h5>
-                <h5 className="text-sm">Gratuit 25€</h5>
+                <h5 className="text-sm">25€</h5>
                 <div className="flex justify-center items-center align-middle">
                   <a
                     href="https://www.eventbrite.fr/e/billets-les-classes-vertes-du-kaba-atelier-de-1h30-en-visio-pour-passer-a-laction-160817869577"
