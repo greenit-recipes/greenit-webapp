@@ -9,6 +9,7 @@ import {
 } from "services/auth.service";
 import * as yup from "yup";
 import { Navbar } from "components/layout/Navbar";
+import { RouteName } from "App";
 
 const schema = yup.object().shape({
   password: yup
