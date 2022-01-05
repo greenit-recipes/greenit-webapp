@@ -200,9 +200,6 @@ const RecipeSinglePage = () => {
                   image={recipe?.author?.imageProfile}
                   name={recipe?.author?.username}
                 ></UserBadge>
-                <div className="mr-3">
-                  <FavouriteField recipe={data?.recipe}></FavouriteField>
-                </div>
                 <LikeField
                   recipe={data?.recipe}
                   isRecipeCard={false}
@@ -367,10 +364,6 @@ const RecipeSinglePage = () => {
                 <h1 className="text-center text-base"> Lien copié ! </h1>
               )}
             </button>
-            <div className="grid justify-items-center">
-              <LikeField recipe={data?.recipe} isRecipeCard={false}></LikeField>
-              <h1 className="text-center text-base pt-2"> Supporter</h1>
-            </div>
           </div>
         </div>
         <div className="mt-6 flex flex-col">
