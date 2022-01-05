@@ -62,7 +62,7 @@ const WhyPage: React.FC = () => {
     }
   }, []);
   return (
-    <div className="min-h-screen min-w-screen">
+    <div className="min-h-screen min-w-full">
       <Navbar />
       <div className="h-auto w-full flex flex-col items-center mb-12 leading-loose">
         <Block
@@ -199,7 +199,7 @@ const WhyPage: React.FC = () => {
       </div>
       <Block
         id="4"
-        className="grid w-screen p-2 justify-items-center mb-20"
+        className="grid w-full p-2 justify-items-center mb-20"
       >
         <h1 className="text-2xl md:text-3xl"> Merci à toutes celles et ceux qui nous aident </h1>
         <div className="w-full mt-12">

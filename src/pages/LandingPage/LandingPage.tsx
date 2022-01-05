@@ -59,7 +59,7 @@ const LandingPage = () => {
           <SearchBar />
         </div>
       </Container>
-      <div className="w-screen | items-center py-8 mb-5 | flex justify-center">
+      <div className="w-full | items-center py-8 mb-5 | flex justify-center">
         {isMobile ? (
           <div className="flex overflow-x-auto pl-6">
             {landingPageCategories.map((item) => (
@@ -113,7 +113,7 @@ const LandingPage = () => {
         </Link>
       </Container>
 
-      <Container className="w-screen text-center mt-8 sm:mb-14" itemsCenter>
+      <Container className="w-full text-center mt-8 sm:mb-14" itemsCenter>
         <h1 className="text-2xl md:text-3xl | p-5 text-center">
           Nos tutos vidéos pour commencer
         </h1>
@@ -151,7 +151,7 @@ const LandingPage = () => {
         </div>
       </Container>
 
-      <div className="mt-10 grid bg-orange w-screen py-12 justify-items-center">
+      <div className="mt-10 grid bg-orange w-full py-12 justify-items-center">
         <div className="grid mb-8 text-center">
           <h1 className="text-white text-2xl md:text-3xl mb-2">
             {" "}

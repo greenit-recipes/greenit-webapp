@@ -5,7 +5,7 @@ import useIsMobile from "../../hooks/isMobile";
 const NotFoundPage = () => {
   const isMobile = useIsMobile();
   return (
-    <div className="h-screen w-screen">
+    <div className="h-screen w-full">
       <Navbar />
       <div
         className="h-auto w-auto flex items-center flex-col text-gray-600"
