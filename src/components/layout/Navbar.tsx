@@ -1,17 +1,27 @@
 import { RouteName } from "App";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import authService from "services/auth.service";
 import { Button } from "../";
 import useIsMobile from "../../hooks/isMobile";
 import { hamburgerIcon, logo } from "../../icons";
+import { includes } from "lodash";
 
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const [toggle, setToggle] = useState(false);
   const [effect, setEffect] = useState(false);
   const [visible, setVisible] = React.useState(false);
+  const location = useLocation();
+  const history = useHistory();
 
+
+  const refreshPage = ()=> {
+
+    if (includes(location.pathname, 'recipes'))
+    window.location.reload();  
+    history.push('/recipes')
+  }
   const isLoggedIn = authService.isLoggedIn();
 
   if (isMobile) {
@@ -55,9 +65,12 @@ export const Navbar: React.FC = () => {
           }
         >
           <div className="flex flex-col | cursor-pointer space-y-4 text-xl text-gray-500 m-5 w-1/2">
-            <Link className="p-2 border-b-2 border-blue" to="/recipes">
+            <button className="p-2 border-b-2 border-blue"  onClick={() => {
+              setVisible(true)
+              refreshPage()
+            }}>
               <h1>Recettes</h1>
-            </Link>
+            </button>
             <Link
               className="p-2 border-b-2 border-blue"
               to={RouteName.workshops}
@@ -97,17 +110,18 @@ export const Navbar: React.FC = () => {
         </Link>
       </div>
       <div className="flex | justify-self-center cursor-pointer">
-        <Link to="/recipes">
           <button
             className={
               "mr-4 w-32 cursor-pointer border-b-4 | hover:border-blue" +
               (visible ? "outline-none border-blue" : "")
             }
-            onClick={() => setVisible(true)}
+            onClick={() => {
+              setVisible(true)
+              refreshPage()
+            }}
           >
             <h1 className="mb-1 text-xl">Recettes</h1>
           </button>
-        </Link>
         <Link to={RouteName.workshops}>
           <button
             className={

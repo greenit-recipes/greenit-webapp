@@ -59,6 +59,11 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         </div>
       </Link>
       <LikeField recipe={recipe} isRecipeCard={true}></LikeField>
+      <Link
+        to={{
+          pathname: `/recipes/${recipe?.urlId}/${recipe?.id}`,
+        }}
+      >
       <div
         className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-2xl -bottom-20 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
       >
@@ -86,6 +91,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           }
         />
       </div>
+      </Link>
     </div>
   );
 };
