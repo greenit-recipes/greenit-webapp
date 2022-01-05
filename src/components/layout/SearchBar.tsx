@@ -6,8 +6,9 @@ export const SearchBar: React.FC<{
     setValue?: (val: string) => void;
     value?: string;
     onSubmit?: () => void;
+    keyId?: string;
     hideSearchIcon?: boolean;
-  }> = ({ size = "large", value, setValue, onSubmit, hideSearchIcon }) => {
+  }> = ({ size = "large", value, setValue, onSubmit, hideSearchIcon, keyId = "search" }) => {
     const isLarge = size === "large";
     const history = useHistory();
     const totalSize = `w-full h-12 md:h-${isLarge ? "16" : "12"}`;
@@ -18,7 +19,7 @@ export const SearchBar: React.FC<{
       if (!onSubmit) {
         history.push(
           `/recipes/?search=${
-            (document.getElementById("search") as HTMLInputElement)?.value
+            (document.getElementById(keyId) as HTMLInputElement)?.value
           }`
         );
       } else {
@@ -37,7 +38,7 @@ export const SearchBar: React.FC<{
             }
           }}
           placeholder="Recherche ..."
-          id="search"
+          id={keyId}
           onChange={(e) => {
             if (setValue) {
               setValue(e.target.value);

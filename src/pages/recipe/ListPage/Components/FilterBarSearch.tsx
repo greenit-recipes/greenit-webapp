@@ -10,6 +10,7 @@ export const FilterBarSearch: React.FC<{
     return (
       <div className="lg:-ml-5 mb-5 mt-2 mt-3">
         <SearchBar
+          keyId={"filterBarSearch"}
           size="small"
           value={search}
           setValue={setSearch}

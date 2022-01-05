@@ -89,7 +89,7 @@ const RecipeListPage = () => {
         <div className="h-auto w-full justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
           {isMobile && (
             <div className="sm:w-2/5 mt-2">
-              <SearchBar />
+              <SearchBar keyId={'listPageSearch'}/>
             </div>
           )}
           <InfiniteScroll
