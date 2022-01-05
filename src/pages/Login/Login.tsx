@@ -50,7 +50,7 @@ const Login: React.FC = () => {
   React.useEffect(() => {
     if (data?.tokenAuth?.success === false || error) {
       if (
-        data?.tokenAuth?.errors?.nonFieldErrors[0]?.code ===
+        data?.tokenAuth?.errors?.nonFieldErrors?.[0]?.code ===
         "invalid_credentials"
       ) {
         setError("email", {

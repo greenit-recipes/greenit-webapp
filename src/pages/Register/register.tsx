@@ -103,12 +103,12 @@ const Register: React.FC = () => {
     }
 
     if (createAccountData?.register?.success === false || error) {
-      if (createAccountData?.register?.errors?.email[0]?.code === "unique") {
+      if (createAccountData?.register?.errors?.email?.[0]?.code === "unique") {
         setError("email", {
           message: "Cet email éxiste déjà.",
         });
       }
-      if (createAccountData?.register?.errors?.username[0]?.code === "unique") {
+      if (createAccountData?.register?.errors?.username?.[0]?.code === "unique") {
         setError("utilisateur", {
           message: "Ce nom existe déjà.",
         });

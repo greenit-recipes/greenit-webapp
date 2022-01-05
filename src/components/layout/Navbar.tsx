@@ -18,8 +18,9 @@ export const Navbar: React.FC = () => {
 
   const refreshPage = ()=> {
 
-    if (includes(location.pathname, 'recipes'))
-    window.location.reload();  
+    if (location.pathname === '/recipes') {
+      window.location.reload();  
+    }
     history.push('/recipes')
   }
   const isLoggedIn = authService.isLoggedIn();
