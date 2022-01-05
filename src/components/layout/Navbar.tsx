@@ -61,8 +61,8 @@ export const Navbar: React.FC = () => {
         <div
           className={
             toggle
-              ? "navBar_fadeIn flex flex-col ml-5"
-              : "navBar_fadeOut flex flex-col ml-5"
+              ? "navBar_fadeIn flex flex-col ml-2"
+              : "navBar_fadeOut flex flex-col ml-2"
           }
         >
           <div className="mt-5 ml-5">
@@ -76,7 +76,7 @@ export const Navbar: React.FC = () => {
                     rounded="lg"
                     className="flex justify-end | mr-2 cursor-pointer"
                   >
-                    <h1 className="text-white hover:text-blue text-sm">
+                    <h1 className="text-white text-sm">
                       Connexion
                     </h1>
                   </Button>
@@ -87,7 +87,7 @@ export const Navbar: React.FC = () => {
                     rounded="lg"
                     className="flex justify-end | mr-2 cursor-pointer"
                   >
-                    <h1 className="text-white hover:text-blue text-sm">
+                    <h1 className="text-white text-sm">
                       Créer un profil
                     </h1>
                   </Button>
@@ -103,7 +103,7 @@ export const Navbar: React.FC = () => {
               <h1>Recettes</h1>
             </button>
             <Link
-              className="p-2 border-b-2 border-blue"
+              className="p-2 border-b-2 border-blue text-center"
               to={RouteName.workshops}
             >
               <h1>Ateliers</h1>

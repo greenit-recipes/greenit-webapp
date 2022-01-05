@@ -155,7 +155,7 @@ const Register: React.FC = () => {
         Création de ton espace DIY <br />
       </h3>
 
-      <div className="w-full md:w-auto mt-10">
+      <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
         <div className="grid grid-cols-2">
           <h3 className="text-sm md:text-base self-center place-self-end mr-4">
             Si tu as déjà un compte:
@@ -293,7 +293,7 @@ const Register: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex w-84 mb-4 mt-10 self-center ">
+          <div className="flex w-full mb-4 mt-10 self-center ">
             <input
               type="checkbox"
               className="w-6 h-6"

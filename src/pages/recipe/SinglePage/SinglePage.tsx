@@ -345,7 +345,7 @@ const RecipeSinglePage = () => {
           </p>
         </div>
         <div className="grid justify-items-center w-full">
-          <div className="grid grid-cols-3 gap-2 lg:gap-10 m-10 justify-center w-full md:w-80">
+          <div className="grid grid-cols-2 gap-2 lg:gap-10 m-10 justify-items-center w-2/3 md:w-80">
             <div className="grid justify-items-center">
               <FavouriteField recipe={data?.recipe}></FavouriteField>
               <h1 className="text-center text-base" ref={fieldRef}>
