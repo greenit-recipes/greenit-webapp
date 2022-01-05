@@ -89,6 +89,7 @@ const RecipeListPage = () => {
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
             loader={<></>}
+            scrollThreshold={0.7}
             next={() => {
               fetchMore({
                 variables: {
@@ -121,14 +122,14 @@ const RecipeListPage = () => {
           >
             {isMobile ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
-                {recipes?.map((recipe) => (
-                  <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+                {recipes?.map((recipe, index) => (
+                  <RecipeCard recipe={recipe?.node} key={index} />
                 ))}
               </div>
             ) : (
               <div className="w-auto | flex flex-row flex-wrap justify-items-center gap-y-10 gap-x-4 | py-4 px-8 mb-14">
-                {recipes?.map((recipe) => (
-                  <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+                {recipes?.map((recipe, index) => (
+                  <RecipeCard recipe={recipe?.node} key={index} />
                 ))}
               </div>
             )}
