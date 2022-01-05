@@ -3,59 +3,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { Button, Footer, Navbar } from "components";
 import { BackgroundImage } from "components/layout/BackgroundImage";
-import {
-  imageValidation,
-  videoValidation
-} from "helpers/yup-validation.helper";
 import _ from "lodash";
 import {
   CREATE_EMAIL_RECIPE,
-  GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
+  GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
 } from "pages/CreateRecipe/CreateRecipeRequest";
+import { yupCreateRecipe } from "pages/CreateRecipe/yup";
 import React, { useEffect } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
-import * as yup from "yup";
 import { RecipeDifficulty } from "../../graphql";
 
-const requiredFieldText : string = "Ce champ est obligatoire.";
-const schema = yup.object().shape({
-  image: imageValidation(),
-  video: videoValidation(),
-  name: yup.string().required(requiredFieldText),
-  duration: yup.string().required(requiredFieldText),
-  description: yup.string().required(requiredFieldText),
-  difficulty: yup.object().required(requiredFieldText),
-  category: yup.object().required(requiredFieldText),
-  expiry: yup.string().required(requiredFieldText),
-  ingredients: yup // Ne marche pas
-    .array(
-      yup.object({
-        quantity: yup.string().required(requiredFieldText),
-        name: yup.object().required(requiredFieldText),
-      })
-    )
-    .min(1, requiredFieldText),
-  instructions: yup
-    .array(
-      yup.object({
-        instruction: yup.string().required(requiredFieldText),
-      })
-    )
-    .min(1, requiredFieldText),
-  utensils: yup
-    .array(
-      yup.object({
-        quantity: yup.string().required(requiredFieldText),
-        name: yup.object().required(requiredFieldText),
-      })
-    )
-    .min(1, requiredFieldText),
-
-  tags: yup.array().required(requiredFieldText),
-  notes_from_author: yup.string(),
-});
+const schema = yupCreateRecipe;
 
 const CreateRecipe: React.FC = () => {
   const {
@@ -183,9 +143,9 @@ const CreateRecipe: React.FC = () => {
     }
   }, []);
   useEffect(() => {
-    ingredientsAppend({}, { shouldFocus: false});
-    utensilsAppend({}, { shouldFocus: false});
-    instructionsAppend({}, { shouldFocus: false});
+    ingredientsAppend({}, { shouldFocus: false });
+    utensilsAppend({}, { shouldFocus: false });
+    instructionsAppend({}, { shouldFocus: false });
   }, []);
   return (
     <div className="w-screen">
@@ -218,9 +178,7 @@ const CreateRecipe: React.FC = () => {
               placeholder="nom de la recette"
               {...register("name")}
             ></textarea>
-            <p className="text-red text-xs italic">
-              {errors.name?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.name?.message}</p>
           </div>
 
           <div className="mb-10">
@@ -254,9 +212,7 @@ const CreateRecipe: React.FC = () => {
               type="file"
               {...register("image")}
             ></input>
-            <p className="text-red text-xs italic">
-              {errors.image?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.image?.message}</p>
           </div>
 
           {/* Select */}
@@ -345,12 +301,12 @@ const CreateRecipe: React.FC = () => {
                   value: tags?.name,
                   label: tags?.name,
                 }));
-                const tagWithUserValue = _.cloneDeep(optionsTags)
+                const tagWithUserValue = _.cloneDeep(optionsTags);
                 const handleChange = (textType: string) => {
                   tagWithUserValue.push({
                     value: textType,
                     label: textType,
-                  })
+                  });
                 };
                 return (
                   <Select
@@ -364,9 +320,7 @@ const CreateRecipe: React.FC = () => {
                 );
               }}
             />
-            <p className="text-red text-xs italic">
-              {errors.tags?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.tags?.message}</p>
           </div>
           {/* dynamic */}
 
@@ -401,12 +355,13 @@ const CreateRecipe: React.FC = () => {
                           label: ingredient?.name,
                         })
                       );
-                      const ingredientsUserValue = _.cloneDeep(optionsIngredients)
+                      const ingredientsUserValue =
+                        _.cloneDeep(optionsIngredients);
                       const handleChange = (textType: string) => {
                         ingredientsUserValue.push({
                           value: textType,
                           label: textType,
-                        })
+                        });
                       };
                       return (
                         <Select
@@ -451,9 +406,7 @@ const CreateRecipe: React.FC = () => {
               type="file"
               {...register("video")}
             ></input>
-            <p className="text-red text-xs italic">
-              {errors.video?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.video?.message}</p>
           </div>
 
           <div className="mb-10">
@@ -540,12 +493,13 @@ const CreateRecipe: React.FC = () => {
                           label: ustenil?.name,
                         })
                       );
-                      const optionsUtensilssUserValue = _.cloneDeep(optionsUtensilss)
+                      const optionsUtensilssUserValue =
+                        _.cloneDeep(optionsUtensilss);
                       const handleChange = (textType: string) => {
                         optionsUtensilssUserValue.push({
                           value: textType,
                           label: textType,
-                        })
+                        });
                       };
                       return (
                         <Select
@@ -599,9 +553,7 @@ const CreateRecipe: React.FC = () => {
               type="text"
               {...register("expiry")}
             ></input>
-            <p className="text-red text-xs italic">
-              {errors.expiry?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.expiry?.message}</p>
           </div>
 
           <div className="mb-12">

@@ -1,31 +1,17 @@
-import { Footer, Navbar } from "../../components";
 import { useMutation } from "@apollo/client";
-import { useHistory, useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import authServiceService, { LOGIN_ACCOUNT } from "services/auth.service";
-import * as yup from "yup";
-import { BackgroundImage } from "../../components/layout/BackgroundImage";
-import { Link } from "react-router-dom";
 import { RouteName } from "App";
 import { includes } from "lodash";
+import { yupLogin } from "pages/Login/yup";
+import React from "react";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { Link, useHistory } from "react-router-dom";
+import authServiceService, { LOGIN_ACCOUNT } from "services/auth.service";
+import { Footer, Navbar } from "../../components";
+import { BackgroundImage } from "../../components/layout/BackgroundImage";
 
-const schema = yup.object().shape({
-  email: yup.string().email().required("L'email est obligatoire."),
-  password: yup
-    .string()
-    .max(
-      32,
-      "Mot de passe trop long, il doit être moins de 32 caractères maximum."
-    )
-    .required("Le mot de passe est obligatoire.")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/,
-      "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule."
-    ),
-}); // _ - .
+const schema = yupLogin
 
 const Login: React.FC = () => {
   const { t, i18n } = useTranslation("common");
