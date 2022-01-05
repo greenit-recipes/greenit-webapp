@@ -148,14 +148,14 @@ const Register: React.FC = () => {
     });
   };
   return (
-    <div className="grid justify-items-center w-screen">
+    <div className="grid justify-items-center w-full">
       <Navbar />
       <BackgroundImage className="overflow-hidden" />
       <h3 className="text-xl w-2/3 md:text-3xl | mt-16 text-center">
         Création de ton espace DIY <br />
       </h3>
 
-      <div className="w-screen md:w-auto mt-10">
+      <div className="w-full md:w-auto mt-10">
         <div className="grid grid-cols-2">
           <h3 className="text-sm md:text-base self-center place-self-end mr-4">
             Si tu as déjà un compte:

@@ -77,7 +77,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             ) : (
               <div />
             )}
-            <div className="grid grid-cols-2 w-screen">
+            <div className="grid grid-cols-2 w-full">
               {filter.map((item: any) => (
                 <FilterBarItem
                   item={item}

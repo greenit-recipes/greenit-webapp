@@ -16,7 +16,7 @@ export const Navbar: React.FC = () => {
 
   if (isMobile) {
     return (
-      <div className="sticky top-0 z-50 bg-white w-screen">
+      <div className="sticky top-0 z-50 bg-white w-full">
         <div
           onClick={() => {
             setToggle((prevState) => !prevState);

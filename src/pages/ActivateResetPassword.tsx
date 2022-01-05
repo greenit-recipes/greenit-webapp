@@ -61,7 +61,7 @@ const ActivateResetPassword: React.FC = () => {
     }).then(() => reset());
   };
   return (
-    <div className="grid justify-items-center w-screen">
+    <div className="grid justify-items-center w-full">
       <Navbar />
       <BackgroundImage className="overflow-hidden" />
       <h3 className="text-xl w-2/3 md:text-3xl | mt-16 text-center">

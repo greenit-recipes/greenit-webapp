@@ -187,10 +187,10 @@ const CreateRecipe: React.FC = () => {
     instructionsAppend({}, { shouldFocus: false});
   }, []);
   return (
-    <div className="w-screen">
+    <div className="w-full">
       <Navbar></Navbar>
       <BackgroundImage />
-      <div className="grid justify-items-center w-screen">
+      <div className="grid justify-items-center w-full">
         <div className="w-4/5">
           <h1 className="text-center text-xl md:text-2xl md:text-3xl mt-16">
             Publie ta recette et aide la communauté.
