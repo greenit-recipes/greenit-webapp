@@ -273,16 +273,15 @@ const RecipeSinglePage = () => {
               <div className="grid w-full h-full bg-white justify-items-center items-center">
                 <img
                   src={noVideo}
-                  className="h-60 md:h-80 object-cover rounded-lg opacity-25"
+                  className="h-60 md:h-80 object-cover rounded-lg"
                 ></img>
-                <h1 className="absolute text-xs md:text-sm text-grey-600">
-                  L'auteur.e n'a pas encore mis de vidéo
-                </h1>
               </div>
             ) : (
               <ReactPlayer
                 // @ts-ignore
-                url={recipe?.video ? getImagePath(recipe?.video) : recipe?.videoUrl}
+                url={
+                  recipe?.video ? getImagePath(recipe?.video) : recipe?.videoUrl
+                }
                 className="react-player"
                 controls={true}
                 ref={player}
@@ -298,6 +297,9 @@ const RecipeSinglePage = () => {
           </div>
           <div className="mt-5 lg:mt-0 md:ml-10">
             <h1 className="text-xl md:text-2xl">Instructions</h1>
+            <h3 className="text-xs md:text-sm">
+              ⤹ Clique sur les numéros pour faire avancer la vidéo
+            </h3>
             {recipe?.instructions.map((item: any, index: number) => {
               const timestamp = getSecondsFromDuration(item.timestamp);
               return (
@@ -343,7 +345,7 @@ const RecipeSinglePage = () => {
           </p>
         </div>
         <div className="grid justify-items-center w-full">
-          <div className="grid grid-cols-2 gap-2 lg:gap-10 m-10 justify-center md:w-52">
+          <div className="grid grid-cols-3 gap-2 lg:gap-10 m-10 justify-center w-full md:w-80">
             <div className="grid justify-items-center">
               <FavouriteField recipe={data?.recipe}></FavouriteField>
               <h1 className="text-center text-base" ref={fieldRef}>

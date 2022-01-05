@@ -59,8 +59,8 @@ const ActivateAccount: React.FC = () => {
               commenter… et bien plus !
             </h4>
           </div>
-          <Link to="/">
-            <Button type="green">Revenir à la page d’accueil</Button>
+          <Link to="/connexion">
+            <Button type="green">Se connecter à mon profil</Button>
           </Link>
         </div>
       ) : (

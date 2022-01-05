@@ -108,7 +108,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           </Button>
         </Link>
       ) : (
-        <div />
+        <Link to="/register">
+          <Button
+            type="green"
+            className="justify-self-start mt-6 mb-2 h-10 rounded-xl"
+          >
+            <h3> Partager une recette </h3>
+          </Button>
+        </Link>
       )}
       {filter.map((item: any, index: any) => (
         <FilterBarItem

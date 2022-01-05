@@ -201,7 +201,7 @@ const WhyPage: React.FC = () => {
         id="4"
         className="grid w-full p-2 justify-items-center mb-20"
       >
-        <h1 className="text-2xl md:text-3xl"> Merci à toutes celles et ceux qui nous aident </h1>
+        <h1 className="text-xl md:text-2xl"> Merci à toutes celles et ceux qui nous aident </h1>
         <div className="w-full mt-12">
           <img src={isMobile ? communityMobile : communityDesktop} />
         </div>
