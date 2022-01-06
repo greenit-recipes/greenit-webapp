@@ -141,9 +141,9 @@ const WorkshopPage = () => {
               <h2>Description :</h2>
               <h5 className="text-sm mt-2 md:text-base">
                 Cet atelier est destiné aux débutants ! Quelles sont les
-                premières étapes ? Quelles huiles choisir ? Quelles
-                compositions ? Où acheter ? Nous parlerons de l’expansion du
-                fait-maison, nous répondrons à vos questions !
+                premières étapes ? Quelles huiles choisir ? Quelles compositions
+                ? Où acheter ? Nous parlerons de l’expansion du fait-maison,
+                nous répondrons à vos questions !
               </h5>
             </div>
           </div>
@@ -183,7 +183,9 @@ const WorkshopPage = () => {
                 avec un expert de la consommation éco-responsable pour agir, à
                 votre échelle, face à l’urgence climatique.
               </h3>
-              <h2 className="text-green mt-2">🌱 10 EUROS OFFERTS : avec le code GREENIT10</h2>
+              <h2 className="text-green mt-2">
+                🌱 10 EUROS OFFERTS : avec le code GREENIT10
+              </h2>
             </div>
           </div>
         </div>
@@ -362,8 +364,8 @@ const WorkshopPage = () => {
             <div>
               <h3 className="text-ms md:text-base">
                 Experte en cosmétologie naturelle, je propose des ateliers
-                cosmétique clef en main (ingrédients, matériel, contenant
-                fourni) le but est d’apprendre à formuler ses propres produits
+                cosmétique clef en main (ingrédients, matériels, contenants
+                fournis) le but est d’apprendre à formuler ses propres produits
                 cosmétiques afin de les refaire chez soi plus tard. Les ateliers
                 se déroulent à Gardanne et alentours dans la bonne humeur et la
                 bienveillance.
