@@ -59,11 +59,6 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         </div>
       </Link>
       <LikeField recipe={recipe} isRecipeCard={true}></LikeField>
-      <Link
-        to={{
-          pathname: `/recipes/${recipe?.urlId}/${recipe?.id}`,
-        }}
-      >
       <div
         className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-2xl -bottom-20 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
       >
@@ -76,22 +71,27 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             />
           </div>
         )}
-        <h1 className="subpixel-antialiased | text-center mt-5 p-1 text-sm lg:text-lg">
-          {recipe?.name}
-        </h1>
-        <Icon
-          height={iconHeight}
-          nbOfIngredient={recipe?.numberOfIngredients}
-          difficulty={
-            recipe?.difficulty === RecipeDifficulty.Beginner
-              ? "Facile"
-              : recipe?.difficulty === RecipeDifficulty.Intermediate
-              ? "Intermediaire"
-              : "Expert"
-          }
-        />
+        <Link
+          to={{
+            pathname: `/recipes/${recipe?.urlId}/${recipe?.id}`,
+          }}
+        >
+          <h1 className="subpixel-antialiased | text-center mt-5 p-1 text-sm lg:text-lg">
+            {recipe?.name}
+          </h1>
+          <Icon
+            height={iconHeight}
+            nbOfIngredient={recipe?.numberOfIngredients}
+            difficulty={
+              recipe?.difficulty === RecipeDifficulty.Beginner
+                ? "Facile"
+                : recipe?.difficulty === RecipeDifficulty.Intermediate
+                ? "Intermediaire"
+                : "Expert"
+            }
+          />
+        </Link>
       </div>
-      </Link>
     </div>
   );
 };

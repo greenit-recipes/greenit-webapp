@@ -78,9 +78,10 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               <div />
             )}
             <div className="grid grid-cols-2 w-full">
-              {filter.map((item: any) => (
+              {filter.map((item: any, index: any) => (
                 <FilterBarItem
                   item={item}
+                  key={index}
                   currentFilters={currentFilters}
                   handleFilter={handleFilter}
                 />
