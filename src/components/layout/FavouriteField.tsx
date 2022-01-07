@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 import authService from "services/auth.service";
 import { likedIconOff, likedIconOn } from "../../icons";
 
-interface FavouriteField {
+interface IFavouriteField {
   className?: string;
   recipe: any;
   parentFunction?: any;
   isRefetchData?: boolean;
 }
 
-export const FavouriteField: React.FC<FavouriteField> = ({
+export const FavouriteField: React.FC<IFavouriteField> = ({
   recipe,
   parentFunction = null,
   isRefetchData = false,
@@ -45,14 +45,14 @@ export const FavouriteField: React.FC<FavouriteField> = ({
           }}
         >
           {isFavorite ? (
-            <img className="w-9 h-9 lg:w-12 lg:h-12" alt="like" src={likedIconOn} />
+            <img className="w-10 h-12 lg:w-12 lg:h-12" alt="like" src={likedIconOn} />
           ) : (
-            <img className="w-9 h-9 lg:w-12 lg:h-12" alt="dislike" src={likedIconOff} />
+            <img className="w-10 h-12 lg:w-12 lg:h-12" alt="dislike" src={likedIconOff} />
           )}
         </button>
       ) : (
         <Link to="/register">
-          <img className="w-9 h-9 lg:w-12 lg:h-12" src={likedIconOff} />
+          <img className="w-10 h-10 lg:w-12 lg:h-12" src={likedIconOff} />
         </Link>
       )}
     </div>

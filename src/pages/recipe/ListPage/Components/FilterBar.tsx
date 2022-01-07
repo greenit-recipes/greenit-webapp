@@ -4,7 +4,7 @@ import { Button } from "components/misc/Button";
 import authService from "services/auth.service";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import 'react-dropdown/style.css';
 interface FilterBarProps {
   filter: Record<string, any>;
   currentFilters: Record<string, any>;
@@ -26,6 +26,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 }) => {
   const [search, setSearch] = useState(params.get("search") || "");
   const isLoggedIn = authService.isLoggedIn();
+  console.log("filter", filter)
   useEffect(() => {
     if (isMobile && !toggle) {
       setCurrentFilters((prevState: Record<string, any>) => {
@@ -56,7 +57,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   if (isMobile) {
     return (
       // to refacto - we can scroll in the back + we have to click again on the filter icon to see the results
-      <div className="overflow-y-scroll absolute">
+      <div className="sticky top-0 z-50 bg-white w-full">
         <div
           className={`z-10 bg-white top-0 h-full ${
             toggle ? "filterBar_fadeIn" : "filterBar_fadeOut"
@@ -93,7 +94,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     );
   }
   return (
-    <div className="py-12 top-12 w-1/10 pl-10">
+    <div className="sticky top-0 z-50 bg-white w-full">
+      <div className="flex">
       <FilterBarSearch
         search={search}
         setSearch={setSearch}
@@ -118,6 +120,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           </Button>
         </Link>
       )}
+      </div>
+      <div className="flex justify-between">
+
       {filter.map((item: any, index: any) => (
         <FilterBarItem
           item={item}
@@ -126,6 +131,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           handleFilter={handleFilter}
         />
       ))}
+      </div>
     </div>
   );
 };

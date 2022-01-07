@@ -1,11 +1,11 @@
 import { commentaireIcon } from "icons";
 
-interface CommentField {
+interface ICommentField {
   className?: string;
   parentFunction?: any;
 }
 
-export const CommentField: React.FC<CommentField> = ({
+export const CommentField: React.FC<ICommentField> = ({
   className,
   children,
   parentFunction,

@@ -5,14 +5,14 @@ import { ADD_OR_REMOVE_LIKE_RECIPE } from "pages/CreateRecipe/CreateRecipeReques
 import authService from "services/auth.service";
 import { Link } from "react-router-dom";
 
-interface LikeField {
+interface ILikeField {
   className?: string;
   recipe: any;
   isRecipeCard?: boolean;
   parentFunction?: any;
 }
 
-export const LikeField: React.FC<LikeField> = ({
+export const LikeField: React.FC<ILikeField> = ({
   className,
   isRecipeCard = true,
   recipe,

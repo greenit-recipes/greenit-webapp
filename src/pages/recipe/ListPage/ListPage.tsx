@@ -14,6 +14,7 @@ import { filterIcon, scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
 
+
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
@@ -63,6 +64,18 @@ const RecipeListPage = () => {
   return (
     <div className={""}>
       <Navbar />
+      <FilterBar
+            filter={filterData}
+            currentFilters={currentFilters}
+            setCurrentFilters={setCurrentFilters}
+            isMobile={isMobile}
+            toggle={toggle}
+            setScrollOffset={setScrollOffset}
+            params={params}
+          />
+
+
+
       {isMobile && (
         <FilterBar
           filter={filterData}
@@ -74,22 +87,11 @@ const RecipeListPage = () => {
           params={params}
         />
       )}
-      <div className="flex lg:mt-10 items-start">
-        {!isMobile && (
-          <FilterBar
-            filter={filterData}
-            currentFilters={currentFilters}
-            setCurrentFilters={setCurrentFilters}
-            isMobile={isMobile}
-            toggle={toggle}
-            setScrollOffset={setScrollOffset}
-            params={params}
-          />
-        )}
+      <div className="">
         <div className="h-auto w-full justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
           {isMobile && (
             <div className="sm:w-2/5 mt-2">
-              <SearchBar keyId={'listPageSearch'}/>
+              <SearchBar />
             </div>
           )}
           <InfiniteScroll
