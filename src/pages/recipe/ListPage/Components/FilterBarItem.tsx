@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { includes, keys } from "lodash";
 
-interface FilterBarItem {
+interface IFilterBarItem {
   item: Record<string, any>;
   handleFilter: (
     isSelected: boolean,
@@ -10,7 +11,7 @@ interface FilterBarItem {
   currentFilters: Record<string, any>;
 }
 
-export const FilterBarItem: React.FC<FilterBarItem> = ({
+export const FilterBarItem: React.FC<IFilterBarItem> = ({
   item,
   handleFilter,
   currentFilters,
@@ -18,6 +19,8 @@ export const FilterBarItem: React.FC<FilterBarItem> = ({
   const [isTrigerButton, setTrigerButton] = useState(false);
   const isDisplay = isTrigerButton ? "absolute" : "hidden";
   const checkShouldBeChecked = (isChecked: boolean, value: string) => {};
+  const currentId = item?.name;
+  const filterIsActivate = includes(keys(currentFilters), currentId);
 
   return (
     <>
@@ -31,6 +34,9 @@ export const FilterBarItem: React.FC<FilterBarItem> = ({
           <p>{item.title}</p>
           {isTrigerButton && <p>--</p>}
           {!isTrigerButton && <p>!!</p>}
+          {filterIsActivate}
+
+          {currentFilters[item.name] ? <div>({currentFilters[item.name].length})</div> : <div>(0)</div>}
         </button>
         <ul className={" list-none w-24 bg-blue " + "20px" + " " + isDisplay}>
           {item.options.map(

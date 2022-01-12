@@ -14,9 +14,9 @@ import { filterIcon, scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
 
-
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
+
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
     fetchPolicy: "network-only",
     variables: {
@@ -24,7 +24,9 @@ const RecipeListPage = () => {
       filter: {
         search: params.get("search") || "",
         ...(params.get("tags") ? { tags: [params.get("tags")] } : {}),
-        ...(params.get("category") ? { category: params.get("category") } : {}),
+        ...(params.get("category")
+          ? { category: [params.get("category")] }
+          : {}),
       },
     },
   });
@@ -39,7 +41,7 @@ const RecipeListPage = () => {
   }, []);
   const [currentFilters, setCurrentFilters] = useState<any>({
     search: params.get("search") || "",
-    ...(params.get("tags") ? { tags: params.get("tags") } : {}),
+    ...(params.get("tags") ? { tags: [params.get("tags")] } : {}),
     ...(params.get("category") ? { category: params.get("category") } : {}),
   });
   const [toggle, setToggle] = useState(false);
@@ -49,6 +51,7 @@ const RecipeListPage = () => {
       refetch({ filter: currentFilters });
     }
   }, [currentFilters, refetch]);
+  console.log("currentFilters", currentFilters)
   if (loading || !data) {
     return <Loading />;
   }
@@ -65,16 +68,14 @@ const RecipeListPage = () => {
     <div className={""}>
       <Navbar />
       <FilterBar
-            filter={filterData}
-            currentFilters={currentFilters}
-            setCurrentFilters={setCurrentFilters}
-            isMobile={isMobile}
-            toggle={toggle}
-            setScrollOffset={setScrollOffset}
-            params={params}
-          />
-
-
+        filter={filterData}
+        currentFilters={currentFilters}
+        setCurrentFilters={setCurrentFilters}
+        isMobile={isMobile}
+        toggle={toggle}
+        setScrollOffset={setScrollOffset}
+        params={params}
+      />
 
       {isMobile && (
         <FilterBar

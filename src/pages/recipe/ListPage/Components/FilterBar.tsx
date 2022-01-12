@@ -4,7 +4,8 @@ import { Button } from "components/misc/Button";
 import authService from "services/auth.service";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import 'react-dropdown/style.css';
+import { includes, map, omit } from "lodash";
+
 interface FilterBarProps {
   filter: Record<string, any>;
   currentFilters: Record<string, any>;
@@ -26,7 +27,22 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 }) => {
   const [search, setSearch] = useState(params.get("search") || "");
   const isLoggedIn = authService.isLoggedIn();
-  console.log("filter", filter)
+  const removeFilter = (value: any, key: any) => {
+    let currentState = { ...currentFilters }
+    currentState[key] = currentState[key].filter(
+      (x: string) => x !== value
+    
+    );
+
+    console.log("currentState", currentState)
+    setCurrentFilters(currentState);
+    //setCurrentFilters(toto);
+
+  };
+
+  const removeFilters = () => {
+    setCurrentFilters({});
+  };
   useEffect(() => {
     if (isMobile && !toggle) {
       setCurrentFilters((prevState: Record<string, any>) => {
@@ -43,11 +59,28 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     item: Record<string, any>
   ) => {
     setCurrentFilters((prevState: Record<string, any>) => {
-      const state = { ...prevState };
-      if (!isSelected) {
-        state[item.name] = option.value || option.title;
+      let state = { ...prevState };
+      // TO REFACTO
+      if (item.name === "duration") {
+        console.log("passe la")
+        if (state[item.name] === (option.value || option.title)) {
+          delete state[item.name];
+        } else {
+          state[item.name] = option.value || option.title;
+        }
+        return state;
+      }
+      if (state[item.name]) {
+        if (includes(state[item.name], option.value || option.title)) {
+          state[item.name] = state[item.name].filter(
+            (value: string) => value !== (option.value || option.title)
+          );
+        } else {
+          state[item.name].push(option.value || option.title);
+        }
       } else {
-        delete state[item.name];
+        state[item.name] = [option.value || option.title];
+        console.log(state);
       }
       return state;
     });
@@ -96,41 +129,56 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   return (
     <div className="sticky top-0 z-50 bg-white w-full">
       <div className="flex">
-      <FilterBarSearch
-        search={search}
-        setSearch={setSearch}
-        setCurrentFilters={setCurrentFilters}
-      />
-      {isLoggedIn ? (
-        <Link to="/créer-une-recette">
-          <Button
-            type="green"
-            className="justify-self-start mt-6 mb-2 h-10 rounded-xl"
-          >
-            <h3> Partager une recette </h3>
-          </Button>
-        </Link>
-      ) : (
-        <Link to="/register">
-          <Button
-            type="green"
-            className="justify-self-start mt-6 mb-2 h-10 rounded-xl"
-          >
-            <h3> Partager une recette </h3>
-          </Button>
-        </Link>
-      )}
+        <FilterBarSearch
+          search={search}
+          setSearch={setSearch}
+          setCurrentFilters={setCurrentFilters}
+        />
+        {isLoggedIn ? (
+          <Link to="/créer-une-recette">
+            <Button
+              type="green"
+              className="justify-self-start mt-6 mb-2 h-10 rounded-xl"
+            >
+              <h3> Partager une recette </h3>
+            </Button>
+          </Link>
+        ) : (
+          <Link to="/register">
+            <Button
+              type="green"
+              className="justify-self-start mt-6 mb-2 h-10 rounded-xl"
+            >
+              <h3> Partager une recette </h3>
+            </Button>
+          </Link>
+        )}
       </div>
       <div className="flex justify-between">
-
-      {filter.map((item: any, index: any) => (
-        <FilterBarItem
-          item={item}
-          key={index}
-          currentFilters={currentFilters}
-          handleFilter={handleFilter}
-        />
-      ))}
+        {filter.map((item: any, index: any) => (
+          <FilterBarItem
+            item={item}
+            key={index}
+            currentFilters={currentFilters}
+            handleFilter={handleFilter}
+          />
+        ))}
+      </div>
+      <div className="flex-col">
+        <div className="flex">
+          <p>Filtres:</p>
+          {map(omit(currentFilters, 'search'), (item: any, key: any) => map(item, (value) => (
+                        <div className="ml-6 mr-6">
+                        <p key={key}>{value}</p>
+                        <button onClick={() => removeFilter(value, key)}> Remove</button>
+                      </div>
+          )))}
+        </div>
+        <div>
+          <div>toto</div>
+          <div> -- {currentFilters.length}</div>
+          <button onClick={() => removeFilters()}>Remove all filter</button>
+        </div>
       </div>
     </div>
   );
