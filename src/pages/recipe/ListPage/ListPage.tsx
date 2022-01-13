@@ -51,7 +51,7 @@ const RecipeListPage = () => {
       refetch({ filter: currentFilters });
     }
   }, [currentFilters, refetch]);
-  console.log("currentFilters", currentFilters)
+  console.log("currentFilters", currentFilters);
   if (loading || !data) {
     return <Loading />;
   }
@@ -137,10 +137,12 @@ const RecipeListPage = () => {
                 ))}
               </div>
             ) : (
-              <div className="w-auto | flex flex-row flex-wrap justify-items-center gap-y-10 gap-x-4 | py-4 px-8 mb-14">
-                {recipes?.map((recipe, index) => (
-                  <RecipeCard recipe={recipe?.node} key={index} />
-                ))}
+              <div className="grid grid-cols-1 justify-items-center | py-4 px-8 mb-14">
+                <div className="flex flex-wrap gap-y-10 gap-x-4">
+                  {recipes?.map((recipe, index) => (
+                    <RecipeCard recipe={recipe?.node} key={index} />
+                  ))}
+                </div>
               </div>
             )}
           </InfiniteScroll>

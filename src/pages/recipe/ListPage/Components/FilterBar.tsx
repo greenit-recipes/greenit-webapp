@@ -28,16 +28,12 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   const [search, setSearch] = useState(params.get("search") || "");
   const isLoggedIn = authService.isLoggedIn();
   const removeFilter = (value: any, key: any) => {
-    let currentState = { ...currentFilters }
-    currentState[key] = currentState[key].filter(
-      (x: string) => x !== value
-    
-    );
+    let currentState = { ...currentFilters };
+    currentState[key] = currentState[key].filter((x: string) => x !== value);
 
-    console.log("currentState", currentState)
+    console.log("currentState", currentState);
     setCurrentFilters(currentState);
     //setCurrentFilters(toto);
-
   };
 
   const removeFilters = () => {
@@ -62,7 +58,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       let state = { ...prevState };
       // TO REFACTO
       if (item.name === "duration") {
-        console.log("passe la")
+        console.log("passe la");
         if (state[item.name] === (option.value || option.title)) {
           delete state[item.name];
         } else {
@@ -127,34 +123,28 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     );
   }
   return (
-    <div className="sticky top-0 z-50 bg-white w-full">
-      <div className="flex">
+    <div className="grid grid-rows-2 justify-items-center bg-white w-full">
+      <div className="flex w-10/12 self-center mt-6">
         <FilterBarSearch
           search={search}
           setSearch={setSearch}
           setCurrentFilters={setCurrentFilters}
         />
         {isLoggedIn ? (
-          <Link to="/créer-une-recette">
-            <Button
-              type="green"
-              className="justify-self-start mt-6 mb-2 h-10 rounded-xl"
-            >
+          <Link to="/créer-une-recette" className="flex">
+            <Button type="grey" className="self-center h-10 rounded-xl ml-4">
               <h3> Partager une recette </h3>
             </Button>
           </Link>
         ) : (
-          <Link to="/register">
-            <Button
-              type="green"
-              className="justify-self-start mt-6 mb-2 h-10 rounded-xl"
-            >
+          <Link to="/register" className="flex">
+            <Button type="grey" className="self-center h-10 rounded-xl ml-4">
               <h3> Partager une recette </h3>
             </Button>
           </Link>
         )}
       </div>
-      <div className="flex justify-between">
+      <div className="grid grid-cols-5 w-10/12 items-center">
         {filter.map((item: any, index: any) => (
           <FilterBarItem
             item={item}
@@ -164,20 +154,27 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           />
         ))}
       </div>
-      <div className="flex-col">
-        <div className="flex">
-          <p>Filtres:</p>
-          {map(omit(currentFilters, 'search'), (item: any, key: any) => map(item, (value) => (
-                        <div className="ml-6 mr-6">
-                        <p key={key}>{value}</p>
-                        <button onClick={() => removeFilter(value, key)}> Remove</button>
-                      </div>
-          )))}
+      <div className="flex-col w-10/12 bg-blue bg-opacity-25 rounded-lg px-4 py-2">
+        <div className="flex h-8">
+          <h2 className="self-center">Filtres:</h2>
+          {map(omit(currentFilters, "search"), (item: any, key: any) =>
+            map(item, (value) => (
+              <div className="bg-blue text-white rounded-xl px-3 py-1 flex ml-2">
+                <p key={key}>{value}</p>
+                <button
+                  className="ml-2"
+                  onClick={() => removeFilter(value, key)}
+                >
+                  ✖︎
+                </button>
+              </div>
+            ))
+          )}
         </div>
         <div>
-          <div>toto</div>
-          <div> -- {currentFilters.length}</div>
-          <button onClick={() => removeFilters()}>Remove all filter</button>
+          <button onClick={() => removeFilters()}>
+            <h3 className="text-sm mt-2">Supprimer tous les filtres ✕</h3>
+          </button>
         </div>
       </div>
     </div>
