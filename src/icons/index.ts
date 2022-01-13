@@ -70,6 +70,10 @@ import KabaAtelier2 from "./KabaAtelier2.png"
 import KabaLogo from "./KabaLogo.svg"
 import MargauxAtelier from "./MargauxAtelier.png"
 import MargauxLogo from "./MargauxLogo.png"
+import ChristelleAtelier from "./ChristelleAtelier.jpg"
+import ChristelleAtelier1 from "./ChristelleAtelier1.jpg"
+import ChristelleAtelier2 from "./ChristelleAtelier2.jpg"
+import ChristelleLogo from "./ChristelleLogo.png"
 import GreenitTeam from "./GreenitTeam.jpeg"
 
 export const landingPageCategories = [
@@ -150,4 +154,8 @@ export {
   MargauxAtelier,
   MargauxLogo,
   GreenitTeam,
+  ChristelleAtelier,
+  ChristelleAtelier1,
+  ChristelleAtelier2,
+  ChristelleLogo,
 };
