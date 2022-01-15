@@ -86,10 +86,7 @@ const LandingPage = () => {
           </Grid>
         )}
       </div>
-      <Container
-        className="mb-10"
-        itemsCenter
-      >
+      <Container className="mb-6" itemsCenter>
         <h1 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
           Notre sélection de recettes
         </h1>
@@ -109,6 +106,29 @@ const LandingPage = () => {
         <Link to="/recipes" className="mt-6">
           <Button type="green">Découvrir plus</Button>
         </Link>
+      </Container>
+
+      <Container className="w-full text-center mt-8 sm:mb-14" itemsCenter>
+        <h1 className="text-xl md:text-2xl | p-5 text-center">
+          Nous lançons notre financement participatif ! <br />
+          Greenit a besoin de vous !
+        </h1>
+
+        <h3 className=" w-full sm:w-2/3 md:w-2/5 p-4 md:p-1 mb-10 text-md md:text-xl text-center">
+          Nous sommes des jeunes diplômés avec des idées plein la tête. Nous
+          avons besoin de financement pour continuer à développer un espace DIY
+          pour tous !
+        </h3>
+
+        <iframe
+          height="300px"
+          width="310px"
+          src="https://fr.ulule.com/greenit-community/widget.html"
+          scrolling="no"
+        ></iframe>
+        <h1 className="text-xl md:text-2xl | p-5 text-center">
+          🙏 Un grand merci ! 🌱
+        </h1>
       </Container>
 
       <Container className="w-full text-center mt-8 sm:mb-14" itemsCenter>

@@ -1,7 +1,9 @@
 import { RouteName } from "App";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useIsMobile from "../hooks/isMobile";
 import { Container, Footer, Navbar } from "../components";
+import { Button } from "components/misc/Button";
 import {
   PhotoAtelier,
   KabaAtelier1,
@@ -9,10 +11,16 @@ import {
   KabaLogo,
   MargauxAtelier,
   MargauxLogo,
+  ChristelleAtelier,
+  ChristelleAtelier1,
+  ChristelleAtelier2,
+  ChristelleLogo,
 } from "../../src/icons";
 
 const WorkshopPage = () => {
   const [isIncoming, setIsIncoming] = useState(false);
+
+  const isMobile = useIsMobile();
 
   const fieldRef = React.useRef<HTMLInputElement>(null);
 
@@ -84,9 +92,9 @@ const WorkshopPage = () => {
           <div className="bg-transparent rounded mt-2">
             <div className="flex items-center align-middle h-full md:justify-end">
               <Link to={RouteName.contact}>
-                <button className="button_contact">
-                  <h2 className="text-base md:text-xl">Contacter</h2>
-                </button>
+                <Button type="green" className="md:text-xl">
+                  Contacter
+                </Button>
               </Link>
             </div>
           </div>
@@ -169,9 +177,9 @@ const WorkshopPage = () => {
           <div className="bg-transparent rounded mt-2">
             <div className="flex items-center align-middle h-full md:justify-end">
               <a href={"https://www.lekaba.fr/"} target="_blank">
-                <button className="button_contact">
-                  <h2 className="text-base md:text-xl">Contacter</h2>
-                </button>
+                <Button type="green" className="md:text-xl">
+                  Contacter
+                </Button>
               </a>
             </div>
           </div>
@@ -258,7 +266,7 @@ const WorkshopPage = () => {
                 <h2>La classe verte :</h2>
               </div>
               <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
-              <h5 className="text-base">Mardi 1 février</h5>
+                <h5 className="text-base">Mardi 1 février</h5>
                 <h5 className="text-sm">21h - 22h30</h5>
                 <h5 className="text-sm">25€</h5>
                 <div className="flex justify-center items-center align-middle">
@@ -332,7 +340,7 @@ const WorkshopPage = () => {
               <div>
                 <img
                   src={MargauxLogo}
-                  className="w-16 lg:w-18"
+                  className="w-24 lg:w-18"
                   alt="Greenit Logo"
                 />
               </div>
@@ -354,9 +362,9 @@ const WorkshopPage = () => {
                 href={"https://www.instagram.com/lateliercosmetiquedemargaux/"}
                 target="_blank"
               >
-                <button className="button_contact">
-                  <h2 className="text-base md:text-xl">Contacter</h2>
-                </button>
+                <Button type="green" className="md:text-xl">
+                  Contacter
+                </Button>
               </a>
             </div>
           </div>
@@ -421,6 +429,195 @@ const WorkshopPage = () => {
                 <br />
                 <br /> Lieux des ateliers : Gardanne et alentours (environ 20km
                 autour)
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-4/5 mt-10 flex flex-col">
+        <div className="grid md:grid-cols-2">
+          <div className="bg-transparent border-b-4 border-gray-600 | md:col-span-2">
+            <div className="flex justify-start | md:mb-2">
+              <div>
+                <img
+                  src={"https://pic.onlinewebfonts.com/svg/img_280333.png"}
+                  className="w-auto h-6 lg:h-9"
+                  alt="icon Location"
+                />
+              </div>
+              <div className="items-center self-center">
+                <h3 className="pl-3 pb-1 text-xl lg:text-2xl text-center">
+                  Angers
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div className="bg-transparent rounded-lg mt-5 p-2 shadow-lg md:p-4">
+            <div className="flex justify-start ...">
+              <div>
+                <img
+                  src={ChristelleLogo}
+                  className="w-28 lg:w-32 rounded-lg"
+                  alt="Greenit Logo"
+                />
+              </div>
+              <div className="items-center self-center">
+                <h3 className="pl-3 text-lg md:text-xl">
+                  Ateliers Éclat d'essences
+                </h3>
+                <h5 className="pl-3 text-base">
+                  {" "}
+                  Ateliers de cosmétiques bio DIY et d'aromathérapie !{" "}
+                </h5>
+              </div>
+            </div>
+          </div>
+          <div className="bg-transparent rounded mt-2">
+            <div className="flex items-center align-middle h-full md:justify-end">
+              <a
+                href={"https://www.instagram.com/eclatdessences/"}
+                target="_blank"
+              >
+                <Button type="green" className="md:text-xl">
+                  Contacter
+                </Button>
+              </a>
+            </div>
+          </div>
+          <div className="bg-transparent mt-4 rounded md:col-span-2">
+            <div>
+              <h3 className="text-ms md:text-base">
+                Passionnée par le DIY et diplômée en aromathérapie, j'anime des
+                ateliers pour vous initier à l’élaboration de vos propres
+                cosmétiques naturels ainsi qu’à l’utilisation des huiles
+                essentielles. Les recettes sont testées et approuvées. Si vous
+                avez envie de réaliser vos cosmétiques naturels et BIO, ou d'en
+                savoir plus sur l'aromathérapie, il y a forcément un atelier
+                pour vous. Partagez un moment unique entre amis ou en famille !
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-4/5 mb-10 mt-8 flex flex-col">
+        <div className="grid md:grid-cols-4">
+          <div className="rounded md:row-span-3">
+            <div className="flex flex-wrap justify-center items-center align-middle h-full">
+              <img
+                src={ChristelleAtelier1}
+                className="rounded-2xl"
+                style={{ width: "100%", maxWidth: "200px" }}
+              />
+              {isMobile ? (
+                <div></div>
+              ) : (
+                <div>
+                  <img
+                    src={ChristelleAtelier}
+                    className="rounded-2xl mt-2"
+                    style={{ width: "100%", maxWidth: "200px" }}
+                  />
+
+                  <img
+                    src={ChristelleAtelier2}
+                    className="rounded-2xl mt-2"
+                    style={{ width: "100%", maxWidth: "200px" }}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="mt-6 rounded">
+            <div className="h-9/12 grid md:justify-items-center">
+              <div className="static ...">
+                <h2> Atelier découverte DIY </h2>
+                <h3> Cosmétiques naturels </h3>
+              </div>
+              <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
+                <h5 className="text-base">
+                  Contacter Eclat d'Essences pour la date et le lieu.
+                </h5>
+                <h5 className="text-sm">à partir de 30 euros</h5>
+                <div className="flex justify-center items-center align-middle">
+                  <a
+                    href={"https://www.instagram.com/eclatdessences/"}
+                    target="_blank"
+                  >
+                    <button className="button_reserver">Reserver</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex md:col-span-2 mt-2">
+            <div className="self-center">
+              <h2>Description :</h2>
+              <h5 className="text-sm mt-2 md:text-base">
+                Réalisation en groupe d'une recette 'cosmétique' et d'une
+                recette 'produit ménager'.
+              </h5>
+            </div>
+          </div>
+          <div className="mt-6 rounded">
+            <div className="h-9/12 grid md:justify-items-center">
+              <div className="static ...">
+                <h2>Atelier Aromatherapie :</h2>
+                <h3> La trousse aroma de l'hiver </h3>
+              </div>
+              <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
+                <h5 className="text-base">
+                  Contacter Eclat d'Essences pour la date et le lieu.
+                </h5>
+                <h5 className="text-sm">à partir de 30 euros</h5>
+                <div className="flex justify-center items-center align-middle">
+                  <a
+                    href={"https://www.instagram.com/eclatdessences/"}
+                    target="_blank"
+                  >
+                    <button className="button_reserver">Reserver</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex md:col-span-2 mt-2">
+            <div className="self-center">
+              <h2>Description :</h2>
+              <h5 className="text-sm mt-2 md:text-base">
+                Réalisation d’un roll-on ‘Immunité’ par participant.
+              </h5>
+            </div>
+          </div>
+          <div className="mt-6 rounded">
+            <div className="h-9/12 grid md:justify-items-center">
+              <div className="static ...">
+                <h2> Atelier 'Un temps pour soi'</h2>
+              </div>
+              <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
+                <h5 className="text-base">
+                  Contacter Eclat d'Essences pour la date et le lieu.
+                </h5>
+                <h5 className="text-sm">à partir de 30 euros</h5>
+                <div className="flex justify-center items-center align-middle">
+                  <a
+                    href={"https://www.instagram.com/eclatdessences/"}
+                    target="_blank"
+                  >
+                    <button className="button_reserver">Reserver</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex md:col-span-2 mt-2">
+            <div className="self-center">
+              <h2>Description :</h2>
+              <h5 className="text-sm mt-2 md:text-base">
+                Soin complet du visage en cosmétique naturel bio. Réalisation en
+                groupe d’une recette 'cosmétique' : masque purifiant et
+                régénérant.
               </h5>
             </div>
           </div>
