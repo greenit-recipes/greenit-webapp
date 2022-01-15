@@ -536,9 +536,10 @@ const WorkshopPage = () => {
                 <h3> Cosmétiques naturels </h3>
               </div>
               <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
-                <h5 className="text-sm">
+                <h5 className="text-base">
                   Contacter Eclat d'Essences pour la date et le lieu.
                 </h5>
+                <h5 className="text-sm">à partir de 30 euros</h5>
                 <div className="flex justify-center items-center align-middle">
                   <a
                     href={"https://www.instagram.com/eclatdessences/"}
@@ -566,9 +567,10 @@ const WorkshopPage = () => {
                 <h3> La trousse aroma de l'hiver </h3>
               </div>
               <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
-                <h5 className="text-sm">
+                <h5 className="text-base">
                   Contacter Eclat d'Essences pour la date et le lieu.
                 </h5>
+                <h5 className="text-sm">à partir de 30 euros</h5>
                 <div className="flex justify-center items-center align-middle">
                   <a
                     href={"https://www.instagram.com/eclatdessences/"}
@@ -594,9 +596,10 @@ const WorkshopPage = () => {
                 <h2> Atelier 'Un temps pour soi'</h2>
               </div>
               <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
-                <h5 className="text-sm">
+                <h5 className="text-base">
                   Contacter Eclat d'Essences pour la date et le lieu.
                 </h5>
+                <h5 className="text-sm">à partir de 30 euros</h5>
                 <div className="flex justify-center items-center align-middle">
                   <a
                     href={"https://www.instagram.com/eclatdessences/"}
@@ -612,10 +615,9 @@ const WorkshopPage = () => {
             <div className="self-center">
               <h2>Description :</h2>
               <h5 className="text-sm mt-2 md:text-base">
-                Soin complet du visage en cosmétique naturel bio.
-                <br />
-                Réalisation en groupe d’une recette 'cosmétique' : masque
-                purifiant et régénérant.
+                Soin complet du visage en cosmétique naturel bio. Réalisation en
+                groupe d’une recette 'cosmétique' : masque purifiant et
+                régénérant.
               </h5>
             </div>
           </div>
