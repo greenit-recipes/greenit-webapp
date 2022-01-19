@@ -121,13 +121,13 @@ const LandingPage = () => {
         </h3>
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 md:-ml-10">
           <iframe
-            className="react-player justify-self-center"
+            className="react-player px-4 sm:px-0 justify-self-center"
             height="300px"
             width="310px"
             src="https://fr.ulule.com/greenit-community/widget.html"
             scrolling="no"
           ></iframe>
-          <div className="w-screen sm:w-96 lg:w-99">
+          <div className="w-screen px-4 sm:px-0 sm:w-96 lg:w-99">
             <iframe
               className="react-player"
               height="270px"
