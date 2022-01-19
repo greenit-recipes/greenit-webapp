@@ -108,24 +108,36 @@ const LandingPage = () => {
         </Link>
       </Container>
 
-      <Container className="w-full text-center mt-8 sm:mb-14" itemsCenter>
-        <h1 className="text-xl md:text-2xl | p-5 text-center">
+      <Container className="w-full text-center mt-8 sm:mb-8" itemsCenter>
+        <h1 className="text-xl md:text-2xl | px-5 text-center">
           Nous lançons notre financement participatif ! <br />
           Greenit a besoin de vous !
         </h1>
 
-        <h3 className=" w-full sm:w-2/3 md:w-2/5 p-4 md:p-1 mb-10 text-md md:text-xl text-center">
+        <h3 className=" w-full sm:w-2/3 md:w-2/5 p-6 md:p-1 mb-6 text-md md:text-xl text-center">
           Nous sommes des jeunes diplômés avec des idées plein la tête. Nous
           avons besoin de financement pour continuer à développer un espace DIY
           pour tous !
         </h3>
-
-        <iframe
-          height="300px"
-          width="310px"
-          src="https://fr.ulule.com/greenit-community/widget.html"
-          scrolling="no"
-        ></iframe>
+        <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 md:-ml-10">
+          <iframe
+            className="react-player justify-self-center"
+            height="300px"
+            width="310px"
+            src="https://fr.ulule.com/greenit-community/widget.html"
+            scrolling="no"
+          ></iframe>
+          <div className="w-screen sm:w-96 lg:w-99">
+            <iframe
+              className="react-player"
+              height="270px"
+              width="100%"
+              src="https://www.youtube-nocookie.com/embed/v0-8WGzCTs8"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>
+          </div>
+        </div>
         <h1 className="text-xl md:text-2xl | p-5 text-center">
           🙏 Un grand merci ! 🌱
         </h1>

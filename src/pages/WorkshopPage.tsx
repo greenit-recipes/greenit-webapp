@@ -359,7 +359,7 @@ const WorkshopPage = () => {
           <div className="bg-transparent rounded mt-2">
             <div className="flex items-center align-middle h-full md:justify-end">
               <a
-                href={"https://www.instagram.com/lateliercosmetiquedemargaux/"}
+                href={"https://lateliercosmetiquedemargaux.fr/contact/"}
                 target="_blank"
               >
                 <Button type="green" className="md:text-xl">
@@ -406,9 +406,7 @@ const WorkshopPage = () => {
                 <h5 className="text-sm">à partir de 29 euros</h5>
                 <div className="flex justify-center items-center align-middle">
                   <a
-                    href={
-                      "https://www.instagram.com/lateliercosmetiquedemargaux/"
-                    }
+                    href={"https://lateliercosmetiquedemargaux.fr/home/"}
                     target="_blank"
                   >
                     <button className="button_reserver">Reserver</button>
