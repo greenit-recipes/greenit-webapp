@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import "App.css";
 import { Button, Loading, RecipeCard } from "components";
 import { getImagePath } from "helpers/image.helper";
-import { defaultImageProfil } from "icons";
+import { defaultImageProfil, likedIconOff, likedIconOn } from "icons";
 import { isEmpty } from "lodash";
 import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
 import { Modal } from "pages/Profil/ModalProfil";
@@ -60,14 +60,16 @@ const ProfilPage: React.FC = () => {
       >
         <div className="grid grid-cols-2 gap-4 mb-8 md:mb-20">
           <div className="grid justify-items-center bg-transparent h-32 w-32 md:h-40 md:w-40 rounded-full border-2 border-transparent hover:border-gray-400">
-            <ModalImageProfil hasImageProfile={!!userImage} parentFunction={refetch} />
+            <ModalImageProfil
+              hasImageProfile={!!userImage}
+              parentFunction={refetch}
+            />
             <img
               className={`object-cover h-32 w-32 md:h-36 md:w-36
               rounded-full | self-center`}
               // @ts-ignore
               src={userImage ? userImage : defaultImageProfil}
             ></img>
-
           </div>
           <div className="flex flex-col | self-center">
             <div className="flex-inline overflow-clip overflow-hidden ...">
@@ -76,7 +78,6 @@ const ProfilPage: React.FC = () => {
             <Modal />
           </div>
         </div>
-        
       </Container>
 
       <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
@@ -107,13 +108,20 @@ const ProfilPage: React.FC = () => {
               {isEmpty(user?.recipeFavorite) && (
                 <div
                   className={
-                    "grid text-center col-span-3 w-2/3 mb-56 mt-8 justify-items-center" +
+                    "grid text-center col-span-3 w-full mb-56 mt-8 justify-items-center" +
                     (visible ? " hidden" : "")
                   }
                 >
-                  <h3 className="text-base md:text-2xl">
-                    Tu n'as pas de recette favorite
+                  <h1 className="text-base md:text-2xl">
+                    Tu n'as pas encore de recette favorite
+                  </h1>
+                  <h3 className="text-base md:text-xl mt-4">
+                    Pour mettre une recette en favoris <br />
+                    appuie sur le coeur de la recette
                   </h3>
+                  <div>
+                    <img className="w-12 h-12" src={likedIconOff} />
+                  </div>
                   <Link to="/recipes">
                     <Button className="mt-5" type="blue">
                       Explorer des recettes
@@ -124,7 +132,10 @@ const ProfilPage: React.FC = () => {
 
               {user?.recipeFavorite?.map((recipe: any, index: any) => (
                 <>
-                  <div key={index} className="col-span-1 w-full sm:mb-6 justify-center">
+                  <div
+                    key={index}
+                    className="col-span-1 w-full sm:mb-6 justify-center"
+                  >
                     <RecipeCard
                       parentFunction={refetchMe}
                       recipe={recipe}
@@ -152,7 +163,10 @@ const ProfilPage: React.FC = () => {
             </CTACard>
             {user?.recipeAuthor?.map((recipe: any, index: any) => (
               <>
-                <div key={index} className="col-span-1 w-full mb-6 md:mb-12 justify-center">
+                <div
+                  key={index}
+                  className="col-span-1 w-full mb-6 md:mb-12 justify-center"
+                >
                   <RecipeCard
                     parentFunction={refetchMe}
                     disabledFavoriteRecipe={true}
