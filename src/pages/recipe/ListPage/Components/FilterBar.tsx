@@ -14,6 +14,7 @@ interface FilterBarProps {
   toggle?: boolean;
   setScrollOffset: (val: number) => void;
   params: URLSearchParams;
+  key: string;
 }
 
 export const FilterBar: React.FC<FilterBarProps> = ({
@@ -24,6 +25,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   isMobile,
   toggle,
   setScrollOffset,
+  key,
 }) => {
   const [search, setSearch] = useState(params.get("search") || "");
   const isLoggedIn = authService.isLoggedIn();
@@ -54,32 +56,25 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     option: { title: string; value: string },
     item: Record<string, any>
   ) => {
-    setCurrentFilters((prevState: Record<string, any>) => {
-      let state = { ...prevState };
-      // TO REFACTO
-      if (item.name === "duration") {
-        console.log("passe la");
-        if (state[item.name] === (option.value || option.title)) {
-          delete state[item.name];
-        } else {
-          state[item.name] = option.value || option.title;
-        }
-        return state;
-      }
-      if (state[item.name]) {
-        if (includes(state[item.name], option.value || option.title)) {
-          state[item.name] = state[item.name].filter(
-            (value: string) => value !== (option.value || option.title)
-          );
-        } else {
-          state[item.name].push(option.value || option.title);
-        }
+    const state = { ...currentFilters };
+    // TO REFACTO
+    if (state[item.name]) {
+      console.log('1')
+      if (includes(state[item.name], option.value || option.title)) {
+        console.log('2')
+        state[item.name] = state[item.name].filter(
+          (value: string) => value !== (option.value || option.title)
+        );
       } else {
-        state[item.name] = [option.value || option.title];
-        console.log(state);
+        console.log('3')
+        state[item.name].push(option.value || option.title);
       }
-      return state;
-    });
+    } else {
+      console.log('4')
+      state[item.name] = [option.value || option.title];
+    }
+    
+    setCurrentFilters(state);
     setScrollOffset(0);
   };
 
@@ -123,7 +118,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     );
   }
   return (
-    <div className="grid grid-rows-2 justify-items-center bg-white w-full">
+    <div className="grid grid-rows-2 justify-items-center bg-white w-full" key={key}>
       <div className="flex w-10/12 self-center mt-6">
         <FilterBarSearch
           search={search}

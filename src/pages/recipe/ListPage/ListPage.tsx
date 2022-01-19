@@ -17,16 +17,26 @@ import { FilterBar } from "./Components/FilterBar";
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
 
+  const [currentFilters, setCurrentFilters] = useState<any>({
+    search: "" ,
+    tags : [],
+    category: [],
+    difficulty : [],
+    duration : [],
+    numberOfIngredients : [],
+  });
+
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
     fetchPolicy: "network-only",
     variables: {
       first: 15,
       filter: {
-        search: params.get("search") || "",
-        ...(params.get("tags") ? { tags: [params.get("tags")] } : {}),
-        ...(params.get("category")
-          ? { category: [params.get("category")] }
-          : {}),
+        search: "" ,
+        tags : [],
+        category: [],
+        difficulty : [],
+        duration : [],
+        numberOfIngredients : [],
       },
     },
   });
@@ -39,19 +49,17 @@ const RecipeListPage = () => {
       });
     }
   }, []);
-  const [currentFilters, setCurrentFilters] = useState<any>({
-    search: params.get("search") || "",
-    ...(params.get("tags") ? { tags: [params.get("tags")] } : {}),
-    ...(params.get("category") ? { category: params.get("category") } : {}),
-  });
   const [toggle, setToggle] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
   useEffect(() => {
+    console.log("PASSE ICI")
+    console.log(' ------->', currentFilters)
     if (!loading) {
       refetch({ filter: currentFilters });
     }
-  }, [currentFilters, refetch]);
-  console.log("currentFilters", currentFilters);
+  }, [currentFilters]);
+
+
   if (loading || !data) {
     return <Loading />;
   }
@@ -67,6 +75,7 @@ const RecipeListPage = () => {
   return (
     <div className={""}>
       <Navbar />
+      {!isMobile && (
       <FilterBar
         filter={filterData}
         currentFilters={currentFilters}
@@ -75,10 +84,12 @@ const RecipeListPage = () => {
         toggle={toggle}
         setScrollOffset={setScrollOffset}
         params={params}
-      />
+        key='isFilterBarNotMobile'
+      /> )}
 
       {isMobile && (
         <FilterBar
+        key='isFilterBarMobile'
           filter={filterData}
           currentFilters={currentFilters}
           setCurrentFilters={setCurrentFilters}
@@ -88,8 +99,8 @@ const RecipeListPage = () => {
           params={params}
         />
       )}
-      <div className="">
-        <div className="h-auto w-full justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
+      <div className="flex justify-center">
+        <div className="h-auto max-w-7xl  justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
           {isMobile && (
             <div className="sm:w-2/5 mt-2">
               <SearchBar />
@@ -131,14 +142,14 @@ const RecipeListPage = () => {
             }}
           >
             {isMobile ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
+              <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 justify-center md:gap-y-10">
                 {recipes?.map((recipe, index) => (
                   <RecipeCard recipe={recipe?.node} key={index} />
                 ))}
               </div>
             ) : (
               <div className="grid grid-cols-1 justify-items-center | py-4 px-8 mb-14">
-                <div className="flex flex-wrap gap-y-10 gap-x-4">
+                <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
                   {recipes?.map((recipe, index) => (
                     <RecipeCard recipe={recipe?.node} key={index} />
                   ))}

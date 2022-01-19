@@ -93,4 +93,15 @@ export const filterData = [
       { title: "Expert", value: "ADVANCED" },
     ],
   },
+  {
+    title: "Nombre d'ingrédients",
+    name: "numberOfIngredients",
+    options: [
+      { title: "1 ingrédient", value: "1" },
+      { title: "2 ingrédient", value: "2" },
+      { title: "3 ingrédient", value: "3" },
+      { title: "4 ingrédient", value: "4" },
+      { title: "5 ou plus", value: "5" },
+    ],
+  },
 ];
