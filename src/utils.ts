@@ -20,7 +20,6 @@ export const getBreakpoint = (screen = "") => {
   }
   // invalid screen choice
   if (!screens[screen]) {
-    console.error(`No match for "${screen}"`);
     return false;
   }
   // @ts-ignore

@@ -32,7 +32,6 @@ const ActivateAccount: React.FC = () => {
 
   useEffect(() => {
     verifyAccount().then((dataReponse) => {
-      console.log(dataReponse)
       if (!authService.getEmail()) return;
       if (dataReponse?.data?.verifyAccount?.success) {
         welcomeNewUser({

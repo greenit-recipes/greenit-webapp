@@ -14,7 +14,6 @@ interface FilterBarProps {
   toggle?: boolean;
   setScrollOffset: (val: number) => void;
   params: URLSearchParams;
-  key: string;
 }
 
 export const FilterBar: React.FC<FilterBarProps> = ({
@@ -25,7 +24,6 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   isMobile,
   toggle,
   setScrollOffset,
-  key,
 }) => {
   const [search, setSearch] = useState(params.get("search") || "");
   const isLoggedIn = authService.isLoggedIn();
@@ -33,7 +31,6 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     let currentState = { ...currentFilters };
     currentState[key] = currentState[key].filter((x: string) => x !== value);
 
-    console.log("currentState", currentState);
     setCurrentFilters(currentState);
     //setCurrentFilters(toto);
   };
@@ -57,23 +54,18 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     item: Record<string, any>
   ) => {
     const state = { ...currentFilters };
-    // TO REFACTO
     if (state[item.name]) {
-      console.log('1')
       if (includes(state[item.name], option.value || option.title)) {
-        console.log('2')
         state[item.name] = state[item.name].filter(
           (value: string) => value !== (option.value || option.title)
         );
       } else {
-        console.log('3')
         state[item.name].push(option.value || option.title);
       }
     } else {
-      console.log('4')
       state[item.name] = [option.value || option.title];
     }
-    
+
     setCurrentFilters(state);
     setScrollOffset(0);
   };
@@ -118,60 +110,79 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     );
   }
   return (
-    <div className="grid grid-rows-2 justify-items-center bg-white w-full" key={key}>
-      <div className="flex w-10/12 self-center mt-6">
-        <FilterBarSearch
-          search={search}
-          setSearch={setSearch}
-          setCurrentFilters={setCurrentFilters}
-        />
-        {isLoggedIn ? (
-          <Link to="/créer-une-recette" className="flex">
-            <Button type="grey" className="self-center h-10 rounded-xl ml-4">
-              <h3> Partager une recette </h3>
-            </Button>
-          </Link>
-        ) : (
-          <Link to="/register" className="flex">
-            <Button type="grey" className="self-center h-10 rounded-xl ml-4">
-              <h3> Partager une recette </h3>
-            </Button>
-          </Link>
-        )}
-      </div>
-      <div className="grid grid-cols-5 w-10/12 items-center">
-        {filter.map((item: any, index: any) => (
-          <FilterBarItem
-            item={item}
-            key={index}
-            currentFilters={currentFilters}
-            handleFilter={handleFilter}
+    <div
+      className={
+        isMobile ? "" : "grid grid-rows-2 justify-items-center bg-white w-full"
+      }
+    >
+      {!isMobile && (
+        <div className="flex w-10/12 self-center mt-6">
+          <FilterBarSearch
+            search={search}
+            setSearch={setSearch}
+            setCurrentFilters={setCurrentFilters}
           />
-        ))}
-      </div>
-      <div className="flex-col w-10/12 bg-blue bg-opacity-25 rounded-lg px-4 py-2">
-        <div className="flex h-8">
-          <h2 className="self-center">Filtres:</h2>
-          {map(omit(currentFilters, "search"), (item: any, key: any) =>
-            map(item, (value) => (
-              <div className="bg-blue text-white rounded-xl px-3 py-1 flex ml-2">
-                <p key={key}>{value}</p>
-                <button
-                  className="ml-2"
-                  onClick={() => removeFilter(value, key)}
-                >
-                  ✖︎
-                </button>
-              </div>
-            ))
+          {isLoggedIn ? (
+            <Link to="/créer-une-recette" className="flex">
+              <Button type="grey" className="self-center h-10 rounded-xl ml-4">
+                <h3> Partager une recette </h3>
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/register" className="flex">
+              <Button type="grey" className="self-center h-10 rounded-xl ml-4">
+                <h3> Partager une recette </h3>
+              </Button>
+            </Link>
           )}
         </div>
-        <div>
-          <button onClick={() => removeFilters()}>
-            <h3 className="text-sm mt-2">Supprimer tous les filtres ✕</h3>
-          </button>
-        </div>
+      )}
+      {isMobile && (
+        <button className="pt-5" onClick={() => removeFilters()}>
+          <h3 className="text-sm mt-2">Supprimer tous les filtres ✕</h3>
+        </button>
+      )}
+      <div className={isMobile ? "" : "flex justify-between w-4/5 mt-5"}>
+        {filter.map((item: any, index: any) => (
+          <div key={index}>
+            <FilterBarItem
+              isMobile={isMobile}
+              item={item}
+              currentFilters={currentFilters}
+              handleFilter={handleFilter}
+            />
+          </div>
+        ))}
       </div>
+      <div></div>
+      {!isMobile && (
+        <div className="flex-col w-10/12 bg-blue bg-opacity-25 rounded-lg px-4 py-2">
+          <div className="flex h-8">
+            <h2 className="self-center">Filtres:</h2>
+            {map(omit(currentFilters, "search"), (item: any, key: any) =>
+              map(item, (value, index) => (
+                <div
+                  className="bg-blue text-white rounded-xl px-3 py-1 flex ml-2"
+                  key={index}
+                >
+                  <p>{value}</p>
+                  <button
+                    className="ml-2"
+                    onClick={() => removeFilter(value, key)}
+                  >
+                    ✖︎
+                  </button>
+                </div>
+              ))
+            )}
+          </div>
+          <div>
+            <button onClick={() => removeFilters()}>
+              <h3 className="text-sm mt-2">Supprimer tous les filtres ✕</h3>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

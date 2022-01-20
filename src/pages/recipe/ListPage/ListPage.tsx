@@ -13,17 +13,17 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { filterIcon, scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
-
+import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
 
   const [currentFilters, setCurrentFilters] = useState<any>({
-    search: "" ,
-    tags : [],
+    search: "",
+    tags: [],
     category: [],
-    difficulty : [],
-    duration : [],
-    numberOfIngredients : [],
+    difficulty: [],
+    duration: [],
+    numberOfIngredients: [],
   });
 
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
@@ -31,12 +31,12 @@ const RecipeListPage = () => {
     variables: {
       first: 15,
       filter: {
-        search: "" ,
-        tags : [],
+        search: "",
+        tags: [],
         category: [],
-        difficulty : [],
-        duration : [],
-        numberOfIngredients : [],
+        difficulty: [],
+        duration: [],
+        numberOfIngredients: [],
       },
     },
   });
@@ -52,13 +52,12 @@ const RecipeListPage = () => {
   const [toggle, setToggle] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
   useEffect(() => {
-    console.log("PASSE ICI")
-    console.log(' ------->', currentFilters)
     if (!loading) {
       refetch({ filter: currentFilters });
     }
   }, [currentFilters]);
 
+  const [isShowModal, setIsShowModal] = useState(false);
 
   if (loading || !data) {
     return <Loading />;
@@ -76,20 +75,7 @@ const RecipeListPage = () => {
     <div className={""}>
       <Navbar />
       {!isMobile && (
-      <FilterBar
-        filter={filterData}
-        currentFilters={currentFilters}
-        setCurrentFilters={setCurrentFilters}
-        isMobile={isMobile}
-        toggle={toggle}
-        setScrollOffset={setScrollOffset}
-        params={params}
-        key='isFilterBarNotMobile'
-      /> )}
-
-      {isMobile && (
         <FilterBar
-        key='isFilterBarMobile'
           filter={filterData}
           currentFilters={currentFilters}
           setCurrentFilters={setCurrentFilters}
@@ -98,6 +84,23 @@ const RecipeListPage = () => {
           setScrollOffset={setScrollOffset}
           params={params}
         />
+      )}
+
+      {isMobile && (
+        <ModalListPage
+         isShowModal={isShowModal}
+         parentFunction={setIsShowModal}
+        >
+          <FilterBar
+            filter={filterData}
+            currentFilters={currentFilters}
+            setCurrentFilters={setCurrentFilters}
+            isMobile={isMobile}
+            toggle={toggle}
+            setScrollOffset={setScrollOffset}
+            params={params}
+          />
+        </ModalListPage>
       )}
       <div className="flex justify-center">
         <div className="h-auto max-w-7xl  justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
@@ -160,26 +163,6 @@ const RecipeListPage = () => {
           {recipes?.length === 0 && <Empty />}
         </div>
       </div>
-
-      {isMobile && (
-        <img
-          src={filterIcon}
-          className="fixed top-14 right-4 z-20 h-12 w-12"
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!toggle) {
-              setScrollOffset(window.pageYOffset);
-            }
-            setToggle((prevState) => !prevState);
-            setTimeout(() => {
-              window.scrollTo({
-                top: scrollOffset,
-                behavior: "smooth",
-              });
-            }, 100);
-          }}
-        />
-      )}
       <img
         src={scrollToTop}
         className="fixed bottom-6 right-4 z-20 h-12 w-12 cursor-pointer"

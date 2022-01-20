@@ -78,8 +78,7 @@ const Login: React.FC = () => {
           response?.data?.tokenAuth?.refreshToken
         );
         history.listen((prev) => {
-          console.log(prev);
-          if (prev?.pathname === RouteName.activateResetPassword  || includes(prev?.pathname,RouteName.resetPassword) || includes(prev?.pathname, 'activate') || prev?.pathname === RouteName.register) {
+          if (prev?.pathname === RouteName.activateResetPassword || includes(prev?.pathname,RouteName.resetPassword) || includes(prev?.pathname, 'activate') || includes(prev?.pathname, RouteName.tokenActivationAccount) || prev?.pathname === RouteName.register) {
             history.push("/");
           }
         });

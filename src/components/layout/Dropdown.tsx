@@ -38,9 +38,6 @@ export const Dropdown: React.FC<IDropdown> = ({
             className="w-6 h-6"
             onChange={(value: React.ChangeEvent<HTMLInputElement>) => {
               checkShouldBeChecked(value.target.checked, value.target.value);
-              console.log("value", value.target.value);
-              console.log("value", value.target.checked);
-              console.log("value -->", value.target);
             }}
           />
         </li>
@@ -53,7 +50,6 @@ export const Dropdown: React.FC<IDropdown> = ({
             ref={"ref_" + "tes2"}
             className="w-6 h-6"
             onChange={(value: React.ChangeEvent<HTMLInputElement>) => {
-              console.log("value", value);
             }}
           />
         </li>

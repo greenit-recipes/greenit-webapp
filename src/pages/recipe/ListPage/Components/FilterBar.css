@@ -1,0 +1,32 @@
+input[type="checkbox"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.checkbox {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background: #fff;
+  border: 2px #ddd solid;
+  margin-right: 4px;
+}
+
+
+#menu #list {
+  max-height: 0;
+  transition: max-height 0.25s ease-out;
+  overflow: hidden;
+  position: absolute;
+}
+
+#menu:hover #list {
+  max-height: 300px;
+  overflow: absolute;
+  transition: max-height 0.50s ease-in;
+}

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { includes, keys } from "lodash";
+import { Checkbox } from "components/layout/Checkbox";
+import "pages/recipe/ListPage/Components/FilterBar.css";
 
 interface IFilterBarItem {
   item: Record<string, any>;
@@ -8,73 +10,95 @@ interface IFilterBarItem {
     option: { title: string; value: string },
     item: Record<string, any>
   ) => void;
-  key: string;
   currentFilters: Record<string, any>;
+  isMobile?: boolean;
 }
 
 export const FilterBarItem: React.FC<IFilterBarItem> = ({
   item,
   handleFilter,
-  key,
   currentFilters,
+  isMobile,
 }) => {
-  const [isTrigerButton, setTrigerButton] = useState(false);
-  const isDisplay = isTrigerButton ? "absolute" : "hidden";
-  const checkShouldBeChecked = (isChecked: boolean, value: string) => {};
-  const currentId = item?.name;
-  const filterIsActivate = includes(keys(currentFilters), currentId);
-  console.log("currentFilters filter bar item -->", currentFilters);
-
   return (
     <>
-      <div
-        className="relative"
-        key={key}
-        onMouseEnter={() => setTrigerButton(true)}
-        onMouseLeave={() => setTrigerButton(false)}
-      >
-        <button className="flex border-b-2 border-transparent hover:border-blue self-center">
-          <h1>{item.title}</h1>
-          {isTrigerButton && <p className="mx-2"> ▾ </p>}
-          {!isTrigerButton && <p className="mx-2"> ▿ </p>}
-          {filterIsActivate}
+      {!isMobile ? (
+        <div className="w-38" id="menu">
+          <button className="flex border-b-2 border-transparent hover:border-blue self-center">
+            <h1>{item.title}</h1>
 
-          {currentFilters[item.name] ? (
-            <div>({currentFilters[item.name].length})</div>
-          ) : (
-            <div>(0)</div>
-          )}
-        </button>
-        <ul
-          className={
-            " list-none w-40 bg-white border-2 p-2 rounded-lg shadow-sm " +
-            "20px" +
-            " " +
-            isDisplay
-          }
-        >
-          {item.options.map(
-            (option: { title: string; value: string }, index: any) => {
-              const isSelected = includes(currentFilters[item.name], (option.value || option.title))
-              return (
-                <div
-                  className="flex"
-                  key={index}
-                  onClick={() => {
-                    handleFilter(isSelected, option, item);
-                  }}
-                >
-                  <input
-                    type="checkbox"
-                    checked={isSelected}
-                  />
-                  <li className="ml-2">{option.title}</li>
-                </div>
-              );
+            {currentFilters[item.name] ? (
+              <div>({currentFilters[item.name].length})</div>
+            ) : (
+              <div>(0)</div>
+            )}
+          </button>
+          <ul
+            id="list"
+            className={
+              "list-none w-40 bg-white rounded-lg shadow-sm 20px"
             }
-          )}
-        </ul>
-      </div>
+          >
+            {item.options.map(
+              (option: { title: string; value: string }, index: any) => {
+                const isSelected = includes(
+                  currentFilters[item.name],
+                  option.value || option.title
+                );
+                return (
+                  <li key={index} className="p-1">
+                    <Checkbox
+                      index={index}
+                      parentFunction={handleFilter}
+                      item={item}
+                      option={option}
+                      isChecked={isSelected}
+                    ></Checkbox>
+                  </li>
+                );
+              }
+            )}
+          </ul>
+        </div>
+      ) : (
+        <div>
+          <button className="flex">
+            <h1>{item.title}</h1>
+            <div className="">
+            {currentFilters[item.name] ? (
+              <>({currentFilters[item.name].length})</>
+            ) : (
+              <>(0)</>
+            )}
+            </div>
+          </button>
+          <ul
+            className={
+              "list-none w-40 bg-white rounded-lg shadow-sm 20px"
+            }
+          >
+            {item.options.map(
+              (option: { title: string; value: string }, index: any) => {
+                const isSelected = includes(
+                  currentFilters[item.name],
+                  option.value || option.title
+                );
+                return (
+                  <li key={index} className="p-1">
+                    <Checkbox
+                      index={index}
+                      parentFunction={handleFilter}
+                      item={item}
+                      option={option}
+                      isChecked={isSelected}
+                    ></Checkbox>
+                  </li>
+                );
+              }
+            )}
+          </ul>
+        </div>
+      )}
     </>
   );
 };

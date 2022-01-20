@@ -17,7 +17,6 @@ export const FilterBarSearch: React.FC<{
           hideSearchIcon={isMobile}
           onSubmit={() => {
             setCurrentFilters((prevState: Record<string, any>) => {
-              console.log('PASSE DABS SEARCG')
               return {
                 ...prevState,
                 search: search,

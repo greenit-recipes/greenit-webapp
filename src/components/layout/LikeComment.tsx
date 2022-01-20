@@ -17,7 +17,6 @@ export const LikeComment: React.FC<ILikeComment> = ({ comment, isMyComment=false
   const [nbrLiked, setNbrLiked] = useState(comment?.numberOfLikes);
   const [addOrRemoveLikeComment] = useMutation(ADD_OR_REMOVE_LIKE_COMMENT);
   const isLoggedIn = authService.isLoggedIn();
-  console.log("isMyComment -->", isMyComment)
   return (
     <>
       {isLoggedIn ? (
