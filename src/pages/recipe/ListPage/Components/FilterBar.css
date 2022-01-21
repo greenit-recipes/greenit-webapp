@@ -13,12 +13,14 @@ input[type="checkbox"] {
   height: 20px;
   width: 20px;
   background: #fff;
-  border: 2px #ddd solid;
-  margin-right: 4px;
+  border: 1px #ddd solid;
+  margin-right: 10px;
+  border-radius: 5px;
 }
 
 
 #menu #list {
+  z-index: 100;
   max-height: 0;
   transition: max-height 0.25s ease-out;
   overflow: hidden;

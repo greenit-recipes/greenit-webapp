@@ -23,21 +23,20 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
   return (
     <>
       {!isMobile ? (
-        <div className="w-38" id="menu">
+        <div className="w-auto min-w-14" id="menu">
           <button className="flex border-b-2 border-transparent hover:border-blue self-center">
-            <h1>{item.title}</h1>
-
-            {currentFilters[item.name] ? (
-              <div>({currentFilters[item.name].length})</div>
-            ) : (
-              <div>(0)</div>
-            )}
+            <h1 className="text-lg">{item.title}</h1>
+            <div className="ml-2 self-center text-md">
+              {currentFilters[item.name] ? (
+                <h1>{currentFilters[item.name].length}</h1>
+              ) : (
+                <h1 className="self-center text-md">0</h1>
+              )}
+            </div>
           </button>
           <ul
             id="list"
-            className={
-              "list-none w-40 bg-white rounded-lg shadow-sm 20px"
-            }
+            className={"list-none w-60 bg-white rounded-lg p-2 text-lg"}
           >
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {
@@ -64,19 +63,15 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
         <div>
           <button className="flex">
             <h1>{item.title}</h1>
-            <div className="">
-            {currentFilters[item.name] ? (
-              <>({currentFilters[item.name].length})</>
-            ) : (
-              <>(0)</>
-            )}
+            <div className="ml-2">
+              {currentFilters[item.name] ? (
+                <>({currentFilters[item.name].length})</>
+              ) : (
+                <></>
+              )}
             </div>
           </button>
-          <ul
-            className={
-              "list-none w-40 bg-white rounded-lg shadow-sm 20px"
-            }
-          >
+          <ul className={"list-none w-40 bg-white rounded-lg shadow-sm 20px"}>
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {
                 const isSelected = includes(

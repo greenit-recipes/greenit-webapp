@@ -26,8 +26,8 @@ export const Checkbox: React.FC<ICheckbox> = ({
 }) => {
   const checkboxAnimationRef = useSpringRef();
   const checkboxAnimationStyle = useSpring({
-    backgroundColor: isChecked ? "#808" : "#fff",
-    borderColor: isChecked ? "#808" : "#ddd",
+    backgroundColor: isChecked ? "#8FB5E8" : "#ffff",
+    borderColor: isChecked ? "#8FB5E8" : "#707070",
     config: config.gentle,
     ref: checkboxAnimationRef,
   });
@@ -75,7 +75,7 @@ export const Checkbox: React.FC<ICheckbox> = ({
           strokeDashoffset={checkmarkAnimationStyle.x}
         />
       </animated.svg>
-      {option.title}
+        {option.title}
     </label>
   );
 };

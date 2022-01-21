@@ -31,7 +31,7 @@ export const SearchBar: React.FC<{
         <input
           type="text"
           className={`w-full h-full | rounded-full shadow-lg | text-base md:text-xl
-          } | pl-5`}
+          } | pl-5 | focus:outline-none`}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit();
