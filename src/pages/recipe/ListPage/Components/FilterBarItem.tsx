@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { includes, keys } from "lodash";
 import { Checkbox } from "components/layout/Checkbox";
+import { includes } from "lodash";
 import "pages/recipe/ListPage/Components/FilterBar.css";
 
 interface IFilterBarItem {
@@ -27,10 +26,10 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
           <button className="flex border-b-2 border-transparent hover:border-blue self-center">
             <h1 className="text-lg">{item.title}</h1>
             <div className="ml-2 self-center text-md">
-              {currentFilters[item.name] ? (
+              {currentFilters[item.name]?.length ? (
                 <h1>{currentFilters[item.name].length}</h1>
               ) : (
-                <h1 className="self-center text-md">0</h1>
+                <></>
               )}
             </div>
           </button>
@@ -64,8 +63,8 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
           <button className="flex">
             <h1>{item.title}</h1>
             <div className="ml-2">
-              {currentFilters[item.name] ? (
-                <>({currentFilters[item.name].length})</>
+              {currentFilters[item.name]?.length ? (
+                <h1>({currentFilters[item.name].length})</h1>
               ) : (
                 <></>
               )}

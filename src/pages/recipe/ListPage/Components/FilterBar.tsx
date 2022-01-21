@@ -4,7 +4,7 @@ import { Button } from "components/misc/Button";
 import authService from "services/auth.service";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { includes, map, omit } from "lodash";
+import { includes, map, omit, flattenDeep } from "lodash";
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -34,6 +34,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     setCurrentFilters(currentState);
     //setCurrentFilters(toto);
   };
+  const isCurrentFilterEmpty = flattenDeep(
+    map(omit(currentFilters, "search"), (x) => x)
+  )?.length > 0;
 
   const removeFilters = () => {
     setCurrentFilters({});
@@ -173,33 +176,43 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             </div>
           ))}
         </div>
-        <div></div>
         {!isMobile && (
           <div className="flex-col w-10/12 bg-blue bg-opacity-25 rounded-lg px-4 py-2">
-            <div className="flex h-8">
-              <h2 className="self-center">Filtres:</h2>
-              {map(omit(currentFilters, "search"), (item: any, key: any) =>
-                map(item, (value, index) => (
-                  <div
-                    className="bg-blue text-white rounded-xl px-3 py-1 flex ml-2"
-                    key={index}
-                  >
-                    <p>{value}</p>
-                    <button
-                      className="ml-2"
-                      onClick={() => removeFilter(value, key)}
-                    >
-                      ✖︎
-                    </button>
-                  </div>
-                ))
-              )}
-            </div>
-            <div>
-              <button onClick={() => removeFilters()}>
-                <h3 className="text-sm mt-2">Supprimer tous les filtres ✕</h3>
-              </button>
-            </div>
+            {isCurrentFilterEmpty && (
+              <>
+                <div className="flex h-8">
+                  <h2 className="self-center">Filtres:</h2>
+                  {map(omit(currentFilters, "search"), (item: any, key: any) =>
+                    map(item, (value, index) => (
+                      <div
+                        className="bg-blue text-white rounded-xl px-3 py-1 flex ml-2"
+                        key={index}
+                      >
+                        <p>{value}</p>
+                        <button
+                          className="ml-2"
+                          onClick={() => removeFilter(value, key)}
+                        >
+                          ✖︎
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
+                <div>
+                  <button onClick={() => removeFilters()}>
+                    <h3 className="text-sm mt-2">
+                      Supprimer tous les filtres ✕
+                    </h3>
+                  </button>
+                </div>
+              </>
+            )}
+            {!isCurrentFilterEmpty && (
+              <div>
+                <h3 className="text-sm">Pas de filtre sélectionné</h3>
+              </div>
+            )}
           </div>
         )}
       </div>
