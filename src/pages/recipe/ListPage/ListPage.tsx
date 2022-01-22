@@ -87,28 +87,28 @@ const RecipeListPage = () => {
       )}
 
       {isMobile && (
-        <ModalListPage
-         isShowModal={isShowModal}
-         parentFunction={setIsShowModal}
-        >
-          <FilterBar
-            filter={filterData}
-            currentFilters={currentFilters}
-            setCurrentFilters={setCurrentFilters}
-            isMobile={isMobile}
-            toggle={toggle}
-            setScrollOffset={setScrollOffset}
-            params={params}
-          />
-        </ModalListPage>
+        <div className="grid justify-items-center bg-white py-2 z-30">
+          <div className="w-4/5 self-center">
+            <SearchBar />
+          </div>
+          <ModalListPage
+            isShowModal={isShowModal}
+            parentFunction={setIsShowModal}
+          >
+            <FilterBar
+              filter={filterData}
+              currentFilters={currentFilters}
+              setCurrentFilters={setCurrentFilters}
+              isMobile={isMobile}
+              toggle={toggle}
+              setScrollOffset={setScrollOffset}
+              params={params}
+            />
+          </ModalListPage>
+        </div>
       )}
       <div className="flex justify-center">
         <div className="h-auto max-w-7xl  justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
-          {isMobile && (
-            <div className="sm:w-2/5 mt-2">
-              <SearchBar />
-            </div>
-          )}
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
@@ -165,7 +165,8 @@ const RecipeListPage = () => {
       </div>
       <img
         src={scrollToTop}
-        className="fixed bottom-6 right-4 z-20 h-12 w-12 cursor-pointer"
+        className="fixed bottom-6 
+        right-4 z-20 h-12 w-12 cursor-pointer"
         id="scrollToTop"
         onClick={() => {
           window.scrollTo({

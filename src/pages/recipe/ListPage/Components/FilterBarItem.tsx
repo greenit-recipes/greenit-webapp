@@ -24,7 +24,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
       {!isMobile ? (
         <div className="w-auto min-w-14" id="menu">
           <button className="flex border-b-2 border-transparent hover:border-blue self-center">
-            <h1 className="text-lg">{item.title}</h1>
+            <h1 className="text-lg">{item.title} ▾ </h1>
             <div className="ml-2 self-center text-md">
               {currentFilters[item.name]?.length ? (
                 <h1>{currentFilters[item.name].length}</h1>
@@ -35,7 +35,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
           </button>
           <ul
             id="list"
-            className={"list-none w-60 bg-white rounded-lg p-2 text-lg"}
+            className={"list-none w-52 bg-white rounded-lg p-2 text-lg"}
           >
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {
@@ -59,18 +59,18 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
           </ul>
         </div>
       ) : (
-        <div>
-          <button className="flex">
-            <h1>{item.title}</h1>
-            <div className="ml-2">
-              {currentFilters[item.name]?.length ? (
-                <h1>({currentFilters[item.name].length})</h1>
-              ) : (
-                <></>
-              )}
-            </div>
-          </button>
-          <ul className={"list-none w-40 bg-white rounded-lg shadow-sm 20px"}>
+        <div className="ml-4 mt-4">
+          <div className="flex">
+            <h1 className="text-xl self-center">{item.title}</h1>
+            {currentFilters[item.name]?.length ? (
+              <h1 className="self-center ml-2">
+                {currentFilters[item.name].length}
+              </h1>
+            ) : (
+              <></>
+            )}
+          </div>
+          <ul className={"w-auto"}>
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {
                 const isSelected = includes(
@@ -78,7 +78,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
                   option.value || option.title
                 );
                 return (
-                  <li key={index} className="p-1">
+                  <li key={index} className="p-1 text-lg">
                     <Checkbox
                       index={index}
                       parentFunction={handleFilter}
@@ -91,6 +91,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
               }
             )}
           </ul>
+          <div className="border-b-2 border-grey w-2/3 mt-4"></div>
         </div>
       )}
     </>

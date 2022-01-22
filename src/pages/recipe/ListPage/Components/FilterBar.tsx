@@ -34,9 +34,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     setCurrentFilters(currentState);
     //setCurrentFilters(toto);
   };
-  const isCurrentFilterEmpty = flattenDeep(
-    map(omit(currentFilters, "search"), (x) => x)
-  )?.length > 0;
+  const isCurrentFilterEmpty =
+    flattenDeep(map(omit(currentFilters, "search"), (x) => x))?.length > 0;
 
   const removeFilters = () => {
     setCurrentFilters({});
@@ -117,7 +116,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       <div
         className={
           isMobile
-            ? ""
+            ? "w-full grid px-4 mt-10 mb-6"
             : "grid grid-rows-2 justify-items-center bg-white w-full max-w-7xl px-4"
         }
       >
@@ -150,9 +149,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           </div>
         )}
         {isMobile && (
-          <button className="pt-5" onClick={() => removeFilters()}>
-            <h3 className="text-sm mt-2">Supprimer tous les filtres ✕</h3>
-          </button>
+          <Button className="p-2 justify-self-end fixed top-14" type="grey" onClick={() => removeFilters()}>
+            <h3 className="text-end text-sm">Supprimer les filtres ✕</h3>
+          </Button>
         )}
         <div className={isMobile ? "" : "grid grid-cols-5 mt-5 w-10/12"}>
           {filter.slice(0, 4).map((item: any, index: any) => (
@@ -177,40 +176,46 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           ))}
         </div>
         {!isMobile && (
-          <div className="flex-col w-10/12 bg-blue bg-opacity-25 rounded-lg px-4 py-2">
+          <div className="flex-col w-10/12 h-auto bg-blue bg-opacity-25 rounded-lg px-4 py-2">
             {isCurrentFilterEmpty && (
               <>
-                <div className="flex h-8">
-                  <h2 className="self-center">Filtres:</h2>
-                  {map(omit(currentFilters, "search"), (item: any, key: any) =>
-                    map(item, (value, index) => (
-                      <div
-                        className="bg-blue text-white rounded-xl px-3 py-1 flex ml-2"
-                        key={index}
-                      >
-                        <p>{value}</p>
-                        <button
-                          className="ml-2"
-                          onClick={() => removeFilter(value, key)}
-                        >
-                          ✖︎
-                        </button>
-                      </div>
-                    ))
-                  )}
+                <div className="flex">
+                  <div>
+                    <h2 className="self-center">Filtres:</h2>
+                  </div>
+                  <div className="flex flex-wrap">
+                    {map(
+                      omit(currentFilters, "search"),
+                      (item: any, key: any) =>
+                        map(item, (value, index) => (
+                          <div
+                            className="flex h-8 inline bg-blue text-white rounded-xl px-3 py-1 ml-2 mb-2"
+                            key={index}
+                          >
+                            <p>{value}</p>
+                            <button
+                              className="ml-2"
+                              onClick={() => removeFilter(value, key)}
+                            >
+                              ✖︎
+                            </button>
+                          </div>
+                        ))
+                    )}
+                  </div>
                 </div>
                 <div>
-                  <button onClick={() => removeFilters()}>
-                    <h3 className="text-sm mt-2">
-                      Supprimer tous les filtres ✕
+                  <Button type="grey" onClick={() => removeFilters()}>
+                    <h3 className="text-sm">
+                      Supprimer tous les filtres ✖︎
                     </h3>
-                  </button>
+                  </Button>
                 </div>
               </>
             )}
             {!isCurrentFilterEmpty && (
-              <div>
-                <h3 className="text-sm">Pas de filtre sélectionné</h3>
+              <div className="grid | h-18">
+                <h3 className="self-center">Pas de filtre sélectionné</h3>
               </div>
             )}
           </div>
