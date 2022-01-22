@@ -20,7 +20,6 @@ export const getBreakpoint = (screen = "") => {
   }
   // invalid screen choice
   if (!screens[screen]) {
-    console.error(`No match for "${screen}"`);
     return false;
   }
   // @ts-ignore
@@ -91,6 +90,19 @@ export const filterData = [
       { title: "Facile", value: "BEGINNER" },
       { title: "Intermediaire", value: "INTERMEDIATE" },
       { title: "Expert", value: "ADVANCED" },
+    ],
+  },
+  {
+    title: "Nombre d'ingrédients",
+    name: "numberOfIngredients",
+    options: [
+      { title: "1 ingrédient", value: "1" },
+      { title: "2 ingrédient", value: "2" },
+      { title: "3 ingrédient", value: "3" },
+      { title: "4 ingrédient", value: "4" },
+      { title: "5 ingrédient", value: "5" },
+      { title: "6 ingrédient", value: "6" },
+      { title: "7 ingrédient", value: "7" },
     ],
   },
 ];

@@ -1,42 +1,99 @@
+import { Checkbox } from "components/layout/Checkbox";
+import { includes } from "lodash";
+import "pages/recipe/ListPage/Components/FilterBar.css";
 
-interface FilterBarItem {
-    item: Record<string, any>;
-    handleFilter: (
-      isSelected: boolean,
-      option: { title: string; value: string },
-      item: Record<string, any>
-    ) => void;
-    currentFilters: Record<string, any>;
-  }
-  
-export const FilterBarItem: React.FC<FilterBarItem> = ({
-    item,
-    handleFilter,
-    currentFilters,
-  }) => {
-    return (
-      <div className="lg:pt-5 mb-5 content-center text-center lg:text-left">
-        <h1 className="text-2xl text-gray-600 mb-2">{item.title}</h1>
-        {item.options.map(
-          (option: { title: string; value: string }, index: any) => {
-            const isSelected =
-              currentFilters[item.name] === (option.value || option.title);
-            return (
-              <div className="text-xl mb-2 cursor-pointer" key={index}>
-                <h3
-                  className={
-                    isSelected ? "text-green underline" : "text-gray-700"
-                  }
-                  onClick={() => {
-                    handleFilter(isSelected, option, item);
-                  }}
-                >
-                  {option.title}
-                </h3>
-              </div>
-            );
-          }
-        )}
-      </div>
-    );
-  };
+interface IFilterBarItem {
+  item: Record<string, any>;
+  handleFilter: (
+    isSelected: boolean,
+    option: { title: string; value: string },
+    item: Record<string, any>
+  ) => void;
+  currentFilters: Record<string, any>;
+  isMobile?: boolean;
+}
+
+export const FilterBarItem: React.FC<IFilterBarItem> = ({
+  item,
+  handleFilter,
+  currentFilters,
+  isMobile,
+}) => {
+  return (
+    <>
+      {!isMobile ? (
+        <div className="w-auto min-w-14" id="menu">
+          <button className="flex border-b-2 border-transparent hover:border-blue self-center">
+            <h1 className="text-lg">{item.title} ▾ </h1>
+            <div className="ml-2 self-center text-md">
+              {currentFilters[item.name]?.length ? (
+                <h1>{currentFilters[item.name].length}</h1>
+              ) : (
+                <></>
+              )}
+            </div>
+          </button>
+          <ul
+            id="list"
+            className={"list-none w-52 bg-white rounded-lg p-2 text-lg"}
+          >
+            {item.options.map(
+              (option: { title: string; value: string }, index: any) => {
+                const isSelected = includes(
+                  currentFilters[item.name],
+                  option.value || option.title
+                );
+                return (
+                  <li key={index} className="p-1">
+                    <Checkbox
+                      index={index}
+                      parentFunction={handleFilter}
+                      item={item}
+                      option={option}
+                      isChecked={isSelected}
+                    ></Checkbox>
+                  </li>
+                );
+              }
+            )}
+          </ul>
+        </div>
+      ) : (
+        <div className="ml-4 mt-4">
+          <div className="flex">
+            <h1 className="text-xl self-center">{item.title}</h1>
+            {currentFilters[item.name]?.length ? (
+              <h1 className="self-center ml-2">
+                {currentFilters[item.name].length}
+              </h1>
+            ) : (
+              <></>
+            )}
+          </div>
+          <ul className={"w-auto"}>
+            {item.options.map(
+              (option: { title: string; value: string }, index: any) => {
+                const isSelected = includes(
+                  currentFilters[item.name],
+                  option.value || option.title
+                );
+                return (
+                  <li key={index} className="p-1 text-lg">
+                    <Checkbox
+                      index={index}
+                      parentFunction={handleFilter}
+                      item={item}
+                      option={option}
+                      isChecked={isSelected}
+                    ></Checkbox>
+                  </li>
+                );
+              }
+            )}
+          </ul>
+          <div className="border-b-2 border-grey w-2/3 mt-4"></div>
+        </div>
+      )}
+    </>
+  );
+};

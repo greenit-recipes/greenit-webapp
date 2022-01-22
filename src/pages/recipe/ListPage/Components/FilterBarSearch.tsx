@@ -8,7 +8,7 @@ export const FilterBarSearch: React.FC<{
   }> = ({ setCurrentFilters, search, setSearch }) => {
     const isMobile = useIsMobile();
     return (
-      <div className="lg:-ml-5 mb-5 mt-2 mt-3">
+      <div>
         <SearchBar
           keyId={"filterBarSearch"}
           size="small"

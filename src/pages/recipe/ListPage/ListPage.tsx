@@ -13,17 +13,30 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { filterIcon, scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
-
+import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
+
+  const [currentFilters, setCurrentFilters] = useState<any>({
+    search: "",
+    tags: [],
+    category: [],
+    difficulty: [],
+    duration: [],
+    numberOfIngredients: [],
+  });
+
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
     fetchPolicy: "network-only",
     variables: {
       first: 15,
       filter: {
-        search: params.get("search") || "",
-        ...(params.get("tags") ? { tags: [params.get("tags")] } : {}),
-        ...(params.get("category") ? { category: params.get("category") } : {}),
+        search: "",
+        tags: [],
+        category: [],
+        difficulty: [],
+        duration: [],
+        numberOfIngredients: [],
       },
     },
   });
@@ -36,18 +49,16 @@ const RecipeListPage = () => {
       });
     }
   }, []);
-  const [currentFilters, setCurrentFilters] = useState<any>({
-    search: params.get("search") || "",
-    ...(params.get("tags") ? { tags: params.get("tags") } : {}),
-    ...(params.get("category") ? { category: params.get("category") } : {}),
-  });
   const [toggle, setToggle] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
   useEffect(() => {
     if (!loading) {
       refetch({ filter: currentFilters });
     }
-  }, [currentFilters, refetch]);
+  }, [currentFilters]);
+
+  const [isShowModal, setIsShowModal] = useState(false);
+
   if (loading || !data) {
     return <Loading />;
   }
@@ -63,7 +74,7 @@ const RecipeListPage = () => {
   return (
     <div className={""}>
       <Navbar />
-      {isMobile && (
+      {!isMobile && (
         <FilterBar
           filter={filterData}
           currentFilters={currentFilters}
@@ -74,24 +85,30 @@ const RecipeListPage = () => {
           params={params}
         />
       )}
-      <div className="flex lg:mt-10 items-start">
-        {!isMobile && (
-          <FilterBar
-            filter={filterData}
-            currentFilters={currentFilters}
-            setCurrentFilters={setCurrentFilters}
-            isMobile={isMobile}
-            toggle={toggle}
-            setScrollOffset={setScrollOffset}
-            params={params}
-          />
-        )}
-        <div className="h-auto w-full justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
-          {isMobile && (
-            <div className="sm:w-2/5 mt-2">
-              <SearchBar keyId={'listPageSearch'}/>
-            </div>
-          )}
+
+      {isMobile && (
+        <div className="grid justify-items-center bg-white py-2 z-30">
+          <div className="w-4/5 self-center">
+            <SearchBar />
+          </div>
+          <ModalListPage
+            isShowModal={isShowModal}
+            parentFunction={setIsShowModal}
+          >
+            <FilterBar
+              filter={filterData}
+              currentFilters={currentFilters}
+              setCurrentFilters={setCurrentFilters}
+              isMobile={isMobile}
+              toggle={toggle}
+              setScrollOffset={setScrollOffset}
+              params={params}
+            />
+          </ModalListPage>
+        </div>
+      )}
+      <div className="flex justify-center">
+        <div className="h-auto max-w-7xl  justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
@@ -128,45 +145,28 @@ const RecipeListPage = () => {
             }}
           >
             {isMobile ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
+              <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 justify-center md:gap-y-10">
                 {recipes?.map((recipe, index) => (
                   <RecipeCard recipe={recipe?.node} key={index} />
                 ))}
               </div>
             ) : (
-              <div className="w-auto | flex flex-row flex-wrap justify-items-center gap-y-10 gap-x-4 | py-4 px-8 mb-14">
-                {recipes?.map((recipe, index) => (
-                  <RecipeCard recipe={recipe?.node} key={index} />
-                ))}
+              <div className="grid grid-cols-1 justify-items-center | py-4 px-8 mb-14">
+                <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
+                  {recipes?.map((recipe, index) => (
+                    <RecipeCard recipe={recipe?.node} key={index} />
+                  ))}
+                </div>
               </div>
             )}
           </InfiniteScroll>
           {recipes?.length === 0 && <Empty />}
         </div>
       </div>
-
-      {isMobile && (
-        <img
-          src={filterIcon}
-          className="fixed top-14 right-4 z-20 h-12 w-12"
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!toggle) {
-              setScrollOffset(window.pageYOffset);
-            }
-            setToggle((prevState) => !prevState);
-            setTimeout(() => {
-              window.scrollTo({
-                top: scrollOffset,
-                behavior: "smooth",
-              });
-            }, 100);
-          }}
-        />
-      )}
       <img
         src={scrollToTop}
-        className="fixed bottom-6 right-4 z-20 h-12 w-12 cursor-pointer"
+        className="fixed bottom-6 
+        right-4 z-20 h-12 w-12 cursor-pointer"
         id="scrollToTop"
         onClick={() => {
           window.scrollTo({

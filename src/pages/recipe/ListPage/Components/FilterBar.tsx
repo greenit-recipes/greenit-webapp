@@ -4,6 +4,7 @@ import { Button } from "components/misc/Button";
 import authService from "services/auth.service";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { includes, map, omit, flattenDeep } from "lodash";
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -26,6 +27,19 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 }) => {
   const [search, setSearch] = useState(params.get("search") || "");
   const isLoggedIn = authService.isLoggedIn();
+  const removeFilter = (value: any, key: any) => {
+    let currentState = { ...currentFilters };
+    currentState[key] = currentState[key].filter((x: string) => x !== value);
+
+    setCurrentFilters(currentState);
+    //setCurrentFilters(toto);
+  };
+  const isCurrentFilterEmpty =
+    flattenDeep(map(omit(currentFilters, "search"), (x) => x))?.length > 0;
+
+  const removeFilters = () => {
+    setCurrentFilters({});
+  };
   useEffect(() => {
     if (isMobile && !toggle) {
       setCurrentFilters((prevState: Record<string, any>) => {
@@ -41,22 +55,27 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     option: { title: string; value: string },
     item: Record<string, any>
   ) => {
-    setCurrentFilters((prevState: Record<string, any>) => {
-      const state = { ...prevState };
-      if (!isSelected) {
-        state[item.name] = option.value || option.title;
+    const state = { ...currentFilters };
+    if (state[item.name]) {
+      if (includes(state[item.name], option.value || option.title)) {
+        state[item.name] = state[item.name].filter(
+          (value: string) => value !== (option.value || option.title)
+        );
       } else {
-        delete state[item.name];
+        state[item.name].push(option.value || option.title);
       }
-      return state;
-    });
+    } else {
+      state[item.name] = [option.value || option.title];
+    }
+
+    setCurrentFilters(state);
     setScrollOffset(0);
   };
 
   if (isMobile) {
     return (
       // to refacto - we can scroll in the back + we have to click again on the filter icon to see the results
-      <div className="overflow-y-scroll absolute">
+      <div className="sticky top-0 z-50 bg-white w-full">
         <div
           className={`z-10 bg-white top-0 h-full ${
             toggle ? "filterBar_fadeIn" : "filterBar_fadeOut"
@@ -93,39 +112,115 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     );
   }
   return (
-    <div className="py-12 top-12 w-1/10 pl-10">
-      <FilterBarSearch
-        search={search}
-        setSearch={setSearch}
-        setCurrentFilters={setCurrentFilters}
-      />
-      {isLoggedIn ? (
-        <Link to="/créer-une-recette">
-          <Button
-            type="green"
-            className="justify-self-start mt-6 mb-2 h-10 rounded-xl"
-          >
-            <h3> Partager une recette </h3>
+    <div className="w-screen grid justify-items-start lg:justify-items-center">
+      <div
+        className={
+          isMobile
+            ? "w-full grid px-4 mt-10 mb-6"
+            : "grid grid-rows-2 justify-items-center bg-white w-full max-w-7xl px-4"
+        }
+      >
+        {!isMobile && (
+          <div className="flex w-10/12 self-center mt-6">
+            <FilterBarSearch
+              search={search}
+              setSearch={setSearch}
+              setCurrentFilters={setCurrentFilters}
+            />
+            {isLoggedIn ? (
+              <Link to="/créer-une-recette" className="flex">
+                <Button
+                  type="grey"
+                  className="self-center h-10 rounded-xl ml-4"
+                >
+                  <h3> Partager une recette </h3>
+                </Button>
+              </Link>
+            ) : (
+              <Link to="/register" className="flex">
+                <Button
+                  type="grey"
+                  className="self-center h-10 rounded-xl ml-4"
+                >
+                  <h3> Partager une recette </h3>
+                </Button>
+              </Link>
+            )}
+          </div>
+        )}
+        {isMobile && (
+          <Button className="p-2 justify-self-end fixed top-14" type="grey" onClick={() => removeFilters()}>
+            <h3 className="text-end text-sm">Supprimer les filtres ✕</h3>
           </Button>
-        </Link>
-      ) : (
-        <Link to="/register">
-          <Button
-            type="green"
-            className="justify-self-start mt-6 mb-2 h-10 rounded-xl"
-          >
-            <h3> Partager une recette </h3>
-          </Button>
-        </Link>
-      )}
-      {filter.map((item: any, index: any) => (
-        <FilterBarItem
-          item={item}
-          key={index}
-          currentFilters={currentFilters}
-          handleFilter={handleFilter}
-        />
-      ))}
+        )}
+        <div className={isMobile ? "" : "grid grid-cols-5 mt-5 w-10/12"}>
+          {filter.slice(0, 4).map((item: any, index: any) => (
+            <div key={index}>
+              <FilterBarItem
+                isMobile={isMobile}
+                item={item}
+                currentFilters={currentFilters}
+                handleFilter={handleFilter}
+              />
+            </div>
+          ))}
+          {filter.slice(4, 10).map((item: any, index: any) => (
+            <div key={index}>
+              <FilterBarItem
+                isMobile={isMobile}
+                item={item}
+                currentFilters={currentFilters}
+                handleFilter={handleFilter}
+              />
+            </div>
+          ))}
+        </div>
+        {!isMobile && (
+          <div className="flex-col w-10/12 h-auto bg-blue bg-opacity-25 rounded-lg px-4 py-2">
+            {isCurrentFilterEmpty && (
+              <>
+                <div className="flex">
+                  <div>
+                    <h2 className="self-center">Filtres:</h2>
+                  </div>
+                  <div className="flex flex-wrap">
+                    {map(
+                      omit(currentFilters, "search"),
+                      (item: any, key: any) =>
+                        map(item, (value, index) => (
+                          <div
+                            className="flex h-8 inline bg-blue text-white rounded-xl px-3 py-1 ml-2 mb-2"
+                            key={index}
+                          >
+                            <p>{value}</p>
+                            <button
+                              className="ml-2"
+                              onClick={() => removeFilter(value, key)}
+                            >
+                              ✖︎
+                            </button>
+                          </div>
+                        ))
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <Button type="grey" onClick={() => removeFilters()}>
+                    <h3 className="text-sm">
+                      Supprimer tous les filtres ✖︎
+                    </h3>
+                  </Button>
+                </div>
+              </>
+            )}
+            {!isCurrentFilterEmpty && (
+              <div className="grid | h-18">
+                <h3 className="self-center">Pas de filtre sélectionné</h3>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

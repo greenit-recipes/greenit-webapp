@@ -11,9 +11,9 @@ export const SearchBar: React.FC<{
   }> = ({ size = "large", value, setValue, onSubmit, hideSearchIcon, keyId = "search" }) => {
     const isLarge = size === "large";
     const history = useHistory();
-    const totalSize = `w-full h-12 md:h-${isLarge ? "16" : "12"}`;
-    const iconSize = `w-12 md:w-${isLarge ? "20" : "12"} h-12 md:h-${
-      isLarge ? "16" : "12"
+    const totalSize = `w-full h-10 md:h-${isLarge ? "16" : "10"}`;
+    const iconSize = `w-10 md:w-${isLarge ? "20" : "10"} h-10 md:h-${
+      isLarge ? "16" : "10"
     }`;
     const handleSubmit = () => {
       if (!onSubmit) {
@@ -31,7 +31,7 @@ export const SearchBar: React.FC<{
         <input
           type="text"
           className={`w-full h-full | rounded-full shadow-lg | text-base md:text-xl
-          } | pl-5`}
+          } | pl-5 | focus:outline-none`}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit();
@@ -57,7 +57,7 @@ export const SearchBar: React.FC<{
           >
             <img
               src={search}
-              className={`w-8 h-8 md:w-10 md:h-10
+              className={`w-6 h-6 md:w-8 md:h-8
               } | self-center | ml-auto mr-auto`}
               onClick={() => {
                 handleSubmit();

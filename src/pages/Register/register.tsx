@@ -142,8 +142,6 @@ const Register: React.FC = () => {
       },
     }).then((dataAccount) => {
       if (!dataAccount?.data?.register?.success) return;
-      
-      console.log(authService.getEmail());
       history.push(RouteName.accountCreated);
     });
   };

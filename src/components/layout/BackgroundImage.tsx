@@ -1,9 +1,9 @@
 
-interface BackgroundImage {
+interface IBackgroundImage {
   className?: string;
 }
   
-export const BackgroundImage: React.FC<BackgroundImage> = ({
+export const BackgroundImage: React.FC<IBackgroundImage> = ({
   className,
 }) => {
     return (
