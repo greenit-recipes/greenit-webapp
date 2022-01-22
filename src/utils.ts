@@ -100,7 +100,9 @@ export const filterData = [
       { title: "2 ingrédient", value: "2" },
       { title: "3 ingrédient", value: "3" },
       { title: "4 ingrédient", value: "4" },
-      { title: "5 ou plus", value: "5" },
+      { title: "5 ingrédient", value: "5" },
+      { title: "6 ingrédient", value: "6" },
+      { title: "7 ingrédient", value: "7" },
     ],
   },
 ];
