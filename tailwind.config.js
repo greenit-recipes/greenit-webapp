@@ -48,6 +48,10 @@ module.exports = {
         '64': '16rem',
         '96': '24rem',
       },
+      margin: {        
+        '100': '33rem',
+        '99': '28rem',            
+      },
       fontFamily: {
         'body': ["Quicksand-Medium"],
         'legend': ["Quicksand-Light"],
@@ -74,10 +78,9 @@ module.exports = {
         green: "#83d489",
         grey: "#707070",
         red: "#f07b73",
+        bluelight: "#e0eaf8",
       },
-      opacity: {        
-        '97': '.97',
-      },
+
       keyframes: {
         rotate: {
           "50%": { transform: "rotate(90deg)" },

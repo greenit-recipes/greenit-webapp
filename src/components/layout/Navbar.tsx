@@ -116,7 +116,7 @@ export const Navbar: React.FC = () => {
           />
         </Link>
       </div>
-      <div className="flex flex-row w-2/5 h-full items-center justify-items-start">
+      <div className="flex flex-row ml-4 w-2/3 h-full items-center justify-items-start">
         <div className="w-auto" id="navmenu_big">
           <Link to="/recipes">
             <NavButton
@@ -130,29 +130,47 @@ export const Navbar: React.FC = () => {
             </NavButton>
           </Link>
           <div id="navlist_big">
-            <div className="grid grid-cols-3 w-1/3 justify-items-center ml-20">
+            <div className="grid grid-cols-3 w-2/5 justify-items-center ml-20 pt-2">
               <div className="flex flex-col text-lg pt-4">
-                <h2 className="mb-2">Racourcis</h2>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Toutes les recettes</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Partager une recette</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Premiers pas</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Avec les ingrédients de la cuisine</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Sans cuisson</h3>
+                <h2 className="mb-2 cursor-default">Racourcis</h2>
+                <h3 className="mb-2 cursor-pointer hover:text-green">
+                  Toutes les recettes
+                </h3>
+                <h3 className="mb-2 cursor-pointer hover:text-green">
+                  Partager une recette
+                </h3>
+                <h3 className="mb-2 cursor-pointer hover:text-green">
+                  Premiers pas
+                </h3>
+                <h3 className="mb-2 cursor-pointer hover:text-green">
+                  Avec les ingrédients de la cuisine
+                </h3>
+                <h3 className="mb-2 cursor-pointer hover:text-green">
+                  Sans cuisson
+                </h3>
               </div>
               <div className="flex flex-col text-lg pt-4">
-                <h2 className="mb-2">Catégories</h2>
+                <h2 className="mb-2 cursor-default">Catégories</h2>
                 <h3 className="mb-2 cursor-pointer hover:text-green">Maison</h3>
                 <h3 className="mb-2 cursor-pointer hover:text-green">Corps</h3>
                 <h3 className="mb-2 cursor-pointer hover:text-green">Visage</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Cheveux</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Bien-être</h3>
+                <h3 className="mb-2 cursor-pointer hover:text-green">
+                  Cheveux
+                </h3>
+                <h3 className="mb-2 cursor-pointer hover:text-green">
+                  Bien-être
+                </h3>
               </div>
               <div className="flex flex-col text-lg pt-4">
-                <h2 className="mb-2">Type de produit</h2>
+                <h2 className="mb-2 cursor-default">Type de produit</h2>
                 <h3 className="mb-2 cursor-pointer hover:text-green">Savon</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Shampoings</h3>
+                <h3 className="mb-2 cursor-pointer hover:text-green">
+                  Shampoings
+                </h3>
                 <h3 className="mb-2 cursor-pointer hover:text-green">Baumes</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Solides</h3>
+                <h3 className="mb-2 cursor-pointer hover:text-green">
+                  Solides
+                </h3>
                 <h3 className="mb-2 cursor-pointer hover:text-green">Crèmes</h3>
               </div>
             </div>
@@ -164,35 +182,39 @@ export const Navbar: React.FC = () => {
               Ateliers
             </NavButton>
           </Link>
-          <div id="navlist" className="grid justify-items-start">
+          <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col text-lg ml-40 pt-4">
-              <h3 className="mb-2 cursor-pointer hover:text-yellow">Tous les ateliers</h3>
-              <h3 className="mb-2 cursor-pointer hover:text-yellow">Ateliers en présentiel</h3>
-              <h3 className="mb-2 cursor-pointer hover:text-yellow">Ateliers en ligne</h3>
-              <h3 className="mb-2 cursor-pointer hover:text-yellow">Proposer un atelier</h3>
+              <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                Tous les ateliers
+              </h3>
+              <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                Ateliers en présentiel
+              </h3>
+              <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                Ateliers en ligne
+              </h3>
+              <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                Proposer un atelier
+              </h3>
             </div>
           </div>
         </div>
         <div className="w-auto" id="navmenu">
-          <Link to={RouteName.workshops}>
-            <NavButton type="orange" onClick={() => setVisible(true)}>
-              Ingrédients
-            </NavButton>
-          </Link>
+          <NavButton type="orange" onClick={() => setVisible(true)}>
+            Ingrédients
+          </NavButton>
           <div id="navlist" className="grid justify-items-start">
-            <div className="flex flex-col w-96 text-lg ml-72 pt-4">
-              <h3 className="mb-2">Cette page arrive bientôt</h3>
+            <div className="flex flex-col text-lg ml-72 pt-4">
+              <h3 className="mb-2 cursor-default">Cette page arrive bientôt</h3>
             </div>
           </div>
         </div>
         <div className="w-auto" id="navmenu">
-          <Link to={RouteName.workshops}>
-            <NavButton type="blue" onClick={() => setVisible(true)}>
-              Se lancer
-            </NavButton>
-          </Link>
-          <div id="navlist" className="grid justify-items-center">
-            <div className="flex flex-col w-96 text-lg -ml-96 pt-4">
+          <NavButton type="blue" onClick={() => setVisible(true)}>
+            Se lancer
+          </NavButton>
+          <div id="navlist" className="grid justify-items-start pt-2">
+            <div className="flex flex-col w-96 text-lg ml-99 pt-4">
               <h3 className="mb-2 cursor-pointer hover:text-blue">
                 Le guide en 5 étapes pour se lancer dans le fait-maison avec 3
                 recettes faciles pour débuter, les ustensiles et ingredients
@@ -207,10 +229,14 @@ export const Navbar: React.FC = () => {
               Le projet
             </NavButton>
           </Link>
-          <div id="navlist" className="grid justify-items-center">
-            <div className="flex flex-col text-lg -ml-96 pt-4">
-              <h3 className="mb-2 cursor-pointer hover:text-grey">Pourquoi Greenit ?</h3>
-              <h3 className="mb-2 cursor-pointer hover:text-grey">Contacte-nous</h3>
+          <div id="navlist" className="grid justify-items-start pt-2">
+            <div className="flex flex-col text-lg pt-4 ml-100">
+              <h3 className="mb-2 cursor-pointer hover:text-grey">
+                Pourquoi Greenit ?
+              </h3>
+              <h3 className="mb-2 cursor-pointer hover:text-grey">
+                Contacte-nous
+              </h3>
             </div>
           </div>
         </div>

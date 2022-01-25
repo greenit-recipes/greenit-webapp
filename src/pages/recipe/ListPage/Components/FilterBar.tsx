@@ -4,7 +4,12 @@ import { Button } from "components/misc/Button";
 import authService from "services/auth.service";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import { find, map, omit, flattenDeep } from "lodash";
+=======
+import { includes, map, omit, flattenDeep } from "lodash";
+import { BackgroundImage } from "components";
+>>>>>>> 7bf4c47... change for menu navbar
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -120,36 +125,13 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             : "grid grid-rows-2 justify-items-center w-full max-w-7xl px-4"
         }
       >
-        {!isMobile && (
-          <div className="flex w-10/12 self-center mt-6">
-            <FilterBarSearch
-              search={search}
-              setSearch={setSearch}
-              setCurrentFilters={setCurrentFilters}
-            />
-            {isLoggedIn ? (
-              <Link to="/créer-une-recette" className="flex">
-                <Button
-                  type="grey"
-                  className="self-center h-10 rounded-xl ml-4"
-                >
-                  <h3> Partager une recette </h3>
-                </Button>
-              </Link>
-            ) : (
-              <Link to="/register" className="flex">
-                <Button
-                  type="grey"
-                  className="self-center h-10 rounded-xl ml-4"
-                >
-                  <h3> Partager une recette </h3>
-                </Button>
-              </Link>
-            )}
-          </div>
-        )}
+        <BackgroundImage/>
         {isMobile && (
-          <Button className="p-2 justify-self-end fixed top-14" type="grey" onClick={() => removeFilters()}>
+          <Button
+            className="p-2 justify-self-end fixed top-14"
+            type="grey"
+            onClick={() => removeFilters()}
+          >
             <h3 className="text-end text-sm">Supprimer les filtres ✕</h3>
           </Button>
         )}
@@ -176,7 +158,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           ))}
         </div>
         {!isMobile && (
-          <div className="flex-col w-10/12 h-auto bg-blue bg-opacity-25 rounded-lg px-4 py-2">
+          <div className="flex-col w-10/12 h-auto bg-bluelight rounded-lg px-4 py-2 mt-4">
             {isCurrentFilterEmpty && (
               <>
                 <div className="flex">
@@ -206,9 +188,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 </div>
                 <div>
                   <Button type="grey" onClick={() => removeFilters()}>
-                    <h3 className="text-sm">
-                      Supprimer tous les filtres ✖︎
-                    </h3>
+                    <h3 className="text-sm">Supprimer tous les filtres ✖︎</h3>
                   </Button>
                 </div>
               </>

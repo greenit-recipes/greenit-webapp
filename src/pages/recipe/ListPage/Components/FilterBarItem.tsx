@@ -35,7 +35,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
           </button>
           <ul
             id="list"
-            className={"list-none w-52 bg-white p-2 text-lg rounded-lg"}
+            className={"list-none bg-white text-lg rounded-lg"}
           >
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {
@@ -44,7 +44,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
                   { value: option.value },
                 );
                 return (
-                  <li key={index} className="p-1">
+                  <li key={index} className="ml-2 py-1">
                     <Checkbox
                       index={index}
                       parentFunction={handleFilter}
