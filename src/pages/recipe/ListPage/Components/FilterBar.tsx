@@ -75,7 +75,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   if (isMobile) {
     return (
       // to refacto - we can scroll in the back + we have to click again on the filter icon to see the results
-      <div className="sticky top-0 z-50 bg-white w-full">
+      <div className="flex sticky top-0 z-50 bg-red w-screen h-screen">
         <div
           className={`z-10 bg-white top-0 h-full ${
             toggle ? "filterBar_fadeIn" : "filterBar_fadeOut"
@@ -117,7 +117,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         className={
           isMobile
             ? "w-full grid px-4 mt-10 mb-6"
-            : "grid grid-rows-2 justify-items-center bg-white w-full max-w-7xl px-4"
+            : "grid grid-rows-2 justify-items-center w-full max-w-7xl px-4"
         }
       >
         {!isMobile && (
@@ -153,7 +153,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             <h3 className="text-end text-sm">Supprimer les filtres ✕</h3>
           </Button>
         )}
-        <div className={isMobile ? "" : "grid grid-cols-5 mt-5 w-10/12"}>
+        <div className={isMobile ? "" : "grid grid-cols-5 mt-4 w-10/12"}>
           {filter.slice(0, 4).map((item: any, index: any) => (
             <div key={index}>
               <FilterBarItem

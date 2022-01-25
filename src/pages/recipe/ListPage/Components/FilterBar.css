@@ -19,7 +19,7 @@ input[type="checkbox"] {
 }
 
 #menu #list {
-  z-index: 100;
+  z-index: 80;
   max-height: 0;
   transition: max-height 0.25s ease-out;
   overflow: hidden;

@@ -6,6 +6,9 @@ module.exports = {
   purge: false,
   theme: {
     extend: {
+      borderWidth: { 
+        '1': '1px'
+      },
       width: {
         '26': '6.5rem',
         '38': '9.5rem',
@@ -69,7 +72,7 @@ module.exports = {
         yellow: "#f9d58e",
         orange: "#fec4b0",
         green: "#83d489",
-        grey: "#a3a3a3",
+        grey: "#707070",
         red: "#f07b73",
       },
       opacity: {        
@@ -82,7 +85,11 @@ module.exports = {
       },
       animation: {
         rotate: "rotate 200ms ease-in"
-      }
+      },
+      fontFamily: {
+        medium: ['QuickSand_Medium.tff'],
+        bold: ['QuickSand_Bold.tff'],    
+      },
     },
   },
 };

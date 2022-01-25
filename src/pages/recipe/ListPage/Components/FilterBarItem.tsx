@@ -35,7 +35,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
           </button>
           <ul
             id="list"
-            className={"list-none w-52 bg-white rounded-lg p-2 text-lg"}
+            className={"list-none w-52 bg-white p-2 text-lg rounded-lg"}
           >
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {

@@ -11,9 +11,9 @@ export const SearchBar: React.FC<{
   }> = ({ size = "large", value, setValue, onSubmit, hideSearchIcon, keyId = "search" }) => {
     const isLarge = size === "large";
     const history = useHistory();
-    const totalSize = `w-full h-10 md:h-${isLarge ? "16" : "10"}`;
-    const iconSize = `w-10 md:w-${isLarge ? "20" : "10"} h-10 md:h-${
-      isLarge ? "16" : "10"
+    const totalSize = `w-full h-10 md:h-${isLarge ? "14" : "10"}`;
+    const iconSize = `w-10 md:w-${isLarge ? "16" : "10"} h-10 md:h-${
+      isLarge ? "14" : "10"
     }`;
     const handleSubmit = () => {
       if (!onSubmit) {
@@ -30,7 +30,7 @@ export const SearchBar: React.FC<{
       <div className={`${totalSize} | flex | relative`}>
         <input
           type="text"
-          className={`w-full h-full | rounded-full shadow-lg | text-base md:text-xl
+          className={`w-full h-full | rounded-full shadow-lg | text-base md:text-lg
           } | pl-5 | focus:outline-none`}
           onKeyDown={(e) => {
             if (e.key === "Enter") {

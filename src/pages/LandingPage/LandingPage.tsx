@@ -45,47 +45,62 @@ const LandingPage = () => {
       <Navbar />
       <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
-      <Container className="flex flex-col | items-center | mt-12 lg:mt-20">
-        <div className="max-w-12 sm:max-w-90">
-          <h1 className="text-2xl lg:text-4xl | pb-8 text-center">
-            La communauté du fait maison, <br /> pour une nouvelle consommation
-          </h1>
+      <Container className="flex flex-col | w-2/3 items-start | mt-12 lg:mt-20">
+        <div className="mb-10">
+          <h1 className="text-green text-2xl lg:text-5xl mb-4 |">Greenit</h1>
+          <h2 className="text-2xl lg:text-4xl mb-2 |">
+            La communauté du fait maison,
+          </h2>
+          <h2 className="text-2xl lg:text-4xl | ml-1 inline">
+            pour une consommation
+          </h2>
+          <h2 className="text-green text-2xl lg:text-4xl | ml-2 inline">
+            durable
+          </h2>
         </div>
-        <div className="lg:w-2/3">
+        <div className="lg:w-2/5">
           <SearchBar />
         </div>
+        <div className="w-full | py-8 | flex">
+          {isMobile ? (
+            <div className="flex overflow-x-auto pl-6">
+              {landingPageCategories.map((item) => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-row">
+              {landingPageCategories.slice(0, 1).map((item) => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
+              {landingPageCategories.slice(2, 3).map((item) => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
+              <div className="w-1 h-18 border-r-1 border-grey self-center mb-14 mx-6"></div>
+              {landingPageCategories.slice(3).map((item) => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       </Container>
-      <div className="w-full | items-center py-8 | flex justify-center">
-        {isMobile ? (
-          <div className="flex overflow-x-auto pl-6">
-            {landingPageCategories.map((item) => (
-              <CategoryCircle
-                name={item.title}
-                icon={item.icon}
-                key={item.title}
-              />
-            ))}
-          </div>
-        ) : (
-          <Grid
-            type="col"
-            gap={{
-              default: 6,
-            }}
-            size={{
-              default: 6,
-            }}
-          >
-            {landingPageCategories.map((item) => (
-              <CategoryCircle
-                name={item.title}
-                icon={item.icon}
-                key={item.title}
-              />
-            ))}
-          </Grid>
-        )}
-      </div>
+
       <Container className="mb-6" itemsCenter>
         <h1 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
           Notre sélection de recettes
