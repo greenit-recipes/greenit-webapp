@@ -4,12 +4,8 @@ import { Button } from "components/misc/Button";
 import authService from "services/auth.service";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import { find, map, omit, flattenDeep } from "lodash";
-=======
-import { includes, map, omit, flattenDeep } from "lodash";
 import { BackgroundImage } from "components";
->>>>>>> 7bf4c47... change for menu navbar
 
 interface FilterBarProps {
   filter: Record<string, any>;
