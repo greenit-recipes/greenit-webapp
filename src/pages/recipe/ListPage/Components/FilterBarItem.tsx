@@ -1,5 +1,5 @@
 import { Checkbox } from "components/layout/Checkbox";
-import { includes } from "lodash";
+import { includes, find } from "lodash";
 import "pages/recipe/ListPage/Components/FilterBar.css";
 
 interface IFilterBarItem {
@@ -26,8 +26,8 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
           <button className="flex border-b-2 border-transparent hover:border-blue self-center">
             <h1 className="text-lg">{item.title} ▾ </h1>
             <div className="ml-2 self-center text-md">
-              {currentFilters[item.name]?.length ? (
-                <h1>{currentFilters[item.name].length}</h1>
+              {currentFilters?.[item.name]?.length ? (
+                <h1>{currentFilters?.[item.name].length}</h1>
               ) : (
                 <></>
               )}
@@ -39,9 +39,9 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
           >
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {
-                const isSelected = includes(
-                  currentFilters[item.name],
-                  option.value || option.title
+                const isSelected = !!find(
+                  currentFilters?.[item.name],
+                  { value: option.value },
                 );
                 return (
                   <li key={index} className="p-1">
@@ -62,9 +62,9 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
         <div className="ml-4 mt-4">
           <div className="flex">
             <h1 className="text-xl self-center">{item.title}</h1>
-            {currentFilters[item.name]?.length ? (
+            {currentFilters?.[item.name]?.length ? (
               <h1 className="self-center ml-2">
-                {currentFilters[item.name].length}
+                {currentFilters?.[item.name].length}
               </h1>
             ) : (
               <></>
@@ -73,9 +73,9 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
           <ul className={"w-auto"}>
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {
-                const isSelected = includes(
-                  currentFilters[item.name],
-                  option.value || option.title
+                const isSelected = !!find(
+                  currentFilters?.[item.name],
+                  { value: option.value },
                 );
                 return (
                   <li key={index} className="p-1 text-lg">

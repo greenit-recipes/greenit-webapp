@@ -4,7 +4,7 @@ import { Button } from "components/misc/Button";
 import authService from "services/auth.service";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { includes, map, omit, flattenDeep } from "lodash";
+import { find, map, omit, flattenDeep } from "lodash";
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -27,9 +27,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 }) => {
   const [search, setSearch] = useState(params.get("search") || "");
   const isLoggedIn = authService.isLoggedIn();
-  const removeFilter = (value: any, key: any) => {
+  const removeFilter = (valuex: any, key: any) => {
     let currentState = { ...currentFilters };
-    currentState[key] = currentState[key].filter((x: string) => x !== value);
+    currentState[key] = currentState[key].filter( (value: { value: string, title: string}) => value.value !== valuex);
 
     setCurrentFilters(currentState);
     //setCurrentFilters(toto);
@@ -57,15 +57,15 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   ) => {
     const state = { ...currentFilters };
     if (state[item.name]) {
-      if (includes(state[item.name], option.value || option.title)) {
+      if (find(state[item.name], { value: option.value, title: option.title})) {
         state[item.name] = state[item.name].filter(
-          (value: string) => value !== (option.value || option.title)
+          (value: { value: string, title: string}) => value.value !== (option.value)
         );
       } else {
-        state[item.name].push(option.value || option.title);
+        state[item.name].push({ value: option.value, title: option.title});
       }
     } else {
-      state[item.name] = [option.value || option.title];
+      state[item.name] = [{ value: option.value, title: option.title}];
     }
 
     setCurrentFilters(state);
@@ -192,10 +192,10 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                             className="flex h-8 inline bg-blue text-white rounded-xl px-3 py-1 ml-2 mb-2"
                             key={index}
                           >
-                            <p>{value}</p>
+                            <p>{value.title}</p>
                             <button
                               className="ml-2"
-                              onClick={() => removeFilter(value, key)}
+                              onClick={() => removeFilter(value.value, key)}
                             >
                               ✖︎
                             </button>
