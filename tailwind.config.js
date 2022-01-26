@@ -6,6 +6,9 @@ module.exports = {
   purge: false,
   theme: {
     extend: {
+      borderWidth: { 
+        '1': '1px'
+      },
       width: {
         '26': '6.5rem',
         '38': '9.5rem',
@@ -45,6 +48,10 @@ module.exports = {
         '64': '16rem',
         '96': '24rem',
       },
+      margin: {        
+        '100': '33rem',
+        '99': '28rem',            
+      },
       fontFamily: {
         'body': ["Quicksand-Medium"],
         'legend': ["Quicksand-Light"],
@@ -69,12 +76,11 @@ module.exports = {
         yellow: "#f9d58e",
         orange: "#fec4b0",
         green: "#83d489",
-        grey: "#a3a3a3",
+        grey: "#707070",
         red: "#f07b73",
+        bluelight: "#e0eaf8",
       },
-      opacity: {        
-        '97': '.97',
-      },
+
       keyframes: {
         rotate: {
           "50%": { transform: "rotate(90deg)" },
@@ -82,7 +88,11 @@ module.exports = {
       },
       animation: {
         rotate: "rotate 200ms ease-in"
-      }
+      },
+      fontFamily: {
+        medium: ['QuickSand_Medium.tff'],
+        bold: ['QuickSand_Bold.tff'],    
+      },
     },
   },
 };

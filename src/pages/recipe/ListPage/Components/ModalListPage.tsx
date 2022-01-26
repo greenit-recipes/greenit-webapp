@@ -10,7 +10,7 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
   return (
     <>
       <Button
-        className="ease-linear transition-all duration-150 mt-2 w-4/5 h-10 rounded-full"
+        className="ease-linear transition-all duration-150 mt-2 w-4/5 h-8 rounded"
         type="orange"
         onClick={() => props.parentFunction(true)}
       >
@@ -27,10 +27,10 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
           </Button>
 
           <div
-            className="bg-white items-center flex overflow-x-hidden 
+            className="bg-blue items-center flex overflow-x-hidden 
             overflow-y-auto fixed inset-0 overscroll-contain pt-80 z-30 outline-none focus:outline-none pt-14"
           >
-            <div>{props.children}</div>
+            <div className="flex bg-red">{props.children}</div>
           </div>
           <div className="grid justify-items-center fixed bottom-0 h-20 z-50 bg-white w-screen">
             <Button

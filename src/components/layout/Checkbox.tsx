@@ -35,7 +35,7 @@ export const Checkbox: React.FC<ICheckbox> = ({
 
   const checkmarkAnimationRef = useSpringRef();
   const checkmarkAnimationStyle = useSpring({
-    x: isChecked ? 0 : checkmarkLength,
+    x: isChecked ? 2 : checkmarkLength,
     config: config.gentle,
     ref: checkmarkAnimationRef,
   });
@@ -45,6 +45,7 @@ export const Checkbox: React.FC<ICheckbox> = ({
       : [checkmarkAnimationRef, checkboxAnimationRef],
     [0, 0.1]
   );
+
   return (
     <label
       className="flex"

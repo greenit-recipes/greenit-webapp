@@ -11,9 +11,9 @@ export const SearchBar: React.FC<{
   }> = ({ size = "large", value, setValue, onSubmit, hideSearchIcon, keyId = "search" }) => {
     const isLarge = size === "large";
     const history = useHistory();
-    const totalSize = `w-full h-10 md:h-${isLarge ? "16" : "10"}`;
-    const iconSize = `w-10 md:w-${isLarge ? "20" : "10"} h-10 md:h-${
-      isLarge ? "16" : "10"
+    const totalSize = `w-full h-10 md:h-${isLarge ? "14" : "10"}`;
+    const iconSize = `w-10 md:w-${isLarge ? "16" : "10"} h-10 md:h-${
+      isLarge ? "12" : "10"
     }`;
     const handleSubmit = () => {
       if (!onSubmit) {
@@ -27,10 +27,10 @@ export const SearchBar: React.FC<{
       }
     };
     return (
-      <div className={`${totalSize} | flex | relative`}>
+      <div className={`${totalSize} | flex | relative bg-white rounded-xl border-1 border-grey `}>
         <input
           type="text"
-          className={`w-full h-full | rounded-full shadow-lg | text-base md:text-xl
+          className={`text-base md:text-lg bg-transparent
           } | pl-5 | focus:outline-none`}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -52,8 +52,7 @@ export const SearchBar: React.FC<{
         />
         {!hideSearchIcon && (
           <div
-            className={`${iconSize} | flex absolute right-1 | rounded-full cursor-pointer`}
-            style={{ backgroundColor: "white" }}
+            className={`${iconSize} | flex absolute right-1 | self-center rounded-full cursor-pointer`}
           >
             <img
               src={search}

@@ -5,6 +5,7 @@ import authService from "services/auth.service";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { find, map, omit, flattenDeep } from "lodash";
+import { BackgroundImage } from "components";
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -75,7 +76,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   if (isMobile) {
     return (
       // to refacto - we can scroll in the back + we have to click again on the filter icon to see the results
-      <div className="sticky top-0 z-50 bg-white w-full">
+      <div className="flex sticky top-0 z-50 bg-red w-screen h-screen">
         <div
           className={`z-10 bg-white top-0 h-full ${
             toggle ? "filterBar_fadeIn" : "filterBar_fadeOut"
@@ -113,15 +114,16 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   }
   return (
     <div className="w-screen grid justify-items-start lg:justify-items-center">
+      <BackgroundImage />
       <div
         className={
           isMobile
             ? "w-full grid px-4 mt-10 mb-6"
-            : "grid grid-rows-2 justify-items-center bg-white w-full max-w-7xl px-4"
+            : "grid grid-rows-2 justify-items-center w-full max-w-6xl p-4 bg-white mt-4 rounded-lg"
         }
       >
         {!isMobile && (
-          <div className="flex w-10/12 self-center mt-6">
+          <div className="flex w-11/12 self-center">
             <FilterBarSearch
               search={search}
               setSearch={setSearch}
@@ -149,11 +151,15 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           </div>
         )}
         {isMobile && (
-          <Button className="p-2 justify-self-end fixed top-14" type="grey" onClick={() => removeFilters()}>
+          <Button
+            className="p-2 justify-self-end fixed top-14"
+            type="grey"
+            onClick={() => removeFilters()}
+          >
             <h3 className="text-end text-sm">Supprimer les filtres ✕</h3>
           </Button>
         )}
-        <div className={isMobile ? "" : "grid grid-cols-5 mt-5 w-10/12"}>
+        <div className={isMobile ? "" : "grid grid-cols-5 mt-4 w-10/12"}>
           {filter.slice(0, 4).map((item: any, index: any) => (
             <div key={index}>
               <FilterBarItem
@@ -175,8 +181,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             </div>
           ))}
         </div>
+
         {!isMobile && (
-          <div className="flex-col w-10/12 h-auto bg-blue bg-opacity-25 rounded-lg px-4 py-2">
+          <div className="flex-col w-11/12 h-auto bg-bluelight rounded-lg px-4 py-2 mt-4">
             {isCurrentFilterEmpty && (
               <>
                 <div className="flex">
@@ -206,9 +213,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 </div>
                 <div>
                   <Button type="grey" onClick={() => removeFilters()}>
-                    <h3 className="text-sm">
-                      Supprimer tous les filtres ✖︎
-                    </h3>
+                    <h3 className="text-sm">Supprimer tous les filtres ✖︎</h3>
                   </Button>
                 </div>
               </>
