@@ -10,7 +10,7 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
   return (
     <>
       <Button
-        className="ease-linear transition-all duration-150 mt-2 w-4/5 h-10 rounded"
+        className="ease-linear transition-all duration-150 mt-2 w-4/5 h-8 rounded"
         type="orange"
         onClick={() => props.parentFunction(true)}
       >

@@ -118,14 +118,42 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   }
   return (
     <div className="w-screen grid justify-items-start lg:justify-items-center">
+      <BackgroundImage />
       <div
         className={
           isMobile
             ? "w-full grid px-4 mt-10 mb-6"
-            : "grid grid-rows-2 justify-items-center w-full max-w-7xl px-4"
+            : "grid grid-rows-2 justify-items-center w-full max-w-6xl p-4 bg-white mt-4 rounded-lg"
         }
       >
-        <BackgroundImage/>
+        {!isMobile && (
+          <div className="flex w-11/12 self-center">
+            <FilterBarSearch
+              search={search}
+              setSearch={setSearch}
+              setCurrentFilters={setCurrentFilters}
+            />
+            {isLoggedIn ? (
+              <Link to="/créer-une-recette" className="flex">
+                <Button
+                  type="grey"
+                  className="self-center h-10 rounded-xl ml-4"
+                >
+                  <h3> Partager une recette </h3>
+                </Button>
+              </Link>
+            ) : (
+              <Link to="/register" className="flex">
+                <Button
+                  type="grey"
+                  className="self-center h-10 rounded-xl ml-4"
+                >
+                  <h3> Partager une recette </h3>
+                </Button>
+              </Link>
+            )}
+          </div>
+        )}
         {isMobile && (
           <Button
             className="p-2 justify-self-end fixed top-14"
@@ -157,8 +185,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             </div>
           ))}
         </div>
+
         {!isMobile && (
-          <div className="flex-col w-10/12 h-auto bg-bluelight rounded-lg px-4 py-2 mt-4">
+          <div className="flex-col w-11/12 h-auto bg-bluelight rounded-lg px-4 py-2 mt-4">
             {isCurrentFilterEmpty && (
               <>
                 <div className="flex">

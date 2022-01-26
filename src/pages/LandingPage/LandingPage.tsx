@@ -45,61 +45,51 @@ const LandingPage = () => {
       <Navbar />
       <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
-      <Container className="flex flex-col | w-2/3 items-start | mt-12 lg:mt-20">
+      <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-8 md:mt-20">
         <div className="mb-10">
-          <h1 className="text-green text-2xl lg:text-5xl mb-4 |">Greenit</h1>
-          <h2 className="text-2xl lg:text-4xl mb-2 |">
+          {!isMobile && (
+            <h1 className="text-green text-3xl md:text-5xl mb-4 |">Greenit</h1>
+          )}
+          <h2 className="text-2xl md:text-4xl md:mb-2 inline lg:block |">
             La communauté du fait maison,
           </h2>
-          <h2 className="text-2xl lg:text-4xl | ml-1 inline">
+          <h2 className="text-2xl md:text-4xl | ml-2 lg:ml-0 md:mb-2 inline">
             pour une consommation
           </h2>
-          <h2 className="text-green text-2xl lg:text-4xl | ml-2 inline">
+          <h2 className="text-green text-2xl md:text-4xl | ml-2 inline">
             durable
           </h2>
         </div>
         <div className="lg:w-2/5">
           <SearchBar />
         </div>
-        <div className="w-full | py-8 | flex">
-          {isMobile ? (
-            <div className="flex overflow-x-auto pl-6">
-              {landingPageCategories.map((item) => (
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-row">
-              {landingPageCategories.slice(0, 1).map((item) => (
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              ))}
-              {landingPageCategories.slice(2, 3).map((item) => (
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              ))}
-              <div className="w-1 h-18 border-r-1 border-grey self-center mb-14 mx-6"></div>
-              {landingPageCategories.slice(3).map((item) => (
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              ))}
-            </div>
-          )}
-        </div>
       </Container>
+      <div className="w-full sm:w-4/5 lg:w-2/3 | py-8 pl-6 | flex flex overflow-x-auto">
+        <div className="flex flex-row">
+          {landingPageCategories.slice(0, 1).map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))}
+          {landingPageCategories.slice(2, 3).map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))}
+          <div className="w-1 h-18 border-r-1 border-grey self-center mb-14 mx-6"></div>
+          {landingPageCategories.slice(3).map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))}
+        </div>
+      </div>
 
       <Container className="mb-6" itemsCenter>
         <h1 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
