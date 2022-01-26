@@ -10,12 +10,19 @@ import useIsMobile from "../../../hooks/isMobile";
 import { useRecipesQuery, RecipesQuery } from "../../../graphql";
 import { Loading } from "../../../components";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { filterIcon, scrollToTop } from "../../../icons";
+import { scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
+import { mapValues, map } from "lodash";
+
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
+
+  const cleanDataPlayload = (filter: any) => mapValues(filter, function(value, key) {
+    if (key === 'search') return value
+    return map(value, (x) => x.value)
+  });
 
   const [currentFilters, setCurrentFilters] = useState<any>({
     search: "",
@@ -40,6 +47,7 @@ const RecipeListPage = () => {
       },
     },
   });
+
   const isMobile = useIsMobile();
   useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -51,11 +59,14 @@ const RecipeListPage = () => {
   }, []);
   const [toggle, setToggle] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
+
   useEffect(() => {
     if (!loading) {
-      refetch({ filter: currentFilters });
+      const filterValue = cleanDataPlayload(currentFilters)
+      //localStorage.setItem("filterListPage", JSON.stringify(currentFilters));
+      refetch({ filter: filterValue });
     }
-  }, [currentFilters]);
+  }, [currentFilters, refetch, loading]);
 
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -64,13 +75,7 @@ const RecipeListPage = () => {
   }
   const recipes = data.allRecipes?.edges || [];
   const hasMore = data.allRecipes?.pageInfo.hasNextPage || false;
-  if (
-    params.get("tags") &&
-    !filterData[1].options.some((option) => option.title === params.get("tags"))
-  ) {
-    // @ts-ignore
-    filterData[1].options.push({ title: params.get("tags") });
-  }
+
   return (
     <div className={""}>
       <Navbar />

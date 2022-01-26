@@ -224,9 +224,6 @@ const RecipeSinglePage = () => {
                     key={index}
                     className="m-1 mb-1 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
                     style={{ backgroundColor: "#888888" }}
-                    onClick={() => {
-                      history.push(`/recipes?tags=${item.name}`);
-                    }}
                   >
                     {item.name}
                   </div>
