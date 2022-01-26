@@ -73,45 +73,6 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     setScrollOffset(0);
   };
 
-  if (isMobile) {
-    return (
-      // to refacto - we can scroll in the back + we have to click again on the filter icon to see the results
-      <div className="flex sticky top-0 z-50 bg-red w-screen h-screen">
-        <div
-          className={`z-10 bg-white top-0 h-full ${
-            toggle ? "filterBar_fadeIn" : "filterBar_fadeOut"
-          } grid justify-items-center items-align-center rounded-xl`}
-        >
-          <div className="flex flex-col items-center mt-24">
-            <FilterBarSearch
-              setCurrentFilters={setCurrentFilters}
-              search={search}
-              setSearch={setSearch}
-            />
-            {isLoggedIn ? (
-              <Link to="/créer-une-recette">
-                <Button type="green" className="mb-6 rounded-lg text-lg">
-                  Partager une recette
-                </Button>
-              </Link>
-            ) : (
-              <div />
-            )}
-            <div className="grid grid-cols-2 w-full">
-              {filter.map((item: any, index: any) => (
-                <FilterBarItem
-                  item={item}
-                  key={index}
-                  currentFilters={currentFilters}
-                  handleFilter={handleFilter}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
   return (
     <div className="w-screen grid justify-items-start lg:justify-items-center">
       <BackgroundImage />
