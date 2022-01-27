@@ -27,10 +27,10 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
           </Button>
 
           <div
-            className="bg-blue items-center flex overflow-x-hidden 
-            overflow-y-auto fixed inset-0 overscroll-contain pt-80 z-30 outline-none focus:outline-none pt-14"
+            className="bg-white items-center flex overflow-x-hidden 
+            overflow-y-auto fixed inset-0 overscroll-contain z-30 outline-none focus:outline-none"
           >
-            <div className="flex bg-red">{props.children}</div>
+            <div className="absolute top-10 mt-4 pb-20">{props.children}</div>
           </div>
           <div className="grid justify-items-center fixed bottom-0 h-20 z-50 bg-white w-full">
             <Button

@@ -22,6 +22,8 @@ import ForgetPassword from "pages/Login/ForgetPassword";
 import ActivateResetPassword from "pages/ActivateResetPassword";
 import RecipeCreatedPage from "pages/CreateRecipe/CreateRecipeSuccess";
 import AccountCreated from "pages/AccountCreated";
+import IngredientPage from "pages/IngredientSpace/IngredientPage"
+import DébutantPage from "pages/DébutantPage"
 
 export const history = createBrowserHistory();
 
@@ -33,6 +35,8 @@ export const RouteName = {
   register: "/register",
   recipeCreated: "/recette-créée",
   workshops: "/workshops",
+  IngredientPage: "/Espace-Ingredients",
+  DébutantPage: "/Se-lancer-dans-le-diy",
   why: "/why",
   contact: "/contact",
 };
@@ -51,7 +55,9 @@ const App: React.FC = () => {
           component={PersonalizedSearch}
           exact
         />
+        <PublicRoute path={RouteName.IngredientPage} component={IngredientPage} exact />
         <PublicRoute path={RouteName.workshops} component={WorkshopPage} exact />
+        <PublicRoute path={RouteName.DébutantPage} component={DébutantPage} exact />
         <PrivateRoute
           path="/créer-une-recette"
           component={CreateRecipe}

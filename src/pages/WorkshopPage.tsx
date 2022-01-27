@@ -1,5 +1,5 @@
 import { RouteName } from "App";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import useIsMobile from "../hooks/isMobile";
 import { Container, Footer, Navbar } from "../components";
@@ -21,7 +21,6 @@ const WorkshopPage = () => {
   const [isIncoming, setIsIncoming] = useState(false);
 
   const isMobile = useIsMobile();
-
   const fieldRef = React.useRef<HTMLInputElement>(null);
 
   const scrollIntoReview = () => {
@@ -44,7 +43,7 @@ const WorkshopPage = () => {
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
-      <Container className="flex flex-col | items-center | mt-16 lg:mt-28 p-6">
+      <Container className="flex flex-col | items-center | w-2/3 md:w-full mt-16 lg:mt-28 p-4">
         <h1 className="text-2xl md:text-3xl | text-center">
           Tous les ateliers DIY proches de chez toi !
         </h1>
