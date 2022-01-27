@@ -1,5 +1,5 @@
 import { RouteName } from "App";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import authService from "services/auth.service";
 import { Button } from "../";
@@ -76,15 +76,17 @@ export const Navbar: React.FC = () => {
             >
               <h1 className="text-white focus:text-green">Recettes</h1>
             </div>
-
-            <Link to={RouteName.workshops}>
-              <h1 className="text-white p-2">Ateliers</h1>
+            <Link className="p-2" to={RouteName.workshops}>
+              <h1 className="text-white">Ateliers</h1>
             </Link>
-
-            <h1 className="text-white p-2">Ingrédients</h1>
-            <h1 className="text-white p-2">Se lancer</h1>
-            <Link to={RouteName.why}>
-              <h1 className="text-white p-2">Le projet</h1>
+            <Link className="p-2" to={RouteName.IngredientPage}>
+              <h1 className="text-white">Ingrédients</h1>
+            </Link>
+            <Link className="p-2" to={RouteName.DébutantPage}>
+              <h1 className="text-white">Se lancer</h1>
+            </Link>
+            <Link className="p-2" to={RouteName.why}>
+              <h1 className="text-white">Le projet</h1>
             </Link>
           </div>
         </div>
@@ -212,12 +214,16 @@ export const Navbar: React.FC = () => {
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col text-lg ml-40 pt-4">
-              <h3 className="mb-2 cursor-pointer hover:text-yellow">
-                Tous les ateliers
-              </h3>
+              <Link to={RouteName.workshops}>
+                <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                  Tous les ateliers
+                </h3>
+              </Link>
+              <Link className="p-2" to={RouteName.workshops}>
               <h3 className="mb-2 cursor-pointer hover:text-yellow">
                 Ateliers en présentiel
               </h3>
+              </Link>
               <h3 className="mb-2 cursor-pointer hover:text-yellow">
                 Ateliers en ligne
               </h3>
@@ -228,19 +234,23 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
         <div className="w-auto" id="navmenu">
-          <NavButton type="orange" onClick={() => setVisible(true)}>
-            Ingrédients
-          </NavButton>
-          <div id="navlist" className="grid justify-items-start">
+          <Link to={RouteName.IngredientPage}>
+            <NavButton type="orange" onClick={() => setVisible(true)}>
+              Ingrédients
+            </NavButton>
+          </Link>
+          <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col text-lg ml-72 pt-4">
               <h3 className="mb-2 cursor-default">Cette page arrive bientôt</h3>
             </div>
           </div>
         </div>
         <div className="w-auto" id="navmenu">
-          <NavButton type="blue" onClick={() => setVisible(true)}>
-            Se lancer
-          </NavButton>
+          <Link to={RouteName.DébutantPage}>
+            <NavButton type="blue" onClick={() => setVisible(true)}>
+              Se lancer
+            </NavButton>
+          </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col w-96 text-lg ml-99 pt-4">
               <h3 className="mb-2 cursor-pointer hover:text-blue">
