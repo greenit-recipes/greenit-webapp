@@ -69,6 +69,7 @@ export const filterData = [
     options: [
       { title: "Premiers pas", value: "Premiers pas" },
       { title: "Zéro-déchet", value: "Zéro-déchet" },
+      { title: "Sans cuisson", value: "Sans cuisson" },
       {
         title: "Ingrédients de la cuisine", value: "Ingrédients de la cuisine",
       },

@@ -32,7 +32,7 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
           >
             <div className="flex bg-red">{props.children}</div>
           </div>
-          <div className="grid justify-items-center fixed bottom-0 h-20 z-50 bg-white w-screen">
+          <div className="grid justify-items-center fixed bottom-0 h-20 z-50 bg-white w-full">
             <Button
               type="orange"
               className=" z-50 w-4/5 h-10 ml-4 self-center"

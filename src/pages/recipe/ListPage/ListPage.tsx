@@ -14,20 +14,28 @@ import { scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
-import { mapValues, map } from "lodash";
+import { mapValues, map, includes } from "lodash";
+import { useHistory } from "react-router-dom";
 
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
+  const history = useHistory();
 
-  const cleanDataPlayload = (filter: any) => mapValues(filter, function(value, key) {
-    if (key === 'search') return value
-    return map(value, (x) => x.value)
-  });
+  const cleanDataPlayload = (filter: any) =>
+    mapValues(filter, function (value, key) {
+      if (key === "search") return value;
+      return map(value, (x) => x.value);
+    });
 
+  // params trigger 2 requests before param and after getting param need to be fixed
   const [currentFilters, setCurrentFilters] = useState<any>({
-    search: "",
-    tags: [],
-    category: [],
+    search: params.get("search") ? params.get("search") : "",
+    tags: params.get("tags")
+      ? [{ title: params.get("tags"), value: params.get("tags") }]
+      : [],
+    category: params.get("category")
+      ? [{ title: params.get("category"), value: params.get("category") }]
+      : [],
     difficulty: [],
     duration: [],
     numberOfIngredients: [],
@@ -50,6 +58,14 @@ const RecipeListPage = () => {
 
   const isMobile = useIsMobile();
   useEffect(() => {
+    history.listen((prev: any) => {
+      if (includes(prev?.pathname, "/recipes")) {
+        window.location.reload();
+      }
+    });
+  }, [history]);
+
+  useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
@@ -62,7 +78,7 @@ const RecipeListPage = () => {
 
   useEffect(() => {
     if (!loading) {
-      const filterValue = cleanDataPlayload(currentFilters)
+      const filterValue = cleanDataPlayload(currentFilters);
       //localStorage.setItem("filterListPage", JSON.stringify(currentFilters));
       refetch({ filter: filterValue });
     }
@@ -94,7 +110,16 @@ const RecipeListPage = () => {
       {isMobile && (
         <div className="grid justify-items-center bg-white py-2 z-30">
           <div className="w-4/5 self-center">
-            <SearchBar />
+            <FilterBar
+              isOnlyForSearch={true}
+              filter={filterData}
+              currentFilters={currentFilters}
+              setCurrentFilters={setCurrentFilters}
+              isMobile={isMobile}
+              toggle={toggle}
+              setScrollOffset={setScrollOffset}
+              params={params}
+            />
           </div>
           <ModalListPage
             isShowModal={isShowModal}
@@ -113,7 +138,7 @@ const RecipeListPage = () => {
         </div>
       )}
       <div className="flex justify-center">
-        <div className="h-auto max-w-7xl  justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
+        <div className="h-auto max-w-7xl justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
@@ -122,7 +147,7 @@ const RecipeListPage = () => {
             next={() => {
               fetchMore({
                 variables: {
-                  filter: currentFilters,
+                  filter: cleanDataPlayload(currentFilters),
                   after: data.allRecipes?.pageInfo?.endCursor,
                   first: 10,
                 },

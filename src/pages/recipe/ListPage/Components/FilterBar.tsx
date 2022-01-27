@@ -12,6 +12,7 @@ interface FilterBarProps {
   currentFilters: Record<string, any>;
   setCurrentFilters: (filter: Record<string, any>) => void;
   isMobile?: boolean;
+  isOnlyForSearch?: boolean;
   toggle?: boolean;
   setScrollOffset: (val: number) => void;
   params: URLSearchParams;
@@ -23,6 +24,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   currentFilters,
   setCurrentFilters,
   isMobile,
+  isOnlyForSearch = false,
   toggle,
   setScrollOffset,
 }) => {
@@ -74,19 +76,29 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   };
 
   return (
-    <div className="w-screen grid justify-items-start lg:justify-items-center">
+    <>
+    {isOnlyForSearch ? (
+    <FilterBarSearch
+              search={search}
+              keyId="SearchFilterBarForMobile"
+              setSearch={setSearch}
+              setCurrentFilters={setCurrentFilters}
+            />
+    ) : (
+    <div className="w-full grid justify-items-start lg:justify-items-center bg-white">
       <BackgroundImage />
       <div
         className={
           isMobile
             ? "w-full grid px-4 mt-10 mb-6"
-            : "grid grid-rows-2 justify-items-center w-full max-w-6xl p-4 bg-white mt-4 rounded-lg"
+            : "grid grid-rows-2 justify-items-center w-full max-w-6xl p-4 mt-4 rounded-lg"
         }
       >
         {!isMobile && (
           <div className="flex w-11/12 self-center">
             <FilterBarSearch
               search={search}
+              keyId="SearchFilterBar"
               setSearch={setSearch}
               setCurrentFilters={setCurrentFilters}
             />
@@ -187,6 +199,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           </div>
         )}
       </div>
-    </div>
+    </div>) 
+    }
+    </>
   );
 };

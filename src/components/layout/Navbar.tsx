@@ -13,17 +13,8 @@ import { SearchBarNav } from "./SearchBarNav";
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const [toggle, setToggle] = useState(false);
-  const [effect, setEffect] = useState(false);
   const [visible, setVisible] = React.useState(false);
-  const location = useLocation();
-  const history = useHistory();
 
-  const refreshPage = () => {
-    if (location.pathname === "/recipes") {
-      window.location.reload();
-    }
-    history.push("/recipes");
-  };
   const isLoggedIn = authService.isLoggedIn();
 
   if (isMobile) {
@@ -76,29 +67,24 @@ export const Navbar: React.FC = () => {
           }
         >
           <div className="flex flex-col">
-            <SearchBar />
+            <SearchBar  keyId="SearchNavMobile"/>
             <div
               className="p-2 mt-3 border-b-2 border-transparent"
               onClick={() => {
                 setVisible(true);
-                refreshPage();
               }}
             >
               <h1 className="text-white focus:text-green">Recettes</h1>
             </div>
 
-            <Link className="p-2" to={RouteName.workshops}>
-              <h1 className="text-white">Ateliers</h1>
+            <Link to={RouteName.workshops}>
+              <h1 className="text-white p-2">Ateliers</h1>
             </Link>
 
-            <Link className="p-2" to={RouteName.workshops}>
-              <h1 className="text-white">Ingrédients</h1>
-            </Link>
-            <Link className="p-2" to={RouteName.workshops}>
-              <h1 className="text-white">Se lancer</h1>
-            </Link>
-            <Link className="p-2" to={RouteName.workshops}>
-              <h1 className="text-white">Le projet</h1>
+            <h1 className="text-white p-2">Ingrédients</h1>
+            <h1 className="text-white p-2">Se lancer</h1>
+            <Link to={RouteName.why}>
+              <h1 className="text-white p-2">Le projet</h1>
             </Link>
           </div>
         </div>
@@ -106,7 +92,7 @@ export const Navbar: React.FC = () => {
     );
   }
   return (
-    <div className="flex flex-row h-16 w-screen | sticky top-0 bg-white z-50">
+    <div className="flex flex-row h-16 w-full | sticky top-0 bg-white z-50">
       <div className="grid justify-items-center items-center">
         <Link to="/">
           <img
@@ -123,7 +109,6 @@ export const Navbar: React.FC = () => {
               type="green"
               onClick={() => {
                 setVisible(true);
-                refreshPage();
               }}
             >
               Recettes
@@ -133,45 +118,88 @@ export const Navbar: React.FC = () => {
             <div className="grid grid-cols-3 w-2/5 justify-items-center ml-20 pt-2">
               <div className="flex flex-col text-lg pt-4">
                 <h2 className="mb-2 cursor-default">Racourcis</h2>
-                <h3 className="mb-2 cursor-pointer hover:text-green">
-                  Toutes les recettes
-                </h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">
-                  Partager une recette
-                </h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">
-                  Premiers pas
-                </h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">
-                  Avec les ingrédients de la cuisine
-                </h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">
-                  Sans cuisson
-                </h3>
+
+                <Link to="/recipes">
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Toutes les recettes
+                  </h3>
+                </Link>
+                <Link to={isLoggedIn ? "/créer-une-recette" : "/register"}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Partager une recette
+                  </h3>
+                </Link>
+                <Link to={`/recipes?tags=Premiers pas`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Premiers pas
+                  </h3>
+                </Link>
+                <Link to={`/recipes?tags=Ingrédients de la cuisine`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Avec les ingrédients de la cuisine
+                  </h3>
+                </Link>
+                <Link to={`/recipes?tags=Sans cuisson`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Sans cuisson
+                  </h3>
+                </Link>
               </div>
               <div className="flex flex-col text-lg pt-4">
-                <h2 className="mb-2 cursor-default">Catégories</h2>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Maison</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Corps</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Visage</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">
-                  Cheveux
-                </h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">
-                  Bien-être
-                </h3>
+                <h2 className="mb-2 cursor-default">Catégories</h2>{" "}
+                <Link to={`/recipes?category=Maison`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Maison
+                  </h3>
+                </Link>
+                <Link to={`/recipes?category=Corps`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Corps
+                  </h3>
+                </Link>
+                <Link to={`/recipes?category=Visage`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Visage
+                  </h3>
+                </Link>
+                <Link to={`/recipes?category=Cheveux`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Cheveux
+                  </h3>
+                </Link>
+                <Link to={`/recipes?category=Bien-être`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Bien-être
+                  </h3>
+                </Link>
               </div>
               <div className="flex flex-col text-lg pt-4">
                 <h2 className="mb-2 cursor-default">Type de produit</h2>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Savon</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">
-                  Shampoings
-                </h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Baumes</h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">
-                  Solides
-                </h3>
-                <h3 className="mb-2 cursor-pointer hover:text-green">Crèmes</h3>
+                <Link to={`/recipes?search=Savon`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Savon
+                  </h3>
+                </Link>
+                <Link to={`/recipes?search=Shampoing`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Shampoing
+                  </h3>
+                </Link>
+                <Link to={`/recipes?search=Baume`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Baume
+                  </h3>
+                </Link>
+                <Link to={`/recipes?search=Solide`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Solide
+                  </h3>
+                </Link>
+                <Link to={`/recipes?search=Crème`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Crème
+                  </h3>
+                </Link>
               </div>
             </div>
           </div>
@@ -231,19 +259,23 @@ export const Navbar: React.FC = () => {
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col text-lg pt-4 ml-100">
-              <h3 className="mb-2 cursor-pointer hover:text-grey">
-                Pourquoi Greenit ?
-              </h3>
-              <h3 className="mb-2 cursor-pointer hover:text-grey">
-                Contacte-nous
-              </h3>
+              <Link to="/why">
+                <h3 className="mb-2 cursor-pointer hover:text-grey">
+                  Pourquoi Greenit ?
+                </h3>
+              </Link>
+              <Link to="/contact">
+                <h3 className="mb-2 cursor-pointer hover:text-grey">
+                  Contacte-nous
+                </h3>
+              </Link>
             </div>
           </div>
         </div>
       </div>
       <div className="grid items-center w-3/5 justify-self-end">
         <div className="flex justify-self-end">
-          <SearchBarNav />
+          <SearchBarNav keyId="SearchNav" />
           {isLoggedIn ? (
             <Link to="/créer-une-recette" className="flex">
               <Button

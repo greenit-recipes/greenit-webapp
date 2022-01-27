@@ -4,13 +4,14 @@ import { SearchBar } from "../../../../components";
 export const FilterBarSearch: React.FC<{
     setCurrentFilters: (data: Record<string, any>) => void;
     search: string;
+    keyId: string;
     setSearch: (val: string) => void;
-  }> = ({ setCurrentFilters, search, setSearch }) => {
+  }> = ({ setCurrentFilters, search, keyId, setSearch }) => {
     const isMobile = useIsMobile();
     return (
       <div>
         <SearchBar
-          keyId={"filterBarSearch"}
+          keyId={keyId}
           size="small"
           value={search}
           setValue={setSearch}
