@@ -255,11 +255,13 @@ export const Navbar: React.FC = () => {
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col w-96 text-lg ml-99 pt-4">
+            <Link to={RouteName.starterPage}>
               <h3 className="mb-2 cursor-pointer hover:text-blue">
                 Le guide en 5 étapes pour se lancer dans le fait-maison avec 3
                 recettes faciles pour débuter, les ustensiles et ingredients
                 nécéssaires ainsi que des conseils indispensables.
               </h3>
+              </Link>
             </div>
           </div>
         </div>

@@ -31,13 +31,12 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
   const isMobile = useIsMobile();
 
-  const iconHeight = isMobile ? 8 : 14;
   const imageHeight = isMobile ? 60 : 80;
-  const imageWidth = isMobile ? 44 : 52;
-  const bandeauWidth = isMobile ? 44 : 52;
+  const imageWidth = isMobile ? 40 : 52;
+  const bandeauWidth = isMobile ? 40 : 52;
 
   return (
-    <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150 px-1 mb-24 md:mb-16 lg:mb-10">
+    <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150 px-1 mb-14 md:mb-16 lg:mb-10">
       <Link
         to={{
           pathname: `/recipes/${recipe?.urlId}/${recipe?.id}`,
@@ -60,7 +59,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       </Link>
       <LikeField recipe={recipe} isRecipeCard={true}></LikeField>
       <div
-        className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-2xl -bottom-20 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
+        className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-2xl -bottom-10 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
       >
         {!disabledFavoriteRecipe && (
           <div className={`absolute -top-4 lg:-top-6 w-${imageWidth} z-10`}>
@@ -80,13 +79,12 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             {recipe?.name}
           </h1>
           <Icon
-            height={iconHeight}
             nbOfIngredient={recipe?.numberOfIngredients}
             difficulty={
               recipe?.difficulty === RecipeDifficulty.Beginner
                 ? "Facile"
                 : recipe?.difficulty === RecipeDifficulty.Intermediate
-                ? "Intermediaire"
+                ? "Moyen"
                 : "Expert"
             }
           />
