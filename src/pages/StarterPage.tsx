@@ -1,6 +1,6 @@
 import { Navbar, Container, BackgroundImage, Button } from "components";
 
-const DébutantPage = () => {
+const StarterPage = () => {
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
@@ -21,5 +21,5 @@ const DébutantPage = () => {
   );
 };
 
-export default DébutantPage;
+export default StarterPage;
 

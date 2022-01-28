@@ -27,7 +27,7 @@ export const LikeField: React.FC<ILikeField> = ({
     <div
       className={
         isRecipeCard
-          ? `absolute h-9 lg:h-10 w-16 top-1 left-28 lg:left-40 lg:w-20 | grid justify-items-center | bg-white rounded-xl ${className}`
+          ? `absolute h-8 lg:h-9 w-14 lg:w-16 top-1 left-26 lg:left-36 | grid justify-items-center | bg-white rounded-xl ${className}`
           : `flex ${className}`
       }
     >
@@ -59,7 +59,7 @@ export const LikeField: React.FC<ILikeField> = ({
               alt="likes"
             />
           )}
-          <h1 className="flex self-center text-lg lg:text-xl ml-1">{nbrLiked}</h1>
+          <h1 className="flex self-center text-base lg:text-lg ml-1">{nbrLiked}</h1>
         </button>
       ) : (
         <Link to="/register" className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mr-3">
@@ -68,7 +68,7 @@ export const LikeField: React.FC<ILikeField> = ({
             className="flex self-center w-7 h-7 lg:w-8 lg:h-8"
             alt="likes"
           />
-          <h1 className="flex self-center text-lg lg:text-xl ml-1">{nbrLiked}</h1>
+          <h1 className="flex self-center text-lg lg:text-lg ml-1">{nbrLiked}</h1>
         </Link>
       )}
       

@@ -1,5 +1,16 @@
 import React from "react";
-import { logo, facile, intermediaire, difficile, ingredients1, ingredients2, ingredients3, ingredients4, ingredients5, ingredients6 } from "../../icons";
+import {
+  logo,
+  facile,
+  intermediaire,
+  difficile,
+  ingredients1,
+  ingredients2,
+  ingredients3,
+  ingredients4,
+  ingredients5,
+  ingredients6,
+} from "../../icons";
 
 interface IconProps {
   text?: string;
@@ -19,10 +30,11 @@ export const Icon: React.FC<IconProps> = ({
   const types = {
     // difficulty
     Facile: facile,
-    Intermediaire: intermediaire,
+    Moyen: intermediaire,
     Expert: difficile,
 
     //NbIngredients avec icons asssociés, à refacto
+
     1: ingredients1,
     2: ingredients2,
     3: ingredients3,
@@ -47,26 +59,25 @@ export const Icon: React.FC<IconProps> = ({
   const itemDifficulty = types[difficulty as keyof typeof types];
 
   let child;
-    child = (
-      <div className="grid grid-cols-2 justify-item-center lg:px-2 pb-1">
-        <div className="span-col-1 flex flex-col items-center">
-          <img
-            src={itemDifficulty}
-            className={`h-${height ?? 26} w-${width ?? 30}`}
-          />
-          <h1 className="py-1 text-xs lg:text-base">{difficulty}</h1>
-        </div>
-        <div className="span-col-1 flex flex-col items-center">
+  child = (
+    <div className="flex flex-cols w-full my-1">
+      <div className="grid w-1/2 pl-4">
+        <div className="grid grid-cols-2 justify-items-center justify-self-center ">
+          <h3 className="text-sm lg:text-xl self-center -mr-3">
+            {nbOfIngredient}
+          </h3>
           <img
             src={itemNbOfIngredeints}
-            className={`h-${height ?? 26} w-${width ?? 30}`}
+            className={`h-${height ?? 7} w-${width ?? 6} md:h-${height ?? 9} md:w-${width ?? 8} self-center pb-1`}
           />
-          <h1 className="py-1 text-xs lg:text-base">
-            {nbOfIngredient} ingredients
-          </h1>
         </div>
       </div>
-    );
+      <div className="border-r-1 h-5 w-0 border-grey self-center"></div>
+      <div className="grid w-1/2 pr-4 justify-items-center">
+        <h3 className="text-sm lg:text-lg self-center">{difficulty}</h3>
+      </div>
+    </div>
+  );
 
   return <div>{child}</div>;
 };

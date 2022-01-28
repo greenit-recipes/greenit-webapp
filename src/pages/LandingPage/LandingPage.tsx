@@ -96,13 +96,13 @@ const LandingPage = () => {
           Notre sélection de recettes
         </h1>
         {isMobile ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 mt-6 md:grid-cols-4 md:gap-x-4 md:gap-y-10 mb-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 md:gap-y-10 mb-2">
             {recipes?.slice(0, 6).map((recipe, index: number) => (
               <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-4 justify-items-center gap-y-10 gap-x-4 | py-4 px-8">
+          <div className="grid grid-cols-4 justify-items-center gap-y-6 gap-x-4 |  px-8">
             {recipes?.map((recipe) => (
               <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
             ))}
