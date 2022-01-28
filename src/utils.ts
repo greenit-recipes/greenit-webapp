@@ -90,7 +90,7 @@ export const filterData = [
     name: "difficulty",
     options: [
       { title: "Facile", value: "BEGINNER" },
-      { title: "Intermediaire", value: "INTERMEDIATE" },
+      { title: "Moyen", value: "INTERMEDIATE" },
       { title: "Expert", value: "ADVANCED" },
     ],
   },

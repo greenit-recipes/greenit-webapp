@@ -1,21 +1,16 @@
+import { includes, map, mapValues } from "lodash";
+import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
 import { useEffect, useState } from "react";
-import {
-  RecipeCard,
-  Navbar,
-  Footer,
-  Empty,
-  SearchBar,
-} from "../../../components";
-import useIsMobile from "../../../hooks/isMobile";
-import { useRecipesQuery, RecipesQuery } from "../../../graphql";
-import { Loading } from "../../../components";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useHistory } from "react-router-dom";
+import {
+  Empty, Footer, Loading, Navbar, RecipeCard
+} from "../../../components";
+import { RecipesQuery, useRecipesQuery } from "../../../graphql";
+import useIsMobile from "../../../hooks/isMobile";
 import { scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
-import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
-import { mapValues, map, includes } from "lodash";
-import { useHistory } from "react-router-dom";
 
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
@@ -46,9 +41,11 @@ const RecipeListPage = () => {
     variables: {
       first: 15,
       filter: {
-        search: "",
-        tags: [],
-        category: [],
+        search: params.get("search") ? params.get("search") : "" ,
+          // @ts-ignore
+        tags: [params.get("tags")],
+            // @ts-ignore
+        category: [params.get("category")],
         difficulty: [],
         duration: [],
         numberOfIngredients: [],
@@ -60,6 +57,7 @@ const RecipeListPage = () => {
   useEffect(() => {
     history.listen((prev: any) => {
       if (includes(prev?.pathname, "/recipes")) {
+        console.log("PASSE dans le reload !")
         window.location.reload();
       }
     });

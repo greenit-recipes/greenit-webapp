@@ -1,13 +1,13 @@
-import React, { Children } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-interface CTACard {
+interface ICTACard {
   type: "blue" | "green" | "yellow" | "orange";
   className?: string;
   link: "/register" | "/workshops" | "/profil" | "/créer-une-recette";
 }
 
-export const CTACard: React.FC<CTACard> = ({
+export const CTACard: React.FC<ICTACard> = ({
   type,
   className,
   children,
@@ -22,7 +22,7 @@ export const CTACard: React.FC<CTACard> = ({
         }}
       >
         <div
-          className={`transform  shadow-lg m-2 h-72 sm:h-72 lg:h-98 w-44 lg:w-60 bg-${
+          className={`transform  shadow-lg m-2 h-60 md:h-80 w-40 md:w-52 bg-${
             type ? type : "blue"
           }  hover:scale-105
           ease-linear transition-all duration-150 

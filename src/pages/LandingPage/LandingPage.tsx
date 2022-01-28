@@ -116,7 +116,7 @@ const LandingPage = () => {
       <Container className="w-full text-center mt-8 sm:mb-8" itemsCenter>
         <h1 className="text-xl md:text-2xl | px-5 text-center">
           Nous lançons notre financement participatif ! <br />
-          Greenit r besoin de vous !
+          Greenit a besoin de vous !
         </h1>
 
         <h3 className=" w-full sm:w-2/3 md:w-2/5 p-6 md:p-1 mb-6 text-md md:text-xl text-center">

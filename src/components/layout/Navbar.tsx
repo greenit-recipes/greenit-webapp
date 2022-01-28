@@ -184,9 +184,9 @@ export const Navbar: React.FC = () => {
                     Savon
                   </h3>
                 </Link>
-                <Link to={`/recipes?search=Shampoing`}>
+                <Link to={`/recipes?search=Shampooing`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Shampoing
+                    Shampooing
                   </h3>
                 </Link>
                 <Link to={`/recipes?search=Baume`}>
