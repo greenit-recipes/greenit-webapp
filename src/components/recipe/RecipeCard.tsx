@@ -31,10 +31,10 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
   const isMobile = useIsMobile();
 
-  const iconHeight = isMobile ? 10 : 16;
-  const imageHeight = isMobile ? 60 : 96;
-  const imageWidth = isMobile ? 44 : 60;
-  const bandeauWidth = isMobile ? 44 : 60;
+  const iconHeight = isMobile ? 8 : 14;
+  const imageHeight = isMobile ? 60 : 80;
+  const imageWidth = isMobile ? 44 : 52;
+  const bandeauWidth = isMobile ? 44 : 52;
 
   return (
     <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150 px-1 mb-24 md:mb-16 lg:mb-10">
@@ -76,7 +76,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             pathname: `/recipes/${recipe?.urlId}/${recipe?.id}`,
           }}
         >
-          <h1 className="subpixel-antialiased | text-center mt-5 p-1 text-sm lg:text-lg">
+          <h1 className="subpixel-antialiased | text-center mt-5 p-1 text-sm lg:text-base">
             {recipe?.name}
           </h1>
           <Icon

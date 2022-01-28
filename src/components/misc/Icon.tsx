@@ -54,14 +54,14 @@ export const Icon: React.FC<IconProps> = ({
             src={itemDifficulty}
             className={`h-${height ?? 26} w-${width ?? 30}`}
           />
-          <h1 className="py-1 text-xs lg:text-base">{difficulty}</h1>
+          <h1 className="py-1 text-xs lg:text-sm">{difficulty}</h1>
         </div>
         <div className="span-col-1 flex flex-col items-center">
           <img
             src={itemNbOfIngredeints}
             className={`h-${height ?? 26} w-${width ?? 30}`}
           />
-          <h1 className="py-1 text-xs lg:text-base">
+          <h1 className="py-1 text-xs lg:text-sm">
             {nbOfIngredient} ingredients
           </h1>
         </div>
