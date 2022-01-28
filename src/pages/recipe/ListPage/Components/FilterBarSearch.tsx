@@ -1,4 +1,3 @@
-import useIsMobile from "../../../../hooks/isMobile";
 import { SearchBar } from "../../../../components";
 
 export const FilterBarSearch: React.FC<{
@@ -7,7 +6,6 @@ export const FilterBarSearch: React.FC<{
     keyId: string;
     setSearch: (val: string) => void;
   }> = ({ setCurrentFilters, search, keyId, setSearch }) => {
-    const isMobile = useIsMobile();
     return (
       <div>
         <SearchBar
@@ -15,7 +13,6 @@ export const FilterBarSearch: React.FC<{
           size="small"
           value={search}
           setValue={setSearch}
-          hideSearchIcon={isMobile}
           onSubmit={() => {
             setCurrentFilters((prevState: Record<string, any>) => {
               return {

@@ -12,7 +12,7 @@ export const CategoryCircle: React.FC<CategoryCircleProps> = ({
   const isTag = [
     "Premiers pas",
     "Zéro-déchet",
-    "Ingrédients de la cuisine",
+    "Avec les ingrédients de la cuisine",
   ].includes(name);
   return (
     <div className="flex flex-col | items-center">

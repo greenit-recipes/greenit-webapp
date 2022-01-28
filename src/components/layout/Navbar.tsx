@@ -1,13 +1,13 @@
 import { RouteName } from "App";
-import React, { useRef, useState } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import "components/layout/Navbar.css";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import authService from "services/auth.service";
+import { SearchBar } from ".";
 import { Button } from "../";
-import { NavButton } from "../misc/NavButton";
 import useIsMobile from "../../hooks/isMobile";
 import { logo } from "../../icons";
-import "components/layout/Navbar.css";
-import { SearchBar } from ".";
+import { NavButton } from "../misc/NavButton";
 import { SearchBarNav } from "./SearchBarNav";
 
 export const Navbar: React.FC = () => {
@@ -138,7 +138,7 @@ export const Navbar: React.FC = () => {
                     Premiers pas
                   </h3>
                 </Link>
-                <Link to={`/recipes?tags=Ingrédients de la cuisine`}>
+                <Link to={`/recipes?tags=Avec les ingrédients de la cuisine`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Avec les ingrédients de la cuisine
                   </h3>
@@ -221,17 +221,21 @@ export const Navbar: React.FC = () => {
                   Tous les ateliers
                 </h3>
               </Link>
-              <Link to={RouteName.workshops}>
+              <Link to={RouteName.workshops + "?scroolTo=physiqueWorkshop"}>
                 <h3 className="mb-2 cursor-pointer hover:text-yellow">
                   Ateliers en présentiel
                 </h3>
               </Link>
+              <Link to={RouteName.workshops + "?scroolTo=onlineWorkshop"}>
               <h3 className="mb-2 cursor-pointer hover:text-yellow">
                 Ateliers en ligne
               </h3>
+              </Link>
+              <Link to={RouteName.workshops + "?scroolTo=suggestWorkshop"}>
               <h3 className="mb-2 cursor-pointer hover:text-yellow">
                 Proposer un atelier
               </h3>
+              </Link>
             </div>
           </div>
         </div>

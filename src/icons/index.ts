@@ -87,7 +87,7 @@ export const landingPageCategories = [
   },
   {
     icon: fridge,
-    title: "Ingrédients de la cuisine",
+    title: "Avec les ingrédients de la cuisine",
   },
   {
     icon: maison,

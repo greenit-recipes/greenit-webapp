@@ -1,6 +1,6 @@
 import { RouteName } from "App";
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useIsMobile from "../hooks/isMobile";
 import { Container, Footer, Navbar } from "../components";
 import { Button } from "components/misc/Button";
@@ -16,12 +16,18 @@ import {
   ChristelleAtelier2,
   ChristelleLogo,
 } from "../../src/icons";
+import { includes } from "lodash";
 
 const WorkshopPage = () => {
   const [isIncoming, setIsIncoming] = useState(false);
 
+  const params = new URLSearchParams(window.location.search);
   const isMobile = useIsMobile();
   const fieldRef = React.useRef<HTMLInputElement>(null);
+  const fieldRefSuggestWorkshop = React.useRef<HTMLInputElement>(null);
+  const fieldRefOnlineWorkshop = React.useRef<HTMLInputElement>(null);
+  const fieldRefPhysiqueWorkshop = React.useRef<HTMLInputElement>(null);
+  const history = useHistory();
 
   const scrollIntoReview = () => {
     setIsIncoming(true);
@@ -32,7 +38,51 @@ const WorkshopPage = () => {
       behavior: "smooth",
     });
   };
+
   useEffect(() => {
+    history.listen((prev: any) => {
+      if (includes(prev?.pathname, RouteName.workshops)) {
+        window.location.reload();
+      }
+    });
+  }, [history]);
+
+  const scrollIntoSuggestWorkshop = () => {
+    if (!fieldRefSuggestWorkshop) return;
+    // @ts-ignore
+    fieldRefSuggestWorkshop?.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
+  const scrollIntoFieldRefOnlineWorkshop = () => {
+    if (!fieldRefOnlineWorkshop) return;
+    // @ts-ignore
+    fieldRefOnlineWorkshop?.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
+  const scrollIntoFieldRefPhysiqueWorkshop = () => {
+    if (!fieldRefPhysiqueWorkshop) return;
+    // @ts-ignore
+    fieldRefPhysiqueWorkshop?.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    const sectionPageAutoScrool = params.get("scroolTo");
+    if (sectionPageAutoScrool) {
+      if (sectionPageAutoScrool === "suggestWorkshop") {
+        setTimeout(() => scrollIntoSuggestWorkshop(), 300);
+      } else if (sectionPageAutoScrool === "onlineWorkshop") {
+        setTimeout(() => scrollIntoFieldRefOnlineWorkshop(), 300);
+      } else if (sectionPageAutoScrool === "physiqueWorkshop") {
+        setTimeout(() => scrollIntoFieldRefPhysiqueWorkshop(), 300);
+      }
+      return;
+    }
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
@@ -48,7 +98,10 @@ const WorkshopPage = () => {
           Tous les ateliers DIY proches de chez toi !
         </h1>
 
-        <h3 className="mt-2 text-1xl md:text-2xl | md:pb-10 text-center">
+        <h3
+          className="mt-2 text-1xl md:text-2xl | md:pb-10 text-center"
+          ref={fieldRefOnlineWorkshop}
+        >
           Fais-toi aider et rencontre d’autres passionnés
         </h3>
       </Container>
@@ -316,6 +369,7 @@ const WorkshopPage = () => {
         </div>
       </div>
 
+      <div ref={fieldRefPhysiqueWorkshop}></div>
       <div className="w-4/5 mt-10 flex flex-col">
         <div className="grid md:grid-cols-2">
           <div className="bg-transparent border-b-4 border-gray-600 | md:col-span-2">
@@ -710,6 +764,8 @@ const WorkshopPage = () => {
             Corse
           </button>
           <button
+            // @ts-ignore
+            ref={fieldRefSuggestWorkshop}
             className="button_region text-sm | md:text-base"
             onClick={() => scrollIntoReview()}
           >

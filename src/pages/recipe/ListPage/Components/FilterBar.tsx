@@ -43,16 +43,6 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   const removeFilters = () => {
     setCurrentFilters({});
   };
-  useEffect(() => {
-    if (isMobile && !toggle) {
-      setCurrentFilters((prevState: Record<string, any>) => {
-        return {
-          ...prevState,
-          search,
-        };
-      });
-    }
-  }, [toggle, search]);
   const handleFilter = (
     isSelected: boolean,
     option: { title: string; value: string },
