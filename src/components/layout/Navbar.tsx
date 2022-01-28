@@ -67,22 +67,24 @@ export const Navbar: React.FC = () => {
           }
         >
           <div className="flex flex-col">
-            <SearchBar  keyId="SearchNavMobile"/>
-            <div
-              className="p-2 mt-3 border-b-2 border-transparent"
-              onClick={() => {
-                setVisible(true);
-              }}
-            >
-              <h1 className="text-white focus:text-green">Recettes</h1>
-            </div>
+            <SearchBar keyId="SearchNavMobile" />
+            <Link className="p-2" to={"/recipes"}>
+              <div
+                className=" mt-3 border-b-2 border-transparent"
+                onClick={() => {
+                  setVisible(true);
+                }}
+              >
+                <h1 className="text-white focus:text-green">Recettes</h1>
+              </div>
+            </Link>
             <Link className="p-2" to={RouteName.workshops}>
               <h1 className="text-white">Ateliers</h1>
             </Link>
-            <Link className="p-2" to={RouteName.IngredientPage}>
+            <Link className="p-2" to={RouteName.ingredientPage}>
               <h1 className="text-white">Ingrédients</h1>
             </Link>
-            <Link className="p-2" to={RouteName.DébutantPage}>
+            <Link className="p-2" to={RouteName.starterPage}>
               <h1 className="text-white">Se lancer</h1>
             </Link>
             <Link className="p-2" to={RouteName.why}>
@@ -219,10 +221,10 @@ export const Navbar: React.FC = () => {
                   Tous les ateliers
                 </h3>
               </Link>
-              <Link className="p-2" to={RouteName.workshops}>
-              <h3 className="mb-2 cursor-pointer hover:text-yellow">
-                Ateliers en présentiel
-              </h3>
+              <Link to={RouteName.workshops}>
+                <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                  Ateliers en présentiel
+                </h3>
               </Link>
               <h3 className="mb-2 cursor-pointer hover:text-yellow">
                 Ateliers en ligne
@@ -234,7 +236,7 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
         <div className="w-auto" id="navmenu">
-          <Link to={RouteName.IngredientPage}>
+          <Link to={RouteName.ingredientPage}>
             <NavButton type="orange" onClick={() => setVisible(true)}>
               Ingrédients
             </NavButton>
@@ -246,7 +248,7 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
         <div className="w-auto" id="navmenu">
-          <Link to={RouteName.DébutantPage}>
+          <Link to={RouteName.starterPage}>
             <NavButton type="blue" onClick={() => setVisible(true)}>
               Se lancer
             </NavButton>

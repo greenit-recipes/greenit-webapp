@@ -23,7 +23,7 @@ import ActivateResetPassword from "pages/ActivateResetPassword";
 import RecipeCreatedPage from "pages/CreateRecipe/CreateRecipeSuccess";
 import AccountCreated from "pages/AccountCreated";
 import IngredientPage from "pages/IngredientSpace/IngredientPage"
-import DébutantPage from "pages/DébutantPage"
+import StarterPage from "pages/StarterPage";
 
 export const history = createBrowserHistory();
 
@@ -35,8 +35,8 @@ export const RouteName = {
   register: "/register",
   recipeCreated: "/recette-créée",
   workshops: "/workshops",
-  IngredientPage: "/Espace-Ingredients",
-  DébutantPage: "/Se-lancer-dans-le-diy",
+  ingredientPage: "/Espace-Ingredients",
+  starterPage: "/Se-lancer-dans-le-diy",
   why: "/why",
   contact: "/contact",
 };
@@ -55,9 +55,9 @@ const App: React.FC = () => {
           component={PersonalizedSearch}
           exact
         />
-        <PublicRoute path={RouteName.IngredientPage} component={IngredientPage} exact />
+        <PublicRoute path={RouteName.ingredientPage} component={IngredientPage} exact />
         <PublicRoute path={RouteName.workshops} component={WorkshopPage} exact />
-        <PublicRoute path={RouteName.DébutantPage} component={DébutantPage} exact />
+        <PublicRoute path={RouteName.starterPage} component={StarterPage} exact />
         <PrivateRoute
           path="/créer-une-recette"
           component={CreateRecipe}
