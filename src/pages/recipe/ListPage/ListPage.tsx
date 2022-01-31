@@ -60,7 +60,6 @@ const RecipeListPage = () => {
   // fixer ça
   useEffect(() => {
     history.listen((prev: any) => {
-      console.log("prev?.pathname -->", prev?.pathname)
       if (includes(prev?.pathname, "/recipes") && (params.get("category") || params.get("tags") || params.get("search"))) {
         window.location.reload();
       }
