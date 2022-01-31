@@ -257,7 +257,7 @@ export const Navbar: React.FC = () => {
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col text-lg ml-72 pt-4">
-              <h3 className="mb-2 cursor-default">Cette page arrive bientôt</h3>
+              <h3 className="mb-2 cursor-default">Cette page arrive bientôt !</h3>
             </div>
           </div>
         </div>
@@ -272,7 +272,7 @@ export const Navbar: React.FC = () => {
             <Link to={RouteName.starterPage}>
               <h3 className="mb-2 cursor-pointer hover:text-blue">
                 Le guide en 5 étapes pour se lancer dans le fait-maison avec 3
-                recettes faciles pour débuter, les ustensiles et ingredients
+                recettes faciles pour débuter, les ustensiles et ingrédients
                 nécéssaires ainsi que des conseils indispensables.
               </h3>
               </Link>
