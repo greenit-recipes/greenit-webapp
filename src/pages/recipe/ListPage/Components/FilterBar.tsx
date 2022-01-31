@@ -115,7 +115,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         )}
         {isMobile && (
           <Button
-            className="p-2 justify-self-end fixed top-14"
+            className="p-2 right-0 mr-3 fixed top-14"
             type="grey"
             onClick={() => removeFilters()}
           >
