@@ -23,6 +23,9 @@ const RecipeListPage = () => {
     });
 
   // params trigger 2 requests before param and after getting param need to be fixed
+  const [isFirstLoading, setIsFirstLoading] = useState(
+    false
+  );
   const [currentFilters, setCurrentFilters] = useState<any>({
     search: params.get("search") ? params.get("search") : "",
     tags: params.get("tags")
@@ -43,9 +46,9 @@ const RecipeListPage = () => {
       filter: {
         search: params.get("search") ? params.get("search") : "" ,
           // @ts-ignore
-        tags: [params.get("tags")],
+        tags: params.get("tags") ? [params.get("tags")] : [],
             // @ts-ignore
-        category: [params.get("category")],
+        category: params.get("category") ? [params.get("category")]: [],
         difficulty: [],
         duration: [],
         numberOfIngredients: [],
@@ -54,14 +57,6 @@ const RecipeListPage = () => {
   });
 
   const isMobile = useIsMobile();
-  useEffect(() => {
-    history.listen((prev: any) => {
-      if (includes(prev?.pathname, "/recipes")) {
-        console.log("PASSE dans le reload !")
-        window.location.reload();
-      }
-    });
-  }, [history]);
 
   useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -76,6 +71,11 @@ const RecipeListPage = () => {
 
   useEffect(() => {
     if (!loading) {
+      // to avoid a second request with state of filter
+      if (!isFirstLoading) {
+        setIsFirstLoading(true)
+        return
+      }
       const filterValue = cleanDataPlayload(currentFilters);
       //localStorage.setItem("filterListPage", JSON.stringify(currentFilters));
       refetch({ filter: filterValue });
@@ -84,11 +84,11 @@ const RecipeListPage = () => {
 
   const [isShowModal, setIsShowModal] = useState(false);
 
-  if (loading || !data) {
+  if (loading) {
     return <Loading />;
   }
-  const recipes = data.allRecipes?.edges || [];
-  const hasMore = data.allRecipes?.pageInfo.hasNextPage || false;
+  const recipes = data?.allRecipes?.edges || [];
+  const hasMore = data?.allRecipes?.pageInfo.hasNextPage || false;
 
   return (
     <div className={""}>
@@ -146,7 +146,7 @@ const RecipeListPage = () => {
               fetchMore({
                 variables: {
                   filter: cleanDataPlayload(currentFilters),
-                  after: data.allRecipes?.pageInfo?.endCursor,
+                  after: data?.allRecipes?.pageInfo?.endCursor,
                   first: 10,
                 },
                 updateQuery: (prev, next) => {
@@ -154,7 +154,7 @@ const RecipeListPage = () => {
                     | RecipesQuery
                     | undefined;
                   if (!fetchMoreResult) {
-                    return data.allRecipes;
+                    return data?.allRecipes;
                   }
                   const newEdges = fetchMoreResult?.allRecipes?.edges;
                   const pageInfo = fetchMoreResult?.allRecipes?.pageInfo;
