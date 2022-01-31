@@ -20,7 +20,7 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
         <>
           <Button
             type="orange"
-            className="justify-self-start fixed top-14 z-50 w-32 ml-4"
+            className="justify-self-start fixed top-14 z-40 w-32 ml-4"
             onClick={() => props.parentFunction(false)}
           >
             Valider
@@ -32,10 +32,10 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
           >
             <div className="absolute w-full top-10 mt-4 pb-20">{props.children}</div>
           </div>
-          <div className="grid justify-items-center fixed bottom-0 h-20 z-50 bg-white w-full">
+          <div className="grid justify-items-center fixed bottom-0 h-20 z-40 bg-white w-full">
             <Button
               type="orange"
-              className=" z-50 w-4/5 h-10 ml-4 self-center"
+              className=" z-40 w-4/5 h-10 ml-4 self-center"
               onClick={() => props.parentFunction(false)}
             >
               Afficher les résultats

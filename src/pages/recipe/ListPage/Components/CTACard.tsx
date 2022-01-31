@@ -22,7 +22,7 @@ export const CTACard: React.FC<ICTACard> = ({
         }}
       >
         <div
-          className={`transform  shadow-lg m-2 h-60 md:h-80 w-40 md:w-52 bg-${
+          className={`transform shadow-lg h-72 md:h-84 w-40 md:w-52 bg-${
             type ? type : "blue"
           }  hover:scale-105
           ease-linear transition-all duration-150 
