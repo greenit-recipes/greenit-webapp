@@ -61,6 +61,8 @@ export const filterData = [
       { title: "Visage", value: "Visage" },
       { title: "Cheveux", value: "Cheveux" },
       { title: "Bien-être", value: "Bien-être" },
+      { title: "Santé", value: "Santé" },
+      { title: "Maquillage", value: "Maquillage" },
     ],
   },
   {

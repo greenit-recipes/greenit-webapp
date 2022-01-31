@@ -176,6 +176,16 @@ export const Navbar: React.FC = () => {
                     Bien-être
                   </h3>
                 </Link>
+                <Link to={`/recipes?category=Santé`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Santé
+                  </h3>
+                </Link>
+                <Link to={`/recipes?category=Maquillage`}>
+                  <h3 className="mb-2 cursor-pointer hover:text-green">
+                    Maquillage
+                  </h3>
+                </Link>
               </div>
               <div className="flex flex-col text-lg pt-4">
                 <h2 className="mb-2 cursor-default">Type de produit</h2>
