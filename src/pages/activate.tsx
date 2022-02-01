@@ -59,7 +59,7 @@ const ActivateAccount: React.FC = () => {
               commenter… et bien plus !
             </h4>
           </div>
-          <Link to="/connexion">
+          <Link to={RouteName.connexion}>
             <Button type="green">Se connecter à mon profil</Button>
           </Link>
         </div>

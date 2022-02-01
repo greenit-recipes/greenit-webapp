@@ -44,7 +44,7 @@ export const Navbar: React.FC = () => {
           </Link>
           {isLoggedIn ? (
             <div className="w-full grid justify-items-end">
-              <Link className="" to="/profil">
+              <Link className="" to={RouteName.profil}>
                 <Button type="blue" rounded="lg" className="mr-1">
                   <h1 className="text-white text-xs">Profil</h1>
                 </Button>
@@ -327,7 +327,7 @@ export const Navbar: React.FC = () => {
             </Link>
           )}
           {isLoggedIn ? (
-            <Link className="" to="/profil">
+            <Link className="" to={RouteName.profil}>
               <Button
                 type="blue"
                 rounded="lg"

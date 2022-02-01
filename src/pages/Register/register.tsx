@@ -158,7 +158,7 @@ const Register: React.FC = () => {
           <h3 className="text-sm md:text-base self-center place-self-end mr-4">
             Si tu as déjà un compte:
           </h3>
-          <Link to="/connexion">
+          <Link to={RouteName.connexion}>
             <button
               className="flex items-center cursor-pointer align-middle
               bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
