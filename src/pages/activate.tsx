@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { RouteName } from "App";
 import { Button } from "components/misc/Button";
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
@@ -58,7 +59,7 @@ const ActivateAccount: React.FC = () => {
               commenter… et bien plus !
             </h4>
           </div>
-          <Link to="/connexion">
+          <Link to={RouteName.connexion}>
             <Button type="green">Se connecter à mon profil</Button>
           </Link>
         </div>
@@ -72,7 +73,7 @@ const ActivateAccount: React.FC = () => {
             Tu peux réessayer, si le problème persiste n’hésite pas à nous contacter.
             </h4>
           </div>
-          <Link to="/register">
+          <Link to={RouteName.register}>
             <Button className="mb-5" type="green">Réessayer de créer un compte</Button>
           </Link>
           <Button

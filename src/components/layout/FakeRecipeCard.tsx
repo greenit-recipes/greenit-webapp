@@ -1,3 +1,4 @@
+import { RouteName } from "App";
 import useIsMobile from "hooks/isMobile";
 import { Link } from "react-router-dom";
 
@@ -12,7 +13,7 @@ export const FakeRecipeCard: React.FC<CommentField> = ({ className }) => {
   return (
     <div className="relative m-2 mb-14 lg:m-4">
       <Link
-        to="/créer-une-recette"
+        to={RouteName.createRecipe}
         className={`inline-block`}
       >
         <div>

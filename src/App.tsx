@@ -28,17 +28,21 @@ import StarterPage from "pages/StarterPage";
 export const history = createBrowserHistory();
 
 export const RouteName = {
-  resetPassword: "/mot-de-passe-oublié",
+  resetPassword: "/reinitialisation-mot-de-passe",
   tokenActivationAccount: "/activate/:tokenActivationAccount",
   accountCreated: "/compte-crée",
   activateResetPassword: "/activate/mot-de-passe-oublié/:tokenActivationAccount",
-  register: "/register",
-  recipeCreated: "/recette-créée",
-  workshops: "/workshops",
-  ingredientPage: "/Espace-Ingredients",
-  starterPage: "/Se-lancer-dans-le-diy",
-  why: "/why",
+  register: "/creation-compte",
+  recipeCreated: "/ajout-recette",
+  workshops: "/ateliers",
+  ingredientPage: "/ingredients",
+  starterPage: "/page-debutant-diy",
+  why: "/projet",
   contact: "/contact",
+  recipes: "/recettes",
+  createRecipe: "/creation-recette",
+  profil: "/profil",
+  connexion: "/connexion",
 };
 
 const App: React.FC = () => {
@@ -48,8 +52,8 @@ const App: React.FC = () => {
         <PublicRoute path="/" component={LandingPage} exact />
         <PublicRoute path={RouteName.why} component={WhyPage} exact />
         <PublicRoute path={RouteName.contact} component={ContactPage} exact />
-        <PublicRoute path="/recipes" component={RecipeListPage} exact />
-        <PublicRoute path="/recipes/:name/:id" component={RecipeSinglePage} exact />
+        <PublicRoute path={RouteName.recipes} component={RecipeListPage} exact />
+        <PublicRoute path="/recettes/:name/:id" component={RecipeSinglePage} exact />
         <PublicRoute
           path="/personalizedSearch"
           component={PersonalizedSearch}
@@ -59,7 +63,7 @@ const App: React.FC = () => {
         <PublicRoute path={RouteName.workshops} component={WorkshopPage} exact />
         <PublicRoute path={RouteName.starterPage} component={StarterPage} exact />
         <PrivateRoute
-          path="/créer-une-recette"
+          path={RouteName.createRecipe}
           component={CreateRecipe}
           exact
         />
@@ -69,13 +73,13 @@ const App: React.FC = () => {
           exact
         />
         <Route exact path={RouteName.register} component={Register} />
-        <Route exact path="/connexion" component={Login} />
+        <Route exact path={RouteName.connexion} component={Login} />
         <Route
           exact
           path={RouteName.resetPassword}
           component={ForgetPassword}
         />
-        <PrivateRoute component={ProfilPage} path="/profil" exact />
+        <PrivateRoute component={ProfilPage} path={RouteName.profil} exact />
         <Route
           exact
           path={RouteName.tokenActivationAccount}

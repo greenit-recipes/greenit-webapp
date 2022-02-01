@@ -1,8 +1,9 @@
 import { useQuery } from "@apollo/client";
+import { RouteName } from "App";
 import "App.css";
 import { Button, Loading, RecipeCard } from "components";
 import { getImagePath } from "helpers/image.helper";
-import { defaultImageProfil, likedIconOff, likedIconOn } from "icons";
+import { defaultImageProfil, likedIconOff } from "icons";
 import { isEmpty } from "lodash";
 import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
 import { Modal } from "pages/Profil/ModalProfil";
@@ -122,7 +123,7 @@ const ProfilPage: React.FC = () => {
                   <div>
                     <img className="w-12 h-12" src={likedIconOff} />
                   </div>
-                  <Link to="/recipes">
+                  <Link to={RouteName.recipes}>
                     <Button className="mt-5" type="blue">
                       Explorer des recettes
                     </Button>
@@ -155,7 +156,7 @@ const ProfilPage: React.FC = () => {
             <CTACard
               className="lg:mt-2 lg:mb-6"
               type="blue"
-              link="/créer-une-recette"
+              link={RouteName.createRecipe}
             >
               <h1 className="w-11/12 text-center text-xl lg:text-2xl text-white mt-24 lg:mt-40">
                 Publier une nouvelle recette

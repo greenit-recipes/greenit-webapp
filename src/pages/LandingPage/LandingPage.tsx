@@ -108,7 +108,7 @@ const LandingPage = () => {
             ))}
           </div>
         )}
-        <Link to="/recipes" className="mt-6">
+        <Link to={RouteName.recipes} className="mt-6">
           <Button type="green">Découvrir plus</Button>
         </Link>
       </Container>

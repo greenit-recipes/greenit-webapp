@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { RouteName } from "App";
 import { ADD_OR_REMOVE_LIKE_COMMENT } from "pages/recipe/SinglePage/SinglePageRequest";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -54,7 +55,7 @@ export const LikeComment: React.FC<ILikeComment> = ({ comment, isMyComment=false
           <h1 className="self-center text-lg md:text-xl ml-1">{nbrLiked}</h1>
         </div>
       ) : (
-        <Link to="/register">
+        <Link to={RouteName.register}>
           <div className="flex cursor-pointer bg-white w-20 h-12 rounded-tl-2xl p-3">
             <img
               src={likedIconOff}

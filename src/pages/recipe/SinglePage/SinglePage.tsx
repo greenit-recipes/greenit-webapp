@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { RouteName } from "App";
 import { CommentField } from "components/layout/CommentField";
 import { FavouriteField } from "components/layout/FavouriteField";
 import { LikeComment } from "components/layout/LikeComment";
@@ -429,7 +430,7 @@ const RecipeSinglePage = () => {
                 </Button>
               </div>
             ) : (
-              <Link to="/register">
+              <Link to={RouteName.register}>
                 <Button
                   className="rounded focus:outline-none focus:shadow-outline"
                   type="submit"

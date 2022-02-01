@@ -44,7 +44,7 @@ export const Navbar: React.FC = () => {
           </Link>
           {isLoggedIn ? (
             <div className="w-full grid justify-items-end">
-              <Link className="" to="/profil">
+              <Link className="" to={RouteName.profil}>
                 <Button type="blue" rounded="lg" className="mr-1">
                   <h1 className="text-white text-xs">Profil</h1>
                 </Button>
@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => {
             </div>
           ) : (
             <div className="w-full grid justify-items-end">
-              <Link className="" to="/register">
+              <Link className="" to={RouteName.register}>
                 <button className="rounded-lg p-2 bg-blue mr-1">
                   <h1 className="text-white text-xs">Créer un profil</h1>
                 </button>
@@ -68,7 +68,7 @@ export const Navbar: React.FC = () => {
         >
           <div className="flex flex-col">
             <SearchBar keyId="SearchNavMobile" />
-            <Link className="p-2" to={"/recipes"}>
+            <Link className="p-2" to={RouteName.recipes}>
               <div
                 className=" mt-3 border-b-2 border-transparent"
                 onClick={() => {
@@ -108,7 +108,7 @@ export const Navbar: React.FC = () => {
       </div>
       <div className="flex flex-row ml-4 w-2/3 h-full items-center justify-items-start">
         <div className="w-auto" id="navmenu_big">
-          <Link to="/recipes">
+          <Link to={RouteName.recipes}>
             <NavButton
               type="green"
               onClick={() => {
@@ -123,27 +123,27 @@ export const Navbar: React.FC = () => {
               <div className="flex flex-col text-lg pt-4">
                 <h2 className="mb-2 cursor-default">Racourcis</h2>
 
-                <Link to="/recipes">
+                <Link to={RouteName.recipes}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Toutes les recettes
                   </h3>
                 </Link>
-                <Link to={isLoggedIn ? "/créer-une-recette" : "/register"}>
+                <Link to={isLoggedIn ? RouteName.createRecipe : RouteName.register}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Partager une recette
                   </h3>
                 </Link>
-                <Link to={`/recipes?tags=Premiers pas`}>
+                <Link to={`${RouteName.recipes}?tags=Premiers pas`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Premiers pas
                   </h3>
                 </Link>
-                <Link to={`/recipes?tags=Avec les ingrédients de la cuisine`}>
+                <Link to={`${RouteName.recipes}?tags=Avec les ingrédients de la cuisine`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Avec les ingrédients de la cuisine
                   </h3>
                 </Link>
-                <Link to={`/recipes?tags=Sans cuisson`}>
+                <Link to={`${RouteName.recipes}?tags=Sans cuisson`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Sans cuisson
                   </h3>
@@ -151,37 +151,37 @@ export const Navbar: React.FC = () => {
               </div>
               <div className="flex flex-col text-lg pt-4">
                 <h2 className="mb-2 cursor-default">Catégories</h2>{" "}
-                <Link to={`/recipes?category=Maison`}>
+                <Link to={`${RouteName.recipes}?category=Maison`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Maison
                   </h3>
                 </Link>
-                <Link to={`/recipes?category=Corps`}>
+                <Link to={`${RouteName.recipes}?category=Corps`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Corps
                   </h3>
                 </Link>
-                <Link to={`/recipes?category=Visage`}>
+                <Link to={`${RouteName.recipes}?category=Visage`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Visage
                   </h3>
                 </Link>
-                <Link to={`/recipes?category=Cheveux`}>
+                <Link to={`${RouteName.recipes}?category=Cheveux`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Cheveux
                   </h3>
                 </Link>
-                <Link to={`/recipes?category=Bien-être`}>
+                <Link to={`${RouteName.recipes}?category=Bien-être`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Bien-être
                   </h3>
                 </Link>
-                <Link to={`/recipes?category=Santé`}>
+                <Link to={`${RouteName.recipes}?category=Santé`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Santé
                   </h3>
                 </Link>
-                <Link to={`/recipes?category=Maquillage`}>
+                <Link to={`${RouteName.recipes}?category=Maquillage`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Maquillage
                   </h3>
@@ -189,27 +189,27 @@ export const Navbar: React.FC = () => {
               </div>
               <div className="flex flex-col text-lg pt-4">
                 <h2 className="mb-2 cursor-default">Type de produit</h2>
-                <Link to={`/recipes?search=Savon`}>
+                <Link to={`${RouteName.recipes}?search=Savon`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Savon
                   </h3>
                 </Link>
-                <Link to={`/recipes?search=Shampooing`}>
+                <Link to={`${RouteName.recipes}?search=Shampooing`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Shampooing
                   </h3>
                 </Link>
-                <Link to={`/recipes?search=Baume`}>
+                <Link to={`${RouteName.recipes}?search=Baume`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Baume
                   </h3>
                 </Link>
-                <Link to={`/recipes?search=Solide`}>
+                <Link to={`${RouteName.recipes}?search=Solide`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Solide
                   </h3>
                 </Link>
-                <Link to={`/recipes?search=Crème`}>
+                <Link to={`${RouteName.recipes}?search=Crème`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Crème
                   </h3>
@@ -287,12 +287,12 @@ export const Navbar: React.FC = () => {
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col text-lg pt-4 ml-100">
-              <Link to="/why">
+              <Link to={RouteName.why}>
                 <h3 className="mb-2 cursor-pointer hover:text-grey">
                   Pourquoi Greenit ?
                 </h3>
               </Link>
-              <Link to="/contact">
+              <Link to={RouteName.contact}>
                 <h3 className="mb-2 cursor-pointer hover:text-grey">
                   Contacte-nous
                 </h3>
@@ -305,7 +305,7 @@ export const Navbar: React.FC = () => {
         <div className="flex justify-self-end">
           <SearchBarNav keyId="SearchNav" />
           {isLoggedIn ? (
-            <Link to="/créer-une-recette" className="flex">
+            <Link to={RouteName.createRecipe} className="flex">
               <Button
                 type="grey"
                 rounded="lg"
@@ -315,7 +315,7 @@ export const Navbar: React.FC = () => {
               </Button>
             </Link>
           ) : (
-            <Link to="/register" className="flex">
+            <Link to={RouteName.register} className="flex">
               <Button
                 type="grey"
                 rounded="lg"
@@ -327,7 +327,7 @@ export const Navbar: React.FC = () => {
             </Link>
           )}
           {isLoggedIn ? (
-            <Link className="" to="/profil">
+            <Link className="" to={RouteName.profil}>
               <Button
                 type="blue"
                 rounded="lg"
@@ -337,7 +337,7 @@ export const Navbar: React.FC = () => {
               </Button>
             </Link>
           ) : (
-            <Link className="justify-self-end" to="/register">
+            <Link className="justify-self-end" to={RouteName.register}>
               <Button
                 type="green"
                 rounded="lg"
