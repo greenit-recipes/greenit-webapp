@@ -38,6 +38,7 @@ import scrollToTop from "./scroll_top_icon.png";
 import likedIconOn from "./liked_recipe_on.png";
 import likedIconOff from "./liked_recipe_off.png";
 import noVideo from "./no_video.png"
+import retourIcon from "./retour_icon.png"
 
 // CONTACT
 import InstagramIcon from "./instagram_icon.png"
@@ -144,4 +145,5 @@ export {
   ChristelleAtelier1,
   ChristelleAtelier2,
   ChristelleLogo,
+  retourIcon
 };
