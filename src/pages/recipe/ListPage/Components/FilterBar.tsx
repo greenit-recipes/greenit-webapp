@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { find, map, omit, flattenDeep } from "lodash";
 import { BackgroundImage } from "components";
+import { RouteName } from "App";
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -93,7 +94,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               setCurrentFilters={setCurrentFilters}
             />
             {isLoggedIn ? (
-              <Link to="/créer-une-recette" className="flex">
+              <Link to={RouteName.createRecipe} className="flex">
                 <Button
                   type="grey"
                   className="self-center h-10 rounded-xl ml-4"
@@ -102,7 +103,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 </Button>
               </Link>
             ) : (
-              <Link to="/register" className="flex">
+              <Link to={RouteName.register} className="flex">
                 <Button
                   type="grey"
                   className="self-center h-10 rounded-xl ml-4"

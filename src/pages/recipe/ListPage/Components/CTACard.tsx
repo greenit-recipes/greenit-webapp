@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 interface ICTACard {
   type: "blue" | "green" | "yellow" | "orange";
   className?: string;
-  link: "/register" | "/workshops" | "/profil" | "/créer-une-recette";
+  link: string;
 }
 
 export const CTACard: React.FC<ICTACard> = ({

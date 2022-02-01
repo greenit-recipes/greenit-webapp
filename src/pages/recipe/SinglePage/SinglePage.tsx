@@ -429,7 +429,7 @@ const RecipeSinglePage = () => {
                 </Button>
               </div>
             ) : (
-              <Link to="/register">
+              <Link to={RouteName.register}>
                 <Button
                   className="rounded focus:outline-none focus:shadow-outline"
                   type="submit"

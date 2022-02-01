@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { search } from "../../icons";
+import { RouteName } from "App";
 
 export const SearchBarNav: React.FC<{
   size?: "small" | "large";
@@ -21,7 +22,7 @@ export const SearchBarNav: React.FC<{
   const handleSubmit = () => {
     if (!onSubmit) {
       history.push(
-        `/recipes/?search=${
+        `${RouteName.recipes}/?search=${
           (document.getElementById(keyId) as HTMLInputElement)?.value
         }`
       );

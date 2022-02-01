@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { RouteName } from "App";
 import {
   ADD_OR_REMOVE_FAVORITE_RECIPE
 } from "pages/CreateRecipe/CreateRecipeRequest";
@@ -51,7 +52,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
           )}
         </button>
       ) : (
-        <Link to="/register">
+        <Link to={RouteName.register}>
           <img className="w-10 h-10 lg:w-12 lg:h-12" src={likedIconOff} />
         </Link>
       )}

@@ -1,3 +1,4 @@
+import { RouteName } from "App";
 import { includes, map, mapValues } from "lodash";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
 import { useEffect, useState } from "react";
@@ -60,7 +61,7 @@ const RecipeListPage = () => {
   // fixer ça
   useEffect(() => {
     history.listen((prev: any) => {
-      if (includes(prev?.pathname, "/recipes")) {
+      if (includes(prev?.pathname, RouteName.recipes)) {
         window.location.reload();
       }
     });

@@ -39,6 +39,8 @@ export const RouteName = {
   starterPage: "/Se-lancer-dans-le-diy",
   why: "/why",
   contact: "/contact",
+  recipes: "/recipes",
+  createRecipe: "/créer-une-recette",
 };
 
 const App: React.FC = () => {
@@ -48,7 +50,7 @@ const App: React.FC = () => {
         <PublicRoute path="/" component={LandingPage} exact />
         <PublicRoute path={RouteName.why} component={WhyPage} exact />
         <PublicRoute path={RouteName.contact} component={ContactPage} exact />
-        <PublicRoute path="/recipes" component={RecipeListPage} exact />
+        <PublicRoute path={RouteName.recipes} component={RecipeListPage} exact />
         <PublicRoute path="/recipes/:name/:id" component={RecipeSinglePage} exact />
         <PublicRoute
           path="/personalizedSearch"
@@ -59,7 +61,7 @@ const App: React.FC = () => {
         <PublicRoute path={RouteName.workshops} component={WorkshopPage} exact />
         <PublicRoute path={RouteName.starterPage} component={StarterPage} exact />
         <PrivateRoute
-          path="/créer-une-recette"
+          path={RouteName.createRecipe}
           component={CreateRecipe}
           exact
         />

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { RouteName } from "App";
 
 interface CategoryCircleProps {
   name: string;
@@ -17,7 +18,7 @@ export const CategoryCircle: React.FC<CategoryCircleProps> = ({
   return (
     <div className="flex flex-col | items-center">
       <div className="w-20 h-20 md:w-24 md:h-24 bg-white mx-4 | rounded-full shadow-lg">
-        <Link to={`/recipes?${isTag ? `tags=${name}` : `category=${name}`}`}>
+        <Link to={`${RouteName.recipes}?${isTag ? `tags=${name}` : `category=${name}`}`}>
           <img
             className=" max-h-full max-w-full | ml-auto mr-auto | flex place-self-center rounded-full"
             src={icon}
