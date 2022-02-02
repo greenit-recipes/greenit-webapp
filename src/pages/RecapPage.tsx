@@ -11,17 +11,7 @@ import { Helmet } from "react-helmet";
         {
           "@type": "ListItem",
           position: 1,
-          url: "http://example.com/peanut-butter-cookies.html",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          url: "http://example.com/triple-chocolate-chunk.html",
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          url: "http://example.com/snickerdoodles.html",
+          url: "https://greenitcommunity.com/recipes/deodorant-solide-facile/",
         },
       ],
     })}
