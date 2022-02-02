@@ -15,13 +15,8 @@
   src: url(./fonts/Quicksand-Light.ttf);
 }
 
-h1 {
-  color: black;
-  font-family: QuickSand_Medium;
-}
-
 h2 {
-  font-family: QuickSand_SemiBold;
+  font-family: QuickSand_Medium;
 }
 
 h3 {

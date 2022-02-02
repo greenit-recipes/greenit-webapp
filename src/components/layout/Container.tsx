@@ -32,7 +32,7 @@ export const Container: React.FC<ContainerProps> = ({
           : {}),
       }}
     >
-      {title && <h1 className="text-2xl lg:text-3xl | md:mb-10">{title}</h1>}
+      {title && <h2 className="text-2xl lg:text-3xl | md:mb-10">{title}</h2>}
       {children}
     </div>
   );

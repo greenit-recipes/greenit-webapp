@@ -18,7 +18,7 @@ export const UserBadge: React.FC<UserBadge> = ({ className, image, name}) => {
         />
       </div>
 
-      <h1 className="self-center text-lg md:text-xl">{name}</h1>
+      <h2 className="self-center text-lg md:text-xl">{name}</h2>
     </div>
   );
 };

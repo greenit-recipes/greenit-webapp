@@ -27,9 +27,9 @@ const RecipeCreatedPage = () => {
           <h1 className="text-center text-blue text-xl md:text-2xl md:text-3xl mt-20">
             Merci d’aider la communauté !
           </h1>
-          <h1 className="text-center text-gray-700 text-xl md:text-2xl md:text-3xl mt-1">
+          <h2 className="text-center text-gray-700 text-xl md:text-2xl md:text-3xl mt-1">
             Ta recette a été prise en compte.
-          </h1>
+          </h2>
           <h3 className="text-center text-lg md:text-xl mt-10">
             Ta recette est en attente de validation. Tu seras notifié une fois
             la publication dans les 24/48h.

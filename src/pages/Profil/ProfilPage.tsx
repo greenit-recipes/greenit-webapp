@@ -120,9 +120,9 @@ const ProfilPage: React.FC = () => {
                     (visible ? " hidden" : "")
                   }
                 >
-                  <h1 className="text-base md:text-2xl">
+                  <h2 className="text-base md:text-2xl">
                     Tu n'as pas encore de recette favorite
-                  </h1>
+                  </h2>
                   <h3 className="text-base md:text-xl mt-4">
                     Pour mettre une recette en favoris <br />
                     appuie sur le coeur de la recette
@@ -165,9 +165,9 @@ const ProfilPage: React.FC = () => {
               type="blue"
               link={RouteName.createRecipe}
             >
-              <h1 className="w-11/12 text-center text-xl lg:text-2xl text-white mt-24 lg:mt-40">
+              <h2 className="w-11/12 lg:w-10/12 text-center text-lg lg:text-xl text-white mt-28 lg:mt-36">
                 Publier une nouvelle recette
-              </h1>
+              </h2>
             </CTACard>
             {user?.recipeAuthor?.map((recipe: any, index: any) => (
               <>

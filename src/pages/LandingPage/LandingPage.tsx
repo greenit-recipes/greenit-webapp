@@ -57,17 +57,17 @@ const LandingPage = () => {
       <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-8 md:mt-20">
         <div className="mb-10">
           {!isMobile && (
-            <h1 className="text-green text-3xl md:text-5xl mb-4 |">Greenit</h1>
+            <h1 className="text-green font-medium text-3xl md:text-5xl mb-4 |">Greenit</h1>
           )}
-          <h2 className="text-2xl md:text-4xl md:mb-2 inline lg:block |">
+          <h1 className="text-2xl font-semibold md:text-4xl md:mb-2 inline lg:block |">
             La communauté du fait maison,
-          </h2>
-          <h2 className="text-2xl md:text-4xl | ml-2 lg:ml-0 md:mb-2 inline">
+          </h1>
+          <h1 className="text-2xl font-semibold md:text-4xl | ml-2 lg:ml-0 md:mb-2 inline">
             pour une consommation
-          </h2>
-          <h2 className="text-green text-2xl md:text-4xl | ml-2 inline">
+          </h1>
+          <h1 className="text-green font-semibold text-2xl md:text-4xl | ml-2 inline">
             durable
-          </h2>
+          </h1>
         </div>
         <div className="lg:w-2/5">
           <SearchBar keyId="searchBarLandingPage" />
@@ -101,9 +101,9 @@ const LandingPage = () => {
       </div>
 
       <Container className="mb-6" itemsCenter>
-        <h1 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
+        <h2 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
           Notre sélection de recettes
-        </h1>
+        </h2>
         {isMobile ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 md:gap-y-10 mb-2">
             {recipes?.slice(0, 6).map((recipe, index: number) => (
@@ -123,12 +123,11 @@ const LandingPage = () => {
       </Container>
 
       <Container className="w-full text-center mt-8 sm:mb-8" itemsCenter>
-        <h1 className="text-xl md:text-2xl | px-5 text-center">
-          Nous lançons notre financement participatif ! <br />
+        <h2 className="text-xl text-red md:text-2xl | md:mb-2 px-5 text-center">
           Greenit a besoin de vous !
-        </h1>
+        </h2>
 
-        <h3 className=" w-full sm:w-2/3 md:w-2/5 p-6 md:p-1 mb-6 text-md md:text-xl text-center">
+        <h3 className=" w-full sm:w-2/3 md:w-2/5 p-4 md:p-1 mb-6 text-md md:text-xl text-center">
           Nous sommes des jeunes diplômés avec des idées plein la tête. Nous
           avons besoin de financement pour continuer à développer un espace DIY
           pour tous !
@@ -152,15 +151,15 @@ const LandingPage = () => {
             ></iframe>
           </div>
         </div>
-        <h1 className="text-xl md:text-2xl | p-5 text-center">
+        <h2 className="text-xl md:text-2xl | p-5 text-center">
           🙏 Un grand merci ! 🌱
-        </h1>
+        </h2>
       </Container>
 
       <Container className="w-full text-center mt-8 sm:mb-14" itemsCenter>
-        <h1 className="text-xl md:text-2xl | p-5 text-center">
+        <h2 className="text-xl md:text-2xl | p-5 text-center">
           Nos tutos vidéos pour commencer
-        </h1>
+        </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 sm:grid-rows-1 gap-2 md:gap-8 pt-4 w-4/5 xl:w-3/5">
           <div className="relative h-64 md:h-80">
@@ -197,9 +196,9 @@ const LandingPage = () => {
 
       <div className="mt-10 grid bg-orange w-full py-12 px-6 justify-items-center">
         <div className="grid mb-8 text-center">
-          <h1 className="text-white text-xl md:text-2xl mb-2">
+          <h2 className="text-white text-xl md:text-2xl mb-2">
             Tous les ateliers DIY proches de chez toi !{" "}
-          </h1>
+          </h2>
           <h3 className="text-white text-lg md:text-xl | text-center whitespace-pre-line">
             Fais-toi aider et rencontre d’autres passionnés
           </h3>
@@ -222,9 +221,9 @@ const LandingPage = () => {
         itemsCenter
         padding={isMobile}
       >
-        <h1 className="text-xl md:text-2xl | mt-4 text-center">
+        <h2 className="text-xl md:text-2xl | mt-4 text-center">
           Pourquoi Greenit ?
-        </h1>
+        </h2>
         <div className="grid grid-cols-2 gap-8 md:gap-12 justify-items-center mt-8">
           {[
             { text: "Pour la planète", color: "#8AD554", icon: planet },

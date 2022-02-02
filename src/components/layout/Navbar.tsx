@@ -46,7 +46,7 @@ export const Navbar: React.FC = () => {
             <div className="w-full grid justify-items-end">
               <Link className="" to={RouteName.profil}>
                 <Button type="blue" rounded="lg" className="mr-1">
-                  <h1 className="text-white text-xs">Profil</h1>
+                  <h2 className="text-white text-xs">Profil</h2>
                 </Button>
               </Link>
             </div>
@@ -54,7 +54,7 @@ export const Navbar: React.FC = () => {
             <div className="w-full grid justify-items-end">
               <Link className="" to={RouteName.register}>
                 <button className="rounded-lg p-2 bg-blue mr-1">
-                  <h1 className="text-white text-xs">Créer un profil</h1>
+                  <h2 className="text-white text-xs">Créer un profil</h2>
                 </button>
               </Link>
             </div>
@@ -75,20 +75,20 @@ export const Navbar: React.FC = () => {
                   setVisible(true);
                 }}
               >
-                <h1 className="text-white focus:text-green">Recettes</h1>
+                <h2 className="text-white focus:text-green">Recettes</h2>
               </div>
             </Link>
             <Link className="p-2" to={RouteName.workshops}>
-              <h1 className="text-white">Ateliers</h1>
+              <h2 className="text-white">Ateliers</h2>
             </Link>
             <Link className="p-2" to={RouteName.ingredientPage}>
-              <h1 className="text-white">Ingrédients</h1>
+              <h2 className="text-white">Ingrédients</h2>
             </Link>
             <Link className="p-2" to={RouteName.starterPage}>
-              <h1 className="text-white">Se lancer</h1>
+              <h2 className="text-white">Se lancer</h2>
             </Link>
             <Link className="p-2" to={RouteName.why}>
-              <h1 className="text-white">Le projet</h1>
+              <h2 className="text-white">Le projet</h2>
             </Link>
           </div>
         </div>

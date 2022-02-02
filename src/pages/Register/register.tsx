@@ -154,13 +154,13 @@ const Register: React.FC = () => {
         <meta name="description" content="Avec la création de ton compte sur Greenit Community, tu peux partager tes premières recettes maison, commenter et supporter les membres de la communauté et sauvegarder tes recettes préférées." />
       </Helmet>
       <BackgroundImage className="overflow-hidden" />
-      <h3 className="text-xl w-2/3 md:text-3xl | mt-16 text-center">
+      <h1 className="text-xl font-medium w-2/3 md:text-2xl | mt-16 text-center">
         Création de ton espace DIY <br />
-      </h3>
+      </h1>
 
       <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
-        <div className="grid grid-cols-2">
-          <h3 className="text-sm md:text-base self-center place-self-end mr-4">
+        <div className="grid grid-cols-3 md:grid-cols-2">
+          <h3 className="col-span-2 text-sm mr-4 self-center justify-self-start | md:text-base md:justify-self-end md:col-span-1">
             Si tu as déjà un compte:
           </h3>
           <Link to={RouteName.connexion}>

@@ -32,10 +32,10 @@ export const Newsletter: React.FC = () => {
   };
   return (
     <Container className="w-full md:w-3/5 h-full" margin={10} itemsCenter>
-      <h1 className="text-xl md:text-2xl sm:w-3/4 | p-5 text-center">
+      <h2 className="text-xl md:text-2xl sm:w-3/4 | p-5 text-center">
         Inscris toi à la newsletter pour découvrir des astuces DIY
         {"\n"} et être au courant des nouvelles recettes !
-      </h1>
+      </h2>
 
       <form className="md:flex p-6" onSubmit={handleSubmit(onSubmitHandler)}>
         <input

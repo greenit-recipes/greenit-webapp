@@ -20,15 +20,15 @@ export const Footer: React.FC = () => {
       <div className="mb-4 w-full grid justify-items-center">
         <div className="flex mt-10">
           <Link to={RouteName.why}>
-            <h1 className="text-white md:text-xl self-center">
+            <h2 className="text-white md:text-xl self-center">
               Qui sommes-nous ?
-            </h1>
+            </h2>
           </Link>
-          <h1 className="text-white md:text-xl self-center ml-6 mr-6"> | </h1>
+          <h2 className="text-white md:text-xl self-center ml-6 mr-6"> | </h2>
           <Link to={RouteName.contact}>
-            <h1 className="text-white md:text-xl self-center">
+            <h2 className="text-white md:text-xl self-center">
               Contacte-nous !{" "}
-            </h1>
+            </h2>
           </Link>
         </div>
       </div>
@@ -64,15 +64,15 @@ export const Footer: React.FC = () => {
         ))}
       </div>
       <div className=" grid justify-items-center w-4/5 md:w-auto p-10 shadow-xl rounded-xl mt-10 mb-14 bg-white">
-        <h1 className="text-2xl mb-5">Contacte-nous !</h1>
+        <h2 className="text-2xl mb-5">Contacte-nous !</h2>
         <a
           href="mailto:hello@greenitcommunity.com"
           className="inline-flex gap-x-4"
         >
-          <img src={MailIcon} alt="mail icon" className="w-7 h-7 self-center" />
-          <h1 className="text-xs md:text-lg self-center pt-1">
+          <img src={MailIcon} className="w-7 h-7 self-center" />
+          <h2 className="text-xs md:text-lg self-center pt-1">
             hello@greenitcommunity.com
-          </h1>
+          </h2>
         </a>
         <div className="flex flex-row gap-x-4 justify-center mt-3">
           {[

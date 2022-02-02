@@ -24,10 +24,10 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
       {!isMobile ? (
         <div className="w-auto min-w-14" id="menu">
           <button className="flex border-b-2 border-transparent hover:border-blue self-center">
-            <h1 className="text-lg">{item.title} ▾ </h1>
+            <h2 className="text-lg">{item.title} ▾ </h2>
             <div className="ml-2 self-center text-md">
               {currentFilters?.[item.name]?.length ? (
-                <h1>{currentFilters?.[item.name].length}</h1>
+                <h2>{currentFilters?.[item.name].length}</h2>
               ) : (
                 <></>
               )}
@@ -61,11 +61,11 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
       ) : (
         <div className="ml-4 mt-4">
           <div className="flex">
-            <h1 className="text-xl self-center">{item.title}</h1>
+            <h2 className="text-xl self-center">{item.title}</h2>
             {currentFilters?.[item.name]?.length ? (
-              <h1 className="self-center ml-2">
+              <h2 className="self-center ml-2">
                 {currentFilters?.[item.name].length}
-              </h1>
+              </h2>
             ) : (
               <></>
             )}

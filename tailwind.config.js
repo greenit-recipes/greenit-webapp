@@ -90,8 +90,11 @@ module.exports = {
         rotate: "rotate 200ms ease-in"
       },
       fontFamily: {
-        medium: ['QuickSand_Medium.tff'],
-        bold: ['QuickSand_Bold.tff'],    
+        light: ['QuickSand_Light.ttf'],
+        medium: ['QuickSand_Medium.ttf'],
+        regular: ['QuickSand_Regular.ttf'],    
+        semibold: ['QuickSand_SemiBold.ttf'],
+        bold: ['QuickSand_Bold.ttf'],    
       },
     },
   },

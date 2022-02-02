@@ -77,9 +77,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             pathname: `${RouteName.recipes}/${recipe?.urlId}`,
           }}
         >
-          <h1 className="subpixel-antialiased | text-center mt-5 p-1 text-sm lg:text-base">
+          <h2 className="subpixel-antialiased | text-center mt-5 p-1 text-sm lg:text-base">
             {recipe?.name}
-          </h1>
+          </h2>
           <Icon
             nbOfIngredient={recipe?.numberOfIngredients}
             difficulty={

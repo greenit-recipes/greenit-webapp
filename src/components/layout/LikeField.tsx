@@ -60,7 +60,7 @@ export const LikeField: React.FC<ILikeField> = ({
               alt="likes"
             />
           )}
-          <h1 className="flex self-center text-base lg:text-lg ml-1">{nbrLiked}</h1>
+          <h2 className="flex self-center text-base lg:text-lg ml-1">{nbrLiked}</h2>
         </button>
       ) : (
         <Link to={RouteName.register} className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mr-3">
@@ -69,7 +69,7 @@ export const LikeField: React.FC<ILikeField> = ({
             className="flex self-center w-7 h-7 lg:w-8 lg:h-8"
             alt="likes"
           />
-          <h1 className="flex self-center text-lg lg:text-lg ml-1">{nbrLiked}</h1>
+          <h2 className="flex self-center text-lg lg:text-lg ml-1">{nbrLiked}</h2>
         </Link>
       )}
       

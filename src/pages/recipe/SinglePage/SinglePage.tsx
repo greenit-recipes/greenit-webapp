@@ -182,6 +182,8 @@ const RecipeSinglePage = () => {
   }
   const { recipe } = data;
 
+  console.log(recipe?.instructions);
+
   return (
     <>
       <Helmet>
@@ -191,69 +193,48 @@ const RecipeSinglePage = () => {
           {JSON.stringify({
             "@context": "https://schema.org/",
             "@type": "Recipe",
-            name: "Peanut Butter Cookies",
-            image: [
-              "https://example.com/photos/1x1/photo.jpg",
-              "https://example.com/photos/4x3/photo.jpg",
-              "https://example.com/photos/16x9/photo.jpg",
-            ],
+            name: recipe?.name,
+            image: recipe?.image,
             author: {
               "@type": "Person",
-              name: "Wendy Darling",
+              name: recipe?.author?.username,
             },
             datePublished: "2018-03-10",
-            description:
-              "This Peanut Butter Cookie recipe is everyone's favorite",
+            description: recipe?.description,
             prepTime: "PT10M",
             cookTime: "PT25M",
             totalTime: "PT35M",
-            recipeCuisine: "French",
+            recipeCuisine: "Prduits fait maison",
             recipeCategory: "Cookies",
-            keywords: "peanut butter, cookies",
-            recipeYield: "24",
-            nutrition: {
-              "@type": "NutritionInformation",
-              calories: "120 calories",
-            },
+            keywords: recipe?.tags,
+            recipeYield: "1",
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: "5",
               ratingCount: "18",
             },
-            recipeIngredient: ["2 cups of peanut butter", "1/3 cup of sugar"],
+            recipeIngredient: recipe?.ingredients,
             recipeInstructions: [
               {
                 "@type": "HowToStep",
-                text: "Mix together the peanut butter and sugar.",
-              },
-              {
-                "@type": "HowToStep",
-                text: "Roll cookie dough into small balls and place on a cookie sheet.",
-              },
-              {
-                "@type": "HowToStep",
-                text: "Bake for 25 minutes.",
+                text: recipe?.instructions,
               },
             ],
             video: {
               "@type": "VideoObject",
-              name: "How to Peanut Butter Cookies",
-              description: "This is how you make peanut butter cookies.",
-              thumbnailUrl: [
-                "https://example.com/photos/1x1/photo.jpg",
-                "https://example.com/photos/4x3/photo.jpg",
-                "https://example.com/photos/16x9/photo.jpg",
-              ],
-              contentUrl: "http://www.example.com/video123.mp4",
-              embedUrl: "http://www.example.com/videoplayer?video=123",
+              name: recipe?.name,
+              description: recipe?.description,
+              thumbnailUrl: recipe?.image,
+              contentUrl: recipe?.videoUrl,
+              embedUrl: recipe?.videoUrl,
               uploadDate: "2018-02-05T08:00:00+08:00",
               duration: "PT1M33S",
               interactionStatistic: {
                 "@type": "InteractionCounter",
                 interactionType: { "@type": "WatchAction" },
-                userInteractionCount: 2347,
+                userInteractionCount: nbrComment,
               },
-              expires: "2019-02-05T08:00:00+08:00",
+              expires: recipe?.expiry,
             },
           })}
         </script>
@@ -271,7 +252,7 @@ const RecipeSinglePage = () => {
             <Container className="mt-10 md:mt-8 flex" itemsCenter>
               <div className="w-full h-auto">
                 <div className="grid grid-flow-row justify-center">
-                  <h1 className="text-2xl md:text-4xl text-center">
+                  <h1 className="text-2xl md:text-4xl text-center font-medium">
                     {recipe?.name}
                   </h1>
                   <h3 className="text-base md:text-lg text-center">
@@ -315,7 +296,7 @@ const RecipeSinglePage = () => {
                     ))}
                   </div>
                   <div className="mt-4 flex flex-col self-start mr-10">
-                    <h1 className="pb-1 text-xl md:text-2xl">Ingredients</h1>
+                    <h2 className="pb-1 text-xl md:text-2xl">Ingredients</h2>
                     {/* @ts-ignore*/}
                     {recipe.ingredients.map((item, index) => (
                       <h3 className="text-lg md:text-xl pt-2" key={index}>
@@ -324,7 +305,7 @@ const RecipeSinglePage = () => {
                     ))}
                   </div>
                   <div className="mt-5 flex flex-col self-start">
-                    <h1 className="pb-1 text-xl md:text-2xl">Ustensiles</h1>
+                    <h2 className="pb-1 text-xl md:text-2xl">Ustensiles</h2>
                     {recipe?.utensils.map((item, index) => (
                       <h3 className="text-lg md:text-xl pt-2" key={index}>
                         {item.name}
@@ -335,7 +316,7 @@ const RecipeSinglePage = () => {
               </div>
             </Container>
             <div className="mt-10 flex flex-col">
-              <h1 className="pb-2 text-xl md:text-2xl">Description</h1>
+              <h2 className="pb-2 text-xl md:text-2xl">Description</h2>
               {!isEmpty(recipe?.description) ? (
                 <div className="text-lg md:text-xl leading-relaxed">
                   {
@@ -346,7 +327,7 @@ const RecipeSinglePage = () => {
               ) : (
                 ""
               )}
-              <h1 className="pt-5 pb-2 text-xl md:text-2xl">Conservation</h1>
+              <h2 className="pt-5 pb-2 text-xl md:text-2xl">Conservation</h2>
               <p className="text-lg md:text-xl">{recipe?.expiry}</p>
             </div>
             <Grid type="col" size={{ default: 1, lg: 2 }} className="mt-10">
@@ -380,7 +361,7 @@ const RecipeSinglePage = () => {
                 )}
               </div>
               <div className="mt-5 lg:mt-0 md:ml-10">
-                <h1 className="text-xl md:text-2xl">Instructions</h1>
+                <h2 className="text-xl md:text-2xl">Instructions</h2>
                 <h3 className="text-xs md:text-sm">
                   ⤹ Clique sur les numéros pour faire avancer la vidéo
                 </h3>
@@ -414,7 +395,7 @@ const RecipeSinglePage = () => {
               </div>
             </Grid>
             <div className="mt-8 flex flex-col">
-              <h1 className="pb-2 text-xl md:text-2xl">Conseils de l'auteur</h1>
+              <h2 className="pb-2 text-xl md:text-2xl">Conseils de l'auteur</h2>
               <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
             </div>
             <div className="mt-8 flex flex-col">
@@ -432,10 +413,10 @@ const RecipeSinglePage = () => {
               <div className="grid grid-cols-2 gap-2 lg:gap-10 m-10 justify-items-center w-2/3 md:w-80">
                 <div className="grid justify-items-center">
                   <FavouriteField recipe={data?.recipe}></FavouriteField>
-                  <h1 className="text-center text-base" ref={fieldRef}>
+                  <h2 className="text-center text-base" ref={fieldRef}>
                     {" "}
                     Ajouter au favoris
-                  </h1>
+                  </h2>
                 </div>
                 <button className="grid justify-items-center" onClick={copy}>
                   <img
@@ -443,19 +424,19 @@ const RecipeSinglePage = () => {
                     className="justify-self-center w-10 h-10 lg:w-12 lg:h-12"
                   />
                   {!copied ? (
-                    <h1 className="text-center text-base"> Partager </h1>
+                    <h2 className="text-center text-base"> Partager </h2>
                   ) : (
-                    <h1 className="text-center text-base"> Lien copié ! </h1>
+                    <h2 className="text-center text-base"> Lien copié ! </h2>
                   )}
                 </button>
               </div>
             </div>
             <div className="mt-6 flex flex-col">
-              <h1 className="text-xl md:text-2xl">Discussion</h1>
+              <h2 className="text-xl md:text-2xl">Discussion</h2>
               {recipe?.comments?.map((comment: any, index: number) => {
                 // @ts-ignore
                 return (
-                  <div className="mt-5 flex flex-col" key={index}>
+                  <div className="mt-3 flex flex-col" key={index}>
                     <div className="relative bg-orange bg-opacity-10 rounded-3xl px-4 py-4">
                       <UserBadge
                         image={comment?.author?.imageProfile}

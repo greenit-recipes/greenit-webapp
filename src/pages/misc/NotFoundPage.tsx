@@ -13,8 +13,8 @@ const NotFoundPage = () => {
           marginTop: isMobile ? "50%" : "15%",
         }}
       >
-        <h1 className="text-3xl lg:text-8xl mb-2">404</h1>
-        <h1 className="text-2xl lg:text-3xl">Cette page n’existe pas</h1>
+        <h2 className="text-3xl lg:text-8xl mb-2">404</h2>
+        <h2 className="text-2xl lg:text-3xl">Cette page n’existe pas</h2>
       </div>
     </div>
   );
