@@ -40,7 +40,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
     <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150 px-1 mb-14 md:mb-16 lg:mb-10">
       <Link
         to={{
-          pathname: `${RouteName.recipes}/${recipe?.urlId}/${recipe?.id}`,
+          pathname: `${RouteName.recipes}/${recipe?.urlId}`,
         }}
         className={`inline-block ${!isMobile}`}
       >
@@ -73,7 +73,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         )}
         <Link
           to={{
-            pathname: `${RouteName.recipes}/${recipe?.urlId}/${recipe?.id}`,
+            pathname: `${RouteName.recipes}/${recipe?.urlId}`,
           }}
         >
           <h1 className="subpixel-antialiased | text-center mt-5 p-1 text-sm lg:text-base">

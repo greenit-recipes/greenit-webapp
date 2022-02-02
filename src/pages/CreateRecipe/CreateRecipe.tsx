@@ -18,6 +18,7 @@ import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import * as yup from "yup";
 import { RecipeDifficulty } from "../../graphql";
+import { Helmet } from "react-helmet";
 
 const schema = yup.object().shape({
   image: imageValidation(),
@@ -189,6 +190,10 @@ const CreateRecipe: React.FC = () => {
   return (
     <div className="w-full">
       <Navbar></Navbar>
+      <Helmet>
+        <title>Ajoutez vos recettes DIY | Inspirez la communauté</title>
+        <meta name="description" content="Sur Greenit Community, vous pouvez ajouter vos recettes maison et naturelles pour inspirer la communauté du fait-maison. Chaque recette ajoutée est ensuite validée avant d’être publiée." />
+      </Helmet>
       <BackgroundImage />
       <div className="grid justify-items-center w-full">
         <div className="w-4/5">

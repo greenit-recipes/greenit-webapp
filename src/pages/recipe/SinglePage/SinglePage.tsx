@@ -16,7 +16,7 @@ import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest
 import React, { createRef, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ReactPlayer from "react-player";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import authService from "services/auth.service";
 import * as yup from "yup";
 import {
@@ -25,11 +25,10 @@ import {
   Footer,
   Grid,
   Loading,
-  Navbar,
+  Navbar
 } from "../../../components";
 import { useRecipeQuery } from "../../../graphql";
-import useIsMobile from "../../../hooks/isMobile";
-import { partageIcon, noVideo } from "../../../icons";
+import { noVideo, partageIcon } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
 import "./SinglePage.css";
 
@@ -86,13 +85,12 @@ const RecipeSinglePage = () => {
     resolver: yupResolver(schema),
   });
   const fieldRef = React.useRef<HTMLInputElement>(null);
-  const { id } = useParams<{ id: string }>();
-  const history = useHistory();
+  const { name } = useParams<{ name: string }>();
 
   const { error, loading, data } = useRecipeQuery({
     fetchPolicy: "no-cache",
     variables: {
-      id: id ?? "",
+      urlId: name,
     },
   });
 

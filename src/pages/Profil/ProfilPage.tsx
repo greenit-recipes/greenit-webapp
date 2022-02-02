@@ -13,6 +13,7 @@ import { Link, useHistory } from "react-router-dom";
 import "reactjs-popup/dist/index.css";
 import { ME } from "services/auth.service";
 import { Container, Footer, Navbar } from "../../components";
+import { Helmet } from "react-helmet";
 
 const ProfilPage: React.FC = () => {
   useEffect(() => {
@@ -55,6 +56,11 @@ const ProfilPage: React.FC = () => {
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
+      <Helmet>
+        <title>Espace personnel DIY | Vos recettes maison favorites</title>
+        <meta name="description" content="Dans votre espace personnel Greenit, vous pouvez enregistrer vos recettes maison et accéder à vos recettes déjà publiées. Il suffit de vous créer un compte !" />
+      </Helmet>
+
       <Container
         className="flex flex-col | items-center | mt-8 md:mt-20"
         padding

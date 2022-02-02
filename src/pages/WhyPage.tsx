@@ -4,6 +4,7 @@ import useIsMobile from "../hooks/isMobile";
 import { corpsWhy, logo, money, planet, wellbeing, GreenitTeam } from "../icons";
 import communityDesktop from "../icons/community_desktop.png";
 import communityMobile from "../icons/community_mobile.png";
+import { Helmet } from "react-helmet";
 
 const Block: React.FC<{
   id: string;
@@ -64,6 +65,10 @@ const WhyPage: React.FC = () => {
   return (
     <div className="min-h-screen min-w-full">
       <Navbar />
+      <Helmet>
+        <title>Qui sommes-nous ? | Greenit Community</title>
+        <meta name="description" content="Greenit Community cherche à devenir la plateforme référente du fait-maison. Le partage de recettes, les ateliers et les informations sont portés par une communauté de passionnés en DIY." />
+      </Helmet>
       <div className="h-auto w-full flex flex-col items-center mb-12 leading-loose">
         <Block
           style={{

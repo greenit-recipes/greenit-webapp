@@ -7,10 +7,11 @@ import { Link } from "react-router-dom";
 import authService, {
   RESEND_ACTIVATION_EMAIL,
   VERIFY_ACCOUNT,
-  WELCOME_NEW_USER
+  WELCOME_NEW_USER,
 } from "services/auth.service";
 import "../App.css";
 import { Footer, Navbar } from "../components";
+import { Helmet } from "react-helmet";
 
 const ActivateAccount: React.FC = () => {
   const { tokenActivationAccount } =
@@ -47,6 +48,9 @@ const ActivateAccount: React.FC = () => {
 
   return (
     <div className="flex flex-col | items-center self-center">
+      <Helmet>
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <Navbar />
       {data?.verifyAccount?.success ? (
         <div className="grid justify-items-center auto-rows-max h-screen mt-28">
@@ -67,14 +71,17 @@ const ActivateAccount: React.FC = () => {
         <div className="grid justify-items-center auto-rows-max h-screen mt-28">
           <div className="w-full">
             <h1 className="text-center text-2xl md:text-3xl">
-            Il y a eu un problème avec la création de ton compte ! 😥
+              Il y a eu un problème avec la création de ton compte ! 😥
             </h1>
             <h4 className="text-center text-xl md:text-2xl mt-10">
-            Tu peux réessayer, si le problème persiste n’hésite pas à nous contacter.
+              Tu peux réessayer, si le problème persiste n’hésite pas à nous
+              contacter.
             </h4>
           </div>
           <Link to={RouteName.register}>
-            <Button className="mb-5" type="green">Réessayer de créer un compte</Button>
+            <Button className="mb-5" type="green">
+              Réessayer de créer un compte
+            </Button>
           </Link>
           <Button
             onClick={() => {

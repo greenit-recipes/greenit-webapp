@@ -10,6 +10,7 @@ import {
   FBIcon,
 } from "../icons";
 import { BackgroundImage } from "../components/layout/BackgroundImage";
+import { Helmet } from "react-helmet";
 
 const ContactPage = () => {
   const params = new URLSearchParams(window.location.search);
@@ -25,6 +26,10 @@ const ContactPage = () => {
     <div>
       <BackgroundImage />
       <Navbar />
+      <Helmet>
+        <title>Contactez-nous | Greenit Community</title>
+        <meta name="description" content="Besoin d’aide ? Une question ? Un partenariat ? Un conseil ? Une critique ? Écrivez-nous à notre adresse ou remplissez le formulaire de contact. Nous vous répondrons !" />
+      </Helmet>
       <div className="grid justify-items-center auto-rows-max h-screen">
         <div className="w-4/5">
           <h1 className="text-center text-xl md:text-2xl md:text-3xl mt-16">

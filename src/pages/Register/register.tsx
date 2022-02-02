@@ -12,6 +12,7 @@ import * as yup from "yup";
 import { Footer, Navbar } from "../../components";
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import "./register.css";
+import { Helmet } from "react-helmet";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -148,6 +149,10 @@ const Register: React.FC = () => {
   return (
     <div className="grid justify-items-center w-full">
       <Navbar />
+      <Helmet>
+        <title>Créer un compte Greenit - Ton espace personnel DIY</title>
+        <meta name="description" content="Avec la création de ton compte sur Greenit Community, tu peux partager tes premières recettes maison, commenter et supporter les membres de la communauté et sauvegarder tes recettes préférées." />
+      </Helmet>
       <BackgroundImage className="overflow-hidden" />
       <h3 className="text-xl w-2/3 md:text-3xl | mt-16 text-center">
         Création de ton espace DIY <br />

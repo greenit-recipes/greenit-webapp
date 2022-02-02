@@ -4,12 +4,11 @@ import { BackgroundImage } from "components/layout/BackgroundImage";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
-import {
-    RESET_PASSWORD
-} from "services/auth.service";
+import { RESET_PASSWORD } from "services/auth.service";
 import * as yup from "yup";
 import { Navbar } from "components/layout/Navbar";
 import { RouteName } from "App";
+import { Helmet } from "react-helmet";
 
 const schema = yup.object().shape({
   password: yup
@@ -41,13 +40,15 @@ const ActivateResetPassword: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const { tokenActivationAccount } = useParams<{ tokenActivationAccount: string }>();
+  const { tokenActivationAccount } =
+    useParams<{ tokenActivationAccount: string }>();
 
-
-  const [resetPassword, {data: dataResetPassword}] = useMutation(RESET_PASSWORD, {
-    errorPolicy: "all",
-  });
-
+  const [resetPassword, { data: dataResetPassword }] = useMutation(
+    RESET_PASSWORD,
+    {
+      errorPolicy: "all",
+    }
+  );
 
   const onSubmitHandler = (data: {
     password: string;
@@ -64,9 +65,12 @@ const ActivateResetPassword: React.FC = () => {
   return (
     <div className="grid justify-items-center w-full">
       <Navbar />
+      <Helmet>
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <BackgroundImage className="overflow-hidden" />
       <h3 className="text-xl w-2/3 md:text-3xl | mt-16 text-center">
-      Réinitialisation du mot de passe. <br />
+        Réinitialisation du mot de passe. <br />
       </h3>
 
       <div className="w-full max-w-xs md:max-w-lg mt-10">

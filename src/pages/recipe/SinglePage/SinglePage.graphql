@@ -1,5 +1,5 @@
-query recipe($id: String!) {
-  recipe(id: $id) {
+query recipe($urlId: String!) {
+  recipe(urlId: $urlId) {
     id
     name
     image

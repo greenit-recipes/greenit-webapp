@@ -4,6 +4,8 @@ import { Button } from "components/misc/Button";
 import { Footer } from "components/layout/Footer";
 import { BackgroundImage } from "components";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 const RecipeCreatedPage = () => {
   useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -16,6 +18,9 @@ const RecipeCreatedPage = () => {
   return (
     <div>
       <BackgroundImage />
+      <Helmet>
+        <meta name="robots" content="noindex"/>
+      </Helmet>
       <Navbar />
       <div className="grid justify-items-center auto-rows-max h-auto">
         <div className="w-2/3 md:w-2/5">

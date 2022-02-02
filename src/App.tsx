@@ -28,15 +28,15 @@ import StarterPage from "pages/StarterPage";
 export const history = createBrowserHistory();
 
 export const RouteName = {
-  resetPassword: "/reinitialisation-mot-de-passe",
-  tokenActivationAccount: "/activate/:tokenActivationAccount",
-  accountCreated: "/compte-crée",
-  activateResetPassword: "/activate/mot-de-passe-oublié/:tokenActivationAccount",
+  resetPassword: "/reinitialisation-mot-de-passe", // no index
+  tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
+  accountCreated: "/compte-crée", // no index
+  activateResetPassword: "/activate/mot-de-passe-oublié/:tokenActivationAccount", // no index
   register: "/creation-compte",
-  recipeCreated: "/ajout-recette",
+  recipeCreated: "/ajout-recette", // no index
   workshops: "/ateliers",
-  ingredientPage: "/ingredients",
-  starterPage: "/page-debutant-diy",
+  ingredientPage: "/ingredients", // no index ( a activer quand on sort la page)
+  starterPage: "/page-debutant-diy", // no index ( a activer quand on sort la page)
   why: "/projet",
   contact: "/contact",
   recipes: "/recettes",
@@ -53,7 +53,7 @@ const App: React.FC = () => {
         <PublicRoute path={RouteName.why} component={WhyPage} exact />
         <PublicRoute path={RouteName.contact} component={ContactPage} exact />
         <PublicRoute path={RouteName.recipes} component={RecipeListPage} exact />
-        <PublicRoute path="/recettes/:name/:id" component={RecipeSinglePage} exact />
+        <PublicRoute path="/recettes/:name" component={RecipeSinglePage} exact />
         <PublicRoute
           path="/personalizedSearch"
           component={PersonalizedSearch}

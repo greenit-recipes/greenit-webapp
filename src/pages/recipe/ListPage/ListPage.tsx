@@ -12,6 +12,7 @@ import useIsMobile from "../../../hooks/isMobile";
 import { scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
+import { Helmet } from "react-helmet";
 
 const RecipeListPage = () => {
   const params = new URLSearchParams(window.location.search);
@@ -102,6 +103,10 @@ const RecipeListPage = () => {
   return (
     <div className={""}>
       <Navbar />
+      <Helmet>
+        <title>Recettes DIY : Cosmétiques, produits ménagers | Greenit</title>
+        <meta name="description" content="Découvrez nos recettes 100 % naturelles partagées par la communauté : cosmétique maison, produits ménagers, produit bien-être, santé, maquillage. Fabriquez vos produits d’hygiène !" />
+      </Helmet>
       {!isMobile && (
         <FilterBar
           filter={filterData}

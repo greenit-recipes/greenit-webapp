@@ -1,15 +1,15 @@
-import { Footer, Navbar } from "../../components";
 import { useMutation } from "@apollo/client";
-import { useHistory, useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import authServiceService, { LOGIN_ACCOUNT } from "services/auth.service";
-import * as yup from "yup";
-import { BackgroundImage } from "../../components/layout/BackgroundImage";
-import { Link } from "react-router-dom";
 import { RouteName } from "App";
 import { includes } from "lodash";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Link, useHistory } from "react-router-dom";
+import authServiceService, { LOGIN_ACCOUNT } from "services/auth.service";
+import * as yup from "yup";
+import { Footer, Navbar } from "../../components";
+import { BackgroundImage } from "../../components/layout/BackgroundImage";
+import { Helmet } from "react-helmet";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -90,6 +90,10 @@ const Login: React.FC = () => {
   return (
     <div className="grid justify-items-center w-full">
       <Navbar />
+      <Helmet>
+        <title>Connexion - Espace DIY | Greenit Community</title>
+        <meta name="description" content="Connectez vous. Accédez à votre compte et espace personnel DIY. Vous pouvez ajouter des recettes maison et sauvegarder vos recettes préférées." />
+      </Helmet>
       <BackgroundImage className="overflow-hidden" />
       <h3 className="text-2xl w-2/3 md:text-3xl | mt-16 text-center">
         Connexion vers ton espace DIY <br />

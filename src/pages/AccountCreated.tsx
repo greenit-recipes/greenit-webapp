@@ -4,6 +4,7 @@ import React from "react";
 import authService, { RESEND_ACTIVATION_EMAIL } from "services/auth.service";
 import "../App.css";
 import { Footer, Navbar } from "../components";
+import { Helmet } from "react-helmet";
 
 const AccountCreated: React.FC = () => {
   const [resendActivationEMail] = useMutation(RESEND_ACTIVATION_EMAIL, {
@@ -12,6 +13,9 @@ const AccountCreated: React.FC = () => {
 
   return (
     <div className="flex flex-col | items-center self-center">
+      <Helmet>
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <Navbar />
       <div className="grid justify-items-center auto-rows-max h-screen mt-28">
         <div className="w-3/4">

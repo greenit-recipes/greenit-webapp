@@ -17,6 +17,7 @@ import {
   ChristelleLogo,
 } from "../../src/icons";
 import { includes } from "lodash";
+import { Helmet } from "react-helmet";
 
 const WorkshopPage = () => {
   const [isIncoming, setIsIncoming] = useState(false);
@@ -93,6 +94,10 @@ const WorkshopPage = () => {
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
+      <Helmet>
+        <title>Ateliers DIY : Fais-toi aider par des experts en cosmétique maison !</title>
+        <meta name="description" content="Greenit Community propose des ateliers partout en France et en ligne pour commencer pas à pas la fabrication de tes cosmétiques et produits ménagers maison." />
+      </Helmet>
       <Container className="flex flex-col | items-center | w-2/3 md:w-full mt-16 lg:mt-28 p-4">
         <h1 className="text-2xl md:text-3xl | text-center">
           Tous les ateliers DIY proches de chez toi !
