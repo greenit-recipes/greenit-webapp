@@ -7,7 +7,6 @@ import {
   Button,
   Container,
   Footer,
-  Grid,
   Loading,
   Navbar,
   RecipeCard,
@@ -26,6 +25,7 @@ import {
 import "../../pages/recipe/SinglePage/SinglePage.css";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
+import { Helmet } from "react-helmet";
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
@@ -43,6 +43,15 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
+      <Helmet>
+        <title>
+          Toutes vos recettes DIY pour une consommation fait-maison | Greenit
+        </title>
+        <meta
+          name="description"
+          content="Votre espace de partage de recette DIY, des astuces écologiques pour la maison, des ateliers pour débuter dans le fait-maison et des pages sur les bienfaits des ingrédients."
+        />
+      </Helmet>
       <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
       <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-8 md:mt-20">
@@ -61,7 +70,7 @@ const LandingPage = () => {
           </h2>
         </div>
         <div className="lg:w-2/5">
-          <SearchBar keyId="searchBarLandingPage"/>
+          <SearchBar keyId="searchBarLandingPage" />
         </div>
       </Container>
       <div className="w-full sm:w-4/5 lg:w-2/3 | py-8 pl-6 | flex flex overflow-x-auto">

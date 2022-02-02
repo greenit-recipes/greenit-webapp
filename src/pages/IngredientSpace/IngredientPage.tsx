@@ -6,6 +6,13 @@ const ingredientPage = () => {
     <div className="flex flex-col | items-center self-center">
       <Helmet>
         <meta name="robots" content="noindex" />
+        <title>
+          Huiles végétales, huiles essentielles - Découvrez leurs bienfaits
+        </title>
+        <meta
+          name="description"
+          content="Greenit vous propose un guide d’utilisation de vos ingrédients DIY (huiles essentielles, huiles végétales, poudres végétales…) pour découvrir leurs bienfaits et propriétés."
+        />
       </Helmet>
       <Navbar />
       <BackgroundImage />
