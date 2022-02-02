@@ -7,7 +7,7 @@ const ingredientPage = () => {
       <Helmet>
         <meta name="robots" content="noindex" />
         <title>
-          Huiles végétales, huiles essentielles - Découvrez leurs bienfaits
+          Huiles végétales, huiles essentielles - Découvrez le bienfait des ingrédients
         </title>
         <meta
           name="description"
