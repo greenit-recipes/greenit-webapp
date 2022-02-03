@@ -78,24 +78,28 @@ export const Footer: React.FC = () => {
           {[
             {
               href: "https://www.instagram.com/greenitcommunity/",
+              rel:"noopener",
               children: (
                 <img src={InstagramIcon} alt="instagram icon" className="w-8 h-8 mt-2 self-start" />
               ),
             },
             {
               href: "https://www.facebook.com/greenitcommunity/",
+              rel:"noopener",
               children: (
                 <img src={FBIcon} alt="facebook icon" className="w-6 h-6 mt-2 self-start mt-3" />
               ),
             },
             {
               href: "https://www.pinterest.fr/greenitcommunity/",
+              rel:"noopener",
               children: (
                 <img src={pinterestIcon} alt="pinterest icon" className="w-8 h-8 mt-2 self-start" />
               ),
             },
             {
               href: "https://www.tiktok.com/@greenitcommunity",
+              rel:"noopener",
               children: (
                 <img src={tiktokIcon} alt="tiktok icon" className="w-8 h-8 mt-2 self-start" />
               ),

@@ -1,9 +1,6 @@
 import React from "react";
 import {
   logo,
-  facile,
-  intermediaire,
-  difficile,
   ingredients1,
   ingredients2,
   ingredients3,
@@ -28,10 +25,6 @@ export const Icon: React.FC<IconProps> = ({
   difficulty,
 }) => {
   const types = {
-    // difficulty
-    Facile: facile,
-    Moyen: intermediaire,
-    Expert: difficile,
 
     //NbIngredients avec icons asssociés, à refacto
 
