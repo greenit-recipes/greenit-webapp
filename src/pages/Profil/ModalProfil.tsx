@@ -52,7 +52,7 @@ export const Modal: React.FC = () => {
                     href="mailto:hello@greenitcommunity.com"
                     className="inline-flex gap-x-2 cursor-pointer"
                   >
-                    <img src={MailIcon} className="w-4 h-4 self-center" />
+                    <img src={MailIcon} alt="greenit mail" className="w-4 h-4 self-center" />
                     <h3 className="text-xs md:text-base self-center">
                       hello@greenitcommunity.com
                     </h3>

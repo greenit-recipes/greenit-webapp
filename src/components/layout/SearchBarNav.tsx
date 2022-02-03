@@ -56,6 +56,7 @@ export const SearchBarNav: React.FC<{
       />
 
       <img
+        alt="search icon"
         src={search}
         className="w-6 h-6 self-center mr-2"
         onClick={() => {

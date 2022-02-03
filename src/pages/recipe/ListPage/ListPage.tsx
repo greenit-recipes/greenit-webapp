@@ -207,6 +207,7 @@ const RecipeListPage = () => {
       </div>
       <img
         src={scrollToTop}
+        alt="scroll to top"
         className="fixed bottom-6 
         right-4 z-20 h-12 w-12 cursor-pointer"
         id="scrollToTop"
