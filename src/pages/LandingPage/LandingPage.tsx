@@ -57,17 +57,17 @@ const LandingPage = () => {
       <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-8 md:mt-20">
         <div className="mb-10">
           {!isMobile && (
-            <h1 className="text-green font-medium text-3xl md:text-5xl mb-4 |">Greenit</h1>
+            <h2 className="text-green font-medium text-3xl md:text-5xl mb-4 |">Greenit</h2>
           )}
           <h1 className="text-2xl font-semibold md:text-4xl md:mb-2 inline lg:block |">
             La communauté du fait maison,
           </h1>
-          <h1 className="text-2xl font-semibold md:text-4xl | ml-2 lg:ml-0 md:mb-2 inline">
+          <h2 className="text-2xl font-semibold md:text-4xl | ml-2 lg:ml-0 md:mb-2 inline">
             pour une consommation
-          </h1>
-          <h1 className="text-green font-semibold text-2xl md:text-4xl | ml-2 inline">
+          </h2>
+          <h2 className="text-green font-semibold text-2xl md:text-4xl | ml-2 inline">
             durable
-          </h1>
+          </h2>
         </div>
         <div className="lg:w-2/5">
           <SearchBar keyId="searchBarLandingPage" />
