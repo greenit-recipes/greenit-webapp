@@ -46,7 +46,7 @@ const ContactPage = () => {
             href="mailto:hello@greenitcommunity.com"
             className="inline-flex gap-x-4"
           >
-            <img src={MailIcon} className="w-7 h-7 self-center" />
+            <img src={MailIcon} alt="icon mail" className="w-7 h-7 self-center" />
             <h1 className="text-xs md:text-lg self-center pt-1">
               hello@greenitcommunity.com
             </h1>
@@ -58,6 +58,7 @@ const ContactPage = () => {
                 children: (
                   <img
                     src={InstagramIcon}
+                    alt="instagram icon"
                     className="w-8 h-8 mt-2 self-start"
                   />
                 ),
@@ -65,7 +66,7 @@ const ContactPage = () => {
               {
                 href: "https://www.facebook.com/greenitcommunity/",
                 children: (
-                  <img src={FBIcon} className="w-6 h-6 mt-2 self-start mt-3" />
+                  <img src={FBIcon} alt="facebook icon" className="w-6 h-6 mt-2 self-start mt-3" />
                 ),
               },
               {
@@ -73,6 +74,7 @@ const ContactPage = () => {
                 children: (
                   <img
                     src={pinterestIcon}
+                    alt="pinterest icon"
                     className="w-8 h-8 mt-2 self-start"
                   />
                 ),
@@ -80,7 +82,7 @@ const ContactPage = () => {
               {
                 href: "https://www.tiktok.com/@greenitcommunity",
                 children: (
-                  <img src={tiktokIcon} className="w-8 h-8 mt-2 self-start" />
+                  <img src={tiktokIcon} alt="tiktok icon" className="w-8 h-8 mt-2 self-start" />
                 ),
               },
             ].map((item) => (

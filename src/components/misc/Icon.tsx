@@ -55,7 +55,7 @@ export const Icon: React.FC<IconProps> = ({
   };
 
   // pas d'icon pour le nb of ingredients
-  const itemNbOfIngredeints = types[nbOfIngredient as keyof typeof types];
+  const itemNbOfIngredients = types[nbOfIngredient as keyof typeof types];
   const itemDifficulty = types[difficulty as keyof typeof types];
 
   let child;
@@ -67,7 +67,8 @@ export const Icon: React.FC<IconProps> = ({
             {nbOfIngredient}
           </h3>
           <img
-            src={itemNbOfIngredeints}
+            alt="greenit logo"
+            src={itemNbOfIngredients}
             className={`h-${height ?? 7} w-${width ?? 6} md:h-${height ?? 9} md:w-${width ?? 8} self-center pb-1`}
           />
         </div>

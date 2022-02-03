@@ -76,6 +76,7 @@ const ProfilPage: React.FC = () => {
               rounded-full | self-center`}
               // @ts-ignore
               src={userImage ? userImage : defaultImageProfil}
+              alt="user profil"
             ></img>
           </div>
           <div className="flex flex-col | self-center">
@@ -127,7 +128,7 @@ const ProfilPage: React.FC = () => {
                     appuie sur le coeur de la recette
                   </h3>
                   <div>
-                    <img className="w-12 h-12" src={likedIconOff} />
+                    <img className="w-12 h-12" src={likedIconOff} alt="like icon off" />
                   </div>
                   <Link to={RouteName.recipes}>
                     <Button className="mt-5" type="blue">
