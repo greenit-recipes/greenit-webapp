@@ -31,6 +31,7 @@ import { useRecipeQuery } from "../../../graphql";
 import { noVideo, partageIcon } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
 import "./SinglePage.css";
+import { Helmet } from "react-helmet";
 
 interface InstructionProps {
   index: number;
@@ -181,6 +182,10 @@ const RecipeSinglePage = () => {
   return (
     <div className="flex flex-col | items-center">
       <Navbar />
+      <Helmet>
+        <title>{data?.recipe?.titleSeo}</title>
+        <meta name="description" content={data?.recipe?.metaDescriptionSeo} />
+      </Helmet>
       <div className="w-5/6 md:w-4/6 mb-10">
         <Container className="mt-10 md:mt-16 flex" itemsCenter>
           <div className="w-full h-auto">

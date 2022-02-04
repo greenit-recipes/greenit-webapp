@@ -22,6 +22,8 @@ query recipe($urlId: String!) {
     numberOfLikes
     numberOfComments
     isLikedByCurrentUser
+    titleSeo
+    metaDescriptionSeo
     isAddToFavoriteByCurrentUser
     expiry
     videoUrl
