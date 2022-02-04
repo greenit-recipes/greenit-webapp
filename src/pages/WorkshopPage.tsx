@@ -177,6 +177,7 @@ const WorkshopPage = () => {
               <img
                 src={PhotoAtelier}
                 className="rounded-2xl"
+                alt="Atelier diy"
                 style={{ width: "100%", maxWidth: "200px" }}
               />
             </div>
@@ -221,7 +222,7 @@ const WorkshopPage = () => {
           <div className="bg-transparent rounded-lg mt-5 p-2 shadow-lg md:p-4">
             <div className="flex justify-start ...">
               <div>
-                <img src={KabaLogo} className="w-16 lg:w-18" alt="Le Kaba" />
+                <img src={KabaLogo} className="w-16 lg:w-18" alt="Atelier le Kaba" />
               </div>
               <div className="items-center self-center">
                 <h3 className="pl-3 text-lg md:text-xl">
@@ -263,6 +264,7 @@ const WorkshopPage = () => {
               <img
                 src={KabaAtelier1}
                 className="rounded-2xl"
+                alt="Atelier diy"
                 style={{ width: "100%", maxWidth: "200px" }}
               />
             </div>
@@ -312,6 +314,7 @@ const WorkshopPage = () => {
             <div className="flex justify-center items-center align-middle h-full">
               <img
                 src={KabaAtelier2}
+                alt="Atelier le Kaba"
                 className="rounded-2xl"
                 style={{ width: "100%", maxWidth: "200px" }}
               />
@@ -448,6 +451,7 @@ const WorkshopPage = () => {
               <img
                 src={MargauxAtelier}
                 className="rounded-2xl"
+                alt="Atelier diy"
                 style={{ width: "100%", maxWidth: "200px" }}
               />
             </div>
@@ -564,6 +568,7 @@ const WorkshopPage = () => {
               <img
                 src={ChristelleAtelier1}
                 className="rounded-2xl"
+                alt="Atelier diy"
                 style={{ width: "100%", maxWidth: "200px" }}
               />
               {isMobile ? (
@@ -573,12 +578,14 @@ const WorkshopPage = () => {
                   <img
                     src={ChristelleAtelier}
                     className="rounded-2xl mt-2"
+                    alt="Atelier diy"
                     style={{ width: "100%", maxWidth: "200px" }}
                   />
 
                   <img
                     src={ChristelleAtelier2}
                     className="rounded-2xl mt-2"
+                    alt="Atelier diy"
                     style={{ width: "100%", maxWidth: "200px" }}
                   />
                 </div>

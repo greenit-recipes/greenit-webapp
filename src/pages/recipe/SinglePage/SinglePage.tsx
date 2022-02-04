@@ -220,6 +220,7 @@ const RecipeSinglePage = () => {
               <img
                 // @ts-ignore
                 src={getImagePath(recipe?.image)}
+                alt="recette maison"
                 className="row-span-3 md:col-span-2 lg:col-span-1 h-96 min-w-64 w-64 rounded-3xl | object-cover flex justify-self-center md:justify-self-start"
               />
               <div className="col-span-1 lg:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex">
@@ -274,6 +275,7 @@ const RecipeSinglePage = () => {
               <div className="grid w-full h-full bg-white justify-items-center items-center">
                 <img
                   src={noVideo}
+                  alt="pas de video"
                   className="h-60 md:h-80 object-cover rounded-lg"
                 ></img>
               </div>
@@ -357,6 +359,7 @@ const RecipeSinglePage = () => {
             <button className="grid justify-items-center" onClick={copy}>
               <img
                 src={partageIcon}
+                alt="partager recette"
                 className="justify-self-center w-10 h-10 lg:w-12 lg:h-12"
               />
               {!copied ? (

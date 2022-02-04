@@ -57,6 +57,7 @@ export const SearchBar: React.FC<{
           >
             <img
               src={search}
+              alt="search icon"
               className={`w-6 h-6 md:w-8 md:h-8
               } | self-center | ml-auto mr-auto`}
               onClick={() => {

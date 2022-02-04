@@ -22,6 +22,7 @@ export const CategoryCircle: React.FC<CategoryCircleProps> = ({
           <img
             className=" max-h-full max-w-full | ml-auto mr-auto | flex place-self-center rounded-full"
             src={icon}
+            alt={name}
           ></img>
         </Link>
       </div>

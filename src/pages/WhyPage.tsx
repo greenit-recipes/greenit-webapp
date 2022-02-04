@@ -42,7 +42,7 @@ const WhyBlock: React.FC<{
 }> = ({ item }) => {
   return (
     <div className="flex flex-col items-center" key={item.id.toString()}>
-      <img src={item.icon} className="w-36 h-36" />
+      <img src={item.icon} alt={item.title} className="w-36 h-36" />
       <div className="flex flex-col">
         <h1 className="text-4xl" style={{ color: item.color }}>
           {item.title}
@@ -91,7 +91,7 @@ const WhyPage: React.FC = () => {
           </h3>
         </Block>
         <div className="grid justify-items-center bg-white rounded-full h-24 w-24 lg:h-32 lg:w-32 -mt-10 lg:-mt-16">
-          <img src={logo} className="self-center h-20 w-20 lg:h-28 lg:w-28" />
+          <img src={logo} alt="greenit logo" className="self-center h-20 w-20 lg:h-28 lg:w-28" />
         </div>
 
         <div className="grid justify-items-center lg:w-2/3">
@@ -122,6 +122,7 @@ const WhyPage: React.FC = () => {
           </p>
           <img
             src={GreenitTeam}
+            alt="greenit equipe"
             className="rounded-lg w-full md:w-1/2 self-start justify-self-center mt-10 justify-self-center"
           ></img>
         </div>
@@ -133,6 +134,7 @@ const WhyPage: React.FC = () => {
         <div className="grid grid-cols-1 grid-rows-8 md:grid-cols-2 md:grid-rows-4 items-center w-4/5 md:w-2/3 md:gap-6 mt-10">
           <img
             src={planet}
+            alt="icon planet"
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center md:mt-4 md:justify-self-end"
           ></img>
           <div className="">
@@ -148,6 +150,7 @@ const WhyPage: React.FC = () => {
           </div>
           <img
             src={corpsWhy}
+            alt="corps bien-etre"
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start mt-10 justify-self-center md:hidden"
           ></img>
           <div>
@@ -164,10 +167,12 @@ const WhyPage: React.FC = () => {
           </div>
           <img
             src={corpsWhy}
+            alt="corps bien-etre"
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start md:mt-4 hidden md:flex"
           ></img>
           <img
             src={money}
+            alt="argent"
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center mt-10 md:mt-4 md:justify-self-end"
           ></img>
           <div>
@@ -183,6 +188,7 @@ const WhyPage: React.FC = () => {
           </div>
           <img
             src={wellbeing}
+            alt="bien-etre"
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start mt-10 justify-self-center md:hidden"
           ></img>
           <div>
@@ -198,6 +204,7 @@ const WhyPage: React.FC = () => {
           </div>
           <img
             src={wellbeing}
+            alt="bien-etre"
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start hidden md:mt-4 md:flex"
           ></img>
         </div>
@@ -208,7 +215,7 @@ const WhyPage: React.FC = () => {
       >
         <h1 className="text-xl md:text-2xl"> Merci à toutes celles et ceux qui nous aident </h1>
         <div className="w-full mt-12">
-          <img src={isMobile ? communityMobile : communityDesktop} />
+          <img src={isMobile ? communityMobile : communityDesktop} alt="communauté"/>
         </div>
       </Block>
       <Footer />

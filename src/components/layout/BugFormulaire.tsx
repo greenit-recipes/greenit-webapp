@@ -11,12 +11,11 @@ export const BugFormulaire: React.FC<IBugFormulaire> = ({ className }) => {
       <PopupButton
         id="fKixX57P"
         style={{ fontSize: 20 }}
-        className="w-14 h-14 bg-green rounded-full p-1 mb-1"
         size={60}
       >
-        <img src={bugIcon} />
+        <img className="w-12 h-12 shadow-lg rounded-full" src={bugIcon} alt="bug icon" />
       </PopupButton>
-      <h1 className="flex text-xs text-center">Reporter <br /> un bug</h1>
+      <h1 className="flex text-xs text-center mt-1">Reporter <br /> un bug</h1>
     </div>
   );
 };

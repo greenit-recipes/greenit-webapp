@@ -69,7 +69,7 @@ export const Footer: React.FC = () => {
           href="mailto:hello@greenitcommunity.com"
           className="inline-flex gap-x-4"
         >
-          <img src={MailIcon} className="w-7 h-7 self-center" />
+          <img src={MailIcon} alt="mail icon" className="w-7 h-7 self-center" />
           <h1 className="text-xs md:text-lg self-center pt-1">
             hello@greenitcommunity.com
           </h1>
@@ -78,26 +78,30 @@ export const Footer: React.FC = () => {
           {[
             {
               href: "https://www.instagram.com/greenitcommunity/",
+              rel:"noopener",
               children: (
-                <img src={InstagramIcon} className="w-8 h-8 mt-2 self-start" />
+                <img src={InstagramIcon} alt="instagram icon" className="w-8 h-8 mt-2 self-start" />
               ),
             },
             {
               href: "https://www.facebook.com/greenitcommunity/",
+              rel:"noopener",
               children: (
-                <img src={FBIcon} className="w-6 h-6 mt-2 self-start mt-3" />
+                <img src={FBIcon} alt="facebook icon" className="w-6 h-6 mt-2 self-start mt-3" />
               ),
             },
             {
               href: "https://www.pinterest.fr/greenitcommunity/",
+              rel:"noopener",
               children: (
-                <img src={pinterestIcon} className="w-8 h-8 mt-2 self-start" />
+                <img src={pinterestIcon} alt="pinterest icon" className="w-8 h-8 mt-2 self-start" />
               ),
             },
             {
               href: "https://www.tiktok.com/@greenitcommunity",
+              rel:"noopener",
               children: (
-                <img src={tiktokIcon} className="w-8 h-8 mt-2 self-start" />
+                <img src={tiktokIcon} alt="tiktok icon" className="w-8 h-8 mt-2 self-start" />
               ),
             },
           ].map((item, index) => (
