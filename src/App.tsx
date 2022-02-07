@@ -100,5 +100,5 @@ const App: React.FC = () => {
     </Router>
   );
 };
-
+// SI VOUS RAJOUTER UNE ROUTE, IL FAUT L'AJOUTEr RDANS LE FICHIER SITE_MAP ROUTE POUR LE REFERENCEMENT SEO
 export default App;
