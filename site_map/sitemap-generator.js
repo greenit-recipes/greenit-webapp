@@ -37,6 +37,8 @@ const fetch = require("node-fetch").default;
             "/recettes/:name": urlName
           };
           console.log('paramsConfig', paramsConfig)
+          console.log('QUAND LE SITE MAP EST EN PROD VOUS DEVEZ PING GOOGLE QUE LE SITE MAP A CHANGE')
+          console.log('https://www.google.com/ping?sitemap=https://example.com/sitemap.xml')
           return (
             new Sitemap(router)
                 .applyParams(paramsConfig)
