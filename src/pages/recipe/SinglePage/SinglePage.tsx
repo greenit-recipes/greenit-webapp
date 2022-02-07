@@ -33,7 +33,6 @@ import useIsMobile from "../../../hooks/isMobile";
 import { partageIcon, noVideo, retourIcon } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
 import "./SinglePage.css";
-import { Helmet } from "react-helmet";
 
 interface InstructionProps {
   index: number;
@@ -76,7 +75,9 @@ const schema = yup.object().shape({
   comment: yup.string().min(2, "Commentaire trop court"),
 });
 
+
 const RecipeSinglePage = () => {
+  const history = useHistory();
   const {
     register,
     handleSubmit,

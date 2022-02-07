@@ -94,9 +94,14 @@ const WorkshopPage = () => {
   return (
     <div>
       <Helmet>
-      <title>Ateliers DIY : Fais-toi aider par des experts en cosmétique maison !</title>
-        <meta name="description" content="Greenit Community propose des ateliers partout en France et en ligne pour commencer pas à pas la fabrication de tes cosmétiques et produits ménagers maison." />
-              <script type="application/ld+json">
+        <title>
+          Ateliers DIY : Fais-toi aider par des experts en cosmétique maison !
+        </title>
+        <meta
+          name="description"
+          content="Greenit Community propose des ateliers partout en France et en ligne pour commencer pas à pas la fabrication de tes cosmétiques et produits ménagers maison."
+        />
+        <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Event",
