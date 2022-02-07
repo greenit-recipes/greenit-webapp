@@ -22,7 +22,7 @@ export const Modal: React.FC = () => {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                  <h1 className="text-xl">Paramètres</h1>
+                  <h2 className="text-xl">Paramètres</h2>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
@@ -40,11 +40,11 @@ export const Modal: React.FC = () => {
                     }
                     onClick={() => authService.logout()}
                   >
-                    <h1>Déconnexion</h1>
+                    <h2>Déconnexion</h2>
                   </button>
                 </div>
                 <div className="relative flex-auto py-2 text-start w-2/3 max-w-12 mb-8 ml-6 border-b-4 | hover:border-blue">
-                  <h1 className="text-xl cursor-default">Supprimer mon compte</h1>
+                  <h2 className="text-xl cursor-default">Supprimer mon compte</h2>
                   <h3 className="text-base cursor-default">
                     Merci d'en faire la demande par email
                   </h3>

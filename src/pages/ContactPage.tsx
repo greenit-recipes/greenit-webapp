@@ -32,16 +32,16 @@ const ContactPage = () => {
       </Helmet>
       <div className="grid justify-items-center auto-rows-max h-screen">
         <div className="w-4/5">
-          <h1 className="text-center text-xl md:text-2xl md:text-3xl mt-16">
+          <h2 className="text-center text-xl md:text-2xl md:text-3xl mt-16">
             Tous vos retours sont les bienvenus !
-          </h1>
+          </h2>
           <h3 className="text-center text-lg md:text-xl mt-2">
             Merci à toutes celles et ceux qui nous aident.
           </h3>
         </div>
 
         <div className=" grid justify-items-center w-4/5 md:w-auto p-10 shadow-xl rounded-xl mt-10 mb-14 bg-white">
-          <h1 className="text-2xl mb-5">Contacte-nous !</h1>
+          <h2 className="text-2xl mb-5">Contacte-nous !</h2>
           <a
             href="mailto:hello@greenitcommunity.com"
             className="inline-flex gap-x-4"

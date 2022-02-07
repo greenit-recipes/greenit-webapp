@@ -24,6 +24,7 @@ import RecipeCreatedPage from "pages/CreateRecipe/CreateRecipeSuccess";
 import AccountCreated from "pages/AccountCreated";
 import IngredientPage from "pages/IngredientSpace/IngredientPage"
 import StarterPage from "pages/StarterPage";
+import RecapPage from "pages/RecapPage";
 
 export const history = createBrowserHistory();
 
@@ -43,6 +44,7 @@ export const RouteName = {
   createRecipe: "/creation-recette",
   profil: "/profil",
   connexion: "/connexion",
+  recap: "/recap",
 };
 
 const App: React.FC = () => {
@@ -74,6 +76,7 @@ const App: React.FC = () => {
         />
         <Route exact path={RouteName.register} component={Register} />
         <Route exact path={RouteName.connexion} component={Login} />
+        <Route exact path={RouteName.recap} component={RecapPage} />
         <Route
           exact
           path={RouteName.resetPassword}

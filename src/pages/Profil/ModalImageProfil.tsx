@@ -54,9 +54,9 @@ export const ModalImageProfil: React.FC<ModalImageProfil> = ({
       >
         {!hasImageProfile && (
           <div className="grid w-full h-full rounded-full justify-items-center items-center">
-            <h1 className="text-xs text-grey-700 bg-white p-2 rounded-3xl opacity-75">
+            <h2 className="text-xs text-grey-700 bg-white p-2 rounded-3xl opacity-75">
               Ajoute ta photo
-            </h1>
+            </h2>
           </div>
         )}
       </div>
@@ -66,7 +66,7 @@ export const ModalImageProfil: React.FC<ModalImageProfil> = ({
             <div className="relative w-auto my-6 mx-auto w-3/4 md:w-1/3">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                <h1 className="text-xl p-4">Change ta photo</h1>
+                <h2 className="text-xl p-4">Change ta photo</h2>
                 {/*header*/}
                 <form
                   className=" p-4 mb-4"

@@ -95,9 +95,9 @@ const Login: React.FC = () => {
         <meta name="description" content="Connectez vous. Accédez à votre compte et espace personnel DIY. Vous pouvez ajouter des recettes maison et sauvegarder vos recettes préférées." />
       </Helmet>
       <BackgroundImage className="overflow-hidden" />
-      <h3 className="text-2xl w-2/3 md:text-3xl | mt-16 text-center">
+      <h1 className="text-xl font-medium w-2/3 md:text-2xl | mt-16 text-center">
         Connexion vers ton espace DIY <br />
-      </h3>
+      </h1>
       <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 w-4/5">
           <h3 className="text-sm md:text-base self-center">

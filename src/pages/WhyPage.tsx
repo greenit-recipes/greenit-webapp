@@ -25,7 +25,7 @@ const Block: React.FC<{
         style ?? {}
       )}
     >
-      <h1 className="mt-20 text-3xl lg:text-3xl">{title}</h1>
+      <h2 className="mt-20 text-3xl lg:text-3xl">{title}</h2>
       {children}
     </div>
   );
@@ -44,9 +44,9 @@ const WhyBlock: React.FC<{
     <div className="flex flex-col items-center" key={item.id.toString()}>
       <img src={item.icon} alt={item.title} className="w-36 h-36" />
       <div className="flex flex-col">
-        <h1 className="text-4xl" style={{ color: item.color }}>
+        <h2 className="text-4xl" style={{ color: item.color }}>
           {item.title}
-        </h1>
+        </h2>
         <p className="text-xl w-4/5 self-center mt-5">{item.text}</p>
       </div>
     </div>
@@ -77,7 +77,7 @@ const WhyPage: React.FC = () => {
           id="1"
           className="grid justify-items-center text-white w-full pb-20"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-white">
+          <h1 className="text-4xl md:text-5xl font-semibold text-white">
             Greenit Community
           </h1>
           <h2 className="mt-5 text-xl lg:text-2xl md:w-2/3">
@@ -127,9 +127,9 @@ const WhyPage: React.FC = () => {
           ></img>
         </div>
 
-        <h1 className=" text-center text-2xl md:text-3xl mt-20 w-3/4">
+        <h2 className=" text-center text-2xl md:text-3xl mt-20 w-3/4">
           Pourquoi faire ses produits maison ?{" "}
-        </h1>
+        </h2>
 
         <div className="grid grid-cols-1 grid-rows-8 md:grid-cols-2 md:grid-rows-4 items-center w-4/5 md:w-2/3 md:gap-6 mt-10">
           <img
@@ -138,7 +138,7 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center md:mt-4 md:justify-self-end"
           ></img>
           <div className="">
-            <h1 className="text-md md:text-xl text-green">Pour la planète</h1>
+            <h2 className="text-md md:text-xl text-green">Pour la planète</h2>
             <h3 className="text-md md:text-base">
               Parlons des compositions des shampoings, des lessives, des
               liquides vaisselles : silicones, methylchloroisothiazolinone,
@@ -154,9 +154,9 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start mt-10 justify-self-center md:hidden"
           ></img>
           <div>
-            <h1 className="text-md md:text-xl text-blue text-right">
+            <h2 className="text-md md:text-xl text-blue text-right">
               Pour ton corps
-            </h1>
+            </h2>
             <h3 className="text-md md:text-base text-right">
               Ces mêmes ingrédients chimiques endommagent, irritent et
               vulnérabilisent ta peau et tes cheveux. Hélas, même dans les
@@ -176,9 +176,9 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center mt-10 md:mt-4 md:justify-self-end"
           ></img>
           <div>
-            <h1 className="text-md md:text-xl text-yellow">
+            <h2 className="text-md md:text-xl text-yellow">
               Pour tes économies
-            </h1>
+            </h2>
             <h3 className="text-md md:text-base">
               27,90€ le baume réparateur bio ? 5,80€ le stick à lèvres naturel ?
               L’industrie des produits cosmétiques et ménagers ne respecte pas
@@ -192,9 +192,9 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start mt-10 justify-self-center md:hidden"
           ></img>
           <div>
-            <h1 className="text-md md:text-xl text-orange text-right">
+            <h2 className="text-md md:text-xl text-orange text-right">
               Pour ton esprit
-            </h1>
+            </h2>
             <h3 className="text-md md:text-base text-right">
               La production maison c’est aussi une activité manuelle et
               épanouissante. La création apporte une stimulation des sens, un
@@ -213,7 +213,7 @@ const WhyPage: React.FC = () => {
         id="4"
         className="grid w-full p-2 justify-items-center mb-20"
       >
-        <h1 className="text-xl md:text-2xl"> Merci à toutes celles et ceux qui nous aident </h1>
+        <h2 className="text-xl md:text-2xl"> Merci à toutes celles et ceux qui nous aident </h2>
         <div className="w-full mt-12">
           <img src={isMobile ? communityMobile : communityDesktop} alt="communauté"/>
         </div>

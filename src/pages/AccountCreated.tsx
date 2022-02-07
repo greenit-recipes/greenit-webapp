@@ -19,9 +19,9 @@ const AccountCreated: React.FC = () => {
       <Navbar />
       <div className="grid justify-items-center auto-rows-max h-screen mt-28">
         <div className="w-3/4">
-          <h1 className="text-center text-2xl md:text-3xl">
+          <h2 className="text-center text-2xl md:text-3xl">
             Bienvenue au sein de la
-          </h1>
+          </h2>
           <h1 className="text-center text-green text-2xl md:text-3xl">
             Greenit Community !
           </h1>

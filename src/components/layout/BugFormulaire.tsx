@@ -15,7 +15,7 @@ export const BugFormulaire: React.FC<IBugFormulaire> = ({ className }) => {
       >
         <img className="w-12 h-12 shadow-lg rounded-full" src={bugIcon} alt="bug icon" />
       </PopupButton>
-      <h1 className="flex text-xs text-center mt-1">Reporter <br /> un bug</h1>
+      <h2 className="flex text-xs text-center">Reporter <br /> un bug</h2>
     </div>
   );
 };
