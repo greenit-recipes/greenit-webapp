@@ -1,22 +1,21 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { RouteName } from "App";
 import { CommentField } from "components/layout/CommentField";
 import { FavouriteField } from "components/layout/FavouriteField";
 import { LikeComment } from "components/layout/LikeComment";
 import { LikeField } from "components/layout/LikeField";
 import { UserBadge } from "components/layout/UserBadge";
 import { getImagePath } from "helpers/image.helper";
-import { momentGreenit } from "helpers/time.helper";
+import { momentGreenit, momentGreenitUs } from "helpers/time.helper";
 import { getUuidFromId } from "helpers/user.helper";
 import HTMLReactParser from "html-react-parser";
-import { isEmpty } from "lodash";
+import { isEmpty, map } from "lodash";
 import moment from "moment";
 import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest";
 import React, { createRef, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import ReactPlayer from "react-player";
-import { Helmet } from "react-helmet";
 import { Link, useHistory, useParams } from "react-router-dom";
 import authService from "services/auth.service";
 import * as yup from "yup";
@@ -29,8 +28,7 @@ import {
   Navbar
 } from "../../../components";
 import { useRecipeQuery } from "../../../graphql";
-import useIsMobile from "../../../hooks/isMobile";
-import { partageIcon, noVideo, retourIcon } from "../../../icons";
+import { noVideo, partageIcon, retourIcon } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
 import "./SinglePage.css";
 
@@ -182,9 +180,6 @@ const RecipeSinglePage = () => {
     return <Loading />;
   }
   const { recipe } = data;
-
-  console.log(recipe?.instructions);
-
   return (
     <>
       <Helmet>
@@ -195,48 +190,31 @@ const RecipeSinglePage = () => {
             "@context": "https://schema.org/",
             "@type": "Recipe",
             name: recipe?.name,
-            image: recipe?.image,
+            image: [
+              getImagePath(recipe?.image)
+            ],
             author: {
               "@type": "Person",
               name: recipe?.author?.username,
             },
-            datePublished: "2018-03-10",
-            description: recipe?.description,
-            prepTime: "PT10M",
-            cookTime: "PT25M",
-            totalTime: "PT35M",
-            recipeCuisine: "Prduits fait maison",
-            recipeCategory: "Cookies",
-            keywords: recipe?.tags,
+            datePublished: momentGreenitUs(recipe?.createdAt),
+            description: recipe?.description?.replace(/<\/?[^>]+(>|$)/g, "").replace(/\n/g, " ").replace(/\r/g, ""),
+            totalTime: "PT"+ recipe?.duration +"M",
+            recipeCuisine: "Diy",
+            recipeCategory: "Diy",
+            keywords: "Recette " + recipe?.name + " diy",
             recipeYield: "1",
             aggregateRating: {
               "@type": "AggregateRating",
-              ratingValue: "5",
+              ratingValue: "4.8",
               ratingCount: "18",
             },
-            recipeIngredient: recipe?.ingredients,
-            recipeInstructions: [
-              {
-                "@type": "HowToStep",
-                text: recipe?.instructions,
-              },
-            ],
-            video: {
-              "@type": "VideoObject",
-              name: recipe?.name,
-              description: recipe?.description,
-              thumbnailUrl: recipe?.image,
-              contentUrl: recipe?.videoUrl,
-              embedUrl: recipe?.videoUrl,
-              uploadDate: "2018-02-05T08:00:00+08:00",
-              duration: "PT1M33S",
-              interactionStatistic: {
-                "@type": "InteractionCounter",
-                interactionType: { "@type": "WatchAction" },
-                userInteractionCount: nbrComment,
-              },
-              expires: recipe?.expiry,
-            },
+            recipeIngredient: map(recipe?.ingredients, (x) => {
+              return x.amount + " " + x.name
+            }),
+            recipeInstructions:  map(recipe?.instructions, (x) => {
+              return ({ "@type": "HowToStep", "text": x.content })
+            })
           })}
         </script>
       </Helmet>

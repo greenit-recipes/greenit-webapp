@@ -27,6 +27,8 @@ query recipe($urlId: String!) {
     isAddToFavoriteByCurrentUser
     expiry
     videoUrl
+    duration
+    createdAt
     video
     comments {
       id

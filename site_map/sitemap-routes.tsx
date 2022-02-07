@@ -18,6 +18,7 @@ export const RouteName = {
   createRecipe: "/creation-recette",
   profil: "/profil",
   connexion: "/connexion",
+  recap: "/recap",
 };
 
 export default (
@@ -36,6 +37,7 @@ export default (
       <Route path={RouteName.resetPassword} />
       <Route path={RouteName.profil} />
       <Route path={RouteName.accountCreated} />
+      <Route path={RouteName.recap} />
       <Route />
     </Route>
 );
