@@ -114,8 +114,7 @@ const LandingPage = () => {
           <SearchBar keyId="searchBarLandingPage" />
         </div>
       </Container>
-
-      <div className="w-full sm:w-4/5 lg:w-2/3 | py-4 pl-6 | flex flex overflow-x-auto">
+      <div className="w-full sm:w-4/5 lg:w-2/3 | py-8 pl-6 | flex overflow-x-auto">
         <div className="flex flex-row">
           {landingPageCategories.slice(0, 1).map((item) => (
             <CategoryCircle
