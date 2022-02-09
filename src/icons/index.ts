@@ -76,6 +76,29 @@ import LCShampoing from "./L&CShampoing.jpg"
 import BackgroundImageMobile from "./backgroundMobile.jpg"
 import BackgroundImageDesktop from "./backgroundDesktop.jpg"
 
+//STARTER PAGE
+import Conseil from "./icon_conseil.png"
+import Cooking from "./icon_cooking.png"
+import Ustensil from "./icon_ustensil.png"
+import Catherine from "./Catherine.png"
+import Christelle from "./Christelle.png"
+import PriceIcon from "./icon_price.png"
+import QuantityIcon from "./icon_quantity.png"
+
+import HuileRicin from "./HvR.png"
+import EcorceArgume from "./EcorceA.png"
+import Eau from "./Eau.png"
+import CremeCorp from "./crème_corps.png"
+import Lessive from "./lessive.png"
+import SavonMarseille from "./SdM.png"
+import CireAbeille from "./CdA.png"
+import BeurreKarite from "./BdK.png"
+import BicarSoude from "./BdS.png"
+import Bouteille from "./Bouteille.png"
+import Bocal from "./Bocal.png"
+
+
+
 export const landingPageCategories = [
   {
     icon: premierspas,
@@ -161,4 +184,22 @@ export {
   LCBougie,
   LCPAtelier,
   LCShampoing,
+  Conseil,
+  Cooking,
+  Ustensil,
+  Catherine,
+  Christelle,
+  PriceIcon,
+  QuantityIcon,
+  HuileRicin,
+  EcorceArgume,
+  Eau,
+  CremeCorp,
+  Lessive,
+  SavonMarseille,
+  CireAbeille,
+  BeurreKarite,
+  BicarSoude,
+  Bouteille,
+  Bocal,
 };

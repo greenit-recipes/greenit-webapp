@@ -22,8 +22,8 @@ import ForgetPassword from "pages/Login/ForgetPassword";
 import ActivateResetPassword from "pages/ActivateResetPassword";
 import RecipeCreatedPage from "pages/CreateRecipe/CreateRecipeSuccess";
 import AccountCreated from "pages/AccountCreated";
-import IngredientPage from "pages/IngredientSpace/IngredientPage";
-import StarterPage from "pages/StarterPage";
+import IngredientPage from "pages/IngredientSpace/IngredientPage"
+import StarterPage from "pages/StarterPage/StarterPage";
 import RecapPage from "pages/RecapPage";
 import DeleteProfil from "pages/Profil/DeleteProfil";
 
