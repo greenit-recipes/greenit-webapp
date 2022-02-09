@@ -23,7 +23,7 @@ import ActivateResetPassword from "pages/ActivateResetPassword";
 import RecipeCreatedPage from "pages/CreateRecipe/CreateRecipeSuccess";
 import AccountCreated from "pages/AccountCreated";
 import IngredientPage from "pages/IngredientSpace/IngredientPage"
-import StarterPage from "pages/StarterPage";
+import StarterPage from "pages/StarterPage/StarterPage";
 import RecapPage from "pages/RecapPage";
 
 export const history = createBrowserHistory();
