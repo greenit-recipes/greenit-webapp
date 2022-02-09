@@ -41,6 +41,8 @@ import React from "react";
 import "../StarterPage/StarterPage.css";
 import { Link } from "react-router-dom";
 import { RouteName } from "App";
+import { UserBadge } from "components/layout/UserBadge";
+import { LikeComment } from "components/layout/LikeComment";
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({
@@ -982,7 +984,7 @@ const StarterPage = () => {
               <div className="grid justify-items-center">
                 <img
                   src={Producteur}
-                  className="w-16 lg:w-18 self-center items-center"
+                  className="w-16 lg:w-20 self-center items-center"
                   alt="Producteur_icon"
                 />{" "}
               </div>
@@ -1002,7 +1004,7 @@ const StarterPage = () => {
               <div className="grid justify-items-center">
                 <img
                   src={IconMarche}
-                  className="w-16 lg:w-18 self-center items-center"
+                  className="w-16 lg:w-20 self-center items-center"
                   alt="Marché_icon"
                 />{" "}
               </div>
@@ -1022,7 +1024,7 @@ const StarterPage = () => {
               <div className="grid justify-items-center">
                 <img
                   src={IconInternet}
-                  className="w-16 lg:w-18 self-center items-center"
+                  className="w-12 lg:w-16 self-center items-center"
                   alt="Internet_icon"
                 />{" "}
               </div>
@@ -1149,6 +1151,87 @@ const StarterPage = () => {
         <h3 className="text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
           Il est
         </h3>
+        <div className="mt-6 flex flex-col">
+          <h2 className="text-xl md:text-2xl">Discussion</h2>
+          {//recipes?comments this replace the recipes? below 
+          recipes?.map((comment: any, index: number) => {
+            // @ts-ignore
+            return (
+              <div className="mt-3 flex flex-col" key={index}>
+                <div className="relative bg-orange bg-opacity-10 rounded-3xl px-4 py-4">
+                  <UserBadge
+                    image={comment?.author?.imageProfile}
+                    name={comment?.author?.username}
+                    className="mb-2"
+                  ></UserBadge>
+                  {//comment?.author?.id === recipe?.author?.id && 
+                  (
+                    <div> (créateur de la recette) </div>
+                  )}
+                  <div className="text-md lg:text-lg">
+                    <h3 className="text-base"> {comment?.comment} </h3>
+                  </div>
+                  <h3 className="absolute top-0 right-0 m-6 | text-base">
+                    {//momentGreenit(comment?.createdAt)
+                    }
+                  </h3>
+                  <div className="absolute -bottom-1 -right-1">
+                    {/* @ts-ignore */}
+                    <LikeComment
+                      //isMyComment={
+                        // @ts-ignore
+                        // getUuidFromId(data?.me?.id) === comment?.author?.id
+                     // }
+                      comment={comment}
+                    ></LikeComment>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <form
+          className="filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10 p-4 mb-4 mt-10"
+          //onSubmit={handleSubmit(onSubmitHandler)}
+        >
+          <div className="mb-4">
+            <label className="block text-gray-700 text-base md:text-lg mb-2">
+              Partage tes retours et tes astuces !
+            </label>
+          </div>
+          <div className="flex items-center justify-between">
+            {isLoggedIn ? (
+              <div className="mb-4 w-full">
+                <textarea
+                  className="appearance-none rounded w-full sm:w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="comment"
+                  placeholder="Commentaire"
+                  //{...register("comment")}
+                ></textarea>
+                <p className="text-red-500 text-xs italic">
+                  {//errors.comment?.message
+                  }
+                </p>
+
+                <Button
+                  className="w-24 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                >
+                  Publier
+                </Button>
+              </div>
+            ) : (
+              <Link to="/register">
+                <Button
+                  className="rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                >
+                  Se connecter pour discuter
+                </Button>
+              </Link>
+            )}
+          </div>
+        </form>
       </div>
     </div>
   );
