@@ -22,6 +22,16 @@ import {
   BicarSoude,
   Bouteille,
   Bocal,
+  IconAtelier,
+  Balance,
+  Bol,
+  Fouet,
+  IconInternet,
+  Livre,
+  IconMarche,
+  Maryse,
+  IconSite,
+  Producteur,
 } from "../../icons";
 import { Button, RecipeCard, Loading } from "../../components";
 import authService from "services/auth.service";
@@ -114,7 +124,7 @@ const StarterPage = () => {
               <img
                 src={Conseil}
                 className="w-14 lg:w-16 self-center items-center"
-                alt="Greenit Logo"
+                alt="conseils_diy"
               />{" "}
             </div>
             <h3 className="text-sm  text-center font-light">
@@ -132,7 +142,7 @@ const StarterPage = () => {
               <img
                 src={Ustensil}
                 className="w-14 lg:w-16 self-center items-center"
-                alt="Greenit Logo"
+                alt="Ustensil-diy"
               />{" "}
             </div>
             <h3 className="text-sm text-center font-light">
@@ -150,7 +160,7 @@ const StarterPage = () => {
               <img
                 src={Cooking}
                 className="w-14 lg:w-16 self-center items-center"
-                alt="Greenit Logo"
+                alt="Recettes-diy"
               />{" "}
             </div>
             <h3 className="text-sm text-center font-light">
@@ -263,7 +273,7 @@ const StarterPage = () => {
             <img
               src={Catherine}
               className="w-14 h-14 lg:w-18 mr-8"
-              alt="Greenit Logo"
+              alt="Photo_Catherine"
             />
           </div>
           <div className="ml-4">
@@ -328,7 +338,7 @@ const StarterPage = () => {
             <img
               src={Christelle}
               className="w-14 h-14 lg:w-18 mr-6"
-              alt="Greenit Logo"
+              alt="Photo_Christelle"
             />
           </div>
           <div className="ml-4">
@@ -428,9 +438,9 @@ const StarterPage = () => {
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
                 <img
-                  src={logo}
+                  src={Bol}
                   className="w-16 lg:w-18 self-center items-center"
-                  alt="Greenit Logo"
+                  alt="Bol-icon"
                 />{" "}
               </div>
               <h3 className="text-lg text-center font-semibold">Bol en inox</h3>
@@ -448,9 +458,9 @@ const StarterPage = () => {
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
                 <img
-                  src={logo}
+                  src={Fouet}
                   className="w-16 lg:w-18 self-center items-center"
-                  alt="Greenit Logo"
+                  alt="Fouet-icon"
                 />{" "}
               </div>
               <h3 className="text-lg text-center font-semibold">Fouet</h3>
@@ -466,9 +476,9 @@ const StarterPage = () => {
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
                 <img
-                  src={logo}
+                  src={Balance}
                   className="w-16 lg:w-18 self-center items-center"
-                  alt="Greenit Logo"
+                  alt="Balance_icon"
                 />{" "}
               </div>
               <h3 className="text-lg text-center font-semibold">Balance</h3>
@@ -482,9 +492,9 @@ const StarterPage = () => {
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
                 <img
-                  src={logo}
+                  src={Maryse}
                   className="w-16 lg:w-18 self-center items-center"
-                  alt="Greenit Logo"
+                  alt="Maryse_icon"
                 />{" "}
               </div>
               <h3 className="text-lg text-center font-semibold">Maryse</h3>
@@ -569,7 +579,7 @@ const StarterPage = () => {
                     <img
                       src={BeurreKarite}
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Greenit Logo"
+                      alt="Beurre de Karité"
                     />{" "}
                     <p className="text-center text-xl self-center font-medium ml-4">
                       +
@@ -594,7 +604,7 @@ const StarterPage = () => {
                     <img
                       src={HuileRicin}
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Greenit Logo"
+                      alt="Huile de Ricin"
                     />{" "}
                     <p className="text-center text-xl self-center font-medium ml-4">
                       +
@@ -619,7 +629,7 @@ const StarterPage = () => {
                     <img
                       src={CireAbeille}
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Greenit Logo"
+                      alt="Cire d'Abeille"
                     />{" "}
                     <p className="text-center text-xl self-center font-medium ml-4">
                       +
@@ -644,7 +654,7 @@ const StarterPage = () => {
                     <img
                       src={Bocal}
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Greenit Logo"
+                      alt="Bocal_icon"
                     />{" "}
                   </div>
                   <div className="grid w-12 h-12 self-center bg-grey items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
@@ -750,7 +760,7 @@ const StarterPage = () => {
                     <img
                       src={BicarSoude}
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Greenit Logo"
+                      alt="Bicarbonate_de_soude"
                     />{" "}
                     <p className="text-center text-xl self-center font-medium ml-4">
                       +
@@ -775,7 +785,7 @@ const StarterPage = () => {
                     <img
                       src={SavonMarseille}
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Greenit Logo"
+                      alt="Savon_de_Marseille"
                     />{" "}
                     <p className="text-center text-xl self-center font-medium ml-4">
                       +
@@ -800,7 +810,7 @@ const StarterPage = () => {
                     <img
                       src={Eau}
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Greenit Logo"
+                      alt="Eau-photo"
                     />{" "}
                     <p className="text-center text-xl self-center font-medium ml-4">
                       +
@@ -823,7 +833,7 @@ const StarterPage = () => {
                     <img
                       src={EcorceArgume}
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Greenit Logo"
+                      alt="Ecorce_Agrumes"
                     />{" "}
                     <p className="text-center text-xl self-center font-medium ml-4">
                       +
@@ -846,7 +856,7 @@ const StarterPage = () => {
                     <img
                       src={Bouteille}
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Greenit Logo"
+                      alt="Bouteille_photo"
                     />{" "}
                   </div>
                   <div className="grid w-12 h-12 self-center bg-grey items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
@@ -971,9 +981,9 @@ const StarterPage = () => {
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
                 <img
-                  src={logo}
+                  src={Producteur}
                   className="w-16 lg:w-18 self-center items-center"
-                  alt="Greenit Logo"
+                  alt="Producteur_icon"
                 />{" "}
               </div>
               <h2 className="text-base text-center font-light">
@@ -991,9 +1001,9 @@ const StarterPage = () => {
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
                 <img
-                  src={logo}
+                  src={IconMarche}
                   className="w-16 lg:w-18 self-center items-center"
-                  alt="Greenit Logo"
+                  alt="Marché_icon"
                 />{" "}
               </div>
               <h2 className="text-base text-center font-light">
@@ -1011,9 +1021,9 @@ const StarterPage = () => {
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
                 <img
-                  src={logo}
+                  src={IconInternet}
                   className="w-16 lg:w-18 self-center items-center"
-                  alt="Greenit Logo"
+                  alt="Internet_icon"
                 />{" "}
               </div>
               <h2 className="text-base text-center font-light">
@@ -1059,9 +1069,9 @@ const StarterPage = () => {
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
                 <img
-                  src={logo}
+                  src={IconAtelier}
                   className="w-16 lg:w-18 self-center items-center"
-                  alt="Greenit Logo"
+                  alt="Atelier_icon"
                 />{" "}
               </div>
               <h2 className="text-base text-center font-light">Ateliers </h2>
@@ -1078,9 +1088,9 @@ const StarterPage = () => {
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
                 <img
-                  src={logo}
+                  src={Livre}
                   className="w-16 lg:w-18 self-center items-center"
-                  alt="Greenit Logo"
+                  alt="Livre_icon"
                 />{" "}
               </div>
               <h2 className="text-base text-center font-light">
@@ -1100,9 +1110,9 @@ const StarterPage = () => {
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
                 <img
-                  src={logo}
+                  src={IconSite}
                   className="w-16 lg:w-18 self-center items-center"
-                  alt="Greenit Logo"
+                  alt="Site_icon"
                 />{" "}
               </div>
               <h2 className="text-base text-center font-light">
