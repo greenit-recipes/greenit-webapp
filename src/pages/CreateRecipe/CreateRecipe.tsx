@@ -634,7 +634,7 @@ const CreateRecipe: React.FC = () => {
 
           <div className="mb-12">
             <label className="block text-gray-700 text-xl mb-2">
-              Rajouter le lien de votre site (si vous en avez un )
+              Rajouter le lien de ton site (si tu en as un )
             </label>
             <input
               className="shadow appearance-none border rounded w-full lg:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
