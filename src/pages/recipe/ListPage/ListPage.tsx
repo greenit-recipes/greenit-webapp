@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useHistory } from "react-router-dom";
 import {
-  Empty, Footer, Loading, Navbar, RecipeCard
+  Empty,
+  Footer,
+  Loading,
+  Navbar,
+  RecipeCard,
 } from "../../../components";
 import { RecipesQuery, useRecipesQuery } from "../../../graphql";
 import useIsMobile from "../../../hooks/isMobile";
@@ -25,9 +29,7 @@ const RecipeListPage = () => {
     });
 
   // params trigger 2 requests before param and after getting param need to be fixed
-  const [isFirstLoading, setIsFirstLoading] = useState(
-    false
-  );
+  const [isFirstLoading, setIsFirstLoading] = useState(false);
   const [currentFilters, setCurrentFilters] = useState<any>({
     search: params.get("search") ? params.get("search") : "",
     tags: params.get("tags")
@@ -46,11 +48,11 @@ const RecipeListPage = () => {
     variables: {
       first: 15,
       filter: {
-        search: params.get("search") ? params.get("search") : "" ,
-          // @ts-ignore
+        search: params.get("search") ? params.get("search") : "",
+        // @ts-ignore
         tags: params.get("tags") ? [params.get("tags")] : [],
-            // @ts-ignore
-        category: params.get("category") ? [params.get("category")]: [],
+        // @ts-ignore
+        category: params.get("category") ? [params.get("category")] : [],
         difficulty: [],
         duration: [],
         numberOfIngredients: [],
@@ -83,8 +85,8 @@ const RecipeListPage = () => {
     if (!loading) {
       // to avoid a second request with state of filter
       if (!isFirstLoading) {
-        setIsFirstLoading(true)
-        return
+        setIsFirstLoading(true);
+        return;
       }
       const filterValue = cleanDataPlayload(currentFilters);
       //localStorage.setItem("filterListPage", JSON.stringify(currentFilters));
@@ -105,7 +107,10 @@ const RecipeListPage = () => {
       <Navbar />
       <Helmet>
         <title>Recettes DIY : Cosmétiques, produits ménagers | Greenit</title>
-        <meta name="description" content="Découvrez nos recettes 100 % naturelles partagées par la communauté : cosmétique maison, produits ménagers, produit bien-être, santé, maquillage. Fabriquez vos produits d’hygiène !" />
+        <meta
+          name="description"
+          content="Découvrez nos recettes 100 % naturelles partagées par la communauté : cosmétique maison, produits ménagers, produit bien-être, santé, maquillage. Fabriquez vos produits d’hygiène !"
+        />
       </Helmet>
       {!isMobile && (
         <FilterBar
@@ -154,8 +159,18 @@ const RecipeListPage = () => {
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
-            loader={<></>}
+            loader={<Loading isForLoadingPage={false} />}
             scrollThreshold={0.7}
+            endMessage={
+              recipes?.length > 0 && (
+                <p style={{ textAlign: "center" }}>
+                  <b>
+                    Tu as tout vu ! <br></br>
+                    Ajoute ta pierre à l’édifice en partageant ta recette !
+                  </b>
+                </p>
+              )
+            }
             next={() => {
               fetchMore({
                 variables: {

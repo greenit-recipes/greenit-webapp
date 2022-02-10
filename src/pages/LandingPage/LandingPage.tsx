@@ -137,6 +137,7 @@ const LandingPage = () => {
             className="react-player px-4 sm:px-0 justify-self-center"
             height="300px"
             width="310px"
+            title="video ulule"
             src="https://fr.ulule.com/greenit-community/widget.html"
             scrolling="no"
           ></iframe>
