@@ -2,7 +2,12 @@
 
 export const getBreakpoint = (screen = "") => {
   // "Theme" is an alias to where you keep your tailwind.config.js - most likely your project root
-  const screens = require("./tailwind.config.js").theme.extend.screens;
+  const screens = {
+    xs: "375px",
+    sm: "640px",
+    md: "768px",
+    lg: "1024px",
+  };
   // create a keyed object of screens that match
   const matches = Object.entries(screens).reduce((results, [name, size]) => {
     const mediaQuery =
@@ -19,6 +24,7 @@ export const getBreakpoint = (screen = "") => {
     return matches;
   }
   // invalid screen choice
+    // @ts-ignore
   if (!screens[screen]) {
     return false;
   }
