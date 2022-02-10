@@ -49,6 +49,7 @@ export const CREATE_EMAIL_RECIPE = gql`
     $instructions: [String]!
     $expiry: String!
     $difficulty: DifficultyChoice!
+    $textAssociate: String
   ) {
     sendEmailRecipe(
       name: $name
@@ -67,6 +68,7 @@ export const CREATE_EMAIL_RECIPE = gql`
       instructions: $instructions
       expiry: $expiry
       difficulty: $difficulty
+      textAssociate: $textAssociate
     ) {
       success
     }
