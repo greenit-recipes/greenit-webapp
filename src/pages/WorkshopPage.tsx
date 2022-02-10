@@ -319,7 +319,7 @@ const WorkshopPage = () => {
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
                 <h5 className="text-base">Jeudi 24 février</h5>
-                  <h5 className="text-sm">12h30 - 14h30</h5>
+                  <h5 className="text-sm">12h30 - 14h</h5>
                   <h5 className="text-sm">25€</h5>
                   <div className="flex justify-center items-center align-middle">
                     <a
@@ -331,8 +331,8 @@ const WorkshopPage = () => {
                   </div>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44">
-                  <h5 className="text-base">Mardi 15 février</h5>
-                  <h5 className="text-sm">21h - 22h00</h5>
+                  <h5 className="text-base">Mardi 15 mars</h5>
+                  <h5 className="text-sm">21h - 22h30</h5>
                   <h5 className="text-sm">25€</h5>
                   <div className="flex justify-center items-center align-middle">
                     <a
