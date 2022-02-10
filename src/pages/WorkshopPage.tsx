@@ -15,6 +15,7 @@ import {
   ChristelleAtelier1,
   ChristelleAtelier2,
   ChristelleLogo,
+  logo,
 } from "../../src/icons";
 import { includes } from "lodash";
 import { Helmet } from "react-helmet";
@@ -177,7 +178,7 @@ const WorkshopPage = () => {
               <div className="flex justify-start ...">
                 <div>
                   <img
-                    src="/static/media/logo.223c90e0.png"
+                    src={logo}
                     className="w-16 lg:w-18"
                     alt="Greenit Logo"
                   />
@@ -300,58 +301,6 @@ const WorkshopPage = () => {
           </div>
         </div>
 
-        <div className="w-4/5 mb-8 mt-6 flex flex-col">
-          <div className="grid md:grid-cols-4">
-            <div className="rounded md:row-span-2">
-              <div className="flex justify-center items-center align-middle h-full">
-                <img
-                  src={KabaAtelier1}
-                  className="rounded-2xl"
-                  style={{ width: "100%", maxWidth: "200px" }}
-                />
-              </div>
-            </div>
-            <div className="mt-6 rounded">
-              <div className="h-9/12 static ...">
-                <div className="static ...">
-                  <h2>L’atelier découverte :</h2>
-                </div>
-                <div className="p-4 inline-block shadow-lg rounded-2xl w-44">
-                  <h5 className="text-base">Samedi 8 février</h5>
-                  <h5 className="text-sm">18h - 18h30</h5>
-                  <h5 className="text-sm">Gratuit 0€</h5>
-                  <div className="flex justify-center items-center align-middle">
-                    <a
-                      href="https://www.eventbrite.fr/e/billets-latelier-decouverte-du-kaba-163663494919"
-                      target="_blank"
-                    >
-                      <button className="button_reserver">Reserver</button>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-4 md:col-span-2">
-              <div className="static ...">
-                <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:text-base">
-                  🕑 30 minutes de visio en groupe avec un expert de la conso
-                  responsable
-                  <br /> 🔟 10 conseils pour bien débuter
-                  <br /> 🎁 Offert : un guide de 10 éco-gestes à mettre en place
-                  immédiatement
-                  <br /> 🔍 Découvrez les chiffres clés de la conso responsable
-                  et les éco-gestes primordiaux à mettre en place dans son
-                  quotidien.
-                  <br /> 📍 En ligne
-                  <br /> 🎤 Présenté par un expert de la consommation
-                  responsable
-                </h5>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className="w-4/5 mb-10 flex flex-col">
           <div className="grid md:grid-cols-4">
             <div className="rounded md:row-span-2">
@@ -369,8 +318,8 @@ const WorkshopPage = () => {
                   <h2>La classe verte :</h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
-                  <h5 className="text-base">Mardi 1 février</h5>
-                  <h5 className="text-sm">21h - 22h30</h5>
+                <h5 className="text-base">Jeudi 24 février</h5>
+                  <h5 className="text-sm">12h30 - 14h30</h5>
                   <h5 className="text-sm">25€</h5>
                   <div className="flex justify-center items-center align-middle">
                     <a
@@ -382,8 +331,8 @@ const WorkshopPage = () => {
                   </div>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44">
-                  <h5 className="text-base">Jeudi 24 février</h5>
-                  <h5 className="text-sm">12h30 - 14h00</h5>
+                  <h5 className="text-base">Mardi 15 février</h5>
+                  <h5 className="text-sm">21h - 22h00</h5>
                   <h5 className="text-sm">25€</h5>
                   <div className="flex justify-center items-center align-middle">
                     <a
