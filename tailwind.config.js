@@ -16,7 +16,7 @@ module.exports = {
         "bluelight",
         "transform",
         "rotate",
-        /^bg-/, /^text-/, /^border-/, /^h-/, /^w-/, /^ml--/, /^mb--/, /^rounded-/,  /^grid-cols-/, /^max-/,
+        /^bg-/, /^text-/, /^border-/, /^h-/, /^w-/, /^ml--/, /^mb--/, /^rounded-/,  /^grid-cols-/, /^max-/, /^hover:/,
         /^inset-/,
         /^sm:/,
         /^md:/,
