@@ -55,6 +55,7 @@ const schema = yup.object().shape({
 
   tags: yup.array().required("Ce champ est obligatoire."),
   notes_from_author: yup.string(),
+  text_associate: yup.string(),
 });
 
 const CreateRecipe: React.FC = () => {
@@ -148,6 +149,7 @@ const CreateRecipe: React.FC = () => {
     expiry: string;
     utensils: string;
     notes_from_author: string;
+    text_associate: string;
   }) => {
     if (loadingCreateRecipe) return;
     const getValue = (field: any) => field.value;
@@ -170,6 +172,7 @@ const CreateRecipe: React.FC = () => {
         expiry: dataForm.expiry,
         utensils: dataForm.utensils,
         notesFromAuthor: dataForm.notes_from_author,
+        textAssociate: dataForm.text_associate,
       },
     });
     history.push(RouteName.recipeCreated);
@@ -625,6 +628,23 @@ const CreateRecipe: React.FC = () => {
             ></input>
             <p className="text-red text-xs italic">
               {errors.notes_from_author?.message}
+            </p>
+          </div>
+
+
+          <div className="mb-12">
+            <label className="block text-gray-700 text-xl mb-2">
+              Rajouter le lien de votre site (si vous en avez un )
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full lg:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="text_associate"
+              placeholder="ton lien vers ton site :) "
+              type="text"
+              {...register("text_associate")}
+            ></input>
+            <p className="text-red text-xs italic">
+              {errors.text_associate?.message}
             </p>
           </div>
 
