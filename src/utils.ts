@@ -7,8 +7,6 @@ export const getBreakpoint = (screen = "") => {
     sm: "640px",
     md: "768px",
     lg: "1024px",
-    xl: "1280px",
-    "2xl": "1536px",
   };
   // create a keyed object of screens that match
   const matches = Object.entries(screens).reduce((results, [name, size]) => {

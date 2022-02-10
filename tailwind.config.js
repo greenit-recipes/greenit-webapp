@@ -14,7 +14,13 @@ module.exports = {
         "grey",
         "red",
         "bluelight",
+        "transform",
+        "rotate",
         /^bg-/, /^text-/, /^border-/, /^h-/, /^w-/, /^ml--/, /^mb--/, /^rounded-/,  /^grid-cols-/, /^max-/,
+        /^inset-/,
+        /^sm:/,
+        /^md:/,
+        /^lg:/,
       ],
     },
   },
@@ -67,12 +73,9 @@ module.exports = {
         '99': '28rem',            
       },
       screens: {
-        xs: "375px",
         sm: "640px",
         md: "768px",
         lg: "1024px",
-        xl: "1280px",
-        "2xl": "1536px",
       },
       colors: {
       

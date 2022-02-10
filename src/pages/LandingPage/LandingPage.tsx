@@ -162,7 +162,7 @@ const LandingPage = () => {
           Nos tutos vidéos pour commencer
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 sm:grid-rows-1 gap-2 md:gap-8 pt-4 w-4/5 xl:w-3/5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 sm:grid-rows-1 gap-2 md:gap-8 pt-4 w-4/5 lg:w-3/5">
           <div className="relative h-64 md:h-80">
             <ReactPlayer
               url="https://youtu.be/ZeNRzJg0CKo"
