@@ -8,15 +8,17 @@ import { FavouriteField } from "../layout/FavouriteField";
 import { LikeField } from "components/layout/LikeField";
 import "./RecipeCard.css";
 import { RouteName } from "App";
+import { UserBadge } from "components/layout/UserBadge";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
-  recipe: RecipeFragment | null | undefined;
+  recipe: any;
   inCarousel?: boolean;
   isProfilPage?: boolean;
   parentFunction?: any;
   disabledFavoriteRecipe?: boolean;
   isRefetchData?: boolean;
+  isDisplayUserBadge?: boolean;
 }
 
 export const RecipeCard: React.FC<RecipeCardProps> = ({
@@ -27,6 +29,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   parentFunction = null,
   disabledFavoriteRecipe = false,
   isRefetchData = false,
+  isDisplayUserBadge = true,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -59,6 +62,11 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           ></img>
         </div>
       </Link>
+      { isDisplayUserBadge && (<UserBadge
+        image={recipe?.author?.imageProfile}
+        name={recipe?.author?.username}
+        isRecipeCard={true}
+      ></UserBadge>) }
       <LikeField recipe={recipe} isRecipeCard={true}></LikeField>
       <div
         className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-2xl -bottom-10 lg:-bottom-12 ${`w-${bandeauWidth}`}`}

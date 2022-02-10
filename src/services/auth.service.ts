@@ -123,6 +123,10 @@ export const ME = gql`
         numberOfIngredients
         isLikedByCurrentUser
         isAddToFavoriteByCurrentUser
+        author {
+          imageProfile
+          username
+        }
         category {
           name
         }

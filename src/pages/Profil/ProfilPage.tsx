@@ -176,6 +176,7 @@ const ProfilPage: React.FC = () => {
                   className="col-span-1 w-full mb-6 md:mb-12 justify-center"
                 >
                   <RecipeCard
+                    isDisplayUserBadge={false}
                     parentFunction={refetchMe}
                     disabledFavoriteRecipe={true}
                     recipe={recipe}

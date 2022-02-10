@@ -26,6 +26,10 @@ fragment recipe on RecipeType {
   isAddToFavoriteByCurrentUser
   numberOfIngredients
   urlId
+  author {
+    username
+    imageProfile
+  } 
   category {
     id
     name
