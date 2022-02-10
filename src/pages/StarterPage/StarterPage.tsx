@@ -100,7 +100,7 @@ const StarterPage = () => {
         />
       </Helmet>
       <BackgroundImage />
-      <Container className="flex flex-col | lg:w-10/12 mt-8 mb-12 lg:mt-28 px-4 ">
+      <Container className="flex flex-col | lg:w-10/12 mt-8 mb-16 lg:mt-28 px-4 ">
         <h1 className="text-2xl lg:text-4xl text-blue font-semibold | mb-2">
           Comment se lancer ?
         </h1>
@@ -249,22 +249,30 @@ const StarterPage = () => {
         </div>
         <div ref={fieldRefEtape1}></div>
       </Container>
-      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:w-2/3 self-start mb-3">
-        <div className="grid justify-items-end w-full h-16 bg-blue rounded-full shadow-lg | p-1 -ml-10">
+
+      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:grid-rows-1 lg:w-2/3 self-start mb-3">
+        <div className="grid justify-items-end w-full h-16 bg-blue self-center rounded-full shadow-lg | p-1 -ml-10">
           <div className="flex">
-            <h3 className="text-md lg:text-xl font-semibold text-center self-center mr-3">
+            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
               Étape
             </h3>
             <div className="grid w-10 h-10 self-center items-end bg-white rounded-full shadow-sm mr-1">
-              <h2 className="text-center self-center font-bold">1</h2>
+              <h2 className="text-lg lg:text-2xl text-center self-center font-bold">
+                1
+              </h2>
             </div>
           </div>
         </div>
-        <h3 className="lg:col-span-2 text-lg self-center lg:text-xl font-semibold">
-          3 meilleurs conseils pour débuter
-        </h3>
-        <div className="hidden lg:flex"></div>
-        <h3 className="text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
+        <div className="grid lg:col-span-2">
+          <h3 className="text-lg self-center lg:text-2xl font-semibold pr-4">
+            3 meilleurs conseils pour débuter
+          </h3>
+          <h3 className="hidden lg:flex text-sm lg:text-lg font-light p-4 lg:p-0">
+            Que devez-vous savoir avant de vous lancer ? Nous avons posé la
+            question à des experts de la pratique.
+          </h3>
+        </div>
+        <h3 className="lg:hidden text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
           Que devez-vous savoir avant de vous lancer ? Nous avons posé la
           question à des experts de la pratique.
         </h3>
@@ -414,27 +422,35 @@ const StarterPage = () => {
         <div ref={fieldRefEtape2}></div>
       </Container>
 
-      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:w-2/3 self-start mb-3">
-        <div className="grid justify-items-end w-full h-16 bg-blue rounded-full shadow-lg | p-1 -ml-10">
+      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:grid-rows-1 lg:w-2/3 self-start mb-3">
+        <div className="grid justify-items-end w-full h-16 bg-blue self-center rounded-full shadow-lg | p-1 -ml-10">
           <div className="flex">
-            <h3 className="text-md lg:text-xl font-semibold text-center self-center mr-3">
+            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
               Étape
             </h3>
             <div className="grid w-10 h-10 self-center items-end bg-white rounded-full shadow-sm mr-1">
-              <h2 className="text-center self-center font-bold">2</h2>
+              <h2 className="text-lg lg:text-2xl text-center self-center font-bold">
+                2
+              </h2>
             </div>
           </div>
         </div>
-        <h3 className="lg:col-span-2 text-lg self-center lg:text-xl font-semibold">
-          Les ustensiles indispensables
-        </h3>
-        <div className="hidden lg:flex"></div>
-        <h3 className="text-sm col-span-2 lg:text-lg font-light pt-3 px-4 lg:p-0">
+        <div className="grid lg:col-span-2">
+          <h3 className="text-lg self-center lg:text-2xl font-semibold pr-4">
+            Les ustensiles indispensables
+          </h3>
+          <h3 className="hidden lg:flex text-sm lg:text-lg font-light p-4 lg:p-0">
+            Quelques ustensiles sont indispensables pour se lancer dans le
+            fait-maison (que tout le monde a déjà dans sa cuisine).{" "}
+          </h3>
+        </div>
+        <h3 className="lg:hidden text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
           Quelques ustensiles sont indispensables pour se lancer dans le
-          fait-maison (que tout le monde a déjà dans sa cuisine).
+          fait-maison (que tout le monde a déjà dans sa cuisine).{" "}
         </h3>
       </div>
-      <Container className="grid justify-items-center w-full mt-6 mb-10">
+
+      <Container className="grid justify-items-center w-full mt-4 mb-20">
         <div className="flex flex-row overflow-x-auto w-11/12 lg:w-auto pb-6 mb-2">
           <div className="flex gap-4 lg:gap-0">
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
@@ -514,45 +530,55 @@ const StarterPage = () => {
         <div ref={fieldRefEtape3}></div>
       </Container>
 
-      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:w-2/3 self-start mb-3">
+      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:grid-rows-1 lg:w-2/3 self-start mb-3">
         <div className="grid justify-items-end w-full h-16 bg-blue rounded-full shadow-lg | p-1 -ml-10">
           <div className="flex">
-            <h3 className="text-md lg:text-xl font-semibold text-center self-center mr-3">
+            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
               Étape
             </h3>
             <div className="grid w-10 h-10 self-center items-end bg-white rounded-full shadow-sm mr-1">
-              <h2 className="text-center self-center font-bold">3</h2>
+              <h2 className="text-lg lg:text-2xl text-center self-center font-bold">
+                3
+              </h2>
             </div>
           </div>
         </div>
-        <h3 className="lg:col-span-2 text-lg self-center lg:text-xl font-semibold pr-4">
-          5 ingrédients pour 2 recettes
-        </h3>
-        <div className="hidden lg:flex"></div>
-        <h3 className="text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
+        <div className="grid lg:col-span-2">
+          <h3 className="text-lg self-center lg:text-2xl font-semibold pr-4">
+            5 ingrédients pour 2 recettes
+          </h3>
+          <h3 className="hidden lg:flex text-sm lg:text-lg font-light p-4 lg:p-0">
+            Voici une sélection de recettes simples pour débuter.
+          </h3>
+        </div>
+        <h3 className="lg:hidden text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
           Voici une sélection de recettes simples pour débuter.
         </h3>
       </div>
+
       <Container className="flex flex-col | lg:w-11/12  px-8 mb-6">
         <div className="grid grid-cols-2 auto-rows-auto gap-y-2 | lg:grid-cols-5">
-          <div className="hidden lg:block lg:col-span-5 self-center ml-1 lg:col-span-4">
+          <div className="hidden lg:block lg:col-span-1 self-center">
             <h2 className="text-xl font-semibold">Recette 1 :</h2>
             <h2 className="text-base lg:text-xl font-medium mb-2">
               Crème nourrissante
             </h2>
-            <div className="grid grid-cols-2 w-40 justify-items-center mb-3">
+            <div className="grid grid-cols-2 w-40 mb-3">
               <div className="flex flex-cols gap-1">
                 <img src={QuantityIcon} className="w-3 h-3 self-center"></img>
                 <p>70 g</p>
               </div>
               <div className="flex flex-cols gap-1">
-                <img src={PriceIcon} className="w-3 h-4 self-center"></img>
+                <img src={PriceIcon} className="w-4 h-3 self-center"></img>
                 <p>2,80 €</p>
               </div>
             </div>
           </div>
+          <h2 className="text-base lg:col-span-4 lg:text-xl self-center mb-4 font-medium">
+            Les ingrédients :
+          </h2>
           <div className="lg:place-self-start justify-self-center">
-            <img src={CremeCorp} className="rounded-xl w-40" />
+            <img src={CremeCorp} className="rounded-xl w-40 lg:w-48" />
           </div>
           <div className="flex-inline lg:hidden self-center ml-3 lg:col-span-4">
             <h3 className="text-lg font-semibold">Recette 1 :</h3>
@@ -561,87 +587,71 @@ const StarterPage = () => {
             </h2>
             <div className="flex flex-cols gap-2 justify-items-start mb-3">
               <div className="flex flex-cols gap-1">
-                <img src={ingredients5} className="w-6 h-6"></img>
-                <p>1 L</p>
+                <img src={QuantityIcon} className="w-3 h-3 self-center"></img>
+                <p>70 g</p>
               </div>
               <div className="flex flex-cols gap-1">
-                <img src={ingredients5} className="w-6 h-6"></img>
-                <p>0,50 €</p>
+                <img src={PriceIcon} className="w-4 h-3 self-center"></img>
+                <p>2,80 €</p>
               </div>
             </div>
           </div>
-          <div className="col-span-2 lg:col-span-3 flex flex-row overflow-x-auto pb-6 mb-2 mt-4 pt-14">
-            <h2 className="absolute -mt-12 text-base lg:text-xl font-medium">
-              Les ingrédients :
-            </h2>
-            <div className="flex">
-              <div className="grid justify-items-center flex-row">
-                <div className="inline">
-                  <div className="flex flex-cols w-40">
-                    <img
-                      src={BeurreKarite}
-                      className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Beurre de Karité"
-                    />{" "}
-                    <p className="text-center text-xl self-center font-medium ml-4">
-                      +
-                    </p>
-                  </div>
-                  <div className="grid w-12 h-12 self-center bg-blue items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
-                    <p className="text-center text-sm self-center font-medium">
-                      50 g
-                    </p>
-                  </div>
+          <div className="col-span-2 lg:col-span-3 flex flex-row overflow-x-auto pb-6 mb-2">
+            <div className="grid grid-cols-4">
+              <div className="flex flex-col">
+                <div className="flex flex-cols">
+                  <img
+                    src={BeurreKarite}
+                    className="w-24 h-24 rounded-full lg:w-18 self-center items-center"
+                    alt="Beurre de Karité"
+                  />{" "}
                 </div>
-                <p className="text-sm lg:text-lg font-regular text-center m-2 w-2/3">
+                <div className="grid w-12 h-12 self-center bg-blue items-end bg-white rounded-full shadow-sm -mt-6 ml-10 relative z-20">
+                  <p className="text-center text-sm self-center font-medium">
+                    50 g
+                  </p>
+                </div>
+                <p className="text-sm lg:text-lg font-regular text-center m-2 w-4/5">
                   Beurre de karité
                 </p>
                 <h4 className="text-xs lg:text-sm font-light text-center">
                   3,90 € / 100 g{" "}
                 </h4>
               </div>
-              <div className="grid justify-items-center flex-row">
-                <div className="inline">
-                  <div className="flex flex-cols w-40">
-                    <img
-                      src={HuileRicin}
-                      className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Huile de Ricin"
-                    />{" "}
-                    <p className="text-center text-xl self-center font-medium ml-4">
-                      +
-                    </p>
-                  </div>
-                  <div className="grid w-12 h-12 self-center bg-blue items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
-                    <p className="text-center text-sm self-center font-medium">
-                      20 g{" "}
-                    </p>
-                  </div>
+
+              <div className="flex flex-col">
+                <div className="flex flex-cols">
+                  <img
+                    src={HuileRicin}
+                    className="w-24 h-24 rounded-full lg:w-18 self-center items-center"
+                    alt="Huile de Ricin"
+                  />{" "}
                 </div>
-                <h3 className="text-sm lg:text-lg font-light text-center m-2 w-2/3">
+                <div className="grid w-12 h-12 self-center bg-blue items-end bg-white rounded-full shadow-sm -mt-6 ml-10 relative z-20">
+                  <p className="text-center text-sm self-center font-medium">
+                    20 g{" "}
+                  </p>
+                </div>
+                <p className="text-sm lg:text-lg font-regular text-center m-2 w-4/5">
                   Huile végétale de ricin{" "}
-                </h3>
-                <h4 className="text-xs lg:text-sm font-light text-center">
+                </p>
+                <h4 className="text-xs lg:text-sm font-light text-center ">
                   2,60 € / 100 g{" "}
                 </h4>
               </div>
-              <div className="grid justify-items-center flex-row">
-                <div className="inline">
-                  <div className="flex flex-cols w-40">
-                    <img
-                      src={CireAbeille}
-                      className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Cire d'Abeille"
-                    />{" "}
-                    <p className="text-center text-xl self-center font-medium ml-4">
-                      +
-                    </p>
-                  </div>
-                  <div className="grid w-12 h-12 self-center bg-blue items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
-                    <p className="text-center text-sm self-center font-medium">
-                      2 g
-                    </p>
-                  </div>
+
+              <div className="flex flex-col">
+                <div className="flex flex-cols">
+                  <img
+                    src={CireAbeille}
+                    className="w-24 h-24 rounded-full lg:w-18 self-center items-center"
+                    alt="Cire d'Abeille"
+                  />{" "}
+                </div>
+                <div className="grid w-12 h-12 self-center bg-blue items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
+                  <p className="text-center text-sm self-center font-medium">
+                    2 g
+                  </p>
                 </div>
                 <h3 className="text-sm lg:text-lg font-light text-center m-2 w-2/3">
                   Cire d’abeille{" "}
@@ -650,25 +660,25 @@ const StarterPage = () => {
                   2,90 € / 30 g{" "}
                 </h4>
               </div>
-              <div className="grid justify-items-center flex-row">
-                <div>
-                  <div className="flex flex-cols w-40">
-                    <img
-                      src={Bocal}
-                      className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
-                      alt="Bocal_icon"
-                    />{" "}
-                  </div>
-                  <div className="grid w-12 h-12 self-center bg-grey items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
-                    <p className="text-center text-white text-xs self-center font-medium">
-                      ≈ 100ml{" "}
-                    </p>
-                  </div>
+
+              <div className="flex flex-col">
+                <div className="flex flex-cols">
+                  <img
+                    src={Bocal}
+                    className="w-28 h-28 rounded-full lg:w-18 self-center items-center"
+                    alt="Bocal_icon"
+                  />{" "}
+                </div>
+                <div className="grid w-12 h-12 self-center bg-grey items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
+                  <p className="text-center text-white text-xs self-center font-medium">
+                    ≈ 100ml{" "}
+                  </p>
                 </div>
                 <h3 className="text-sm lg:text-lg font-light text-center m-2 w-2/3">
                   Pot en verre{" "}
                 </h3>
               </div>
+
             </div>
           </div>
           <div className="hidden | lg:grid gap-3 col-span-1 justify-self-center justify-items-center p-4 bg-white rounded-xl shadow-lg m-2 p-1">
@@ -716,24 +726,24 @@ const StarterPage = () => {
       </Container>
       <Container className="flex flex-col | lg:w-11/12 lg:mt-2 px-8 mb-14 mt-10">
         <div className="grid grid-cols-2 auto-rows-auto gap-y-2 | lg:grid-cols-5">
-          <div className="hidden lg:block lg:col-span-5 self-center ml-1 lg:col-span-4">
-            <h2 className="text-xl font-semibold">Recette 2 :</h2>
-            <h2 className="text-base lg:text-xl font-medium mb-2">
-              Lessive minute{" "}
-            </h2>
-            <div className="grid grid-cols-2 w-40 justify-items-center mb-3">
-              <div className="flex flex-cols gap-1">
-                <img src={QuantityIcon} className="w-3 h-3 self-center"></img>
-                <p>1 L</p>
-              </div>
-              <div className="flex flex-cols gap-1">
-                <img src={PriceIcon} className="w-4 h-3 self-center"></img>
-                <p>0,50 €</p>
+          <div className="lg:place-self-start justify-self-center">
+            <div className="hidden lg:block self-center">
+              <h2 className="text-xl font-semibold">Recette 2 :</h2>
+              <h2 className="text-base lg:text-xl font-medium mb-2">
+                Lessive minute{" "}
+              </h2>
+              <div className="grid grid-cols-2 w-40 mb-3">
+                <div className="flex flex-cols gap-1">
+                  <img src={QuantityIcon} className="w-3 h-3 self-center"></img>
+                  <p>1 L</p>
+                </div>
+                <div className="flex flex-cols gap-1">
+                  <img src={PriceIcon} className="w-4 h-3 self-center"></img>
+                  <p>0,50 €</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="lg:place-self-start justify-self-center">
-            <img src={Lessive} className="rounded-xl w-40" />
+            <img src={Lessive} className="rounded-xl w-40 lg:w-48" />
           </div>
           <div className="flex-inline lg:hidden self-center ml-3 lg:col-span-4">
             <h3 className="text-lg font-semibold">Recette 2 :</h3>
@@ -742,11 +752,11 @@ const StarterPage = () => {
             </h2>
             <div className="flex flex-cols gap-2 justify-items-start mb-3">
               <div className="flex flex-cols gap-1">
-                <img src={ingredients5} className="w-6 h-6"></img>
+                <img src={QuantityIcon} className="w-6 h-6"></img>
                 <p>1 L</p>
               </div>
               <div className="flex flex-cols gap-1">
-                <img src={ingredients5} className="w-6 h-6"></img>
+                <img src={PriceIcon} className="w-6 h-6"></img>
                 <p>0,50 €</p>
               </div>
             </div>
@@ -764,9 +774,6 @@ const StarterPage = () => {
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
                       alt="Bicarbonate_de_soude"
                     />{" "}
-                    <p className="text-center text-xl self-center font-medium ml-4">
-                      +
-                    </p>
                   </div>
                   <div className="grid w-12 h-12 self-center bg-blue items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
                     <p className="text-center text-sm self-center font-medium">
@@ -789,9 +796,6 @@ const StarterPage = () => {
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
                       alt="Savon_de_Marseille"
                     />{" "}
-                    <p className="text-center text-xl self-center font-medium ml-4">
-                      +
-                    </p>
                   </div>
                   <div className="grid w-12 h-12 self-center bg-blue items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
                     <p className="text-center text-sm self-center font-medium">
@@ -814,9 +818,6 @@ const StarterPage = () => {
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
                       alt="Eau-photo"
                     />{" "}
-                    <p className="text-center text-xl self-center font-medium ml-4">
-                      +
-                    </p>
                   </div>
                   <div className="grid w-12 h-12 self-center bg-blue items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
                     <p className="text-center text-sm self-center font-medium">
@@ -837,9 +838,6 @@ const StarterPage = () => {
                       className="w-24 h-24 rounded-full lg:w-18 self-center items-center ml-8"
                       alt="Ecorce_Agrumes"
                     />{" "}
-                    <p className="text-center text-xl self-center font-medium ml-4">
-                      +
-                    </p>
                   </div>
                   <div className="grid w-12 h-12 self-center bg-blue items-end bg-white rounded-full shadow-sm -mt-6 ml-6 relative z-20">
                     <p className="text-center text-sm self-center font-medium">
@@ -916,21 +914,26 @@ const StarterPage = () => {
           </div>
         </div>
       </Container>
-      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:w-2/3 self-start mb-3">
+      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:grid-rows-1 lg:w-2/3 self-start mb-3">
         <div className="grid justify-items-end w-full h-16 bg-blue rounded-full shadow-lg | p-1 -ml-10">
           <div className="flex">
-            <h3 className="text-md lg:text-xl font-semibold text-center self-center mr-3">
+            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
               Création
             </h3>
           </div>
         </div>
-        <h3 className="lg:col-span-2 text-lg self-center lg:text-xl font-semibold">
-          Rendez-vous ici dès que vous recevez vos ingrédients !
-        </h3>
-        <div className="hidden lg:flex"></div>
-        <h3 className="text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
+        <div className="grid lg:col-span-2">
+          <h3 className="text-lg self-center lg:text-2xl font-semibold pr-4 lg:pr-0">
+            Rendez-vous ici dès que vous recevez vos ingrédients !
+          </h3>
+          <h3 className="hidden lg:flex text-sm lg:text-lg font-light p-4 lg:p-0">
+            En attendant, vous pouvez créer votre profil et appuyer sur le ♥︎
+            des recettes pour les sauvegarder dans votre profil.{" "}
+          </h3>
+        </div>
+        <h3 className="lg:hidden text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
           En attendant, vous pouvez créer votre profil et appuyer sur le ♥︎ des
-          recettes pour les sauvegarder dans votre profil.
+          recettes pour les sauvegarder dans votre profil.{" "}
         </h3>
       </div>
       {isLoggedIn ? (
@@ -959,19 +962,25 @@ const StarterPage = () => {
           <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
         ))}
       </div>
-      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:w-2/3 self-start mt-10">
-        <div className="grid justify-items-end self-center w-full h-16 bg-blue rounded-full shadow-lg | p-1 -ml-10">
+      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:grid-rows-1 lg:w-2/3 self-start mb-3">
+        <div className="grid justify-items-end w-full h-16 bg-green rounded-full shadow-lg | p-1 -ml-10">
           <div className="flex">
-            <h3 className="text-md lg:text-xl font-semibold text-center self-center mr-3">
+            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
               Aller plus loin
             </h3>
           </div>
         </div>
-        <h3 className="lg:col-span-2 text-lg self-center lg:text-xl font-semibold">
-          Où acheter les ingrédients ?
-        </h3>
-        <div className="hidden lg:flex"></div>
-        <h3 className="text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
+        <div className="grid lg:col-span-2">
+          <h3 className="text-lg self-center lg:text-2xl font-semibold pr-4 lg:pr-0">
+            Où acheter les ingrédients ?
+          </h3>
+          <h3 className="hidden lg:flex text-sm lg:text-lg font-light p-4 lg:p-0">
+            Il est parfois difficile de trouver des ingrédients de bonne qualité
+            sans faire plein d’enseignes différentes. Nous proposons quelques
+            conseils et marques pour vous aiguiller dans cette recherche.
+          </h3>
+        </div>
+        <h3 className="lg:hidden text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
           Il est parfois difficile de trouver des ingrédients de bonne qualité
           sans faire plein d’enseignes différentes. Nous proposons quelques
           conseils et marques pour vous aiguiller dans cette recherche.
@@ -1043,28 +1052,38 @@ const StarterPage = () => {
           </div>
         </div>
       </Container>
-      <div className="grid grid-cols-2 auto-rows-auto | lg:grid-cols-3 lg:w-2/3 self-start mt-10">
-        <div className="grid justify-items-end self-center w-full h-16 bg-blue rounded-full shadow-lg | p-1 -ml-10">
+
+      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:grid-rows-1 lg:w-2/3 self-start mb-3">
+        <div className="grid justify-items-end w-full h-16 bg-green rounded-full shadow-lg | p-1 -ml-10">
           <div className="flex">
-            <h3 className="text-md lg:text-xl font-semibold text-center self-center mr-3">
+            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
               Aller plus loin
             </h3>
           </div>
         </div>
-        <h3 className="lg:col-span-2 text-lg self-center lg:text-xl font-semibold">
-          Où trouver les connaissances nécessaires ? <br />
-        </h3>
-        <div className="hidden lg:flex"></div>
-        <h3 className="text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
+        <div className="grid lg:col-span-2">
+          <h3 className="text-lg self-center lg:text-2xl font-semibold pr-4 lg:pr-0">
+            Où trouver les connaissances nécessaires ?
+          </h3>
+          <h3 className="hidden lg:flex text-sm lg:text-lg font-light p-4 lg:p-0">
+            Les informations sur le fait-maison sont éparpillées sur internet
+            entre les blogs, c’est la raison pour laquelle Greenit existe !
+            <br />
+            <br />
+            Greenit c’est des recettes simples, des ateliers et les information
+            ingrédients (bientôt). En attendant, nous vous proposons une
+            sélection de sources pour débuter en fait-maison.
+          </h3>
+        </div>
+        <h3 className="lg:hidden text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
           Les informations sur le fait-maison sont éparpillées sur internet
-          entre les blogs, c’est la raison pour laquelle Greenit existe <br />
+          entre les blogs, c’est la raison pour laquelle Greenit existe !<br />
           <br />
           Greenit c’est des recettes simples, des ateliers et les information
           ingrédients (bientôt). En attendant, nous vous proposons une sélection
           de sources pour débuter en fait-maison.
         </h3>
       </div>
-
       <Container className="grid justify-items-center w-full lg:w-10/12 px-8 mt-6 mb-6">
         <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 pb-6 mb-2">
           <div className="flex gap-6 lg:gap-10">
@@ -1136,59 +1155,68 @@ const StarterPage = () => {
         <p> Lire plus</p>
       </Button>
 
-      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:w-2/3 self-start mt-10">
+      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:grid-rows-1 lg:w-2/3 self-start mb-3">
         <div className="grid justify-items-end w-full h-16 bg-green rounded-full shadow-lg | p-1 -ml-10">
           <div className="flex">
-            <h3 className="text-md lg:text-xl font-semibold text-center self-center mr-3">
+            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
               Questions
             </h3>
           </div>
         </div>
-        <h3 className="lg:col-span-2 text-lg self-center lg:text-xl font-semibold pr-2">
+        <div className="grid lg:col-span-2">
+          <h3 className="text-lg self-center lg:text-2xl font-semibold pr-4 lg:pr-0">
+            Où trouver les connaissances nécessaires ?
+          </h3>
+          <h3 className="hidden lg:flex text-sm lg:text-lg font-light p-4 lg:p-0">
+            N’hesitez pas à poser vos questions 👇
+          </h3>
+        </div>
+        <h3 className="lg:hidden text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
           N’hesitez pas à poser vos questions 👇
         </h3>
-        <div className="hidden lg:flex"></div>
-        <h3 className="text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
-          Il est
-        </h3>
+      </div>
+      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:w-2/3 self-start mt-10">
         <div className="mt-6 flex flex-col">
           <h2 className="text-xl md:text-2xl">Discussion</h2>
-          {//recipes?comments this replace the recipes? below 
-          recipes?.map((comment: any, index: number) => {
-            // @ts-ignore
-            return (
-              <div className="mt-3 flex flex-col" key={index}>
-                <div className="relative bg-orange bg-opacity-10 rounded-3xl px-4 py-4">
-                  <UserBadge
-                    image={comment?.author?.imageProfile}
-                    name={comment?.author?.username}
-                    className="mb-2"
-                  ></UserBadge>
-                  {//comment?.author?.id === recipe?.author?.id && 
-                  (
-                    <div> (créateur de la recette) </div>
-                  )}
-                  <div className="text-md lg:text-lg">
-                    <h3 className="text-base"> {comment?.comment} </h3>
-                  </div>
-                  <h3 className="absolute top-0 right-0 m-6 | text-base">
-                    {//momentGreenit(comment?.createdAt)
+          {
+            //recipes?comments this replace the recipes? below
+            recipes?.map((comment: any, index: number) => {
+              // @ts-ignore
+              return (
+                <div className="mt-3 flex flex-col" key={index}>
+                  <div className="relative bg-orange bg-opacity-10 rounded-3xl px-4 py-4">
+                    <UserBadge
+                      image={comment?.author?.imageProfile}
+                      name={comment?.author?.username}
+                      className="mb-2"
+                    ></UserBadge>
+                    {
+                      //comment?.author?.id === recipe?.author?.id &&
+                      <div> (créateur de la recette) </div>
                     }
-                  </h3>
-                  <div className="absolute -bottom-1 -right-1">
-                    {/* @ts-ignore */}
-                    <LikeComment
-                      //isMyComment={
+                    <div className="text-md lg:text-lg">
+                      <h3 className="text-base"> {comment?.comment} </h3>
+                    </div>
+                    <h3 className="absolute top-0 right-0 m-6 | text-base">
+                      {
+                        //momentGreenit(comment?.createdAt)
+                      }
+                    </h3>
+                    <div className="absolute -bottom-1 -right-1">
+                      {/* @ts-ignore */}
+                      <LikeComment
+                        //isMyComment={
                         // @ts-ignore
                         // getUuidFromId(data?.me?.id) === comment?.author?.id
-                     // }
-                      comment={comment}
-                    ></LikeComment>
+                        // }
+                        comment={comment}
+                      ></LikeComment>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          }
         </div>
         <form
           className="filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10 p-4 mb-4 mt-10"
@@ -1209,7 +1237,8 @@ const StarterPage = () => {
                   //{...register("comment")}
                 ></textarea>
                 <p className="text-red-500 text-xs italic">
-                  {//errors.comment?.message
+                  {
+                    //errors.comment?.message
                   }
                 </p>
 
