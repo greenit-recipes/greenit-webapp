@@ -52,7 +52,6 @@ const LandingPage = () => {
           content="Votre espace de partage de recette DIY, des astuces écologiques pour la maison, des ateliers pour débuter dans le fait-maison et des pages sur les bienfaits des ingrédients."
         />
       </Helmet>
-      <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
       <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-8 md:mt-20">
         <div className="mb-10">
@@ -73,6 +72,32 @@ const LandingPage = () => {
           <SearchBar keyId="searchBarLandingPage" />
         </div>
       </Container>
+      <div className="w-full sm:w-4/5 lg:w-2/3 | py-8 pl-6 | flex flex overflow-x-auto">
+        <div className="flex flex-row">
+          {landingPageCategories.slice(0, 1).map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))}
+          {landingPageCategories.slice(2, 3).map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))}
+          <div className="w-1 h-18 border-r-1 border-grey self-center mb-14 mx-6"></div>
+          {landingPageCategories.slice(3).map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))}
+        </div>
+      </div>
 
       <Container className="mb-6" itemsCenter>
         <h2 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
