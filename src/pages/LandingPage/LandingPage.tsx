@@ -26,6 +26,27 @@ import "../../pages/recipe/SinglePage/SinglePage.css";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
 import { Helmet } from "react-helmet";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import "pages/LandingPage/LandingPage.css";
+
+const responsiveCarouselLanding = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 2,
+    slidesToSlide: 2, // optional, default to 1.
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+    slidesToSlide: 2, // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+};
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
@@ -102,7 +123,23 @@ const LandingPage = () => {
           ))}
         </div>
       </div>
-
+      <Carousel
+        swipeable={true}
+        showDots={true}
+        responsive={responsiveCarouselLanding}
+        ssr={true}
+        infinite={true}
+        keyBoardControl={true}
+        transitionDuration={500}
+        containerClass="carousel-container"
+        deviceType={"desktop"}
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-40-px"
+      >
+        {recipes?.map((recipe) => (
+          <img src="https://greenit-beta-s3.s3.eu-west-3.amazonaws.com/media/admin/recipe/Mousse_a_raser.jpeg"></img>
+        ))}
+      </Carousel>
       <Container className="mb-6" itemsCenter>
         <h2 className="text-xl md:text-2xl | p-2 md:pb-5 text-center">
           Notre sélection de recettes
