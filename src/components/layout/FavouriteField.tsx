@@ -1,8 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { RouteName } from "App";
-import {
-  ADD_OR_REMOVE_FAVORITE_RECIPE
-} from "pages/CreateRecipe/CreateRecipeRequest";
+import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import authService from "services/auth.service";
@@ -34,26 +32,47 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
       {isLoggedIn ? (
         <button
           onClick={() => {
-            if(!isRefetchData) setFavorite(!isFavorite);
+            if (!isRefetchData) setFavorite(!isFavorite);
             // @ts-ignore: Object is possibly 'null'.
             addOrRemoveFavoriteRecipe({
               variables: {
                 recipeId: recipe?.id,
               },
             }).then(() => {
-              return parentFunction ? parentFunction() : null
+              return parentFunction ? parentFunction() : null;
             });
           }}
         >
           {isFavorite ? (
-            <img className="w-10 h-10 lg:w-12 lg:h-12" alt="like button" src={likedIconOn} />
+            <div className="tooltip grid justify-items-center">
+              <img
+                className="w-10 h-10 lg:w-12 lg:h-12"
+                alt="like button"
+                src={likedIconOn}
+              />
+              <span className="tooltiptext">Retirer des favoris</span>
+            </div>
           ) : (
-            <img className="w-10 h-10 lg:w-12 lg:h-12" alt="dislike button" src={likedIconOff} />
+            <div className="tooltip grid justify-items-center">
+              <img
+                className="w-10 h-10 lg:w-12 lg:h-12"
+                alt="dislike button"
+                src={likedIconOff}
+              />
+              <span className="tooltiptext">Ajouter aux favoris</span>
+            </div>
           )}
         </button>
       ) : (
         <Link to={RouteName.register}>
-          <img className="w-10 h-10 lg:w-12 lg:h-12" alt="dislike button" src={likedIconOff} />
+          <div className="tooltip grid justify-items-center">
+            <img
+              className="w-10 h-10 lg:w-12 lg:h-12"
+              alt="dislike button"
+              src={likedIconOff}
+            />
+            <span className="tooltiptext">Ajouter aux favoris</span>
+          </div>
         </Link>
       )}
     </div>

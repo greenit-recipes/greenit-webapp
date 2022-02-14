@@ -54,26 +54,29 @@ const LandingPage = () => {
       </Helmet>
       <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
-      <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-8 md:mt-20">
-        <div className="mb-10">
+      <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-4 mb-2 md:mt-4">
+        <div className="mb-6">
           {!isMobile && (
-            <h2 className="text-green font-medium text-3xl md:text-5xl mb-4 |">Greenit</h2>
+            <h5 className="text-green font-medium text-3xl md:text-5xl mb-2 |">
+              Greenit
+            </h5>
           )}
-          <h1 className="text-2xl font-semibold md:text-4xl md:mb-2 inline lg:block |">
+          <h1 className="text-2xl font-semibold md:text-4xl md:mb-1 inline lg:block |">
             La communauté du fait maison,
           </h1>
-          <h2 className="text-2xl font-semibold md:text-4xl | ml-2 lg:ml-0 md:mb-2 inline">
+          <h5 className="text-2xl font-semibold md:text-4xl | ml-2 lg:ml-0 md:mb-2 inline">
             pour une consommation
-          </h2>
-          <h2 className="text-green font-semibold text-2xl md:text-4xl | ml-2 inline">
+          </h5>
+          <h5 className="text-green font-semibold text-2xl md:text-4xl | ml-2 inline">
             durable
-          </h2>
+          </h5>
         </div>
         <div className="lg:w-2/5">
           <SearchBar keyId="searchBarLandingPage" />
         </div>
       </Container>
-      <div className="w-full sm:w-4/5 lg:w-2/3 | py-8 pl-6 | flex flex overflow-x-auto">
+
+      <div className="w-full sm:w-4/5 lg:w-2/3 | py-4 pl-6 | flex flex overflow-x-auto">
         <div className="flex flex-row">
           {landingPageCategories.slice(0, 1).map((item) => (
             <CategoryCircle
@@ -101,7 +104,7 @@ const LandingPage = () => {
       </div>
 
       <Container className="mb-6" itemsCenter>
-        <h2 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
+        <h2 className="text-xl md:text-2xl | p-2 md:pb-5 text-center">
           Notre sélection de recettes
         </h2>
         {isMobile ? (
@@ -122,15 +125,14 @@ const LandingPage = () => {
         </Link>
       </Container>
 
-      <Container className="w-full text-center mt-8 sm:mb-8" itemsCenter>
-        <h2 className="text-xl text-red md:text-2xl | md:mb-2 px-5 text-center">
-          Greenit a besoin de vous !
+      <Container className="w-full text-center mt-10 sm:mb-8" itemsCenter>
+        <h2 className="text-xl md:text-2xl | md:mb-2 px-5 text-center">
+          🙏 Merci à tous pour votre grande générosité ! 🌱
         </h2>
 
         <h3 className=" w-full sm:w-2/3 md:w-2/5 p-4 md:p-1 mb-6 text-md md:text-xl text-center">
-          Nous sommes des jeunes diplômés avec des idées plein la tête. Nous
-          avons besoin de financement pour continuer à développer un espace DIY
-          pour tous !
+          Grâce aux dons de toute la communauté nous pouvons continuer à
+          développer Greenit, avec toujours plus de DIY !
         </h3>
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 md:-ml-10">
           <iframe
@@ -152,9 +154,6 @@ const LandingPage = () => {
             ></iframe>
           </div>
         </div>
-        <h2 className="text-xl md:text-2xl | p-5 text-center">
-          🙏 Un grand merci ! 🌱
-        </h2>
       </Container>
 
       <Container className="w-full text-center mt-8 sm:mb-14" itemsCenter>

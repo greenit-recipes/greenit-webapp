@@ -1,7 +1,14 @@
 import React, { useEffect } from "react";
 import { Footer, Navbar } from "../components";
 import useIsMobile from "../hooks/isMobile";
-import { corpsWhy, logo, money, planet, wellbeing, GreenitTeam } from "../icons";
+import {
+  corpsWhy,
+  logo,
+  money,
+  planet,
+  wellbeing,
+  GreenitTeam,
+} from "../icons";
 import communityDesktop from "../icons/community_desktop.png";
 import communityMobile from "../icons/community_mobile.png";
 import { Helmet } from "react-helmet";
@@ -67,7 +74,10 @@ const WhyPage: React.FC = () => {
       <Navbar />
       <Helmet>
         <title>Qui sommes-nous ? | Greenit Community</title>
-        <meta name="description" content="Greenit Community cherche à devenir la plateforme référente du fait-maison. Le partage de recettes, les ateliers et les informations sont portés par une communauté de passionnés en DIY." />
+        <meta
+          name="description"
+          content="Greenit Community cherche à devenir la plateforme référente du fait-maison. Le partage de recettes, les ateliers et les informations sont portés par une communauté de passionnés en DIY."
+        />
       </Helmet>
       <div className="h-auto w-full flex flex-col items-center mb-12 leading-loose">
         <Block
@@ -91,7 +101,11 @@ const WhyPage: React.FC = () => {
           </h3>
         </Block>
         <div className="grid justify-items-center bg-white rounded-full h-24 w-24 lg:h-32 lg:w-32 -mt-10 lg:-mt-16">
-          <img src={logo} alt="greenit logo" className="self-center h-20 w-20 lg:h-28 lg:w-28" />
+          <img
+            src={logo}
+            alt="greenit logo"
+            className="self-center h-20 w-20 lg:h-28 lg:w-28"
+          />
         </div>
 
         <div className="grid justify-items-center lg:w-2/3">
@@ -209,13 +223,16 @@ const WhyPage: React.FC = () => {
           ></img>
         </div>
       </div>
-      <Block
-        id="4"
-        className="grid w-full p-2 justify-items-center mb-20"
-      >
-        <h2 className="text-xl md:text-2xl"> Merci à toutes celles et ceux qui nous aident </h2>
+      <Block id="4" className="grid w-full p-2 justify-items-center mb-20">
+        <h2 className="text-xl md:text-2xl">
+          {" "}
+          Merci à toutes celles et ceux qui nous aident{" "}
+        </h2>
         <div className="w-full mt-12">
-          <img src={isMobile ? communityMobile : communityDesktop} alt="communauté"/>
+          <img
+            src={isMobile ? communityMobile : communityDesktop}
+            alt="communauté"
+          />
         </div>
       </Block>
       <Footer />

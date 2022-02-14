@@ -199,3 +199,19 @@ h4 {
 .grid-gap-list-page {
   grid-gap: 2.5rem;
 }
+
+.tooltip .tooltiptext {
+  display: flex;
+  visibility: hidden;
+  color: black;
+  text-align: center;
+  font-size: 10px;  
+  /* Position the tooltip */
+  position: absolute;
+  bottom: -3px;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
