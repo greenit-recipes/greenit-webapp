@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { Navbar } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 
@@ -6,6 +7,9 @@ const NotFoundPage = () => {
   const isMobile = useIsMobile();
   return (
     <div className="h-screen w-full">
+      <Helmet>
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <Navbar />
       <div
         className="h-auto w-auto flex items-center flex-col text-gray-600"

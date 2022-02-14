@@ -73,32 +73,6 @@ const LandingPage = () => {
           <SearchBar keyId="searchBarLandingPage" />
         </div>
       </Container>
-      <div className="w-full sm:w-4/5 lg:w-2/3 | py-8 pl-6 | flex flex overflow-x-auto">
-        <div className="flex flex-row">
-          {landingPageCategories.slice(0, 1).map((item) => (
-            <CategoryCircle
-              name={item.title}
-              icon={item.icon}
-              key={item.title}
-            />
-          ))}
-          {landingPageCategories.slice(2, 3).map((item) => (
-            <CategoryCircle
-              name={item.title}
-              icon={item.icon}
-              key={item.title}
-            />
-          ))}
-          <div className="w-1 h-18 border-r-1 border-grey self-center mb-14 mx-6"></div>
-          {landingPageCategories.slice(3).map((item) => (
-            <CategoryCircle
-              name={item.title}
-              icon={item.icon}
-              key={item.title}
-            />
-          ))}
-        </div>
-      </div>
 
       <Container className="mb-6" itemsCenter>
         <h2 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
@@ -231,8 +205,8 @@ const LandingPage = () => {
             { text: "Pour ton corps", color: "#7EAADD", icon: corpsWhy },
             { text: "Pour tes économies", color: "#ffd460", icon: money },
             { text: "Pour ton esprit", color: "#EA9875", icon: wellbeing },
-          ].map((item) => (
-            <div className="grid col-span-1 justify-items-center">
+          ].map((item, index) => (
+            <div className="grid col-span-1 justify-items-center" key={index}>
               <img
                 src={item.icon}
                 alt={item.text}
