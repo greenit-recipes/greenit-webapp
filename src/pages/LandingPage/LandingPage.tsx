@@ -189,7 +189,7 @@ const LandingPage = () => {
         containerClass={isMobile ? "carousel-container-mobile" : "carousel-container"}
         customTransition="transform 300ms ease-in-out"
         dotListClass={isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"}
-        itemClass={isMobile ? "carousel-item-mobile" : "carousel-item-padding-40-px"}
+        itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
       >
         {recipesOrderByLikes?.map((recipe) => (
           <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
