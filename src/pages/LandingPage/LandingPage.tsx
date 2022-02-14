@@ -52,6 +52,7 @@ const LandingPage = () => {
           content="Votre espace de partage de recette DIY, des astuces écologiques pour la maison, des ateliers pour débuter dans le fait-maison et des pages sur les bienfaits des ingrédients."
         />
       </Helmet>
+      <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
       <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-8 md:mt-20">
         <div className="mb-10">
@@ -131,67 +132,9 @@ const LandingPage = () => {
           avons besoin de financement pour continuer à développer un espace DIY
           pour tous !
         </h3>
-        <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 md:-ml-10">
-          <iframe
-            className="react-player px-4 sm:px-0 justify-self-center"
-            height="300px"
-            width="310px"
-            title="video ulule"
-            src="https://fr.ulule.com/greenit-community/widget.html"
-            scrolling="no"
-          ></iframe>
-          <div className="w-full px-4 sm:px-0 sm:w-96 lg:w-99">
-            <iframe
-              className="react-player"
-              height="270px"
-              width="100%"
-              src="https://www.youtube-nocookie.com/embed/v0-8WGzCTs8"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            ></iframe>
-          </div>
-        </div>
         <h2 className="text-xl md:text-2xl | p-5 text-center">
           🙏 Un grand merci ! 🌱
         </h2>
-      </Container>
-
-      <Container className="w-full text-center mt-8 sm:mb-14" itemsCenter>
-        <h2 className="text-xl md:text-2xl | p-5 text-center">
-          Nos tutos vidéos pour commencer
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 sm:grid-rows-1 gap-2 md:gap-8 pt-4 w-4/5 lg:w-3/5">
-          <div className="relative h-64 md:h-80">
-            <ReactPlayer
-              url="https://youtu.be/ZeNRzJg0CKo"
-              className="absolute top-0 left-0 react-player"
-              controls={true}
-              config={{
-                youtube: {
-                  playerVars: { showinfo: 1, rel: 0 },
-                },
-              }}
-              width="100%"
-              height="100%"
-            />
-          </div>
-
-          <div className="relative h-64 md:h-80">
-            <ReactPlayer
-              url="https://youtu.be/tHAWH6fUqEo"
-              className="absolute top-0 left-0 react-player"
-              controls={true}
-              config={{
-                youtube: {
-                  playerVars: { showinfo: 1, rel: 0 },
-                },
-              }}
-              width="100%"
-              height="100%"
-            />
-          </div>
-        </div>
       </Container>
 
       <div className="mt-10 grid bg-orange w-full py-12 px-6 justify-items-center">
