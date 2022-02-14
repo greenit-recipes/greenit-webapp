@@ -26,19 +26,52 @@ import "../../pages/recipe/SinglePage/SinglePage.css";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
 import { Helmet } from "react-helmet";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import "pages/LandingPage/LandingPage.css";
+
+const responsiveCarouselLanding = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 4,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 664 },
+    items: 4,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 664, min: 0 },
+    items: 2,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+};
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
-  const { error, loading, data, refetch } = useRecipesQuery({
+  const { error, loading, data: dataIsDiplayHome, refetch } = useRecipesQuery({
     fetchPolicy: "no-cache",
     variables: { first: 8, filter: { isDisplayHome: true } },
   });
 
-  if (loading || !data) {
+  const { data: dataBegginer } = useRecipesQuery({
+    fetchPolicy: "no-cache",
+    variables: { first: 8, filter: { tags: ["Premiers pas"] } },
+  });
+
+  const { data: dataNbrLikes } = useRecipesQuery({
+    fetchPolicy: "no-cache",
+    variables: { first: 8, filter: { isOrderByNumberLike: true } },
+  });
+
+  if (loading || !dataIsDiplayHome || !dataBegginer || !dataNbrLikes) {
     return <Loading />;
   }
 
-  const recipes = data.allRecipes?.edges || [];
+  const recipes = dataIsDiplayHome.allRecipes?.edges || [];
+  const recipesBegginer = dataBegginer.allRecipes?.edges || [];
+  const recipesOrderByLikes = dataNbrLikes.allRecipes?.edges || [];
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -102,7 +135,6 @@ const LandingPage = () => {
           ))}
         </div>
       </div>
-
       <Container className="mb-6" itemsCenter>
         <h2 className="text-xl md:text-2xl | p-2 md:pb-5 text-center">
           Notre sélection de recettes
@@ -124,6 +156,45 @@ const LandingPage = () => {
           <Button type="green">Découvrir plus</Button>
         </Link>
       </Container>
+      <h2 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
+        Une séléction de recettes pour les débutants
+      </h2>
+      <Carousel
+        swipeable={true}
+        showDots={true}
+        responsive={responsiveCarouselLanding}
+        infinite={true}
+        keyBoardControl={true}
+        transitionDuration={500}
+        containerClass={isMobile ? "carousel-container-mobile" : "carousel-container"}
+        customTransition="transform 300ms ease-in-out"
+        dotListClass={isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"}
+        itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
+      >
+        {recipesBegginer?.map((recipe) => (
+          <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+        ))}
+      </Carousel>
+
+      <h2 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
+        Notre séléction de recettes les plus aimées
+      </h2>
+      <Carousel
+        swipeable={true}
+        showDots={true}
+        responsive={responsiveCarouselLanding}
+        infinite={true}
+        keyBoardControl={true}
+        transitionDuration={500}
+        containerClass={isMobile ? "carousel-container-mobile" : "carousel-container"}
+        customTransition="transform 300ms ease-in-out"
+        dotListClass={isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"}
+        itemClass={isMobile ? "carousel-item-mobile" : "carousel-item-padding-40-px"}
+      >
+        {recipesOrderByLikes?.map((recipe) => (
+          <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+        ))}
+      </Carousel>
 
       <Container className="w-full text-center mt-10 sm:mb-8" itemsCenter>
         <h2 className="text-xl md:text-2xl | md:mb-2 px-5 text-center">
