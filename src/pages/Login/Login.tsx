@@ -10,6 +10,7 @@ import * as yup from "yup";
 import { Footer, Navbar } from "../../components";
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import { Helmet } from "react-helmet";
+import FacebookLogin from "react-facebook-login";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -64,6 +65,10 @@ const Login: React.FC = () => {
     }
   }, [setError, error, data]);
 
+  const responseFacebook = (response: any) => {
+    console.log("---->", response);
+  };
+
   const onSubmitHandler = (data: { email: string; password: string }) => {
     loginAccount({
       variables: {
@@ -79,7 +84,13 @@ const Login: React.FC = () => {
           response?.data?.tokenAuth?.refreshToken
         );
         history.listen((prev) => {
-          if (prev?.pathname === RouteName.activateResetPassword || includes(prev?.pathname,RouteName.resetPassword) || includes(prev?.pathname, 'activate') || includes(prev?.pathname, RouteName.tokenActivationAccount) || prev?.pathname === RouteName.register) {
+          if (
+            prev?.pathname === RouteName.activateResetPassword ||
+            includes(prev?.pathname, RouteName.resetPassword) ||
+            includes(prev?.pathname, "activate") ||
+            includes(prev?.pathname, RouteName.tokenActivationAccount) ||
+            prev?.pathname === RouteName.register
+          ) {
             history.push("/");
           }
         });
@@ -93,16 +104,27 @@ const Login: React.FC = () => {
       <Navbar />
       <Helmet>
         <title>Connexion - Espace DIY | Greenit Community</title>
-        <meta name="description" content="Connectez vous. Accédez à votre compte et espace personnel DIY. Vous pouvez ajouter des recettes maison et sauvegarder vos recettes préférées." />
+        <meta
+          name="description"
+          content="Connectez vous. Accédez à votre compte et espace personnel DIY. Vous pouvez ajouter des recettes maison et sauvegarder vos recettes préférées."
+        />
       </Helmet>
       <BackgroundImage className="overflow-hidden" />
       <h1 className="text-xl font-medium w-2/3 md:text-2xl | mt-16 text-center">
         Connexion vers ton espace DIY <br />
       </h1>
+      <div>FACEBOOK</div>
+      <FacebookLogin
+        // @ts-ignore
+        appId={process.env.REACT_APP_FACEBOOK_ID}
+        autoLoad={true}
+        fields="name,email,picture"
+        callback={responseFacebook}
+      />
       <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 w-4/5">
           <h3 className="text-sm md:text-base self-center">
-            Si tu veux créer un compte : 
+            Si tu veux créer un compte :
           </h3>
           <Link to={RouteName.register}>
             <button
@@ -129,9 +151,7 @@ const Login: React.FC = () => {
               type="email"
               {...register("email")}
             ></input>
-            <p className="text-red text-xs italic">
-              {errors.email?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.email?.message}</p>
           </div>
           <div className="mb-10">
             <label className="block text-gray-700 text-base md:text-lg font-bold mb-2">
@@ -169,7 +189,7 @@ const Login: React.FC = () => {
           </div>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
