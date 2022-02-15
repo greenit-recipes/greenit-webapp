@@ -70,7 +70,7 @@ import ChristelleLogo from "./ChristelleLogo.png"
 import GreenitTeam from "./GreenitTeam.jpeg"
 
 //BACKGROUND IMAGE
-import BackroundImage from "./backgroundImage.jpg"
+import BackroundImage from "./backgroundMobile.jpg"
 import BackroundImageDesktop from "./backgroundDesktop.jpg"
 
 export const landingPageCategories = [
