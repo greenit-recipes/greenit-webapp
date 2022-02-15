@@ -23,7 +23,7 @@ import ActivateResetPassword from "pages/ActivateResetPassword";
 import RecipeCreatedPage from "pages/CreateRecipe/CreateRecipeSuccess";
 import AccountCreated from "pages/AccountCreated";
 import IngredientPage from "pages/IngredientSpace/IngredientPage"
-import StarterPage from "pages/StarterPage/StarterPage";
+import StarterPage from "pages/StarterSpace/StarterPage";
 import RecapPage from "pages/RecapPage";
 import DeleteProfil from "pages/Profil/DeleteProfil";
 
@@ -40,7 +40,7 @@ export const RouteName = {
   recipeCreated: "/ajout-recette", // no index
   workshops: "/ateliers",
   ingredientPage: "/ingredients", // no index ( a activer quand on sort la page)
-  starterPage: "/page-debutant-diy", // no index ( a activer quand on sort la page)
+  starterPage: "/page-debutant-diy",
   why: "/projet",
   contact: "/contact",
   recipes: "/recettes",
