@@ -2,8 +2,6 @@ import { BackgroundImage, Container, Footer, Navbar } from "components";
 import { Helmet } from "react-helmet";
 import {
   logo,
-  PhotoAtelier,
-  ingredients5,
   Conseil,
   Cooking,
   Ustensil,
@@ -32,22 +30,21 @@ import {
   Producteur,
   landingPageCategories,
 } from "../../icons";
-import { Button, RecipeCard, Loading } from "../../components";
+import { Button, RecipeCard } from "../../components";
 import authService from "services/auth.service";
 import { useRecipesQuery } from "../../graphql";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React from "react";
-import "../StarterPage/StarterPage.css";
+import "../StarterSpace/StarterPage.css";
 import { Link } from "react-router-dom";
 import { RouteName } from "App";
-import { UserBadge } from "components/layout/UserBadge";
-import { LikeComment } from "components/layout/LikeComment";
 import { CategoryCircle } from "pages/LandingPage/Components/CategoryCircle";
+import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({
     fetchPolicy: "no-cache",
-    variables: { first: 2 },
+    variables: { first: 2, filter: {} },
   });
 
   const isLoggedIn = authService.isLoggedIn();
@@ -118,65 +115,45 @@ const StarterPage = () => {
         </div>
 
         <div className="grid grid-rows-3 | lg:grid-rows-1 lg:grid-cols-5 lg:ml-10 gap-2 my-6 justify-items-center">
-          {/* 1ere Etape */}
-          <div
-            className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
-            onClick={() => scrollIntoFieldRefEtape1()}
-          >
-            <div className="grid absolute w-10 h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
-              <h2 className="text-center self-center font-bold">1</h2>
+          {[
+            {
+              icon: Conseil,
+              fonction: scrollIntoFieldRefEtape1,
+              title: "3 meilleurs conseils pour débuter",
+              number: "1",
+            },
+            {
+              icon: Ustensil,
+              fonction: scrollIntoFieldRefEtape2,
+              title: "Les ingrédients & ustensiles",
+              number: "2",
+            },
+            {
+              icon: Cooking,
+              fonction: scrollIntoFieldRefEtape3,
+              title: "2 Recettes simples",
+              number: "3",
+            },
+          ].map((item) => (
+            <div
+              className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
+              onClick={() => item.fonction()}
+            >
+              <div className="grid absolute w-10 h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
+                <h2 className="text-center self-center font-bold">
+                  {item.number}
+                </h2>
+              </div>
+              <div className="grid justify-items-center">
+                <img
+                  src={item.icon}
+                  className="w-14 lg:w-16 self-center items-center"
+                  alt="conseils_diy"
+                />{" "}
+              </div>
+              <h3 className="text-sm  text-center font-light">{item.title}</h3>
             </div>
-            <div className="grid justify-items-center">
-              <img
-                src={Conseil}
-                className="w-14 lg:w-16 self-center items-center"
-                alt="conseils_diy"
-              />{" "}
-            </div>
-            <h3 className="text-sm  text-center font-light">
-              3 meilleurs conseils pour débuter
-            </h3>
-          </div>
-
-          {/* 2eme Etape */}
-          <div
-            className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
-            onClick={() => scrollIntoFieldRefEtape2()}
-          >
-            <div className="grid absolute w-10 h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
-              <h2 className="text-center self-center font-bold">2</h2>
-            </div>
-            <div className="grid justify-items-center">
-              <img
-                src={Ustensil}
-                className="w-14 lg:w-16 self-center items-center"
-                alt="Ustensil-diy"
-              />{" "}
-            </div>
-            <h3 className="text-sm text-center font-light">
-              Les ingrédients & ustensiles
-            </h3>
-          </div>
-
-          {/* 3eme Etape */}
-          <div
-            className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
-            onClick={() => scrollIntoFieldRefEtape3()}
-          >
-            <div className="grid absolute w-10 h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
-              <h2 className="text-center self-center font-bold">3</h2>
-            </div>
-            <div className="grid justify-items-center">
-              <img
-                src={Cooking}
-                className="w-14 lg:w-16 self-center items-center"
-                alt="Recettes-diy"
-              />
-            </div>
-            <h3 className="text-sm text-center font-light">
-              2 Recettes simples
-            </h3>
-          </div>
+          ))}
 
           {/* A FAIRE Call to action email d'un amis  version DESKTOP */}
           <div className="hidden | lg:grid col-span-2 gap-4 justify-items-center self-center">
@@ -261,32 +238,16 @@ const StarterPage = () => {
         <div ref={fieldRefEtape1}></div>
       </Container>
 
-      {/* Etape 1 */}
-      <div className="grid gap-2 lg:grid-cols-4 w-full">
-        <div className="grid justify-items-end bg-blue self-center rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
-          <div className="flex">
-            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
-              Étape
-            </h3>
-            <div className="grid w-10 h-10 self-center items-end bg-white rounded-full shadow-sm mr-1">
-              <h2 className="text-lg lg:text-2xl text-center self-center font-bold">
-                1
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6">
-            3 meilleurs conseils pour débuter
-          </h3>
-          <h3 className="text-sm lg:text-lg font-light px-6">
-            Que devez-vous savoir avant de vous lancer ? Nous avons posé la
-            question à des experts de la pratique.
-          </h3>
-        </div>
-      </div>
+      <SectionStarterPage
+        step={true}
+        maintitle="Étape"
+        title="3 meilleurs conseils pour débuter"
+        text="Que devez-vous savoir avant de vous lancer ? Nous avons posé la
+            question à des experts de la pratique."
+        number="1"
+      ></SectionStarterPage>
 
-      <Container className="flex flex-col | lg:w-10/12 lg:mt-10 px-6 mb-10 lg:mb-24">
+      <Container className="flex flex-col | lg:w-10/12 lg:mt-4 px-6 mb-10 lg:mb-24">
         <div className="flex flex-cols w-full mt-8 mb-2">
           <div className="border-r-2 border-blue">
             <img
@@ -438,137 +399,80 @@ const StarterPage = () => {
         <div ref={fieldRefEtape2}></div>
       </Container>
 
-      {/* Etape 2 */}
-      <div className="grid gap-2 lg:grid-cols-4 w-full">
-        <div className="grid justify-items-end bg-blue self-center rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
-          <div className="flex">
-            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
-              Étape
-            </h3>
-            <div className="grid w-10 h-10 self-center items-end bg-white rounded-full shadow-sm mr-1">
-              <h2 className="text-lg lg:text-2xl text-center self-center font-bold">
-                2
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6">
-            Les ustensiles indispensables
-          </h3>
-          <h3 className="text-sm lg:text-lg font-light px-6">
-            Quelques ustensiles sont indispensables pour se lancer dans le
-            fait-maison (que tout le monde a déjà dans sa cuisine).
-          </h3>
-        </div>
-      </div>
+      <SectionStarterPage
+        step={true}
+        maintitle="Étape"
+        title="Les ustensiles indispensables"
+        text="Quelques ustensiles sont indispensables pour se lancer dans le
+        fait-maison (que tout le monde a déjà dans sa cuisine)."
+        number="2"
+      ></SectionStarterPage>
 
       <Container className="grid justify-items-center w-full mt-4 mb-20">
         <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 lg:w-auto pb-6 px-4 mb-2">
           <div className="flex gap-4 lg:gap-0">
-            <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
-              <div className="grid justify-items-center">
-                <img
-                  src={Bol}
-                  className="w-16 lg:w-18 self-center items-center"
-                  alt="Bol-icon"
-                />{" "}
+            {[
+              {
+                icon: Bol,
+                maintitle: "Bol en inox",
+                title: "Pour la cuisson au bain-marie",
+                subtitle:
+                  "Le bol permet de faire vos préparations avant de les verser dans les contenants. Certaines préparations nécessitent une chauffe au bain-marie, l’inox est donc idéal. Il permet une cuisson uniforme tout en étant facilement lavables.",
+              },
+              {
+                icon: Fouet,
+                maintitle: "Fouet",
+                title: "Pour les émulsions",
+                subtitle:
+                  "Idéal pour mélanger uniformément les préparations. L’homogénéité de vos produits leur permet de se conserver plus longtemps grâce une meilleure stabilité.",
+              },
+              {
+                icon: Balance,
+                maintitle: "Balance",
+                title: "Pour être précis",
+                subtitle:
+                  "De la même façon qu’en pâtisserie, pour une bonne texture et des effets maîtrisés, il faut être précis ! Une balance aux grammes près est donc recommandé.",
+              },
+              {
+                icon: Maryse,
+                maintitle: "Maryse",
+                title: "Pour éviter le gaspillage",
+                subtitle:
+                  "Pour racler les fonds de bol et contenant, une maryse peut être utile. Plus de préparations pour vous et moins au fond de la poubelle.",
+              },
+            ].map((item) => (
+              <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
+                <div className="grid justify-items-center">
+                  <img
+                    src={item.icon}
+                    className="w-16 lg:w-18 self-center items-center"
+                    alt={item.maintitle}
+                  />{" "}
+                </div>
+                <h3 className="text-lg text-center font-semibold">
+                  {item.maintitle}
+                </h3>
+                <h2 className="text-base text-center mb-2 ">{item.title}</h2>
+                <h3 className="text-sm  text-center font-light w-64">
+                  {item.subtitle}
+                </h3>
               </div>
-              <h3 className="text-lg text-center font-semibold">Bol en inox</h3>
-              <h2 className="text-base text-center mb-2 ">
-                Pour la cuisson au bain-marie
-              </h2>
-              <h3 className="text-sm  text-center font-light w-64">
-                Le bol permet de faire vos préparations avant de les verser dans
-                les contenants. Certaines préparations nécessitent une chauffe
-                au bain-marie, l’inox est donc idéal. Il permet une cuisson
-                uniforme et plus rapide. Le must ? Les bols en inox sont
-                facilement lavables.
-              </h3>
-            </div>
-            <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
-              <div className="grid justify-items-center">
-                <img
-                  src={Fouet}
-                  className="w-16 lg:w-18 self-center items-center"
-                  alt="Fouet-icon"
-                />{" "}
-              </div>
-              <h3 className="text-lg text-center font-semibold">Fouet</h3>
-              <h2 className="text-base text-center mb-2 ">
-                Pour les émulsions
-              </h2>
-              <h3 className="text-sm  text-center font-light">
-                Idéal pour mélanger uniformément les préparations. L’homogénéité
-                de vos produits leur permet de se conserver plus longtemps grâce
-                une meilleure stabilité.
-              </h3>
-            </div>
-            <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
-              <div className="grid justify-items-center">
-                <img
-                  src={Balance}
-                  className="w-16 lg:w-18 self-center items-center"
-                  alt="Balance_icon"
-                />{" "}
-              </div>
-              <h3 className="text-lg text-center font-semibold">Balance</h3>
-              <h2 className="text-base text-center mb-2 ">Pour être précis</h2>
-              <h3 className="text-sm  text-center font-light">
-                De la même façon qu’en pâtisserie, pour une bonne texture et des
-                effets maîtrisés, il faut être précis ! Une balance aux grammes
-                près est donc recommandé.
-              </h3>
-            </div>
-            <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
-              <div className="grid justify-items-center">
-                <img
-                  src={Maryse}
-                  className="w-16 lg:w-18 self-center items-center"
-                  alt="Maryse_icon"
-                />{" "}
-              </div>
-              <h3 className="text-lg text-center font-semibold">Maryse</h3>
-              <h2 className="text-base text-center mb-2 ">
-                Pour éviter le gaspillage
-              </h2>
-              <h3 className="text-sm  text-center font-light">
-                Pour racler les fonds de bol et contenant, une maryse peut être
-                utile. Plus de préparations pour vous et moins au fond de la
-                poubelle.
-              </h3>
-            </div>
+            ))}
           </div>
         </div>
         <div ref={fieldRefEtape3}></div>
       </Container>
 
-      {/* Etape 3 */}
-      <div className="grid gap-2 lg:grid-cols-4 w-full">
-        <div className="grid justify-items-end bg-blue self-center rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
-          <div className="flex">
-            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
-              Étape
-            </h3>
-            <div className="grid w-10 h-10 self-center items-end bg-white rounded-full shadow-sm mr-1">
-              <h2 className="text-lg lg:text-2xl text-center self-center font-bold">
-                3
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6">
-            2 recettes avec 5 ingrédients
-          </h3>
-          <h3 className="text-sm lg:text-lg font-light px-6">
-            Voici une sélection de recettes simples pour débuter.
-          </h3>
-        </div>
-      </div>
+      <SectionStarterPage
+        step={true}
+        maintitle="Étape"
+        title="2 recettes avec 5 ingrédients"
+        text="Voici une sélection de recettes simples pour débuter."
+        number="3"
+      ></SectionStarterPage>
 
       {/* Etape 3 Recette 1 */}
-      <Container className="flex flex-col | w-11/12 p-3 lg:p-6 mt-6 border-1 border-black rounded-lg">
+      <Container className="flex flex-col | w-11/12 p-3 lg:p-6 mt-6 border-1 border-black bg-white rounded-lg">
         <div className="grid grid-cols-2 auto-rows-auto gap-y-2 | lg:grid-cols-5">
           <div className="hidden lg:block lg:col-span-1 self-center">
             <h2 className="text-2xl font-semibold mb-2">Recette 1 :</h2>
@@ -992,31 +896,20 @@ const StarterPage = () => {
         </div>
       </Container>
 
-      <div className="grid gap-2 lg:grid-cols-4 w-full mb-10">
-        <div className="grid justify-items-end bg-blue rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
-          <div className="flex">
-            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
-              Création
-            </h3>
-          </div>
-        </div>
-        <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6">
-            Rendez-vous ici dès que tu reçois tes ingrédients !
-          </h3>
-          <h3 className="text-sm lg:text-lg font-light px-6">
-            En attendant, tu peux créer ton profil et appuyer sur le ♥︎ des
-            recettes pour les sauvegarder.
-          </h3>
-        </div>
-      </div>
+      <SectionStarterPage
+        step={false}
+        maintitle="Création"
+        title="Rendez-vous ici dès que tu reçois tes ingrédients !"
+        text="En attendant, tu peux créer ton profil et appuyer sur le ♥︎ des
+        recettes pour les sauvegarder."
+      ></SectionStarterPage>
 
       {isLoggedIn ? (
-        <Link className="" to={RouteName.profil}>
+        <Link className="mt-4" to={RouteName.profil}>
           <Button type="blue">Profil</Button>
         </Link>
       ) : (
-        <Link className="justify-self-end" to={RouteName.register}>
+        <Link className="mt-4" to={RouteName.register}>
           <Button type="green">Créer un profil</Button>
         </Link>
       )}
@@ -1028,25 +921,15 @@ const StarterPage = () => {
         ))}
       </div>
 
-      <div className="grid gap-2 lg:grid-cols-4 w-full mb-10">
-        <div className="grid justify-items-end bg-green rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
-          <div className="flex">
-            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
-              Aller plus loin
-            </h3>
-          </div>
-        </div>
-        <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6">
-            Où acheter les ingrédients ?
-          </h3>
-          <h3 className="text-sm lg:text-lg font-light px-6">
-            Il est parfois difficile de trouver des ingrédients de bonne qualité
-            sans faire plein d’enseignes différentes. Nous proposons quelques
-            conseils et marques pour vous aiguiller dans cette recherche.
-          </h3>
-        </div>
-      </div>
+      <SectionStarterPage
+        color="green"
+        step={false}
+        maintitle="Aller plus loin"
+        title="Où acheter les ingrédients ?"
+        text="Il est parfois difficile de trouver des ingrédients de bonne qualité
+        sans faire plein d’enseignes différentes. Nous proposons quelques
+        conseils et marques pour vous aiguiller dans cette recherche."
+      ></SectionStarterPage>
 
       <Container className="grid justify-items-center w-full lg:w-10/12 mt-6 mb-6">
         <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 pb-6 px-4 mb-2">
@@ -1115,29 +998,18 @@ const StarterPage = () => {
         </div>
       </Container>
 
-      <div className="grid gap-2 lg:grid-cols-4 w-full mb-10">
-        <div className="grid justify-items-end bg-green rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
-          <div className="flex">
-            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
-              Aller plus loin
-            </h3>
-          </div>
-        </div>
-        <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6 mb-2">
-            Où trouver les informations nécessaires ?
-          </h3>
-          <h3 className="text-sm lg:text-lg font-light px-6">
-            Les informations sur le fait-maison sont éparpillées sur internet
-            entre les blogs, c’est la raison pour laquelle Greenit existe !
-            <br />
-            <br />
-            Greenit c’est des recettes simples, des ateliers et les information
-            ingrédients (bientôt). En attendant, nous vous proposons une
-            sélection de sources pour débuter en fait-maison.
-          </h3>
-        </div>
-      </div>
+      <SectionStarterPage
+        color="green"
+        step={false}
+        maintitle="Aller plus loin"
+        title="Où trouver les informations nécessaires ?"
+        text="Les informations sur le fait-maison sont éparpillées sur internet
+        entre les blogs, c’est la raison pour laquelle Greenit existe !
+        Greenit c’est des recettes simples, des ateliers et les information
+        ingrédients (bientôt). En attendant, nous vous proposons une
+        sélection de sources pour débuter en fait-maison."
+      ></SectionStarterPage>
+
       <Container className="grid justify-items-center w-full lg:w-10/12 lg:mt-6 mb-6">
         <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 pb-6 mb-2 px-4">
           <div className="flex gap-6 lg:gap-10">
@@ -1206,20 +1078,13 @@ const StarterPage = () => {
         </div>
       </Container>
 
-      <div className="grid gap-2 lg:grid-cols-4 w-full">
-        <div className="grid justify-items-end bg-green rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
-          <div className="flex">
-            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
-              Explorer plus
-            </h3>
-          </div>
-        </div>
-        <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6 mb-2">
-            À la recherche d'autres recettes simples pour débuter ?
-          </h3>
-        </div>
-      </div>
+      <SectionStarterPage
+        color="green"
+        step={false}
+        maintitle="Explorer plus"
+        title="À la recherche d'autres recettes simples pour débuter ?"
+      ></SectionStarterPage>
+
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 justify-self-center justify-content-center w-10/12 lg:w-3/5 mt-6 mb-16">
         <h3 className="text-sm lg:text-base lg:col-span-2 font-light mt-6">
           <p>
@@ -1238,24 +1103,17 @@ const StarterPage = () => {
         </h3>
       </div>
 
-      <div className="grid gap-2 lg:grid-cols-4 w-full mb-40">
-        <div className="grid justify-items-end bg-green rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
-          <div className="flex">
-            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
-              Questions ?
-            </h3>
-          </div>
-        </div>
-        <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6 my-2">
-            N'hesitez pas à nous partager vos questions et retours pour que l'on
-            puisse mieux vous accompagner.
-          </h3>
-          <h3 className="text-sm lg:text-lg font-light px-6 text-center mt-4">
-            👇 Ici 👇
-          </h3>
-        </div>
-      </div>
+      <SectionStarterPage
+        color="green"
+        step={false}
+        maintitle="Des questions ?"
+        title="N'hesitez pas à nous partager vos questions et retours pour que l'on
+        puisse mieux vous accompagner."
+      ></SectionStarterPage>
+      <h3 className="text-sm lg:text-lg font-light px-6 text-center mt-4 mb-20">
+        👇 Ici 👇
+      </h3>
+
       {/* A FAIRE - comment les gens peuvent-ils nous adresser leurs quetsion super facilement ? */}
       <Footer />
     </div>
