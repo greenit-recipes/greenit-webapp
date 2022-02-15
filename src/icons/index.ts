@@ -69,6 +69,10 @@ import ChristelleAtelier2 from "./ChristelleAtelier2.jpg"
 import ChristelleLogo from "./ChristelleLogo.png"
 import GreenitTeam from "./GreenitTeam.jpeg"
 
+//BACKGROUND IMAGE
+import BackroundImage from "./backgroundImage.jpg"
+import BackroundImageDesktop from "./backgroundDesktop.jpg"
+
 export const landingPageCategories = [
   {
     icon: premierspas,
@@ -147,5 +151,7 @@ export {
   ChristelleAtelier1,
   ChristelleAtelier2,
   ChristelleLogo,
-  retourIcon
+  retourIcon,
+  BackroundImage,
+  BackroundImageDesktop,
 };
