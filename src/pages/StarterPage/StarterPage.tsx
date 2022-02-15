@@ -971,9 +971,7 @@ const StarterPage = () => {
               bicarbonate de soude va être réutilisé dans les recettes maison.
             </p>
           </div>
-
           <div className="hidden lg:block lg:col-span-1"></div>
-
           <div className="hidden lg:block col-span-3">
             {/* A FAIRE onlick button la description apparait */}
             <button className="flex -mt-10 cursor-pointer ml-6">
