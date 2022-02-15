@@ -9,8 +9,6 @@ import {
   Ustensil,
   Christelle,
   Catherine,
-  PriceIcon,
-  QuantityIcon,
   HuileRicin,
   EcorceArgume,
   Eau,

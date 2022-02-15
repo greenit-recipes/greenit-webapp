@@ -74,8 +74,6 @@ import Cooking from "./icon_cooking.png"
 import Ustensil from "./icon_ustensil.png"
 import Catherine from "./Catherine.png"
 import Christelle from "./Christelle.png"
-import PriceIcon from "./icon_price.png"
-import QuantityIcon from "./icon_quantity.png"
 
 import HuileRicin from "./HvR.png"
 import EcorceArgume from "./EcorceA.png"
@@ -183,8 +181,6 @@ export {
   Ustensil,
   Catherine,
   Christelle,
-  PriceIcon,
-  QuantityIcon,
   HuileRicin,
   EcorceArgume,
   Eau,
