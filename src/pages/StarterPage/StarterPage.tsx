@@ -1,4 +1,4 @@
-import { BackgroundImage, Container, Navbar } from "components";
+import { BackgroundImage, Container, Footer, Navbar } from "components";
 import { Helmet } from "react-helmet";
 import {
   logo,
@@ -32,6 +32,7 @@ import {
   Maryse,
   IconSite,
   Producteur,
+  landingPageCategories,
 } from "../../icons";
 import { Button, RecipeCard, Loading } from "../../components";
 import authService from "services/auth.service";
@@ -43,6 +44,7 @@ import { Link } from "react-router-dom";
 import { RouteName } from "App";
 import { UserBadge } from "components/layout/UserBadge";
 import { LikeComment } from "components/layout/LikeComment";
+import { CategoryCircle } from "pages/LandingPage/Components/CategoryCircle";
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({
@@ -100,6 +102,7 @@ const StarterPage = () => {
         />
       </Helmet>
       <BackgroundImage />
+
       <Container className="flex flex-col | w-10/12 mt-8 lg:my-20">
         <div className="lg:mb-4">
           <h1 className="text-2xl lg:text-4xl text-blue font-semibold | mb-2">
@@ -117,8 +120,9 @@ const StarterPage = () => {
         </div>
 
         <div className="grid grid-rows-3 | lg:grid-rows-1 lg:grid-cols-5 lg:ml-10 gap-2 my-6 justify-items-center">
+          {/* 1ere Etape */}
           <div
-            className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer"
+            className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
             onClick={() => scrollIntoFieldRefEtape1()}
           >
             <div className="grid absolute w-10 h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
@@ -135,8 +139,10 @@ const StarterPage = () => {
               3 meilleurs conseils pour débuter
             </h3>
           </div>
+
+          {/* 2eme Etape */}
           <div
-            className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer"
+            className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
             onClick={() => scrollIntoFieldRefEtape2()}
           >
             <div className="grid absolute w-10 h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
@@ -153,8 +159,10 @@ const StarterPage = () => {
               Les ingrédients & ustensiles
             </h3>
           </div>
+
+          {/* 3eme Etape */}
           <div
-            className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer"
+            className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
             onClick={() => scrollIntoFieldRefEtape3()}
           >
             <div className="grid absolute w-10 h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
@@ -165,15 +173,17 @@ const StarterPage = () => {
                 src={Cooking}
                 className="w-14 lg:w-16 self-center items-center"
                 alt="Recettes-diy"
-              />{" "}
+              />
             </div>
             <h3 className="text-sm text-center font-light">
               2 Recettes simples
             </h3>
-          </div>{" "}
+          </div>
+
+          {/* A FAIRE Call to action email d'un amis  version DESKTOP */}
           <div className="hidden | lg:grid col-span-2 gap-4 justify-items-center self-center">
             <h2 className="text-sm lg:text-base font-regular text-center">
-              Motivez-vous avec vos ami.e.s :{" "}
+              Motivez-vous avec vos ami.e.s :
             </h2>
             <form
               className="flex flex-col gap-4"
@@ -211,6 +221,7 @@ const StarterPage = () => {
           </div>
         </div>
 
+        {/* A FAIRE Call to action email d'un amis version MOBILE */}
         <div className="grid lg:hidden gap-4 justify-items-center w-full |  my-8">
           <h2 className="text-base font-regular text-center">
             Motivez-vous avec vos ami.e.s :{" "}
@@ -252,6 +263,7 @@ const StarterPage = () => {
         <div ref={fieldRefEtape1}></div>
       </Container>
 
+      {/* Etape 1 */}
       <div className="grid gap-2 lg:grid-cols-4 w-full">
         <div className="grid justify-items-end bg-blue self-center rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
           <div className="flex">
@@ -301,6 +313,8 @@ const StarterPage = () => {
           Remplacer vos produits petit à petit et de commencer par trouver
           l’huile végétale qui vous convient.
         </h3>
+
+        {/* A FAIRE onclick boutton révéler tout le texte */}
         <div className={toggle ? "container_fadeIn" : "container_fadeOut"}>
           {" "}
           <h3
@@ -370,6 +384,8 @@ const StarterPage = () => {
           Empor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
           veniam, quis nostrud exercitation ullamco.
         </h3>
+
+        {/* A FAIRE onclick boutton révéler tout le texte */}
         <Button type="grey" className={"w-24 self-center mt-2 mb-6"}>
           <p> Lire plus</p>
         </Button>
@@ -416,11 +432,15 @@ const StarterPage = () => {
           règles d’hygiène lors de la préparation de vos produits : un plan de
           travail et des ustensiles nettoyés ainsi que des mains propres. 
         </h3>
+
+        {/* A FAIRE onclick boutton révéler tout le texte */}
         <Button type="grey" className={"w-24 self-center mt-2 mb-6"}>
           <p> Lire plus</p>
         </Button>
         <div ref={fieldRefEtape2}></div>
       </Container>
+
+      {/* Etape 2 */}
       <div className="grid gap-2 lg:grid-cols-4 w-full">
         <div className="grid justify-items-end bg-blue self-center rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
           <div className="flex">
@@ -446,7 +466,7 @@ const StarterPage = () => {
       </div>
 
       <Container className="grid justify-items-center w-full mt-4 mb-20">
-        <div className="flex flex-row overflow-x-auto w-11/12 lg:w-auto pb-6 mb-2">
+        <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 lg:w-auto pb-6 px-4 mb-2">
           <div className="flex gap-4 lg:gap-0">
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
@@ -525,6 +545,7 @@ const StarterPage = () => {
         <div ref={fieldRefEtape3}></div>
       </Container>
 
+      {/* Etape 3 */}
       <div className="grid gap-2 lg:grid-cols-4 w-full">
         <div className="grid justify-items-end bg-blue self-center rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
           <div className="flex">
@@ -548,6 +569,7 @@ const StarterPage = () => {
         </div>
       </div>
 
+      {/* Etape 3 Recette 1 */}
       <Container className="flex flex-col | w-11/12 p-3 lg:p-6 mt-6 border-1 border-black rounded-lg">
         <div className="grid grid-cols-2 auto-rows-auto gap-y-2 | lg:grid-cols-5">
           <div className="hidden lg:block lg:col-span-1 self-center">
@@ -690,13 +712,26 @@ const StarterPage = () => {
             </div>
           </div>
 
+          {/* A FAIRE onlick button la description apparait */}
           <div className="flex col-span-2 justify-self-center | lg:hidden">
+            {/* A FAIRE onlick button la description apparait */}
             <button className="flex cursor-pointer">
               <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
                 <p className="self-center text-white font-bold">𝓲</p>
               </div>
               <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
             </button>
+          </div>
+          {/* A FAIRE la description apparait si le boutton est on */}
+          <div className="flex col-span-2 justify-self-center mx-4 p-4 bg-grey rounded-lg | lg:hidden">
+            <h3 className="text-sm text-white">
+              Le beurre de karité pénètre rapidement dans la peau, nourrit
+              intensément. Il a une texture plus fondante que le beurre de
+              karité normal et est plus facilement applicable. L'huile de
+              macadamia apaise les peaux sèches et tiraillées. L'arôme de
+              vanille se lie parfaitement avec le beurre de karité et parfume la
+              crème.
+            </h3>
           </div>
 
           <div className="grid gap-3 col-span-2 m-4 justify-items-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
@@ -718,18 +753,31 @@ const StarterPage = () => {
 
           <div className="hidden lg:block lg:col-span-1"></div>
 
+          {/* A FAIRE onlick button la description apparait */}
           <div className="hidden lg:block col-span-3">
+            {/* A FAIRE onlick button la description apparait */}
             <button className="flex -mt-10 cursor-pointer ml-6">
               <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
                 <p className="self-center text-white font-bold">𝓲</p>
               </div>
               <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
             </button>
+            {/* A FAIRE la description apparait si le boutton est on */}
+            <div className="hidden lg:flex justify-self-center ml-6 p-4 mt-4 bg-grey rounded-lg">
+              <h3 className="text-white">
+                Le beurre de karité pénètre rapidement dans la peau, nourrit
+                intensément. Il a une texture plus fondante que le beurre de
+                karité normal et est plus facilement applicable. L'huile de
+                macadamia apaise les peaux sèches et tiraillées. L'arôme de
+                vanille se lie parfaitement avec le beurre de karité et parfume
+                la crème.
+              </h3>
+            </div>
           </div>
         </div>
       </Container>
-
-      <Container className="flex flex-col | w-11/12 p-3 lg:p-6 mt-6 mb-20 border-1 border-black rounded-lg">
+      {/* Etape 3 Recette 2 */}
+      <Container className="flex flex-col | w-11/12 p-3 lg:p-6 mt-6 mb-20 border-1 border-black rounded-lg bg-white">
         <div className="grid grid-cols-2 auto-rows-auto gap-y-2 | lg:grid-cols-5">
           <div className="hidden lg:block lg:col-span-1 self-center">
             <h2 className="text-2xl font-semibold mb-2">Recette 2 :</h2>
@@ -743,7 +791,6 @@ const StarterPage = () => {
               <p className="font-semibold">0,50 €</p>
             </div>
           </div>
-
           <h2 className="hidden lg:block text-xl self-end font-medium col-span-3">
             Les ingrédients :
           </h2>
@@ -889,12 +936,23 @@ const StarterPage = () => {
           </div>
 
           <div className="flex col-span-2 justify-self-center | lg:hidden">
+            {/* A FAIRE onlick button la description apparait */}
             <button className="flex cursor-pointer">
               <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
                 <p className="self-center text-white font-bold">𝓲</p>
               </div>
               <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
             </button>
+          </div>
+          {/* A FAIRE la description apparait si le boutton est on */}
+          <div className="flex col-span-2 justify-self-center mx-4 p-4 bg-grey rounded-lg | lg:hidden">
+            <h3 className="text-white text-sm">
+              Le savon de Marseille est un nettoyant et un désinfectant. Il
+              dégraisse les surfaces et agit comme un antiseptique. Le
+              bicarbonate de soude ravive le blanc, adoucit et élimine les
+              odeurs. L'hydrolat de Tea Tree permet de parfumer. Elle a des
+              propriétés antibactériennes également.{" "}
+            </h3>
           </div>
 
           <div className="grid gap-3 col-span-2 m-4 justify-items-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
@@ -917,18 +975,29 @@ const StarterPage = () => {
           <div className="hidden lg:block lg:col-span-1"></div>
 
           <div className="hidden lg:block col-span-3">
+            {/* A FAIRE onlick button la description apparait */}
             <button className="flex -mt-10 cursor-pointer ml-6">
               <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
                 <p className="self-center text-white font-bold">𝓲</p>
               </div>
               <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
             </button>
+            {/* A FAIRE la description apparait si le boutton est on */}
+            <div className="hidden lg:flex justify-self-center ml-6 p-4 mt-4 bg-grey rounded-lg">
+              <h3 className="text-white">
+                Le savon de Marseille est un nettoyant et un désinfectant. Il
+                dégraisse les surfaces et agit comme un antiseptique. Le
+                bicarbonate de soude ravive le blanc, adoucit et élimine les
+                odeurs. L'hydrolat de Tea Tree permet de parfumer. Elle a des
+                propriétés antibactériennes également.{" "}
+              </h3>
+            </div>
           </div>
         </div>
       </Container>
 
-      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:grid-rows-1 lg:w-2/3 self-start mb-3">
-        <div className="grid justify-items-end w-full h-16 bg-blue rounded-full shadow-lg | p-1 -ml-10">
+      <div className="grid gap-2 lg:grid-cols-4 w-full mb-10">
+        <div className="grid justify-items-end bg-blue rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
           <div className="flex">
             <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
               Création
@@ -936,47 +1005,35 @@ const StarterPage = () => {
           </div>
         </div>
         <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold pr-4 lg:pr-0">
-            Rendez-vous ici dès que vous recevez vos ingrédients !
+          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6">
+            Rendez-vous ici dès que tu reçois tes ingrédients !
           </h3>
-          <h3 className="hidden lg:flex text-sm lg:text-lg font-light p-4 lg:p-0">
-            En attendant, vous pouvez créer votre profil et appuyer sur le ♥︎
-            des recettes pour les sauvegarder dans votre profil.{" "}
+          <h3 className="text-sm lg:text-lg font-light px-6">
+            En attendant, tu peux créer ton profil et appuyer sur le ♥︎ des
+            recettes pour les sauvegarder.
           </h3>
         </div>
-        <h3 className="lg:hidden text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
-          En attendant, vous pouvez créer votre profil et appuyer sur le ♥︎ des
-          recettes pour les sauvegarder dans votre profil.{" "}
-        </h3>
       </div>
+
       {isLoggedIn ? (
         <Link className="" to={RouteName.profil}>
-          <Button
-            type="blue"
-            rounded="lg"
-            className="flex justify-end self-center text-xl | mr-4 cursor-pointer"
-          >
-            Profil
-          </Button>
+          <Button type="blue">Profil</Button>
         </Link>
       ) : (
         <Link className="justify-self-end" to={RouteName.register}>
-          <Button
-            type="green"
-            rounded="lg"
-            className="inline justify-end self-center | cursor-pointer mr-2"
-          >
-            Créer un profil
-          </Button>
+          <Button type="green">Créer un profil</Button>
         </Link>
       )}
-      <div className="grid grid-cols-2 justify-items-center gap-y-6 gap-x-4 | mt-10 px-8">
+
+      {/* A FAIRE Display les 2 recettes crème et lessive */}
+      <div className="grid grid-cols-2 gap-x-2 | mt-10 mb-20">
         {recipes.map((recipe) => (
           <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
         ))}
       </div>
-      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:grid-rows-1 lg:w-2/3 self-start mb-3">
-        <div className="grid justify-items-end w-full h-16 bg-green rounded-full shadow-lg | p-1 -ml-10">
+
+      <div className="grid gap-2 lg:grid-cols-4 w-full mb-10">
+        <div className="grid justify-items-end bg-green rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
           <div className="flex">
             <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
               Aller plus loin
@@ -984,23 +1041,19 @@ const StarterPage = () => {
           </div>
         </div>
         <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold pr-4 lg:pr-0">
+          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6">
             Où acheter les ingrédients ?
           </h3>
-          <h3 className="hidden lg:flex text-sm lg:text-lg font-light p-4 lg:p-0">
+          <h3 className="text-sm lg:text-lg font-light px-6">
             Il est parfois difficile de trouver des ingrédients de bonne qualité
             sans faire plein d’enseignes différentes. Nous proposons quelques
             conseils et marques pour vous aiguiller dans cette recherche.
           </h3>
         </div>
-        <h3 className="lg:hidden text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
-          Il est parfois difficile de trouver des ingrédients de bonne qualité
-          sans faire plein d’enseignes différentes. Nous proposons quelques
-          conseils et marques pour vous aiguiller dans cette recherche.
-        </h3>
       </div>
-      <Container className="grid justify-items-center w-full lg:w-10/12 px-8 mt-6 mb-6">
-        <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 pb-6 mb-2">
+
+      <Container className="grid justify-items-center w-full lg:w-10/12 mt-6 mb-6">
+        <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 pb-6 px-4 mb-2">
           <div className="flex lg:gap-10">
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
@@ -1008,10 +1061,10 @@ const StarterPage = () => {
                   src={Producteur}
                   className="w-16 lg:w-20 self-center items-center"
                   alt="Producteur_icon"
-                />{" "}
+                />
               </div>
               <h2 className="text-base text-center font-light">
-                Producteurs lcoaux
+                Producteurs locaux
               </h2>
               <p className="text-sm text-center font-light">
                 Le top, c’est de faire appel à nos producteurs locaux pour vos
@@ -1066,8 +1119,8 @@ const StarterPage = () => {
         </div>
       </Container>
 
-      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:grid-rows-1 lg:w-2/3 self-start mb-3">
-        <div className="grid justify-items-end w-full h-16 bg-green rounded-full shadow-lg | p-1 -ml-10">
+      <div className="grid gap-2 lg:grid-cols-4 w-full mb-10">
+        <div className="grid justify-items-end bg-green rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
           <div className="flex">
             <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
               Aller plus loin
@@ -1075,10 +1128,10 @@ const StarterPage = () => {
           </div>
         </div>
         <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold pr-4 lg:pr-0">
-            Où trouver les connaissances nécessaires ?
+          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6 mb-2">
+            Où trouver les informations nécessaires ?
           </h3>
-          <h3 className="hidden lg:flex text-sm lg:text-lg font-light p-4 lg:p-0">
+          <h3 className="text-sm lg:text-lg font-light px-6">
             Les informations sur le fait-maison sont éparpillées sur internet
             entre les blogs, c’est la raison pour laquelle Greenit existe !
             <br />
@@ -1088,18 +1141,9 @@ const StarterPage = () => {
             sélection de sources pour débuter en fait-maison.
           </h3>
         </div>
-        <h3 className="lg:hidden text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
-          Les informations sur le fait-maison sont éparpillées sur internet
-          entre les blogs, c’est la raison pour laquelle Greenit existe !
-          <br />
-          <br />
-          Greenit c’est des recettes simples, des ateliers et les information
-          ingrédients (bientôt). En attendant, nous vous proposons une sélection
-          de sources pour débuter en fait-maison.
-        </h3>
       </div>
-      <Container className="grid justify-items-center w-full lg:w-10/12 px-8 mt-6 mb-6">
-        <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 pb-6 mb-2">
+      <Container className="grid justify-items-center w-full lg:w-10/12 lg:mt-6 mb-6">
+        <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 pb-6 mb-2 px-4">
           <div className="flex gap-6 lg:gap-10">
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
@@ -1165,30 +1209,59 @@ const StarterPage = () => {
           </div>
         </div>
       </Container>
-      <Button type="grey" className={"w-24 self-center mt-2 mb-6"}>
-        <p> Lire plus</p>
-      </Button>
 
-      <div className="grid grid-cols-2 grid-rows-2 | lg:grid-cols-3 lg:grid-rows-1 lg:w-2/3 self-start mb-3">
-        <div className="grid justify-items-end w-full h-16 bg-green rounded-full shadow-lg | p-1 -ml-10">
+      <div className="grid gap-2 lg:grid-cols-4 w-full">
+        <div className="grid justify-items-end bg-green rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
           <div className="flex">
             <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
-              Questions
+              Explorer plus
             </h3>
           </div>
         </div>
         <div className="grid lg:col-span-2">
-          <h3 className="text-lg self-center lg:text-2xl font-semibold pr-4 lg:pr-0">
-            Où trouver les connaissances nécessaires ?
-          </h3>
-          <h3 className="hidden lg:flex text-sm lg:text-lg font-light p-4 lg:p-0">
-            N’hesitez pas à poser vos questions 👇
+          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6 mb-2">
+            À la recherche d'autres recettes simples pour débuter ?
           </h3>
         </div>
-        <h3 className="lg:hidden text-sm col-span-2 lg:text-lg font-light p-4 lg:p-0">
-          N’hesitez pas à poser vos questions 👇
+      </div>
+      <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 justify-self-center justify-content-center w-10/12 lg:w-3/5 mt-6 mb-16">
+        <h3 className="text-sm lg:text-base lg:col-span-2 font-light mt-6">
+          <p>
+            "Avec les ingrédients de la cuisine" réuni toutes les recettes avec
+            des ingredients que l'on peut déjà avoir chez soi.
+          </p>
+        </h3>
+        {landingPageCategories.slice(2, 3).map((item) => (
+          <CategoryCircle name={item.title} icon={item.icon} key={item.title} />
+        ))}
+        {landingPageCategories.slice(0, 1).map((item) => (
+          <CategoryCircle name={item.title} icon={item.icon} key={item.title} />
+        ))}
+        <h3 className="text-sm lg:text-base lg:col-span-2 font-light mt-6 text-right">
+          <p>"Premier pas" réuni toutes les recettes les plus simples.</p>
         </h3>
       </div>
+
+      <div className="grid gap-2 lg:grid-cols-4 w-full mb-40">
+        <div className="grid justify-items-end bg-green rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16">
+          <div className="flex">
+            <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
+              Questions ?
+            </h3>
+          </div>
+        </div>
+        <div className="grid lg:col-span-2">
+          <h3 className="text-lg self-center lg:text-2xl font-semibold px-6 my-2">
+            N'hesitez pas à nous partager vos questions et retours pour que l'on
+            puisse mieux vous accompagner.
+          </h3>
+          <h3 className="text-sm lg:text-lg font-light px-6 text-center mt-4">
+            👇 Ici 👇
+          </h3>
+        </div>
+      </div>
+      {/* A FAIRE - comment les gens peuvent-ils nous adresser leurs quetsion super facilement ? */}
+      <Footer />
     </div>
   );
 };
