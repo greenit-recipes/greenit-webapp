@@ -1,26 +1,27 @@
 .carousel-container {
-   width: 80%;
+   width: 65%;
 }
 
 .carousel-container-mobile {
-    width: 90%;
-    margin: auto;
- }
+  width: 90%;
+  margin: auto;
+}
 
 .carousel-item {
-   padding-top: 20px;
-   padding-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
 .carousel-item-mobile {
-    padding-top: 20px;
-    padding-bottom: 40px;
- }
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
 
 .custom-dot-list-style {
-   margin: 10px;
+  margin-top: 10px;
+  border-color: black;
 }
 
 .custom-dot-list-style-mobile {
-    margin: 10px;
- }
+  margin: 10px;
+}

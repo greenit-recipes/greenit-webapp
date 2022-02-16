@@ -38,7 +38,7 @@ const responsiveCarouselLanding = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 664 },
-    items: 4,
+    items: 3,
     slidesToSlide: 1, // optional, default to 1.
   },
   mobile: {
@@ -50,7 +50,12 @@ const responsiveCarouselLanding = {
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
-  const { error, loading, data: dataIsDiplayHome, refetch } = useRecipesQuery({
+  const {
+    error,
+    loading,
+    data: dataIsDiplayHome,
+    refetch,
+  } = useRecipesQuery({
     fetchPolicy: "no-cache",
     variables: { first: 8, filter: { isDisplayHome: true } },
   });
@@ -166,9 +171,13 @@ const LandingPage = () => {
         infinite={true}
         keyBoardControl={true}
         transitionDuration={500}
-        containerClass={isMobile ? "carousel-container-mobile" : "carousel-container"}
+        containerClass={
+          isMobile ? "carousel-container-mobile" : "carousel-container"
+        }
         customTransition="transform 300ms ease-in-out"
-        dotListClass={isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"}
+        dotListClass={
+          isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
+        }
         itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
       >
         {recipesBegginer?.map((recipe) => (
@@ -186,9 +195,13 @@ const LandingPage = () => {
         infinite={true}
         keyBoardControl={true}
         transitionDuration={500}
-        containerClass={isMobile ? "carousel-container-mobile" : "carousel-container"}
+        containerClass={
+          isMobile ? "carousel-container-mobile" : "carousel-container"
+        }
         customTransition="transform 300ms ease-in-out"
-        dotListClass={isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"}
+        dotListClass={
+          isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
+        }
         itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
       >
         {recipesOrderByLikes?.map((recipe) => (
