@@ -16,7 +16,7 @@ export const CategoryCircle: React.FC<CategoryCircleProps> = ({
     "Avec les ingrédients de la cuisine",
   ].includes(name);
   return (
-    <div className="flex flex-col | items-center">
+    <div className="flex flex-col | items-center | transform sm:hover:scale-105 ease-linear transition-all duration-150">
       <div className="w-20 h-20 md:w-24 md:h-24 bg-white mx-4 | rounded-full shadow-lg">
         <Link to={`${RouteName.recipes}?${isTag ? `tags=${name}` : `category=${name}`}`}>
           <img

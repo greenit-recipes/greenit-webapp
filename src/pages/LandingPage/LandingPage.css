@@ -1,10 +1,13 @@
-.carousel-container {
-  width: 65%;
+.carousel-container-mobile {
+  width: 100%;
   height: auto;
 }
 
-.carousel-container-mobile {
-  width: 100%;
+@media only screen and (min-width: 600px) {
+  .carousel-container {
+    width: 65%;
+    height: auto;
+  }
 }
 
 .carousel-item {

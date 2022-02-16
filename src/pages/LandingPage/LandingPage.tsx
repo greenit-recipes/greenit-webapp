@@ -92,8 +92,9 @@ const LandingPage = () => {
       </Helmet>
       <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
-      <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-4 mb-2 md:mt-4">
-        <div className="mb-6">
+
+      <Container className="grid auto-col-auto lg:grid-cols-3 lg:gap-6 justify-items-center | items-start | my-6 sm:mt-14">
+        <div className="mb-5 w-3/4 lg:w-full lg:col-span-2">
           {!isMobile && (
             <h5 className="text-green font-medium text-3xl md:text-5xl mb-2 |">
               Greenit
@@ -108,65 +109,101 @@ const LandingPage = () => {
           <h5 className="text-green font-semibold text-2xl md:text-4xl | ml-2 inline">
             durable
           </h5>
+          <div className="w-2/3 mt-5 max-w-20">
+            <SearchBar keyId="searchBarLandingPage" />
+          </div>
         </div>
-        <div className="lg:w-2/5">
-          <SearchBar keyId="searchBarLandingPage" />
-        </div>
+        {isMobile ? (
+          <div className="w-full sm:w-4/5 | py-4 pl-6 | flex flex overflow-x-auto">
+            <div className="flex flex-row">
+              {landingPageCategories.slice(0, 1).map((item) => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
+              {landingPageCategories.slice(2, 3).map((item) => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
+              <div className="w-1 h-18 border-r-1 border-grey self-center mb-14 mx-6"></div>
+              {landingPageCategories.slice(3).map((item) => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-row w-full justify-center ml-8">
+            <div className="flex flex-col gap-6">
+              {landingPageCategories.slice(4, 5).map((item) => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
+              {landingPageCategories.slice(0, 1).map((item) => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
+            </div>
+            <div className="flex flex-col gap-6">
+              {landingPageCategories.slice(3, 4).map((item) => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
+
+              {landingPageCategories.slice(2, 3).map((item) => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </Container>
 
-      <div className="w-full sm:w-4/5 lg:w-2/3 | py-4 pl-6 | flex flex overflow-x-auto">
-        <div className="flex flex-row">
-          {landingPageCategories.slice(0, 1).map((item) => (
-            <CategoryCircle
-              name={item.title}
-              icon={item.icon}
-              key={item.title}
-            />
-          ))}
-          {landingPageCategories.slice(2, 3).map((item) => (
-            <CategoryCircle
-              name={item.title}
-              icon={item.icon}
-              key={item.title}
-            />
-          ))}
-          <div className="w-1 h-18 border-r-1 border-grey self-center mb-14 mx-6"></div>
-          {landingPageCategories.slice(3).map((item) => (
-            <CategoryCircle
-              name={item.title}
-              icon={item.icon}
-              key={item.title}
-            />
-          ))}
-        </div>
-      </div>
-
-      <Container className="mb-6" itemsCenter>
-        <h2 className="text-xl md:text-2xl | p-2 md:pb-5 text-center">
+      <Container className="mb-14" itemsCenter>
+        <h2 className="text-xl md:text-2xl | mb-4 lg:mb-10 text-center border-b-1 border-black pb-2">
           Notre sélection de recettes
         </h2>
         {isMobile ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 md:gap-y-10 mb-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 mb-2">
             {recipes?.slice(0, 6).map((recipe, index: number) => (
               <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-4 justify-items-center gap-y-6 gap-x-4 |  px-8">
+          <div className="grid grid-cols-4 justify-items-center gap-y-10 gap-x-4">
             {recipes?.map((recipe) => (
               <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
             ))}
           </div>
         )}
-        <Link to={RouteName.recipes} className="mt-6">
+        <Link to={RouteName.recipes} className="lg:mt-10">
           <Button type="green">Découvrir plus</Button>
         </Link>
       </Container>
 
-      <h2 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
-        Une séléction de recettes pour les débutants
+      <h2 className="text-xl md:text-2xl | mb-6 text-center border-b-1 border-black pb-2">
+        Les recettes débutants
       </h2>
-
       <Carousel
         swipeable={true}
         showDots={true}
@@ -188,8 +225,8 @@ const LandingPage = () => {
         ))}
       </Carousel>
 
-      <h2 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
-        Notre séléction de recettes les plus aimées
+      <h2 className="text-xl md:text-2xl | mt-20 mb-6 text-center border-b-1 border-black pb-2">
+        Les recettes préférées
       </h2>
       <Carousel
         swipeable={true}
@@ -212,12 +249,12 @@ const LandingPage = () => {
         ))}
       </Carousel>
 
-      <Container className="w-full text-center mt-10 sm:mb-8" itemsCenter>
-        <h2 className="text-xl md:text-2xl | md:mb-2 px-5 text-center">
+      <Container className="w-full text-center mt-20" itemsCenter>
+        <h2 className="text-xl md:text-2xl | mb-2 text-center">
           🙏 Merci à tous pour votre grande générosité ! 🌱
         </h2>
 
-        <h3 className=" w-full sm:w-2/3 md:w-2/5 p-4 md:p-1 mb-6 text-md md:text-xl text-center">
+        <h3 className=" w-full sm:w-2/3 md:w-2/5 px-4 md:p-1 mb-6 text-md md:text-xl text-center">
           Grâce aux dons de toute la communauté nous pouvons continuer à
           développer Greenit, avec toujours plus de DIY !
         </h3>
@@ -243,8 +280,8 @@ const LandingPage = () => {
         </div>
       </Container>
 
-      <Container className="w-full text-center mt-8 sm:mb-14" itemsCenter>
-        <h2 className="text-xl md:text-2xl | p-5 text-center">
+      <Container className="w-full text-center" itemsCenter>
+        <h2 className="text-xl md:text-2xl | mt-10 lg:mt-20 mb-6 text-center border-b-1 border-black pb-2">
           Nos tutos vidéos pour commencer
         </h2>
 
@@ -304,11 +341,10 @@ const LandingPage = () => {
 
       <Container
         className="w-full md:w-3/5 h-full"
-        margin={10}
         itemsCenter
         padding={isMobile}
       >
-        <h2 className="text-xl md:text-2xl | mt-4 text-center">
+        <h2 className="text-xl md:text-2xl | mt-20 lg:mb-10 text-center border-b-1 border-black pb-2">
           Pourquoi Greenit ?
         </h2>
         <div className="grid grid-cols-2 gap-8 md:gap-12 justify-items-center mt-8">
@@ -330,7 +366,7 @@ const LandingPage = () => {
             </div>
           ))}
         </div>
-        <h3 className="mt-10 mb-10 text-md md:text-xl text-center">
+        <h3 className="mt-10 mb-4 text-md md:text-xl text-center">
           Greenit est une initiative visant à encourager une consommation <br />
           plus durable et responsable.
         </h3>
