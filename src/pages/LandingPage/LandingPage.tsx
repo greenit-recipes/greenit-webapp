@@ -32,12 +32,12 @@ import "pages/LandingPage/LandingPage.css";
 
 const responsiveCarouselLanding = {
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 3000, min: 1224 },
     items: 4,
     slidesToSlide: 1, // optional, default to 1.
   },
   tablet: {
-    breakpoint: { max: 1024, min: 664 },
+    breakpoint: { max: 1224, min: 664 },
     items: 3,
     slidesToSlide: 1, // optional, default to 1.
   },
@@ -140,6 +140,7 @@ const LandingPage = () => {
           ))}
         </div>
       </div>
+
       <Container className="mb-6" itemsCenter>
         <h2 className="text-xl md:text-2xl | p-2 md:pb-5 text-center">
           Notre sélection de recettes
@@ -161,9 +162,11 @@ const LandingPage = () => {
           <Button type="green">Découvrir plus</Button>
         </Link>
       </Container>
+
       <h2 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
         Une séléction de recettes pour les débutants
       </h2>
+
       <Carousel
         swipeable={true}
         showDots={true}

@@ -1,27 +1,50 @@
 .carousel-container {
-   width: 65%;
+  width: 65%;
+  height: auto;
 }
 
 .carousel-container-mobile {
-  width: 90%;
-  margin: auto;
+  width: 100%;
 }
 
 .carousel-item {
   padding-top: 20px;
   padding-bottom: 40px;
+  padding-left: 10px;
 }
 
 .carousel-item-mobile {
-  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
   padding-bottom: 40px;
+  width: 170px !important;
 }
 
-.custom-dot-list-style {
-  margin-top: 10px;
-  border-color: black;
+.react-multi-carousel-dot {
+  border-color: transparent !important;
 }
 
-.custom-dot-list-style-mobile {
-  margin: 10px;
+.react-multi-carousel-dot button {
+  border-color: rgb(0, 0, 0) !important;
+  width: 10px;
+  height: 10px;
+}
+
+.react-multiple-carousel__arrow {
+  display: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .react-multiple-carousel__arrow {
+    display: block;
+    min-width: 40px;
+    min-height: 40px;
+  }
+  .react-multiple-carousel__arrow--right {
+    right: 0px;
+  }
+  .react-multiple-carousel__arrow--left {
+    left: 0px;
+  }
 }
