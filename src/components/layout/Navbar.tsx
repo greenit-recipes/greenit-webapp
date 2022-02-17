@@ -68,7 +68,7 @@ export const Navbar: React.FC = () => {
         >
           <div className="flex flex-col">
             <SearchBar keyId="SearchNavMobile" />
-            <Link className="p-2 mt-3" to={RouteName.acceuil}>
+            <Link className="p-2 mt-3" to={RouteName.accueil}>
               <h2 className="text-white">Accueil</h2>
             </Link>
             <Link className="p-2" to={RouteName.recipes}>
@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
   return (
     <div className="flex flex-row h-16 w-full | sticky top-0 bg-white z-50">
       <div className="grid justify-items-center items-center">
-        <Link to={RouteName.acceuil}>
+        <Link to={RouteName.accueil}>
           <img
             src={logo}
             className="h-10 w-10 | ml-4 self-center"
@@ -110,7 +110,7 @@ export const Navbar: React.FC = () => {
         </Link>
       </div>
       <div className="flex flex-row ml-4 w-2/3 h-full items-center justify-items-start">
-        <Link to={RouteName.acceuil}>
+        <Link to={RouteName.accueil}>
           <NavButton
             type="black"
             onClick={() => {
