@@ -1,7 +1,9 @@
 import React from "react";
 import { Button } from "components/misc/Button";
 import authService, { ME, UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
-import { MailIcon } from "icons";
+import { Link } from "react-router-dom";
+import { RouteName } from "App";
+
 
 export const Modal: React.FC = () => {
   const [showModal, setShowModal] = React.useState(false);
@@ -43,21 +45,13 @@ export const Modal: React.FC = () => {
                     <h2>Déconnexion</h2>
                   </button>
                 </div>
-                <div className="relative flex-auto py-2 text-start w-2/3 max-w-12 mb-8 ml-6 border-b-4 | hover:border-blue">
-                  <h2 className="text-xl cursor-default">Supprimer mon compte</h2>
-                  <h3 className="text-base cursor-default">
-                    Merci d'en faire la demande par email
-                  </h3>
-                  <a
-                    href="mailto:hello@greenitcommunity.com"
-                    className="inline-flex gap-x-2 cursor-pointer"
-                  >
-                    <img src={MailIcon} alt="greenit mail" className="w-4 h-4 self-center" />
-                    <h3 className="text-xs md:text-base self-center">
-                      hello@greenitcommunity.com
-                    </h3>
-                  </a>
-                </div>
+                <Link to={RouteName.deleteProfil}>
+                  <div className="relative cursor pointer flex-auto py-2 text-start w-2/3 max-w-12 mb-8 ml-6 border-b-4 | hover:border-blue">
+                    <h2 className="text-xl">
+                      Supprimer mon compte
+                    </h2>
+                  </div>
+                </Link>
 
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
