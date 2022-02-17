@@ -1,7 +1,7 @@
 // CATEGORIES
 import wellbeing from "./bien-être_icon.png";
 import corps from "./corps_recette.png";
-import visage from "./visage_recette.png";
+import visage from "./visage_recette.jpeg";
 import maison from "./maison_recette.png";
 
 //INGREDIENTS
@@ -12,7 +12,6 @@ import ingredients4 from "./ingredients4.png"
 import ingredients5 from "./ingredients5.png"
 import ingredients6 from "./ingredients6.png"
 
-
 // LOGO
 import logo from "./logo.png";
 import logoBig from "./logoBig.png"
@@ -20,7 +19,7 @@ import logoBig from "./logoBig.png"
 // LANDING PAGE BUTTON ICONS
 import premierspas from "./premiers_pas_recette.png";
 import zeroWaste from "./zero_dechet_recette.png";
-import fridge from "./ingredients_cuisine_recette.png";
+import fridge from "./ingredients_cuisine_recette.jpeg";
 import search from "./search_icon.png";
 
 // MISC

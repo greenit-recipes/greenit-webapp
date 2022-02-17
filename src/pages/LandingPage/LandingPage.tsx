@@ -93,8 +93,8 @@ const LandingPage = () => {
       <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
 
-      <Container className="grid auto-col-auto lg:grid-cols-3 lg:gap-6 justify-items-center | items-start | my-6 sm:mt-14">
-        <div className="mb-5 w-3/4 lg:w-full lg:col-span-2">
+      <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-4 mb-2 md:mt-4">
+        <div className="mb-6">
           {!isMobile && (
             <h5 className="text-green font-medium text-3xl md:text-5xl mb-2 |">
               Greenit
@@ -109,78 +109,41 @@ const LandingPage = () => {
           <h5 className="text-green font-semibold text-2xl md:text-4xl | ml-2 inline">
             durable
           </h5>
-          <div className="w-2/3 mt-5 max-w-20">
-            <SearchBar keyId="searchBarLandingPage" />
-          </div>
         </div>
-        {isMobile ? (
-          <div className="w-full sm:w-4/5 | py-4 pl-6 | flex flex overflow-x-auto">
-            <div className="flex flex-row">
-              {landingPageCategories.slice(0, 1).map((item) => (
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              ))}
-              {landingPageCategories.slice(2, 3).map((item) => (
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              ))}
-              <div className="w-1 h-18 border-r-1 border-grey self-center mb-14 mx-6"></div>
-              {landingPageCategories.slice(3).map((item) => (
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="flex flex-row w-full justify-center ml-8">
-            <div className="flex flex-col gap-6">
-              {landingPageCategories.slice(4, 5).map((item) => (
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              ))}
-              {landingPageCategories.slice(0, 1).map((item) => (
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              ))}
-            </div>
-            <div className="flex flex-col gap-6">
-              {landingPageCategories.slice(3, 4).map((item) => (
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              ))}
-
-              {landingPageCategories.slice(2, 3).map((item) => (
-                <CategoryCircle
-                  name={item.title}
-                  icon={item.icon}
-                  key={item.title}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+        <div className="lg:w-2/5">
+          <SearchBar keyId="searchBarLandingPage" />
+        </div>
       </Container>
 
+      <div className="w-full sm:w-4/5 lg:w-2/3 | py-4 pl-6 | flex flex overflow-x-auto">
+        <div className="flex flex-row">
+          {landingPageCategories.slice(0, 1).map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))}
+          {landingPageCategories.slice(2, 3).map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))}
+          <div className="w-1 h-18 border-r-1 border-grey self-center mb-14 mx-6"></div>
+          {landingPageCategories.slice(3).map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))}
+        </div>
+      </div>
+
       <Container className="mb-14" itemsCenter>
-        <h2 className="text-xl md:text-2xl | mb-4 lg:mb-10 text-center border-b-1 border-black pb-2">
+        <h2 className="text-xl md:text-2xl | mb-4 lg:mb-6 text-center border-b-1 border-black pb-2">
           Notre sélection de recettes
         </h2>
         {isMobile ? (
