@@ -22,9 +22,10 @@ import ForgetPassword from "pages/Login/ForgetPassword";
 import ActivateResetPassword from "pages/ActivateResetPassword";
 import RecipeCreatedPage from "pages/CreateRecipe/CreateRecipeSuccess";
 import AccountCreated from "pages/AccountCreated";
-import IngredientPage from "pages/IngredientSpace/IngredientPage"
+import IngredientPage from "pages/IngredientSpace/IngredientPage";
 import StarterPage from "pages/StarterPage";
 import RecapPage from "pages/RecapPage";
+import DeleteProfil from "pages/Profil/DeleteProfil";
 
 export const history = createBrowserHistory();
 
@@ -32,7 +33,8 @@ export const RouteName = {
   resetPassword: "/reinitialisation-mot-de-passe", // no index
   tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
   accountCreated: "/compte-crée", // no index
-  activateResetPassword: "/activate/mot-de-passe-oublié/:tokenActivationAccount", // no index
+  activateResetPassword:
+    "/activate/mot-de-passe-oublié/:tokenActivationAccount", // no index
   register: "/creation-compte",
   recipeCreated: "/ajout-recette", // no index
   workshops: "/ateliers",
@@ -45,6 +47,7 @@ export const RouteName = {
   profil: "/profil",
   connexion: "/connexion",
   recap: "/recap",
+  deleteProfil: "/supprimer-compte", // no index
 };
 
 const App: React.FC = () => {
@@ -54,16 +57,41 @@ const App: React.FC = () => {
         <PublicRoute path="/" component={LandingPage} exact />
         <PublicRoute path={RouteName.why} component={WhyPage} exact />
         <PublicRoute path={RouteName.contact} component={ContactPage} exact />
-        <PublicRoute path={RouteName.recipes} component={RecipeListPage} exact />
-        <PublicRoute path="/recettes/:name" component={RecipeSinglePage} exact />
+        <PublicRoute
+          path={RouteName.recipes}
+          component={RecipeListPage}
+          exact
+        />
+        <PublicRoute
+          path="/recettes/:name"
+          component={RecipeSinglePage}
+          exact
+        />
         <PublicRoute
           path="/personalizedSearch"
           component={PersonalizedSearch}
           exact
         />
-        <PublicRoute path={RouteName.ingredientPage} component={IngredientPage} exact />
-        <PublicRoute path={RouteName.workshops} component={WorkshopPage} exact />
-        <PublicRoute path={RouteName.starterPage} component={StarterPage} exact />
+        <PublicRoute
+          path={RouteName.ingredientPage}
+          component={IngredientPage}
+          exact
+        />
+        <PublicRoute
+          path={RouteName.workshops}
+          component={WorkshopPage}
+          exact
+        />
+        <PublicRoute
+          path={RouteName.starterPage}
+          component={StarterPage}
+          exact
+        />
+        <PrivateRoute
+          path={RouteName.deleteProfil}
+          component={DeleteProfil}
+          exact
+        />
         <PrivateRoute
           path={RouteName.createRecipe}
           component={CreateRecipe}
@@ -88,7 +116,7 @@ const App: React.FC = () => {
           path={RouteName.tokenActivationAccount}
           component={ActivateAccount}
         />
-                <Route
+        <Route
           exact
           path={RouteName.accountCreated}
           component={AccountCreated}

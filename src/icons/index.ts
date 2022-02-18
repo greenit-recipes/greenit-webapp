@@ -15,6 +15,7 @@ import ingredients6 from "./ingredients6.png"
 
 // LOGO
 import logo from "./logo.png";
+import logoBig from "./logoBig.png"
 
 // LANDING PAGE BUTTON ICONS
 import premierspas from "./premiers_pas_recette.png";
@@ -107,6 +108,7 @@ export {
   ingredients5,
   ingredients6,
   logo,
+  logoBig,
   premierspas,
   zeroWaste,
   fridge,

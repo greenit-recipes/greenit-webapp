@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Navbar } from "../../components";
+import { Link } from "react-router-dom";
+import { Button, Navbar } from "../../components";
 import useIsMobile from "../../hooks/isMobile";
 
 const NotFoundPage = () => {
@@ -19,6 +20,12 @@ const NotFoundPage = () => {
       >
         <h2 className="text-3xl lg:text-8xl mb-2">404</h2>
         <h1 className="text-2xl lg:text-3xl">Cette page n’existe pas</h1>
+
+        <Link to="/">
+          <Button className="mt-5" type="blue">
+            Revenir à la page d'accueil
+          </Button>
+        </Link>
       </div>
     </div>
   );
