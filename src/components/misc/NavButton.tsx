@@ -1,7 +1,7 @@
 import React from "react";
 
 interface NavButtonProps {
-  type: "blue" | "green" | "yellow" | "orange" | "grey" | "red";
+  type: "black" | "blue" | "green" | "yellow" | "orange" | "grey" | "red";
   rounded?: string;
   className?: string;
   onClick?: () => void;

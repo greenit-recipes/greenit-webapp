@@ -30,6 +30,7 @@ import DeleteProfil from "pages/Profil/DeleteProfil";
 export const history = createBrowserHistory();
 
 export const RouteName = {
+  accueil: "/",
   resetPassword: "/reinitialisation-mot-de-passe", // no index
   tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
   accountCreated: "/compte-crée", // no index
@@ -54,7 +55,7 @@ const App: React.FC = () => {
   return (
     <Router history={history}>
       <Switch>
-        <PublicRoute path="/" component={LandingPage} exact />
+        <PublicRoute path={RouteName.accueil} component={LandingPage} exact />
         <PublicRoute path={RouteName.why} component={WhyPage} exact />
         <PublicRoute path={RouteName.contact} component={ContactPage} exact />
         <PublicRoute

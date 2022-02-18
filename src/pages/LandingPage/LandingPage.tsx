@@ -32,13 +32,13 @@ import "pages/LandingPage/LandingPage.css";
 
 const responsiveCarouselLanding = {
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 3000, min: 1224 },
     items: 4,
     slidesToSlide: 1, // optional, default to 1.
   },
   tablet: {
-    breakpoint: { max: 1024, min: 664 },
-    items: 4,
+    breakpoint: { max: 1224, min: 664 },
+    items: 3,
     slidesToSlide: 1, // optional, default to 1.
   },
   mobile: {
@@ -50,7 +50,12 @@ const responsiveCarouselLanding = {
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
-  const { error, loading, data: dataIsDiplayHome, refetch } = useRecipesQuery({
+  const {
+    error,
+    loading,
+    data: dataIsDiplayHome,
+    refetch,
+  } = useRecipesQuery({
     fetchPolicy: "no-cache",
     variables: { first: 8, filter: { isDisplayHome: true } },
   });
@@ -87,6 +92,7 @@ const LandingPage = () => {
       </Helmet>
       <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
+
       <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-4 mb-2 md:mt-4">
         <div className="mb-6">
           {!isMobile && (
@@ -135,29 +141,31 @@ const LandingPage = () => {
           ))}
         </div>
       </div>
-      <Container className="mb-6" itemsCenter>
-        <h2 className="text-xl md:text-2xl | p-2 md:pb-5 text-center">
+
+      <Container className="mb-14" itemsCenter>
+        <h2 className="text-xl md:text-2xl | mb-4 lg:mb-6 text-center border-b-1 border-black pb-2">
           Notre sélection de recettes
         </h2>
         {isMobile ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 md:gap-y-10 mb-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 mb-2">
             {recipes?.slice(0, 6).map((recipe, index: number) => (
               <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-4 justify-items-center gap-y-6 gap-x-4 |  px-8">
+          <div className="grid grid-cols-4 justify-items-center gap-y-10 gap-x-4">
             {recipes?.map((recipe) => (
               <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
             ))}
           </div>
         )}
-        <Link to={RouteName.recipes} className="mt-6">
+        <Link to={RouteName.recipes} className="lg:mt-10">
           <Button type="green">Découvrir plus</Button>
         </Link>
       </Container>
-      <h2 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
-        Une séléction de recettes pour les débutants
+
+      <h2 className="text-xl md:text-2xl | mb-6 text-center border-b-1 border-black pb-2">
+        Les recettes débutants
       </h2>
       <Carousel
         swipeable={true}
@@ -166,9 +174,13 @@ const LandingPage = () => {
         infinite={true}
         keyBoardControl={true}
         transitionDuration={500}
-        containerClass={isMobile ? "carousel-container-mobile" : "carousel-container"}
+        containerClass={
+          isMobile ? "carousel-container-mobile" : "carousel-container"
+        }
         customTransition="transform 300ms ease-in-out"
-        dotListClass={isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"}
+        dotListClass={
+          isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
+        }
         itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
       >
         {recipesBegginer?.map((recipe) => (
@@ -176,8 +188,8 @@ const LandingPage = () => {
         ))}
       </Carousel>
 
-      <h2 className="text-xl md:text-2xl | p-2 md:p-5 text-center">
-        Notre séléction de recettes les plus aimées
+      <h2 className="text-xl md:text-2xl | mt-20 mb-6 text-center border-b-1 border-black pb-2">
+        Les recettes préférées
       </h2>
       <Carousel
         swipeable={true}
@@ -186,9 +198,13 @@ const LandingPage = () => {
         infinite={true}
         keyBoardControl={true}
         transitionDuration={500}
-        containerClass={isMobile ? "carousel-container-mobile" : "carousel-container"}
+        containerClass={
+          isMobile ? "carousel-container-mobile" : "carousel-container"
+        }
         customTransition="transform 300ms ease-in-out"
-        dotListClass={isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"}
+        dotListClass={
+          isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
+        }
         itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
       >
         {recipesOrderByLikes?.map((recipe) => (
@@ -196,12 +212,12 @@ const LandingPage = () => {
         ))}
       </Carousel>
 
-      <Container className="w-full text-center mt-10 sm:mb-8" itemsCenter>
-        <h2 className="text-xl md:text-2xl | md:mb-2 px-5 text-center">
+      <Container className="w-full text-center mt-20" itemsCenter>
+        <h2 className="text-xl md:text-2xl | mb-2 text-center">
           🙏 Merci à tous pour votre grande générosité ! 🌱
         </h2>
 
-        <h3 className=" w-full sm:w-2/3 md:w-2/5 p-4 md:p-1 mb-6 text-md md:text-xl text-center">
+        <h3 className=" w-full sm:w-2/3 md:w-2/5 px-4 md:p-1 mb-6 text-md md:text-xl text-center">
           Grâce aux dons de toute la communauté nous pouvons continuer à
           développer Greenit, avec toujours plus de DIY !
         </h3>
@@ -227,8 +243,8 @@ const LandingPage = () => {
         </div>
       </Container>
 
-      <Container className="w-full text-center mt-8 sm:mb-14" itemsCenter>
-        <h2 className="text-xl md:text-2xl | p-5 text-center">
+      <Container className="w-full text-center" itemsCenter>
+        <h2 className="text-xl md:text-2xl | mt-10 lg:mt-20 mb-6 text-center border-b-1 border-black pb-2">
           Nos tutos vidéos pour commencer
         </h2>
 
@@ -288,11 +304,10 @@ const LandingPage = () => {
 
       <Container
         className="w-full md:w-3/5 h-full"
-        margin={10}
         itemsCenter
         padding={isMobile}
       >
-        <h2 className="text-xl md:text-2xl | mt-4 text-center">
+        <h2 className="text-xl md:text-2xl | mt-20 lg:mb-10 text-center border-b-1 border-black pb-2">
           Pourquoi Greenit ?
         </h2>
         <div className="grid grid-cols-2 gap-8 md:gap-12 justify-items-center mt-8">
@@ -314,7 +329,7 @@ const LandingPage = () => {
             </div>
           ))}
         </div>
-        <h3 className="mt-10 mb-10 text-md md:text-xl text-center">
+        <h3 className="mt-10 mb-4 text-md md:text-xl text-center">
           Greenit est une initiative visant à encourager une consommation <br />
           plus durable et responsable.
         </h3>

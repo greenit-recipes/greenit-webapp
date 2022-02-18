@@ -68,9 +68,12 @@ export const Navbar: React.FC = () => {
         >
           <div className="flex flex-col">
             <SearchBar keyId="SearchNavMobile" />
+            <Link className="p-2 mt-3" to={RouteName.accueil}>
+              <h2 className="text-white">Accueil</h2>
+            </Link>
             <Link className="p-2" to={RouteName.recipes}>
               <div
-                className=" mt-3 border-b-2 border-transparent"
+                className="border-b-2 border-transparent"
                 onClick={() => {
                   setVisible(true);
                 }}
@@ -98,7 +101,7 @@ export const Navbar: React.FC = () => {
   return (
     <div className="flex flex-row h-16 w-full | sticky top-0 bg-white z-50">
       <div className="grid justify-items-center items-center">
-        <Link to="/">
+        <Link to={RouteName.accueil}>
           <img
             src={logo}
             className="h-10 w-10 | ml-4 self-center"
@@ -107,6 +110,16 @@ export const Navbar: React.FC = () => {
         </Link>
       </div>
       <div className="flex flex-row ml-4 w-2/3 h-full items-center justify-items-start">
+        <Link to={RouteName.accueil}>
+          <NavButton
+            type="black"
+            onClick={() => {
+              setVisible(true);
+            }}
+          >
+            Accueil
+          </NavButton>
+        </Link>
         <div className="w-auto" id="navmenu_big">
           <Link to={RouteName.recipes}>
             <NavButton
@@ -128,7 +141,9 @@ export const Navbar: React.FC = () => {
                     Toutes les recettes
                   </h3>
                 </Link>
-                <Link to={isLoggedIn ? RouteName.createRecipe : RouteName.register}>
+                <Link
+                  to={isLoggedIn ? RouteName.createRecipe : RouteName.register}
+                >
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Partager une recette
                   </h3>
@@ -138,7 +153,9 @@ export const Navbar: React.FC = () => {
                     Premiers pas
                   </h3>
                 </Link>
-                <Link to={`${RouteName.recipes}?tags=Avec les ingrédients de la cuisine`}>
+                <Link
+                  to={`${RouteName.recipes}?tags=Avec les ingrédients de la cuisine`}
+                >
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Avec les ingrédients de la cuisine
                   </h3>
@@ -237,14 +254,14 @@ export const Navbar: React.FC = () => {
                 </h3>
               </Link>
               <Link to={RouteName.workshops + "?scroolTo=onlineWorkshop"}>
-              <h3 className="mb-2 cursor-pointer hover:text-yellow">
-                Ateliers en ligne
-              </h3>
+                <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                  Ateliers en ligne
+                </h3>
               </Link>
               <Link to={RouteName.workshops + "?scroolTo=suggestWorkshop"}>
-              <h3 className="mb-2 cursor-pointer hover:text-yellow">
-                Proposer un atelier
-              </h3>
+                <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                  Proposer un atelier
+                </h3>
               </Link>
             </div>
           </div>
@@ -257,7 +274,9 @@ export const Navbar: React.FC = () => {
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col text-lg ml-72 pt-4">
-              <h3 className="mb-2 cursor-default">Cette page arrive bientôt !</h3>
+              <h3 className="mb-2 cursor-default">
+                Cette page arrive bientôt !
+              </h3>
             </div>
           </div>
         </div>
@@ -269,12 +288,12 @@ export const Navbar: React.FC = () => {
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col w-96 text-lg ml-99 pt-4">
-            <Link to={RouteName.starterPage}>
-              <h3 className="mb-2 cursor-pointer hover:text-blue">
-                Le guide en 5 étapes pour se lancer dans le fait-maison avec 3
-                recettes faciles pour débuter, les ustensiles et ingrédients
-                nécéssaires ainsi que des conseils indispensables.
-              </h3>
+              <Link to={RouteName.starterPage}>
+                <h3 className="mb-2 cursor-pointer hover:text-blue">
+                  Le guide en 5 étapes pour se lancer dans le fait-maison avec 3
+                  recettes faciles pour débuter, les ustensiles et ingrédients
+                  nécéssaires ainsi que des conseils indispensables.
+                </h3>
               </Link>
             </div>
           </div>
