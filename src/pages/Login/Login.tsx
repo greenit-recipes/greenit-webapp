@@ -5,10 +5,13 @@ import { includes } from "lodash";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
-import authServiceService, { LOGIN_ACCOUNT } from "services/auth.service";
+import authServiceService, {
+  LOGIN_ACCOUNT,
+  CREATE_USER_FROM_AUTH,
+} from "services/auth.service";
 import * as yup from "yup";
-import { Footer, Navbar } from "../../components";
-import { BackgroundImage } from "../../components/layout/BackgroundImage";
+import { Footer, Navbar } from "components";
+import { BackgroundImage } from "components/layout/BackgroundImage";
 import { Helmet } from "react-helmet";
 import FacebookLogin from "react-facebook-login";
 
@@ -48,6 +51,13 @@ const Login: React.FC = () => {
   const [loginAccount, { data, loading, error }] = useMutation(LOGIN_ACCOUNT, {
     errorPolicy: "all",
   });
+
+  const [
+    authLogin,
+    { data: dataAuth, loading: loadingAuth, error: errorAuth },
+  ] = useMutation(CREATE_USER_FROM_AUTH, {
+    errorPolicy: "all",
+  });
   // Error for graphql call
   React.useEffect(() => {
     if (data?.tokenAuth?.success === false || error) {
@@ -65,8 +75,36 @@ const Login: React.FC = () => {
     }
   }, [setError, error, data]);
 
-  const responseFacebook = (response: any) => {
-    console.log("---->", response);
+  const responseFacebook = (responseFb: any) => {
+    console.log("fb --->", responseFb);
+    // Error si pas d'email
+
+    if (responseFb.status === 'unknown') {
+    console.log("fb --->", responseFb);
+      return;
+    }
+
+
+    authLogin({
+      variables: {
+        email: responseFb.email,
+        username: responseFb.name,
+        password: process.env.REACT_APP_PASSWORD + responseFb.id,
+        idFacebook: responseFb.id,
+        isFollowNewsletter: "false"
+      },
+    }).then((response) => {
+      console.log(response);
+              // @ts-ignore
+      if (response?.errors) {
+        // Quelque chose c'est mal passé affichier message 
+        return;
+      }
+      const data = {
+       email: responseFb.email, password: process.env.REACT_APP_PASSWORD + responseFb.id
+      }
+      onSubmitHandler(data)
+    });
   };
 
   const onSubmitHandler = (data: { email: string; password: string }) => {
@@ -99,9 +137,17 @@ const Login: React.FC = () => {
     });
     reset({...getValues(), password: ""});
   };
+
+  // Rajouter un loader pendant tous le traitement de fb
   return (
     <div className="grid justify-items-center w-full">
       <Navbar />
+      <FacebookLogin
+        // @ts-ignore
+        appId={process.env.REACT_APP_FACEBOOK_ID}
+        fields="name,email,picture"
+        callback={responseFacebook}
+      />
       <Helmet>
         <title>Connexion - Espace DIY | Greenit Community</title>
         <meta
@@ -113,14 +159,6 @@ const Login: React.FC = () => {
       <h1 className="text-xl font-medium w-2/3 md:text-2xl | mt-16 text-center">
         Connexion vers ton espace DIY <br />
       </h1>
-      <div>FACEBOOK</div>
-      <FacebookLogin
-        // @ts-ignore
-        appId={process.env.REACT_APP_FACEBOOK_ID}
-        autoLoad={true}
-        fields="name,email,picture"
-        callback={responseFacebook}
-      />
       <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 w-4/5">
           <h3 className="text-sm md:text-base self-center">

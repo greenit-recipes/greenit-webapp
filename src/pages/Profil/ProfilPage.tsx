@@ -42,7 +42,7 @@ const ProfilPage: React.FC = () => {
   const [userImage, setImage] = useState(user?.imageProfile);
 
   useEffect(() => {
-    setImage(getImagePath(user?.imageProfile));
+    setImage(user?.imageProfile ? getImagePath(user?.imageProfile) : user?.photoUrl);
   }, [user]);
 
   const refetchMe = () => refetch();
