@@ -274,42 +274,41 @@ const StarterPage = () => {
         </h3>
 
         {/* A FAIRE onclick boutton révéler tout le texte */}
-        <div className={toggle ? "container_fadeIn" : "container_fadeOut"}>
-          {" "}
-          <h3
-            className={
-              toggle
-                ? "transition ease-in-out text-sm lg:text-xl font-light"
-                : "transition ease-in-out hidden"
-            }
-          >
-            La plus grosse erreur que je vois quand on veut se lancer en
-            cosmétique maison, c’est de vouloir essayer plein de choses en même
-            temps avec plein d’ingrédients. On dépense beaucoup, on s’éparpille,
-            cela prend du temps et on s’arrête rapidement parce qu’on est perdu
-            😱
-            <br />
-            <br />
-            Mon conseil est donc : <br />
-            Remplacer vos produits petit à petit et de commencer par trouver
-            l’huile végétale qui vous convient.
-            <br />
-            <br />
-            La question à vous poser est : quelle est ma problématique
-            principale ? La peau qui tire ? Des boutons ? Des zones de brillance
-            ?<br />
-            Ensuite, trouver l’huile végétale qui répond à cette problématique.
-            Cette huile végétale peut s’utiliser seule à la place de votre crème
-            de jour ou crème de nuit. C’est la solution la plus naturelle et la
-            plus économique ! Testez avant de réaliser une crème compliquée 😉
-          </h3>
+        <div>
+
+        <input type="checkbox" className="read-more-state" id="post4" />
+
+        <div className="read-more-wrap">
+          <p>Remplacer vos produits petit à petit et de commencer par trouver
+            l’huile végétale qui vous convient.</p>
+          <div className="read-more-target">
+            <p>La plus grosse erreur que je vois quand on veut se lancer en
+              cosmétique maison, c’est de vouloir essayer plein de choses en même
+              temps avec plein d’ingrédients. On dépense beaucoup, on s’éparpille,
+              cela prend du temps et on s’arrête rapidement parce qu’on est perdu
+              😱</p>
+            <p>Mon conseil est donc :</p>
+            <p>Remplacer vos produits petit à petit et de commencer par trouver
+              l’huile végétale qui vous convient.</p>
+
+            <p>La question à vous poser est : quelle est ma problématique
+              principale ? La peau qui tire ? Des boutons ? Des zones de brillance
+              Ensuite, trouver l’huile végétale qui répond à cette problématique.
+              Cette huile végétale peut s’utiliser seule à la place de votre crème
+              de jour ou crème de nuit. C’est la solution la plus naturelle et la
+              plus économique ! Testez avant de réaliser une crème compliquée 😉
+            </p>
+          </div>
         </div>
+
+        <label htmlFor="post4" className="read-more-trigger"></label>
+      </div>
         <Button
           type="grey"
           onClick={() => {
             setToggle((prevState) => !prevState);
           }}
-          className={"w-24 self-center mt-2 mb-6"}
+          className={"w-24 self-center mt-2 mb-6 read-more-trigger"}
         >
           <p className={toggle ? "hidden" : "text-base"}> Lire plus</p>
           <p className={toggle ? "text-base" : "hidden"}> Moins</p>
