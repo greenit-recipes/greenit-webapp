@@ -48,6 +48,7 @@ export const Checkbox: React.FC<ICheckbox> = ({
 
   return (
     <label
+    id={"filter-"+option.title}
       className="flex"
       onChange={() => {
         parentFunction(isChecked, option, item);
