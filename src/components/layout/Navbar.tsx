@@ -68,6 +68,9 @@ export const Navbar: React.FC = () => {
         >
           <div className="flex flex-col">
             <SearchBar keyId="SearchNavMobile" />
+            <Link className="p-2 mt-3" to={RouteName.accueil}>
+              <h2 className="text-white">Accueil</h2>
+            </Link>
             <Link id="recipe-mobile" className="p-2" to={RouteName.recipes}>
               <div
                 className="border-b-2 border-transparent"
@@ -204,7 +207,7 @@ export const Navbar: React.FC = () => {
                     Savon
                   </h3>
                 </Link>
-                <Link id="s hampoo" to={`${RouteName.recipes}?search=Shampooing`}>
+                <Link id="shampoo" to={`${RouteName.recipes}?search=Shampooing`}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Shampooing
                   </h3>
