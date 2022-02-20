@@ -24,6 +24,7 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
   },
+  "compileOnSave": true,
   "exclude": ["node_modules", "**/node_modules/*"],
   "include": [
     "src"
