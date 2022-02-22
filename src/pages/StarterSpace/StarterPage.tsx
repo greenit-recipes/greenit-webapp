@@ -40,11 +40,20 @@ import { CategoryCircle } from "pages/LandingPage/Components/CategoryCircle";
 import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
 import { SharedWithFriend } from "pages/StarterSpace/component/SharedWithFriend/SharedWithFriend";
 import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
+import "./StarterPage.css"
+import useIsMobile from "hooks/isMobile";
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({
     fetchPolicy: "no-cache",
-    variables: {filter: { id: [ "605f0ef2-b39a-42aa-aa9e-062222bf114d", "8485c5ae-4175-474b-9107-9aa306874c5f"] } },
+    variables: {
+      filter: {
+        id: [
+          "8485c5ae-4175-474b-9107-9aa306874c5f",
+          "e0ef40bb-70e1-4127-80b6-4c106f268b03",
+        ],
+      },
+    },
   });
 
   const isLoggedIn = authService.isLoggedIn();
@@ -53,6 +62,7 @@ const StarterPage = () => {
   const fieldRefEtape3 = useRef<HTMLInputElement>(null);
   const fieldRefEtape1 = useRef<HTMLInputElement>(null);
   const fieldRefEtape2 = useRef<HTMLInputElement>(null);
+  const isMobile = useIsMobile();
 
   const scrollIntoFieldRefEtape1 = () => {
     if (!fieldRefEtape1) return;
@@ -92,7 +102,6 @@ const StarterPage = () => {
           content="Un guide simple pour débutant en DIY : des conseils et astuces, les ingrédients indispensables et des recettes simples pour débuter."
         />
       </Helmet>
-      <BackgroundImage />
 
       <Container className="flex flex-col | w-10/12 mt-8 lg:my-20">
         <div className="lg:mb-4">
@@ -282,210 +291,182 @@ const StarterPage = () => {
       ></SectionStarterPage>
 
       {/* Etape 3 Recette 1 */}
-      <Container className="flex flex-col | w-11/12 p-3 lg:p-6 mt-6 border-1 border-black bg-white rounded-lg">
-        <div className="grid grid-cols-2 auto-rows-auto gap-y-2 | lg:grid-cols-5">
-          <div className="hidden lg:block lg:col-span-1 self-center">
-            <h2 className="text-2xl font-semibold mb-2">Recette 1 :</h2>
-            <h2 className="text-xl font-medium">Crème nourrissante</h2>
-            <div className="flex gap-3">
-              <p>Quantité :</p>
-              <p className="font-semibold">70 g</p>
+      <Container className="flex| lg:w-10/12 w-11/12 p-3 lg:mt-6 rounded-lg">
+      <h2 className="text-2xl font-semibold mb-2">Recette 1 :</h2>
+        <div className="flex flex-col justify-between lg:flex-row">
+          <div className="flex-col flex">
+            <h2 className="text-xl font-medium mb-4 mr-4">Crème nourrissante</h2>
+            <div className="place-self-center lg:place-self-start">
+              <img src={CremeCorp} className={`${isMobile ? "rounded-xl w-36 h-45" : "img-dim"}`} />
+
             </div>
-            <div className="flex gap-3">
-              <p>Prix :</p>
-              <p className="font-semibold">2,80 €</p>
+            <div className="flex flex-col justify-center items-center">
+            <div className="flex mt-2">
+              <p>Quantité : </p>
+              <p className="font-semibold">&nbsp;70 g</p>
+            </div>
+            <div className="flex mt-2 mb-3">
+              <p>Prix : </p>
+              <p className="font-semibold">&nbsp;2,80 €</p>
+            </div>
             </div>
           </div>
-
-          <h2 className="hidden lg:block text-xl self-end font-medium col-span-3">
-            Les ingrédients :
-          </h2>
-          <p className="hidden lg:block text-center text-sm font-light self-end">
-            En achetant avec ce lien, vous aidez Greenit à se rémunérer 🙏
-          </p>
-          <div className="place-self-center lg:place-self-start">
-            <img src={CremeCorp} className="rounded-xl w-32 lg:w-52" />
-          </div>
-          <div className="flex-inline lg:hidden self-center">
-            <h3 className="text-xl font-semibold">Recette 1 :</h3>
-            <h2 className="text-base font-medium mb-3">Crème nourrissante</h2>
-            <div className="flex gap-3">
-              <p>Quantité :</p>
-              <p className="font-semibold">70 g</p>
-            </div>
-            <div className="flex gap-3">
-              <p>Prix :</p>
-              <p className="font-semibold">2,80 €</p>
-            </div>
-          </div>
-          <h2 className="flex lg:hidden text-base font-medium col-span-2 mt-4 ml-2">
-            Les ingrédients :
-          </h2>
-          <div className="flex col-span-2 lg:col-span-3 overflow-x-auto content-center py-4">
-            <div className="m-2 w-32">
-              <div className="flex justify-center">
-                <img
-                  src={BeurreKarite}
-                  className="w-24 h-24 max-w-none"
-                  alt="Beurre de Karité"
-                />{" "}
-              </div>
-              <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
-                <p className="text-center text-sm self-center font-medium">
-                  50 g
-                </p>
-              </div>
-              <div className="h-18 pt-2">
-                <p className="text-sm lg:text-lg font-regular text-center">
-                  Beurre de karité
-                </p>
-              </div>
-              <h4 className="text-xs lg:text-sm font-light text-center">
-                3,90 € / 100 g{" "}
-              </h4>
-            </div>
-
-            <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
-              <p className="self-center font-regular text-xl">+</p>
-            </div>
-
-            <div className="m-2 w-32">
-              <div className="flex justify-center">
-                <img
-                  src={HuileRicin}
-                  className="w-24 h-24 max-w-none"
-                  alt="Huile de Ricin"
-                />{" "}
-              </div>
-              <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
-                <p className="text-center text-sm self-center font-medium">
-                  20 g{" "}
-                </p>
-              </div>
-              <div className="h-18 pt-2">
-                <p className="text-sm lg:text-lg font-regular text-center">
-                  Huile végétale de ricin{" "}
-                </p>
-              </div>
-              <h4 className="text-xs lg:text-sm font-light text-center ">
-                2,60 € / 100 g{" "}
-              </h4>
-            </div>
-
-            <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
-              <p className="self-center font-regular text-xl">+</p>
-            </div>
-
-            <div className="m-2 w-32">
-              <div className="flex justify-center">
-                <img
-                  src={CireAbeille}
-                  className="w-24 h-24 max-w-none"
-                  alt="Cire d'Abeille"
-                />{" "}
-              </div>
-              <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
-                <p className="text-center text-sm self-center font-medium">
-                  2 g{" "}
-                </p>
-              </div>
-              <div className="h-18 pt-2">
-                <p className="text-sm lg:text-lg font-regular text-center">
-                  Cire d’abeille{" "}
-                </p>
-              </div>
-              <h4 className="text-xs lg:text-sm font-light text-center">
-                2,90 € / 30 g{" "}
-              </h4>
-            </div>
-
-            <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
-              <p className="self-center font-regular text-xl">+</p>
-            </div>
-
-            <div className="m-2 w-32">
-              <div className="flex justify-center">
-                <img
-                  src={Bocal}
-                  className="w-24 h-24 max-w-none"
-                  alt="Bocal_icon"
-                />{" "}
-              </div>
-              <div className="flex justify-center w-12 h-12 bg-grey rounded-full -mt-8 lg:ml-4 relative z-20">
-                <p className="text-center text-white text-xs self-center font-medium">
-                  ≈ 100ml{" "}
-                </p>
-              </div>
-              <div className="h-18 pt-2">
-                <p className="text-sm lg:text-lg font-regular text-center">
-                  Pot en verre{" "}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* A FAIRE onlick button la description apparait */}
-          <div className="flex col-span-2 justify-self-center | lg:hidden">
-            {/* A FAIRE onlick button la description apparait */}
-            <button className="flex cursor-pointer">
-              <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
-                <p className="self-center text-white font-bold">𝓲</p>
-              </div>
-              <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
-            </button>
-          </div>
-          {/* A FAIRE la description apparait si le boutton est on */}
-          <div className="flex col-span-2 justify-self-center mx-4 p-4 bg-grey rounded-lg | lg:hidden">
-            <h3 className="text-sm text-white">
-              Le beurre de karité pénètre rapidement dans la peau, nourrit
-              intensément. Il a une texture plus fondante que le beurre de
-              karité normal et est plus facilement applicable. L'huile de
-              macadamia apaise les peaux sèches et tiraillées. L'arôme de
-              vanille se lie parfaitement avec le beurre de karité et parfume la
-              crème.
-            </h3>
-          </div>
-
-          <div className="grid gap-3 col-span-2 m-4 justify-items-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
-            <h2 className="flex text-lg lg:text-xl font-medium">
-              Où acheter ?{" "}
+          <div className="flex flex-col lg:w-2/4">
+            <div className="flex mb-4">
+            <h2 className="text-xl self-end font-medium">
+              Les ingrédients 
             </h2>
-            <p className="text-center text-sm font-light">
-              Profitez d’un tarif préférentiel chez notre partenaire 👇
-            </p>
-            <p>9,40 €</p>
-            <Button type="orange" className="w-32 h-10">
-              Commander
-            </Button>
-            <p className="text-center text-sm text-sm font-light">
-              En achetant ces ingrédients, vous pouvez faire 10 shampooings. Le
+            <div className="flex">
+              {/* A FAIRE onlick button la description apparait */}
+              <button className="flex cursor-pointer ml-6">
+                <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
+                  <p className="self-center text-white font-bold">𝓲</p>
+                </div>
+                <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
+              </button>
+              {/* A FAIRE la description apparait si le boutton est on
+              
+                            <div className="flex justify-self-center ml-6 p-4 mt-4 bg-grey rounded-lg">
+                <h3 className="text-white">
+                  Le beurre de karité pénètre rapidement dans la peau, nourrit
+                  intensément. Il a une texture plus fondante que le beurre de
+                  karité normal et est plus facilement applicable. L'huile de
+                  macadamia apaise les peaux sèches et tiraillées. L'arôme de
+                  vanille se lie parfaitement avec le beurre de karité et
+                  parfume la crème.
+                </h3>
+              </div>*/}
+
+            </div>
+            </div>
+            <div className="flex items-center overflow-x-auto lg mb-4">
+              <div className="m-2 w-32 h-60">
+                <div className="flex justify-center">
+                  <img
+                    src={BeurreKarite}
+                    className="w-24 h-24 max-w-none"
+                    alt="Beurre de Karité"
+                  />{" "}
+                </div>
+                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                  <p className="text-center text-sm self-center font-medium">
+                    50 g
+                  </p>
+                </div>
+                <div className="h-18 pt-2">
+                  <p className="text-sm lg:text-lg font-regular text-center">
+                    Beurre de karité
+                  </p>
+                </div>
+                <h4 className="text-xs lg:text-sm font-light text-center">
+                  3,90 € / 100 g{" "}
+                </h4>
+              </div>
+
+              <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
+                <p className="self-center font-regular text-xl">+</p>
+              </div>
+
+              <div className="m-2 w-32 h-60">
+                <div className="flex justify-center">
+                  <img
+                    src={HuileRicin}
+                    className="w-24 h-24 max-w-none"
+                    alt="Huile de Ricin"
+                  />{" "}
+                </div>
+                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                  <p className="text-center text-sm self-center font-medium">
+                    20 g{" "}
+                  </p>
+                </div>
+                <div className="h-18 pt-2">
+                  <p className="text-sm lg:text-lg font-regular text-center">
+                    Huile végétale de ricin{" "}
+                  </p>
+                </div>
+                <h4 className="text-xs lg:text-sm font-light text-center ">
+                  2,60 € / 100 g{" "}
+                </h4>
+              </div>
+
+             
+              <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
+                <p className="self-center font-regular text-xl">+</p>
+              </div>
+
+              <div className="m-2 w-32 h-60">
+                <div className="flex justify-center">
+                  <img
+                    src={CireAbeille}
+                    className="w-24 h-24 max-w-none"
+                    alt="Cire d'Abeille"
+                  />{" "}
+                </div>
+                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                  <p className="text-center text-sm self-center font-medium">
+                    2 g{" "}
+                  </p>
+                </div>
+                <div className="h-18 pt-2">
+                  <p className="text-sm lg:text-lg font-regular text-center">
+                    Cire d’abeille{" "}
+                  </p>
+                </div>
+                <h4 className="text-xs lg:text-sm font-light text-center">
+                  2,90 € / 30 g{" "}
+                </h4>
+              </div>
+
+              <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
+                <p className="self-center font-regular text-xl">+</p>
+              </div>
+
+              <div className="m-2 w-32 h-60">
+                <div className="flex justify-center">
+                  <img
+                    src={Bocal}
+                    className="w-24 h-24 max-w-none"
+                    alt="Bocal_icon"
+                  />{" "}
+                </div>
+                <div className="flex justify-center w-12 h-12 bg-grey rounded-full -mt-8 lg:ml-4 relative z-20">
+                  <p className="text-center text-white text-xs self-center font-medium">
+                    ≈ 100ml{" "}
+                  </p>
+                </div>
+                <div className="h-18 pt-2">
+                  <p className="text-sm lg:text-lg font-regular text-center">
+                    Pot en verre{" "}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <p className="lg:text-center text-sm text-sm font-light">
+              En achetant ces ingrédients, vous pouvez faire <span className="bold">10</span> shampooings. <br></br> Le
               bicarbonate de soude va être réutilisé dans les recettes maison.
             </p>
           </div>
 
-          <div className="hidden lg:block lg:col-span-1"></div>
-
-          {/* A FAIRE onlick button la description apparait */}
-          <div className="hidden lg:block col-span-3">
-            {/* A FAIRE onlick button la description apparait */}
-            <button className="flex -mt-10 cursor-pointer ml-6">
-              <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
-                <p className="self-center text-white font-bold">𝓲</p>
-              </div>
-              <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
-            </button>
-            {/* A FAIRE la description apparait si le boutton est on */}
-            <div className="hidden lg:flex justify-self-center ml-6 p-4 mt-4 bg-grey rounded-lg">
-              <h3 className="text-white">
-                Le beurre de karité pénètre rapidement dans la peau, nourrit
-                intensément. Il a une texture plus fondante que le beurre de
-                karité normal et est plus facilement applicable. L'huile de
-                macadamia apaise les peaux sèches et tiraillées. L'arôme de
-                vanille se lie parfaitement avec le beurre de karité et parfume
-                la crème.
-              </h3>
+          <div className="flex flex-col lg:w-1/5 mt-4 lg:mt-0">
+          <h2 className="text-lg text-center lg:text-xl mb-5 font-medium">
+              Où acheter ?{" "}
+            </h2>
+          <div className="flex flex-col m-4 items-center h-2/4 justify-between p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
+            <p className="text-center text-sm font-light">
+              Profitez d’un tarif préférentiel chez notre partenaire 👇
+            </p>
+            <div>
+            <p className="text-center mb-4">9,40 €</p>
+            <Button type="orange" className="w-32 h-10">
+              Commander
+            </Button>
             </div>
+            <p className="pt-4 text-center text-sm font-light self-end">
+              En achetant avec ce lien, vous aidez Greenit à se rémunérer 🙏
+            </p>
           </div>
+        </div>
         </div>
       </Container>
       {/* Etape 3 Recette 2 */}
@@ -667,7 +648,7 @@ const StarterPage = () => {
             </h3>
           </div>
 
-          <div className="grid gap-3 col-span-2 m-4 justify-items-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
+          <div className="grid gap-3 col-span-2 m-4 item-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
             <h2 className="flex text-lg lg:text-xl font-medium">
               Où acheter ?{" "}
             </h2>
