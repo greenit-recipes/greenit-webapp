@@ -16,6 +16,10 @@ import {
   ChristelleAtelier2,
   ChristelleLogo,
   logo,
+  LCParfum,
+  LCBougie,
+  LCPAtelier,
+  LCShampoing,
 } from "../../src/icons";
 import { includes } from "lodash";
 import { Helmet } from "react-helmet";
@@ -175,13 +179,9 @@ const WorkshopPage = () => {
               </div>
             </div>
             <div className="bg-transparent rounded-lg mt-5 p-2 shadow-lg md:p-4">
-              <div className="flex justify-start ...">
+              <div className="flex justify-start">
                 <div>
-                  <img
-                    src={logo}
-                    className="w-16 lg:w-18"
-                    alt="Greenit Logo"
-                  />
+                  <img src={logo} className="w-16 lg:w-18" alt="Greenit Logo" />
                 </div>
                 <div className="items-center self-center">
                   <h3 className="pl-3 text-lg md:text-xl">
@@ -227,8 +227,8 @@ const WorkshopPage = () => {
               </div>
             </div>
             <div className="mt-6 rounded">
-              <div className="h-9/12 static ...">
-                <div className="static ...">
+              <div className="h-9/12 static">
+                <div className="static">
                   <h2>Prochain ateliers :</h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl">
@@ -247,7 +247,7 @@ const WorkshopPage = () => {
               </div>
             </div>
             <div className="mt-4 md:col-span-2">
-              <div className="static ...">
+              <div className="static">
                 <h2>Description :</h2>
                 <h5 className="text-sm mt-2 md:text-base">
                   Cet atelier est destiné aux débutants ! Quelles sont les
@@ -264,7 +264,7 @@ const WorkshopPage = () => {
           <div className="bg-transparent border-b-4 border-gray-300"></div>
           <div className="grid md:grid-cols-2">
             <div className="bg-transparent rounded-lg mt-5 p-2 shadow-lg md:p-4">
-              <div className="flex justify-start ...">
+              <div className="flex justify-start">
                 <div>
                   <img src={KabaLogo} className="w-16 lg:w-18" alt="Le Kaba" />
                 </div>
@@ -313,12 +313,12 @@ const WorkshopPage = () => {
               </div>
             </div>
             <div className="mt-10 rounded">
-              <div className="h-9/12 static ...">
-                <div className="static ...">
+              <div className="h-9/12 static">
+                <div className="static">
                   <h2>La classe verte :</h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
-                <h5 className="text-base">Jeudi 24 février</h5>
+                  <h5 className="text-base">Jeudi 24 février</h5>
                   <h5 className="text-sm">12h30 - 14h</h5>
                   <h5 className="text-sm">25€</h5>
                   <div className="flex justify-center items-center align-middle">
@@ -346,7 +346,7 @@ const WorkshopPage = () => {
               </div>
             </div>
             <div className="mt-4 md:col-span-2">
-              <div className="static ...">
+              <div className="static">
                 <h2>Description :</h2>
                 <h5 className="text-sm mt-2 md:text-base">
                   🕑 1h30 minutes de formation et 30 minutes de
@@ -391,7 +391,7 @@ const WorkshopPage = () => {
               </div>
             </div>
             <div className="bg-transparent rounded-lg mt-5 p-2 shadow-lg md:p-4">
-              <div className="flex justify-start ...">
+              <div className="flex justify-start">
                 <div>
                   <img
                     src={MargauxLogo}
@@ -450,8 +450,8 @@ const WorkshopPage = () => {
               </div>
             </div>
             <div className="mt-6 rounded">
-              <div className="h-9/12 static ...">
-                <div className="static ...">
+              <div className="h-9/12 static">
+                <div className="static">
                   <h2>Prochain atelier :</h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
@@ -471,7 +471,7 @@ const WorkshopPage = () => {
               </div>
             </div>
             <div className="mt-4 md:col-span-2">
-              <div className="static ...">
+              <div className="static">
                 <h2>Description :</h2>
                 <h5 className="text-sm mt-2 md:text-base">
                   Fourchette de prix : 29€ à 55€
@@ -508,7 +508,7 @@ const WorkshopPage = () => {
               </div>
             </div>
             <div className="bg-transparent rounded-lg mt-5 p-2 shadow-lg md:p-4">
-              <div className="flex justify-start ...">
+              <div className="flex justify-start">
                 <div>
                   <img
                     src={ChristelleLogo}
@@ -586,7 +586,7 @@ const WorkshopPage = () => {
             </div>
             <div className="mt-6 rounded">
               <div className="h-9/12 grid md:justify-items-center">
-                <div className="static ...">
+                <div className="static">
                   <h2> Atelier découverte DIY </h2>
                   <h3> Cosmétiques naturels </h3>
                 </div>
@@ -615,9 +615,9 @@ const WorkshopPage = () => {
                 </h5>
               </div>
             </div>
-            <div className="mt-6 rounded">
+            <div className="mt-10 rounded">
               <div className="h-9/12 grid md:justify-items-center">
-                <div className="static ...">
+                <div className="static ">
                   <h2>Atelier Aromatherapie :</h2>
                   <h3> La trousse aroma de l'hiver </h3>
                 </div>
@@ -645,9 +645,9 @@ const WorkshopPage = () => {
                 </h5>
               </div>
             </div>
-            <div className="mt-6 rounded">
+            <div className="mt-10 rounded">
               <div className="h-9/12 grid md:justify-items-center">
-                <div className="static ...">
+                <div className="static">
                   <h2> Atelier 'Un temps pour soi'</h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
@@ -673,6 +673,205 @@ const WorkshopPage = () => {
                   Soin complet du visage en cosmétique naturel bio. Réalisation
                   en groupe d’une recette 'cosmétique' : masque purifiant et
                   régénérant.
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="w-4/5 mt-10 flex flex-col">
+          <div className="grid md:grid-cols-2">
+            <div className="bg-transparent border-b-4 border-gray-600 | md:col-span-2">
+              <div className="flex justify-start | md:mb-2">
+                <div>
+                  <img
+                    src={"https://pic.onlinewebfonts.com/svg/img_280333.png"}
+                    className="w-auto h-6 lg:h-9"
+                    alt="icon Location"
+                  />
+                </div>
+                <div className="items-center self-center">
+                  <h3 className="pl-3 pb-1 text-xl lg:text-2xl text-center">
+                    Lyon
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div className="bg-transparent rounded-lg mt-5 p-2 shadow-lg md:p-4">
+              <div className="flex justify-start">
+                <div>
+                  <img
+                    src={LCPAtelier}
+                    className="w-28 lg:w-32 rounded-lg"
+                    alt="Greenit Logo"
+                  />
+                </div>
+                <div className="items-center self-center">
+                  <h3 className="pl-3 text-lg md:text-xl">
+                    Lavande et Camomille
+                  </h3>
+                  <h5 className="pl-3 text-base"> Le diy tout naturellement</h5>
+                </div>
+              </div>
+            </div>
+            <div className="bg-transparent rounded mt-2">
+              <div className="flex items-center align-middle h-full md:justify-end">
+                <a
+                  href={"https://www.lavandeetcamomille.com/contact"}
+                  target="_blank"
+                >
+                  <Button type="green" className="md:text-xl">
+                    Contacter
+                  </Button>
+                </a>
+              </div>
+            </div>
+            <div className="bg-transparent mt-4 rounded md:col-span-2">
+              <div>
+                <h3 className="text-ms md:text-base">
+                  Créer ses cosmétiques maison, ses produits ménagers, ses
+                  bougies et parfums aux essences naturelles...le rêve non? Les
+                  Ateliers Lavande et Camomille accompagnent particuliers et
+                  professionnels dans l’aventure du DIY, de la création
+                  éco-responsable et du fait-maison bio et sain. ...Tout
+                  naturellement !”
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="w-4/5 mb-10 mt-8 flex flex-col">
+          <div className="grid md:grid-cols-4">
+            <div className="rounded md:row-span-3">
+              <div className="flex flex-wrap justify-center items-center align-middle h-full">
+                <img
+                  src={LCParfum}
+                  className="rounded-2xl"
+                  style={{ width: "100%", maxWidth: "200px" }}
+                />
+                {isMobile ? (
+                  <div></div>
+                ) : (
+                  <div>
+                    <img
+                      src={LCShampoing}
+                      className="rounded-2xl mt-2"
+                      style={{ width: "100%", maxWidth: "200px" }}
+                    />
+
+                    <img
+                      src={LCBougie}
+                      className="rounded-2xl mt-2"
+                      style={{ width: "100%", maxWidth: "200px" }}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="mt-6 rounded">
+              <div className="h-9/12 grid md:justify-items-center">
+                <div className="static">
+                  <h2>
+                    {" "}
+                    Création de parfum <br /> aux essences naturelles
+                  </h2>
+                </div>
+                <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
+                  <h5 className="text-base">Samedi 26 Mars</h5>
+                  <h5 className="text-sm">10h00 – 12h30</h5>
+                  <h5 className="text-sm">50€</h5>
+                  <div className="flex justify-center items-center align-middle">
+                    <a
+                      href="https://www.lavandeetcamomille.com/events/atelier-creation-de-parfum-personnalise-aux-essences-naturelles-14"
+                      target="_blank"
+                    >
+                      <button className="button_reserver">Reserver</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex md:col-span-2 mt-2">
+              <div className="self-center">
+                <h2>Description :</h2>
+                <h5 className="text-sm mt-2 md:text-base">
+                  Venez participer à cet atelier DIY ou j’aurais le plaisir de
+                  vous guider dans la création de votre parfum personnel aux
+                  fragrances et essences naturelles. Exercez votre nez grâce à
+                  ce workshop d’initiation à la parfumerie et créez un parfum
+                  qui vous ressemble.
+                </h5>
+              </div>
+            </div>
+            <div className="mt-12 rounded">
+              <div className="h-9/12 grid md:justify-items-center">
+                <div className="static">
+                  <h2>
+                    Shampoing solide et <br /> soin après shampoing
+                  </h2>
+                </div>
+                <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
+                  <h5 className="text-base">Mardi 15 Mars</h5>
+                  <h5 className="text-sm">18h30 – 20h45</h5>
+                  <h5 className="text-sm">45€</h5>
+                  <div className="flex justify-center items-center align-middle">
+                    <a
+                      href="https://www.lavandeetcamomille.com/events/soins-cheveux-shampoing-solide-et-soin-apres-shampoing-16"
+                      target="_blank"
+                    >
+                      <button className="button_reserver">Reserver</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex md:col-span-2 mt-2">
+              <div className="self-center">
+                <h2>Description :</h2>
+                <h5 className="text-sm mt-2 md:text-base">
+                  Venez participer à cet atelier DIY où j'aurais le plaisir de
+                  vous guider dans la réalisation de vos 2 soins naturels pour
+                  vos cheveux : un shampoing solide aux poudres de plantes et un
+                  soin après-shampoing démêlant et réparateur. Cet atelier de
+                  2H30 vous initiera pas à pas à la cosmétique naturelle et vous
+                  permettra de personnaliser vos recettes en fonction de votre
+                  type de cheveux et de vos envies.
+                </h5>
+              </div>
+            </div>
+            <div className="mt-20 rounded">
+              <div className="h-9/12 grid md:justify-items-center">
+                <div className="static">
+                  <h2>
+                  Atelier bougie naturelle <br/> et fleurie eco friendly 
+                  </h2>
+                </div>
+                <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
+                  <h5 className="text-base">Jeudi 17 Mars</h5>
+                  <h5 className="text-sm">18h30 – 20h30</h5>
+                  <h5 className="text-sm">40€</h5>
+                  <div className="flex justify-center items-center align-middle">
+                    <a
+                      href="https://www.lavandeetcamomille.com/events/atelier-bougie-naturelle-et-fleurie-eco-friendly-56"
+                      target="_blank"
+                    >
+                      <button className="button_reserver">Reserver</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex md:col-span-2 mt-2">
+              <div className="self-center">
+                <h2>Description :</h2>
+                <h5 className="text-sm mt-2 md:text-base">
+                  Venez participer à cet atelier DIY ou j'aurais le plaisir de
+                  vous guider dans la fabrication d’une bougie 100% naturelle,
+                  parfumée et décorée aux fleurs séchées. Ce workshop vous
+                  guidera pas à pas dans les différentes étapes de réalisation
+                  d’une bougie et de son parfum que vous personnaliserez en
+                  fonction de vos envies.
                 </h5>
               </div>
             </div>

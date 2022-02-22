@@ -1,5 +1,5 @@
 import isMobile from "hooks/isMobile";
-import { BackroundImage, BackroundImageDesktop } from "icons"
+import { BackgroundImageMobile, BackgroundImageDesktop } from "icons"
 
 interface IBackgroundImage {
   className?: string;
@@ -9,9 +9,9 @@ export const BackgroundImage: React.FC<IBackgroundImage> = ({ className }) => {
   return (
     <div>
       {isMobile() ? (
-        <img className="backgroundImage" src={BackroundImage}></img>
+        <img className="backgroundImage" src={BackgroundImageMobile}></img>
       ) : (
-        <img className="backgroundImage" src={BackroundImageDesktop}></img>
+        <img className="backgroundImage" src={BackgroundImageDesktop}></img>
       )}
     </div>
   );

@@ -67,10 +67,14 @@ import ChristelleAtelier1 from "./ChristelleAtelier1.jpg"
 import ChristelleAtelier2 from "./ChristelleAtelier2.jpg"
 import ChristelleLogo from "./ChristelleLogo.png"
 import GreenitTeam from "./GreenitTeam.jpeg"
+import LCParfum from "./L&CParfum.jpg"
+import LCBougie from "./L&CBougie.jpg"
+import LCPAtelier from "./L&CAtelier.png"
+import LCShampoing from "./L&CShampoing.jpg"
 
 //BACKGROUND IMAGE
-import BackroundImage from "./backgroundMobile.jpg"
-import BackroundImageDesktop from "./backgroundDesktop.jpg"
+import BackgroundImageMobile from "./backgroundMobile.jpg"
+import BackgroundImageDesktop from "./backgroundDesktop.jpg"
 
 export const landingPageCategories = [
   {
@@ -151,6 +155,10 @@ export {
   ChristelleAtelier2,
   ChristelleLogo,
   retourIcon,
-  BackroundImage,
-  BackroundImageDesktop,
+  BackgroundImageMobile,
+  BackgroundImageDesktop,
+  LCParfum,
+  LCBougie,
+  LCPAtelier,
+  LCShampoing,
 };
