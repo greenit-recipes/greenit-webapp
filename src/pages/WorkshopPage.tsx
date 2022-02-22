@@ -452,16 +452,15 @@ const WorkshopPage = () => {
             <div className="mt-6 rounded">
               <div className="h-9/12 static">
                 <div className="static">
-                  <h2>Prochain atelier :</h2>
+                  <h2>Atelier découverte <br/> saponification à froid</h2>
                 </div>
-                <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
-                  <h5 className="text-base">
-                    Contacter Margaux pour la date et le lieu
-                  </h5>
-                  <h5 className="text-sm">à partir de 29 euros</h5>
+                <div className="p-4 inline-block shadow-lg rounded-2xl">
+                  <h5 className="text-base">Mercredi 10 Mars</h5>
+                  <h5 className="text-sm">10h - 13h00 (CEST)</h5>
+                  <h5 className="text-sm">55€</h5>
                   <div className="flex justify-center items-center align-middle">
                     <a
-                      href={"https://lateliercosmetiquedemargaux.fr/home/"}
+                      href="https://lateliercosmetiquedemargaux.fr/calendrier/"
                       target="_blank"
                     >
                       <button className="button_reserver">Reserver</button>
@@ -474,12 +473,10 @@ const WorkshopPage = () => {
               <div className="static">
                 <h2>Description :</h2>
                 <h5 className="text-sm mt-2 md:text-base">
-                  Fourchette de prix : 29€ à 55€
-                  <br /> Cosmétiques proposés : crème de jour, shampoing solide
-                  et liquide, déodorant, sérum huileux, démaquillant, baume à
-                  lèvres, liniment oléo-calcaire, chantilly de karité, savon
-                  saponifié à froid, dentifrice, gel hydroalcoolique et plein
-                  d’autres…
+                  Durant cet atelier vous réalisez : un savon solide selon la
+                  méthode saponification à froid. Vous repartez avec votre
+                  savon, la recette, des infos et de précieux conseils pour
+                  refaire des savons une fois chez vous.
                   <br />
                   <br /> Lieux des ateliers : Gardanne et alentours (environ
                   20km autour)
@@ -734,7 +731,7 @@ const WorkshopPage = () => {
                   Ateliers Lavande et Camomille accompagnent particuliers et
                   professionnels dans l’aventure du DIY, de la création
                   éco-responsable et du fait-maison bio et sain. ...Tout
-                  naturellement !”
+                  naturellement !
                 </h3>
               </div>
             </div>
@@ -746,7 +743,7 @@ const WorkshopPage = () => {
             <div className="rounded md:row-span-3">
               <div className="flex flex-wrap justify-center items-center align-middle h-full">
                 <img
-                  src={LCParfum}
+                  src={LCBougie}
                   className="rounded-2xl"
                   style={{ width: "100%", maxWidth: "200px" }}
                 />
@@ -761,7 +758,7 @@ const WorkshopPage = () => {
                     />
 
                     <img
-                      src={LCBougie}
+                      src={LCParfum}
                       className="rounded-2xl mt-2"
                       style={{ width: "100%", maxWidth: "200px" }}
                     />
@@ -769,42 +766,7 @@ const WorkshopPage = () => {
                 )}
               </div>
             </div>
-            <div className="mt-6 rounded">
-              <div className="h-9/12 grid md:justify-items-center">
-                <div className="static">
-                  <h2>
-                    {" "}
-                    Création de parfum <br /> aux essences naturelles
-                  </h2>
-                </div>
-                <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
-                  <h5 className="text-base">Samedi 26 Mars</h5>
-                  <h5 className="text-sm">10h00 – 12h30</h5>
-                  <h5 className="text-sm">50€</h5>
-                  <div className="flex justify-center items-center align-middle">
-                    <a
-                      href="https://www.lavandeetcamomille.com/events/atelier-creation-de-parfum-personnalise-aux-essences-naturelles-14"
-                      target="_blank"
-                    >
-                      <button className="button_reserver">Reserver</button>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex md:col-span-2 mt-2">
-              <div className="self-center">
-                <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:text-base">
-                  Venez participer à cet atelier DIY ou j’aurais le plaisir de
-                  vous guider dans la création de votre parfum personnel aux
-                  fragrances et essences naturelles. Exercez votre nez grâce à
-                  ce workshop d’initiation à la parfumerie et créez un parfum
-                  qui vous ressemble.
-                </h5>
-              </div>
-            </div>
-            <div className="mt-12 rounded">
+            <div className="mt-12 md:mt-2 rounded">
               <div className="h-9/12 grid md:justify-items-center">
                 <div className="static">
                   <h2>
@@ -840,11 +802,11 @@ const WorkshopPage = () => {
                 </h5>
               </div>
             </div>
-            <div className="mt-20 rounded">
+            <div className="mt-10 md:mt-2 rounded">
               <div className="h-9/12 grid md:justify-items-center">
                 <div className="static">
                   <h2>
-                  Atelier bougie naturelle <br/> et fleurie eco friendly 
+                    Atelier bougie naturelle <br /> et fleurie eco friendly
                   </h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
@@ -872,6 +834,41 @@ const WorkshopPage = () => {
                   guidera pas à pas dans les différentes étapes de réalisation
                   d’une bougie et de son parfum que vous personnaliserez en
                   fonction de vos envies.
+                </h5>
+              </div>
+            </div>
+            <div className="mt-12 md:mt-6 rounded">
+              <div className="h-9/12 grid md:justify-items-center">
+                <div className="static">
+                  <h2>
+                    {" "}
+                    Création de parfum <br /> aux essences naturelles
+                  </h2>
+                </div>
+                <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
+                  <h5 className="text-base">Samedi 26 Mars</h5>
+                  <h5 className="text-sm">10h00 – 12h30</h5>
+                  <h5 className="text-sm">50€</h5>
+                  <div className="flex justify-center items-center align-middle">
+                    <a
+                      href="https://www.lavandeetcamomille.com/events/atelier-creation-de-parfum-personnalise-aux-essences-naturelles-14"
+                      target="_blank"
+                    >
+                      <button className="button_reserver">Reserver</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex md:col-span-2 mt-2">
+              <div className="self-center">
+                <h2>Description :</h2>
+                <h5 className="text-sm mt-2 md:text-base">
+                  Venez participer à cet atelier DIY ou j’aurais le plaisir de
+                  vous guider dans la création de votre parfum personnel aux
+                  fragrances et essences naturelles. Exercez votre nez grâce à
+                  ce workshop d’initiation à la parfumerie et créez un parfum
+                  qui vous ressemble.
                 </h5>
               </div>
             </div>
