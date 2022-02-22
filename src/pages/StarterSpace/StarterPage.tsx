@@ -33,30 +33,26 @@ import {
 import { Button, RecipeCard } from "../../components";
 import authService from "services/auth.service";
 import { useRecipesQuery } from "../../graphql";
-import { useState } from "react";
-import React from "react";
-import "../StarterSpace/StarterPage.css";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { RouteName } from "App";
 import { CategoryCircle } from "pages/LandingPage/Components/CategoryCircle";
 import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
+import { SharedWithFriend } from "pages/StarterSpace/component/SharedWithFriend/SharedWithFriend";
+import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({
     fetchPolicy: "no-cache",
-    variables: { first: 2, filter: {} },
+    variables: {filter: { id: [ "605f0ef2-b39a-42aa-aa9e-062222bf114d", "8485c5ae-4175-474b-9107-9aa306874c5f"] } },
   });
 
   const isLoggedIn = authService.isLoggedIn();
-
-  const [toggle, setToggle] = useState(false);
-  const [visible, setVisible] = React.useState(false);
-
   const recipes = data?.allRecipes?.edges || [];
 
-  const fieldRefEtape3 = React.useRef<HTMLInputElement>(null);
-  const fieldRefEtape1 = React.useRef<HTMLInputElement>(null);
-  const fieldRefEtape2 = React.useRef<HTMLInputElement>(null);
+  const fieldRefEtape3 = useRef<HTMLInputElement>(null);
+  const fieldRefEtape1 = useRef<HTMLInputElement>(null);
+  const fieldRefEtape2 = useRef<HTMLInputElement>(null);
 
   const scrollIntoFieldRefEtape1 = () => {
     if (!fieldRefEtape1) return;
@@ -154,88 +150,9 @@ const StarterPage = () => {
               <h3 className="text-sm  text-center font-light">{item.title}</h3>
             </div>
           ))}
-
-          {/* A FAIRE Call to action email d'un amis  version DESKTOP */}
-          <div className="hidden | lg:grid col-span-2 gap-4 justify-items-center self-center">
-            <h2 className="text-sm lg:text-base font-regular text-center">
-              Motivez-vous avec vos ami.e.s :
-            </h2>
-            <form
-              className="flex flex-col gap-4"
-              //onSubmit={handleSubmit(onSubmitHandler)}
-            >
-              <input
-                className="w-56 h-10 bg-white rounded-full shadow-lg focus:outline-none | pl-4 | border-2 border-blue"
-                id="email"
-                placeholder="son email"
-                type="email"
-                //{...register("email")}
-              ></input>
-
-              <div className="grid w-full justify-items-center">
-                <Button type="blue" className="p-4 h-10">
-                  Envoyer le lien du guide
-                </Button>
-              </div>
-              <div>
-                <p className="text-red-500 text-xs italic">
-                  {
-                    //errors.email?.message
-                  }
-                </p>
-              </div>
-            </form>
-            {
-              //data?.createNewsletter?.success && (
-              //<div className="text-green text-base md:text-base mb-2 | text-center whitespace-pre-line">
-              //Votre inscription a bien été prise en compte. À très vite dans
-              //votre boite mail !
-              //</div>
-              //)
-            }
-          </div>
+          <SharedWithFriend></SharedWithFriend>
+          <div ref={fieldRefEtape1}></div>
         </div>
-
-        {/* A FAIRE Call to action email d'un amis version MOBILE */}
-        <div className="grid lg:hidden gap-4 justify-items-center w-full |  my-8">
-          <h2 className="text-base font-regular text-center">
-            Motivez-vous avec vos ami.e.s :{" "}
-          </h2>
-          <form
-            className="flex flex-col gap-4"
-            //onSubmit={handleSubmit(onSubmitHandler)}
-          >
-            <input
-              className="w-56 h-10 bg-white rounded-full shadow-lg focus:outline-none | pl-4 | border-2 border-blue"
-              id="email"
-              placeholder="son email"
-              type="email"
-              //{...register("email")}
-            ></input>
-
-            <div className="grid w-full justify-items-center">
-              <Button type="blue" className="p-4 h-10">
-                Envoyer le lien du guide
-              </Button>
-            </div>
-            <div>
-              <p className="text-red-500 text-xs italic">
-                {
-                  //errors.email?.message
-                }
-              </p>
-            </div>
-          </form>
-          {
-            //data?.createNewsletter?.success && (
-            //<div className="text-green text-base md:text-base mb-2 | text-center whitespace-pre-line">
-            //Votre inscription a bien été prise en compte. À très vite dans
-            //votre boite mail !
-            //</div>
-            //)
-          }{" "}
-        </div>
-        <div ref={fieldRefEtape1}></div>
       </Container>
 
       <SectionStarterPage
@@ -248,154 +165,44 @@ const StarterPage = () => {
       ></SectionStarterPage>
 
       <Container className="flex flex-col | lg:w-10/12 lg:mt-4 px-6 mb-10 lg:mb-24">
-        <div className="flex flex-cols w-full mt-8 mb-2">
-          <div className="border-r-2 border-blue">
-            <img
-              src={Catherine}
-              className="w-14 h-14 lg:w-18 mr-8"
-              alt="Photo_Catherine"
-            />
-          </div>
-          <div className="ml-4">
-            <h2 className="text-base lg:text-xl font-medium">
-              Le conseil de Catherine
-            </h2>
-            <h3 className="text-xs lg:text-xl font-light">
-              ingénieure et ambassadrice contre le changement climatique
-            </h3>
-          </div>
-        </div>
-        <h3 className="text-base text-blue lg:text-xl font-semibold mb-2">
-          " Remplacer vos produits petit à petit "
-        </h3>
-        <h3 className="text-sm lg:text-xl font-light">
-          Remplacer vos produits petit à petit et de commencer par trouver
-          l’huile végétale qui vous convient.
-        </h3>
-
-        {/* A FAIRE onclick boutton révéler tout le texte */}
-        <div className={toggle ? "container_fadeIn" : "container_fadeOut"}>
-          {" "}
-          <h3
-            className={
-              toggle
-                ? "transition ease-in-out text-sm lg:text-xl font-light"
-                : "transition ease-in-out hidden"
-            }
-          >
-            La plus grosse erreur que je vois quand on veut se lancer en
-            cosmétique maison, c’est de vouloir essayer plein de choses en même
-            temps avec plein d’ingrédients. On dépense beaucoup, on s’éparpille,
-            cela prend du temps et on s’arrête rapidement parce qu’on est perdu
-            😱
-            <br />
-            <br />
-            Mon conseil est donc : <br />
-            Remplacer vos produits petit à petit et de commencer par trouver
-            l’huile végétale qui vous convient.
-            <br />
-            <br />
-            La question à vous poser est : quelle est ma problématique
-            principale ? La peau qui tire ? Des boutons ? Des zones de brillance
-            ?<br />
-            Ensuite, trouver l’huile végétale qui répond à cette problématique.
-            Cette huile végétale peut s’utiliser seule à la place de votre crème
-            de jour ou crème de nuit. C’est la solution la plus naturelle et la
-            plus économique ! Testez avant de réaliser une crème compliquée 😉
-          </h3>
-        </div>
-        <Button
-          type="grey"
-          onClick={() => {
-            setToggle((prevState) => !prevState);
-          }}
-          className={"w-24 self-center mt-2 mb-6"}
-        >
-          <p className={toggle ? "hidden" : "text-base"}> Lire plus</p>
-          <p className={toggle ? "text-base" : "hidden"}> Moins</p>
-        </Button>
-
-        <div className="flex flex-cols w-full mt-8 mb-2">
-          <div className="border-r-2 border-blue">
-            <img
-              src={Christelle}
-              className="w-14 h-14 lg:w-18 mr-6"
-              alt="Photo_Christelle"
-            />
-          </div>
-          <div className="ml-4">
-            <h2 className="text-base lg:text-xl font-medium">
-              Le conseil de Christelle{" "}
-            </h2>
-            <h3 className="text-xs lg:text-xl font-light">
-              Naturopathe et animatrice d’atelier
-            </h3>
-          </div>
-        </div>
-        <h3 className="text-base text-blue lg:text-xl font-semibold mb-2">
-          "Rester sur des recettes qui fonctionnent !"
-        </h3>
-        <h3 className="text-sm lg:text-xl font-light">
-          Remplacer vos produits petit à petit et de commencer par trouver
-          l’huile végétale qui vous convient.
-        </h3>
-        <h3 className="text-sm lg:text-xl font-light">
-          Empor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco.
-        </h3>
-
-        {/* A FAIRE onclick boutton révéler tout le texte */}
-        <Button type="grey" className={"w-24 self-center mt-2 mb-6"}>
-          <p> Lire plus</p>
-        </Button>
-
-        <div className="flex flex-cols w-full mt-8 mb-2">
-          <div className="border-r-2 border-blue">
-            <img
-              src={logo}
-              className="w-14 h-14 lg:w-18 mr-6"
-              alt="Greenit Logo"
-            />
-          </div>
-          <div className="ml-4">
-            <h2 className="text-base lg:text-xl font-medium">Nos conseils </h2>
-            <h3 className="text-xs lg:text-xl font-light">
-              Greenit Community{" "}
-            </h3>
-          </div>
-        </div>
-        <h3 className="text-base text-blue lg:text-xl font-semibold mb-2">
-          "Respectons quelques règles de base."
-        </h3>
-        <h3 className="text-sm lg:text-xl font-light">
-          Remplacer vos produits petit à petit et de commencer par trouver
-          l’huile végétale qui vous convient.
-        </h3>
-        <h3 className="text-sm lg:text-xl font-light">
-          Comme pour la cuisine, vous devez respecter quelques règles    
-          <br />
-           <br />
-          • L’utilisation des huiles essentielles Certaines d’entre elles sont
-          très irritantes et allergènes. Optez pour 3 huiles essentielles, selon
-          vos problématiques, et apprenez leurs propriétés, posologie et
-          risques.  <br />
-           <br />
-          • La conservation des produits Les produits maisons n’étant pas
-          boostés aux conservateurs chimiques, ils se gardent moins longtemps.
-          Lorsque vous réalisez une émulsion eau/huile, il est vivement
-          recommandé d’utiliser un conservateur naturel. Pour une phase huileuse
-          uniquement, de la vitamine E suffit. En règle générale, dès que votre
-          préparation change d’aspect, de couleurs, d’odeur, il est préférable
-          de la jeter, de la même façon que vos ingrédients du frigo.  <br />
-           <br />• Respecter les règles d’hygiène Enfin, toujours respecter les
-          règles d’hygiène lors de la préparation de vos produits : un plan de
-          travail et des ustensiles nettoyés ainsi que des mains propres. 
-        </h3>
-
-        {/* A FAIRE onclick boutton révéler tout le texte */}
-        <Button type="grey" className={"w-24 self-center mt-2 mb-6"}>
-          <p> Lire plus</p>
-        </Button>
+        {[
+          {
+            imgProfil: Catherine,
+            altImgProfil: "Photo Catherine",
+            userPresentationTitle: "Bol en inox",
+            userPresentationTitleSubtitle: "Pour la cuisson au bain-marie",
+            citation:
+              "Le bol permet de faire vos préparations avant de les verser dans les contenants. Certaines préparations nécessitent une chauffe au bain-marie, l’inox est donc idéal. Il permet une cuisson uniforme tout en étant facilement lavables.",
+            shortDescription: "Pour la cuisson au bain-marie",
+            longDescription:
+              " La plus grosse erreur que je vois quand on veut se lancer en cosmétique maison, c’est de vouloir essayer plein de choses en même temps avec plein d’ingrédients. On dépense beaucoup, on s’éparpille, cela prend du temps et on s’arrête rapidement parce qu’on est perdu 😱 <br /><br /> Mon conseil est donc : <br /> Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient. <br /><br /> La question à vous poser est : quelle est ma problématique principale ? La peau qui tire ? Des boutons ? Des zones de brillance ?<br /> Ensuite, trouver l’huile végétale qui répond à cette problématique. Cette huile végétale peut s’utiliser seule à la place de votre crème de jour ou crème de nuit. C’est la solution la plus naturelle et la plus économique ! Testez avant de réaliser une crème compliquée 😉",
+          },
+          {
+            imgProfil: Christelle,
+            altImgProfil: "Photo Christelle",
+            userPresentationTitle: "Le conseil de Christelle",
+            userPresentationTitleSubtitle:
+              "Naturopathe et animatrice d’atelier",
+            citation: "Rester sur des recettes qui fonctionnent !",
+            shortDescription:
+              "Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.",
+            longDescription:
+              "Empor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+          },
+          {
+            imgProfil: logo,
+            altImgProfil: "Greenit Logo",
+            userPresentationTitle: "Nos conseils",
+            userPresentationTitleSubtitle: "Greenit Community",
+            citation: "Respectons quelques règles de base.",
+            shortDescription:
+              "Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.",
+            longDescription:
+              "Comme pour la cuisine, vous devez respecter quelques règles              <br />           <br />          • L’utilisation des huiles essentielles Certaines d’entre elles sont          très irritantes et allergènes. Optez pour 3 huiles essentielles, selon          vos problématiques, et apprenez leurs propriétés, posologie et          risques.  <br />           <br />          • La conservation des produits Les produits maisons n’étant pas          boostés aux conservateurs chimiques, ils se gardent moins longtemps.          Lorsque vous réalisez une émulsion eau/huile, il est vivement          recommandé d’utiliser un conservateur naturel. Pour une phase huileuse          uniquement, de la vitamine E suffit. En règle générale, dès que votre          préparation change d’aspect, de couleurs, d’odeur, il est préférable          de la jeter, de la même façon que vos ingrédients du frigo.  <br />           <br />• Respecter les règles d’hygiène Enfin, toujours respecter les          règles d’hygiène lors de la préparation de vos produits : un plan de          travail et des ustensiles nettoyés ainsi que des mains propres. ",
+          },
+        ].map((item, index) => (
+          <FirstStep item={item} key={index}></FirstStep>
+        ))}
         <div ref={fieldRefEtape2}></div>
       </Container>
 
@@ -440,8 +247,11 @@ const StarterPage = () => {
                 subtitle:
                   "Pour racler les fonds de bol et contenant, une maryse peut être utile. Plus de préparations pour vous et moins au fond de la poubelle.",
               },
-            ].map((item) => (
-              <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
+            ].map((item, index) => (
+              <div
+                className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72"
+                key={index}
+              >
                 <div className="grid justify-items-center">
                   <img
                     src={item.icon}
@@ -914,7 +724,6 @@ const StarterPage = () => {
         </Link>
       )}
 
-      {/* A FAIRE Display les 2 recettes crème et lessive */}
       <div className="grid grid-cols-2 gap-x-2 | mt-10 mb-20">
         {recipes.map((recipe) => (
           <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
