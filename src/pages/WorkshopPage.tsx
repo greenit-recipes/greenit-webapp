@@ -193,7 +193,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
-                <Link to={RouteName.contact}>
+                <Link id="contactWs1" to={RouteName.contact}>
                   <Button type="green" className="md:text-xl">
                     Contacter
                   </Button>
@@ -240,7 +240,7 @@ const WorkshopPage = () => {
                       href="https://www.eventbrite.fr/e/billets-premiers-pas-en-diy-greenit-community-221951201017"
                       target="_blank"
                     >
-                      <button className="button_reserver">Reserver</button>
+                      <button id="book1" className="button_reserver">Reserver</button>
                     </a>
                   </div>
                 </div>
@@ -278,7 +278,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
-                <a href={"https://www.lekaba.fr/"} target="_blank">
+                <a id="contactWs2" href={"https://www.lekaba.fr/"} target="_blank">
                   <Button type="green" className="md:text-xl">
                     Contacter
                   </Button>
@@ -326,7 +326,7 @@ const WorkshopPage = () => {
                       href="https://www.eventbrite.fr/e/billets-les-classes-vertes-du-kaba-atelier-de-1h30-en-visio-pour-passer-a-laction-160817869577"
                       target="_blank"
                     >
-                      <button className="button_reserver">Reserver</button>
+                      <button id="book2-1" className="button_reserver">Reserver</button>
                     </a>
                   </div>
                 </div>
@@ -339,7 +339,7 @@ const WorkshopPage = () => {
                       href="https://www.eventbrite.fr/e/billets-les-classes-vertes-du-kaba-atelier-de-1h30-en-visio-pour-passer-a-laction-160817869577"
                       target="_blank"
                     >
-                      <button className="button_reserver">Reserver</button>
+                      <button id="book2-2" className="button_reserver">Reserver</button>
                     </a>
                   </div>
                 </div>
@@ -413,7 +413,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
-                <a
+                <a id="contactWs3"
                   href={"https://lateliercosmetiquedemargaux.fr/contact/"}
                   target="_blank"
                 >
@@ -463,7 +463,7 @@ const WorkshopPage = () => {
                       href="https://lateliercosmetiquedemargaux.fr/calendrier/"
                       target="_blank"
                     >
-                      <button className="button_reserver">Reserver</button>
+                      <button id="book3" className="button_reserver">Reserver</button>
                     </a>
                   </div>
                 </div>
@@ -526,7 +526,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
-                <a
+                <a id="contactWs4"
                   href={"https://www.instagram.com/eclatdessences/"}
                   target="_blank"
                 >
@@ -597,7 +597,7 @@ const WorkshopPage = () => {
                       href={"https://www.instagram.com/eclatdessences/"}
                       target="_blank"
                     >
-                      <button className="button_reserver">Reserver</button>
+                      <button id="book4-1" className="button_reserver">Reserver</button>
                     </a>
                   </div>
                 </div>
@@ -628,7 +628,7 @@ const WorkshopPage = () => {
                       href={"https://www.instagram.com/eclatdessences/"}
                       target="_blank"
                     >
-                      <button className="button_reserver">Reserver</button>
+                      <button id="book4-2" className="button_reserver">Reserver</button>
                     </a>
                   </div>
                 </div>
@@ -657,7 +657,7 @@ const WorkshopPage = () => {
                       href={"https://www.instagram.com/eclatdessences/"}
                       target="_blank"
                     >
-                      <button className="button_reserver">Reserver</button>
+                      <button id="book4-3" className="button_reserver">Reserver</button>
                     </a>
                   </div>
                 </div>
