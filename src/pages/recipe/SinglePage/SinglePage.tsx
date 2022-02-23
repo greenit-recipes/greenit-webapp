@@ -225,7 +225,7 @@ const RecipeSinglePage = () => {
             className="grid absolute cursor-pointer rounded-full left-0 top-14 w-8 h-8 z-20 ml-3 | lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
             onClick={() => history.goBack()}
           >
-            <img src={retourIcon} />
+            <img alt="Retour icon" src={retourIcon} />
           </div>
           <div className="w-5/6 md:w-4/6 mb-10">
             <Container className="mt-10 md:mt-8 flex" itemsCenter>
@@ -261,6 +261,7 @@ const RecipeSinglePage = () => {
                   <img
                     // @ts-ignore
                     src={getImagePath(recipe?.image)}
+                    alt={recipe?.name}
                     className="row-span-3 md:col-span-2 lg:col-span-1 h-96 min-w-64 w-64 rounded-3xl | object-cover flex justify-self-center md:justify-self-start"
                   />
                   <div className="col-span-1 lg:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex">
@@ -315,6 +316,7 @@ const RecipeSinglePage = () => {
                   <div className="grid w-full h-full bg-white justify-items-center items-center">
                     <img
                       src={noVideo}
+                      alt={"Pas de vidéo"}
                       className="h-60 md:h-80 object-cover rounded-lg"
                     ></img>
                   </div>
@@ -400,6 +402,7 @@ const RecipeSinglePage = () => {
                 <button className="grid justify-items-center" onClick={copy}>
                   <img
                     src={partageIcon}
+                    alt="Partager"
                     className="justify-self-center w-10 h-10 lg:w-12 lg:h-12"
                   />
                   {!copied ? (
