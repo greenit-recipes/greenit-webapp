@@ -316,7 +316,7 @@ const StarterPage = () => {
             <h2 className="text-xl self-end font-medium">
               Les ingrédients 
             </h2>
-            <div className="flex">
+            { !isMobile && (<div className="flex">
               {/* A FAIRE onlick button la description apparait */}
               <button className="flex cursor-pointer ml-6">
                 <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
@@ -337,7 +337,7 @@ const StarterPage = () => {
                 </h3>
               </div>*/}
 
-            </div>
+            </div>)}
             </div>
             <div className="flex items-center overflow-x-auto lg mb-4">
               <div className="m-2 w-32 h-60">
@@ -442,6 +442,28 @@ const StarterPage = () => {
                 </div>
               </div>
             </div>
+            { isMobile && (<div className="flex mb-5">
+              {/* A FAIRE onlick button la description apparait */}
+              <button className="flex cursor-pointer ml-6">
+                <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
+                  <p className="self-center text-white font-bold">𝓲</p>
+                </div>
+                <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
+              </button>
+              {/* A FAIRE la description apparait si le boutton est on
+              
+                            <div className="flex justify-self-center ml-6 p-4 mt-4 bg-grey rounded-lg">
+                <h3 className="text-white">
+                  Le beurre de karité pénètre rapidement dans la peau, nourrit
+                  intensément. Il a une texture plus fondante que le beurre de
+                  karité normal et est plus facilement applicable. L'huile de
+                  macadamia apaise les peaux sèches et tiraillées. L'arôme de
+                  vanille se lie parfaitement avec le beurre de karité et
+                  parfume la crème.
+                </h3>
+              </div>*/}
+
+            </div>)}
             <p className="lg:text-center text-sm text-sm font-light">
               En achetant ces ingrédients, vous pouvez faire <span className="bold">10</span> shampooings. <br></br> Le
               bicarbonate de soude va être réutilisé dans les recettes maison.
