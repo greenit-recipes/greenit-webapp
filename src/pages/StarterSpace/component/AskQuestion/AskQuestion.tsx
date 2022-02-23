@@ -36,25 +36,15 @@ export const AskQuestion: React.FC = () => {
     }).then(() => reset());
   };
   return (
-    <div className="hidden | lg:grid col-span-2 mb-5 gap-4 justify-items-center self-center">
+    <div className="flex justify-items-center self-center mb-20 lg:w-1/3">
       <form
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-2 w-full"
         onSubmit={handleSubmit(onSubmitHandler)}
       >
-        <input
-          className="w-56 h-10 bg-white rounded-full shadow-lg focus:outline-none | pl-4 | border-2 border-blue"
-          id="email"
-          placeholder="Email"
-          type="email"
-          {...register("email")}
-        ></input>
-        <div>
-          <p className="text-red-500 text-xs italic">{errors.email?.message}</p>
-        </div>
         <textarea
-          className="bg-white shadow-lg focus:outline-none | pl-4 | border-2 border-blue"
+          className="bg-white shadow-lg focus:outline-none | border-2 border-blue rounded-lg p-4"
           id="question"
-          placeholder="Message"
+          placeholder="Une question ? Nous sommes là pour vous aider !"
           rows={12}
           cols={34}
           {...register("question")}
@@ -64,8 +54,18 @@ export const AskQuestion: React.FC = () => {
             {errors.question?.message}
           </p>
         </div>
+        <input
+          className="w-2/3 h-10 bg-white rounded-lg shadow-sm focus:outline-none | p-4 | border-2 border-blue"
+          id="email"
+          placeholder="Ton email"
+          type="email"
+          {...register("email")}
+        ></input>
+        <div>
+          <p className="text-red-500 text-xs italic">{errors.email?.message}</p>
+        </div>
         <div className="grid w-full justify-items-center">
-          <Button type="blue" className="p-4 h-10">
+          <Button type="blue" className="p-4 h-10 mt-4">
             Envoyer
           </Button>
         </div>

@@ -32,18 +32,22 @@ export const FirstStep: React.FC<IFirstStep> = ({ item }) => {
           <h2 className="text-base lg:text-xl font-medium">
             {item.userPresentationTitle}
           </h2>
-          <h3 className="text-xs lg:text-xl font-light">
+          <h4 className="text-xs lg:text-lg font-light">
             {item.userPresentationTitleSubtitle}
-          </h3>
+          </h4>
         </div>
       </div>
       <h3 className="text-base text-blue lg:text-xl font-semibold mb-2">
         "{item.citation}"
       </h3>
-      <h3 className="text-sm lg:text-xl font-light">{item.shortDescription}</h3>
+      <h3 className="text-sm lg:text-lg font-light">
+        {HTMLReactParser(item.shortDescription)}
+      </h3>
       <div className={isActive ? "container_fadeIn" : "container_fadeOut"}>
         {" "}
-        <h3>{HTMLReactParser(item.longDescription)}</h3>
+        <h3 className="text-sm lg:text-lg font-light">
+          {HTMLReactParser(item.longDescription)}
+        </h3>
       </div>
       <Button
         type="grey"

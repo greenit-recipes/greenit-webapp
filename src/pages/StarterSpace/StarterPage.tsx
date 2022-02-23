@@ -33,7 +33,7 @@ import {
 import { Button, RecipeCard } from "../../components";
 import authService from "services/auth.service";
 import { useRecipesQuery } from "../../graphql";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { RouteName } from "App";
 import { CategoryCircle } from "pages/LandingPage/Components/CategoryCircle";
@@ -41,7 +41,7 @@ import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
 import { SharedWithFriend } from "pages/StarterSpace/component/SharedWithFriend/SharedWithFriend";
 import { AskQuestion } from "pages/StarterSpace/component/AskQuestion/AskQuestion";
 import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
-import "./StarterPage.css"
+import "./StarterPage.css";
 import useIsMobile from "hooks/isMobile";
 
 const StarterPage = () => {
@@ -89,6 +89,9 @@ const StarterPage = () => {
     });
   };
 
+  const [isActive, setIsActive] = useState(false);
+  const [toggle, setToggle] = useState(false);
+
   return (
     <div className="flex flex-col | items-center self-center">
       <Navbar />
@@ -114,13 +117,12 @@ const StarterPage = () => {
             DIY, <br /> ce guide est fait pour vous !
           </h2>
           <h3 className="text-sm lg:text-base font-light">
-            Débuter dans une nouvelle pratique comme le DIY peut paraître
-            compliqué, tous le monde est passé par là. Voici 3 étapes simples
-            pour vous lancer dans le fait-maison en débutant pas à pas.
+            Voici 3 étapes simples pour vous lancer dans le fait-maison en
+            débutant pas à pas.
           </h3>
         </div>
 
-        <div className="grid grid-rows-3 | lg:grid-rows-1 lg:grid-cols-5 lg:ml-10 gap-2 my-6 justify-items-center">
+        <div className="grid grid-rows-4 | lg:grid-rows-1 lg:grid-cols-5 lg:ml-10 gap-2 my-6 justify-items-center">
           {[
             {
               icon: Conseil,
@@ -146,7 +148,7 @@ const StarterPage = () => {
               onClick={() => item.fonction()}
             >
               <div className="grid absolute w-10 h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
-                <h2 className="text-center self-center font-bold">
+                <h2 className="text-center self-center font-bold text-xl">
                   {item.number}
                 </h2>
               </div>
@@ -161,8 +163,8 @@ const StarterPage = () => {
             </div>
           ))}
           <SharedWithFriend></SharedWithFriend>
-          <div ref={fieldRefEtape1}></div>
         </div>
+        <div ref={fieldRefEtape1}></div>
       </Container>
 
       <SectionStarterPage
@@ -179,13 +181,15 @@ const StarterPage = () => {
           {
             imgProfil: Catherine,
             altImgProfil: "Photo Catherine",
-            userPresentationTitle: "Bol en inox",
-            userPresentationTitleSubtitle: "Pour la cuisson au bain-marie",
+            userPresentationTitle: "Le conseil de Catherine",
+            userPresentationTitleSubtitle:
+              "Ingénieure et ambassadrice contre le changement climatique",
             citation:
-              "Le bol permet de faire vos préparations avant de les verser dans les contenants. Certaines préparations nécessitent une chauffe au bain-marie, l’inox est donc idéal. Il permet une cuisson uniforme tout en étant facilement lavables.",
-            shortDescription: "Pour la cuisson au bain-marie",
+              "Remplacer vos produits petit à petit et commencer par des recettes simples !",
+            shortDescription:
+              "Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.",
             longDescription:
-              " La plus grosse erreur que je vois quand on veut se lancer en cosmétique maison, c’est de vouloir essayer plein de choses en même temps avec plein d’ingrédients. On dépense beaucoup, on s’éparpille, cela prend du temps et on s’arrête rapidement parce qu’on est perdu 😱 <br /><br /> Mon conseil est donc : <br /> Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient. <br /><br /> La question à vous poser est : quelle est ma problématique principale ? La peau qui tire ? Des boutons ? Des zones de brillance ?<br /> Ensuite, trouver l’huile végétale qui répond à cette problématique. Cette huile végétale peut s’utiliser seule à la place de votre crème de jour ou crème de nuit. C’est la solution la plus naturelle et la plus économique ! Testez avant de réaliser une crème compliquée 😉",
+              "<br/> Mon conseil est donc: <br/> Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.<br/>  La question à vous poser est : quelle est ma problématique principale ? La peau qui tire ? Des boutons ? Des zones de brillance ? <br/> <br/> Ensuite, trouver l’huile végétale qui répond à cette problématique.  Cette huile végétale peut s’utiliser seule à la place de votre crème de jour ou crème de nuit. C’est la solution la plus naturelle et la plus économique ! Testez avant de réaliser une crème compliquée 😉",
           },
           {
             imgProfil: Christelle,
@@ -193,22 +197,22 @@ const StarterPage = () => {
             userPresentationTitle: "Le conseil de Christelle",
             userPresentationTitleSubtitle:
               "Naturopathe et animatrice d’atelier",
-            citation: "Rester sur des recettes qui fonctionnent !",
-            shortDescription:
-              "Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.",
+            citation:
+              "Sélectionner ses ingrédients en fonction de votre type de peau. ",
+            shortDescription: "",
             longDescription:
-              "Empor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+              "Il est important de déterminer les ingrédients qui vont vous faire du bien en fonction des besoins de votre peau et d’en maîtriser les propriétés.<br> Pour les peaux grasses à imperfections, on va préférer une huile sèche de noisette ou de jojoba pour se démaquiller, un hydrolat d’hamamélis ou de lavande pour purifier la peau et de l’huile de nigelle avec de l’aloe vera pour l’hydrater.<br> Pour une peau normale à mixte, on opte pour une huile végétale de noyaux d’abricot ou de macadamia, et un hydrolat de rose ou fleur d’oranger.<br> En cas de peau sèche, on se démaquille à l’huile de coco, avocat ou carthame, on tonifie avec un hydrolat de camomille ou bleuet et on hydrate avec une huile d’amande douce avec du gel d’aloe vera.<br> <br> Il me parait aussi intéressant de suivre un atelier découverte ou d’investir dans un bon livre pour intégrer les principes de base.Une bonne recette de cosmétique maison ne doit pas contenir trop d’ingrédients. Il vaut mieux faire moins d’ingrédients mais bien sélectionnés et plus efficaces ! Commencez par une recette simple, avec seulement quelques étapes. Vous serez satisfaite du résultat et cela vous donnera envie d’en faire plein d’autres ! <br> <br> À vous de jouer !",
           },
           {
             imgProfil: logo,
             altImgProfil: "Greenit Logo",
             userPresentationTitle: "Nos conseils",
             userPresentationTitleSubtitle: "Greenit Community",
-            citation: "Respectons quelques règles de base.",
+            citation: "Respectons les règles de base : ",
             shortDescription:
-              "Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.",
+              "Comme pour la cuisine, vous devez respecter quelques règles :",
             longDescription:
-              "Comme pour la cuisine, vous devez respecter quelques règles              <br />           <br />          • L’utilisation des huiles essentielles Certaines d’entre elles sont          très irritantes et allergènes. Optez pour 3 huiles essentielles, selon          vos problématiques, et apprenez leurs propriétés, posologie et          risques.  <br />           <br />          • La conservation des produits Les produits maisons n’étant pas          boostés aux conservateurs chimiques, ils se gardent moins longtemps.          Lorsque vous réalisez une émulsion eau/huile, il est vivement          recommandé d’utiliser un conservateur naturel. Pour une phase huileuse          uniquement, de la vitamine E suffit. En règle générale, dès que votre          préparation change d’aspect, de couleurs, d’odeur, il est préférable          de la jeter, de la même façon que vos ingrédients du frigo.  <br />           <br />• Respecter les règles d’hygiène Enfin, toujours respecter les          règles d’hygiène lors de la préparation de vos produits : un plan de          travail et des ustensiles nettoyés ainsi que des mains propres. ",
+              "<br/> • L’utilisation des huiles essentielles <br/> Certaines d’entre elles sont très irritantes et allergènes. Optez pour 3 huiles essentielles, selon vos problématiques, et apprenez leurs propriétés, posologie et risques. <br/> <br/> • La conservation des produits <br/> Les produits maisons n’étant pas boostés aux conservateurs chimiques, ils se gardent moins longtemps. Lorsque vous réalisez une émulsion eau/huile, il est vivement recommandé d’utiliser un conservateur naturel. Pour une phase huileuse uniquement, de la vitamine E suffit. En règle générale, dès que votre préparation change d’aspect, de couleurs, d’odeur, il est préférable de la jeter, de la même façon que vos ingrédients du frigo. <br/> <br/> •  Respecter les règles d’hygiène <br/> Enfin, toujours respecter les règles d’hygiène lors de la préparation de vos produits : un plan de travail et des ustensiles nettoyés ainsi que des mains propres.",
           },
         ].map((item, index) => (
           <FirstStep item={item} key={index}></FirstStep>
@@ -262,20 +266,20 @@ const StarterPage = () => {
                 className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72"
                 key={index}
               >
-                <div className="grid justify-items-center">
+                <div className="grid justify-items-center h-20">
                   <img
                     src={item.icon}
                     className="w-16 lg:w-18 self-center items-center"
                     alt={item.maintitle}
                   />{" "}
                 </div>
-                <h3 className="text-lg text-center font-semibold">
+                <h3 className="text-xl text-center font-semibold h-8">
                   {item.maintitle}
                 </h3>
-                <h2 className="text-base text-center mb-2 ">{item.title}</h2>
-                <h3 className="text-sm  text-center font-light w-64">
+                <h2 className="text-base text-center mb-2 h-8">{item.title}</h2>
+                <h4 className="text-sm  text-center font-light h-32">
                   {item.subtitle}
-                </h3>
+                </h4>
               </div>
             ))}
           </div>
@@ -292,53 +296,33 @@ const StarterPage = () => {
       ></SectionStarterPage>
 
       {/* Etape 3 Recette 1 */}
-      <Container className="flex| lg:w-10/12 w-11/12 p-3 lg:mt-6 rounded-lg">
-      <h2 className="text-2xl font-semibold mb-2">Recette 1 :</h2>
+      <Container className="flex| lg:w-10/12 w-11/12 p-3 lg:mt-6">
+        <h2 className="text-2xl font-semibold mb-2">Recette 1 :</h2>
         <div className="flex flex-col justify-between lg:flex-row">
           <div className="flex-col flex">
-            <h2 className="text-xl font-medium mb-4 mr-4">Crème nourrissante</h2>
+            <h2 className="text-xl font-medium mb-4 mr-4">
+              Crème nourrissante
+            </h2>
             <div className="place-self-center lg:place-self-start">
-              <img src={CremeCorp} className={`${isMobile ? "rounded-xl w-36 h-45" : "img-dim"}`} />
-
+              <img
+                src={CremeCorp}
+                className={`${isMobile ? "rounded-xl w-36 h-45" : "img-dim"}`}
+              />
             </div>
             <div className="flex flex-col justify-center items-center">
-            <div className="flex mt-2">
-              <p>Quantité : </p>
-              <p className="font-semibold">&nbsp;70 g</p>
-            </div>
-            <div className="flex mt-2 mb-3">
-              <p>Prix : </p>
-              <p className="font-semibold">&nbsp;2,80 €</p>
-            </div>
+              <div className="flex mt-2">
+                <p>Quantité : </p>
+                <p className="font-semibold">&nbsp;70 g</p>
+              </div>
+              <div className="flex mt-2 mb-3">
+                <p>Prix : </p>
+                <p className="font-semibold">&nbsp;2,80 €</p>
+              </div>
             </div>
           </div>
           <div className="flex flex-col lg:w-2/4">
             <div className="flex mb-4">
-            <h2 className="text-xl self-end font-medium">
-              Les ingrédients 
-            </h2>
-            { !isMobile && (<div className="flex">
-              {/* A FAIRE onlick button la description apparait */}
-              <button className="flex cursor-pointer ml-6">
-                <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
-                  <p className="self-center text-white font-bold">𝓲</p>
-                </div>
-                <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
-              </button>
-              {/* A FAIRE la description apparait si le boutton est on
-              
-                            <div className="flex justify-self-center ml-6 p-4 mt-4 bg-grey rounded-lg">
-                <h3 className="text-white">
-                  Le beurre de karité pénètre rapidement dans la peau, nourrit
-                  intensément. Il a une texture plus fondante que le beurre de
-                  karité normal et est plus facilement applicable. L'huile de
-                  macadamia apaise les peaux sèches et tiraillées. L'arôme de
-                  vanille se lie parfaitement avec le beurre de karité et
-                  parfume la crème.
-                </h3>
-              </div>*/}
-
-            </div>)}
+              <h2 className="text-xl self-end font-medium">Les ingrédients</h2>
             </div>
             <div className="flex items-center overflow-x-auto lg mb-4">
               <div className="m-2 w-32 h-60">
@@ -359,7 +343,7 @@ const StarterPage = () => {
                     Beurre de karité
                   </p>
                 </div>
-                <h4 className="text-xs lg:text-sm font-light text-center">
+                <h4 className="text-xs lg:text-sm font-light text-center mt-8">
                   3,90 € / 100 g{" "}
                 </h4>
               </div>
@@ -386,12 +370,11 @@ const StarterPage = () => {
                     Huile végétale de ricin{" "}
                   </p>
                 </div>
-                <h4 className="text-xs lg:text-sm font-light text-center ">
+                <h4 className="text-xs lg:text-sm font-light text-center mt-8">
                   2,60 € / 100 g{" "}
                 </h4>
               </div>
 
-             
               <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
                 <p className="self-center font-regular text-xl">+</p>
               </div>
@@ -414,7 +397,7 @@ const StarterPage = () => {
                     Cire d’abeille{" "}
                   </p>
                 </div>
-                <h4 className="text-xs lg:text-sm font-light text-center">
+                <h4 className="text-xs lg:text-sm font-light text-center  mt-8">
                   2,90 € / 30 g{" "}
                 </h4>
               </div>
@@ -443,269 +426,257 @@ const StarterPage = () => {
                 </div>
               </div>
             </div>
-            { isMobile && (<div className="flex mb-5">
-              {/* A FAIRE onlick button la description apparait */}
-              <button className="flex cursor-pointer ml-6">
+            <div className="flex flex-col">
+              <button
+                className="flex cursor-pointer ml-6"
+                onClick={() => setIsActive(!isActive)}
+              >
                 <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
                   <p className="self-center text-white font-bold">𝓲</p>
                 </div>
                 <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
               </button>
-              {/* A FAIRE la description apparait si le boutton est on
-              
-                            <div className="flex justify-self-center ml-6 p-4 mt-4 bg-grey rounded-lg">
-                <h3 className="text-white">
-                  Le beurre de karité pénètre rapidement dans la peau, nourrit
-                  intensément. Il a une texture plus fondante que le beurre de
-                  karité normal et est plus facilement applicable. L'huile de
-                  macadamia apaise les peaux sèches et tiraillées. L'arôme de
-                  vanille se lie parfaitement avec le beurre de karité et
-                  parfume la crème.
-                </h3>
-              </div>*/}
-
-            </div>)}
-            <p className="lg:text-center text-sm text-sm font-light">
-              En achetant ces ingrédients, vous pouvez faire <span className="bold">10</span> shampooings. <br></br> Le
-              bicarbonate de soude va être réutilisé dans les recettes maison.
-            </p>
+              <div
+                className={
+                  isActive ? "ingredient_fadeIn" : "ingredient_fadeOut"
+                }
+              >
+                <div className="flex justify-self-center ml-6 p-2 mt-4 bg-grey rounded-lg">
+                  <h4 className="text-white text-sm">
+                    Le beurre de karité pénètre rapidement dans la peau, nourrit
+                    intensément. Il a une texture plus fondante que le beurre de
+                    karité normal et est plus facilement applicable. L'huile de
+                    macadamia apaise les peaux sèches et tiraillées. L'arôme de
+                    vanille se lie parfaitement avec le beurre de karité et
+                    parfume la crème.
+                  </h4>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="flex flex-col lg:w-1/5 mt-4 lg:mt-0">
-          <h2 className="text-lg text-center lg:text-xl mb-5 font-medium">
+            <h2 className="text-lg text-center lg:text-xl lg:mb-5 font-medium">
               Où acheter ?{" "}
             </h2>
-          <div className="flex flex-col m-4 items-center h-2/4 justify-between p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
-            <p className="text-center text-sm font-light">
-              Profitez d’un tarif préférentiel chez notre partenaire 👇
-            </p>
-            <div>
-            <p className="text-center mb-4">9,40 €</p>
-            <Button type="orange" className="w-32 h-10">
-              Commander
-            </Button>
+            <div className="flex flex-col m-4 w-60 items-center self-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
+              <p className="text-center text-sm font-light">
+                Profitez d’un tarif préférentiel chez notre partenaire 👇
+              </p>
+              <div>
+                <p className="text-center mb-4">9,40 €</p>
+                <Button type="orange" className="w-32 h-10">
+                  Commander
+                </Button>
+              </div>
+              <p className="pt-4 text-center text-sm font-light self-end">
+                En achetant avec ce lien, vous aidez Greenit à se rémunérer 🙏
+              </p>
             </div>
-            <p className="pt-4 text-center text-sm font-light self-end">
-              En achetant avec ce lien, vous aidez Greenit à se rémunérer 🙏
+            <p className="lg:text-center text-sm text-sm font-light lg:mt-6">
+              En achetant ces ingrédients, vous pouvez faire{" "}
+              <span className="bold">2</span> crèmes. La cire d’abeille pour
+              tous type de baumes.
             </p>
           </div>
-        </div>
         </div>
       </Container>
       {/* Etape 3 Recette 2 */}
-      <Container className="flex flex-col | w-11/12 p-3 lg:p-6 mt-6 mb-20 border-1 border-black rounded-lg bg-white">
-        <div className="grid grid-cols-2 auto-rows-auto gap-y-2 | lg:grid-cols-5">
-          <div className="hidden lg:block lg:col-span-1 self-center">
-            <h2 className="text-2xl font-semibold mb-2">Recette 2 :</h2>
-            <h2 className="text-xl font-medium"> Lessive minute</h2>
-            <div className="flex gap-3">
-              <p>Quantité :</p>
-              <p className="font-semibold">1 L</p>
+      <Container className="flex| lg:w-10/12 w-11/12 p-3 lg:mt-6 mb-20">
+        <h2 className="text-2xl font-semibold mb-2">Recette 2 :</h2>
+        <div className="flex flex-col justify-between lg:flex-row">
+          <div className="flex-col flex">
+            <h2 className="text-xl font-medium mb-4 mr-4">Lessive minute</h2>
+            <div className="place-self-center lg:place-self-start">
+              <img
+                src={Lessive}
+                className={`${isMobile ? "rounded-xl w-36 h-45" : "img-dim"}`}
+              />
             </div>
-            <div className="flex gap-3">
-              <p>Prix :</p>
-              <p className="font-semibold">0,50 €</p>
-            </div>
-          </div>
-          <h2 className="hidden lg:block text-xl self-end font-medium col-span-3">
-            Les ingrédients :
-          </h2>
-          <p className="hidden lg:block text-center text-sm font-light self-end">
-            En achetant avec ce lien, vous aidez Greenit à se rémunérer 🙏
-          </p>
-          <div className="place-self-center lg:place-self-start">
-            <img src={Lessive} className="rounded-xl w-32 lg:w-52" />
-          </div>
-          <div className="flex-inline lg:hidden self-center">
-            <h3 className="text-xl font-semibold">Recette 2 :</h3>
-            <h2 className="text-base font-medium mb-3">Lessive minute</h2>
-            <div className="flex gap-3">
-              <p>Quantité :</p>
-              <p className="font-semibold">1 L</p>
-            </div>
-            <div className="flex gap-3">
-              <p>Prix :</p>
-              <p className="font-semibold">0,50 €</p>
-            </div>
-          </div>
-          <h2 className="flex lg:hidden text-base font-medium col-span-2 mt-4 ml-2">
-            Les ingrédients :
-          </h2>
-          <div className="flex col-span-2 lg:col-span-3 overflow-x-auto content-center py-4">
-            <div className="m-2 w-32">
-              <div className="flex justify-center">
-                <img
-                  src={BicarSoude}
-                  className="w-24 h-24 max-w-none"
-                  alt="Bicarbonate de Soude"
-                />{" "}
+            <div className="flex flex-col justify-center items-center">
+              <div className="flex mt-2">
+                <p>Quantité : </p>
+                <p className="font-semibold">&nbsp;1 L</p>
               </div>
-              <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
-                <p className="text-center text-sm self-center font-medium">
-                  10 g
-                </p>
-              </div>
-              <div className="h-18 pt-2">
-                <p className="text-sm lg:text-lg font-regular text-center">
-                  Bicarbonate de Soude
-                </p>
-              </div>
-              <h4 className="text-xs lg:text-sm font-light text-center">
-                4,30 € / 1 kg
-              </h4>
-            </div>
-
-            <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
-              <p className="self-center font-regular text-xl">+</p>
-            </div>
-
-            <div className="m-2 w-32">
-              <div className="flex justify-center">
-                <img
-                  src={SavonMarseille}
-                  className="w-24 h-24 max-w-none"
-                  alt="Savon de Marseille"
-                />{" "}
-              </div>
-              <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
-                <p className="text-center text-sm self-center font-medium">
-                  30 g{" "}
-                </p>
-              </div>
-              <div className="h-18 pt-2">
-                <p className="text-sm lg:text-lg font-regular text-center">
-                  Savon de Marseille
-                </p>
-              </div>
-              <h4 className="text-xs lg:text-sm font-light text-center ">
-                2,30 € / 150g
-              </h4>
-            </div>
-
-            <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
-              <p className="self-center font-regular text-xl">+</p>
-            </div>
-
-            <div className="m-2 w-32">
-              <div className="flex justify-center">
-                <img src={Eau} className="w-24 h-24 max-w-none" alt="Eau" />{" "}
-              </div>
-              <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
-                <p className="text-center text-sm self-center font-medium">
-                  1 L{" "}
-                </p>
-              </div>
-              <div className="h-18 pt-2">
-                <p className="text-sm lg:text-lg font-regular text-center">
-                  Eau
-                </p>
-              </div>
-            </div>
-
-            <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
-              <p className="self-center font-regular text-xl">+</p>
-            </div>
-
-            <div className="m-2 w-32">
-              <div className="flex justify-center">
-                <img
-                  src={EcorceArgume}
-                  className="w-24 h-24 max-w-none"
-                  alt="Eau"
-                />
-              </div>
-              <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
-                <p className="text-center text-sm self-center font-medium">
-                  2 à 3
-                </p>
-              </div>
-              <div className="h-18 pt-2">
-                <p className="text-sm lg:text-lg font-regular text-center">
-                  Ecorces d’agrumes pour l’odeur
-                </p>
-              </div>
-            </div>
-
-            <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
-              <p className="self-center font-regular text-xl">+</p>
-            </div>
-
-            <div className="m-2 w-32">
-              <div className="flex justify-center">
-                <img
-                  src={Bouteille}
-                  className="w-24 h-24 max-w-none"
-                  alt="Bocal_icon"
-                />
-              </div>
-              <div className="flex justify-center w-12 h-12 bg-grey rounded-full -mt-8 lg:ml-4 relative z-20">
-                <p className="text-center text-white text-xs self-center font-medium">
-                  ≈ 1 L
-                </p>
-              </div>
-              <div className="h-18 pt-2">
-                <p className="text-sm lg:text-lg font-regular text-center">
-                  Bouteille en verre
-                </p>
+              <div className="flex mt-2 mb-3">
+                <p>Prix : </p>
+                <p className="font-semibold">&nbsp;0,50 €</p>
               </div>
             </div>
           </div>
-
-          <div className="flex col-span-2 justify-self-center | lg:hidden">
-            {/* A FAIRE onlick button la description apparait */}
-            <button className="flex cursor-pointer">
-              <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
-                <p className="self-center text-white font-bold">𝓲</p>
+          <div className="flex flex-col lg:w-2/4">
+            <div className="flex mb-4">
+              <h2 className="text-xl self-end font-medium">Les ingrédients</h2>
+            </div>
+            <div className="flex items-center overflow-x-auto lg mb-4">
+              <div className="m-2 w-32 h-60">
+                <div className="flex justify-center">
+                  <img
+                    src={BicarSoude}
+                    className="w-24 h-24 max-w-none"
+                    alt="Bicarbonate de Soude"
+                  />{" "}
+                </div>
+                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                  <p className="text-center text-sm self-center font-medium">
+                    10 g
+                  </p>
+                </div>
+                <div className="h-18 pt-2">
+                  <p className="text-sm lg:text-lg font-regular text-center">
+                    Bicarbonate de Soude
+                  </p>
+                </div>
+                <h4 className="text-xs lg:text-sm font-light text-center mt-8">
+                  4,30 € / 1 kg{" "}
+                </h4>
               </div>
-              <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
-            </button>
-          </div>
-          {/* A FAIRE la description apparait si le boutton est on */}
-          <div className="flex col-span-2 justify-self-center mx-4 p-4 bg-grey rounded-lg | lg:hidden">
-            <h3 className="text-white text-sm">
-              Le savon de Marseille est un nettoyant et un désinfectant. Il
-              dégraisse les surfaces et agit comme un antiseptique. Le
-              bicarbonate de soude ravive le blanc, adoucit et élimine les
-              odeurs. L'hydrolat de Tea Tree permet de parfumer. Elle a des
-              propriétés antibactériennes également.{" "}
-            </h3>
+
+              <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
+                <p className="self-center font-regular text-xl">+</p>
+              </div>
+
+              <div className="m-2 w-32 h-60">
+                <div className="flex justify-center">
+                  <img
+                    src={SavonMarseille}
+                    className="w-24 h-24 max-w-none"
+                    alt="Huile de Ricin"
+                  />{" "}
+                </div>
+                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                  <p className="text-center text-sm self-center font-medium">
+                    30 g{" "}
+                  </p>
+                </div>
+                <div className="h-18 pt-2">
+                  <p className="text-sm lg:text-lg font-regular text-center">
+                    Savon de Marseille
+                  </p>
+                </div>
+                <h4 className="text-xs lg:text-sm font-light text-center mt-8">
+                  2,30 € / 100 g{" "}
+                </h4>
+              </div>
+
+              <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
+                <p className="self-center font-regular text-xl">+</p>
+              </div>
+
+              <div className="m-2 w-32 h-60">
+                <div className="flex justify-center">
+                  <img src={Eau} className="w-24 h-24 max-w-none" alt="Eau" />{" "}
+                </div>
+                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                  <p className="text-center text-sm self-center font-medium">
+                    1 L{" "}
+                  </p>
+                </div>
+                <div className="h-18 pt-2">
+                  <p className="text-sm lg:text-lg font-regular text-center">
+                    Eau{" "}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
+                <p className="self-center font-regular text-xl">+</p>
+              </div>
+
+              <div className="m-2 w-32 h-60">
+                <div className="flex justify-center">
+                  <img
+                    src={EcorceArgume}
+                    className="w-24 h-24 max-w-none"
+                    alt="Ecorce Agrumes"
+                  />{" "}
+                </div>
+                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                  <p className="text-center text-sm self-center font-medium">
+                    2 à 3{" "}
+                  </p>
+                </div>
+                <div className="h-18 pt-2">
+                  <p className="text-sm lg:text-lg font-regular text-center">
+                    2 Écorces d'agrumes pour l'odeur
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex justify-center h-1/2 lg:h-1/3 mx-1">
+                <p className="self-center font-regular text-xl">+</p>
+              </div>
+
+              <div className="m-2 w-32 h-60">
+                <div className="flex justify-center">
+                  <img
+                    src={Bouteille}
+                    className="w-24 h-24 max-w-none"
+                    alt="Bouteille en verre"
+                  />{" "}
+                </div>
+                <div className="flex justify-center w-12 h-12 bg-grey rounded-full -mt-8 lg:ml-4 relative z-20">
+                  <p className="text-center text-white text-xs self-center font-medium">
+                    ≈ 1 L{" "}
+                  </p>
+                </div>
+                <div className="h-18 pt-2">
+                  <p className="text-sm lg:text-lg font-regular text-center">
+                    Bouteille en verre{" "}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <button
+                className="flex cursor-pointer ml-6"
+                onClick={() => setToggle(!toggle)}
+              >
+                <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
+                  <p className="self-center text-white font-bold">𝓲</p>
+                </div>
+                <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
+              </button>
+              <div
+                className={toggle ? "ingredient_fadeIn" : "ingredient_fadeOut"}
+              >
+                <div className="flex justify-self-center ml-6 p-2 mt-4 bg-grey rounded-lg">
+                  <h4 className="text-white text-sm">
+                    Le savon de Marseille est un nettoyant et un désinfectant.
+                    Il dégraisse les surfaces et agit comme un antiseptique. Le
+                    bicarbonate de soude ravive le blanc, adoucit et élimine les
+                    odeurs. Pour ajouter une odeur, vous pouvez utiliser
+                    l'hydrolat de Tea Tree permet de parfumer. Elle a des
+                    propriétés antibactériennes.
+                  </h4>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="grid gap-3 col-span-2 m-4 item-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
-            <h2 className="flex text-lg lg:text-xl font-medium">
+          <div className="flex flex-col lg:w-1/5 mt-4 lg:mt-0">
+            <h2 className="text-lg text-center lg:text-xl lg:mb-5 font-medium">
               Où acheter ?{" "}
             </h2>
-            <p className="text-center text-sm font-light">
-              Profitez d’un tarif préférentiel chez notre partenaire 👇
-            </p>
-            <p>6,60 €</p>
-            <Button type="orange" className="w-32 h-10">
-              Commander
-            </Button>
-            <p className="text-center text-sm text-sm font-light">
-              En achetant ces ingrédients, vous pouvez faire 10 shampooings. Le
+            <div className="flex flex-col m-4 w-60 items-center self-center justify-between p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
+              <p className="text-center text-sm font-light">
+                Profitez d’un tarif préférentiel chez notre partenaire 👇
+              </p>
+              <div>
+                <p className="text-center mb-4">9,40 €</p>
+                <Button type="orange" className="w-32 h-10">
+                  Commander
+                </Button>
+              </div>
+              <p className="pt-4 text-center text-sm font-light self-end">
+                En achetant avec ce lien, vous aidez Greenit à se rémunérer 🙏
+              </p>
+            </div>
+            <p className="lg:text-center text-sm text-sm font-light lg:mt-6">
+              En achetant ces ingrédients, vous pouvez faire{" "}
+              <span className="bold">10</span> shampooings. <br></br> Le
               bicarbonate de soude va être réutilisé dans les recettes maison.
             </p>
-          </div>
-          <div className="hidden lg:block lg:col-span-1"></div>
-          <div className="hidden lg:block col-span-3">
-            {/* A FAIRE onlick button la description apparait */}
-            <button className="flex -mt-10 cursor-pointer ml-6">
-              <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
-                <p className="self-center text-white font-bold">𝓲</p>
-              </div>
-              <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
-            </button>
-            {/* A FAIRE la description apparait si le boutton est on */}
-            <div className="hidden lg:flex justify-self-center ml-6 p-4 mt-4 bg-grey rounded-lg">
-              <h3 className="text-white">
-                Le savon de Marseille est un nettoyant et un désinfectant. Il
-                dégraisse les surfaces et agit comme un antiseptique. Le
-                bicarbonate de soude ravive le blanc, adoucit et élimine les
-                odeurs. L'hydrolat de Tea Tree permet de parfumer. Elle a des
-                propriétés antibactériennes également.{" "}
-              </h3>
-            </div>
           </div>
         </div>
       </Container>
@@ -755,9 +726,7 @@ const StarterPage = () => {
                   alt="Producteur_icon"
                 />
               </div>
-              <h2 className="text-base text-center font-light">
-                Producteurs locaux
-              </h2>
+              <h2 className="text-lg text-center mb-2">Producteurs locaux</h2>
               <p className="text-sm text-center font-light">
                 Le top, c’est de faire appel à nos producteurs locaux pour vos
                 ingrédients. Ils sont toutefois plus compliqués à trouver et ne
@@ -775,7 +744,7 @@ const StarterPage = () => {
                   alt="Marché_icon"
                 />{" "}
               </div>
-              <h2 className="text-base text-center font-light">
+              <h2 className="text-lg text-center mb-2">
                 Biocoop ou grande surface{" "}
               </h2>
               <p className="text-sm text-center font-light">
@@ -795,7 +764,7 @@ const StarterPage = () => {
                   alt="Internet_icon"
                 />{" "}
               </div>
-              <h2 className="text-base text-center font-light">
+              <h2 className="text-lg text-center mb-2">
                 Sur les sites marchands{" "}
               </h2>
               <p className="text-sm text-center font-light">
@@ -814,7 +783,7 @@ const StarterPage = () => {
       <SectionStarterPage
         color="green"
         step={false}
-        maintitle="Aller plus loin"
+        maintitle="Encore plus loin"
         title="Où trouver les informations nécessaires ?"
         text="Les informations sur le fait-maison sont éparpillées sur internet
         entre les blogs, c’est la raison pour laquelle Greenit existe !
@@ -834,14 +803,15 @@ const StarterPage = () => {
                   alt="Atelier_icon"
                 />{" "}
               </div>
-              <h2 className="text-base text-center font-light">Ateliers </h2>
+              <h2 className="text-lg text-center mb-2">Ateliers </h2>
               <p className="text-sm text-center font-light">
-                L’atelier du D.I.Y : https://www.atelier-diy.com La bonne <br />
+                L’atelier du D.I.Y : <br /> https://www.atelier-diy.com <br />
                 <br />
-                composition à Paris: https://labonnecomposition.fr Lavande et{" "}
+                La bonne composition à Paris: https://labonnecomposition.fr{" "}
                 <br />
                 <br />
-                Camomille à Lyon : https://www.lavandeetcamomille.com <br />
+                Lavande et Camomille à Lyon : https://www.lavandeetcamomille.com{" "}
+                <br />
                 <br />
               </p>
             </div>
@@ -853,9 +823,7 @@ const StarterPage = () => {
                   alt="Livre_icon"
                 />{" "}
               </div>
-              <h2 className="text-base text-center font-light">
-                Livres recommandés{" "}
-              </h2>
+              <h2 className="text-lg text-center mb-2">Livres recommandés </h2>
               <p className="text-sm text-center font-light">
                 Ma bible des huiles essentielles de Danièle Festy (Editions
                 Leduc) <br />
@@ -875,9 +843,7 @@ const StarterPage = () => {
                   alt="Site_icon"
                 />{" "}
               </div>
-              <h2 className="text-base text-center font-light">
-                Site internet{" "}
-              </h2>
+              <h2 className="text-lg text-center mb-2">Site internet </h2>
               <p className="text-sm text-center font-light">
                 Le site de la Slow Cosmétique : https://www.slow-cosmetique.org{" "}
                 <br />
@@ -905,12 +871,24 @@ const StarterPage = () => {
             des ingredients que l'on peut déjà avoir chez soi.
           </p>
         </h3>
-        {landingPageCategories.slice(2, 3).map((item) => (
-          <CategoryCircle name={item.title} icon={item.icon} key={item.title} />
-        ))}
-        {landingPageCategories.slice(0, 1).map((item) => (
-          <CategoryCircle name={item.title} icon={item.icon} key={item.title} />
-        ))}
+        <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150">
+          {landingPageCategories.slice(2, 3).map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))}
+        </div>
+        <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150">
+          {landingPageCategories.slice(0, 1).map((item) => (
+            <CategoryCircle
+              name={item.title}
+              icon={item.icon}
+              key={item.title}
+            />
+          ))}
+        </div>
         <h3 className="text-sm lg:text-base lg:col-span-2 font-light mt-6 text-right">
           <p>"Premier pas" réuni toutes les recettes les plus simples.</p>
         </h3>
@@ -923,7 +901,7 @@ const StarterPage = () => {
         title="N'hesitez pas à nous partager vos questions et retours pour que l'on
         puisse mieux vous accompagner."
       ></SectionStarterPage>
-      <h3 className="text-sm lg:text-lg font-light px-6 text-center mt-4 mb-20">
+      <h3 className="text-sm lg:text-lg font-light px-6 text-center mt-4 mb-6">
         👇 Ici 👇
       </h3>
       <AskQuestion></AskQuestion>

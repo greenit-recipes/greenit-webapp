@@ -31,7 +31,7 @@ export const SharedWithFriend: React.FC = () => {
     }).then(() => reset());
   };
   return (
-    <div className="hidden | lg:grid col-span-2 gap-4 justify-items-center self-center">
+    <div className="grid lg:col-span-2 gap-4 justify-items-center self-center | mt-8 lg:mt-0">
       <h2 className="text-sm lg:text-base font-regular text-center">
         Motivez-vous avec vos ami.e.s :
       </h2>
@@ -48,7 +48,7 @@ export const SharedWithFriend: React.FC = () => {
         ></input>
 
         <div className="grid w-full justify-items-center">
-          <Button type="blue" className="p-4 h-10">
+          <Button id="share_friends" type="blue" className="p-4 h-10">
             Envoyer le lien du guide
           </Button>
         </div>
