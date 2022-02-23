@@ -1,9 +1,9 @@
 import { gql } from "@apollo/client";
 
-export const ASK_QUESTION_STARTER_PAGE = gql`
-  mutation emailSharedWithFriend($email: String!) {
-    emailSharedWithFriend(email: $email) {
-      success
-    }
+export const EMAIL_ASK_QUESTION_STARTER_PAGE = gql`
+mutation emailAskQuestionStartePage($email: String!, $question: String!) {
+  emailAskQuestionStartePage(email: $email, question: $question) {
+		success
   }
+}
 `;

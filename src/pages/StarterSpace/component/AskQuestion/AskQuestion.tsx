@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMutation } from "@apollo/client";
 import { Button } from "components";
-import { ASK_QUESTION_STARTER_PAGE } from "pages/StarterSpace/component/AskQuestion/askQuestionRequest";
+import { EMAIL_ASK_QUESTION_STARTER_PAGE } from "pages/StarterSpace/component/AskQuestion/askQuestionRequest";
 
 export const AskQuestion: React.FC = () => {
   const schema = yup.object().shape({
@@ -15,7 +15,7 @@ export const AskQuestion: React.FC = () => {
   });
 
   const [addUserToAskQuestion, { data, loading, error }] = useMutation(
-    ASK_QUESTION_STARTER_PAGE
+    EMAIL_ASK_QUESTION_STARTER_PAGE
   );
 
   const {
@@ -30,28 +30,17 @@ export const AskQuestion: React.FC = () => {
   const onSubmitHandler = (data: { question: string; email: string }) => {
     addUserToAskQuestion({
       variables: {
+        email: data?.email,
         question: data?.question,
       },
     }).then(() => reset());
   };
   return (
-    <div className="hidden | lg:grid col-span-2 gap-4 justify-items-center self-center">
+    <div className="hidden | lg:grid col-span-2 mb-5 gap-4 justify-items-center self-center">
       <form
         className="flex flex-col gap-4"
         onSubmit={handleSubmit(onSubmitHandler)}
       >
-        <input
-          className="w-56 h-10 bg-white rounded-full shadow-lg focus:outline-none | pl-4 | border-2 border-blue"
-          id="question"
-          placeholder="Message"
-          type="question"
-          {...register("question")}
-        ></input>
-        <div>
-          <p className="text-red-500 text-xs italic">
-            {errors.question?.message}
-          </p>
-        </div>
         <input
           className="w-56 h-10 bg-white rounded-full shadow-lg focus:outline-none | pl-4 | border-2 border-blue"
           id="email"
@@ -62,13 +51,26 @@ export const AskQuestion: React.FC = () => {
         <div>
           <p className="text-red-500 text-xs italic">{errors.email?.message}</p>
         </div>
+        <textarea
+          className="bg-white shadow-lg focus:outline-none | pl-4 | border-2 border-blue"
+          id="question"
+          placeholder="Message"
+          rows={12}
+          cols={34}
+          {...register("question")}
+        ></textarea>
+        <div>
+          <p className="text-red-500 text-xs italic">
+            {errors.question?.message}
+          </p>
+        </div>
         <div className="grid w-full justify-items-center">
           <Button type="blue" className="p-4 h-10">
             Envoyer
           </Button>
         </div>
       </form>
-      {data?.questionAskQuestion?.success && (
+      {data?.emailAskQuestionStartePage?.success && (
         <div className="text-green text-base md:text-base mb-2 | text-center whitespace-pre-line">
           Ta question à bien été envoyé
         </div>

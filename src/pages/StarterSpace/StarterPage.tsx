@@ -39,6 +39,7 @@ import { RouteName } from "App";
 import { CategoryCircle } from "pages/LandingPage/Components/CategoryCircle";
 import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
 import { SharedWithFriend } from "pages/StarterSpace/component/SharedWithFriend/SharedWithFriend";
+import { AskQuestion } from "pages/StarterSpace/component/AskQuestion/AskQuestion";
 import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
 import "./StarterPage.css"
 import useIsMobile from "hooks/isMobile";
@@ -224,8 +225,8 @@ const StarterPage = () => {
         number="2"
       ></SectionStarterPage>
 
-      <Container className="grid justify-items-center w-full mt-4 mb-20">
-        <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 lg:w-auto pb-6 px-4 mb-2">
+      <Container className="grid lg:justify-center w-full mt-4 mb-20">
+        <div className="flex flex-row overflow-x-auto w-full pb-6 px-4 mb-2">
           <div className="flex gap-4 lg:gap-0">
             {[
               {
@@ -743,8 +744,8 @@ const StarterPage = () => {
         conseils et marques pour vous aiguiller dans cette recherche."
       ></SectionStarterPage>
 
-      <Container className="grid justify-items-center w-full lg:w-10/12 mt-6 mb-6">
-        <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 pb-6 px-4 mb-2">
+      <Container className="grid lg:justify-center w-full mt-6 mb-6">
+        <div className="flex flex-row overflow-x-auto w-full pb-6 px-4 mb-2">
           <div className="flex lg:gap-10">
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
@@ -822,8 +823,8 @@ const StarterPage = () => {
         sélection de sources pour débuter en fait-maison."
       ></SectionStarterPage>
 
-      <Container className="grid justify-items-center w-full lg:w-10/12 lg:mt-6 mb-6">
-        <div className="flex flex-row overflow-x-auto w-full lg:w-11/12 pb-6 mb-2 px-4">
+      <Container className="grid lg:justify-center w-full lg:mt-6 mb-6">
+        <div className="flex flex-row overflow-x-auto w-full  pb-6 mb-2 px-4">
           <div className="flex gap-6 lg:gap-10">
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
               <div className="grid justify-items-center">
@@ -925,8 +926,8 @@ const StarterPage = () => {
       <h3 className="text-sm lg:text-lg font-light px-6 text-center mt-4 mb-20">
         👇 Ici 👇
       </h3>
+      <AskQuestion></AskQuestion>
 
-      {/* A FAIRE - comment les gens peuvent-ils nous adresser leurs quetsion super facilement ? */}
       <Footer />
     </div>
   );
