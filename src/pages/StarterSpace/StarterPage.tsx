@@ -189,7 +189,7 @@ const StarterPage = () => {
             shortDescription:
               "Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.",
             longDescription:
-              "<br/> Mon conseil est donc : <br/> Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.<br/>  La question à vous poser est : quelle est ma problématique principale ? La peau qui tire ? Des boutons ? Des zones de brillance ? <br/> <br/> Ensuite, trouver l’huile végétale qui répond à cette problématique.  Cette huile végétale peut s’utiliser seule à la place de votre crème de jour ou crème de nuit. C’est la solution la plus naturelle et la plus économique ! Testez avant de réaliser une crème compliquée 😉",
+              "<br/>La plus grosse erreur que je vois quand on veut se lancer en cosmétique maison, c'est de vouloir essayer plein de choses en même temps avec plein d'ingrédients. On dépense beaucoup, on s'éparpille, cela prend du temps et on s'arrête rapidement parce qu'on est perdu. 😱<br> <br> Mon conseil est donc : <br/> Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.<br/>  La question à vous poser est : quelle est ma problématique principale ? La peau qui tire ? Des boutons ? Des zones de brillance ? <br/> <br/> Ensuite, trouver l’huile végétale qui répond à cette problématique.  Cette huile végétale peut s’utiliser seule à la place de votre crème de jour ou crème de nuit. C’est la solution la plus naturelle et la plus économique ! Testez avant de réaliser une crème compliquée 😉",
           },
           {
             imgProfil: Christelle,
@@ -486,7 +486,7 @@ const StarterPage = () => {
                 </Button>
               </div>
               <p className="pt-4 text-center text-sm font-light self-end">
-                Ceci n'est pas un lien sponsorisé. Greenit ne touche pas argent.
+                Ceci n'est pas un lien sponsorisé. Greenit ne touche pas d'argent.
                 🌱
               </p>
             </div>
@@ -694,7 +694,7 @@ const StarterPage = () => {
                 </Button>
               </div>
               <p className="pt-4 text-center text-sm font-light self-end">
-                Ceci n'est pas un lien sponsorisé. Greenit ne touche pas argent.
+                Ceci n'est pas un lien sponsorisé. Greenit ne touche pas d'argent.
                 🌱
               </p>
             </div>
@@ -915,7 +915,7 @@ const StarterPage = () => {
           ))}
         </div>
         <h3 className="text-sm lg:text-base lg:col-span-2 font-light mt-6 text-right">
-          <p>"Premier pas" réuni toutes les recettes les plus simples.</p>
+          <p>"Premiers pas" réuni toutes les recettes les plus simples.</p>
         </h3>
       </div>
 
