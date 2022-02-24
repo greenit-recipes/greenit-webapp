@@ -716,6 +716,7 @@ const WorkshopPage = () => {
                 <a
                   href={"https://www.lavandeetcamomille.com/contact"}
                   target="_blank"
+                  id="contactWs4"
                 >
                   <Button type="green" className="md:text-xl">
                     Contacter
@@ -782,7 +783,7 @@ const WorkshopPage = () => {
                       href="https://www.lavandeetcamomille.com/events/soins-cheveux-shampoing-solide-et-soin-apres-shampoing-16"
                       target="_blank"
                     >
-                      <button className="button_reserver">Reserver</button>
+                      <button className="button_reserver"  id="book5-1">Reserver</button>
                     </a>
                   </div>
                 </div>
@@ -818,7 +819,7 @@ const WorkshopPage = () => {
                       href="https://www.lavandeetcamomille.com/events/atelier-bougie-naturelle-et-fleurie-eco-friendly-56"
                       target="_blank"
                     >
-                      <button className="button_reserver">Reserver</button>
+                      <button className="button_reserver" id="book5-2">Reserver</button>
                     </a>
                   </div>
                 </div>
@@ -854,7 +855,7 @@ const WorkshopPage = () => {
                       href="https://www.lavandeetcamomille.com/events/atelier-creation-de-parfum-personnalise-aux-essences-naturelles-14"
                       target="_blank"
                     >
-                      <button className="button_reserver">Reserver</button>
+                      <button className="button_reserver" id="book5-3">Reserver</button>
                     </a>
                   </div>
                 </div>
