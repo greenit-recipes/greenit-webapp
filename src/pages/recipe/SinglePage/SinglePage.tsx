@@ -18,15 +18,9 @@ import { useForm } from "react-hook-form";
 import ReactPlayer from "react-player";
 import { Link, useHistory, useParams } from "react-router-dom";
 import authService from "services/auth.service";
+import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
 import * as yup from "yup";
-import {
-  Button,
-  Container,
-  Footer,
-  Grid,
-  Loading,
-  Navbar
-} from "../../../components";
+import { Button, Container, Footer, Grid, Loading, Navbar } from "components";
 import { useRecipeQuery } from "../../../graphql";
 import { noVideo, partageIcon, retourIcon } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
@@ -72,7 +66,6 @@ const closest = (needle: number, haystack: any[]) => {
 const schema = yup.object().shape({
   comment: yup.string().min(2, "Commentaire trop court"),
 });
-
 
 const RecipeSinglePage = () => {
   const history = useHistory();
@@ -183,23 +176,24 @@ const RecipeSinglePage = () => {
   return (
     <>
       <Helmet>
-      <title>{data?.recipe?.titleSeo}</title>
-      <meta name="description" content={data?.recipe?.metaDescriptionSeo} />
+        <title>{data?.recipe?.titleSeo}</title>
+        <meta name="description" content={data?.recipe?.metaDescriptionSeo} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org/",
             "@type": "Recipe",
             name: recipe?.name,
-            image: [
-              getImagePath(recipe?.image)
-            ],
+            image: [getImagePath(recipe?.image)],
             author: {
               "@type": "Person",
               name: recipe?.author?.username,
             },
             datePublished: momentGreenitUs(recipe?.createdAt),
-            description: recipe?.description?.replace(/<\/?[^>]+(>|$)/g, "").replace(/\n/g, " ").replace(/\r/g, ""),
-            totalTime: "PT"+ recipe?.duration +"M",
+            description: recipe?.description
+              ?.replace(/<\/?[^>]+(>|$)/g, "")
+              .replace(/\n/g, " ")
+              .replace(/\r/g, ""),
+            totalTime: "PT" + recipe?.duration + "M",
             recipeCuisine: "Diy",
             recipeCategory: "Diy",
             keywords: "Recette " + recipe?.name + " diy",
@@ -210,11 +204,11 @@ const RecipeSinglePage = () => {
               ratingCount: "18",
             },
             recipeIngredient: map(recipe?.ingredients, (x) => {
-              return x.amount + " " + x.name
+              return x.amount + " " + x.name;
             }),
-            recipeInstructions:  map(recipe?.instructions, (x) => {
-              return ({ "@type": "HowToStep", "text": x.content })
-            })
+            recipeInstructions: map(recipe?.instructions, (x) => {
+              return { "@type": "HowToStep", text: x.content };
+            }),
           })}
         </script>
       </Helmet>
@@ -413,6 +407,12 @@ const RecipeSinglePage = () => {
                 </button>
               </div>
             </div>
+            {recipe && (
+              <div className="mt-6 flex flex-col mb-5">
+                <h2 className="text-xl md:text-2xl">Recette similaires</h2>
+                <SimilarRecipe data={recipe}></SimilarRecipe>
+              </div>
+            )}
             <div className="mt-6 flex flex-col">
               <h2 className="text-xl md:text-2xl">Discussion</h2>
               {recipe?.comments?.map((comment: any, index: number) => {
