@@ -2,6 +2,7 @@ import React from "react";
 
 interface ButtonProps {
   type: "blue" | "green" | "yellow" | "orange" | "grey" | "red" | "submit";
+  id?: string;
   rounded?: string;
   className?: string;
   onClick?: () => void;
