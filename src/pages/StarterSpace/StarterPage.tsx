@@ -189,7 +189,7 @@ const StarterPage = () => {
             shortDescription:
               "Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.",
             longDescription:
-              "<br/> Mon conseil est donc: <br/> Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.<br/>  La question à vous poser est : quelle est ma problématique principale ? La peau qui tire ? Des boutons ? Des zones de brillance ? <br/> <br/> Ensuite, trouver l’huile végétale qui répond à cette problématique.  Cette huile végétale peut s’utiliser seule à la place de votre crème de jour ou crème de nuit. C’est la solution la plus naturelle et la plus économique ! Testez avant de réaliser une crème compliquée 😉",
+              "<br/> Mon conseil est donc : <br/> Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.<br/>  La question à vous poser est : quelle est ma problématique principale ? La peau qui tire ? Des boutons ? Des zones de brillance ? <br/> <br/> Ensuite, trouver l’huile végétale qui répond à cette problématique.  Cette huile végétale peut s’utiliser seule à la place de votre crème de jour ou crème de nuit. C’est la solution la plus naturelle et la plus économique ! Testez avant de réaliser une crème compliquée 😉",
           },
           {
             imgProfil: Christelle,
@@ -443,12 +443,11 @@ const StarterPage = () => {
               >
                 <div className="flex justify-self-center ml-6 p-2 mt-4 bg-grey rounded-lg">
                   <h4 className="text-white text-sm">
-                    Le beurre de karité pénètre rapidement dans la peau, nourrit
-                    intensément. Il a une texture plus fondante que le beurre de
-                    karité normal et est plus facilement applicable. L'huile de
-                    macadamia apaise les peaux sèches et tiraillées. L'arôme de
-                    vanille se lie parfaitement avec le beurre de karité et
-                    parfume la crème.
+                    Le beurre de karité permet de réparer les peaux abîmées. Il
+                    pénètre rapidement et nourrit en profondeur. L’huile
+                    végétale de ricin est utilisée pour ses propriétés sur la
+                    peau : adoucissante, réparatrice et purifiante. La cire
+                    d’abeille est utilisée pour donner de la texture.
                   </h4>
                 </div>
               </div>
@@ -460,17 +459,35 @@ const StarterPage = () => {
               Où acheter ?{" "}
             </h2>
             <div className="flex flex-col m-4 w-60 items-center self-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
-              <p className="text-center text-sm font-light">
-                Profitez d’un tarif préférentiel chez notre partenaire 👇
+              <p className="text-center text-sm font-light  mb-2">
+                Nous conseillons Joli'essence 🇫🇷 pour l'acessibilité et la
+                qualité des produits. 👇
               </p>
               <div>
                 <p className="text-center mb-4">9,40 €</p>
-                <Button type="orange" className="w-32 h-10">
+                <Button
+                  href="#"
+                  onClick={() => {
+                    window.open(
+                      "https://www.joliessence.com/huiles-vegetales-bio/39-huile-vegetale-vierge-de-ricin-bio-3760103751724.html?search_query=ricin&results=20#/2-contenance-100_ml"
+                    ) &&
+                      window.open(
+                        "https://www.joliessence.com/beurres-vegetaux-et-cires-bio/54-beurre-karite-bio-100ml-3760103751632.html?search_query=beurre+de+karite&results=292"
+                      ) &&
+                      window.open(
+                        "https://www.joliessence.com/beurres-vegetaux-et-cires-bio/55-cire-d-abeille-jaune-bio-30g-3760103751649.html"
+                      );
+                  }}
+                  type="orange"
+                  className="w-32 h-10"
+                >
+                  {" "}
                   Commander
                 </Button>
               </div>
               <p className="pt-4 text-center text-sm font-light self-end">
-                En achetant avec ce lien, vous aidez Greenit à se rémunérer 🙏
+                Ceci n'est pas un lien sponsorisé. Greenit ne touche pas argent.
+                🌱
               </p>
             </div>
             <p className="lg:text-center text-sm text-sm font-light lg:mt-6">
@@ -645,9 +662,8 @@ const StarterPage = () => {
                     Le savon de Marseille est un nettoyant et un désinfectant.
                     Il dégraisse les surfaces et agit comme un antiseptique. Le
                     bicarbonate de soude ravive le blanc, adoucit et élimine les
-                    odeurs. Pour ajouter une odeur, vous pouvez utiliser
-                    l'hydrolat de Tea Tree permet de parfumer. Elle a des
-                    propriétés antibactériennes.
+                    odeurs. Pour ajouter une odeur, vous pouvez utiliser des
+                    écorces d'agrumes en les laissant macérer.
                   </h4>
                 </div>
               </div>
@@ -656,26 +672,35 @@ const StarterPage = () => {
 
           <div className="flex flex-col lg:w-1/5 mt-4 lg:mt-0">
             <h2 className="text-lg text-center lg:text-xl lg:mb-5 font-medium">
-              Où acheter ?{" "}
+              Où acheter ?
             </h2>
             <div className="flex flex-col m-4 w-60 items-center self-center justify-between p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
-              <p className="text-center text-sm font-light">
-                Profitez d’un tarif préférentiel chez notre partenaire 👇
+              <p className="text-center text-sm font-light mb-4">
+                Ces ingredients sont trouvables dans ta biocop ou ton
+                supermarché du coin !
               </p>
               <div>
-                <p className="text-center mb-4">9,40 €</p>
-                <Button type="orange" className="w-32 h-10">
-                  Commander
+                <Button
+                  href="#"
+                  onClick={() => {
+                    window.open(
+                      "https://www.biocoop.fr/magasins-bio/Trouver-mon-magasin-Biocoop"
+                    );
+                  }}
+                  type="orange"
+                  className="w-46 h-10"
+                >
+                  Trouver une biocop
                 </Button>
               </div>
               <p className="pt-4 text-center text-sm font-light self-end">
-                En achetant avec ce lien, vous aidez Greenit à se rémunérer 🙏
+                Ceci n'est pas un lien sponsorisé. Greenit ne touche pas argent.
+                🌱
               </p>
             </div>
             <p className="lg:text-center text-sm text-sm font-light lg:mt-6">
-              En achetant ces ingrédients, vous pouvez faire{" "}
-              <span className="bold">10</span> shampooings. <br></br> Le
-              bicarbonate de soude va être réutilisé dans les recettes maison.
+              Le bicarbonate de soude le savon de Marseille vont être réutilisés
+              dans plein d'autres recettes maison.
             </p>
           </div>
         </div>
