@@ -1,7 +1,7 @@
 import { getImagePath } from "helpers/image.helper";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { RecipeDifficulty, RecipeFragment } from "../../graphql";
+import { RecipeDifficulty } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
 import { Icon } from "../misc";
 import { FavouriteField } from "../layout/FavouriteField";
