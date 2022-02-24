@@ -118,6 +118,7 @@ export const ME = gql`
       lastName
       photoUrl
       email
+      idFacebook
       verified
       imageProfile
       recipeAuthor {

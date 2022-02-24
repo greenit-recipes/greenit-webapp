@@ -72,7 +72,6 @@ const errorLink = onError(
               return forward(operation);
             });
           default:
-            authService.logout();
             return;
         }
       }

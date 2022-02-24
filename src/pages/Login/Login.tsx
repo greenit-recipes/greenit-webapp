@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { includes } from "lodash";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import authServiceService, {
@@ -52,6 +52,8 @@ const Login: React.FC = () => {
     errorPolicy: "all",
   });
 
+  const [errorLoginFb, setErrorLoginFb] = useState("");
+
   const [
     authLogin,
     { data: dataAuth, loading: loadingAuth, error: errorAuth },
@@ -76,14 +78,11 @@ const Login: React.FC = () => {
   }, [setError, error, data]);
 
   const responseFacebook = (responseFb: any) => {
-    console.log("fb --->", responseFb);
     // Error si pas d'email
 
-    if (responseFb.status === 'unknown') {
-    console.log("fb --->", responseFb);
+    if (responseFb.status === "unknown") {
       return;
     }
-
 
     authLogin({
       variables: {
@@ -91,22 +90,24 @@ const Login: React.FC = () => {
         username: responseFb.name,
         password: process.env.REACT_APP_PASSWORD + responseFb.id,
         idFacebook: responseFb.id,
-        isFollowNewsletter: "false"
+        isFollowNewsletter: "false",
       },
     }).then((response) => {
-      console.log(response);
-              // @ts-ignore
-      if (response?.errors) {
-        // Quelque chose c'est mal passé affichier message 
+      // @ts-ignore
+      if (response?.data?.createUserFromAuth?.errors) {
+        setErrorLoginFb(response?.data?.createUserFromAuth?.errors)
+        // Quelque chose c'est mal passé affichier message
         return;
       }
       const data = {
-       email: responseFb.email, password: process.env.REACT_APP_PASSWORD + responseFb.id
-      }
-      onSubmitHandler(data)
+        email: responseFb.email,
+        password: process.env.REACT_APP_PASSWORD + responseFb.id,
+      };
+      onSubmitHandler(data);
     });
   };
 
+  // En faite une function (log)
   const onSubmitHandler = (data: { email: string; password: string }) => {
     loginAccount({
       variables: {
@@ -148,6 +149,7 @@ const Login: React.FC = () => {
         fields="name,email,picture"
         callback={responseFacebook}
       />
+     { errorLoginFb && (<div className="mt-4 text-red text-xs italic">{errorLoginFb}</div>)}
       <Helmet>
         <title>Connexion - Espace DIY | Greenit Community</title>
         <meta
