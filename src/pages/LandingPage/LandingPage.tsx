@@ -202,10 +202,12 @@ const LandingPage = () => {
         Les recettes préférées
       </h2>
       {isMobile ? (
-        <div className="w-full flex overflow-x-auto">
-          {recipesOrderByLikes?.map((recipe) => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-          ))}
+        <div className="w-full pl-4 overflow-x-auto">
+          <div className="w-max flex">
+            {recipesOrderByLikes?.map((recipe) => (
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            ))}
+          </div>
         </div>
       ) : (
         <Carousel
