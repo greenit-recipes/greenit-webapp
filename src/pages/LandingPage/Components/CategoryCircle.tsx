@@ -20,6 +20,7 @@ export const CategoryCircle: React.FC<CategoryCircleProps> = ({
       <div className="w-20 h-20 md:w-24 md:h-24 bg-white mx-4 | rounded-full shadow-lg">
         <Link to={`${RouteName.recipes}?${isTag ? `tags=${name}` : `category=${name}`}`}>
           <img
+            loading="lazy"
             className=" max-h-full max-w-full | ml-auto mr-auto | flex place-self-center rounded-full"
             src={icon}
             alt={name}

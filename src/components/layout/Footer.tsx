@@ -56,6 +56,7 @@ export const Footer: React.FC = () => {
                 src={item.icon}
                 className="h-12 w-12"
                 alt={`${item.title} Icon`}
+                loading="lazy"
               />
               <h3 className="text-2xl pl-2 flex self-center">{item.title}</h3>
             </div>
@@ -69,7 +70,7 @@ export const Footer: React.FC = () => {
           href="mailto:hello@greenitcommunity.com"
           className="inline-flex gap-x-4"
         >
-          <img src={MailIcon} className="w-7 h-7 self-center" />
+          <img src={MailIcon} className="w-7 h-7 self-center" alt="e-mail-icon"/>
           <h2 className="text-xs md:text-lg self-center pt-1">
             hello@greenitcommunity.com
           </h2>
@@ -80,28 +81,28 @@ export const Footer: React.FC = () => {
               href: "https://www.instagram.com/greenitcommunity/",
               rel:"noopener",
               children: (
-                <img src={InstagramIcon} alt="instagram icon" className="w-8 h-8 mt-2 self-start" />
+                <img src={InstagramIcon} alt="instagram icon" className="w-8 h-8 mt-2 self-start" loading="lazy"/>
               ),
             },
             {
               href: "https://www.facebook.com/greenitcommunity/",
               rel:"noopener",
               children: (
-                <img src={FBIcon} alt="facebook icon" className="w-6 h-6 mt-2 self-start mt-3" />
+                <img src={FBIcon} alt="facebook icon" className="w-6 h-6 mt-2 self-start mt-3" loading="lazy"/>
               ),
             },
             {
               href: "https://www.pinterest.fr/greenitcommunity/",
               rel:"noopener",
               children: (
-                <img src={pinterestIcon} alt="pinterest icon" className="w-8 h-8 mt-2 self-start" />
+                <img src={pinterestIcon} alt="pinterest icon" className="w-8 h-8 mt-2 self-start" loading="lazy"/>
               ),
             },
             {
               href: "https://www.tiktok.com/@greenitcommunity",
               rel:"noopener",
               children: (
-                <img src={tiktokIcon} alt="tiktok icon" className="w-8 h-8 mt-2 self-start" />
+                <img src={tiktokIcon} alt="tiktok icon" className="w-8 h-8 mt-2 self-start" loading="lazy"/>
               ),
             },
           ].map((item, index) => (
@@ -114,6 +115,7 @@ export const Footer: React.FC = () => {
       <a
         href={privacyPdf}
         target="_blank"
+        rel="noreferrer"
         className="text-xl underline text-white mt-10"
       >
         Privacy Policy
@@ -125,6 +127,7 @@ export const Footer: React.FC = () => {
           href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
         >
           <img
+          loading="lazy"
             alt="Creative Commons License"
             className="ml-10 mr-5"
             src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"

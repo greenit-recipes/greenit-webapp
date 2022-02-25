@@ -117,7 +117,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         {isMobile && (
           <Button
             className="p-2 right-0 mr-3 fixed top-14"
-            type="grey"
+            type="red"
             onClick={() => removeFilters()}
           >
             <h3 className="text-end text-sm">Supprimer les filtres ✕</h3>

@@ -84,14 +84,14 @@ export const Navbar: React.FC = () => {
             <Link id="workshops-mobile" className="p-2" to={RouteName.workshops}>
               <h2 className="text-white">Ateliers</h2>
             </Link>
-            <Link id="ingredients-mobile" className="p-2" to={RouteName.ingredientPage}>
-              <h2 className="text-white">Ingrédients</h2>
-            </Link>
             <Link id="getStarted-mobile" className="p-2" to={RouteName.starterPage}>
               <h2 className="text-white">Se lancer</h2>
             </Link>
             <Link id="project-mobile" className="p-2" to={RouteName.why}>
               <h2 className="text-white">Le projet</h2>
+            </Link>
+            <Link id="connexion-mobile" className="p-2" to={RouteName.connexion}>
+              <h2 className="text-white">Se connecter</h2>
             </Link>
           </div>
         </div>
@@ -106,6 +106,7 @@ export const Navbar: React.FC = () => {
             src={logo}
             className="h-10 w-10 | ml-4 self-center"
             alt="Greenit Logo"
+            loading="lazy"
           />
         </Link>
       </div>
@@ -259,20 +260,6 @@ export const Navbar: React.FC = () => {
                 Proposer un atelier
               </h3>
               </Link>
-            </div>
-          </div>
-        </div>
-        <div className="w-auto" id="navmenu">
-          <Link id="ingredients" to={RouteName.ingredientPage}>
-            <NavButton type="orange" onClick={() => setVisible(true)}>
-              Ingrédients
-            </NavButton>
-          </Link>
-          <div id="navlist" className="grid justify-items-start pt-2">
-            <div className="flex flex-col text-lg ml-72 pt-4">
-              <h3 className="mb-2 cursor-default">
-                Cette page arrive bientôt !
-              </h3>
             </div>
           </div>
         </div>

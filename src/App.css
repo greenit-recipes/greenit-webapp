@@ -113,7 +113,6 @@ h4 {
   transition: 0.3s;
 }
 
-
 .button_contact {
   background-color: #83d489;
   margin-top: 4px;
@@ -161,31 +160,23 @@ h4 {
 }
 
 .backgroundImage {
+  opacity: 0.8;
   position: fixed;
-  opacity: 80%;
   right: 0;
   top: 0;
   z-index: -1;
   width: 100%;
-  border: 0px;
-  border-color: transparent;
-}
-
-/* FOR iOS AND FOR APPLE <3*/
-.grid-gap-list-page {
-  grid-gap: 2.5rem;
 }
 
 .tooltip .tooltiptext {
-  display: flex;
   visibility: hidden;
   color: black;
   text-align: center;
-  font-size: 10px;  
+  font-size: 10px;
   /* Position the tooltip */
-  position: absolute;
-  bottom: -3px;
+  position:static;
   z-index: 1;
+  margin-top: -11px;
 }
 
 .tooltip:hover .tooltiptext {

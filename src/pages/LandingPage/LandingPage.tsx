@@ -114,8 +114,7 @@ const LandingPage = () => {
           <SearchBar keyId="searchBarLandingPage" />
         </div>
       </Container>
-
-      <div className="w-full sm:w-4/5 lg:w-2/3 | py-4 pl-6 | flex flex overflow-x-auto">
+      <div className="w-full sm:w-4/5 lg:w-2/3 | py-8 pl-6 | flex overflow-x-auto">
         <div className="flex flex-row">
           {landingPageCategories.slice(0, 1).map((item) => (
             <CategoryCircle
@@ -143,7 +142,7 @@ const LandingPage = () => {
       </div>
 
       <Container className="mb-14" itemsCenter>
-        <h2 className="text-xl md:text-2xl | mb-4 lg:mb-6 text-center border-b-1 border-black pb-2">
+        <h2 className="text-xl md:text-2xl | mb-2 lg:mb-6 text-center">
           Notre sélection de recettes
         </h2>
         {isMobile ? (
@@ -164,12 +163,13 @@ const LandingPage = () => {
         </Link>
       </Container>
 
-      <h2 className="text-xl md:text-2xl | mb-6 text-center border-b-1 border-black pb-2">
+      <h2 className="text-xl md:text-2xl | mb-6 text-center">
         Les recettes débutants
       </h2>
       <Carousel
         swipeable={true}
         showDots={true}
+        ssr={true}
         responsive={responsiveCarouselLanding}
         infinite={true}
         keyBoardControl={true}
@@ -188,12 +188,13 @@ const LandingPage = () => {
         ))}
       </Carousel>
 
-      <h2 className="text-xl md:text-2xl | mt-20 mb-6 text-center border-b-1 border-black pb-2">
+      <h2 className="text-xl md:text-2xl | mt-20 mb-6 text-center">
         Les recettes préférées
       </h2>
       <Carousel
         swipeable={true}
         showDots={true}
+        ssr={true}
         responsive={responsiveCarouselLanding}
         infinite={true}
         keyBoardControl={true}
@@ -244,7 +245,7 @@ const LandingPage = () => {
       </Container>
 
       <Container className="w-full text-center" itemsCenter>
-        <h2 className="text-xl md:text-2xl | mt-10 lg:mt-20 mb-6 text-center border-b-1 border-black pb-2">
+        <h2 className="text-xl md:text-2xl | mt-10 lg:mt-20 mb-6 text-center">
           Nos tutos vidéos pour commencer
         </h2>
 
@@ -307,7 +308,7 @@ const LandingPage = () => {
         itemsCenter
         padding={isMobile}
       >
-        <h2 className="text-xl md:text-2xl | mt-20 lg:mb-10 text-center border-b-1 border-black pb-2">
+        <h2 className="text-xl md:text-2xl | mt-20 lg:mb-10 text-center">
           Pourquoi Greenit ?
         </h2>
         <div className="grid grid-cols-2 gap-8 md:gap-12 justify-items-center mt-8">
@@ -322,6 +323,7 @@ const LandingPage = () => {
                 src={item.icon}
                 alt={item.text}
                 className="w-28 h-28 md:w-32 md:h-32 pb-2"
+                loading="lazy"
               ></img>
               <h2 className="text-md md:text-xl" style={{ color: item.color }}>
                 {item.text}

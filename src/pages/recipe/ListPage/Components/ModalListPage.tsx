@@ -4,6 +4,7 @@ import { Button } from "components/misc/Button";
 interface IModalListPage {
   isShowModal: boolean;
   parentFunction: any;
+  nbrFilter: any;
 }
 
 export const ModalListPage: React.FC<IModalListPage> = (props) => {
@@ -11,15 +12,15 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
     <>
       <Button
         className="ease-linear transition-all duration-150 mt-2 w-4/5 h-8 rounded"
-        type="orange"
+        type="grey"
         onClick={() => props.parentFunction(true)}
       >
-        Ajouter un filtre
+        { props.nbrFilter === 0 ? (<span>Ajouter un filtre</span>) : (<span> Filtre{ props.nbrFilter > 1 ? "s" :""}  ({props.nbrFilter}) </span>)} 
       </Button>
       {props.isShowModal ? (
         <>
           <Button
-            type="orange"
+            type="grey"
             className="justify-self-start fixed top-14 z-40 w-32 ml-4"
             onClick={() => props.parentFunction(false)}
           >
@@ -34,7 +35,7 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
           </div>
           <div className="grid justify-items-center fixed bottom-0 h-20 z-40 bg-white w-full">
             <Button
-              type="orange"
+              type="green"
               className=" z-40 w-4/5 h-10 ml-4 self-center"
               onClick={() => props.parentFunction(false)}
             >

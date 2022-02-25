@@ -77,6 +77,7 @@ const ProfilPage: React.FC = () => {
               // @ts-ignore
               src={userImage ? userImage : defaultImageProfil}
               alt="user profil"
+              loading="lazy"
             ></img>
           </div>
           <div className="flex flex-col | self-center">

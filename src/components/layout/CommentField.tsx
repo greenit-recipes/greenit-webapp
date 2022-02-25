@@ -23,6 +23,7 @@ export const CommentField: React.FC<ICommentField> = ({
         src={commentaireIcon}
         className="self-center w-7 h-7 lg:w-8 lg:h-8"
         alt="likes button"
+        loading="lazy"
       />
       <h2 className="self-center text-lg md:text-xl ml-1">{children}</h2>
     </div>

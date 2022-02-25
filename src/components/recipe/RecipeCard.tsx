@@ -1,14 +1,13 @@
 import { getImagePath } from "helpers/image.helper";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { RecipeDifficulty, RecipeFragment } from "../../graphql";
+import { RecipeDifficulty } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
 import { Icon } from "../misc";
 import { FavouriteField } from "../layout/FavouriteField";
 import { LikeField } from "components/layout/LikeField";
 import "./RecipeCard.css";
 import { RouteName } from "App";
-import { UserBadge } from "components/layout/UserBadge";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
@@ -59,14 +58,10 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             }`}
             // @ts-ignore
             onLoad={() => setImageLoaded(true)}
+            loading="lazy"
           ></img>
         </div>
       </Link>
-      { isDisplayUserBadge && (<UserBadge
-        image={recipe?.author?.imageProfile}
-        name={recipe?.author?.username}
-        isRecipeCard={true}
-      ></UserBadge>) }
       <LikeField recipe={recipe} isRecipeCard={true}></LikeField>
       <div
         className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-2xl -bottom-10 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
