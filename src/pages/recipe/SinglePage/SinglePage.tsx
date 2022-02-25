@@ -89,6 +89,7 @@ const RecipeSinglePage = () => {
       urlId: name,
     },
   });
+  console.log("window.location.href --W", window.location.href)
 
   // Comments
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
@@ -121,18 +122,6 @@ const RecipeSinglePage = () => {
       behavior: "smooth",
     });
   };
-
-  const [copied, setCopied] = useState(false);
-
-  function copy() {
-    const el = document.createElement("input");
-    el.value = window.location.href;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand("copy");
-    document.body.removeChild(el);
-    setCopied(true);
-  }
 
   useEffect(() => {
     const timeoutID = window.setInterval(() => {
@@ -399,11 +388,12 @@ const RecipeSinglePage = () => {
                   <RWebShare
                     data={{
                       text: recipe?.titleSeo,
-                      url: window.location.href,
+                      url: "http://35.180.133.71/recettes/gel-de-lin-maison",
                       title: recipe?.name,
                     }}
                   >
-                    <button className="grid justify-items-center">
+                    <button className="grid justify-items-center"
+                                            id="shared-recipe"                                            >
                       <img
                         src={partageIcon}
                         alt="Partager"
