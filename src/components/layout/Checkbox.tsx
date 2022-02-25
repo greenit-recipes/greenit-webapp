@@ -47,40 +47,41 @@ export const Checkbox: React.FC<ICheckbox> = ({
   );
 
   return (
-    <label
-    id={"filter-"+option.title}
-      className="flex"
-      onChange={() => {
-        parentFunction(isChecked, option, item);
-      }}
-    >
-      <div>
-        <input type="checkbox" />
-        <animated.svg
-          style={checkboxAnimationStyle}
-          className={`checkbox ${isChecked ? "checkbox--active" : ""}`}
-          aria-hidden="true"
-          viewBox="0 0 15 11"
-          fill="none"
-        >
-          <animated.path
-            d="M1 4.5L5 9L14 1"
-            strokeWidth="2"
-            stroke="#fff"
-            ref={(ref) => {
-              if (ref) {
-                // @ts-ignore
-                setCheckmarkLength(ref.getTotalLength());
-              }
-            }}
-            // @ts-ignore
-            strokeDasharray={checkmarkLength}
-            // @ts-ignore
-            strokeDashoffset={checkmarkAnimationStyle.x}
-          />
-        </animated.svg>
-      </div>
-      <div>{option.title}</div>
-    </label>
+    <button id={"filter-" + option.title}>
+      <label
+        className="flex"
+        onChange={() => {
+          parentFunction(isChecked, option, item);
+        }}
+      >
+        <div>
+          <input type="checkbox" />
+          <animated.svg
+            style={checkboxAnimationStyle}
+            className={`checkbox ${isChecked ? "checkbox--active" : ""}`}
+            aria-hidden="true"
+            viewBox="0 0 15 11"
+            fill="none"
+          >
+            <animated.path
+              d="M1 4.5L5 9L14 1"
+              strokeWidth="2"
+              stroke="#fff"
+              ref={(ref) => {
+                if (ref) {
+                  // @ts-ignore
+                  setCheckmarkLength(ref.getTotalLength());
+                }
+              }}
+              // @ts-ignore
+              strokeDasharray={checkmarkLength}
+              // @ts-ignore
+              strokeDashoffset={checkmarkAnimationStyle.x}
+            />
+          </animated.svg>
+        </div>
+        <div>{option.title}</div>
+      </label>
+    </button>
   );
 };

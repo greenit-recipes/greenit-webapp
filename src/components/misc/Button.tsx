@@ -7,7 +7,7 @@ interface ButtonProps {
   className?: string;
   onClick?: () => void;
   disabled?: boolean;
-  href?:string;
+  href?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -15,10 +15,12 @@ export const Button: React.FC<ButtonProps> = ({
   rounded,
   className,
   children,
+  id,
   onClick,
 }) => {
   return (
     <button
+      id={id}
       className={`${className} flex justify-center items-center cursor-pointer
       px-3 py-1 bold text-white border-2 border-transparent
       text-sm md:text-base
