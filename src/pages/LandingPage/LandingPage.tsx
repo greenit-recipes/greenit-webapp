@@ -250,7 +250,7 @@ const LandingPage = () => {
           ))}
         </div>
         <Link to={RouteName.starterPage}>
-          <Button className="" type="blue">
+          <Button className="" type="blue" id="starter-page-home">
             Se lancer
           </Button>
         </Link>
