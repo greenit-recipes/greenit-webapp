@@ -33,7 +33,6 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "pages/LandingPage/LandingPage.css";
 
-
 const responsiveCarouselLanding = {
   desktop: {
     breakpoint: { max: 3000, min: 1224 },
@@ -77,7 +76,7 @@ const LandingPage = () => {
   if (loading || !dataIsDiplayHome || !dataBegginer || !dataNbrLikes) {
     return <Loading />;
   }
- 
+
   const recipes = dataIsDiplayHome.allRecipes?.edges || [];
   const recipesBegginer = dataBegginer.allRecipes?.edges || [];
   const recipesOrderByLikes = dataNbrLikes.allRecipes?.edges || [];
@@ -170,49 +169,49 @@ const LandingPage = () => {
       <h2 className="text-xl md:text-2xl | mb-6 text-center">
         Les recettes débutants
       </h2>
-{isMobile ? (
-  <div className="w-full pl-4 overflow-x-auto">
-    <div className="w-max flex">
-      {recipesBegginer?.map((recipe) => (
-        <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-      ))}
-    </div>
-  </div>
-) : (
-  <Carousel
-    swipeable={true}
-    showDots={true}
-    ssr={true}
-    responsive={responsiveCarouselLanding}
-    infinite={true}
-    keyBoardControl={true}
-    transitionDuration={500}
-    containerClass={
-      isMobile ? "carousel-container-mobile" : "carousel-container"
-    }
-    customTransition="transform 300ms ease-in-out"
-    dotListClass={
-      isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
-    }
-    itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
-  >
-    {recipesBegginer?.map((recipe) => (
-      <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-    ))}
-  </Carousel>
-)}
-      <Container className="flex flex-col items-center | w-10/12 mt-8 lg:my-20">
+      {isMobile ? (
+        <div className="w-full pl-4 overflow-x-auto">
+          <div className="w-max flex">
+            {recipesBegginer?.map((recipe) => (
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <Carousel
+          swipeable={true}
+          showDots={true}
+          ssr={true}
+          responsive={responsiveCarouselLanding}
+          infinite={true}
+          keyBoardControl={true}
+          transitionDuration={500}
+          containerClass={
+            isMobile ? "carousel-container-mobile" : "carousel-container"
+          }
+          customTransition="transform 300ms ease-in-out"
+          dotListClass={
+            isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
+          }
+          itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
+        >
+          {recipesBegginer?.map((recipe) => (
+            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+          ))}
+        </Carousel>
+      )}
+      <Container className="flex flex-col items-center | w-10/12 mt-8 lg:mt-20">
         <div className="lg:mb-4">
           <h2 className="text-lg lg:text-xl mb-2 text-center">
             Le guide pour se lancer dans le DIY
           </h2>
           <h3 className="text-sm lg:text-base font-light text-center">
-            3 étapes simples pour vous lancer dans le fait-maison,
-            co-écrit avec des experts de la communauté Greenit !
+            3 étapes simples pour vous lancer dans le fait-maison, co-écrit avec
+            des experts de la communauté Greenit !
           </h3>
         </div>
 
-       <div className="flex flex-row justify-evenly gap-2 lg:gap-6 my-6">
+        <div className="flex flex-row justify-evenly gap-2 lg:gap-6 my-6">
           {[
             {
               icon: Conseil,
@@ -230,9 +229,7 @@ const LandingPage = () => {
               number: "3",
             },
           ].map((item) => (
-            <div
-              className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
-            >
+            <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150">
               <div className="grid absolute  w-8 h-8  md:w-10 md:h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
                 <h2 className="text-center self-center font-bold  text-sm  lg:text-xl">
                   {item.number}
@@ -246,15 +243,17 @@ const LandingPage = () => {
                   loading="lazy"
                 />{" "}
               </div>
-              <h3 className="text-xs lg:text-sm  text-center font-light">{item.title}</h3>
+              <h3 className="text-xs lg:text-sm  text-center font-light">
+                {item.title}
+              </h3>
             </div>
           ))}
-          </div>
-          <Link to={RouteName.starterPage}>
+        </div>
+        <Link to={RouteName.starterPage}>
           <Button className="" type="blue">
             Se lancer
           </Button>
-          </Link>
+        </Link>
       </Container>
       <h2 className="text-xl md:text-2xl | mt-20 mb-6 text-center">
         Les recettes préférées
