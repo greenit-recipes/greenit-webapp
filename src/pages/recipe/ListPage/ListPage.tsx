@@ -1,5 +1,5 @@
 import { RouteName } from "App";
-import { includes, map, mapValues } from "lodash";
+import { includes, map, mapValues, omit, sum } from "lodash";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -101,7 +101,7 @@ const RecipeListPage = () => {
   }
   const recipes = data?.allRecipes?.edges || [];
   const hasMore = data?.allRecipes?.pageInfo.hasNextPage || false;
-
+  const nbrFilter = sum(map(omit(currentFilters, 'search'), x => x?.length))
   return (
     <div className={""}>
       <Navbar />
@@ -139,6 +139,7 @@ const RecipeListPage = () => {
             />
           </div>
           <ModalListPage
+            nbrFilter={nbrFilter}
             isShowModal={isShowModal}
             parentFunction={setIsShowModal}
           >
@@ -160,7 +161,7 @@ const RecipeListPage = () => {
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
             loader={<Loading isForLoadingPage={false} />}
-            scrollThreshold={0.7}
+            scrollThreshold={0.5}
             endMessage={
               recipes?.length > 0 && (
                 <p style={{ textAlign: "center" }}>

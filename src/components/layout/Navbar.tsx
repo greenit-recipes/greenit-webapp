@@ -90,6 +90,9 @@ export const Navbar: React.FC = () => {
             <Link id="project-mobile" className="p-2" to={RouteName.why}>
               <h2 className="text-white">Le projet</h2>
             </Link>
+            <Link id="connexion-mobile" className="p-2" to={RouteName.connexion}>
+              <h2 className="text-white">Se connecter</h2>
+            </Link>
           </div>
         </div>
       </div>

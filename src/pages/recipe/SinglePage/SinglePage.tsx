@@ -25,6 +25,7 @@ import { useRecipeQuery } from "../../../graphql";
 import { noVideo, partageIcon, retourIcon } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
 import "./SinglePage.css";
+import { RWebShare } from "react-web-share";
 
 interface InstructionProps {
   index: number;
@@ -394,19 +395,25 @@ const RecipeSinglePage = () => {
                     Ajouter au favoris
                   </h2>
                 </div>
-                <button className="grid justify-items-center" onClick={copy}>
-                  <img
-                    src={partageIcon}
-                    alt="Partager"
-                    loading="lazy"
-                    className="justify-self-center w-10 h-10 lg:w-12 lg:h-12"
-                  />
-                  {!copied ? (
-                    <h2 className="text-center text-base"> Partager </h2>
-                  ) : (
-                    <h2 className="text-center text-base"> Lien copié ! </h2>
-                  )}
-                </button>
+                <div>
+                  <RWebShare
+                    data={{
+                      text: recipe?.titleSeo,
+                      url: window.location.href,
+                      title: recipe?.name,
+                    }}
+                  >
+                    <button className="grid justify-items-center">
+                      <img
+                        src={partageIcon}
+                        alt="Partager"
+                        loading="lazy"
+                        className="justify-self-center w-10 h-10 lg:w-12 lg:h-12"
+                      />
+                      <h2 className="text-center text-base"> Partager </h2>
+                    </button>
+                  </RWebShare>
+                </div>
               </div>
             </div>
             {recipe && (

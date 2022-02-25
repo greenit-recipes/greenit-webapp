@@ -36,6 +36,7 @@ const Login: React.FC = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     setError,
     formState: { errors },
     reset,
@@ -85,7 +86,7 @@ const Login: React.FC = () => {
         history.goBack();
       }
     });
-    reset();
+    reset({...getValues(), password: ""});
   };
   return (
     <div className="grid justify-items-center w-full">
