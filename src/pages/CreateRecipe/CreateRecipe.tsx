@@ -21,6 +21,13 @@ import { RecipeDifficulty } from "../../graphql";
 import { Helmet } from "react-helmet";
 import {fblogo, instalogo, pintlogo, tiktoklogo, wwwlogo, ytlogo, pastelogo,} from "../../icons";
 
+const schemaLink = yup.object().shape({
+  link: yup.string().required("Ce champ est obligatoire"),
+});
+
+const onSubmitLink = (values: string) => {
+  console.log(values)
+};
 
 
 const schema = yup.object().shape({
@@ -60,6 +67,7 @@ const schema = yup.object().shape({
   notes_from_author: yup.string(),
   text_associate: yup.string(),
 });
+
 
 const CreateRecipe: React.FC = () => {
   const {
@@ -227,15 +235,15 @@ const CreateRecipe: React.FC = () => {
               placeholder="Lien de la recette" value="">
             </input>
             <button  className="flex justify-center items-center cursor-pointer
-      px-3 py-1 bold border-2 border-transparent
-      text-sm md:text-base
-      ease-linear transition-all duration-150 shadow hover:shadow-lg hover:bg-grey active:bg-grey hover:border-grey rounded-md hover:text-white">
+            px-3 py-1 bold border-2 border-transparent
+            text-sm md:text-base
+            ease-linear transition-all duration-150 shadow hover:shadow-lg hover:bg-grey active:bg-grey hover:border-grey rounded-md hover:text-white">
         <img src={pastelogo}  className="mr-1 w-4" alt="paste-logo"/>
               Coller              
             </button>
             </div>
             <div className="h-3 w-8"></div>
-            <Button className="max-w-xs max-h-xs" type="green"
+            <Button className="max-w-xs max-h-xs" type="green" 
             >
               Envoyer ma recette  
                         
@@ -719,3 +727,4 @@ const CreateRecipe: React.FC = () => {
 };
 
 export default CreateRecipe;
+
