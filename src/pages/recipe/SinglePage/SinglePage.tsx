@@ -388,7 +388,7 @@ const RecipeSinglePage = () => {
                   <RWebShare
                     data={{
                       text: recipe?.titleSeo,
-                      url: "http://35.180.133.71/recettes/gel-de-lin-maison",
+                      url: window.location.href,
                       title: recipe?.name,
                     }}
                   >
