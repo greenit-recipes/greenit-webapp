@@ -43,6 +43,7 @@ import { AskQuestion } from "pages/StarterSpace/component/AskQuestion/AskQuestio
 import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
 import "./StarterPage.css";
 import useIsMobile from "hooks/isMobile";
+import { useEffect } from "react";
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({
@@ -56,6 +57,15 @@ const StarterPage = () => {
       },
     },
   });
+
+  useEffect(() => {
+    if (window.pageYOffset > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
 
   const isLoggedIn = authService.isLoggedIn();
   const recipes = data?.allRecipes?.edges || [];
