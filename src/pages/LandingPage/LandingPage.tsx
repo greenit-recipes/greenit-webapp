@@ -15,6 +15,9 @@ import {
 import { useRecipesQuery } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
 import {
+  Conseil,
+  Cooking,
+  Ustensil,
   atelier,
   corpsWhy,
   landingPageCategories,
@@ -197,7 +200,61 @@ const LandingPage = () => {
           ))}
         </Carousel>
       )}
+      <Container className="flex flex-col items-center | w-10/12 mt-8 lg:mt-20">
+        <div className="lg:mb-4">
+          <h2 className="text-lg lg:text-xl mb-2 text-center">
+            Le guide pour se lancer dans le DIY
+          </h2>
+          <h3 className="text-sm lg:text-base font-light text-center">
+            3 étapes simples pour vous lancer dans le fait-maison, co-écrit avec
+            des experts de la communauté Greenit !
+          </h3>
+        </div>
 
+        <div className="flex flex-row justify-evenly gap-2 lg:gap-6 my-6">
+          {[
+            {
+              icon: Conseil,
+              title: "3 meilleurs conseils pour débuter",
+              number: "1",
+            },
+            {
+              icon: Ustensil,
+              title: "Les ingrédients & ustensiles",
+              number: "2",
+            },
+            {
+              icon: Cooking,
+              title: "2 Recettes simples",
+              number: "3",
+            },
+          ].map((item) => (
+            <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150">
+              <div className="grid absolute  w-8 h-8  md:w-10 md:h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
+                <h2 className="text-center self-center font-bold  text-sm  lg:text-xl">
+                  {item.number}
+                </h2>
+              </div>
+              <div className="grid justify-items-center">
+                <img
+                  src={item.icon}
+                  className="w-10 md:w-16 self-center items-center"
+                  alt="conseils_diy"
+                  loading="lazy"
+                />{" "}
+              </div>
+              <h3 className="text-xs lg:text-sm  text-center font-light">
+                {item.title}
+              </h3>
+            </div>
+          ))}
+        </div>
+        <Link to={RouteName.starterPage}>
+          <Button className="" type="blue" id="starter-page-home">
+            Se lancer
+          </Button>
+        </Link>
+      </Container>
       <h2 className="text-xl md:text-2xl | mt-20 mb-6 text-center">
         Les recettes préférées
       </h2>
