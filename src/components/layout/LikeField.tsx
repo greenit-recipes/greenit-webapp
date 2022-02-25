@@ -52,12 +52,14 @@ export const LikeField: React.FC<ILikeField> = ({
               src={clapIconOn}
               className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mb-1"
               alt="likes"
+              loading="lazy"
             />
           ) : (
             <img
               src={clapIconOff}
               className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mb-1"
               alt="likes"
+              loading="lazy"
             />
           )}
           <h2 className="flex self-center text-base lg:text-lg ml-1">{nbrLiked}</h2>
@@ -68,6 +70,7 @@ export const LikeField: React.FC<ILikeField> = ({
             src={clapIconOff}
             className="flex self-center w-7 h-7 lg:w-8 lg:h-8"
             alt="likes"
+            loading="lazy"
           />
           <h2 className="flex self-center text-lg lg:text-lg ml-1">{nbrLiked}</h2>
         </Link>

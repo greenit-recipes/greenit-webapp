@@ -49,6 +49,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 className="w-10 h-10 lg:w-12 lg:h-12"
                 alt="like button"
                 src={likedIconOn}
+                loading="lazy"
               />
               <span className="tooltiptext">Retirer des favoris</span>
             </div>
@@ -58,6 +59,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 className="w-10 h-10 lg:w-12 lg:h-12"
                 alt="dislike button"
                 src={likedIconOff}
+                loading="lazy"
               />
               <span className="tooltiptext">Ajouter aux favoris</span>
             </div>
@@ -70,6 +72,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
               className="w-10 h-10 lg:w-12 lg:h-12"
               alt="dislike button"
               src={likedIconOff}
+              loading="lazy"
             />
             <span className="tooltiptext">Ajouter aux favoris</span>
           </div>

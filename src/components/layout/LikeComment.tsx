@@ -44,12 +44,14 @@ export const LikeComment: React.FC<ILikeComment> = ({ comment, isMyComment=false
               src={likedIconOn}
               className="self-center w-7 h-7 lg:w-8 lg:h-8"
               alt="likes"
+              loading="lazy"
             />
           ) : (
             <img
               src={likedIconOff}
               className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mb-1"
               alt="likes"
+              loading="lazy"
             />
           )}
           <h2 className="self-center text-lg md:text-xl ml-1">{nbrLiked}</h2>
@@ -61,6 +63,7 @@ export const LikeComment: React.FC<ILikeComment> = ({ comment, isMyComment=false
               src={likedIconOff}
               className="self-center w-7 h-7 lg:w-8 lg:h-8"
               alt="likes"
+              loading="lazy"
             />
             <h2 className="self-center text-lg md:text-xl ml-1">{nbrLiked}</h2>
           </div>

@@ -256,6 +256,7 @@ const RecipeSinglePage = () => {
                     // @ts-ignore
                     src={getImagePath(recipe?.image)}
                     alt={recipe?.name}
+                    loading="lazy"
                     className="row-span-3 md:col-span-2 lg:col-span-1 h-96 min-w-64 w-64 rounded-3xl | object-cover flex justify-self-center md:justify-self-start"
                   />
                   <div className="col-span-1 lg:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex">
@@ -397,6 +398,7 @@ const RecipeSinglePage = () => {
                   <img
                     src={partageIcon}
                     alt="Partager"
+                    loading="lazy"
                     className="justify-self-center w-10 h-10 lg:w-12 lg:h-12"
                   />
                   {!copied ? (

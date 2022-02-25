@@ -157,6 +157,7 @@ const StarterPage = () => {
                   src={item.icon}
                   className="w-14 lg:w-16 self-center items-center"
                   alt="conseils_diy"
+                  loading="lazy"
                 />{" "}
               </div>
               <h3 className="text-sm  text-center font-light">{item.title}</h3>
@@ -271,6 +272,7 @@ const StarterPage = () => {
                     src={item.icon}
                     className="w-16 lg:w-18 self-center items-center"
                     alt={item.maintitle}
+                    loading="lazy"
                   />{" "}
                 </div>
                 <h3 className="text-xl text-center font-semibold h-8">
@@ -307,6 +309,8 @@ const StarterPage = () => {
               <img
                 src={CremeCorp}
                 className={`${isMobile ? "rounded-xl w-36 h-45" : "img-dim"}`}
+                loading="lazy"
+                alt="creme corps"
               />
             </div>
             <div className="flex flex-col justify-center items-center">
@@ -331,6 +335,7 @@ const StarterPage = () => {
                     src={BeurreKarite}
                     className="w-24 h-24 max-w-none"
                     alt="Beurre de Karité"
+                    loading="lazy"
                   />{" "}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
@@ -358,6 +363,7 @@ const StarterPage = () => {
                     src={HuileRicin}
                     className="w-24 h-24 max-w-none"
                     alt="Huile de Ricin"
+                    loading="lazy"
                   />{" "}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
@@ -385,6 +391,7 @@ const StarterPage = () => {
                     src={CireAbeille}
                     className="w-24 h-24 max-w-none"
                     alt="Cire d'Abeille"
+                    loading="lazy"
                   />{" "}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
@@ -412,6 +419,7 @@ const StarterPage = () => {
                     src={Bocal}
                     className="w-24 h-24 max-w-none"
                     alt="Bocal_icon"
+                    loading="lazy"
                   />{" "}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-grey rounded-full -mt-8 lg:ml-4 relative z-20">
@@ -508,6 +516,8 @@ const StarterPage = () => {
               <img
                 src={Lessive}
                 className={`${isMobile ? "rounded-xl w-36 h-45" : "img-dim"}`}
+                loading="lazy" 
+                alt="lessive"
               />
             </div>
             <div className="flex flex-col justify-center items-center">
@@ -532,6 +542,7 @@ const StarterPage = () => {
                     src={BicarSoude}
                     className="w-24 h-24 max-w-none"
                     alt="Bicarbonate de Soude"
+                    loading="lazy"
                   />{" "}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
@@ -559,6 +570,7 @@ const StarterPage = () => {
                     src={SavonMarseille}
                     className="w-24 h-24 max-w-none"
                     alt="Huile de Ricin"
+                    loading="lazy"
                   />{" "}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
@@ -582,7 +594,7 @@ const StarterPage = () => {
 
               <div className="m-2 w-32 h-60">
                 <div className="flex justify-center">
-                  <img src={Eau} className="w-24 h-24 max-w-none" alt="Eau" />{" "}
+                  <img src={Eau} className="w-24 h-24 max-w-none" alt="Eau" loading="lazy"/>{" "}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
@@ -606,6 +618,7 @@ const StarterPage = () => {
                     src={EcorceArgume}
                     className="w-24 h-24 max-w-none"
                     alt="Ecorce Agrumes"
+                    loading="lazy"
                   />{" "}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
@@ -630,6 +643,7 @@ const StarterPage = () => {
                     src={Bouteille}
                     className="w-24 h-24 max-w-none"
                     alt="Bouteille en verre"
+                    loading="lazy"
                   />{" "}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-grey rounded-full -mt-8 lg:ml-4 relative z-20">
@@ -749,6 +763,7 @@ const StarterPage = () => {
                   src={Producteur}
                   className="w-16 lg:w-20 self-center items-center"
                   alt="Producteur_icon"
+                  loading="lazy"
                 />
               </div>
               <h2 className="text-lg text-center mb-2">Producteurs locaux</h2>
@@ -767,6 +782,7 @@ const StarterPage = () => {
                   src={IconMarche}
                   className="w-16 lg:w-20 self-center items-center"
                   alt="Marché_icon"
+                  loading="lazy"
                 />{" "}
               </div>
               <h2 className="text-lg text-center mb-2">
@@ -787,6 +803,7 @@ const StarterPage = () => {
                   src={IconInternet}
                   className="w-12 lg:w-16 self-center items-center"
                   alt="Internet_icon"
+                  loading="lazy"
                 />{" "}
               </div>
               <h2 className="text-lg text-center mb-2">
@@ -826,6 +843,7 @@ const StarterPage = () => {
                   src={IconAtelier}
                   className="w-16 lg:w-18 self-center items-center"
                   alt="Atelier_icon"
+                  loading="lazy"
                 />{" "}
               </div>
               <h2 className="text-lg text-center mb-2">Ateliers </h2>
@@ -846,6 +864,7 @@ const StarterPage = () => {
                   src={Livre}
                   className="w-16 lg:w-18 self-center items-center"
                   alt="Livre_icon"
+                  loading="lazy"
                 />{" "}
               </div>
               <h2 className="text-lg text-center mb-2">Livres recommandés </h2>
@@ -866,6 +885,7 @@ const StarterPage = () => {
                   src={IconSite}
                   className="w-16 lg:w-18 self-center items-center"
                   alt="Site_icon"
+                  loading="lazy"
                 />{" "}
               </div>
               <h2 className="text-lg text-center mb-2">Site internet </h2>

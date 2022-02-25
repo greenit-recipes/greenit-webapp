@@ -103,6 +103,7 @@ export const Navbar: React.FC = () => {
             src={logo}
             className="h-10 w-10 | ml-4 self-center"
             alt="Greenit Logo"
+            loading="lazy"
           />
         </Link>
       </div>

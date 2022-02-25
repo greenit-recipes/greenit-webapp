@@ -321,6 +321,7 @@ const LandingPage = () => {
                 src={item.icon}
                 alt={item.text}
                 className="w-28 h-28 md:w-32 md:h-32 pb-2"
+                loading="lazy"
               ></img>
               <h2 className="text-md md:text-xl" style={{ color: item.color }}>
                 {item.text}

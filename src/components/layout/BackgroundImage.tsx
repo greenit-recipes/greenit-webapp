@@ -9,9 +9,9 @@ export const BackgroundImage: React.FC<IBackgroundImage> = ({ className }) => {
   return (
     <div>
       {isMobile() ? (
-        <img className="backgroundImage" src={BackgroundImageMobile}></img>
+        <img className="backgroundImage" src={BackgroundImageMobile} alt="fond" loading="lazy"></img>
       ) : (
-        <img className="backgroundImage" src={BackgroundImageDesktop}></img>
+        <img className="backgroundImage" src={BackgroundImageDesktop} alt="fond" loading="lazy"></img>
       )}
     </div>
   );

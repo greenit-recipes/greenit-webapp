@@ -26,6 +26,7 @@ export const FirstStep: React.FC<IFirstStep> = ({ item }) => {
             src={item.imgProfil}
             className="w-14 h-14 lg:w-18 mr-8"
             alt={item.altImgProfil}
+            loading="lazy"
           />
         </div>
         <div className="ml-4">
