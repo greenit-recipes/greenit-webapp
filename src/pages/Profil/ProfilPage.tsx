@@ -58,7 +58,10 @@ const ProfilPage: React.FC = () => {
       <Navbar />
       <Helmet>
         <title>Espace personnel DIY | Vos recettes maison favorites</title>
-        <meta name="description" content="Dans votre espace personnel Greenit, vous pouvez enregistrer vos recettes maison et accéder à vos recettes déjà publiées. Il suffit de vous créer un compte !" />
+        <meta
+          name="description"
+          content="Dans votre espace personnel Greenit, vous pouvez enregistrer vos recettes maison et accéder à vos recettes déjà publiées. Il suffit de vous créer un compte !"
+        />
       </Helmet>
 
       <Container
@@ -129,7 +132,11 @@ const ProfilPage: React.FC = () => {
                     appuie sur le coeur de la recette
                   </h3>
                   <div>
-                    <img className="w-12 h-12" src={likedIconOff} alt="like icon off" />
+                    <img
+                      className="w-12 h-12"
+                      src={likedIconOff}
+                      alt="like icon off"
+                    />
                   </div>
                   <Link to={RouteName.recipes}>
                     <Button className="mt-5" type="blue">
@@ -166,9 +173,11 @@ const ProfilPage: React.FC = () => {
               type="blue"
               link={RouteName.createRecipe}
             >
-              <h2 className="w-11/12 lg:w-10/12 text-center text-lg lg:text-xl text-white mt-28 lg:mt-36">
-                Publier une nouvelle recette
-              </h2>
+              <button id="Share_a_recipe" className="w-11/12 lg:w-10/12">
+                <h2 className="text-center text-lg lg:text-xl text-white mt-28 lg:mt-36">
+                  Publier une nouvelle recette
+                </h2>
+              </button>
             </CTACard>
             {user?.recipeAuthor?.map((recipe: any, index: any) => (
               <>

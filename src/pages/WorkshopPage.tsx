@@ -193,8 +193,8 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
-                <Link id="contactWs1" to={RouteName.contact}>
-                  <Button type="green" className="md:text-xl">
+                <Link to={RouteName.contact}>
+                  <Button id="contactWs1" type="green" className="md:text-xl">
                     Contacter
                   </Button>
                 </Link>
@@ -278,8 +278,8 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
-                <a id="contactWs2" href={"https://www.lekaba.fr/"} target="_blank">
-                  <Button type="green" className="md:text-xl">
+                <a href={"https://www.lekaba.fr/"} target="_blank">
+                  <Button id="contactWs2" type="green" className="md:text-xl">
                     Contacter
                   </Button>
                 </a>
@@ -985,7 +985,7 @@ const WorkshopPage = () => {
           padding
         >
           <h2 className=" p-2 text-xl mb-10 | md:text-2xl | text-center">
-            Tu es un.e passioné.e de DIY et tu aimerais proposer des ateliers ?{" "}
+            Tu es un.e passioné.e de DIY et tu aimerais proposer des ateliers ?
             <br />
             Ça nous intéresse !
           </h2>
@@ -993,7 +993,7 @@ const WorkshopPage = () => {
             href="mailto:hello@greenitcommunity.com"
             className="inline-flex gap-x-4"
           >
-            <button className="button_contact">
+            <button id="Offer-ws" className="button_contact">
               <h3 className="text-lg md:text-xl">Proposer un atelier</h3>
             </button>
           </a>

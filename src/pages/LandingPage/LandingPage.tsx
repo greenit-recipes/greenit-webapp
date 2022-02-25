@@ -201,27 +201,35 @@ const LandingPage = () => {
       <h2 className="text-xl md:text-2xl | mt-20 mb-6 text-center">
         Les recettes préférées
       </h2>
-      <Carousel
-        swipeable={true}
-        showDots={true}
-        ssr={true}
-        responsive={responsiveCarouselLanding}
-        infinite={true}
-        keyBoardControl={true}
-        transitionDuration={500}
-        containerClass={
-          isMobile ? "carousel-container-mobile" : "carousel-container"
-        }
-        customTransition="transform 300ms ease-in-out"
-        dotListClass={
-          isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
-        }
-        itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
-      >
-        {recipesOrderByLikes?.map((recipe) => (
-          <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-        ))}
-      </Carousel>
+      {isMobile ? (
+        <div className="w-full flex overflow-x-auto">
+          {recipesOrderByLikes?.map((recipe) => (
+            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+          ))}
+        </div>
+      ) : (
+        <Carousel
+          swipeable={true}
+          showDots={true}
+          ssr={true}
+          responsive={responsiveCarouselLanding}
+          infinite={true}
+          keyBoardControl={true}
+          transitionDuration={500}
+          containerClass={
+            isMobile ? "carousel-container-mobile" : "carousel-container"
+          }
+          customTransition="transform 300ms ease-in-out"
+          dotListClass={
+            isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
+          }
+          itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
+        >
+          {recipesOrderByLikes?.map((recipe) => (
+            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+          ))}
+        </Carousel>
+      )}
 
       <Container className="w-full text-center mt-20" itemsCenter>
         <h2 className="text-xl md:text-2xl | mb-2 text-center">

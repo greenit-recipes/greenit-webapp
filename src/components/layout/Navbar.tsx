@@ -44,16 +44,16 @@ export const Navbar: React.FC = () => {
           </Link>
           {isLoggedIn ? (
             <div className="w-full grid justify-items-end">
-              <Link className="" to={RouteName.profil}>
-                <Button type="blue" rounded="lg" className="mr-1">
+              <Link to={RouteName.profil}>
+                <Button id="Access_Profil" type="blue" rounded="lg" className="mr-1">
                   <h2 className="text-white text-xs">Profil</h2>
                 </Button>
               </Link>
             </div>
           ) : (
             <div className="w-full grid justify-items-end">
-              <Link className="" to={RouteName.register}>
-                <button className="rounded-lg p-2 bg-blue mr-1">
+              <Link to={RouteName.register}>
+                <button id="Create_Profil" className="rounded-lg p-2 bg-blue mr-1">
                   <h2 className="text-white text-xs">Créer un profil</h2>
                 </button>
               </Link>
@@ -69,34 +69,36 @@ export const Navbar: React.FC = () => {
           <div className="flex flex-col">
             <SearchBar keyId="SearchNavMobile" />
             <Link className="p-2 mt-3" to={RouteName.accueil}>
-              <h2 className="text-white">Accueil</h2>
+              <button id="home">
+                <h2 className="text-white">Accueil</h2>
+              </button>
             </Link>
-            <Link id="recipe-mobile" className="p-2" to={RouteName.recipes}>
+            <Link className="p-2" to={RouteName.recipes}>
               <div
                 className="border-b-2 border-transparent"
                 onClick={() => {
                   setVisible(true);
                 }}
               >
-                <h2 className="text-white focus:text-green">Recettes</h2>
+                <button id="recipes">
+                  <h2 className="text-white focus:text-green">Recettes</h2>
+                </button>
               </div>
             </Link>
-            <Link
-              id="workshops-mobile"
-              className="p-2"
-              to={RouteName.workshops}
-            >
-              <h2 className="text-white">Ateliers</h2>
+            <Link className="p-2" to={RouteName.workshops}>
+              <button id="workshops">
+                <h2 className="text-white">Ateliers</h2>
+              </button>
             </Link>
-            <Link
-              id="getStarted-mobile"
-              className="p-2"
-              to={RouteName.starterPage}
-            >
-              <h2 className="text-white">Se lancer</h2>
+            <Link className="p-2" to={RouteName.starterPage}>
+              <button id="getStarted">
+                <h2 className="text-white">Se lancer</h2>
+              </button>
             </Link>
-            <Link id="project-mobile" className="p-2" to={RouteName.why}>
-              <h2 className="text-white">Le projet</h2>
+            <Link className="p-2" to={RouteName.why}>
+              <button id="project">
+                <h2 className="text-white">Le projet</h2>
+              </button>
             </Link>
             {isLoggedIn ? (
               <Link id="connexion-mobile" className="p-2" to={RouteName.profil}>
@@ -131,6 +133,7 @@ export const Navbar: React.FC = () => {
       <div className="flex flex-row ml-4 w-2/3 h-full items-center justify-items-start">
         <Link to={RouteName.accueil}>
           <NavButton
+            id="home"
             type="black"
             onClick={() => {
               setVisible(true);
@@ -140,8 +143,9 @@ export const Navbar: React.FC = () => {
           </NavButton>
         </Link>
         <div className="w-auto" id="navmenu_big">
-          <Link id="recipes" to={RouteName.recipes}>
+          <Link to={RouteName.recipes}>
             <NavButton
+              id="recipes"
               type="green"
               onClick={() => {
                 setVisible(true);
@@ -153,199 +157,234 @@ export const Navbar: React.FC = () => {
           <div id="navlist_big">
             <div className="grid grid-cols-3 w-2/5 justify-items-center ml-20 pt-2">
               <div className="flex flex-col text-lg pt-4">
-                <h2 className="mb-2 cursor-default">Racourcis</h2>
+                <h2 className="mb-2 cursor-default">Raccourcis</h2>
 
                 <Link id="allRecipes" to={RouteName.recipes}>
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Toutes les recettes
-                  </h3>
+                  <button id="allRecipes">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Toutes les recettes
+                    </h3>
+                  </button>
                 </Link>
                 <Link
-                  id="shareRecipe"
                   to={isLoggedIn ? RouteName.createRecipe : RouteName.register}
                 >
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Partager une recette
-                  </h3>
+                  <button id="shareRecipe">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Partager une recette
+                    </h3>
+                  </button>
+                </Link>
+                <Link to={`${RouteName.recipes}?tags=Premiers pas`}>
+                  <button id="firstSteps">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Premiers pas
+                    </h3>
+                  </button>
                 </Link>
                 <Link
-                  id="firstSteps"
-                  to={`${RouteName.recipes}?tags=Premiers pas`}
-                >
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Premiers pas
-                  </h3>
-                </Link>
-                <Link
-                  id="withKitchenIngredients"
                   to={`${RouteName.recipes}?tags=Avec les ingrédients de la cuisine`}
                 >
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Avec les ingrédients de la cuisine
-                  </h3>
+                  <button id="withKitchenIngredients">
+                    <h3 className="mb-2 cursor-pointer text-left hover:text-green">
+                      Avec les ingrédients de la cuisine
+                    </h3>
+                  </button>
                 </Link>
-                <Link
-                  id="withoutCooking"
-                  to={`${RouteName.recipes}?tags=Sans cuisson`}
-                >
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Sans cuisson
-                  </h3>
+                <Link to={`${RouteName.recipes}?tags=Sans cuisson`}>
+                  <button id="withoutCooking">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Sans cuisson
+                    </h3>
+                  </button>
                 </Link>
               </div>
               <div className="flex flex-col text-lg pt-4">
                 <h2 className="mb-2 cursor-default">Catégories</h2>{" "}
-                <Link id="house" to={`${RouteName.recipes}?category=Maison`}>
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Maison
-                  </h3>
+                <Link to={`${RouteName.recipes}?category=Maison`}>
+                  <button id="house">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Maison
+                    </h3>
+                  </button>
                 </Link>
-                <Link id="body" to={`${RouteName.recipes}?category=Corps`}>
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Corps
-                  </h3>
+                <Link to={`${RouteName.recipes}?category=Corps`}>
+                  <button id="body">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Corps
+                    </h3>
+                  </button>
                 </Link>
                 <Link id="face" to={`${RouteName.recipes}?category=Visage`}>
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Visage
-                  </h3>
+                  <button id="face">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Visage
+                    </h3>
+                  </button>
                 </Link>
                 <Link id="hair" to={`${RouteName.recipes}?category=Cheveux`}>
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Cheveux
-                  </h3>
+                  <button id="hair">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Cheveux
+                    </h3>
+                  </button>
                 </Link>
-                <Link
-                  id="wellBeing"
-                  to={`${RouteName.recipes}?category=Bien-être`}
-                >
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Bien-être
-                  </h3>
+                <Link to={`${RouteName.recipes}?category=Bien-être`}>
+                  <button id="wellBeing">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Bien-être
+                    </h3>
+                  </button>
                 </Link>
-                <Link id="health" to={`${RouteName.recipes}?category=Santé`}>
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Santé
-                  </h3>
+                <Link to={`${RouteName.recipes}?category=Santé`}>
+                  <button id="health">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Santé
+                    </h3>
+                  </button>
                 </Link>
-                <Link
-                  id="makeUp"
-                  to={`${RouteName.recipes}?category=Maquillage`}
-                >
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Maquillage
-                  </h3>
+                <Link to={`${RouteName.recipes}?category=Maquillage`}>
+                  <button id="makeUp">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Maquillage
+                    </h3>
+                  </button>
                 </Link>
               </div>
               <div className="flex flex-col text-lg pt-4">
                 <h2 className="mb-2 cursor-default">Type de produit</h2>
-                <Link id="soap" to={`${RouteName.recipes}?search=Savon`}>
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Savon
-                  </h3>
+                <Link to={`${RouteName.recipes}?search=Savon`}>
+                  <button id="soap">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Savon
+                    </h3>
+                  </button>
                 </Link>
-                <Link
-                  id="shampoo"
-                  to={`${RouteName.recipes}?search=Shampooing`}
-                >
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Shampooing
-                  </h3>
+                <Link to={`${RouteName.recipes}?search=Shampooing`}>
+                  <button id="shampoo">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Shampooing
+                    </h3>
+                  </button>
                 </Link>
-                <Link id="balm" to={`${RouteName.recipes}?search=Baume`}>
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Baume
-                  </h3>
+                <Link to={`${RouteName.recipes}?search=Baume`}>
+                  <button id="balm">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Baume
+                    </h3>
+                  </button>
                 </Link>
-                <Link id="solid" to={`${RouteName.recipes}?search=Solide`}>
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Solide
-                  </h3>
+                <Link to={`${RouteName.recipes}?search=Solide`}>
+                  <button id="solid">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Solide
+                    </h3>
+                  </button>
                 </Link>
-                <Link id="cream" to={`${RouteName.recipes}?search=Crème`}>
-                  <h3 className="mb-2 cursor-pointer hover:text-green">
-                    Crème
-                  </h3>
+                <Link to={`${RouteName.recipes}?search=Crème`}>
+                  <button id="cream">
+                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                      Crème
+                    </h3>
+                  </button>
                 </Link>
               </div>
             </div>
           </div>
         </div>
         <div className="w-auto" id="navmenu">
-          <Link id="workshops" to={RouteName.workshops}>
-            <NavButton type="yellow" onClick={() => setVisible(true)}>
+          <Link to={RouteName.workshops}>
+            <NavButton
+              id="workshops"
+              type="yellow"
+              onClick={() => setVisible(true)}
+            >
               Ateliers
             </NavButton>
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col text-lg ml-40 pt-4">
-              <Link id="allWorkshops" to={RouteName.workshops}>
-                <h3 className="mb-2 cursor-pointer hover:text-yellow">
-                  Tous les ateliers
-                </h3>
+              <Link to={RouteName.workshops}>
+                <button id="allWorkshops">
+                  <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                    Tous les ateliers
+                  </h3>
+                </button>
               </Link>
-              <Link
-                id="ftfWorkshops"
-                to={RouteName.workshops + "?scroolTo=physiqueWorkshop"}
-              >
-                <h3 className="mb-2 cursor-pointer hover:text-yellow">
-                  Ateliers en présentiel
-                </h3>
+              <Link to={RouteName.workshops + "?scroolTo=physiqueWorkshop"}>
+                <button id="ftfWorkshops">
+                  <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                    Ateliers en présentiel
+                  </h3>
+                </button>
               </Link>
-              <Link
-                id="onlineWorkshops"
-                to={RouteName.workshops + "?scroolTo=onlineWorkshop"}
-              >
-                <h3 className="mb-2 cursor-pointer hover:text-yellow">
-                  Ateliers en ligne
-                </h3>
+              <Link to={RouteName.workshops + "?scroolTo=onlineWorkshop"}>
+                <button id="onlineWorkshops">
+                  <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                    Ateliers en ligne
+                  </h3>
+                </button>
               </Link>
-              <Link
-                id="suggestWorkshop"
-                to={RouteName.workshops + "?scroolTo=suggestWorkshop"}
-              >
-                <h3 className="mb-2 cursor-pointer hover:text-yellow">
-                  Proposer un atelier
-                </h3>
+              <Link to={RouteName.workshops + "?scroolTo=suggestWorkshop"}>
+                <button id="suggestWorkshop">
+                  <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                    Proposer un atelier
+                  </h3>
+                </button>
               </Link>
             </div>
           </div>
         </div>
         <div className="w-auto" id="navmenu">
-          <Link id="getStarted" to={RouteName.starterPage}>
-            <NavButton type="blue" onClick={() => setVisible(true)}>
+          <Link to={RouteName.starterPage}>
+            <NavButton
+              id="getStarted"
+              type="blue"
+              onClick={() => setVisible(true)}
+            >
               Se lancer
             </NavButton>
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col w-96 text-lg ml-99 pt-4">
-              <Link id="fiveStepGuide" to={RouteName.starterPage}>
-                <h3 className="mb-2 cursor-pointer hover:text-blue">
-                  Le guide en 5 étapes pour se lancer dans le fait-maison avec 3
-                  recettes faciles pour débuter, les ustensiles et ingrédients
-                  nécéssaires ainsi que des conseils indispensables.
-                </h3>
+              <Link to={RouteName.starterPage}>
+                <button id="fiveStepGuide">
+                  <h3 className="mb-2 cursor-pointer text-left hover:text-blue">
+                    Le guide en 5 étapes pour se lancer dans le fait-maison avec
+                    3 recettes faciles pour débuter, les ustensiles et
+                    ingrédients nécéssaires ainsi que des conseils
+                    indispensables.
+                  </h3>
+                </button>
               </Link>
             </div>
           </div>
         </div>
         <div className="w-auto" id="navmenu">
-          <Link id="project" to={RouteName.why}>
-            <NavButton type="grey" onClick={() => setVisible(true)}>
+          <Link to={RouteName.why}>
+            <NavButton
+              id="project"
+              type="grey"
+              onClick={() => setVisible(true)}
+            >
               Le projet
             </NavButton>
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col text-lg pt-4 ml-100">
-              <Link id="whyGreenit" to={RouteName.why}>
-                <h3 className="mb-2 cursor-pointer hover:text-grey">
-                  Pourquoi Greenit ?
-                </h3>
+              <Link to={RouteName.why}>
+                <button id="whyGreenit">
+                  <h3 className="mb-2 cursor-pointer hover:text-grey">
+                    Pourquoi Greenit ?
+                  </h3>
+                </button>
               </Link>
-              <Link id="contactUs" to={RouteName.contact}>
-                <h3 className="mb-2 cursor-pointer hover:text-grey">
-                  Contacte-nous
-                </h3>
+              <Link to={RouteName.contact}>
+                <button id="contactUs">
+                  <h3 className="mb-2 cursor-pointer hover:text-grey">
+                    Contacte-nous
+                  </h3>
+                </button>
               </Link>
             </div>
           </div>
@@ -357,6 +396,7 @@ export const Navbar: React.FC = () => {
           {isLoggedIn ? (
             <Link to={RouteName.createRecipe} className="flex">
               <Button
+                id="Share_a_recipe"
                 type="grey"
                 rounded="lg"
                 className="flex justify-end self-center text-xl | mr-2 cursor-pointer"
@@ -367,6 +407,7 @@ export const Navbar: React.FC = () => {
           ) : (
             <Link to={RouteName.register} className="flex">
               <Button
+                id="Share_a_recipe"
                 type="grey"
                 rounded="lg"
                 className="flex justify-end self-center text-xl | mr-2 cursor-pointer"
@@ -377,8 +418,9 @@ export const Navbar: React.FC = () => {
             </Link>
           )}
           {isLoggedIn ? (
-            <Link className="" to={RouteName.profil}>
+            <Link to={RouteName.profil}>
               <Button
+                id="Access_Profil"
                 type="blue"
                 rounded="lg"
                 className="flex justify-end self-center text-xl | mr-4 cursor-pointer"
@@ -389,6 +431,7 @@ export const Navbar: React.FC = () => {
           ) : (
             <Link className="justify-self-end" to={RouteName.register}>
               <Button
+                id="Create_Profil"
                 type="green"
                 rounded="lg"
                 className="inline justify-end self-center | cursor-pointer mr-2"
