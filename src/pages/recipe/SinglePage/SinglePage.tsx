@@ -408,7 +408,7 @@ const RecipeSinglePage = () => {
             </div>
             {recipe && (
               <div className="mt-6 flex flex-col mb-5">
-                <h2 className="text-xl md:text-2xl">Recette similaires</h2>
+                <h2 className="text-xl md:text-2xl">Recettes similaires</h2>
                 <SimilarRecipe data={recipe}></SimilarRecipe>
               </div>
             )}

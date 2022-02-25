@@ -36,16 +36,16 @@ export const AskQuestion: React.FC = () => {
     }).then(() => reset());
   };
   return (
-    <div className="flex justify-items-center self-center mb-20 lg:w-1/3">
+    <div className="flex flex-col justify-items-center self-center mb-20 lg:w-1/3">
       <form
         className="flex flex-col gap-2 w-full"
         onSubmit={handleSubmit(onSubmitHandler)}
       >
         <textarea
-          className="bg-white shadow-lg focus:outline-none | border-2 border-blue rounded-lg p-4"
+          className="bg-white shadow-sm focus:outline-none | border-2 border-blue rounded-lg p-4"
           id="question"
           placeholder="Une question ? Nous sommes là pour vous aider !"
-          rows={12}
+          rows={6}
           cols={34}
           {...register("question")}
         ></textarea>
@@ -71,8 +71,8 @@ export const AskQuestion: React.FC = () => {
         </div>
       </form>
       {data?.emailAskQuestionStartePage?.success && (
-        <div className="text-green text-base md:text-base mb-2 | text-center whitespace-pre-line">
-          Ta question à bien été envoyé
+        <div className="text-green text-base md:text-base mt-6 | text-center whitespace-pre-line">
+          Ta question a bien été envoyée !
         </div>
       )}
     </div>
