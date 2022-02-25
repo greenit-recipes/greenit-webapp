@@ -166,27 +166,37 @@ const LandingPage = () => {
       <h2 className="text-xl md:text-2xl | mb-6 text-center">
         Les recettes débutants
       </h2>
-      <Carousel
-        swipeable={true}
-        showDots={true}
-        ssr={true}
-        responsive={responsiveCarouselLanding}
-        infinite={true}
-        keyBoardControl={true}
-        transitionDuration={500}
-        containerClass={
-          isMobile ? "carousel-container-mobile" : "carousel-container"
-        }
-        customTransition="transform 300ms ease-in-out"
-        dotListClass={
-          isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
-        }
-        itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
-      >
-        {recipesBegginer?.map((recipe) => (
-          <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-        ))}
-      </Carousel>
+      {isMobile ? (
+        <div className="w-full pl-4 overflow-x-auto">
+          <div className="w-max flex">
+            {recipesBegginer?.map((recipe) => (
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <Carousel
+          swipeable={true}
+          showDots={true}
+          ssr={true}
+          responsive={responsiveCarouselLanding}
+          infinite={true}
+          keyBoardControl={true}
+          transitionDuration={500}
+          containerClass={
+            isMobile ? "carousel-container-mobile" : "carousel-container"
+          }
+          customTransition="transform 300ms ease-in-out"
+          dotListClass={
+            isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
+          }
+          itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
+        >
+          {recipesBegginer?.map((recipe) => (
+            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+          ))}
+        </Carousel>
+      )}
 
       <h2 className="text-xl md:text-2xl | mt-20 mb-6 text-center">
         Les recettes préférées

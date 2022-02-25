@@ -81,24 +81,36 @@ export const Navbar: React.FC = () => {
                 <h2 className="text-white focus:text-green">Recettes</h2>
               </div>
             </Link>
-            <Link id="workshops-mobile" className="p-2" to={RouteName.workshops}>
+            <Link
+              id="workshops-mobile"
+              className="p-2"
+              to={RouteName.workshops}
+            >
               <h2 className="text-white">Ateliers</h2>
             </Link>
-            <Link id="getStarted-mobile" className="p-2" to={RouteName.starterPage}>
+            <Link
+              id="getStarted-mobile"
+              className="p-2"
+              to={RouteName.starterPage}
+            >
               <h2 className="text-white">Se lancer</h2>
             </Link>
             <Link id="project-mobile" className="p-2" to={RouteName.why}>
               <h2 className="text-white">Le projet</h2>
             </Link>
             {isLoggedIn ? (
-            <Link id="connexion-mobile" className="p-2" to={RouteName.profil}>
-            <h2 className="text-white">Mon profil</h2>
-          </Link>
-          ) : (
-            <Link id="connexion-mobile" className="p-2" to={RouteName.connexion}>
-              <h2 className="text-white">Se connecter</h2>
-            </Link>
-          )}
+              <Link id="connexion-mobile" className="p-2" to={RouteName.profil}>
+                <h2 className="text-white">Mon profil</h2>
+              </Link>
+            ) : (
+              <Link
+                id="connexion-mobile"
+                className="p-2"
+                to={RouteName.connexion}
+              >
+                <h2 className="text-white">Se connecter</h2>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -143,27 +155,39 @@ export const Navbar: React.FC = () => {
               <div className="flex flex-col text-lg pt-4">
                 <h2 className="mb-2 cursor-default">Racourcis</h2>
 
-              <Link id="allRecipes" to={RouteName.recipes}>
+                <Link id="allRecipes" to={RouteName.recipes}>
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Toutes les recettes
                   </h3>
                 </Link>
-                <Link id="shareRecipe" to={isLoggedIn ? RouteName.createRecipe : RouteName.register}>
+                <Link
+                  id="shareRecipe"
+                  to={isLoggedIn ? RouteName.createRecipe : RouteName.register}
+                >
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Partager une recette
                   </h3>
                 </Link>
-                <Link id="firstSteps" to={`${RouteName.recipes}?tags=Premiers pas`}>
+                <Link
+                  id="firstSteps"
+                  to={`${RouteName.recipes}?tags=Premiers pas`}
+                >
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Premiers pas
                   </h3>
                 </Link>
-                <Link id="withKitchenIngredients" to={`${RouteName.recipes}?tags=Avec les ingrédients de la cuisine`}>
+                <Link
+                  id="withKitchenIngredients"
+                  to={`${RouteName.recipes}?tags=Avec les ingrédients de la cuisine`}
+                >
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Avec les ingrédients de la cuisine
                   </h3>
                 </Link>
-                <Link id="withoutCooking" to={`${RouteName.recipes}?tags=Sans cuisson`}>
+                <Link
+                  id="withoutCooking"
+                  to={`${RouteName.recipes}?tags=Sans cuisson`}
+                >
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Sans cuisson
                   </h3>
@@ -191,7 +215,10 @@ export const Navbar: React.FC = () => {
                     Cheveux
                   </h3>
                 </Link>
-                <Link id="wellBeing" to={`${RouteName.recipes}?category=Bien-être`}>
+                <Link
+                  id="wellBeing"
+                  to={`${RouteName.recipes}?category=Bien-être`}
+                >
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Bien-être
                   </h3>
@@ -201,7 +228,10 @@ export const Navbar: React.FC = () => {
                     Santé
                   </h3>
                 </Link>
-                <Link id="makeUp" to={`${RouteName.recipes}?category=Maquillage`}>
+                <Link
+                  id="makeUp"
+                  to={`${RouteName.recipes}?category=Maquillage`}
+                >
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Maquillage
                   </h3>
@@ -214,7 +244,10 @@ export const Navbar: React.FC = () => {
                     Savon
                   </h3>
                 </Link>
-                <Link id="shampoo" to={`${RouteName.recipes}?search=Shampooing`}>
+                <Link
+                  id="shampoo"
+                  to={`${RouteName.recipes}?search=Shampooing`}
+                >
                   <h3 className="mb-2 cursor-pointer hover:text-green">
                     Shampooing
                   </h3>
@@ -251,20 +284,29 @@ export const Navbar: React.FC = () => {
                   Tous les ateliers
                 </h3>
               </Link>
-              <Link id="ftfWorkshops" to={RouteName.workshops + "?scroolTo=physiqueWorkshop"}>
+              <Link
+                id="ftfWorkshops"
+                to={RouteName.workshops + "?scroolTo=physiqueWorkshop"}
+              >
                 <h3 className="mb-2 cursor-pointer hover:text-yellow">
                   Ateliers en présentiel
                 </h3>
               </Link>
-              <Link id="onlineWorkshops" to={RouteName.workshops + "?scroolTo=onlineWorkshop"}>
-              <h3 className="mb-2 cursor-pointer hover:text-yellow">
-                Ateliers en ligne
-              </h3>
+              <Link
+                id="onlineWorkshops"
+                to={RouteName.workshops + "?scroolTo=onlineWorkshop"}
+              >
+                <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                  Ateliers en ligne
+                </h3>
               </Link>
-              <Link id="suggestWorkshop" to={RouteName.workshops + "?scroolTo=suggestWorkshop"}>
-              <h3 className="mb-2 cursor-pointer hover:text-yellow">
-                Proposer un atelier
-              </h3>
+              <Link
+                id="suggestWorkshop"
+                to={RouteName.workshops + "?scroolTo=suggestWorkshop"}
+              >
+                <h3 className="mb-2 cursor-pointer hover:text-yellow">
+                  Proposer un atelier
+                </h3>
               </Link>
             </div>
           </div>
@@ -277,12 +319,12 @@ export const Navbar: React.FC = () => {
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
             <div className="flex flex-col w-96 text-lg ml-99 pt-4">
-            <Link id="fiveStepGuide" to={RouteName.starterPage}>
-              <h3 className="mb-2 cursor-pointer hover:text-blue">
-                Le guide en 5 étapes pour se lancer dans le fait-maison avec 3
-                recettes faciles pour débuter, les ustensiles et ingrédients
-                nécéssaires ainsi que des conseils indispensables.
-              </h3>
+              <Link id="fiveStepGuide" to={RouteName.starterPage}>
+                <h3 className="mb-2 cursor-pointer hover:text-blue">
+                  Le guide en 5 étapes pour se lancer dans le fait-maison avec 3
+                  recettes faciles pour débuter, les ustensiles et ingrédients
+                  nécéssaires ainsi que des conseils indispensables.
+                </h3>
               </Link>
             </div>
           </div>
