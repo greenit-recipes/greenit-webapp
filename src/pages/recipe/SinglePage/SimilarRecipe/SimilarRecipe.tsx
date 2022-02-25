@@ -46,6 +46,7 @@ export const SimilarRecipe: React.FC<ISimilarRecipe> = (data) => {
       showDots={true}
       responsive={responsiveCarouselLanding}
       infinite={true}
+      ssr={true}
       keyBoardControl={true}
       transitionDuration={500}
       containerClass={

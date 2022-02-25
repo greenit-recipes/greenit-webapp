@@ -169,6 +169,7 @@ const LandingPage = () => {
       <Carousel
         swipeable={true}
         showDots={true}
+        ssr={true}
         responsive={responsiveCarouselLanding}
         infinite={true}
         keyBoardControl={true}
@@ -193,6 +194,7 @@ const LandingPage = () => {
       <Carousel
         swipeable={true}
         showDots={true}
+        ssr={true}
         responsive={responsiveCarouselLanding}
         infinite={true}
         keyBoardControl={true}
