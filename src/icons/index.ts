@@ -72,6 +72,17 @@ import GreenitTeam from "./GreenitTeam.jpeg"
 import BackroundImage from "./backgroundMobile.jpg"
 import BackroundImageDesktop from "./backgroundDesktop.jpg"
 
+//CREATE RECIPE LOGOS
+import fblogo from "./icon_fb.png"
+import instalogo from "./icon_insta.png"
+import pintlogo from "./icon_pinterest.png"
+import tiktoklogo from "./icon_tiktok.png"
+import wwwlogo from "./icon_www.png"
+import ytlogo from "./icon_yt.png"
+import pastelogo from "./icon_paste.png"
+
+
+
 export const landingPageCategories = [
   {
     icon: premierspas,
@@ -153,4 +164,11 @@ export {
   retourIcon,
   BackroundImage,
   BackroundImageDesktop,
+  fblogo,
+  instalogo,
+  pintlogo,
+  tiktoklogo,
+  wwwlogo,
+  ytlogo,
+  pastelogo,
 };

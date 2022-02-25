@@ -12,13 +12,16 @@ import {
   CREATE_EMAIL_RECIPE,
   GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
 } from "pages/CreateRecipe/CreateRecipeRequest";
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import * as yup from "yup";
 import { RecipeDifficulty } from "../../graphql";
 import { Helmet } from "react-helmet";
+import {fblogo, instalogo, pintlogo, tiktoklogo, wwwlogo, ytlogo, pastelogo,} from "../../icons";
+
+
 
 const schema = yup.object().shape({
   image: imageValidation(),
@@ -190,6 +193,8 @@ const CreateRecipe: React.FC = () => {
     utensilsAppend({}, { shouldFocus: false});
     instructionsAppend({}, { shouldFocus: false});
   }, []);
+
+
   return (
     <div className="w-full">
       <Navbar></Navbar>
@@ -200,19 +205,65 @@ const CreateRecipe: React.FC = () => {
       <BackgroundImage />
       <div className="grid justify-items-center w-full">
         <div className="w-4/5">
-          <h1 className="text-center text-xl md:text-2xl md:text-3xl mt-16">
-            Publie ta recette et aide la communauté.
+          <h1 className="text-center text-xl md:text-2xl md:text-3xl mt-16 font-semibold">
+            Partage ta recette avec la communauté
           </h1>
-          <h3 className="text-center text-lg md:text-xl mt-2">
-            Un grand merci pour ton engagement !
+          <h3 className="text-center text-lg md:text-xl mt-2 font-semibold">
+            Merci pour ton engagement !
           </h3>
         </div>
+        <form className="bg-white shadow-lg rounded-lg p-4 md:p-10 my-10 md:w-1/2" 
+        onSubmit={handleSubmit(onSubmitHandler)}>
+          
+        <div className="mb-4">
+        <h2 className="text-lg md:text-2xl font-bold">À partir d'un lien existant</h2>
+        <h3 className="block text-sm mt-2 font-bold">Tu souhaites partager une recette de ton blog, ton instagram ou une publication facebook ?</h3>
+        <h3 className="block text-sm font-bold">Ajoute le lien de la recette et nous la partagerons avec la communauté !</h3>
+        </div>
+        <div className="flex flex-col lg:flex-row items-center">
+        
+        <div className=" flex flex-row justify-between shadow border rounded pl-3 leading-tight focus:outline-none focus:shadow-outline ">
+        <input className="text-gray-700 focus:outline-none focus:shadow-outline "
+              placeholder="Lien de la recette" value="">
+            </input>
+            <button  className="flex justify-center items-center cursor-pointer
+      px-3 py-1 bold border-2 border-transparent
+      text-sm md:text-base
+      ease-linear transition-all duration-150 shadow hover:shadow-lg hover:bg-grey active:bg-grey hover:border-grey rounded-md hover:text-white">
+        <img src={pastelogo}  className="mr-1 w-4" alt="paste-logo"/>
+              Coller              
+            </button>
+            </div>
+            <div className="h-3 w-8"></div>
+            <Button className="max-w-xs max-h-xs" type="green"
+            >
+              Envoyer ma recette  
+                        
+            </Button>
+            </div>
+            <div className="mt-4">
+            <h3 className="block text-gray-700 text-sm mt-2">Toutes les recettes sont automatiquement créditées au profil du créateur.ice.</h3>
+            <div className="flex flex-col lg:flex-row mt-4 lg:items-center">
+            <h3 className="block text-gray-700 text-sm mr-4">Exemples de liens :</h3>
+            <div className="flex flex-row gap-2">
+            <img className="w-8" src={wwwlogo} alt="www-logo" />
+            <img className="w-8"src={fblogo} alt="facebook-logo" />
+            <img className="w-8"src={instalogo} alt="instagram-logo" />
+            <img className="w-8"src={ytlogo} alt="youtube-logo" />
+            <img className="w-8"src={tiktoklogo} alt="tiktok-logo" />
+            <img className="w-8"src={pintlogo} alt="pinterest-logo" />
+            </div>
+            </div>
+            </div>
+        </form>
+        <h2 className="text-lg md:text-2xl font-bold">Ou</h2>
         <form
           className="bg-white shadow-lg rounded-lg p-4 md:p-10 my-10 md:w-1/2"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           {/* Input */}
           <div className="mb-10">
+          <h2 className="text-lg md:text-2xl mt-2 font-bold">Utilise le formulaire pour partager ta recette</h2>
             <label className="block text-gray-700 text-xl">
               Nom de la recette
             </label>
@@ -224,6 +275,7 @@ const CreateRecipe: React.FC = () => {
               id="name"
               placeholder="nom de la recette"
               {...register("name")}
+
             ></textarea>
             <p className="text-red text-xs italic">
               {errors.name?.message}
