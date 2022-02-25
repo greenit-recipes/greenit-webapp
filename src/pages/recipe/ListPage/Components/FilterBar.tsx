@@ -73,57 +73,22 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 
   return (
     <>
-    {isOnlyForSearch ? (
-    <FilterBarSearch
-              search={search}
-              keyId="SearchFilterBarForMobile"
-              setSearch={setSearch}
-              setCurrentFilters={setCurrentFilters}
-            />
-    ) : (
-    <div className="w-full grid justify-items-start lg:justify-items-center bg-white">
-      <BackgroundImage />
-      <div
-        className={
-          isMobile
-            ? "w-full grid px-4 mt-10 mb-6"
-            : "grid grid-rows-2 justify-items-center w-full max-w-6xl p-4 mt-4 rounded-lg"
-        }
-      >
-        {!isMobile && (
-          <div className="flex w-11/12 self-center">
-            <FilterBarSearch
-              search={search}
-              keyId="SearchFilterBar"
-              setSearch={setSearch}
-              setCurrentFilters={setCurrentFilters}
-            />
-            {isLoggedIn ? (
-              <Link to={RouteName.createRecipe} className="flex">
-                <Button
-                  type="grey"
-                  className="self-center h-10 rounded-xl ml-4"
-                >
-                  <h3> Partager une recette </h3>
-                </Button>
-              </Link>
-            ) : (
-              <Link to={RouteName.register} className="flex">
-                <Button
-                  type="grey"
-                  className="self-center h-10 rounded-xl ml-4"
-                >
-                  <h3> Partager une recette </h3>
-                </Button>
-              </Link>
-            )}
-          </div>
-        )}
-        {isMobile && (
-          <Button
-            className="p-2 right-0 mr-3 fixed top-14"
-            type="red"
-            onClick={() => removeFilters()}
+      {isOnlyForSearch ? (
+        <FilterBarSearch
+          search={search}
+          keyId="SearchFilterBarForMobile"
+          setSearch={setSearch}
+          setCurrentFilters={setCurrentFilters}
+        />
+      ) : (
+        <div className="w-full grid justify-items-start lg:justify-items-center bg-white">
+          <BackgroundImage />
+          <div
+            className={
+              isMobile
+                ? "w-full grid px-4 mt-10 mb-6"
+                : "grid grid-rows-2 justify-items-center w-full max-w-6xl p-4 mt-4 rounded-lg"
+            }
           >
             {!isMobile && (
               <div className="flex w-11/12 self-center">

@@ -85,21 +85,6 @@ export const Navbar: React.FC = () => {
                 </button>
               </div>
             </Link>
-<<<<<<< HEAD
-            <Link
-              id="workshops-mobile"
-              className="p-2"
-              to={RouteName.workshops}
-            >
-              <h2 className="text-white">Ateliers</h2>
-            </Link>
-            <Link
-              id="getStarted-mobile"
-              className="p-2"
-              to={RouteName.starterPage}
-            >
-              <h2 className="text-white">Se lancer</h2>
-=======
             <Link className="p-2" to={RouteName.workshops}>
               <button id="workshops">
                 <h2 className="text-white">Ateliers</h2>
@@ -109,7 +94,6 @@ export const Navbar: React.FC = () => {
               <button id="getStarted">
                 <h2 className="text-white">Se lancer</h2>
               </button>
->>>>>>> 8aa4e5b (changes for id + caroussel mobile kill)
             </Link>
             <Link className="p-2" to={RouteName.why}>
               <button id="project">
