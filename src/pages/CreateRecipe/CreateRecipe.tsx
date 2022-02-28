@@ -31,12 +31,8 @@ import {
 } from "../../icons";
 
 const schemaLink = yup.object().shape({
-  link: yup.string().url(),
+  link: yup.string().url("L'url renseigné n'est pas valide.").required("Ce champ est obligatoire."),
 });
-
-const onSubmitLink = (values: string) => {
-  console.log(values);
-};
 
 const schema = yup.object().shape({
   image: imageValidation(),
