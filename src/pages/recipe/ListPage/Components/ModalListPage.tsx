@@ -20,7 +20,7 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
       {props.isShowModal ? (
         <>
           <Button
-            type="grey"
+            type="green"
             className="justify-self-start fixed top-14 z-40 w-32 ml-4"
             onClick={() => props.parentFunction(false)}
           >
