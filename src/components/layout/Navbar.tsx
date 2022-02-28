@@ -45,7 +45,12 @@ export const Navbar: React.FC = () => {
           {isLoggedIn ? (
             <div className="w-full grid justify-items-end">
               <Link to={RouteName.profil}>
-                <Button id="Access_Profil" type="blue" rounded="lg" className="mr-1">
+                <Button
+                  id="Access_Profil"
+                  type="blue"
+                  rounded="lg"
+                  className="mr-1"
+                >
                   <h2 className="text-white text-xs">Profil</h2>
                 </Button>
               </Link>
@@ -53,7 +58,10 @@ export const Navbar: React.FC = () => {
           ) : (
             <div className="w-full grid justify-items-end">
               <Link to={RouteName.register}>
-                <button id="Create_Profil" className="rounded-lg p-2 bg-blue mr-1">
+                <button
+                  id="Create_Profil"
+                  className="rounded-lg p-2 bg-blue mr-1"
+                >
                   <h2 className="text-white text-xs">Créer un profil</h2>
                 </button>
               </Link>
@@ -217,25 +225,29 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <Link id="face" to={`${RouteName.recipes}?category=Visage`}>
                   <button id="face">
-                    <h3 className="mb-2 cursor-pointer hover:text-green">
+                    <h3
+                      id="face"
+                      className="mb-2 cursor-pointer hover:text-green"
+                    >
                       Visage
                     </h3>
                   </button>
                 </Link>
-                <Link id="hair" to={`${RouteName.recipes}?category=Cheveux`}>
-                  <button id="hair">
-                    <h3 className="mb-2 cursor-pointer hover:text-green">
-                      Cheveux
-                    </h3>
-                  </button>
+                <Link to={`${RouteName.recipes}?category=Cheveux`}>
+                  <h3
+                    id="hair"
+                    className="mb-2 cursor-pointer hover:text-green"
+                  >
+                    Cheveux
+                  </h3>
                 </Link>
-                <Link to={`${RouteName.recipes}?category=Bien-être`}>
-                  <button id="wellBeing">
+                <button id="wellBeing">
+                  <Link to={`${RouteName.recipes}?category=Bien-être`}>
                     <h3 className="mb-2 cursor-pointer hover:text-green">
                       Bien-être
                     </h3>
-                  </button>
-                </Link>
+                  </Link>
+                </button>
                 <Link to={`${RouteName.recipes}?category=Santé`}>
                   <button id="health">
                     <h3 className="mb-2 cursor-pointer hover:text-green">
