@@ -106,6 +106,17 @@ import Maryse from "./iconMaryse.png"
 import IconSite from "./iconSite.png"
 import Producteur from "./iconProducteur.png"
 
+//CREATE RECIPE LOGOS
+import fblogo from "./icon_fb.png"
+import instalogo from "./icon_insta.png"
+import pintlogo from "./icon_pinterest.png"
+import tiktoklogo from "./icon_tiktok.png"
+import wwwlogo from "./icon_www.png"
+import ytlogo from "./icon_yt.png"
+import pastelogo from "./icon_paste.png"
+
+
+
 export const landingPageCategories = [
   {
     icon: premierspas,
@@ -185,6 +196,13 @@ export {
   ChristelleAtelier2,
   ChristelleLogo,
   retourIcon,
+  fblogo,
+  instalogo,
+  pintlogo,
+  tiktoklogo,
+  wwwlogo,
+  ytlogo,
+  pastelogo,
   BackgroundImageMobile,
   BackgroundImageDesktop,
   LCParfum,
