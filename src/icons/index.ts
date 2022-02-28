@@ -196,9 +196,6 @@ export {
   ChristelleAtelier2,
   ChristelleLogo,
   retourIcon,
-<<<<<<< HEAD
-  BackroundImage,
-  BackroundImageDesktop,
   fblogo,
   instalogo,
   pintlogo,
@@ -206,7 +203,6 @@ export {
   wwwlogo,
   ytlogo,
   pastelogo,
-=======
   BackgroundImageMobile,
   BackgroundImageDesktop,
   LCParfum,
@@ -239,5 +235,4 @@ export {
   Maryse,
   IconSite,
   Producteur,
->>>>>>> 6c1b240754bb013c481e54df81cd5e3641015273
 };

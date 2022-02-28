@@ -224,26 +224,17 @@ const CreateRecipe: React.FC = () => {
         onSubmit={handleSubmit(onSubmitHandler)}>
           
         <div className="mb-4">
-        <h2 className="text-lg md:text-2xl font-bold">À partir d'un lien existant</h2>
-        <h3 className="block text-sm mt-2 font-bold">Tu souhaites partager une recette de ton blog, ton instagram ou une publication facebook ?</h3>
+        <h2 className="text-lg md:text-2xl font-semibold">À partir d'un lien existant</h2>
+        <h3 className="block text-sm mt-2 font-semibold">Tu souhaites partager une recette de ton blog, ton instagram ou une publication facebook ?</h3>
         <h3 className="block text-sm font-bold">Ajoute le lien de la recette et nous la partagerons avec la communauté !</h3>
         </div>
         <div className="flex flex-col lg:flex-row items-center">
-        
-        <div className=" flex flex-row justify-between shadow border rounded pl-3 leading-tight focus:outline-none focus:shadow-outline ">
-        <input className="text-gray-700 focus:outline-none focus:shadow-outline "
+        <input className="text-gray-700 width: w-5/6 lg:w-4/6 focus:outline-none px-3 py-1 focus:shadow-outline shadow border rounded pl-3 leading-tight focus:outline-none focus:shadow-outline  "
               placeholder="Lien de la recette" value="">
             </input>
-            <button  className="flex justify-center items-center cursor-pointer
-            px-3 py-1 bold border-2 border-transparent
-            text-sm md:text-base
-            ease-linear transition-all duration-150 shadow hover:shadow-lg hover:bg-grey active:bg-grey hover:border-grey rounded-md hover:text-white">
-        <img src={pastelogo}  className="mr-1 w-4" alt="paste-logo"/>
-              Coller              
-            </button>
-            </div>
+
             <div className="h-3 w-8"></div>
-            <Button className="max-w-xs max-h-xs" type="green" 
+            <Button className="px-0 py-0" type="green" 
             >
               Envoyer ma recette  
                         
