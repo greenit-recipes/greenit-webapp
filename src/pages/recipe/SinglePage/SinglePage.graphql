@@ -16,6 +16,7 @@ query recipe($urlId: String!) {
     author {
       id
       imageProfile
+      photoUrl
       username
     }
     notesFromAuthor
@@ -41,6 +42,7 @@ query recipe($urlId: String!) {
       createdAt
       author {
         imageProfile
+        photoUrl
         id
         username
       }
@@ -56,6 +58,7 @@ query recipe($urlId: String!) {
     id
     username
     imageProfile
+    photoUrl
     email
   }
 }

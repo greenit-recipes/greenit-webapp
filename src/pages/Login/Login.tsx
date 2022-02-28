@@ -2,14 +2,18 @@ import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { includes } from "lodash";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
-import authServiceService, { LOGIN_ACCOUNT } from "services/auth.service";
+import authServiceService, {
+  LOGIN_ACCOUNT,
+  CREATE_USER_FROM_AUTH,
+} from "services/auth.service";
 import * as yup from "yup";
-import { Footer, Navbar } from "../../components";
-import { BackgroundImage } from "../../components/layout/BackgroundImage";
+import { Footer, Navbar } from "components";
+import { BackgroundImage } from "components/layout/BackgroundImage";
 import { Helmet } from "react-helmet";
+import FacebookLogin from "react-facebook-login";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -47,6 +51,15 @@ const Login: React.FC = () => {
   const [loginAccount, { data, loading, error }] = useMutation(LOGIN_ACCOUNT, {
     errorPolicy: "all",
   });
+
+  const [errorLoginFb, setErrorLoginFb] = useState("");
+
+  const [
+    authLogin,
+    { data: dataAuth, loading: loadingAuth, error: errorAuth },
+  ] = useMutation(CREATE_USER_FROM_AUTH, {
+    errorPolicy: "all",
+  });
   // Error for graphql call
   React.useEffect(() => {
     if (data?.tokenAuth?.success === false || error) {
@@ -64,6 +77,36 @@ const Login: React.FC = () => {
     }
   }, [setError, error, data]);
 
+  const responseFacebook = (responseFb: any) => {
+    // Error si pas d'email
+
+    if (responseFb.status === "unknown") {
+      return;
+    }
+
+    authLogin({
+      variables: {
+        email: responseFb.email,
+        username: responseFb.name,
+        password: process.env.REACT_APP_PASSWORD + responseFb.id,
+        idFacebook: responseFb.id,
+        isFollowNewsletter: "false",
+      },
+    }).then((response) => {
+      // @ts-ignore
+      if (response?.data?.createUserFromAuth?.errors) {
+        setErrorLoginFb(response?.data?.createUserFromAuth?.errors)
+        return;
+      }
+      const data = {
+        email: responseFb.email,
+        password: process.env.REACT_APP_PASSWORD + responseFb.id,
+      };
+      onSubmitHandler(data);
+    });
+  };
+
+  // En faite une function (log)
   const onSubmitHandler = (data: { email: string; password: string }) => {
     loginAccount({
       variables: {
@@ -79,7 +122,13 @@ const Login: React.FC = () => {
           response?.data?.tokenAuth?.refreshToken
         );
         history.listen((prev) => {
-          if (prev?.pathname === RouteName.activateResetPassword || includes(prev?.pathname,RouteName.resetPassword) || includes(prev?.pathname, 'activate') || includes(prev?.pathname, RouteName.tokenActivationAccount) || prev?.pathname === RouteName.register) {
+          if (
+            prev?.pathname === RouteName.activateResetPassword ||
+            includes(prev?.pathname, RouteName.resetPassword) ||
+            includes(prev?.pathname, "activate") ||
+            includes(prev?.pathname, RouteName.tokenActivationAccount) ||
+            prev?.pathname === RouteName.register
+          ) {
             history.push("/");
           }
         });
@@ -88,12 +137,26 @@ const Login: React.FC = () => {
     });
     reset({...getValues(), password: ""});
   };
+
+  // Rajouter un loader pendant tous le traitement de fb
   return (
     <div className="grid justify-items-center w-full">
       <Navbar />
+      <div className="hidden">
+      <FacebookLogin
+        // @ts-ignore
+        appId={process.env.REACT_APP_FACEBOOK_ID}
+        fields="name,email,picture"
+        callback={responseFacebook}
+      />
+      </div>
+     { errorLoginFb && (<div className="mt-4 text-red text-xs italic">{errorLoginFb}</div>)}
       <Helmet>
         <title>Connexion - Espace DIY | Greenit Community</title>
-        <meta name="description" content="Connectez vous. Accédez à votre compte et espace personnel DIY. Vous pouvez ajouter des recettes maison et sauvegarder vos recettes préférées." />
+        <meta
+          name="description"
+          content="Connectez vous. Accédez à votre compte et espace personnel DIY. Vous pouvez ajouter des recettes maison et sauvegarder vos recettes préférées."
+        />
       </Helmet>
       <BackgroundImage className="overflow-hidden" />
       <h1 className="text-xl font-medium w-2/3 md:text-2xl | mt-16 text-center">
@@ -102,7 +165,7 @@ const Login: React.FC = () => {
       <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 w-4/5">
           <h3 className="text-sm md:text-base self-center">
-            Si tu veux créer un compte : 
+            Si tu veux créer un compte :
           </h3>
           <Link to={RouteName.register}>
             <button
@@ -129,9 +192,7 @@ const Login: React.FC = () => {
               type="email"
               {...register("email")}
             ></input>
-            <p className="text-red text-xs italic">
-              {errors.email?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.email?.message}</p>
           </div>
           <div className="mb-10">
             <label className="block text-gray-700 text-base md:text-lg font-bold mb-2">
@@ -169,7 +230,7 @@ const Login: React.FC = () => {
           </div>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

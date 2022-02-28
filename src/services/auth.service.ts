@@ -82,6 +82,27 @@ export const LOGIN_ACCOUNT = gql`
   }
 `;
 
+export const CREATE_USER_FROM_AUTH = gql`
+  mutation CreateUserFromAuth(
+    $email: String!
+    $username: String!
+    $password: String!
+    $isFollowNewsletter: String
+    $idFacebook: String
+  ) {
+    createUserFromAuth(
+      email: $email
+      username: $username
+      password: $password
+      isFollowNewsletter: $isFollowNewsletter
+      idFacebook: $idFacebook
+    ) {
+      isUserAlreadyCreated
+      errors
+    }
+  }
+`;
+
 export const UPDATE_IMAGE_ACCOUNT = gql`
   mutation UpdateImageAccount($imageProfile: Upload!) {
     updateImageAccount(imageProfile: $imageProfile) {
@@ -95,7 +116,9 @@ export const ME = gql`
     me {
       username
       lastName
+      photoUrl
       email
+      idFacebook
       verified
       imageProfile
       recipeAuthor {
@@ -186,7 +209,7 @@ class Auth {
   setStorageEmail(email: string) {
     localStorage.setItem("email", email);
   }
-  
+
   getEmail(): string | null {
     return localStorage.getItem("email");
   }
