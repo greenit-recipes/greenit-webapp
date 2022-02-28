@@ -5,30 +5,38 @@ import { Button, Footer, Navbar } from "components";
 import { BackgroundImage } from "components/layout/BackgroundImage";
 import {
   imageValidation,
-  videoValidation
+  videoValidation,
 } from "helpers/yup-validation.helper";
 import _ from "lodash";
 import {
   CREATE_EMAIL_RECIPE,
-  GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
+  GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
+  EMAIL_LINK_SHARED_RECIPE,
 } from "pages/CreateRecipe/CreateRecipeRequest";
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import * as yup from "yup";
 import { RecipeDifficulty } from "../../graphql";
 import { Helmet } from "react-helmet";
-import {fblogo, instalogo, pintlogo, tiktoklogo, wwwlogo, ytlogo, pastelogo,} from "../../icons";
+import {
+  fblogo,
+  instalogo,
+  pintlogo,
+  tiktoklogo,
+  wwwlogo,
+  ytlogo,
+  pastelogo,
+} from "../../icons";
 
 const schemaLink = yup.object().shape({
-  link: yup.string().required("Ce champ est obligatoire"),
+  link: yup.string().url(),
 });
 
 const onSubmitLink = (values: string) => {
-  console.log(values)
+  console.log(values);
 };
-
 
 const schema = yup.object().shape({
   image: imageValidation(),
@@ -68,7 +76,6 @@ const schema = yup.object().shape({
   text_associate: yup.string(),
 });
 
-
 const CreateRecipe: React.FC = () => {
   const {
     register,
@@ -79,6 +86,14 @@ const CreateRecipe: React.FC = () => {
     control,
   } = useForm({
     resolver: yupResolver(schema),
+  });
+
+  const {
+    register: registerLink,
+    handleSubmit: handleSubmitLink,
+    formState: { errors: errosLink },
+  } = useForm({
+    resolver: yupResolver(schemaLink),
   });
 
   const {
@@ -116,6 +131,10 @@ const CreateRecipe: React.FC = () => {
   const [createEmailRecipe, { loading: loadingCreateRecipe }] =
     useMutation(CREATE_EMAIL_RECIPE);
 
+  const [emailLinkSharedRecipe, { loading: loadingLink }] = useMutation(
+    EMAIL_LINK_SHARED_RECIPE
+  );
+
   const optionsDifficulty = [
     { value: RecipeDifficulty.Beginner, label: "Facile" },
     { value: RecipeDifficulty.Intermediate, label: "Moyen" },
@@ -142,6 +161,15 @@ const CreateRecipe: React.FC = () => {
       }
     }
   }, [setError, error, data]);
+
+  const onSubmitHandlerLink = (dataLink: { link: string }) => {
+    emailLinkSharedRecipe({
+      variables: {
+        link: dataLink.link,
+      },
+    }).then();
+    history.push(RouteName.recipeCreated);
+  };
 
   const onSubmitHandler = (dataForm: {
     name: string;
@@ -197,18 +225,20 @@ const CreateRecipe: React.FC = () => {
     }
   }, []);
   useEffect(() => {
-    ingredientsAppend({}, { shouldFocus: false});
-    utensilsAppend({}, { shouldFocus: false});
-    instructionsAppend({}, { shouldFocus: false});
+    ingredientsAppend({}, { shouldFocus: false });
+    utensilsAppend({}, { shouldFocus: false });
+    instructionsAppend({}, { shouldFocus: false });
   }, []);
-
 
   return (
     <div className="w-full">
       <Navbar></Navbar>
       <Helmet>
         <title>Ajoutez vos recettes DIY | Inspirez la communauté</title>
-        <meta name="description" content="Sur Greenit Community, vous pouvez ajouter vos recettes maison et naturelles pour inspirer la communauté du fait-maison. Chaque recette ajoutée est ensuite validée avant d’être publiée." />
+        <meta
+          name="description"
+          content="Sur Greenit Community, vous pouvez ajouter vos recettes maison et naturelles pour inspirer la communauté du fait-maison. Chaque recette ajoutée est ensuite validée avant d’être publiée."
+        />
       </Helmet>
       <BackgroundImage />
       <div className="grid justify-items-center w-full">
@@ -220,40 +250,57 @@ const CreateRecipe: React.FC = () => {
             Merci pour ton engagement !
           </h3>
         </div>
-        <form className="bg-white shadow-lg rounded-lg p-4 md:p-10 my-10 md:w-1/2" 
-        onSubmit={handleSubmit(onSubmitHandler)}>
-          
-        <div className="mb-4">
-        <h2 className="text-lg md:text-2xl font-semibold">À partir d'un lien existant</h2>
-        <h3 className="block text-sm mt-2 font-semibold">Tu souhaites partager une recette de ton blog, ton instagram ou une publication facebook ?</h3>
-        <h3 className="block text-sm font-bold">Ajoute le lien de la recette et nous la partagerons avec la communauté !</h3>
-        </div>
-        <div className="flex flex-col lg:flex-row items-center">
-        <input className="text-gray-700 width: w-5/6 lg:w-4/6 focus:outline-none px-3 py-1 focus:shadow-outline shadow border rounded pl-3 leading-tight focus:outline-none focus:shadow-outline  "
-              placeholder="Lien de la recette" value="">
-            </input>
-
+        <form
+          className="bg-white shadow-lg rounded-lg p-4 md:p-10 my-10 md:w-1/2"
+          onSubmit={handleSubmitLink(onSubmitHandlerLink)}
+        >
+          <div className="mb-4">
+            <h2 className="text-lg md:text-2xl font-semibold">
+              À partir d'un lien existant
+            </h2>
+            <h3 className="block text-sm mt-2 font-semibold">
+              Tu souhaites partager une recette de ton blog, ton instagram ou
+              une publication facebook ?
+            </h3>
+            <h3 className="block text-sm font-bold">
+              Ajoute le lien de la recette et nous la partagerons avec la
+              communauté !
+            </h3>
+          </div>
+          <div className="flex flex-col lg:flex-row items-center">
+            <input
+              className="text-gray-700 width: w-5/6 lg:w-4/6 focus:outline-none px-3 py-1 focus:shadow-outline shadow border rounded pl-3 leading-tight focus:outline-none focus:shadow-outline  "
+              placeholder="Lien de la recette"
+              type="text"
+              {...registerLink("link")}
+            ></input>
             <div className="h-3 w-8"></div>
-            <Button className="px-0 py-0" type="green" 
-            >
-              Envoyer ma recette  
-                        
+            <Button className="px-0 py-0" type="green">
+              Envoyer ma recette
             </Button>
-            </div>
-            <div className="mt-4">
-            <h3 className="block text-gray-700 text-sm mt-2">Toutes les recettes sont automatiquement créditées au profil du créateur.ice.</h3>
+          </div>
+          <p className="text-red text-xs italic mt-2">
+            {errosLink.link?.message}
+          </p>
+          <div className="mt-4">
+            <h3 className="block text-gray-700 text-sm mt-2">
+              Toutes les recettes sont automatiquement créditées au profil du
+              créateur.ice.
+            </h3>
             <div className="flex flex-col lg:flex-row mt-4 lg:items-center">
-            <h3 className="block text-gray-700 text-sm mr-4">Exemples de liens :</h3>
-            <div className="flex flex-row gap-2">
-            <img className="w-8" src={wwwlogo} alt="www-logo" />
-            <img className="w-8"src={fblogo} alt="facebook-logo" />
-            <img className="w-8"src={instalogo} alt="instagram-logo" />
-            <img className="w-8"src={ytlogo} alt="youtube-logo" />
-            <img className="w-8"src={tiktoklogo} alt="tiktok-logo" />
-            <img className="w-8"src={pintlogo} alt="pinterest-logo" />
+              <h3 className="block text-gray-700 text-sm mr-4">
+                Exemples de liens :
+              </h3>
+              <div className="flex flex-row gap-2">
+                <img className="w-8" src={wwwlogo} alt="www-logo" />
+                <img className="w-8" src={fblogo} alt="facebook-logo" />
+                <img className="w-8" src={instalogo} alt="instagram-logo" />
+                <img className="w-8" src={ytlogo} alt="youtube-logo" />
+                <img className="w-8" src={tiktoklogo} alt="tiktok-logo" />
+                <img className="w-8" src={pintlogo} alt="pinterest-logo" />
+              </div>
             </div>
-            </div>
-            </div>
+          </div>
         </form>
         <h2 className="text-lg md:text-2xl font-bold">Ou</h2>
         <form
@@ -262,7 +309,9 @@ const CreateRecipe: React.FC = () => {
         >
           {/* Input */}
           <div className="mb-10">
-          <h2 className="text-lg md:text-2xl mt-2 font-bold">Utilise le formulaire pour partager ta recette</h2>
+            <h2 className="text-lg md:text-2xl mt-2 font-bold">
+              Utilise le formulaire pour partager ta recette
+            </h2>
             <label className="block text-gray-700 text-xl">
               Nom de la recette
             </label>
@@ -274,11 +323,8 @@ const CreateRecipe: React.FC = () => {
               id="name"
               placeholder="nom de la recette"
               {...register("name")}
-
             ></textarea>
-            <p className="text-red text-xs italic">
-              {errors.name?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.name?.message}</p>
           </div>
 
           <div className="mb-10">
@@ -312,9 +358,7 @@ const CreateRecipe: React.FC = () => {
               type="file"
               {...register("image")}
             ></input>
-            <p className="text-red text-xs italic">
-              {errors.image?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.image?.message}</p>
           </div>
 
           {/* Select */}
@@ -403,12 +447,12 @@ const CreateRecipe: React.FC = () => {
                   value: tags?.name,
                   label: tags?.name,
                 }));
-                const tagWithUserValue = _.cloneDeep(optionsTags)
+                const tagWithUserValue = _.cloneDeep(optionsTags);
                 const handleChange = (textType: string) => {
                   tagWithUserValue.push({
                     value: textType,
                     label: textType,
-                  })
+                  });
                 };
                 return (
                   <Select
@@ -422,9 +466,7 @@ const CreateRecipe: React.FC = () => {
                 );
               }}
             />
-            <p className="text-red text-xs italic">
-              {errors.tags?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.tags?.message}</p>
           </div>
           {/* dynamic */}
 
@@ -459,12 +501,13 @@ const CreateRecipe: React.FC = () => {
                           label: ingredient?.name,
                         })
                       );
-                      const ingredientsUserValue = _.cloneDeep(optionsIngredients)
+                      const ingredientsUserValue =
+                        _.cloneDeep(optionsIngredients);
                       const handleChange = (textType: string) => {
                         ingredientsUserValue.push({
                           value: textType,
                           label: textType,
-                        })
+                        });
                       };
                       return (
                         <Select
@@ -509,9 +552,7 @@ const CreateRecipe: React.FC = () => {
               type="file"
               {...register("video")}
             ></input>
-            <p className="text-red text-xs italic">
-              {errors.video?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.video?.message}</p>
           </div>
 
           <div className="mb-10">
@@ -598,12 +639,13 @@ const CreateRecipe: React.FC = () => {
                           label: ustenil?.name,
                         })
                       );
-                      const optionsUtensilssUserValue = _.cloneDeep(optionsUtensilss)
+                      const optionsUtensilssUserValue =
+                        _.cloneDeep(optionsUtensilss);
                       const handleChange = (textType: string) => {
                         optionsUtensilssUserValue.push({
                           value: textType,
                           label: textType,
-                        })
+                        });
                       };
                       return (
                         <Select
@@ -657,9 +699,7 @@ const CreateRecipe: React.FC = () => {
               type="text"
               {...register("expiry")}
             ></input>
-            <p className="text-red text-xs italic">
-              {errors.expiry?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.expiry?.message}</p>
           </div>
 
           <div className="mb-12">
@@ -681,7 +721,6 @@ const CreateRecipe: React.FC = () => {
               {errors.notes_from_author?.message}
             </p>
           </div>
-
 
           <div className="mb-12">
             <label className="block text-gray-700 text-xl mb-2">
@@ -718,4 +757,3 @@ const CreateRecipe: React.FC = () => {
 };
 
 export default CreateRecipe;
-

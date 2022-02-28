@@ -31,6 +31,14 @@ export const CREATE_RECIPE = gql`
   }
 `;
 
+export const EMAIL_LINK_SHARED_RECIPE = gql`
+  mutation EmailLinkSharedRecipe($link: String!) {
+    emailLinkSharedRecipe(link: $link) {
+      success
+    }
+  }
+`;
+
 export const CREATE_EMAIL_RECIPE = gql`
   mutation CreateEmailRecipe(
     $name: String!
@@ -110,7 +118,6 @@ export const ADD_OR_REMOVE_LIKE_RECIPE = gql`
     }
   }
 `;
-
 
 export const ADD_OR_REMOVE_FAVORITE_RECIPE = gql`
   mutation addOrRemoveFavoriteRecipe($recipeId: String!) {
