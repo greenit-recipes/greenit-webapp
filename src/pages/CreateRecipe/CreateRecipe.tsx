@@ -281,7 +281,8 @@ const CreateRecipe: React.FC = () => {
           <div className="mt-4">
             <h3 className="block text-gray-700 text-sm mt-2">
               Toutes les recettes sont automatiquement créditées au profil du
-              créateur.ice.
+              créateur.ice. <br></br>
+              la publication insta - l’auteur doit être en public pour pourvoir y acceder
             </h3>
             <div className="flex flex-col lg:flex-row mt-4 lg:items-center">
               <h3 className="block text-gray-700 text-sm mr-4">

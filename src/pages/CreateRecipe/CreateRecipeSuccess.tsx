@@ -24,7 +24,7 @@ const RecipeCreatedPage = () => {
       <Navbar />
       <div className="grid justify-items-center auto-rows-max h-auto">
         <div className="w-2/3 md:w-2/5">
-          <h1 className="text-center text-blue text-xl md:text-2xl md:text-3xl mt-20">
+          <h1 className="text-center font-bold text-blue text-xl md:text-2xl md:text-3xl mt-20">
             Merci d’aider la communauté !
           </h1>
           <h2 className="text-center text-gray-700 text-xl md:text-2xl md:text-3xl mt-1">
