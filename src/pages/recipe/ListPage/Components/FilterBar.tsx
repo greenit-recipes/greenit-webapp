@@ -105,17 +105,16 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                       type="grey"
                       className="self-center h-10 rounded-xl ml-4"
                     >
-                      <h3> Partager une recette </h3>
+                      <h3 id="shareRecipe"> Partager une recette </h3>
                     </Button>
                   </Link>
                 ) : (
                   <Link to={RouteName.register} className="flex">
                     <Button
-                      id="shareRecipe"
                       type="grey"
                       className="self-center h-10 rounded-xl ml-4"
                     >
-                      <h3> Partager une recette </h3>
+                      <h3 id="shareRecipe"> Partager une recette </h3>
                     </Button>
                   </Link>
                 )}

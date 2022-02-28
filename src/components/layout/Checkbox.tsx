@@ -47,7 +47,7 @@ export const Checkbox: React.FC<ICheckbox> = ({
   );
 
   return (
-    <button id={"filter-" + option.title}>
+    <button>
       <label
         className="flex"
         onChange={() => {
@@ -80,7 +80,7 @@ export const Checkbox: React.FC<ICheckbox> = ({
             />
           </animated.svg>
         </div>
-        <div>{option.title}</div>
+        <div id={"filter-" + option.title}>{option.title}</div>
       </label>
     </button>
   );
