@@ -96,7 +96,6 @@ const Login: React.FC = () => {
       // @ts-ignore
       if (response?.data?.createUserFromAuth?.errors) {
         setErrorLoginFb(response?.data?.createUserFromAuth?.errors)
-        // Quelque chose c'est mal passé affichier message
         return;
       }
       const data = {
@@ -143,12 +142,14 @@ const Login: React.FC = () => {
   return (
     <div className="grid justify-items-center w-full">
       <Navbar />
+      <div className="hidden">
       <FacebookLogin
         // @ts-ignore
         appId={process.env.REACT_APP_FACEBOOK_ID}
         fields="name,email,picture"
         callback={responseFacebook}
       />
+      </div>
      { errorLoginFb && (<div className="mt-4 text-red text-xs italic">{errorLoginFb}</div>)}
       <Helmet>
         <title>Connexion - Espace DIY | Greenit Community</title>

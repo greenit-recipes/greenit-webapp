@@ -3,19 +3,22 @@ import { defaultImageProfil } from "../../icons";
 
 interface IUserBadge {
   image: any;
+  facebookImg: string;
   name?: string;
   className?: string;
   isRecipeCard?: boolean;
 }
 
-export const UserBadge: React.FC<IUserBadge> = ({ className, image, name, isRecipeCard = false}) => {
+export const UserBadge: React.FC<IUserBadge> = ({ className, image, name, facebookImg, isRecipeCard = false}) => {
+  const normalImage = image ? getImagePath(image) : facebookImg;
   return (
     <div className={isRecipeCard
       ? `absolute top-1 left-2 lg:left-2 | grid justify-items-center | rounded-xl ${className}`
       : `flex mr-5 ${className}`}> 
       <div>
         <img
-          src={image ? getImagePath(image) : defaultImageProfil}
+        // @ts-ignore
+          src={normalImage ? normalImage : defaultImageProfil}
           alt="badge"
           className={ isRecipeCard
           ? `rounded-full bg-white shadow-lg mr-2 w-9 min-w-9 h-9 self-center object-cover`

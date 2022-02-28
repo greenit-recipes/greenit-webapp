@@ -89,7 +89,6 @@ const RecipeSinglePage = () => {
       urlId: name,
     },
   });
-  console.log("window.location.href --W", window.location.href)
 
   // Comments
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
@@ -227,6 +226,8 @@ const RecipeSinglePage = () => {
                   <div className="flex justify-center mt-5">
                     <UserBadge
                       image={recipe?.author?.imageProfile}
+                      // @ts-ignore
+                      facebookImg={recipe?.author?.photoUrl}
                       name={recipe?.author?.username}
                     ></UserBadge>
                     <LikeField
@@ -420,6 +421,7 @@ const RecipeSinglePage = () => {
                   <div className="mt-3 flex flex-col" key={index}>
                     <div className="relative bg-orange bg-opacity-10 rounded-3xl px-4 py-4">
                       <UserBadge
+                        facebookImg={comment?.author?.photoUrl}
                         image={comment?.author?.imageProfile}
                         name={comment?.author?.username}
                         className="mb-2"
