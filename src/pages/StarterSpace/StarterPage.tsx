@@ -449,10 +449,16 @@ const StarterPage = () => {
                 className="flex cursor-pointer ml-6"
                 onClick={() => setIsActive(!isActive)}
               >
-                <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
+                <div
+                  id="info_ingredients"
+                  className="flex h-8 w-8 bg-grey rounded-full justify-center"
+                >
                   <p className="self-center text-white font-bold">𝓲</p>
                 </div>
-                <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
+                <p id="info_ingredients" className="self-center ml-3">
+                  {" "}
+                  Pourquoi ces ingrédients ?
+                </p>
               </button>
               <div
                 className={
@@ -484,6 +490,7 @@ const StarterPage = () => {
               <div>
                 <p className="text-center mb-4">9,40 €</p>
                 <Button
+                  id="order_jolieessence"
                   href="#"
                   onClick={() => {
                     window.open(
@@ -504,8 +511,8 @@ const StarterPage = () => {
                 </Button>
               </div>
               <p className="pt-4 text-center text-sm font-light self-end">
-                Ceci n'est pas un lien sponsorisé. Greenit ne touche pas d'argent.
-                🌱
+                Ceci n'est pas un lien sponsorisé. Greenit ne touche pas
+                d'argent. 🌱
               </p>
             </div>
             <p className="lg:text-center text-sm text-sm font-light lg:mt-6">
@@ -526,7 +533,7 @@ const StarterPage = () => {
               <img
                 src={Lessive}
                 className={`${isMobile ? "rounded-xl w-36 h-45" : "img-dim"}`}
-                loading="lazy" 
+                loading="lazy"
                 alt="lessive"
               />
             </div>
@@ -604,7 +611,12 @@ const StarterPage = () => {
 
               <div className="m-2 w-32 h-60">
                 <div className="flex justify-center">
-                  <img src={Eau} className="w-24 h-24 max-w-none" alt="Eau" loading="lazy"/>{" "}
+                  <img
+                    src={Eau}
+                    className="w-24 h-24 max-w-none"
+                    alt="Eau"
+                    loading="lazy"
+                  />{" "}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
@@ -673,10 +685,16 @@ const StarterPage = () => {
                 className="flex cursor-pointer ml-6"
                 onClick={() => setToggle(!toggle)}
               >
-                <div className="flex h-8 w-8 bg-grey rounded-full justify-center">
+                <div
+                  id="info_ingredients"
+                  className="flex h-8 w-8 bg-grey rounded-full justify-center"
+                >
                   <p className="self-center text-white font-bold">𝓲</p>
                 </div>
-                <p className="self-center ml-3"> Pourquoi ces ingrédients ?</p>
+                <p id="info_ingredients" className="self-center ml-3">
+                  {" "}
+                  Pourquoi ces ingrédients ?
+                </p>
               </button>
               <div
                 className={toggle ? "ingredient_fadeIn" : "ingredient_fadeOut"}
@@ -705,6 +723,7 @@ const StarterPage = () => {
               </p>
               <div>
                 <Button
+                  id="order_biocop"
                   href="#"
                   onClick={() => {
                     window.open(
@@ -718,8 +737,8 @@ const StarterPage = () => {
                 </Button>
               </div>
               <p className="pt-4 text-center text-sm font-light self-end">
-                Ceci n'est pas un lien sponsorisé. Greenit ne touche pas d'argent.
-                🌱
+                Ceci n'est pas un lien sponsorisé. Greenit ne touche pas
+                d'argent. 🌱
               </p>
             </div>
             <p className="lg:text-center text-sm text-sm font-light lg:mt-6">
@@ -740,11 +759,15 @@ const StarterPage = () => {
 
       {isLoggedIn ? (
         <Link className="mt-4" to={RouteName.profil}>
-          <Button type="blue">Profil</Button>
+          <Button id="SP_go_profil" type="blue">
+            Profil
+          </Button>
         </Link>
       ) : (
         <Link className="mt-4" to={RouteName.register}>
-          <Button type="green">Créer un profil</Button>
+          <Button id="SP_create_account" type="green">
+            Créer un profil
+          </Button>
         </Link>
       )}
 
@@ -922,7 +945,8 @@ const StarterPage = () => {
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 justify-self-center justify-content-center w-10/12 lg:w-3/5 mt-6 mb-16">
         <h3 className="text-sm lg:text-base lg:col-span-2 font-light mt-6">
           <p>
-          "Avec les ingrédients de la cuisine" réuni toutes les recettes avec des ingrédients que l’on peut déjà avoir chez soi.
+            "Avec les ingrédients de la cuisine" réuni toutes les recettes avec
+            des ingrédients que l’on peut déjà avoir chez soi.
           </p>
         </h3>
         <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150">
