@@ -31,7 +31,7 @@ export const Navbar: React.FC = () => {
               <div
                 className={
                   toggle
-                    ? "hamburger_fadeIn w-8 h-8 border-4 border-white"
+                    ? "hamburger_fadeIn w-10 h-10 border-4"
                     : "hamburger_fadeOut w-8 h-4 border-t-4 border-b-4 border-black border-opacity-75"
                 }
               ></div>

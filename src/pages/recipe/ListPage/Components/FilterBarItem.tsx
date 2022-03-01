@@ -1,5 +1,5 @@
 import { Checkbox } from "components/layout/Checkbox";
-import { includes, find } from "lodash";
+import { find } from "lodash";
 import "pages/recipe/ListPage/Components/FilterBar.css";
 
 interface IFilterBarItem {

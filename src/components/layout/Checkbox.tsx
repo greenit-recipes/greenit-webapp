@@ -81,7 +81,7 @@ export const Checkbox: React.FC<ICheckbox> = ({
             />
           </animated.svg>
         </div>
-        <div id={"filter-" + option.title}>{option.title}</div>
+        <div className={"text-left"} id={"filter-" + option.title}>{option.title}</div>
       </label>
     </button>
   );
