@@ -65,7 +65,7 @@ export const AskQuestion: React.FC = () => {
           <p className="text-red-500 text-xs italic">{errors.email?.message}</p>
         </div>
         <div className="grid w-full justify-items-center">
-          <Button type="blue" className="p-4 h-10 mt-4">
+          <Button id="send_question" type="blue" className="p-4 h-10 mt-4">
             Envoyer
           </Button>
         </div>

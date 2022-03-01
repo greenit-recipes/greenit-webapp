@@ -57,6 +57,7 @@ export const Checkbox: React.FC<ICheckbox> = ({
         <div>
           <input type="checkbox" />
           <animated.svg
+            id={"filter-" + option.title}
             style={checkboxAnimationStyle}
             className={`checkbox ${isChecked ? "checkbox--active" : ""}`}
             aria-hidden="true"

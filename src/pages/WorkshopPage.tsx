@@ -240,7 +240,9 @@ const WorkshopPage = () => {
                       href="https://www.eventbrite.fr/e/billets-premiers-pas-en-diy-greenit-community-221951201017"
                       target="_blank"
                     >
-                      <button id="book1" className="button_reserver">Reserver</button>
+                      <button id="book1" className="button_reserver">
+                        Reserver
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -326,7 +328,9 @@ const WorkshopPage = () => {
                       href="https://www.eventbrite.fr/e/billets-les-classes-vertes-du-kaba-atelier-de-1h30-en-visio-pour-passer-a-laction-160817869577"
                       target="_blank"
                     >
-                      <button id="book2-1" className="button_reserver">Reserver</button>
+                      <button id="book2-1" className="button_reserver">
+                        Reserver
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -339,7 +343,9 @@ const WorkshopPage = () => {
                       href="https://www.eventbrite.fr/e/billets-les-classes-vertes-du-kaba-atelier-de-1h30-en-visio-pour-passer-a-laction-160817869577"
                       target="_blank"
                     >
-                      <button id="book2-2" className="button_reserver">Reserver</button>
+                      <button id="book2-2" className="button_reserver">
+                        Reserver
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -413,11 +419,11 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
-                <a id="contactWs3"
+                <a
                   href={"https://lateliercosmetiquedemargaux.fr/contact/"}
                   target="_blank"
                 >
-                  <Button type="green" className="md:text-xl">
+                  <Button id="contactWs3" type="green" className="md:text-xl">
                     Contacter
                   </Button>
                 </a>
@@ -452,7 +458,9 @@ const WorkshopPage = () => {
             <div className="mt-6 rounded">
               <div className="h-9/12 static">
                 <div className="static">
-                  <h2>Atelier découverte <br/> saponification à froid</h2>
+                  <h2>
+                    Atelier découverte <br /> saponification à froid
+                  </h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl">
                   <h5 className="text-base">Mercredi 10 Mars</h5>
@@ -463,7 +471,9 @@ const WorkshopPage = () => {
                       href="https://lateliercosmetiquedemargaux.fr/calendrier/"
                       target="_blank"
                     >
-                      <button id="book3" className="button_reserver">Reserver</button>
+                      <button id="book3" className="button_reserver">
+                        Reserver
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -526,11 +536,11 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
-                <a id="contactWs4"
+                <a
                   href={"https://www.instagram.com/eclatdessences/"}
                   target="_blank"
                 >
-                  <Button type="green" className="md:text-xl">
+                  <Button id="contactWs4" type="green" className="md:text-xl">
                     Contacter
                   </Button>
                 </a>
@@ -597,7 +607,9 @@ const WorkshopPage = () => {
                       href={"https://www.instagram.com/eclatdessences/"}
                       target="_blank"
                     >
-                      <button id="book4-1" className="button_reserver">Reserver</button>
+                      <button id="book4-1" className="button_reserver">
+                        Reserver
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -628,7 +640,9 @@ const WorkshopPage = () => {
                       href={"https://www.instagram.com/eclatdessences/"}
                       target="_blank"
                     >
-                      <button id="book4-2" className="button_reserver">Reserver</button>
+                      <button id="book4-2" className="button_reserver">
+                        Reserver
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -657,7 +671,9 @@ const WorkshopPage = () => {
                       href={"https://www.instagram.com/eclatdessences/"}
                       target="_blank"
                     >
-                      <button id="book4-3" className="button_reserver">Reserver</button>
+                      <button id="book4-3" className="button_reserver">
+                        Reserver
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -716,9 +732,8 @@ const WorkshopPage = () => {
                 <a
                   href={"https://www.lavandeetcamomille.com/contact"}
                   target="_blank"
-                  id="contactWs4"
                 >
-                  <Button type="green" className="md:text-xl">
+                  <Button id="contactWs4" type="green" className="md:text-xl">
                     Contacter
                   </Button>
                 </a>
@@ -783,7 +798,9 @@ const WorkshopPage = () => {
                       href="https://www.lavandeetcamomille.com/events/soins-cheveux-shampoing-solide-et-soin-apres-shampoing-16"
                       target="_blank"
                     >
-                      <button className="button_reserver"  id="book5-1">Reserver</button>
+                      <button className="button_reserver" id="book5-1">
+                        Reserver
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -819,7 +836,9 @@ const WorkshopPage = () => {
                       href="https://www.lavandeetcamomille.com/events/atelier-bougie-naturelle-et-fleurie-eco-friendly-56"
                       target="_blank"
                     >
-                      <button className="button_reserver" id="book5-2">Reserver</button>
+                      <button className="button_reserver" id="book5-2">
+                        Reserver
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -855,7 +874,9 @@ const WorkshopPage = () => {
                       href="https://www.lavandeetcamomille.com/events/atelier-creation-de-parfum-personnalise-aux-essences-naturelles-14"
                       target="_blank"
                     >
-                      <button className="button_reserver" id="book5-3">Reserver</button>
+                      <button className="button_reserver" id="book5-3">
+                        Reserver
+                      </button>
                     </a>
                   </div>
                 </div>

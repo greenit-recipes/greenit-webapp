@@ -51,11 +51,12 @@ export const FirstStep: React.FC<IFirstStep> = ({ item }) => {
         </h3>
       </div>
       <Button
+        id="read_more"
         type="grey"
         onClick={() => setIsActive(!isActive)}
         className={"w-24 self-center mt-2 mb-6"}
       >
-        {isActive ? <p>Moins</p> : <p>Lire plus</p>}
+        {isActive ? <p>Moins</p> : <p id="read_more">Lire plus</p>}
       </Button>
     </>
   );
