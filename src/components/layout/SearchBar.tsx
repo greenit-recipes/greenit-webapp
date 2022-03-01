@@ -1,8 +1,10 @@
-import { RouteName } from "App";
 import { getObjectSession, setObjectFilterSession } from "helpers/session-helper";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { search } from "../../icons";
+import { RouteName } from "App";
+import { useEffect, useState } from "react";
+import "./SearchBar.css";
+import { orderBy } from "lodash";
 
 export const SearchBar: React.FC<{
   size?: "small" | "large";
@@ -15,6 +17,17 @@ export const SearchBar: React.FC<{
   size = "large",
   value,
   setValue,
+  suggestions?: string[];
+  suggestionIsActive?: boolean;
+  isLoading?: boolean;
+  hideSearchIcon?: boolean;
+}> = ({
+  size = "large",
+  value = "",
+  suggestions = [],
+  suggestionIsActive = false,
+  setValue,
+  isLoading = false,
   onSubmit,
   hideSearchIcon,
   keyId = "search",
@@ -25,7 +38,6 @@ export const SearchBar: React.FC<{
   const iconSize = `w-10 md:w-${isLarge ? "16" : "10"} h-10 md:h-${
     isLarge ? "12" : "10"
   }`;
-  const [currentValue, setCurrentValue] = useState(value || "");
   const handleSubmit = () => {
     if (!onSubmit) {
       const currentSearchValue = {
@@ -33,32 +45,122 @@ export const SearchBar: React.FC<{
       };
       setObjectFilterSession(getObjectSession('filterListPage'), currentSearchValue)
       history.push(RouteName.recipes);
+
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [input, setInput] = useState(value || "");
+
+  useEffect(() => {
+    // Filter our suggestions that don't contain the user's input
+    console.log("suggestion", suggestions);
+    if (suggestions.length === 0 && isLoading) return;
+    // @ts-ignore
+    setFilteredSuggestions(suggestions);
+    setActiveSuggestionIndex(0);
+    setShowSuggestions(true);
+  }, [suggestions]);
+
+  const onChange = (e: any) => {
+    const userInput = e.target.value;
+
+    if (setValue) {
+      setValue(userInput);
+    }
+
+    setInput(userInput);
+  };
+
+  const onClick = (e: any) => {
+    setFilteredSuggestions([]);
+    setInput(e.target.innerText);
+    setActiveSuggestionIndex(0);
+    setShowSuggestions(false);
+  };
+
+  const onKeyDown = (e: any) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+
+    if (e.keyCode === 13) {
+      setInput(filteredSuggestions[activeSuggestionIndex]);
+      setActiveSuggestionIndex(0);
+      setShowSuggestions(false);
+    }
+    // User pressed the up arrow
+    else if (e.keyCode === 38) {
+      if (activeSuggestionIndex === 0) {
+        return;
+      }
+
+      setActiveSuggestionIndex(activeSuggestionIndex - 1);
+    }
+    // User pressed the down arrow
+    else if (e.keyCode === 40) {
+      if (activeSuggestionIndex - 1 === filteredSuggestions.length) {
+        return;
+      }
+
+      setActiveSuggestionIndex(activeSuggestionIndex + 1);
+    }
+  };
+
+  const SuggestionsListComponent = () => {
+    return filteredSuggestions.length ? (
+      <ul className="suggestions">
+        {filteredSuggestions.map((suggestion, index) => {
+          let className;
+
+          // Flag the active suggestion with a class
+          if (index === activeSuggestionIndex) {
+            className = "suggestion-active";
+          }
+
+          return (
+            <li className={className} key={suggestion} onClick={onClick}>
+              {suggestion}
+            </li>
+          );
+        })}
+      </ul>
+    ) : (
+      <div className="no-suggestions mr-10">
+        <span role="img" aria-label="tear emoji">
+          😪
+        </span>{" "}
+        <em>Aucune suggestion</em>
+      </div>
+    );
+  };
+
+  const handleSubmit = () => {
+    if (!onSubmit) {
+      history.push(
+        `${RouteName.recipes}/?search=${
+          (document.getElementById(keyId) as HTMLInputElement)?.value
+        }`
+      );
     } else {
       onSubmit();
     }
   };
   return (
     <div
-      className={`${totalSize} | flex | relative bg-white rounded-xl border border-grey `}
+      className={`${totalSize} | flex | relative bg-white rounded-xl border-1 border-grey `}
     >
       <input
         type="text"
-        className={` md:text-lg bg-transparent
+        className={`text-base md:text-lg bg-transparent
           } | pl-5 w-full | focus:outline-none`}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            handleSubmit();
-          }
+        onKeyDown={onKeyDown}
+        onFocus={(event) => {
+          event.target.setAttribute("autocomplete", "off");
         }}
         placeholder="Recherche ..."
         id={keyId}
-        onChange={(e) => {
-          if (setValue) {
-            setValue(e.target.value);
-          } 
-          setCurrentValue(e.target.value)
-        }}
-        value={currentValue}
+        value={input}
+        onChange={onChange}
       />
       {!hideSearchIcon && (
         <div
@@ -74,6 +176,9 @@ export const SearchBar: React.FC<{
             }}
           />
         </div>
+      )}
+      {showSuggestions && input && suggestionIsActive && (
+        <SuggestionsListComponent />
       )}
     </div>
   );

@@ -18,6 +18,7 @@ import {
 } from "../../components";
 import { useRecipesQuery } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
+import debounce from "lodash/debounce";
 import {
   atelier,
   Conseil,
@@ -39,6 +40,7 @@ import "react-multi-carousel/lib/styles.css";
 import "pages/LandingPage/LandingPage.css";
 import { getObjectSession } from "helpers/session-helper";
 import { landingPageCategories } from "utils";
+import { useState } from "react";
 
 const responsiveCarouselLanding = {
   desktop: {
@@ -80,6 +82,16 @@ const LandingPage = () => {
     variables: { first: 8, filter: { isOrderByNumberLike: true } },
   });
 
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const setSearchTermDebounced = debounce(setSearchTerm, 500);
+
+  // Ne par run au premier lancement
+  const { data: autoCompleteData, loading : autoCompleteLoading, } = useRecipesQuery({
+    fetchPolicy: "no-cache",
+    variables: { first: 8, filter: { search: searchTerm } },
+  });
+
   if (loading || !dataIsDiplayHome || !dataBegginer || !dataNbrLikes) {
     return <Loading />;
   }
@@ -87,6 +99,7 @@ const LandingPage = () => {
   const recipes = dataIsDiplayHome.allRecipes?.edges || [];
   const recipesBegginer = dataBegginer.allRecipes?.edges || [];
   const recipesOrderByLikes = dataNbrLikes.allRecipes?.edges || [];
+  const recipesAutoComplete = autoCompleteData?.allRecipes?.edges || [];
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -121,7 +134,12 @@ const LandingPage = () => {
           </h5>
         </div>
         <div className="lg:w-2/5">
-          <SearchBar keyId="searchBarLandingPage" />
+          <SearchBar keyId="searchBarLandingPage" 
+          suggestionIsActive={true} 
+          setValue={setSearchTermDebounced}
+          isLoading={autoCompleteLoading}
+                // @ts-ignore
+          suggestions={recipesAutoComplete?.map((x) => x?.node?.name)}/>
         </div>
       </Container>
       <div className="w-full sm:w-4/5 lg:w-2/3 | py-9 pl-6 | flex overflow-x-auto">
