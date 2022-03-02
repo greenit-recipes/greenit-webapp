@@ -14,6 +14,7 @@ import { Footer, Navbar } from "components";
 import { BackgroundImage } from "components/layout/BackgroundImage";
 import { Helmet } from "react-helmet";
 import FacebookLogin from "react-facebook-login";
+import { mdpNonVisible, mdpVisible } from "icons";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -137,8 +138,9 @@ const Login: React.FC = () => {
     });
     reset({...getValues(), password: ""});
   };
+  const [pwd, setPwd] = useState('');
+  const [isRevealPwd, setIsRevealPwd] = useState(false);
 
-  // Rajouter un loader pendant tous le traitement de fb
   return (
     <div className="grid justify-items-center w-full">
       <Navbar />
@@ -198,13 +200,20 @@ const Login: React.FC = () => {
             <label className="block text-gray-700 text-base md:text-lg font-bold mb-2">
               Mot de passe
             </label>
+            <div className="flex flex-row justify-between items-center shadow-lg  border rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-3 h-12 leading-tight  focus:shadow-outline">
             <input
-              className="shadow-lg appearance-none border rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-3 h-12 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none focus:outline-none"
               id="password"
-              type="password"
+              type={isRevealPwd ? "text" : "password"}
               placeholder="******************"
               {...register("password")}
+              value={pwd}
+              onChange={e => setPwd(e.target.value)}
             />
+            
+            <img src={isRevealPwd ? mdpVisible : mdpNonVisible} alt="voir le mot de passe"            
+            onClick={() => setIsRevealPwd(prevState => !prevState)}/>
+            </div>
             <p className="text-red text-xs italic">
               {errors.password?.message}
             </p>

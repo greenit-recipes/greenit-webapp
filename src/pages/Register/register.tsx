@@ -13,6 +13,7 @@ import { Footer, Navbar } from "../../components";
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import "./register.css";
 import { Helmet } from "react-helmet";
+import { mdpNonVisible, mdpVisible } from "icons";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -146,6 +147,8 @@ const Register: React.FC = () => {
       history.push(RouteName.accountCreated);
     });
   };
+  const [pwd, setPwd] = useState('');
+  const [isRevealPwd, setIsRevealPwd] = useState(false);
   return (
     <div className="grid justify-items-center w-full">
       <Navbar />
@@ -208,13 +211,21 @@ const Register: React.FC = () => {
             <label className="block text-gray-700 text-base md:text-lg font-bold mb-2 mt-4">
               Mot de passe
             </label>
+            <div className="flex flex-row justify-between items-center shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline">
             <input
-              className="shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline"
+              className=" appearance-none focus:outline-none focus:shadow-outline"
               id="password"
-              type="password"
+              type={isRevealPwd ? "text" : "password"}
               placeholder="******************"
               {...register("password")}
+              name="pwd"
+              value={pwd}
+              onChange={e => setPwd(e.target.value)}
             />
+            <img title={isRevealPwd ? "Hide password" : "Show password"}
+            src={isRevealPwd ? mdpVisible : mdpNonVisible} alt="logo visible" 
+            onClick={() => setIsRevealPwd(prevState => !prevState)} />
+            </div>
             <p className="text-red text-xs italic">
               {errors.password?.message}
             </p>
@@ -225,13 +236,18 @@ const Register: React.FC = () => {
             <label className="block text-gray-700 text-base md:text-lg font-bold mb-2 mt-6">
               Confirmation du mot de passe
             </label>
+            <div className="flex flex-row items-center justify-between shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight">
             <input
-              className="shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 leading-tight h-12 focus:outline-none focus:shadow-outline"
+              className="appearance-none focus:outline-none focus:shadow-outline"
               id="passwordConfirmation"
-              type="password"
+              type={isRevealPwd ? "text" : "password"}
               placeholder="******************"
               {...register("passwordConfirmation")}
             />
+            <img title={isRevealPwd ? "Hide password" : "Show password"}
+            src={isRevealPwd ? mdpVisible : mdpNonVisible} alt="logo visible" 
+            onClick={() => setIsRevealPwd(prevState => !prevState)}/>
+            </div>
             <p className="text-red text-xs italic">
               {errors.passwordConfirmation?.message}
             </p>

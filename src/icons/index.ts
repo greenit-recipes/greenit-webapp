@@ -39,6 +39,8 @@ import likedIconOn from "./liked_recipe_on.png";
 import likedIconOff from "./liked_recipe_off.png";
 import noVideo from "./no_video.png"
 import retourIcon from "./retour_icon.png"
+import LikedIconCommentOn from "./like-comment_on.png"
+import LikedIconCommentOff from "./like_comment_off.png"
 
 // CONTACT
 import InstagramIcon from "./instagram_icon.png"
@@ -105,6 +107,10 @@ import IconMarche from "./iconMarche.png"
 import Maryse from "./iconMaryse.png"
 import IconSite from "./iconSite.png"
 import Producteur from "./iconProducteur.png"
+import mdpNonVisible from "./low-vision-solid-24.png"
+import mdpVisible from "./show-alt-regular-24.png"
+import Webcam from "./icon_atelier_enligne.png"
+import PinLocation from "./icon_atelier.png"
 
 //CREATE RECIPE LOGOS
 import fblogo from "./icon_fb.png"
@@ -235,4 +241,11 @@ export {
   Maryse,
   IconSite,
   Producteur,
+  mdpNonVisible,
+  mdpVisible,
+  Webcam,
+  PinLocation,
+  LikedIconCommentOn,
+  LikedIconCommentOff,
+
 };

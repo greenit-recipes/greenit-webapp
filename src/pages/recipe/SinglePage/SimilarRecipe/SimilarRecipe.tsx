@@ -18,8 +18,8 @@ export const SimilarRecipe: React.FC<ISimilarRecipe> = (data) => {
       first: 5,
       filter: {
         category: [data?.data?.category?.name],
-        isRandomList: true,
-        excludeId: data?.data?.id,
+        //isRandomList: true,
+        //excludeId: data?.data?.id,
       },
     },
   });
