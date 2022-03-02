@@ -147,7 +147,6 @@ const Register: React.FC = () => {
       history.push(RouteName.accountCreated);
     });
   };
-  const [pwd, setPwd] = useState('');
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   return (
     <div className="grid justify-items-center w-full">
@@ -218,9 +217,6 @@ const Register: React.FC = () => {
               type={isRevealPwd ? "text" : "password"}
               placeholder="******************"
               {...register("password")}
-              name="pwd"
-              value={pwd}
-              onChange={e => setPwd(e.target.value)}
             />
             <img title={isRevealPwd ? "Hide password" : "Show password"}
             src={isRevealPwd ? mdpVisible : mdpNonVisible} alt="logo visible" 

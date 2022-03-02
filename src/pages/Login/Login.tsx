@@ -138,7 +138,6 @@ const Login: React.FC = () => {
     });
     reset({...getValues(), password: ""});
   };
-  const [pwd, setPwd] = useState('');
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
   return (
@@ -207,8 +206,6 @@ const Login: React.FC = () => {
               type={isRevealPwd ? "text" : "password"}
               placeholder="******************"
               {...register("password")}
-              value={pwd}
-              onChange={e => setPwd(e.target.value)}
             />
             
             <img src={isRevealPwd ? mdpVisible : mdpNonVisible} alt="voir le mot de passe"            
