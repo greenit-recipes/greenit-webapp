@@ -30,7 +30,6 @@
     "@types/react-swipeable-views": "^0.13.0",
     "apollo-upload-client": "^16.0.0",
     "autoprefixer": "^9",
-    "boxicons": "^2.1.1",
     "dotenv": "^10.0.0",
     "graphql": "^15.5.0",
     "html-react-parser": "^1.4.0",

@@ -4,9 +4,6 @@ import {
   ingredients1,
   ingredients2,
   ingredients3,
-  ingredients4,
-  ingredients5,
-  ingredients6,
 } from "../../icons";
 
 interface IconProps {
@@ -29,20 +26,20 @@ export const Icon: React.FC<IconProps> = ({
     //NbIngredients avec icons asssociés, à refacto
 
     1: ingredients1,
-    2: ingredients2,
-    3: ingredients3,
-    4: ingredients4,
-    5: ingredients5,
-    6: ingredients6,
-    7: ingredients6,
-    8: ingredients6,
-    9: ingredients6,
-    10: ingredients6,
-    11: ingredients6,
-    12: ingredients6,
-    13: ingredients6,
-    14: ingredients6,
-    15: ingredients6,
+    2: ingredients1,
+    3: ingredients2,
+    4: ingredients2,
+    5: ingredients3,
+    6: ingredients3,
+    7: ingredients3,
+    8: ingredients3,
+    9: ingredients3,
+    10: ingredients3,
+    11: ingredients3,
+    12: ingredients3,
+    13: ingredients3,
+    14: ingredients3,
+    15: ingredients3,
 
     Rating: logo,
   };

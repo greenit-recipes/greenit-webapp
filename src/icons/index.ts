@@ -5,12 +5,9 @@ import visage from "./visage_recette.jpeg";
 import maison from "./maison_recette.png";
 
 //INGREDIENTS
-import ingredients1 from "./ingredients1.png"
-import ingredients2 from "./ingredients2.png"
-import ingredients3 from "./ingredients3.png"
-import ingredients4 from "./ingredients4.png"
-import ingredients5 from "./ingredients5.png"
-import ingredients6 from "./ingredients6.png"
+import ingredients1 from "./ingredients_1.png"
+import ingredients2 from "./ingredients_2.png"
+import ingredients3 from "./ingredients_3.png"
 
 // LOGO
 import logo from "./logo.png";
@@ -158,9 +155,6 @@ export {
   ingredients1,
   ingredients2,
   ingredients3,
-  ingredients4,
-  ingredients5,
-  ingredients6,
   logo,
   logoBig,
   premierspas,
