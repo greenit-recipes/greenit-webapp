@@ -26,6 +26,7 @@ import { noVideo, partageIcon, retourIcon } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
 import "./SinglePage.css";
 import { RWebShare } from "react-web-share";
+import { checkUserAlreadyViewReipe } from "pages/recipe/SinglePage/SinglePage-helper";
 
 interface InstructionProps {
   index: number;
@@ -65,7 +66,7 @@ const closest = (needle: number, haystack: any[]) => {
 };
 
 const schema = yup.object().shape({
-  comment: yup.string().min(2, "Commentaire trop court"),
+  comment: yup.string().min(2, "Commentaire trop court."),
 });
 
 const RecipeSinglePage = () => {
@@ -107,6 +108,7 @@ const RecipeSinglePage = () => {
 
   useEffect(() => {
     setNbrComment(data?.recipe?.numberOfComments);
+    checkUserAlreadyViewReipe(data?.recipe?.id)
   }, [data]);
 
   const player = createRef<ReactPlayer>();
