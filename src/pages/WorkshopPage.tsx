@@ -20,6 +20,8 @@ import {
   LCBougie,
   LCPAtelier,
   LCShampoing,
+  Webcam,
+  PinLocation,
 } from "../../src/icons";
 import { includes } from "lodash";
 import { Helmet } from "react-helmet";
@@ -166,9 +168,9 @@ const WorkshopPage = () => {
               <div className="flex justify-start | md:mb-2">
                 <div>
                   <img
-                    src={"https://pic.onlinewebfonts.com/svg/img_280333.png"}
+                    src={Webcam}
                     className="w-auto h-6 lg:h-9"
-                    alt="icon Location"
+                    alt="icon Webcam"
                   />
                 </div>
                 <div className="items-center self-center">
@@ -384,7 +386,7 @@ const WorkshopPage = () => {
               <div className="flex justify-start | md:mb-2">
                 <div>
                   <img
-                    src={"https://pic.onlinewebfonts.com/svg/img_280333.png"}
+                    src={PinLocation}
                     className="w-auto h-6 lg:h-9"
                     alt="icon Location"
                   />
@@ -502,7 +504,7 @@ const WorkshopPage = () => {
               <div className="flex justify-start | md:mb-2">
                 <div>
                   <img
-                    src={"https://pic.onlinewebfonts.com/svg/img_280333.png"}
+                    src={PinLocation}
                     className="w-auto h-6 lg:h-9"
                     alt="icon Location"
                   />
@@ -698,7 +700,7 @@ const WorkshopPage = () => {
               <div className="flex justify-start | md:mb-2">
                 <div>
                   <img
-                    src={"https://pic.onlinewebfonts.com/svg/img_280333.png"}
+                    src={PinLocation}
                     className="w-auto h-6 lg:h-9"
                     alt="icon Location"
                   />

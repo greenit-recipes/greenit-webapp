@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import authService from "services/auth.service";
 import {
-    likedIconOff, likedIconOn
+    LikedIconCommentOff, LikedIconCommentOn
 } from "../../icons";
 
 interface ILikeComment {
@@ -41,14 +41,14 @@ export const LikeComment: React.FC<ILikeComment> = ({ comment, isMyComment=false
         >
           {isLiked ? (
             <img
-              src={likedIconOn}
+              src={LikedIconCommentOn}
               className="self-center w-7 h-7 lg:w-8 lg:h-8"
               alt="likes"
               loading="lazy"
             />
           ) : (
             <img
-              src={likedIconOff}
+              src={LikedIconCommentOff}
               className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mb-1"
               alt="likes"
               loading="lazy"
@@ -60,7 +60,7 @@ export const LikeComment: React.FC<ILikeComment> = ({ comment, isMyComment=false
         <Link to={RouteName.register}>
           <div className="flex cursor-pointer bg-white w-20 h-12 rounded-tl-2xl p-3">
             <img
-              src={likedIconOff}
+              src={LikedIconCommentOff}
               className="self-center w-7 h-7 lg:w-8 lg:h-8"
               alt="likes"
               loading="lazy"
