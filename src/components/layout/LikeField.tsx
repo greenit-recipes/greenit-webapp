@@ -5,6 +5,7 @@ import { ADD_OR_REMOVE_LIKE_RECIPE } from "pages/CreateRecipe/CreateRecipeReques
 import authService from "services/auth.service";
 import { Link } from "react-router-dom";
 import { RouteName } from "App";
+import { Modal } from "components/layout/Modal/Modal";
 
 interface ILikeField {
   className?: string;
@@ -64,20 +65,27 @@ export const LikeField: React.FC<ILikeField> = ({
               loading="lazy"
             />
           )}
-          <div className="flex self-center ml-1">{nbrLiked}</div>
+          <h2 className="flex self-center text-base lg:text-lg ml-1">
+            {nbrLiked}
+          </h2>
         </button>
       ) : (
-        <Link to={RouteName.register} className="flex self-center w-6 h-6 lg:w-7 lg:h-7 mr-3">
-          <img
-            src={clapIconOff}
-            className="flex self-center w-6 h-6 lg:w-7 lg:h-7"
-            alt="likes"
-            loading="lazy"
-          />
-          <div className="flex self-center ml-1">{nbrLiked}</div>
-        </Link>
+        <Modal
+          btn={
+            <>
+              <img
+                src={clapIconOff}
+                className="flex self-center w-7 h-7 lg:w-8 lg:h-8"
+                alt="likes"
+                loading="lazy"
+              />
+              <h2 className="flex self-center text-lg lg:text-lg ml-1">
+                {nbrLiked}
+              </h2>
+            </>
+          }
+        ></Modal>
       )}
-      
     </div>
   );
 };

@@ -1,12 +1,13 @@
+import { RouteName } from "App";
+import { BackgroundImage } from "components";
+import { Modal } from "components/layout/Modal/Modal";
+import { Button } from "components/misc/Button";
+import { find, flattenDeep, map, omit } from "lodash";
 import { FilterBarItem } from "pages/recipe/ListPage/Components/FilterBarItem";
 import { FilterBarSearch } from "pages/recipe/ListPage/Components/FilterBarSearch";
-import { Button } from "components/misc/Button";
-import authService from "services/auth.service";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { find, map, omit, flattenDeep } from "lodash";
-import { BackgroundImage } from "components";
-import { RouteName } from "App";
+import authService from "services/auth.service";
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -97,6 +98,30 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                   setSearch={setSearch}
                   setCurrentFilters={setCurrentFilters}
                 />
+                {isLoggedIn ? (
+                  <Link to={RouteName.createRecipe} className="flex">
+                    <Button
+                      id="shareRecipe"
+                      type="grey"
+                      className="self-center h-10 rounded-xl ml-4"
+                    >
+                      <h3 id="shareRecipe"> Partager une recette </h3>
+                    </Button>
+                  </Link>
+                ) : (
+                  <Modal
+                    btn={
+                      <>
+                        <Button
+                          type="grey"
+                          className="self-center h-10 rounded-xl ml-4"
+                        >
+                          <h3 id="shareRecipe"> Partager une recette </h3>
+                        </Button>
+                      </>
+                    }
+                  ></Modal>
+                )}
               </div>
             )}
             {isMobile && (

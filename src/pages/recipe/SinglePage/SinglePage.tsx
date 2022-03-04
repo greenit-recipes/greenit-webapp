@@ -36,6 +36,33 @@ import { CircleGreenit } from "./CircleGreenit/CircleGreenit";
 import { HeaderRecipe } from "./HeaderRecipe/HeaderRecipe";
 import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
 import "./SinglePage.css";
+import { RWebShare } from "react-web-share";
+import { checkUserAlreadyViewRecipe } from "pages/recipe/SinglePage/SinglePage-helper";
+
+interface InstructionProps {
+  index: number;
+  text: string;
+  isHighlighted: boolean;
+}
+const Instruction: React.FC<InstructionProps> = ({
+  index,
+  text,
+  isHighlighted,
+}) => {
+  return (
+    <div className="mt-5 flex inline-flex">
+      <div
+        className={`h-10 text-xl mr-5 rounded-full inline-flex items-center justify-center ${
+          isHighlighted ? "text-white bg-black" : "text-black bg-gray-200"
+        }`}
+        style={{ minWidth: "2.5rem" }}
+      >
+        {index}
+      </div>
+      <h3 className="text-lg lg:text-xl">{text}</h3>
+    </div>
+  );
+};
 
 const closest = (needle: number, haystack: any[]) => {
   return haystack.reduce((r: any, b: any) => {
@@ -93,7 +120,7 @@ const RecipeSinglePage = () => {
 
   useEffect(() => {
     setNbrComment(data?.recipe?.numberOfComments);
-    checkUserAlreadyViewReipe(data?.recipe?.id);
+    checkUserAlreadyViewRecipe(data?.recipe?.id)
   }, [data]);
 
   const player = createRef<ReactPlayer>();

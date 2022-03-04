@@ -1,8 +1,7 @@
 import { useMutation } from "@apollo/client";
-import { RouteName } from "App";
+import { Modal } from "components/layout/Modal/Modal";
 import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import authService from "services/auth.service";
 import { likedIconOff, likedIconOn } from "../../icons";
 
@@ -73,19 +72,19 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
           )}
         </button>
       ) : (
-        <Link to={RouteName.register}>
-          <div
-            className={`tooltip justify-items-center ${customClassName ? customClassName : "grid"}`}
-          >
-            <img
-              className="w-10 h-10"
-              alt="dislike button"
-              src={likedIconOff}
-              loading="lazy"
-            />
-            { isToltipActif ? (<span className="tooltiptext">Ajouter aux favoris</span>) : (<div className="flex flex-col justify-center">favoris</div>)}
-          </div>
-        </Link>
+        <Modal
+          btn={
+            <div className="tooltip grid justify-items-center">
+              <img
+                className="w-10 h-10 lg:w-12 lg:h-12"
+                alt="dislike button"
+                src={likedIconOff}
+                loading="lazy"
+              />
+              <span className="tooltiptext">Ajouter aux favoris</span>
+            </div>
+          }
+        ></Modal>
       )}
     </div>
   );

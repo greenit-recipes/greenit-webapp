@@ -1,37 +1,53 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
+import { Modal } from "components/layout/Modal/Modal";
 import { mdpNonVisible, mdpVisible } from "icons";
-import {
-  optionsUserCategoryAge,
-  optionsUserCategoryLvl,
-  optionsUserWantFromGreenit,
-  schemaRegister,
-} from "pages/Register/registerHelper";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
-import { Link, useHistory } from "react-router-dom";
+import { Controller, useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import authService, { CREATE_ACCOUNT } from "services/auth.service";
 import { EditorGreenit, Footer, Navbar } from "../../components";
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import "./register.css";
-import {
-  loginMail,
-  loginPassword,
-  confirmpwd,
-  userlogo,
-  creator,
-  explorer,
-  fblogo,
-  instalogo,
-  pintlogo,
-  tiktoklogo,
-  wwwlogo,
-  ytlogo,
-} from "icons";
-import { Button } from "../../components";
+
+const schema = yup.object().shape({
+  email: yup.string().email().required("L'email est obligatoire."),
+  utilisateur: yup
+    .string()
+    .min(4, "Le nom d'utilisateur doit contenir au moins 4 caractères.")
+    .max(
+      16,
+      "Le nom d'utilisateur est trop long, il doit être moins de 16 caractères maximum."
+    )
+    .required("Le nom d'utilisateur est obligatoire.")
+    .matches(
+      /^[^$&+,:;=?@#¨|'<>^()%!¿§«»ω⊙¤°℃℉€¥£¢¡®©]*$/,
+      "Le nom d'utilisateur ne doit pas contenir de caractères spéciaux sauf('.', '_', '-')"
+    ),
+  password: yup
+    .string()
+    .max(
+      32,
+      "Mot de passe trop long, il doit être moins de 32 caractères maximum."
+    )
+    .required("Le mot de passe est obligatoire.")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/,
+      "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule."
+    ),
+  passwordConfirmation: yup
+    .string()
+    .oneOf(
+      [yup.ref("password"), null],
+      "Les mots de passe ne correspondent pas."
+    ),
+  userCategoryLvl: yup.object().required("Ce champ est obligatoire."),
+  userWantFromGreenit: yup.object().required("Ce champ est obligatoire."),
+  userCategoryAge: yup.object().required("Ce champ est obligatoire."),
+}); // _ - .
 
 const Register: React.FC = () => {
   const {
@@ -128,12 +144,37 @@ const Register: React.FC = () => {
       <div className=" flex justify-center items-center">
      
 
-      <div className="bg-white shadow-lg rounded-xl flex flex-col rounded-3xl items-center w-10/12 md:w-8/12 lg:w-2/6 gap-4">
-        
-        <h1 className=" text-xl  md:text-2xl font-bold lg:text-3xl text-center mt-10">
-          Création de ton espace DIY <br />
-        </h1>
-        <h2 className="text-base md:text-lg ">Quel type de compte veux-tu créer ?</h2>
+      <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
+        <div className="grid grid-cols-3 md:grid-cols-2">
+          <h3 className="col-span-2 text-sm mr-4 self-center justify-self-start | md:text-base md:justify-self-end md:col-span-1">
+            Si tu as déjà un compte:
+          </h3>
+          <Modal isModalLogin={true} btn={ <button
+              className="flex items-center cursor-pointer align-middle
+              bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
+              hover:bg-white hover:border-green hover:text-green"
+            >
+              <h3 className="text-sm align-middle">Se connecter</h3>
+            </button>}></Modal>
+        </div>
+        <form
+          className="bg-white shadow-lg rounded-xl p-8 mb-4 mt-2"
+          onSubmit={handleSubmit(onSubmitHandler)}
+        >
+          <div className="mb-4 md:max-w-md">
+            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2">
+              Email
+            </label>
+            <input
+              className="shadow-lg appearance-none rounded py-2 px-3 mb-4 text-gray-700 h-12 w-full sm:w-80 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              placeholder="email"
+              type="email"
+              {...register("email")}
+            ></input>
+            <p className="text-red text-xs italic">
+              {errors.email?.message}
+            </p>
 
 
         <div className="flex flex-row items-center justify-evenly w-5/6 gap-8">

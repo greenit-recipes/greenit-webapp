@@ -1,4 +1,5 @@
 import { RouteName } from "App";
+import { Modal } from "components/layout/Modal/Modal";
 import "components/layout/Navbar.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -13,7 +14,6 @@ import { SearchBarNav } from "./SearchBarNav";
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const [toggle, setToggle] = useState(false);
-  const [visible, setVisible] = React.useState(false);
 
   const isLoggedIn = authService.isLoggedIn();
 
@@ -21,12 +21,7 @@ export const Navbar: React.FC = () => {
     return (
       <div className="sticky top-0 z-50 bg-white w-full">
         <div className="grid grid-cols-3 items-center h-12">
-          <div
-            className="w-full ml-2 items-center z-50"
-            onClick={() => {
-              setToggle((prevState) => !prevState);
-            }}
-          >
+          <div className="w-full ml-2 items-center z-50">
             <div className="grid gap-2">
               <div
                 className={
@@ -62,16 +57,20 @@ export const Navbar: React.FC = () => {
             </div>
           ) : (
             <div className="w-full grid justify-items-end">
-              <Link to={RouteName.register}>
-                <button
-                  id="Create_Profil"
-                  className="rounded-lg p-2 bg-blue mr-1"
-                >
-                  <h2 id="Create_Profil" className="text-white text-xs">
-                    Créer un profil
-                  </h2>
-                </button>
-              </Link>
+              <Modal
+                btn={
+                  <>
+                    <button
+                      id="Create_Profil"
+                      className="rounded-lg p-2 bg-blue mr-1"
+                    >
+                      <h2 id="Create_Profil" className="text-white text-xs">
+                        Créer un profil
+                      </h2>
+                    </button>
+                  </>
+                }
+              ></Modal>
             </div>
           )}
         </div>
@@ -89,12 +88,7 @@ export const Navbar: React.FC = () => {
               </h2>
             </Link>
             <Link className="p-2" to={RouteName.recipes}>
-              <div
-                className="border-b-2 border-transparent"
-                onClick={() => {
-                  setVisible(true);
-                }}
-              >
+              <div className="border-b-2 border-transparent">
                 <h2 id="recipes" className="text-white focus:text-green">
                   Recettes
                 </h2>
@@ -123,9 +117,14 @@ export const Navbar: React.FC = () => {
                 </h2>
               </Link>
             ) : (
-              <Link id="Access_Profil" className="p-2" to={RouteName.connexion}>
-                <h2 className="text-white">Se connecter</h2>
-              </Link>
+              <Modal
+                isModalLogin={true}
+                btn={
+                  <div className="p-2">
+                    <h2 className="text-white">Se connecter</h2>{" "}
+                  </div>
+                }
+              ></Modal>
             )}
           </div>
         </div>
@@ -147,25 +146,13 @@ export const Navbar: React.FC = () => {
       </div>
       <div className="flex flex-row ml-4 w-2/3 h-full items-center justify-items-start">
         <Link to={RouteName.accueil}>
-          <NavButton
-            id="home"
-            type="black"
-            onClick={() => {
-              setVisible(true);
-            }}
-          >
+          <NavButton id="home" type="black">
             Accueil
           </NavButton>
         </Link>
         <div className="w-auto" id="navmenu_big">
           <Link to={RouteName.recipes}>
-            <NavButton
-              id="recipes"
-              type="green"
-              onClick={() => {
-                setVisible(true);
-              }}
-            >
+            <NavButton id="recipes" type="green">
               Recettes
             </NavButton>
           </Link>
@@ -182,16 +169,30 @@ export const Navbar: React.FC = () => {
                     Toutes les recettes
                   </h3>
                 </Link>
-                <Link
-                  to={isLoggedIn ? RouteName.createRecipe : RouteName.register}
-                >
-                  <h3
-                    id="shareRecipe"
-                    className="mb-2 cursor-pointer hover:text-green"
-                  >
-                    Partager une recette
-                  </h3>
-                </Link>
+                {isLoggedIn ? (
+                  <Link to={RouteName.createRecipe} className="flex">
+                    <h3
+                      id="shareRecipe"
+                      className="mb-2 cursor-pointer hover:text-green"
+                    >
+                      Partager une recette
+                    </h3>
+                  </Link>
+                ) : (
+                  <Modal
+                    btn={
+                      <>
+                        <h3
+                          id="shareRecipe"
+                          className="mb-2 cursor-pointer hover:text-green"
+                        >
+                          Partager une recette
+                        </h3>{" "}
+                      </>
+                    }
+                  ></Modal>
+                )}
+
                 <Link to={`${RouteName.recipes}?tags=Premiers pas`}>
                   <h3
                     id="firstSteps"
@@ -334,12 +335,8 @@ export const Navbar: React.FC = () => {
         </div>
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.workshops}>
-            <NavButton
-              id="workshops"
-              type="yellow"
-              onClick={() => setVisible(true)}
-            >
-              Se former
+            <NavButton id="workshops" type="yellow">
+              Ateliers
             </NavButton>
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
@@ -381,11 +378,7 @@ export const Navbar: React.FC = () => {
         </div>
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.starterPage}>
-            <NavButton
-              id="getStarted"
-              type="blue"
-              onClick={() => setVisible(true)}
-            >
+            <NavButton id="getStarted" type="blue">
               Se lancer
             </NavButton>
           </Link>
@@ -406,11 +399,7 @@ export const Navbar: React.FC = () => {
         </div>
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.why}>
-            <NavButton
-              id="project"
-              type="grey"
-              onClick={() => setVisible(true)}
-            >
+            <NavButton id="project" type="grey">
               Le projet
             </NavButton>
           </Link>
@@ -451,6 +440,7 @@ export const Navbar: React.FC = () => {
               </Button>
             </Link>
           ) : (
+<<<<<<< HEAD
             <Link to={RouteName.register} className="flex">
               <Button
                 id="Share_a_recipe"
@@ -462,6 +452,23 @@ export const Navbar: React.FC = () => {
                 Partager une recette
               </Button>
             </Link>
+=======
+            <Modal
+              btn={
+                <>
+                  <Button
+                    id="Share_a_recipe"
+                    type="grey"
+                    rounded="lg"
+                    className="flex justify-end self-center text-xl | mr-2 cursor-pointer"
+                  >
+                    {" "}
+                    Partager une recette
+                  </Button>
+                </>
+              }
+            ></Modal>
+>>>>>>> 1192b09 (add new modal for login register, and delete previous route)
           )}
           {isLoggedIn ? (
             <Link to={RouteName.profil} className="flex">
@@ -475,6 +482,7 @@ export const Navbar: React.FC = () => {
               </Button>
             </Link>
           ) : (
+<<<<<<< HEAD
             <Link to={RouteName.register} className="flex">
               <Button
                 id="Create_Profil"
@@ -485,6 +493,22 @@ export const Navbar: React.FC = () => {
                 Créer un profil
               </Button>
             </Link>
+=======
+            <Modal
+              btn={
+                <>
+                  <Button
+                    id="Create_Profil"
+                    type="green"
+                    rounded="lg"
+                    className="inline justify-end self-center | cursor-pointer mr-2"
+                  >
+                    Créer un profil
+                  </Button>
+                </>
+              }
+            ></Modal>
+>>>>>>> 1192b09 (add new modal for login register, and delete previous route)
           )}
         </div>
       </div>
