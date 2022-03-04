@@ -24,10 +24,14 @@ import {
   money,
   planet,
   wellbeing,
+  issy,
+  escapeTheCity,
+  sixHTN,
 } from "../../icons";
 import "../../pages/recipe/SinglePage/SinglePage.css";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
+import { Press } from "../../components/layout/TheyTalkAboutUs";
 import { Helmet } from "react-helmet";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -417,6 +421,24 @@ const LandingPage = () => {
         </Link>
       </Container>
       <Newsletter />
+      <div className="flex justify-between flex-col lg:flex-row mb-20">
+        <Press
+          title="Ces 3 amis ont crée un site qui propose des dizaines de recettes zéro déchet à faire soi-même"
+          image={sixHTN}
+          subtitle="18h39.fr, un média de Castorama"
+        ></Press>
+        <Press
+          inverted={true}
+          title="&quot;Avec la Greenit Community, just do it yourself !&quot;"
+          image={escapeTheCity}
+          subtitle="EscapeTheCity, média engagé low-tech"
+        ></Press>
+        <Press
+          title="&quot;Greenit&quot; : une plateforme collaborative pour le fait-maison"
+          image={issy}
+          subtitle="Ville d'Issy-Les-Moulineaux"
+        ></Press>
+      </div>
       <Footer />
     </div>
   );
