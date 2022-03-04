@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import "./Modal.css";
 import { LoginModal } from "pages/Login/LoginModal";
 import { RegisterModal } from "pages/Register/register-modal";
-import { Button } from "components";
+import React, { useEffect, useState } from "react";
+import "./Modal.css";
 
 interface IModal {
   btn: any;
