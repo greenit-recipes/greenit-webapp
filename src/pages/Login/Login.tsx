@@ -144,7 +144,7 @@ const Login: React.FC = () => {
     <div className="grid justify-items-center w-full">
       <Navbar />
       <div className="hidden">
-      <FacebookLogin
+     <FacebookLogin
         // @ts-ignore
         appId={process.env.REACT_APP_FACEBOOK_ID}
         fields="name,email,picture"

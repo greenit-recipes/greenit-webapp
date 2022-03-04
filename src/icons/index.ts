@@ -1,3 +1,4 @@
+import { Icon } from './../components/misc/Icon';
 // CATEGORIES
 import wellbeing from "./bien-être_icon.png";
 import corps from "./corps_recette.png";
@@ -117,6 +118,10 @@ import tiktoklogo from "./icon_tiktok.png"
 import wwwlogo from "./icon_www.png"
 import ytlogo from "./icon_yt.png"
 import pastelogo from "./icon_paste.png"
+
+import issy from "./issy_logo.jpg"
+import escapeTheCity from "./escape_the_city.jpeg"
+import sixHTN from "./18h39_fr.jpeg"
 
 
 
@@ -242,4 +247,7 @@ export {
   LikedIconCommentOn,
   LikedIconCommentOff,
 
+  issy,
+  escapeTheCity,
+  sixHTN,
 };
