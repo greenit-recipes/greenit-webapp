@@ -20,4 +20,8 @@ export const getLogoAndNameByUrl = (url: string) => {
     icon: wwwlogo
    }
   return logo;
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 3cb71dc (create profil, type need to be optional for update and create account)

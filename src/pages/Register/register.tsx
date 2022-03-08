@@ -1,55 +1,24 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
-import React, { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import Select from "react-select";
-import authService, {
-  CREATE_ACCOUNT
-} from "services/auth.service";
-import * as yup from "yup";
+import authService, { CREATE_ACCOUNT } from "services/auth.service";
 import { Footer, Navbar } from "../../components";
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
+import { EditorGreenit } from "../../components/layout/EditorGreenit";
 import "./register.css";
 import { Helmet } from "react-helmet";
 import { mdpNonVisible, mdpVisible } from "icons";
-
-const schema = yup.object().shape({
-  email: yup.string().email().required("L'email est obligatoire."),
-  utilisateur: yup
-    .string()
-    .min(4, "Le nom d'utilisateur doit contenir au moins 4 caractères.")
-    .max(
-      16,
-      "Le nom d'utilisateur est trop long, il doit être moins de 16 caractères maximum."
-    )
-    .required("Le nom d'utilisateur est obligatoire.")
-    .matches(
-      /^[^$&+,:;=?@#¨|'<>^()%!¿§«»ω⊙¤°℃℉€¥£¢¡®©]*$/,
-      "Le nom d'utilisateur ne doit pas contenir de caractères spéciaux sauf('.', '_', '-')"
-    ),
-  password: yup
-    .string()
-    .max(
-      32,
-      "Mot de passe trop long, il doit être moins de 32 caractères maximum."
-    )
-    .required("Le mot de passe est obligatoire.")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/,
-      "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule."
-    ),
-  passwordConfirmation: yup
-    .string()
-    .oneOf(
-      [yup.ref("password"), null],
-      "Les mots de passe ne correspondent pas."
-    ),
-  userCategoryLvl: yup.object().required("Ce champ est obligatoire."),
-  userWantFromGreenit: yup.object().required("Ce champ est obligatoire."),
-  userCategoryAge: yup.object().required("Ce champ est obligatoire."),
-}); // _ - .
+import draftToHtml from "draftjs-to-html";
+import {
+  optionsUserCategoryAge,
+  optionsUserCategoryLvl,
+  optionsUserWantFromGreenit,
+  schemaRegister,
+} from "pages/Register/registerHelper";
 
 const Register: React.FC = () => {
   const {
@@ -60,43 +29,26 @@ const Register: React.FC = () => {
     reset,
     control,
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaRegister),
+  });
+
+  const {
+    fields: urlsSocialMediaFields,
+    append: urlsSocialMediaAppend,
+    remove: urlsSocialMediaRemove,
+  } = useFieldArray({
+    control,
+    name: "urlsSocialMedia",
   });
   const history = useHistory();
   const [createAccount, { data: createAccountData, loading, error }] =
     useMutation(CREATE_ACCOUNT, { errorPolicy: "all" });
 
-  const [email, setEmail] = useState<string>("");
+  useEffect(() => {
+    urlsSocialMediaAppend({}, { shouldFocus: false });
+  }, []);
 
-  const optionsUserCategoryLvl = [
-    { value: "beginner", label: "Petit.e curieux.se, je débute dans le DIY." },
-    {
-      value: "intermediate",
-      label: "Explorateur.ice avisé.e, j'ai déjà des notions en DIY.",
-    },
-    { value: "advanced", label: "Adepte convaincu.e, je suis passioné.e de DIY !" },
-  ];
-
-  const optionsUserWantFromGreenit = [
-    {
-      value: "find_inspiration",
-      label: "Trouver de l'inspiration auprès de la communauté.",
-    },
-    {
-      value: "shared_talk",
-      label: "Discuter et partager mes connaissances sur le DIY.",
-    },
-    { value: "meet", label: "Rencontrer des adeptes du DIY." },
-  ];
-
-  const optionsUserCategoryAge = [
-    { value: "young", label: "Moins de 20 ans, jeune mais pas trop." },
-    { value: "young_adult", label: "Entre 20 et 35 ans, adulte mais pas trop non plus." },
-    { value: "adult", label: "Entre 35 et 50 ans, adulte mais pas que." },
-    { value: "senior", label: "Plus de 50 ans, interdit de m'appeler senior !" },
-  ];
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
@@ -110,7 +62,9 @@ const Register: React.FC = () => {
           message: "Cet email éxiste déjà.",
         });
       }
-      if (createAccountData?.register?.errors?.username?.[0]?.code === "unique") {
+      if (
+        createAccountData?.register?.errors?.username?.[0]?.code === "unique"
+      ) {
         setError("utilisateur", {
           message: "Ce nom existe déjà.",
         });
@@ -125,8 +79,11 @@ const Register: React.FC = () => {
     userCategoryLvl: string;
     userCategoryAge: string;
     userWantFromGreenit: string;
+    urlsSocialMedia: string[];
+    biographie: string;
     isFollowNewsletter: boolean;
   }) => {
+    console.log("data -->", data);
     const getValue = (field: any) => field.value;
 
     authService.removeToken();
@@ -141,6 +98,9 @@ const Register: React.FC = () => {
         userCategoryAge: getValue(data.userCategoryAge),
         userWantFromGreenit: getValue(data.userWantFromGreenit),
         isFollowNewsletter: data.isFollowNewsletter,
+        urlsSocialMedia: JSON.stringify(data.urlsSocialMedia),
+        biographie: data.biographie,
+        isCreatorProfil: true,
       },
     }).then((dataAccount) => {
       if (!dataAccount?.data?.register?.success) return;
@@ -153,7 +113,10 @@ const Register: React.FC = () => {
       <Navbar />
       <Helmet>
         <title>Créer un compte Greenit - Ton espace personnel DIY</title>
-        <meta name="description" content="Avec la création de ton compte sur Greenit Community, tu peux partager tes premières recettes maison, commenter et supporter les membres de la communauté et sauvegarder tes recettes préférées." />
+        <meta
+          name="description"
+          content="Avec la création de ton compte sur Greenit Community, tu peux partager tes premières recettes maison, commenter et supporter les membres de la communauté et sauvegarder tes recettes préférées."
+        />
       </Helmet>
       <BackgroundImage className="overflow-hidden" />
       <h1 className="text-xl font-medium w-2/3 md:text-2xl | mt-16 text-center">
@@ -190,9 +153,7 @@ const Register: React.FC = () => {
               type="email"
               {...register("email")}
             ></input>
-            <p className="text-red text-xs italic">
-              {errors.email?.message}
-            </p>
+            <p className="text-red text-xs italic">{errors.email?.message}</p>
 
             <label className="block text-gray-700  md:text-lg font-bold mb-2 mt-4">
               Nom d'utilisateur
@@ -211,16 +172,19 @@ const Register: React.FC = () => {
               Mot de passe
             </label>
             <div className="flex flex-row justify-between items-center shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline">
-            <input
-              className=" appearance-none focus:outline-none focus:shadow-outline"
-              id="password"
-              type={isRevealPwd ? "text" : "password"}
-              placeholder="******************"
-              {...register("password")}
-            />
-            <img title={isRevealPwd ? "Hide password" : "Show password"}
-            src={isRevealPwd ? mdpVisible : mdpNonVisible} alt="logo visible" 
-            onClick={() => setIsRevealPwd(prevState => !prevState)} />
+              <input
+                className=" appearance-none focus:outline-none focus:shadow-outline"
+                id="password"
+                type={isRevealPwd ? "text" : "password"}
+                placeholder="******************"
+                {...register("password")}
+              />
+              <img
+                title={isRevealPwd ? "Hide password" : "Show password"}
+                src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                alt="logo visible"
+                onClick={() => setIsRevealPwd((prevState) => !prevState)}
+              />
             </div>
             <p className="text-red text-xs italic">
               {errors.password?.message}
@@ -233,16 +197,19 @@ const Register: React.FC = () => {
               Confirmation du mot de passe
             </label>
             <div className="flex flex-row items-center justify-between shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight">
-            <input
-              className="appearance-none focus:outline-none focus:shadow-outline"
-              id="passwordConfirmation"
-              type={isRevealPwd ? "text" : "password"}
-              placeholder="******************"
-              {...register("passwordConfirmation")}
-            />
-            <img title={isRevealPwd ? "Hide password" : "Show password"}
-            src={isRevealPwd ? mdpVisible : mdpNonVisible} alt="logo visible" 
-            onClick={() => setIsRevealPwd(prevState => !prevState)}/>
+              <input
+                className="appearance-none focus:outline-none focus:shadow-outline"
+                id="passwordConfirmation"
+                type={isRevealPwd ? "text" : "password"}
+                placeholder="******************"
+                {...register("passwordConfirmation")}
+              />
+              <img
+                title={isRevealPwd ? "Hide password" : "Show password"}
+                src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                alt="logo visible"
+                onClick={() => setIsRevealPwd((prevState) => !prevState)}
+              />
             </div>
             <p className="text-red text-xs italic">
               {errors.passwordConfirmation?.message}
@@ -307,6 +274,75 @@ const Register: React.FC = () => {
               {errors.userCategoryAge?.message}
             </p>
           </div>
+          <div className="mb-10">
+            <label className="block text-gray-700 text-xl mb-2">
+              Biographie
+            </label>
+            <h3 className="block text-gray-700 text-sm mb-2">
+              Pourquoi tu utilises ces ingrédients ?
+              <br /> Comment tu utilises le produit ?
+            </h3>
+            <textarea
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="biographie"
+              placeholder="biographie"
+              rows={12}
+              cols={34}
+              {...register("biographie")}
+            ></textarea>
+            <p className="text-red text-xs italic">
+              {errors.biographie?.message}
+            </p>
+          </div>
+
+          <div className="mb-10">
+            <label className="block text-gray-700 text-xl mb-2">
+              Les urls des reseaux sociaux
+            </label>
+            <h3 className="block text-gray-700 text-sm mb-2">BRK CHANGE</h3>
+            <h3 className="block text-gray-700 text-sm mb-4">
+              Par exemple : <br />
+              1 Ajouter l'huile de noisette dans le chauffe-tout <br />2 Remuer
+              rapidement jusqu'à ce que la préparation devienne liquide <br />3
+              ...
+            </h3>
+
+            <div className="mb-10">
+              <ul>
+                {urlsSocialMediaFields.map((item, index) => (
+                  <>
+                    <li key={index} className={`grid grid-rows-2 grid-cols-1`}>
+                      <input
+                        className={`border-2 mb-2`}
+                        {...register(`urlsSocialMedia.${index}.url`)}
+                      />
+
+                      <p className="text-red text-xs italic">
+                        {errors?.urlsSocialMedia?.[index]?.url?.message}
+                      </p>
+
+                      <div
+                        className="justify-self-end cursor-pointer mb-2 bg-red text-white rounded-lg py-1 px-2"
+                        onClick={() => urlsSocialMediaRemove(index)}
+                      >
+                        Supprimer
+                      </div>
+                    </li>
+                  </>
+                ))}
+              </ul>
+              <div
+                onClick={() => urlsSocialMediaAppend({}, { shouldFocus: true })}
+                className="bg-blue cursor-pointer text-white rounded-lg py-1 px-2 w-40 text-center"
+              >
+                Ajouter une étape
+              </div>
+            </div>
+            <p className="text-red text-xs italic">
+              {errors.urlsSocialMedia?.message}
+            </p>
+          </div>
+          <EditorGreenit></EditorGreenit>
 
           <div className="flex w-full mb-4 mt-10 self-center ">
             <input

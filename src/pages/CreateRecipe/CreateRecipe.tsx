@@ -138,12 +138,6 @@ const CreateRecipe: React.FC = () => {
   ];
 
   useEffect(() => {
-    ingredientsAppend({});
-    utensilsAppend({});
-    instructionsAppend({});
-  }, []);
-
-  useEffect(() => {
     if (data?.register?.success === false || error) {
       if (data?.register?.errors?.email[0]?.code === "unique") {
         setError("email", {
