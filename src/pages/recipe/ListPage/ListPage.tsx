@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useHistory } from "react-router-dom";
 import {
+  BackgroundImage,
   Empty,
   Footer,
   Loading,
@@ -105,6 +106,7 @@ const RecipeListPage = () => {
   return (
     <div className={""}>
       <Navbar />
+      <BackgroundImage/>
       <Helmet>
         <title>Recettes DIY : Cosmétiques, produits ménagers | Greenit</title>
         <meta
@@ -164,10 +166,10 @@ const RecipeListPage = () => {
             scrollThreshold={0.5}
             endMessage={
               recipes?.length > 0 && (
-                <p style={{ textAlign: "center" }}>
+                <p className="text-center font-light">
                   <b>
                     Tu as tout vu ! <br></br>
-                    Ajoute ta pierre à l’édifice en partageant ta recette !
+                    Ajoute ta pierre à l’édifice en partageant une recette !
                   </b>
                 </p>
               )

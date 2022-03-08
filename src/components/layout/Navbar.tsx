@@ -38,12 +38,12 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
           <Link to="/" className=" z-50">
-            <h3
+            <h5
               id="home"
-              className="text-green text-center self-center text-3xl"
+              className="text-green text-center self-center text-3xl font-medium"
             >
               Greenit
-            </h3>
+            </h5>
           </Link>
           {isLoggedIn ? (
             <div className="w-full grid justify-items-end">
@@ -102,7 +102,7 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link className="p-2" to={RouteName.workshops}>
               <h2 id="workshops" className="text-white">
-                Ateliers
+                Se former
               </h2>
             </Link>
             <Link className="p-2" to={RouteName.starterPage}>
@@ -115,6 +115,7 @@ export const Navbar: React.FC = () => {
                 Le projet
               </h2>
             </Link>
+            <hr className="mt-6"/>
             {isLoggedIn ? (
               <Link id="Access_Profil" className="p-2" to={RouteName.profil}>
                 <h2 id="Access_Profil" className="text-white">
@@ -338,7 +339,7 @@ export const Navbar: React.FC = () => {
               type="yellow"
               onClick={() => setVisible(true)}
             >
-              Ateliers
+              Se former
             </NavButton>
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">

@@ -23,7 +23,7 @@ export const LikeComment: React.FC<ILikeComment> = ({ comment, isMyComment=false
       {isLoggedIn ? (
         // @ts-ignore
         <div
-          className={`flex bg-white w-20 h-12 rounded-tl-2xl p-3 ${
+          className={`flex bg-white w-14 h-8 lg:w-16 lg:h-10 rounded-tl-2xl p-2 justify-center ${
             isMyComment ? "" : "cursor-pointer"
           }`}
           onClick={() => {
@@ -42,19 +42,19 @@ export const LikeComment: React.FC<ILikeComment> = ({ comment, isMyComment=false
           {isLiked ? (
             <img
               src={LikedIconCommentOn}
-              className="self-center w-7 h-7 lg:w-8 lg:h-8"
+              className="self-center w-4 h-4 lg:w-6 lg:h-6"
               alt="likes"
               loading="lazy"
             />
           ) : (
             <img
               src={LikedIconCommentOff}
-              className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mb-1"
+              className="flex self-center w-4 h-4 lg:w-6 lg:h-6"
               alt="likes"
               loading="lazy"
             />
           )}
-          <h2 className="self-center text-lg md:text-xl ml-1">{nbrLiked}</h2>
+          <h2 className="self-center text-base lg:text-xl ml-1">{nbrLiked}</h2>
         </div>
       ) : (
         <Link to={RouteName.register}>

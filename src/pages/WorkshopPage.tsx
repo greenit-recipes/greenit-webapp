@@ -234,12 +234,12 @@ const WorkshopPage = () => {
                   <h2>Prochain ateliers :</h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl">
-                  <h5 className="text-base">Samedi 26 février</h5>
-                  <h5 className="text-sm">11h - 12h00 (CEST)</h5>
+                  <h5 className="text-base">Samedi 26 Mars</h5>
+                  <h5 className="text-sm">10h00 - 11h30 (CEST)</h5>
                   <h5 className="text-sm">Gratuit 0€</h5>
                   <div className="flex justify-center items-center align-middle">
                     <a
-                      href="https://www.eventbrite.fr/e/billets-premiers-pas-en-diy-greenit-community-221951201017"
+                      href="https://www.eventbrite.fr/e/billets-premiers-pas-en-diy-et-recette-de-lessive-greenit-community-287932723527?aff=ebdssbonlinesearch"
                       target="_blank"
                     >
                       <button id="book1" className="button_reserver">
@@ -322,12 +322,12 @@ const WorkshopPage = () => {
                   <h2>La classe verte :</h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
-                  <h5 className="text-base">Jeudi 24 février</h5>
+                  <h5 className="text-base">Jeudi 7 avril</h5>
                   <h5 className="text-sm">12h30 - 14h</h5>
                   <h5 className="text-sm">25€</h5>
                   <div className="flex justify-center items-center align-middle">
                     <a
-                      href="https://www.eventbrite.fr/e/billets-les-classes-vertes-du-kaba-atelier-de-1h30-en-visio-pour-passer-a-laction-160817869577"
+                      href="https://www.eventbrite.fr/e/billets-formule-atelier-en-ligne-1h30-pour-passer-a-laction-160817869577"
                       target="_blank"
                     >
                       <button id="book2-1" className="button_reserver">
@@ -404,7 +404,7 @@ const WorkshopPage = () => {
                   <img
                     src={MargauxLogo}
                     className="w-24 lg:w-18"
-                    alt="Greenit Logo"
+                    alt="Atlier Logo"
                   />
                 </div>
                 <div className="items-center self-center">
@@ -522,7 +522,7 @@ const WorkshopPage = () => {
                   <img
                     src={ChristelleLogo}
                     className="w-28 lg:w-32 rounded-lg"
-                    alt="Greenit Logo"
+                    alt="Atelier Logo"
                   />
                 </div>
                 <div className="items-center self-center">

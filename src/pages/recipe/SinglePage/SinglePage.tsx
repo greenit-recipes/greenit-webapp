@@ -421,7 +421,7 @@ const RecipeSinglePage = () => {
                 // @ts-ignore
                 return (
                   <div className="mt-3 flex flex-col" key={index}>
-                    <div className="relative bg-orange bg-opacity-10 rounded-3xl px-4 py-4">
+                    <div className="relative bg-orange bg-opacity-10 rounded-xl p-4">
                       <UserBadge
                         facebookImg={comment?.author?.photoUrl}
                         image={comment?.author?.imageProfile}
@@ -482,7 +482,7 @@ const RecipeSinglePage = () => {
                     </Button>
                   </div>
                 ) : (
-                  <Link to="/register">
+                  <Link to="/creation-compte">
                     <Button
                       className="rounded focus:outline-none focus:shadow-outline"
                       type="submit"
