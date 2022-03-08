@@ -32,7 +32,7 @@ export const Newsletter: React.FC = () => {
   };
   return (
     <Container className="w-full md:w-3/5 h-full" margin={10} itemsCenter>
-      <h2 className="text-xl md:text-2xl sm:w-3/4 | p-5 text-center">
+      <h2 className="text-xl md:text-2xl sm:w-3/4 | px-5 text-center">
         Inscris toi à la newsletter pour découvrir des astuces DIY
         {"\n"} et être au courant des nouvelles recettes !
       </h2>
@@ -61,7 +61,7 @@ export const Newsletter: React.FC = () => {
           boite mail !
         </div>
       )}
-      <div className="w-3/4 mb-20 text-xs md:text-sm text-center lg:mx-80">
+      <div className="w-3/4 text-xs md:text-sm text-center lg:mx-80">
         Nous utilisons cette newsletter uniquement pour garder notre communauté
         informée des évolutions de Greenit ainsi que pour connaître vos avis sur
         certaines décisions. Vous pouvez vous désinscrire à tout moment en nous

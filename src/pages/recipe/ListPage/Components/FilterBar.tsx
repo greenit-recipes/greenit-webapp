@@ -82,7 +82,6 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         />
       ) : (
         <div className="w-full grid justify-items-start lg:justify-items-center bg-white">
-          <BackgroundImage />
           <div
             className={
               isMobile
@@ -98,35 +97,15 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                   setSearch={setSearch}
                   setCurrentFilters={setCurrentFilters}
                 />
-                {isLoggedIn ? (
-                  <Link to={RouteName.createRecipe} className="flex">
-                    <Button
-                      id="shareRecipe"
-                      type="grey"
-                      className="self-center h-10 rounded-xl ml-4"
-                    >
-                      <h3 id="shareRecipe"> Partager une recette </h3>
-                    </Button>
-                  </Link>
-                ) : (
-                  <Link to={RouteName.register} className="flex">
-                    <Button
-                      type="grey"
-                      className="self-center h-10 rounded-xl ml-4"
-                    >
-                      <h3 id="shareRecipe"> Partager une recette </h3>
-                    </Button>
-                  </Link>
-                )}
               </div>
             )}
             {isMobile && (
               <Button
                 className="p-2 right-0 mr-3 fixed top-14"
-                type="grey"
+                type="red"
                 onClick={() => removeFilters()}
               >
-                <h3 className="text-end text-sm">Supprimer les filtres ✕</h3>
+                <h3 className="text-end text-sm">Supprimer les filtres X</h3>
               </Button>
             )}
             <div className={isMobile ? "" : "grid grid-cols-5 mt-4 w-10/12"}>
@@ -166,7 +145,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                           (item: any, key: any) =>
                             map(item, (value, index) => (
                               <div
-                                className="flex h-8 inline bg-blue text-white rounded-xl px-3 py-1 ml-2 mb-2"
+                                className="flex h-8 inline bg-blue text-white rounded-lg px-3 py-1 ml-2 mb-2"
                                 key={index}
                               >
                                 <p>{value.title}</p>
@@ -174,7 +153,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                                   className="ml-2"
                                   onClick={() => removeFilter(value.value, key)}
                                 >
-                                  ✖︎
+                                  x
                                 </button>
                               </div>
                             ))
@@ -184,7 +163,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                     <div>
                       <Button type="grey" onClick={() => removeFilters()}>
                         <h3 className="text-sm">
-                          Supprimer tous les filtres ✖︎
+                          Supprimer tous les filtres X
                         </h3>
                       </Button>
                     </div>

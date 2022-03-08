@@ -879,16 +879,17 @@ const StarterPage = () => {
                   loading="lazy"
                 />{" "}
               </div>
-              <h2 className="text-lg text-center mb-2">Ateliers </h2>
+              <h2 className="text-lg text-center">Ateliers </h2>
               <p className="text-sm text-center font-light">
-                L’atelier du D.I.Y : <br /> https://www.atelier-diy.com <br />
-                <br />
-                La bonne composition à Paris: https://labonnecomposition.fr{" "}
-                <br />
-                <br />
-                Lavande et Camomille à Lyon : https://www.lavandeetcamomille.com{" "}
-                <br />
-                <br />
+                <a className="underline" target="_blank" href="https://www.atelier-diy.com">L’atelier du D.I.Y</a>
+                <br/><br/>
+                <a className="underline" target="_blank" href="https://labonnecomposition.fr">
+                  La bonne composition à Paris
+                </a>
+                <br/><br/>
+                <a className="underline" target="_blank" href="https://www.lavandeetcamomille.com">
+                  Lavande et Camomille à Lyon
+                </a>
               </p>
             </div>
             <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
@@ -919,16 +920,21 @@ const StarterPage = () => {
                   className="w-16 lg:w-18 self-center items-center"
                   alt="Site_icon"
                   loading="lazy"
-                />{" "}
+                />
               </div>
-              <h2 className="text-lg text-center mb-2">Site internet </h2>
+              <h2 className="text-lg text-center">Site internet </h2>
               <p className="text-sm text-center font-light">
-                Le site de la Slow Cosmétique : https://www.slow-cosmetique.org{" "}
-                <br />
-                <br /> <br /> Le site d’Aroma-Zone pour leurs informations :
-                https://www.aroma-zone.com
-                <br /> <br /> Le site de la Compagnie des Sens :
-                https://www.compagnie-des-sens.fr
+                <a className="underline" target="_blank" href="https://www.slow-cosmetique.org">
+                  Le site de la Slow Cosmétique
+                </a>
+                <br/><br/>
+                <a className="underline" target="_blank" href="https://www.aroma-zone.com/info/guide-des-huiles-essentielles/tous">
+                  Le site d’Aroma-Zone pour leurs informations
+                </a>
+                <br/><br/>
+                <a className="underline" target="_blank" href="https://www.compagnie-des-sens.fr">
+                  Le site de la Compagnie des Sens
+                </a>
               </p>
             </div>
           </div>

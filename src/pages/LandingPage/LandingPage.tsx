@@ -204,9 +204,9 @@ const LandingPage = () => {
           ))}
         </Carousel>
       )}
-      <Container className="flex flex-col items-center | w-10/12 mt-8 lg:mt-20">
+      <Container className="flex flex-col items-center | w-10/12 mt-10 lg:mt-20">
         <div className="lg:mb-4">
-          <h2 className="text-lg lg:text-xl mb-2 text-center">
+          <h2 className="text-xl px-6 md:px-0 md:text-2xl | mb-4 text-center">
             Le guide pour se lancer dans le DIY
           </h2>
           <h3 className="text-sm lg:text-base font-light text-center">
@@ -233,24 +233,26 @@ const LandingPage = () => {
               number: "3",
             },
           ].map((item) => (
-            <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150">
-              <div className="grid absolute  w-8 h-8  md:w-10 md:h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
-                <h2 className="text-center self-center font-bold  text-sm  lg:text-xl">
-                  {item.number}
-                </h2>
+            <Link to={RouteName.starterPage}>
+              <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150">
+                <div className="grid absolute  w-8 h-8  md:w-10 md:h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
+                  <h2 className="text-center self-center font-bold  text-sm  lg:text-xl">
+                    {item.number}
+                  </h2>
+                </div>
+                <div className="grid justify-items-center">
+                  <img
+                    src={item.icon}
+                    className="w-8 md:w-16 self-center items-center"
+                    alt="conseils_diy"
+                    loading="lazy"
+                  />{" "}
+                </div>
+                <h3 className="text-xs lg:text-sm  text-center font-light">
+                  {item.title}
+                </h3>
               </div>
-              <div className="grid justify-items-center">
-                <img
-                  src={item.icon}
-                  className="w-10 md:w-16 self-center items-center"
-                  alt="conseils_diy"
-                  loading="lazy"
-                />{" "}
-              </div>
-              <h3 className="text-xs lg:text-sm  text-center font-light">
-                {item.title}
-              </h3>
-            </div>
+            </Link>
           ))}
         </div>
         <Link to={RouteName.starterPage}>
@@ -259,7 +261,7 @@ const LandingPage = () => {
           </Button>
         </Link>
       </Container>
-      <h2 className="text-xl md:text-2xl | mt-20 mb-6 text-center">
+      <h2 className="text-xl md:text-2xl | mt-12 md:mt-20 mb-6 text-center">
         Les recettes préférées
       </h2>
       {isMobile ? (
@@ -385,7 +387,7 @@ const LandingPage = () => {
       </div>
 
       <Container
-        className="w-full md:w-3/5 h-full"
+        className="w-full md:w-3/5 h-full mb-6"
         itemsCenter
         padding={isMobile}
       >
@@ -421,24 +423,32 @@ const LandingPage = () => {
         </Link>
       </Container>
       <Newsletter />
-      <div className="flex justify-between flex-col lg:flex-row mb-20">
-        <Press
-          title="Ces 3 amis ont crée un site qui propose des dizaines de recettes zéro déchet à faire soi-même"
-          image={sixHTN}
-          subtitle="18h39.fr, un média de Castorama"
-        ></Press>
-        <Press
-          inverted={true}
-          title="&quot;Avec la Greenit Community, just do it yourself !&quot;"
-          image={escapeTheCity}
-          subtitle="EscapeTheCity, média engagé low-tech"
-        ></Press>
-        <Press
-          title="&quot;Greenit&quot; : une plateforme collaborative pour le fait-maison"
-          image={issy}
-          subtitle="Ville d'Issy-Les-Moulineaux"
-        ></Press>
-      </div>
+      <Container
+        className="w-full md:mt-20 md:w-3/5 h-full my-6 px-6"
+        itemsCenter
+      >
+        <h2 className="text-xl md:text-2xl | lg:mb-10 text-center">
+          On parle de nous !
+        </h2>
+        <div className="flex justify-between flex-col lg:flex-row mb-20">
+          <Press
+            title='"Ces 3 amis ont crée un site qui propose des dizaines de recettes zéro déchet à faire soi-même"'
+            image={sixHTN}
+            subtitle="18h39.fr, un média de Castorama"
+          ></Press>
+          <Press
+            inverted={true}
+            title='"Avec la Greenit Community, just do it yourself !"'
+            image={escapeTheCity}
+            subtitle="EscapeTheCity, média engagé low-tech"
+          ></Press>
+          <Press
+            title='"Greenit" : une plateforme collaborative pour le fait-maison'
+            image={issy}
+            subtitle="Ville d'Issy-Les-Moulineaux"
+          ></Press>
+        </div>
+      </Container>
       <Footer />
     </div>
   );

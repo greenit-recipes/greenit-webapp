@@ -119,7 +119,7 @@ h4 {
 .hamburger_fadeIn::before{
   border-color: #383838;
   transition: 0.5s;
-  background: #888;
+  background: rgb(255, 255, 255);
   position: absolute;
   display:block;
   content:'';
@@ -133,7 +133,7 @@ h4 {
 .hamburger_fadeIn::after{
   border-color: #383838;
   transition: 0.5s;
-  background: #888;
+  background: rgb(255, 255, 255);
   position: absolute;
   display:block;
   content:'';

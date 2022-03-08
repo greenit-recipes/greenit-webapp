@@ -11,12 +11,12 @@ export const Press: React.FC<IPress> = ({
   inverted = false,
 }) => {
   return (
-    <div className="flex lg:flex-col items-center lg:justify-around h-40 lg:w-96 lg:h-80 mb-8">
-      <h2 className="hidden  lg:flex mx-4 lg:mb-4 md:text-lg text-sm md:text-base lg:h-20 text-center font-bold">
+    <div className="flex lg:flex-col items-center lg:justify-around h-40 lg:w-96 lg:h-80">
+      <h2 className="hidden lg:flex mx-4 lg:mb-4 md:text-lg text-sm md:text-base lg:h-20 text-center">
         {title}
       </h2>
       <img
-        className="mx-4 rounded-full  w-28 lg:w-32"
+        className="rounded-full w-24 lg:w-28"
         src={image}
         alt="logo de la presse"
       />
@@ -27,9 +27,9 @@ export const Press: React.FC<IPress> = ({
       {/* A refacto  */}
       <div
         style={inverted ? { order: -1 } : {}}
-        className="flex lg:hidden flex-col sm:w-96 lg:w-full "
+        className="flex lg:hidden flex-col sm:w-96 lg:w-full px-4"
       >
-        <h2 className="lg:mb-4 te md:text-lg text-sm md:text-base lg:h-20 text-center font-bold">
+        <h2 className="lg:mb-4 md:text-lg text-sm md:text-base lg:h-20 text-center">
           {title}
         </h2>
         <h3 className="mt-2 md:text-base text-xs text-center lg:mt-4 lg:h-20">
