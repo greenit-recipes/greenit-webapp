@@ -61,7 +61,7 @@ export const LikeComment: React.FC<ILikeComment> = ({ comment, isMyComment=false
           <div className="flex cursor-pointer bg-white w-20 h-12 rounded-tl-2xl p-3">
             <img
               src={LikedIconCommentOff}
-              className="self-center w-7 h-7 lg:w-8 lg:h-8"
+              className="self-center w-4 h-4 lg:w-6 lg:h-6"
               alt="likes"
               loading="lazy"
             />

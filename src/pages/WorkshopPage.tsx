@@ -465,7 +465,7 @@ const WorkshopPage = () => {
                   </h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl">
-                  <h5 className="text-base">Mercredi 10 Mars</h5>
+                  <h5 className="text-base">Jeudi 10 Mars</h5>
                   <h5 className="text-sm">10h - 13h00 (CEST)</h5>
                   <h5 className="text-sm">55€</h5>
                   <div className="flex justify-center items-center align-middle">

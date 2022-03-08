@@ -166,12 +166,9 @@ const RecipeListPage = () => {
             scrollThreshold={0.5}
             endMessage={
               recipes?.length > 0 && (
-                <p className="text-center font-light">
-                  <b>
-                    Tu as tout vu ! <br></br>
-                    Ajoute ta pierre à l’édifice en partageant une recette !
-                  </b>
-                </p>
+                <div className="text-center font-light">
+                    <div>Tu as tout vu ! </div>
+                </div>
               )
             }
             next={() => {
