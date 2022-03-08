@@ -27,6 +27,7 @@ import { getSecondsFromDuration } from "../../../utils";
 import "./SinglePage.css";
 import { RWebShare } from "react-web-share";
 import { checkUserAlreadyViewReipe } from "pages/recipe/SinglePage/SinglePage-helper";
+import { RouteName } from "App";
 
 interface InstructionProps {
   index: number;
@@ -482,7 +483,7 @@ const RecipeSinglePage = () => {
                     </Button>
                   </div>
                 ) : (
-                  <Link to="/creation-compte">
+                  <Link to={RouteName.register}>
                     <Button
                       className="rounded focus:outline-none focus:shadow-outline"
                       type="submit"
