@@ -28,7 +28,7 @@ export const Modal: React.FC<IModal> = ({ btn, isModalLogin }) => {
       {btn}
       </div>
       {showModal ? (
-        <div className="overflow-x-hidden overflow-y-auto fixed container z-50 outline-none focus:outline-none flex flex-col">
+        <div className="overflow-x-hidden overflow-y-auto fixed cont z-50 outline-none focus:outline-none flex flex-col">
 
           <div className="opacity-25 fixed inset-0 z-50 bg-black"></div>
           <button
@@ -39,11 +39,11 @@ export const Modal: React.FC<IModal> = ({ btn, isModalLogin }) => {
             Fermer
           </button>
           {   /* @ts-ignore */ }
-          <div className="container-modal">
+          <div className="container-modal ">
           {isOpenLogin ? (<LoginModal loginOpen={setIsOpenLogin}></LoginModal>) : <RegisterModal loginOpen={setIsOpenLogin}></RegisterModal>}
           </div>
           <button
-            className="container-modal text-white text-xl"
+            className="container-modal text-white font-bold mt-10 text-3xl"
             type="button"
             onClick={() => setShowModal(false)}
           >

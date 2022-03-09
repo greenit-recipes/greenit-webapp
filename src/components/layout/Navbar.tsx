@@ -503,7 +503,7 @@ export const Navbar: React.FC = () => {
                     rounded="lg"
                     className="inline justify-end self-center | cursor-pointer mr-2"
                   >
-                    Créer un profil
+                    Accéder au profil
                   </Button>
                 </>
               }

@@ -216,7 +216,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   };
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   return (
-    <div className="grid justify-items-center w-full">
+    <div className="flex flex-col items-center justify-items-center w-full">
       <p className="text-xl font-medium w-2/3 md:text-2xl | mt-16 text-center">
         Création de ton espace DIY <br />
       </p>
