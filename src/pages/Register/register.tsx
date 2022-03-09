@@ -1,24 +1,23 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
-import React, { useEffect, useState } from "react";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
-import { Link, useHistory } from "react-router-dom";
-import Select from "react-select";
-import authService, { CREATE_ACCOUNT } from "services/auth.service";
-import { Footer, Navbar } from "../../components";
-import { BackgroundImage } from "../../components/layout/BackgroundImage";
-import { EditorGreenit } from "../../components/layout/EditorGreenit";
-import "./register.css";
-import { Helmet } from "react-helmet";
 import { mdpNonVisible, mdpVisible } from "icons";
-import draftToHtml from "draftjs-to-html";
 import {
   optionsUserCategoryAge,
   optionsUserCategoryLvl,
   optionsUserWantFromGreenit,
-  schemaRegister,
+  schemaRegister
 } from "pages/Register/registerHelper";
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { Link, useHistory } from "react-router-dom";
+import Select from "react-select";
+import authService, { CREATE_ACCOUNT } from "services/auth.service";
+import { EditorGreenit, Footer, Navbar } from "../../components";
+import { BackgroundImage } from "../../components/layout/BackgroundImage";
+import "./register.css";
+
 
 const Register: React.FC = () => {
   const {
@@ -83,7 +82,6 @@ const Register: React.FC = () => {
     biographie: string;
     isFollowNewsletter: boolean;
   }) => {
-    console.log("data -->", data);
     const getValue = (field: any) => field.value;
 
     authService.removeToken();
@@ -282,14 +280,11 @@ const Register: React.FC = () => {
               Pourquoi tu utilises ces ingrédients ?
               <br /> Comment tu utilises le produit ?
             </h3>
-            <textarea
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="biographie"
-              placeholder="biographie"
-              rows={12}
-              cols={34}
-              {...register("biographie")}
-            ></textarea>
+            <Controller
+              name="bio"
+              render={({ field }) => (<EditorGreenit {...field} />) }
+              control={control}
+            />
             <p className="text-red text-xs italic">
               {errors.biographie?.message}
             </p>
@@ -342,7 +337,6 @@ const Register: React.FC = () => {
               {errors.urlsSocialMedia?.message}
             </p>
           </div>
-          <EditorGreenit></EditorGreenit>
 
           <div className="flex w-full mb-4 mt-10 self-center ">
             <input
