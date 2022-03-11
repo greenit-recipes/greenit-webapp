@@ -6,3 +6,13 @@
   border-radius: 20px;
   overflow: hidden;
 }
+
+.rounded-singlePage {
+  border-radius: 49px;
+  box-shadow: 0px 0px 12px #00000029;
+}
+
+.icon-position-circle {
+  left: -10px;
+  top: -16px;
+}

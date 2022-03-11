@@ -31,7 +31,7 @@ export const SearchBar: React.FC<{
       <div className={`${totalSize} | flex | relative bg-white rounded-xl border-1 border-grey `}>
         <input
           type="text"
-          className={`text-base md:text-lg bg-transparent
+          className={` md:text-lg bg-transparent
           } | pl-5 w-full | focus:outline-none`}
           onKeyDown={(e) => {
             if (e.key === "Enter") {

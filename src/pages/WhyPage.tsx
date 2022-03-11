@@ -109,7 +109,7 @@ const WhyPage: React.FC = () => {
         </div>
 
         <div className="grid justify-items-center lg:w-2/3">
-          <p className="mt-5 text-base lg:text-xl w-3/4 text-justify">
+          <p className="mt-5  lg:text-xl w-3/4 text-justify">
             En mars 2020, lorsque le Covid confine Andrea chez elle, Andrea
             s’intéresse à la composition de ses produits du quotidien, lassée de
             ses irritations et allergies.
@@ -153,7 +153,7 @@ const WhyPage: React.FC = () => {
           ></img>
           <div className="">
             <h2 className="text-md md:text-xl text-green">Pour la planète</h2>
-            <h3 className="text-md md:text-base">
+            <h3 className="text-md md:">
               Parlons des compositions des shampoings, des lessives, des
               liquides vaisselles : silicones, methylchloroisothiazolinone,
               polycarboxylates… La liste est longue et leurs pollutions
@@ -171,7 +171,7 @@ const WhyPage: React.FC = () => {
             <h2 className="text-md md:text-xl text-blue text-right">
               Pour ton corps
             </h2>
-            <h3 className="text-md md:text-base text-right">
+            <h3 className="text-md md: text-right">
               Ces mêmes ingrédients chimiques endommagent, irritent et
               vulnérabilisent ta peau et tes cheveux. Hélas, même dans les
               produits les plus biologiques : les perturbateurs endocriniens,
@@ -193,7 +193,7 @@ const WhyPage: React.FC = () => {
             <h2 className="text-md md:text-xl text-yellow">
               Pour tes économies
             </h2>
-            <h3 className="text-md md:text-base">
+            <h3 className="text-md md:">
               27,90€ le baume réparateur bio ? 5,80€ le stick à lèvres naturel ?
               L’industrie des produits cosmétiques et ménagers ne respecte pas
               notre pouvoir d’achat. Sur Greenit, le baume revient à 6€ et le
@@ -209,7 +209,7 @@ const WhyPage: React.FC = () => {
             <h2 className="text-md md:text-xl text-orange text-right">
               Pour ton esprit
             </h2>
-            <h3 className="text-md md:text-base text-right">
+            <h3 className="text-md md: text-right">
               La production maison c’est aussi une activité manuelle et
               épanouissante. La création apporte une stimulation des sens, un
               sentiment d’accomplissement et une manière de se déconnecter, seul

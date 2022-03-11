@@ -209,7 +209,7 @@ const LandingPage = () => {
           <h2 className="text-xl px-6 md:px-0 md:text-2xl | mb-4 text-center">
             Le guide pour se lancer dans le DIY
           </h2>
-          <h3 className="text-sm lg:text-base font-light text-center">
+          <h3 className="text-sm lg: font-light text-center">
             3 étapes simples pour vous lancer dans le fait-maison, co-écrit avec
             des experts de la communauté Greenit !
           </h3>

@@ -34,7 +34,7 @@ const RecipeCreatedPage = () => {
             Ta recette est en attente de validation. Tu seras notifié une fois
             la publication dans les 24/48h.
           </h3>
-          <h3 className="text-center text-sm md:text-base mt-10">
+          <h3 className="text-center text-sm md: mt-10">
             Si tu souhaites la modifier, envoie-nous un email au plus vite à
             hello@greenitcommunity.com.{" "}
           </h3>

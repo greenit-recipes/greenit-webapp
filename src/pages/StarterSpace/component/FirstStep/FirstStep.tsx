@@ -30,7 +30,7 @@ export const FirstStep: React.FC<IFirstStep> = ({ item }) => {
           />
         </div>
         <div className="ml-4">
-          <h2 className="text-base lg:text-xl font-medium">
+          <h2 className=" lg:text-xl font-medium">
             {item.userPresentationTitle}
           </h2>
           <h4 className="text-xs lg:text-lg font-light">
@@ -38,7 +38,7 @@ export const FirstStep: React.FC<IFirstStep> = ({ item }) => {
           </h4>
         </div>
       </div>
-      <h3 className="text-base text-blue lg:text-xl font-semibold mb-2">
+      <h3 className=" text-blue lg:text-xl font-semibold mb-2">
         "{item.citation}"
       </h3>
       <h3 className="text-sm lg:text-lg font-light">

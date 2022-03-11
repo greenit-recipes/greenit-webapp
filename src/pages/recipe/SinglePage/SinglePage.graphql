@@ -48,10 +48,6 @@ query recipe($urlId: String!) {
       }
     }
     description
-    tags {
-      id
-      name
-    }
     instructions
   }
   me {

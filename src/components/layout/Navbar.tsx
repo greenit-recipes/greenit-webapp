@@ -445,7 +445,7 @@ export const Navbar: React.FC = () => {
                 id="Share_a_recipe"
                 type="grey"
                 rounded="lg"
-                className="flex justify-end self-center text-xl | mr-2 cursor-pointer"
+                className="flex justify-end self-center | mr-2 cursor-pointer"
               >
                 Partager une recette
               </Button>
@@ -456,7 +456,7 @@ export const Navbar: React.FC = () => {
                 id="Share_a_recipe"
                 type="grey"
                 rounded="lg"
-                className="flex justify-end self-center text-xl | mr-2 cursor-pointer"
+                className="flex justify-end self-center | mr-2 cursor-pointer"
               >
                 {" "}
                 Partager une recette
@@ -464,23 +464,23 @@ export const Navbar: React.FC = () => {
             </Link>
           )}
           {isLoggedIn ? (
-            <Link to={RouteName.profil}>
+            <Link to={RouteName.profil} className="flex">
               <Button
                 id="Access_Profil"
                 type="blue"
                 rounded="lg"
-                className="flex justify-end self-center text-xl | mr-4 cursor-pointer"
+                className="flex justify-end self-center | mr-4 cursor-pointer"
               >
                 Profil
               </Button>
             </Link>
           ) : (
-            <Link className="justify-self-end" to={RouteName.register}>
+            <Link to={RouteName.register} className="flex">
               <Button
                 id="Create_Profil"
                 type="green"
                 rounded="lg"
-                className="inline justify-end self-center | cursor-pointer mr-2"
+                className="flex justify-end self-center | cursor-pointer mr-2"
               >
                 Créer un profil
               </Button>

@@ -19,8 +19,10 @@ import ReactPlayer from "react-player";
 import { Link, useHistory, useParams } from "react-router-dom";
 import authService from "services/auth.service";
 import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
+import { HeaderRecipe } from "./HeaderRecipe/HeaderRecipe";
+import { CircleGreenit } from "./CircleGreenit/CircleGreenit";
 import * as yup from "yup";
-import { Button, Container, Footer, Grid, Loading, Navbar } from "components";
+import { Button, Footer, Grid, Loading, Navbar } from "components";
 import { useRecipeQuery } from "../../../graphql";
 import { noVideo, partageIcon, retourIcon } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
@@ -55,13 +57,13 @@ const Instruction: React.FC<InstructionProps> = ({
 };
 
 const closest = (needle: number, haystack: any[]) => {
-  return haystack.reduce((a: any, b: any) => {
-    let aDiff = Math.abs(a - needle);
+  return haystack.reduce((r: any, b: any) => {
+    let aDiff = Math.abs(r - needle);
     let bDiff = Math.abs(b - needle);
     if (aDiff === bDiff) {
-      return a > b ? a : b;
+      return r > b ? r : b;
     } else {
-      return bDiff < aDiff ? b : a;
+      return bDiff < aDiff ? b : r;
     }
   });
 };
@@ -109,7 +111,7 @@ const RecipeSinglePage = () => {
 
   useEffect(() => {
     setNbrComment(data?.recipe?.numberOfComments);
-    checkUserAlreadyViewReipe(data?.recipe?.id)
+    checkUserAlreadyViewReipe(data?.recipe?.id);
   }, [data]);
 
   const player = createRef<ReactPlayer>();
@@ -213,287 +215,295 @@ const RecipeSinglePage = () => {
           >
             <img alt="Retour icon" src={retourIcon} />
           </div>
-          <div className="w-5/6 md:w-4/6 mb-10">
-            <Container className="mt-10 md:mt-8 flex" itemsCenter>
+          <HeaderRecipe recipe={recipe} className="" />
+          <div className="w-full flex flex-col | items-center mt-80 pt-10 z-20 bg-white rounded-singlePage">
+            <div className="w-5/6 md:w-4/6 mb-10">
               <div className="w-full h-auto">
-                <div className="grid grid-flow-row justify-center">
-                  <h1 className="text-2xl md:text-4xl text-center font-medium">
+                <div className="justify-center">
+                  <h1 className="text-3xl text-center fontQSsemibold mb-5">
                     {recipe?.name}
                   </h1>
-                  <h3 className="text-base md:text-lg text-center">
+                  <div>
+                    <FavouriteField recipe={data?.recipe}></FavouriteField>
+                    <h2 className="text-center " ref={fieldRef}>
+                      {" "}
+                      Ajouter au favoris
+                    </h2>
+                  </div>
+                  <div>
+                    <div>
+                      <RWebShare
+                        data={{
+                          text: recipe?.titleSeo,
+                          url: window.location.href,
+                          title: recipe?.name,
+                        }}
+                      >
+                        <button
+                          className="justify-items-center"
+                          id="shared-recipe"
+                        >
+                          <img
+                            src={partageIcon}
+                            alt="Partager"
+                            loading="lazy"
+                            className="justify-self-center w-10 h-10 lg:w-12 lg:h-12"
+                          />
+                          <h2 className="text-center "> Partager </h2>
+                        </button>
+                      </RWebShare>
+                    </div>
+                  </div>
+
+                  <h3 className=" md:text-lg text-center">
                     {
                       // @ts-ignore: Object is possibly 'null'.
                       recipe && HTMLReactParser(recipe?.textAssociate)
                     }
                   </h3>
-                  <div className="flex justify-center mt-5">
-                    <UserBadge
-                      image={recipe?.author?.imageProfile}
+                </div>
+                <div className="flex items-center justify-center">
+                  <CircleGreenit
+                    colorCircle="bg-orange"
+                    symbol="-"
+                    number="4"
+                    text="Subtances épargnée"
+                    isSymbolAtEndOfLine={false}
+                  />
+                  <CircleGreenit
+                    colorCircle="bg-yellow"
+                    symbol="€"
+                    number="4"
+                    text="Argent épargnée"
+                  />
+                  <CircleGreenit
+                    colorCircle="bg-green"
+                    symbol="g"
+                    number="10"
+                    text="CO2 épargnée"
+                  />
+                </div>
+                {/* Description + image */}
+                <div className="flex">
+                  <div className="flex flex-col">
+                    <h2 className="mb-6 mt-2 text-xl">
+                      Description
+                    </h2>
+
+                    <img
                       // @ts-ignore
-                      facebookImg={recipe?.author?.photoUrl}
-                      name={recipe?.author?.username}
-                    ></UserBadge>
-                    <LikeField
-                      recipe={data?.recipe}
-                      isRecipeCard={false}
-                    ></LikeField>
-                    <CommentField
-                      // @ts-ignore
-                      parentFunction={scrollIntoComment}
-                    >
-                      {nbrComment}
-                    </CommentField>
+                      src={getImagePath(recipe?.image)}
+                      alt={recipe?.name}
+                      loading="lazy"
+                      className=" h-96 min-w-64 w-64 rounded-3xl"
+                    />
+                  </div>
+
+                  <div className="mt-10 flex flex-col ml-12">
+                    {!isEmpty(recipe?.description) ? (
+                      <div className="leading-relaxed fontQSmedium ">
+                        {
+                          // @ts-ignore: Object is possibly 'null'.
+                          recipe && HTMLReactParser(recipe?.description)
+                        }
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <div className="pt-5 pb-2 text-xl md:text-2xl">
+                      Conservation
+                    </div>
+                    <p className="text-lg md:text-xl">{recipe?.expiry}</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 grid-flow-row auto-rows-max md:grid-cols-3 gap-6 mt-8">
-                  <img
-                    // @ts-ignore
-                    src={getImagePath(recipe?.image)}
-                    alt={recipe?.name}
-                    loading="lazy"
-                    className="row-span-3 md:col-span-2 lg:col-span-1 h-96 min-w-64 w-64 rounded-3xl | object-cover flex justify-self-center md:justify-self-start"
-                  />
-                  <div className="col-span-1 lg:col-span-2 w-full whitespace-pre break-all flex-wrap inline-flex">
-                    {recipe?.tags.map((item, index) => (
+              </div>
+
+              <Grid type="col" size={{ default: 1, lg: 2 }} className="mt-10">
+                <div className="h-60 md:h-80 w-auto rounded-2xl">
+                  {isEmpty(recipe?.videoUrl) && isEmpty(recipe?.video) ? (
+                    <div className="grid w-full h-full bg-white justify-items-center items-center">
+                      <img
+                        src={noVideo}
+                        alt={"Pas de vidéo"}
+                        className="h-60 md:h-80 object-cover rounded-lg"
+                      ></img>
+                    </div>
+                  ) : (
+                    <ReactPlayer
+                      // @ts-ignore
+                      url={
+                        recipe?.video
+                          ? getImagePath(recipe?.video)
+                          : recipe?.videoUrl
+                      }
+                      className="react-player"
+                      controls={true}
+                      ref={player}
+                      config={{
+                        youtube: {
+                          playerVars: { showinfo: 1, rel: 0 },
+                        },
+                      }}
+                      width="100%"
+                      height="100%"
+                    />
+                  )}
+                </div>
+                <div className="mt-4 flex flex-col self-start mr-10">
+                  <h2 className="pb-1 text-xl md:text-2xl">Ingredients</h2>
+                  {/* @ts-ignore*/}
+                  {recipe.ingredients.map((item, index) => (
+                    <h3 className="text-lg md:text-xl pt-2" key={index}>
+                      {item.amount} {item.name}
+                    </h3>
+                  ))}
+                </div>
+                <div className="mt-5 flex flex-col self-start">
+                  <h2 className="pb-1 text-xl md:text-2xl">Ustensiles</h2>
+                  {recipe?.utensils.map((item, index) => (
+                    <h3 className="text-lg md:text-xl pt-2" key={index}>
+                      {item.name}
+                    </h3>
+                  ))}
+                </div>
+                <div className="mt-5 lg:mt-0 md:ml-10">
+                  <h2 className="text-xl md:text-2xl">Instructions</h2>
+                  <h3 className="text-xs md:text-sm">
+                    ⤹ Clique sur les numéros pour faire avancer la vidéo
+                  </h3>
+                  {recipe?.instructions.map((item: any, index: number) => {
+                    const timestamp = getSecondsFromDuration(item.timestamp);
+                    return (
                       <div
                         key={index}
-                        className="m-1 mb-1 bg-black text-white pl-3 pr-3 text-md rounded-lg flex items-center cursor-pointer"
-                        style={{ backgroundColor: "#888888" }}
+                        className="flex flex-col cursor-pointer"
+                        onClick={() => {
+                          setVideoDuration(timestamp);
+                          player.current?.seekTo(timestamp);
+                          player.current?.getInternalPlayer().playVideo();
+                        }}
                       >
-                        {item.name}
+                        <Instruction
+                          index={index + 1}
+                          text={`${item.content}`}
+                          isHighlighted={
+                            closest(
+                              videoDuration,
+                              recipe.instructions.map((item: any) => {
+                                return getSecondsFromDuration(item.timestamp);
+                              })
+                            ) === timestamp
+                          }
+                        />
                       </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 flex flex-col self-start mr-10">
-                    <h2 className="pb-1 text-xl md:text-2xl">Ingredients</h2>
-                    {/* @ts-ignore*/}
-                    {recipe.ingredients.map((item, index) => (
-                      <h3 className="text-lg md:text-xl pt-2" key={index}>
-                        {item.amount} {item.name}
-                      </h3>
-                    ))}
-                  </div>
-                  <div className="mt-5 flex flex-col self-start">
-                    <h2 className="pb-1 text-xl md:text-2xl">Ustensiles</h2>
-                    {recipe?.utensils.map((item, index) => (
-                      <h3 className="text-lg md:text-xl pt-2" key={index}>
-                        {item.name}
-                      </h3>
-                    ))}
-                  </div>
+                    );
+                  })}
                 </div>
+              </Grid>
+              <div className="mt-8 flex flex-col">
+                <h2 className="pb-2 text-xl md:text-2xl">
+                  Conseils de l'auteur
+                </h2>
+                <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
               </div>
-            </Container>
-            <div className="mt-10 flex flex-col">
-              <h2 className="pb-2 text-xl md:text-2xl">Description</h2>
-              {!isEmpty(recipe?.description) ? (
-                <div className="text-lg md:text-xl leading-relaxed">
-                  {
-                    // @ts-ignore: Object is possibly 'null'.
-                    recipe && HTMLReactParser(recipe?.description)
-                  }
+              <div className="mt-8 flex flex-col">
+                <p className="text-xs text-grey">
+                  Quelques précautions sont à prendre lors de la confection de
+                  vos produits. Pour chaque recette postée, nous passons du
+                  temps à les vérifier (et modifier si nécessaire). Toutefois,
+                  certaines personnes peuvent réagir différemment. Il est
+                  recommandé de tester les produits sur votre poignet 48 h avant
+                  l’utilisation sur votre peau. Greenit n’est pas responsable en
+                  cas d’allergies ou problèmes liés à l’exécution et application
+                  de la recette.
+                </p>
+              </div>
+              {recipe && (
+                <div className="mt-6 flex flex-col mb-5">
+                  <h2 className="text-xl md:text-2xl">Recettes similaires</h2>
+                  <SimilarRecipe data={recipe}></SimilarRecipe>
                 </div>
-              ) : (
-                ""
               )}
-              <h2 className="pt-5 pb-2 text-xl md:text-2xl">Conservation</h2>
-              <p className="text-lg md:text-xl">{recipe?.expiry}</p>
-            </div>
-            <Grid type="col" size={{ default: 1, lg: 2 }} className="mt-10">
-              <div className="h-60 md:h-80 w-auto rounded-2xl">
-                {isEmpty(recipe?.videoUrl) && isEmpty(recipe?.video) ? (
-                  <div className="grid w-full h-full bg-white justify-items-center items-center">
-                    <img
-                      src={noVideo}
-                      alt={"Pas de vidéo"}
-                      className="h-60 md:h-80 object-cover rounded-lg"
-                    ></img>
-                  </div>
-                ) : (
-                  <ReactPlayer
-                    // @ts-ignore
-                    url={
-                      recipe?.video
-                        ? getImagePath(recipe?.video)
-                        : recipe?.videoUrl
-                    }
-                    className="react-player"
-                    controls={true}
-                    ref={player}
-                    config={{
-                      youtube: {
-                        playerVars: { showinfo: 1, rel: 0 },
-                      },
-                    }}
-                    width="100%"
-                    height="100%"
-                  />
-                )}
-              </div>
-              <div className="mt-5 lg:mt-0 md:ml-10">
-                <h2 className="text-xl md:text-2xl">Instructions</h2>
-                <h3 className="text-xs md:text-sm">
-                  ⤹ Clique sur les numéros pour faire avancer la vidéo
-                </h3>
-                {recipe?.instructions.map((item: any, index: number) => {
-                  const timestamp = getSecondsFromDuration(item.timestamp);
+              <div className="mt-6 flex flex-col">
+                <h2 className="text-xl md:text-2xl">Discussion</h2>
+                {recipe?.comments?.map((comment: any, index: number) => {
+                  // @ts-ignore
                   return (
-                    <div
-                      key={index}
-                      className="flex flex-col cursor-pointer"
-                      onClick={() => {
-                        setVideoDuration(timestamp);
-                        player.current?.seekTo(timestamp);
-                        player.current?.getInternalPlayer().playVideo();
-                      }}
-                    >
-                      <Instruction
-                        index={index + 1}
-                        text={`${item.content}`}
-                        isHighlighted={
-                          closest(
-                            videoDuration,
-                            recipe.instructions.map((item: any) => {
-                              return getSecondsFromDuration(item.timestamp);
-                            })
-                          ) === timestamp
-                        }
-                      />
+                    <div className="mt-3 flex flex-col" key={index}>
+                      <div className="relative bg-orange bg-opacity-10 rounded-xl p-4">
+                        <UserBadge
+                          facebookImg={comment?.author?.photoUrl}
+                          image={comment?.author?.imageProfile}
+                          name={comment?.author?.username}
+                          className="mb-2"
+                        ></UserBadge>
+                        {comment?.author?.id === recipe?.author?.id && (
+                          <div> (créateur de la recette) </div>
+                        )}
+                        <div className="text-md lg:text-lg">
+                          <h3 className=""> {comment?.comment} </h3>
+                        </div>
+                        <h3 className="absolute top-0 right-0 m-6 | ">
+                          {momentGreenit(comment?.createdAt)}
+                        </h3>
+                        <div className="absolute -bottom-1 -right-1">
+                          {/* @ts-ignore */}
+                          <LikeComment
+                            isMyComment={
+                              // @ts-ignore
+                              getUuidFromId(data?.me?.id) ===
+                              comment?.author?.id
+                            }
+                            comment={comment}
+                          ></LikeComment>
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
               </div>
-            </Grid>
-            <div className="mt-8 flex flex-col">
-              <h2 className="pb-2 text-xl md:text-2xl">Conseils de l'auteur</h2>
-              <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
-            </div>
-            <div className="mt-8 flex flex-col">
-              <p className="text-xs text-grey">
-                Quelques précautions sont à prendre lors de la confection de vos
-                produits. Pour chaque recette postée, nous passons du temps à
-                les vérifier (et modifier si nécessaire). Toutefois, certaines
-                personnes peuvent réagir différemment. Il est recommandé de
-                tester les produits sur votre poignet 48 h avant l’utilisation
-                sur votre peau. Greenit n’est pas responsable en cas d’allergies
-                ou problèmes liés à l’exécution et application de la recette.
-              </p>
-            </div>
-            <div className="grid justify-items-center w-full">
-              <div className="grid grid-cols-2 gap-2 lg:gap-10 m-10 justify-items-center w-2/3 md:w-80">
-                <div className="grid justify-items-center">
-                  <FavouriteField recipe={data?.recipe}></FavouriteField>
-                  <h2 className="text-center text-base" ref={fieldRef}>
-                    {" "}
-                    Ajouter au favoris
-                  </h2>
+              <form
+                className="filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10 p-4 mb-4 mt-10"
+                onSubmit={handleSubmit(onSubmitHandler)}
+              >
+                <div className="mb-4">
+                  <label className="block text-gray-700  md:text-lg mb-2">
+                    Partage tes retours et tes astuces !
+                  </label>
                 </div>
-                <div>
-                  <RWebShare
-                    data={{
-                      text: recipe?.titleSeo,
-                      url: window.location.href,
-                      title: recipe?.name,
-                    }}
-                  >
-                    <button className="grid justify-items-center"
-                                            id="shared-recipe"                                            >
-                      <img
-                        src={partageIcon}
-                        alt="Partager"
-                        loading="lazy"
-                        className="justify-self-center w-10 h-10 lg:w-12 lg:h-12"
-                      />
-                      <h2 className="text-center text-base"> Partager </h2>
-                    </button>
-                  </RWebShare>
-                </div>
-              </div>
-            </div>
-            {recipe && (
-              <div className="mt-6 flex flex-col mb-5">
-                <h2 className="text-xl md:text-2xl">Recettes similaires</h2>
-                <SimilarRecipe data={recipe}></SimilarRecipe>
-              </div>
-            )}
-            <div className="mt-6 flex flex-col">
-              <h2 className="text-xl md:text-2xl">Discussion</h2>
-              {recipe?.comments?.map((comment: any, index: number) => {
-                // @ts-ignore
-                return (
-                  <div className="mt-3 flex flex-col" key={index}>
-                    <div className="relative bg-orange bg-opacity-10 rounded-xl p-4">
-                      <UserBadge
-                        facebookImg={comment?.author?.photoUrl}
-                        image={comment?.author?.imageProfile}
-                        name={comment?.author?.username}
-                        className="mb-2"
-                      ></UserBadge>
-                      {comment?.author?.id === recipe?.author?.id && (
-                        <div> (créateur de la recette) </div>
-                      )}
-                      <div className="text-md lg:text-lg">
-                        <h3 className="text-base"> {comment?.comment} </h3>
-                      </div>
-                      <h3 className="absolute top-0 right-0 m-6 | text-base">
-                        {momentGreenit(comment?.createdAt)}
-                      </h3>
-                      <div className="absolute -bottom-1 -right-1">
-                        {/* @ts-ignore */}
-                        <LikeComment
-                          isMyComment={
-                            // @ts-ignore
-                            getUuidFromId(data?.me?.id) === comment?.author?.id
-                          }
-                          comment={comment}
-                        ></LikeComment>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            <form
-              className="filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10 p-4 mb-4 mt-10"
-              onSubmit={handleSubmit(onSubmitHandler)}
-            >
-              <div className="mb-4">
-                <label className="block text-gray-700 text-base md:text-lg mb-2">
-                  Partage tes retours et tes astuces !
-                </label>
-              </div>
-              <div className="flex items-center justify-between">
-                {isLoggedIn ? (
-                  <div className="mb-4 w-full">
-                    <textarea
-                      className="appearance-none rounded w-full sm:w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="comment"
-                      placeholder="Commentaire"
-                      {...register("comment")}
-                    ></textarea>
-                    <p className="text-red-500 text-xs italic">
-                      {errors.comment?.message}
-                    </p>
+                <div className="flex items-center justify-between">
+                  {isLoggedIn ? (
+                    <div className="mb-4 w-full">
+                      <textarea
+                        className="appearance-none rounded w-full sm:w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="comment"
+                        placeholder="Commentaire"
+                        {...register("comment")}
+                      ></textarea>
+                      <p className="text-red-500 text-xs italic">
+                        {errors.comment?.message}
+                      </p>
 
-                    <Button
-                      className="w-24 rounded focus:outline-none focus:shadow-outline"
-                      type="submit"
-                    >
-                      Publier
-                    </Button>
-                  </div>
-                ) : (
-                  <Link to={RouteName.register}>
-                    <Button
-                      className="rounded focus:outline-none focus:shadow-outline"
-                      type="submit"
-                    >
-                      Se connecter pour discuter
-                    </Button>
-                  </Link>
-                )}
-              </div>
-            </form>
+                      <Button
+                        className="w-24 rounded focus:outline-none focus:shadow-outline"
+                        type="submit"
+                      >
+                        Publier
+                      </Button>
+                    </div>
+                  ) : (
+                    <Link to={RouteName.register}>
+                      <Button
+                        className="rounded focus:outline-none focus:shadow-outline"
+                        type="submit"
+                      >
+                        Se connecter pour discuter
+                      </Button>
+                    </Link>
+                  )}
+                </div>
+              </form>
+            </div>
           </div>
           <Footer />
         </div>

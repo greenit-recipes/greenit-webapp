@@ -23,7 +23,7 @@ export const NavButton: React.FC<NavButtonProps> = ({
       className={`${className} flex justify-center items-center cursor-pointer
         border-b-2 border-transparent px-5 pb-2 mt-2
         ease-linear transition-all duration-150
-        font-medium md:text-base lg:text-lg
+        font-medium md: lg:text-lg
         hover:border-${
           type ? type : "blue"
         } hover:text-${type ? type : "blue"}`}

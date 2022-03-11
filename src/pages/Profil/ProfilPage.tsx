@@ -100,7 +100,7 @@ const ProfilPage: React.FC = () => {
           }
           onClick={() => setVisible(false)}
         >
-          <h3 className="text-base md:text-2xl">Recettes favorites</h3>
+          <h3 className=" md:text-2xl">Recettes favorites</h3>
         </button>
         <button
           className={
@@ -109,7 +109,7 @@ const ProfilPage: React.FC = () => {
           }
           onClick={() => setVisible(true)}
         >
-          <h3 className="text-base md:text-2xl">Vos recettes</h3>
+          <h3 className=" md:text-2xl">Vos recettes</h3>
         </button>
       </div>
 
@@ -124,10 +124,10 @@ const ProfilPage: React.FC = () => {
                     (visible ? " hidden" : "")
                   }
                 >
-                  <h2 className="text-base md:text-2xl">
+                  <h2 className=" md:text-2xl">
                     Tu n'as pas encore de recette favorite
                   </h2>
-                  <h3 className="text-base md:text-xl mt-4">
+                  <h3 className=" md:text-xl mt-4">
                     Pour mettre une recette en favoris <br />
                     appuie sur le coeur de la recette
                   </h3>

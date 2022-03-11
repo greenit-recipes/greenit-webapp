@@ -126,7 +126,7 @@ const StarterPage = () => {
             Pour tous les curieux qui ne savent pas par où commencer dans le
             DIY, <br /> ce guide est fait pour vous !
           </h2>
-          <h3 className="text-sm lg:text-base font-light">
+          <h3 className="text-sm lg: font-light">
             Voici 3 étapes simples pour vous lancer dans le fait-maison en
             débutant pas à pas.
           </h3>
@@ -288,7 +288,7 @@ const StarterPage = () => {
                 <h3 className="text-xl text-center font-semibold h-8">
                   {item.maintitle}
                 </h3>
-                <h2 className="text-base text-center mb-2 h-8">{item.title}</h2>
+                <h2 className=" text-center mb-2 h-8">{item.title}</h2>
                 <h4 className="text-sm  text-center font-light h-32">
                   {item.subtitle}
                 </h4>
@@ -949,7 +949,7 @@ const StarterPage = () => {
       ></SectionStarterPage>
 
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 justify-self-center justify-content-center w-10/12 lg:w-3/5 mt-6 mb-16">
-        <h3 className="text-sm lg:text-base lg:col-span-2 font-light mt-6">
+        <h3 className="text-sm lg: lg:col-span-2 font-light mt-6">
           <p>
             "Avec les ingrédients de la cuisine" réuni toutes les recettes avec
             des ingrédients que l’on peut déjà avoir chez soi.
@@ -973,7 +973,7 @@ const StarterPage = () => {
             />
           ))}
         </div>
-        <h3 className="text-sm lg:text-base lg:col-span-2 font-light mt-6 text-right">
+        <h3 className="text-sm lg: lg:col-span-2 font-light mt-6 text-right">
           <p>"Premiers pas" réuni toutes les recettes les plus simples.</p>
         </h3>
       </div>

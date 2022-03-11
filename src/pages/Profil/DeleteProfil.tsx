@@ -38,7 +38,7 @@ const DeleteProfil: React.FC = () => {
               alt="greenit mail"
               className="w-6 h-6 self-center"
             />
-            <h3 className="text-base md:text-xl self-center">
+            <h3 className=" md:text-xl self-center">
               hello@greenitcommunity.com
             </h3>
           </a>

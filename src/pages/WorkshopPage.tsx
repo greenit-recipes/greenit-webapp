@@ -189,7 +189,7 @@ const WorkshopPage = () => {
                   <h3 className="pl-3 text-lg md:text-xl">
                     Les Ateliers Greenit
                   </h3>
-                  <h5 className="pl-3 text-base">Adrien et Andrea </h5>
+                  <h5 className="pl-3 ">Adrien et Andrea </h5>
                 </div>
               </div>
             </div>
@@ -204,7 +204,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent mt-4 rounded md:col-span-2">
               <div>
-                <h3 className="text-ms md:text-base">
+                <h3 className="text-ms md:">
                   Nous sommes passionnés de fait-maison depuis de nombreuses
                   années. Adrien et Andrea vous proposent un atelier gratuit
                   pensé pour les curieux et nouveaux arrivants dans le monde du
@@ -234,7 +234,7 @@ const WorkshopPage = () => {
                   <h2>Prochain ateliers :</h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl">
-                  <h5 className="text-base">Samedi 26 Mars</h5>
+                  <h5 className="">Samedi 26 Mars</h5>
                   <h5 className="text-sm">10h00 - 11h30 (CEST)</h5>
                   <h5 className="text-sm">Gratuit 0€</h5>
                   <div className="flex justify-center items-center align-middle">
@@ -253,7 +253,7 @@ const WorkshopPage = () => {
             <div className="mt-4 md:col-span-2">
               <div className="static">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:text-base">
+                <h5 className="text-sm mt-2 md:">
                   Cet atelier est destiné aux débutants ! Quelles sont les
                   premières étapes ? Quelles huiles choisir ? Quelles
                   compositions ? Où acheter ? Nous parlerons de l’expansion du
@@ -276,7 +276,7 @@ const WorkshopPage = () => {
                   <h3 className="pl-3 text-lg md:text-xl">
                     Les formations : classe découverte et classe verte
                   </h3>
-                  <h5 className="pl-3 text-base">Le Kaba </h5>
+                  <h5 className="pl-3 ">Le Kaba </h5>
                 </div>
               </div>
             </div>
@@ -291,7 +291,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent mt-4 rounded md:col-span-2">
               <div>
-                <h3 className="text-ms md:text-base">
+                <h3 className="text-ms md:">
                   Le Kaba regroupe de nombreux comparatifs, articles et
                   formations pour te guider à la consommation éco-responsable !
                   Formez-vous avec un expert de la consommation éco-responsable
@@ -322,7 +322,7 @@ const WorkshopPage = () => {
                   <h2>La classe verte :</h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
-                  <h5 className="text-base">Jeudi 7 avril</h5>
+                  <h5 className="">Jeudi 7 avril</h5>
                   <h5 className="text-sm">12h30 - 14h</h5>
                   <h5 className="text-sm">25€</h5>
                   <div className="flex justify-center items-center align-middle">
@@ -337,7 +337,7 @@ const WorkshopPage = () => {
                   </div>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44">
-                  <h5 className="text-base">Mardi 15 mars</h5>
+                  <h5 className="">Mardi 15 mars</h5>
                   <h5 className="text-sm">21h - 22h30</h5>
                   <h5 className="text-sm">25€</h5>
                   <div className="flex justify-center items-center align-middle">
@@ -356,7 +356,7 @@ const WorkshopPage = () => {
             <div className="mt-4 md:col-span-2">
               <div className="static">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:text-base">
+                <h5 className="text-sm mt-2 md:">
                   🕑 1h30 minutes de formation et 30 minutes de
                   questions/réponses
                   <br /> 📝 Des conseils concrets, faciles à mettre en place
@@ -411,7 +411,7 @@ const WorkshopPage = () => {
                   <h3 className="pl-3 text-lg md:text-xl">
                     L’atelier cosmétique de Margaux
                   </h3>
-                  <h5 className="pl-3 text-base">
+                  <h5 className="pl-3 ">
                     {" "}
                     Animatrice d’ateliers cosmétiques et formée en cosmétologie
                     naturelle{" "}
@@ -433,7 +433,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent mt-4 rounded md:col-span-2">
               <div>
-                <h3 className="text-ms md:text-base">
+                <h3 className="text-ms md:">
                   Experte en cosmétologie naturelle, je propose des ateliers
                   cosmétique clef en main (ingrédients, matériels, contenants
                   fournis) le but est d’apprendre à formuler ses propres
@@ -465,7 +465,7 @@ const WorkshopPage = () => {
                   </h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl">
-                  <h5 className="text-base">Jeudi 10 Mars</h5>
+                  <h5 className="">Jeudi 10 Mars</h5>
                   <h5 className="text-sm">10h - 13h00 (CEST)</h5>
                   <h5 className="text-sm">55€</h5>
                   <div className="flex justify-center items-center align-middle">
@@ -484,7 +484,7 @@ const WorkshopPage = () => {
             <div className="mt-4 md:col-span-2">
               <div className="static">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:text-base">
+                <h5 className="text-sm mt-2 md:">
                   Durant cet atelier vous réalisez : un savon solide selon la
                   méthode saponification à froid. Vous repartez avec votre
                   savon, la recette, des infos et de précieux conseils pour
@@ -529,7 +529,7 @@ const WorkshopPage = () => {
                   <h3 className="pl-3 text-lg md:text-xl">
                     Ateliers Éclat d'essences
                   </h3>
-                  <h5 className="pl-3 text-base">
+                  <h5 className="pl-3 ">
                     {" "}
                     Ateliers de cosmétiques bio DIY et d'aromathérapie !{" "}
                   </h5>
@@ -550,7 +550,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent mt-4 rounded md:col-span-2">
               <div>
-                <h3 className="text-ms md:text-base">
+                <h3 className="text-ms md:">
                   Passionnée par le DIY et diplômée en aromathérapie, j'anime
                   des ateliers pour vous initier à l’élaboration de vos propres
                   cosmétiques naturels ainsi qu’à l’utilisation des huiles
@@ -600,7 +600,7 @@ const WorkshopPage = () => {
                   <h3> Cosmétiques naturels </h3>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
-                  <h5 className="text-base">
+                  <h5 className="">
                     Contacter Eclat d'Essences pour la date et le lieu.
                   </h5>
                   <h5 className="text-sm">à partir de 30 euros</h5>
@@ -620,7 +620,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:text-base">
+                <h5 className="text-sm mt-2 md:">
                   Réalisation en groupe d'une recette 'cosmétique' et d'une
                   recette 'produit ménager'.
                 </h5>
@@ -633,7 +633,7 @@ const WorkshopPage = () => {
                   <h3> La trousse aroma de l'hiver </h3>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
-                  <h5 className="text-base">
+                  <h5 className="">
                     Contacter Eclat d'Essences pour la date et le lieu.
                   </h5>
                   <h5 className="text-sm">à partir de 30 euros</h5>
@@ -653,7 +653,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:text-base">
+                <h5 className="text-sm mt-2 md:">
                   Réalisation d’un roll-on ‘Immunité’ par participant.
                 </h5>
               </div>
@@ -664,7 +664,7 @@ const WorkshopPage = () => {
                   <h2> Atelier 'Un temps pour soi'</h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
-                  <h5 className="text-base">
+                  <h5 className="">
                     Contacter Eclat d'Essences pour la date et le lieu.
                   </h5>
                   <h5 className="text-sm">à partir de 30 euros</h5>
@@ -684,7 +684,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:text-base">
+                <h5 className="text-sm mt-2 md:">
                   Soin complet du visage en cosmétique naturel bio. Réalisation
                   en groupe d’une recette 'cosmétique' : masque purifiant et
                   régénérant.
@@ -725,7 +725,7 @@ const WorkshopPage = () => {
                   <h3 className="pl-3 text-lg md:text-xl">
                     Lavande et Camomille
                   </h3>
-                  <h5 className="pl-3 text-base"> Le diy tout naturellement</h5>
+                  <h5 className="pl-3 "> Le diy tout naturellement</h5>
                 </div>
               </div>
             </div>
@@ -743,7 +743,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent mt-4 rounded md:col-span-2">
               <div>
-                <h3 className="text-ms md:text-base">
+                <h3 className="text-ms md:">
                   Créer ses cosmétiques maison, ses produits ménagers, ses
                   bougies et parfums aux essences naturelles...le rêve non? Les
                   Ateliers Lavande et Camomille accompagnent particuliers et
@@ -792,7 +792,7 @@ const WorkshopPage = () => {
                   </h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
-                  <h5 className="text-base">Mardi 15 Mars</h5>
+                  <h5 className="">Mardi 15 Mars</h5>
                   <h5 className="text-sm">18h30 – 20h45</h5>
                   <h5 className="text-sm">45€</h5>
                   <div className="flex justify-center items-center align-middle">
@@ -811,7 +811,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:text-base">
+                <h5 className="text-sm mt-2 md:">
                   Venez participer à cet atelier DIY où j'aurais le plaisir de
                   vous guider dans la réalisation de vos 2 soins naturels pour
                   vos cheveux : un shampoing solide aux poudres de plantes et un
@@ -830,7 +830,7 @@ const WorkshopPage = () => {
                   </h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
-                  <h5 className="text-base">Jeudi 17 Mars</h5>
+                  <h5 className="">Jeudi 17 Mars</h5>
                   <h5 className="text-sm">18h30 – 20h30</h5>
                   <h5 className="text-sm">40€</h5>
                   <div className="flex justify-center items-center align-middle">
@@ -849,7 +849,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:text-base">
+                <h5 className="text-sm mt-2 md:">
                   Venez participer à cet atelier DIY ou j'aurais le plaisir de
                   vous guider dans la fabrication d’une bougie 100% naturelle,
                   parfumée et décorée aux fleurs séchées. Ce workshop vous
@@ -868,7 +868,7 @@ const WorkshopPage = () => {
                   </h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-44 mb-6">
-                  <h5 className="text-base">Samedi 26 Mars</h5>
+                  <h5 className="">Samedi 26 Mars</h5>
                   <h5 className="text-sm">10h00 – 12h30</h5>
                   <h5 className="text-sm">50€</h5>
                   <div className="flex justify-center items-center align-middle">
@@ -887,7 +887,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:text-base">
+                <h5 className="text-sm mt-2 md:">
                   Venez participer à cet atelier DIY ou j’aurais le plaisir de
                   vous guider dans la création de votre parfum personnel aux
                   fragrances et essences naturelles. Exercez votre nez grâce à
@@ -908,67 +908,67 @@ const WorkshopPage = () => {
         <div className="p-5 mb-4 mt-4 flex items-center justify-center">
           <div className=" grid grid-cols-2 md:grid-cols-4 gap-3">
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Ile-de-France
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Grand-Est
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Auvergne-Rhône Alpes
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Bourgogne-Franche Comté
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Pays de la Loire
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Bretagne
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Occitanie
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Normandie
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Hauts-de-France
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Nouvelle-Aquitaine
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
               // @ts-ignore
               ref={fieldRef}
@@ -976,13 +976,13 @@ const WorkshopPage = () => {
               Centre-Val de Loire
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               PACA
             </button>
             <button
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Corse
@@ -990,7 +990,7 @@ const WorkshopPage = () => {
             <button
               // @ts-ignore
               ref={fieldRefSuggestWorkshop}
-              className="button_region text-sm | md:text-base"
+              className="button_region text-sm | md:"
               onClick={() => scrollIntoReview()}
             >
               Régions Outre-mer

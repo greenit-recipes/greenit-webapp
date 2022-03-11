@@ -54,7 +54,7 @@ export const LikeComment: React.FC<ILikeComment> = ({ comment, isMyComment=false
               loading="lazy"
             />
           )}
-          <h2 className="self-center text-base lg:text-xl ml-1">{nbrLiked}</h2>
+          <h2 className="self-center  lg:text-xl ml-1">{nbrLiked}</h2>
         </div>
       ) : (
         <Link to={RouteName.register}>

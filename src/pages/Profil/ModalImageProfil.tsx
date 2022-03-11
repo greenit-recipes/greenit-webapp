@@ -73,7 +73,7 @@ export const ModalImageProfil: React.FC<ModalImageProfil> = ({
                   onSubmit={handleSubmit(onSubmitHandler)}
                 >
                   <div>
-                    <label className="block text-gray-700 text-base">
+                    <label className="block text-gray-700 ">
                       Upload l'image ici 👇
                     </label>
                     <input
