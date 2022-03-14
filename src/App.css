@@ -20,6 +20,9 @@
   src: url(./fonts/Quicksand-Bold.ttf);
 }
 
+* { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+
+
 body {
   font-family: QuickSand_Medium !important;
   font-size: 16px;
