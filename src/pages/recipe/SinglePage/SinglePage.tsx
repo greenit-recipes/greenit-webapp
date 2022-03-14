@@ -151,7 +151,6 @@ const RecipeSinglePage = () => {
     return <Loading />;
   }
   const { recipe } = data;
-  console.log('((sizeCretorHeader / 16) - 50)', ((sizeCretorHeader / 16)))
   return (
     <>
       <HelmetRecipe recipe={recipe} />
