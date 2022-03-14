@@ -204,7 +204,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent mt-4 rounded md:col-span-2">
               <div>
-                <h3 className="text-ms md:">
+                <h3 className="text-ms">
                   Nous sommes passionnés de fait-maison depuis de nombreuses
                   années. Adrien et Andrea vous proposent un atelier gratuit
                   pensé pour les curieux et nouveaux arrivants dans le monde du
@@ -253,7 +253,7 @@ const WorkshopPage = () => {
             <div className="mt-4 md:col-span-2">
               <div className="static">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:">
+                <h5 className="text-sm mt-2">
                   Cet atelier est destiné aux débutants ! Quelles sont les
                   premières étapes ? Quelles huiles choisir ? Quelles
                   compositions ? Où acheter ? Nous parlerons de l’expansion du
@@ -291,7 +291,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent mt-4 rounded md:col-span-2">
               <div>
-                <h3 className="text-ms md:">
+                <h3 className="text-ms">
                   Le Kaba regroupe de nombreux comparatifs, articles et
                   formations pour te guider à la consommation éco-responsable !
                   Formez-vous avec un expert de la consommation éco-responsable
@@ -356,7 +356,7 @@ const WorkshopPage = () => {
             <div className="mt-4 md:col-span-2">
               <div className="static">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:">
+                <h5 className="text-sm mt-2">
                   🕑 1h30 minutes de formation et 30 minutes de
                   questions/réponses
                   <br /> 📝 Des conseils concrets, faciles à mettre en place
@@ -433,7 +433,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent mt-4 rounded md:col-span-2">
               <div>
-                <h3 className="text-ms md:">
+                <h3 className="text-ms">
                   Experte en cosmétologie naturelle, je propose des ateliers
                   cosmétique clef en main (ingrédients, matériels, contenants
                   fournis) le but est d’apprendre à formuler ses propres
@@ -484,7 +484,7 @@ const WorkshopPage = () => {
             <div className="mt-4 md:col-span-2">
               <div className="static">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:">
+                <h5 className="text-sm mt-2">
                   Durant cet atelier vous réalisez : un savon solide selon la
                   méthode saponification à froid. Vous repartez avec votre
                   savon, la recette, des infos et de précieux conseils pour
@@ -550,7 +550,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent mt-4 rounded md:col-span-2">
               <div>
-                <h3 className="text-ms md:">
+                <h3 className="text-ms">
                   Passionnée par le DIY et diplômée en aromathérapie, j'anime
                   des ateliers pour vous initier à l’élaboration de vos propres
                   cosmétiques naturels ainsi qu’à l’utilisation des huiles
@@ -620,7 +620,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:">
+                <h5 className="text-sm mt-2">
                   Réalisation en groupe d'une recette 'cosmétique' et d'une
                   recette 'produit ménager'.
                 </h5>
@@ -653,7 +653,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:">
+                <h5 className="text-sm mt-2">
                   Réalisation d’un roll-on ‘Immunité’ par participant.
                 </h5>
               </div>
@@ -684,7 +684,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:">
+                <h5 className="text-sm mt-2">
                   Soin complet du visage en cosmétique naturel bio. Réalisation
                   en groupe d’une recette 'cosmétique' : masque purifiant et
                   régénérant.
@@ -743,7 +743,7 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent mt-4 rounded md:col-span-2">
               <div>
-                <h3 className="text-ms md:">
+                <h3 className="text-ms">
                   Créer ses cosmétiques maison, ses produits ménagers, ses
                   bougies et parfums aux essences naturelles...le rêve non? Les
                   Ateliers Lavande et Camomille accompagnent particuliers et
@@ -811,7 +811,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:">
+                <h5 className="text-sm mt-2">
                   Venez participer à cet atelier DIY où j'aurais le plaisir de
                   vous guider dans la réalisation de vos 2 soins naturels pour
                   vos cheveux : un shampoing solide aux poudres de plantes et un
@@ -849,7 +849,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:">
+                <h5 className="text-sm mt-2">
                   Venez participer à cet atelier DIY ou j'aurais le plaisir de
                   vous guider dans la fabrication d’une bougie 100% naturelle,
                   parfumée et décorée aux fleurs séchées. Ce workshop vous
@@ -887,7 +887,7 @@ const WorkshopPage = () => {
             <div className="flex md:col-span-2 mt-2">
               <div className="self-center">
                 <h2>Description :</h2>
-                <h5 className="text-sm mt-2 md:">
+                <h5 className="text-sm mt-2">
                   Venez participer à cet atelier DIY ou j’aurais le plaisir de
                   vous guider dans la création de votre parfum personnel aux
                   fragrances et essences naturelles. Exercez votre nez grâce à
@@ -908,67 +908,67 @@ const WorkshopPage = () => {
         <div className="p-5 mb-4 mt-4 flex items-center justify-center">
           <div className=" grid grid-cols-2 md:grid-cols-4 gap-3">
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Ile-de-France
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Grand-Est
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Auvergne-Rhône Alpes
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Bourgogne-Franche Comté
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Pays de la Loire
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Bretagne
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Occitanie
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Normandie
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Hauts-de-France
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Nouvelle-Aquitaine
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
               // @ts-ignore
               ref={fieldRef}
@@ -976,13 +976,13 @@ const WorkshopPage = () => {
               Centre-Val de Loire
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               PACA
             </button>
             <button
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Corse
@@ -990,7 +990,7 @@ const WorkshopPage = () => {
             <button
               // @ts-ignore
               ref={fieldRefSuggestWorkshop}
-              className="button_region text-sm | md:"
+              className="button_region text-sm |"
               onClick={() => scrollIntoReview()}
             >
               Régions Outre-mer
