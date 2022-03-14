@@ -162,7 +162,7 @@ const Register: React.FC = () => {
 
       <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
         <div className="grid grid-cols-3 md:grid-cols-2">
-          <h3 className="col-span-2 text-sm mr-4 self-center justify-self-start | md:text-base md:justify-self-end md:col-span-1">
+          <h3 className="col-span-2 text-sm mr-4 self-center justify-self-start | md: md:justify-self-end md:col-span-1">
             Si tu as déjà un compte:
           </h3>
           <Link to={RouteName.connexion}>
@@ -180,7 +180,7 @@ const Register: React.FC = () => {
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4 md:max-w-md">
-            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2">
+            <label className="block text-gray-700  md:text-lg font-bold mb-2">
               Email
             </label>
             <input
@@ -194,7 +194,7 @@ const Register: React.FC = () => {
               {errors.email?.message}
             </p>
 
-            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2 mt-4">
+            <label className="block text-gray-700  md:text-lg font-bold mb-2 mt-4">
               Nom d'utilisateur
             </label>
             <input
@@ -207,7 +207,7 @@ const Register: React.FC = () => {
             <p className="text-red text-xs italic">
               {errors.utilisateur?.message}
             </p>
-            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2 mt-4">
+            <label className="block text-gray-700  md:text-lg font-bold mb-2 mt-4">
               Mot de passe
             </label>
             <div className="flex flex-row justify-between items-center shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline">
@@ -225,11 +225,11 @@ const Register: React.FC = () => {
             <p className="text-red text-xs italic">
               {errors.password?.message}
             </p>
-            <label className="block text-gray-700 text-xs md:text-base mb-2">
+            <label className="block text-gray-700 text-xs md: mb-2">
               Le mot de passe doit contenir 8 caractères, une majuscule, une
               minuscule
             </label>
-            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2 mt-6">
+            <label className="block text-gray-700  md:text-lg font-bold mb-2 mt-6">
               Confirmation du mot de passe
             </label>
             <div className="flex flex-row items-center justify-between shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight">
@@ -249,7 +249,7 @@ const Register: React.FC = () => {
             </p>
           </div>
           <div className="mb-10">
-            <label className="block text-gray-700 text-base font-bold md:text-lg mb-2">
+            <label className="block text-gray-700  font-bold md:text-lg mb-2">
               Qui es-tu ?
             </label>
             <Controller
@@ -269,7 +269,7 @@ const Register: React.FC = () => {
           </div>
 
           <div className="mb-10">
-            <label className="block text-gray-700 font-bold text-base md:text-lg mb-2">
+            <label className="block text-gray-700 font-bold  md:text-lg mb-2">
               En quoi Greenit peut-il t'aider ?
             </label>
             <Controller
@@ -289,7 +289,7 @@ const Register: React.FC = () => {
           </div>
 
           <div className="mb-10">
-            <label className="block text-gray-700 font-bold text-base md:text-lg mb-2">
+            <label className="block text-gray-700 font-bold  md:text-lg mb-2">
               A quel groupe appartiens-tu ?
             </label>
             <Controller

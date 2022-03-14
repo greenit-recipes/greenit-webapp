@@ -6,3 +6,130 @@
   border-radius: 20px;
   overflow: hidden;
 }
+
+.rounded-singlePage {
+  border-radius: 49px 49px 0px 0px;
+  box-shadow: 0px 0px 12px #00000029;
+}
+
+.icon-position-circle {
+  left: -6px;
+  top: -5px;
+}
+
+.icon-position-circle-mobile {
+  left: -3px;
+  top: -2px;
+}
+
+.btn-single-page {
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 4px;
+}
+
+.ingredient-shadow {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 10px #7b7b7b29;
+  border-radius: 6px;
+  opacity: 1;
+}
+
+.ingredient-shadow-btn {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 2px;
+  opacity: 1;
+}
+
+.ingredient-base {
+  border-radius: 15px 15px 0px 0px;
+  border-top: 2px solid #DEEDFF;
+  border-left: 2px solid #DEEDFF;
+  border-right: 2px solid #DEEDFF;
+}
+
+.ingredient-base-ustensil {
+  border-radius: 15px 15px 0px 0px;
+  border-top: 2px solid #FBDBCC;
+  border-left: 2px solid #FBDBCC;
+  border-right: 2px solid #FBDBCC;
+}
+
+
+
+.ingredient-border {
+  border-bottom: 5px solid #DEEDFF;
+}
+
+.ingredient-border-ustensil {
+  border-bottom: 5px solid #FBDBCC;
+}
+
+.opacity-out {
+  visibility:hidden;
+  height: 0px;
+  opacity: 0;
+  transition:visibility 0.3s linear,opacity 0.3s linear;
+}
+
+.opacity-in {
+  height: auto;
+  opacity: 1;
+  visibility:visible;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.ingredient-section {
+  background-color: #DEEDFF;
+}
+
+.ustensil-section {
+  background-color: #FBDBCC;
+}
+
+.rotate-singlePage-wallet {
+  transform: rotate(-35deg); /* Equal to rotateZ(45deg) */
+}
+
+.rotate-singlePage-chimie {
+  transform: rotate(12deg); /* Equal to rotateZ(45deg) */
+}
+
+.background-color-single-page {
+    background: #DEEDFF 0% 0% no-repeat padding-box;
+}
+
+.is-selected-single-page {
+  background: #DEEDFF 0% 0% no-repeat padding-box;
+  border-bottom: 5px solid #DEEDFF;
+}
+
+.is-selected-single-page-ustensil {
+  background: #FBDBCC 0% 0% no-repeat padding-box;
+  border-bottom: 5px solid #FBDBCC;
+}
+
+.ingredient-section-arrow-down {
+  transform: rotate(-180deg);
+  transition: transform 0.50s;
+}
+
+.ingredient-section-arrow-up {
+  transform: rotate(0deg);
+  transition: transform 0.40s ease-in;
+}
+
+.ingredient-fadeIn-arrow { 
+  max-height: 1500px;
+  transition: max-height 0.75s ease-in;
+  overflow: hidden;
+}
+
+.ingredient-fadeOut-arrow {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-out;
+}
+
+.height-video {
+  height: 34rem;
+}

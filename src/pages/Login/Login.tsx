@@ -165,7 +165,7 @@ const Login: React.FC = () => {
       </h1>
       <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 w-4/5">
-          <h3 className="text-sm md:text-base self-center">
+          <h3 className="text-sm md: self-center">
             Si tu veux créer un compte :
           </h3>
           <Link to={RouteName.register}>
@@ -183,7 +183,7 @@ const Login: React.FC = () => {
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
-            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2">
+            <label className="block text-gray-700  md:text-lg font-bold mb-2">
               Email
             </label>
             <input
@@ -196,7 +196,7 @@ const Login: React.FC = () => {
             <p className="text-red text-xs italic">{errors.email?.message}</p>
           </div>
           <div className="mb-10">
-            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2">
+            <label className="block text-gray-700  md:text-lg font-bold mb-2">
               Mot de passe
             </label>
             <div className="flex flex-row justify-between items-center shadow-lg  border rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-3 h-12 leading-tight  focus:shadow-outline">
@@ -222,7 +222,7 @@ const Login: React.FC = () => {
           <div className="flex items-center justify-between">
             <button
               className="flex justify-center items-center cursor-pointer align-middle
-              bg-blue rounded-lg p-3 h-10  mr-5 text-base md:text-lg bold text-white border-2 border-transparent
+              bg-blue rounded-lg p-3 h-10  mr-5  md:text-lg bold text-white border-2 border-transparent
               hover:bg-white hover:border-blue hover:text-blue"
             >
               Connexion

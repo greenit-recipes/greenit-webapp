@@ -28,7 +28,7 @@ export const CategoryCircle: React.FC<CategoryCircleProps> = ({
         </Link>
       </div>
       <div className="w-28 md:w-36">
-        <h3 className="pt-2 text-center text-base md:text-md"> {name} </h3>
+        <h3 className="pt-2 text-center  md:text-md"> {name} </h3>
       </div>
     </div>
   );

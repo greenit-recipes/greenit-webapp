@@ -23,7 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
       id={id}
       className={`${className} flex justify-center items-center cursor-pointer
       px-3 py-1 bold text-white border-2 border-transparent
-      text-sm md:text-base
+      text-sm md:
       ease-linear transition-all duration-150
       bg-${type ? type : "blue"} 
       hover:shadow-lg hover:bg-white active:bg-white hover:border-${

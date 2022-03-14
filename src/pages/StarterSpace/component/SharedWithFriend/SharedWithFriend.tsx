@@ -32,7 +32,7 @@ export const SharedWithFriend: React.FC = () => {
   };
   return (
     <div className="grid lg:col-span-2 gap-4 justify-items-center self-center | mt-8 lg:mt-0">
-      <h2 className="text-sm lg:text-base font-regular text-center">
+      <h2 className="text-sm lg: font-regular text-center">
         Motivez-vous avec vos ami.e.s :
       </h2>
       <form
@@ -62,7 +62,7 @@ export const SharedWithFriend: React.FC = () => {
       </form>
       {
         data?.emailSharedWithFriend?.success && (
-        <div className="text-green text-base md:text-base mb-2 | text-center whitespace-pre-line">
+        <div className="text-green  md: mb-2 | text-center whitespace-pre-line">
         L'e-mail a bien été envoyé ! 
         </div>
         )

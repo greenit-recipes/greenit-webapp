@@ -44,7 +44,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
                   { value: option.value },
                 );
                 return (
-                  <li key={index} className="ml-2 py-1 text-base">
+                  <li key={index} className="ml-2 py-1 ">
                     <Checkbox
                       index={index}
                       parentFunction={handleFilter}

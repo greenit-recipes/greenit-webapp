@@ -34,7 +34,7 @@ export const SearchBarNav: React.FC<{
     <div className="flex flex-row h-9 w-44 mr-2 rounded-lg border-1 border-grey">
       <input
         type="text"
-        className={`w-full h-full bg-transparent ml-2 | text-sm md:text-base
+        className={`w-full h-full bg-transparent ml-2 | text-sm md:
           } focus:outline-none`}
         onKeyDown={(e) => {
           if (e.key === "Enter") {

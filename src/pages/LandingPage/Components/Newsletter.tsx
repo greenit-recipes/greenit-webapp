@@ -56,7 +56,7 @@ export const Newsletter: React.FC = () => {
         </div>
       </form>
       {data?.createNewsletter?.success && (
-        <div className="text-green text-base md:text-base mb-2 | text-center whitespace-pre-line">
+        <div className="text-green  md: mb-2 | text-center whitespace-pre-line">
           Votre inscription a bien été prise en compte. À très vite dans votre
           boite mail !
         </div>

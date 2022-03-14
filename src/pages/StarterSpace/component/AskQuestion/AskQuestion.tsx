@@ -71,7 +71,7 @@ export const AskQuestion: React.FC = () => {
         </div>
       </form>
       {data?.emailAskQuestionStartePage?.success && (
-        <div className="text-green text-base md:text-base mt-6 | text-center whitespace-pre-line">
+        <div className="text-green  md: mt-6 | text-center whitespace-pre-line">
           Ta question a bien été envoyée !
         </div>
       )}
