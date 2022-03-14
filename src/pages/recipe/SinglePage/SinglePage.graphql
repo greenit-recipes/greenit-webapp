@@ -4,6 +4,7 @@ query recipe($urlId: String!) {
     name
     image
     textAssociate
+    numberOfIngredients
     ingredients {
       id
       name

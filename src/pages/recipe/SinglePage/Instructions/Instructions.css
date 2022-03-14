@@ -1,0 +1,8 @@
+.instruction-video-down {
+  margin-left: 0rem;
+  transition: margin-left 0.25s;
+}
+.instruction-video-up {
+    margin-left: 3.50rem;
+    transition: margin-left 0.40s;
+  }

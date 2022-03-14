@@ -7,8 +7,9 @@ import authService from "services/auth.service";
 import { likedIconOff, likedIconOn } from "../../icons";
 
 interface IFavouriteField {
-  className?: string;
+  customClassName?: string;
   recipe: any;
+  isToltipActif?: boolean;
   parentFunction?: any;
   isRefetchData?: boolean;
 }
@@ -17,6 +18,8 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
   recipe,
   parentFunction = null,
   isRefetchData = false,
+  customClassName,
+  isToltipActif = true,
 }) => {
   const isLoggedIn = authService.isLoggedIn();
   const [isFavorite, setFavorite] = useState(
@@ -44,37 +47,43 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
           }}
         >
           {isFavorite ? (
-            <div className="tooltip grid justify-items-center">
+            <div
+              className={`tooltip justify-items-center ${customClassName ? customClassName : "grid"}`}
+            >
               <img
-                className="w-10 h-10 lg:w-12 lg:h-12"
+                className="w-10 h-10"
                 alt="like button"
                 src={likedIconOn}
                 loading="lazy"
               />
-              <span className="tooltiptext">Retirer des favoris</span>
+              { isToltipActif ? (<span className="tooltiptext">Retirer des favoris</span>) : (<div className="flex flex-col justify-center">favoris</div>)}
             </div>
           ) : (
-            <div className="tooltip grid justify-items-center">
+            <div
+              className={`tooltip justify-items-center ${customClassName ? customClassName : "grid"}`}
+            >
               <img
-                className="w-10 h-10 lg:w-12 lg:h-12"
+                className="w-10 h-10"
                 alt="dislike button"
                 src={likedIconOff}
                 loading="lazy"
               />
-              <span className="tooltiptext">Ajouter aux favoris</span>
+              { isToltipActif ? (<span className="tooltiptext">Ajouter aux favoris</span>) : (<div className="flex flex-col justify-center">favoris</div>)}
             </div>
           )}
         </button>
       ) : (
         <Link to={RouteName.register}>
-          <div className="tooltip grid justify-items-center">
+          <div
+            className={`tooltip justify-items-center ${customClassName ? customClassName : "grid"}`}
+          >
             <img
-              className="w-10 h-10 lg:w-12 lg:h-12"
+              className="w-10 h-10"
               alt="dislike button"
               src={likedIconOff}
               loading="lazy"
             />
-            <span className="tooltiptext">Ajouter aux favoris</span>
+            { isToltipActif ? (<span className="tooltiptext">Ajouter aux favoris</span>) : (<div className="flex flex-col justify-center">favoris</div>)}
           </div>
         </Link>
       )}

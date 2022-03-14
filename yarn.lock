@@ -2831,6 +2831,11 @@
   resolved "https://registry.npmjs.org/@types/html-minifier-terser/-/html-minifier-terser-5.1.2.tgz"
   integrity sha512-h4lTMgMJctJybDp8CQrxTUiiYmedihHWkjnF/8Pxseu2S6Nlfcy8kwboQ8yejh456rP2yWoEVm1sS/FVsfM48w==
 
+"@types/html-truncate@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@types/html-truncate/-/html-truncate-1.2.2.tgz#8abdefa8bf618149d6febae0c4bd216dc3113675"
+  integrity sha512-AeS6RywqWL3KuZnoa0Ha1c2sn4ZxfPYtwntoEDKqfk+swduKD3YM5JWQ/kH8ZZ3JuvvpRUGA9X3626clVm+54w==
+
 "@types/http-proxy-agent@^2.0.2":
   version "2.0.2"
   resolved "https://registry.npmjs.org/@types/http-proxy-agent/-/http-proxy-agent-2.0.2.tgz"
@@ -8659,6 +8664,11 @@ html-tags@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/html-tags/-/html-tags-3.1.0.tgz"
   integrity sha512-1qYz89hW3lFDEazhjW0yVAV87lw8lVkrJocr72XmBkMKsoSVJCQx3W8BXsC7hO2qAt8BoVjYjtAcZ9perqGnNg==
+
+html-truncate@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/html-truncate/-/html-truncate-1.2.2.tgz#db2e331dcf1cba0bd432a507d16e988609f2575f"
+  integrity sha1-2y4zHc8cugvUMqUH0W6YhgnyV18=
 
 html-webpack-plugin@4.5.0:
   version "4.5.0"

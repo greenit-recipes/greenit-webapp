@@ -96,6 +96,7 @@ module.exports = {
         grey: "#707070",
         red: "#ED6D6D",
         bluelight: "#e0eaf8",
+        greyL:"#F0F0F0",
       },
 
       keyframes: {
