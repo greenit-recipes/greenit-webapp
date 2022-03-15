@@ -75,9 +75,12 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
     name: "urlsSocialMedia",
   });
 
+   // @ts-ignore
+   const socialMedias = user?.urlsSocialMedia === "{}" ? null : user?.urlsSocialMedia
+
   useEffect(() => {
     // @ts-ignore
-    JSON.parse(user?.urlsSocialMedia)?.map((data: any, index: any) =>
+    JSON.parse(socialMedias)?.map((data: any, index: any) =>
       urlsSocialMediaAppend({ url: data?.url }, { shouldFocus: false })
     );
     urlsSocialMediaAppend({}, { shouldFocus: true });
@@ -155,7 +158,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
             <div className="flex flex-col">
               {
                 // @ts-ignore
-                JSON.parse(user?.urlsSocialMedia)?.map(
+                JSON.parse(socialMedias)?.map(
                   (data: any, index: any) => (
                     <a href={data?.url} key={index}>
                       <div className="col-span-1 w-full sm:mb-6 justify-center">
