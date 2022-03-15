@@ -167,7 +167,7 @@ const RecipeSinglePage = () => {
           recipe={recipe}
           className=""
         />
-        <div className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage" style={{ marginTop: ((sizeCretorHeader / 16) - (isMobile ? 5 : 6)) + "rem"}}>
+        <div className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage" style={{ marginTop: ((sizeCretorHeader / 16) - 8) + "rem"}}>
           <div className="w-5/6 lg:w-4/6 mb-10">
             <div className="w-full h-auto">
               <div className="justify-center">
