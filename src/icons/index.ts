@@ -131,6 +131,10 @@ import creator from "./influencer.svg"
 
 import loginMail from "./mail-142.svg";
 import loginPassword from "./login-password-4.svg";
+import userlogo from "./user.svg"
+import confirmpwd from "./confirmpwd.svg"
+import explorer from "./explorer.svg"
+import creator from "./influencer.svg"
 
 export const landingPageCategories = [
   {
@@ -264,4 +268,9 @@ export {
   creator,
   loginMail,
   loginPassword,
+  userlogo,
+  confirmpwd,
+  explorer,
+  creator,
+
 };

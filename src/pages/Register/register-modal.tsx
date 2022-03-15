@@ -2,16 +2,21 @@ import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { getLogByUrl } from "helpers/social-media.helper";
-import { mdpNonVisible, mdpVisible } from "icons";
+import { mdpNonVisible, mdpVisible, loginMail, loginPassword, FBIcon, confirmpwd, userlogo, creator, explorer } from "icons";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
-import authService, { CREATE_ACCOUNT, CREATE_USER_FROM_AUTH, LOGIN_ACCOUNT } from "services/auth.service";
+import authService, {
+  CREATE_ACCOUNT,
+  CREATE_USER_FROM_AUTH,
+  LOGIN_ACCOUNT,
+} from "services/auth.service";
 import * as yup from "yup";
 import "./register.css";
 import FacebookLogin from "react-facebook-login";
 import { includes } from "lodash";
+import { Button } from "components";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -126,7 +131,6 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     }
   }, [setError, error, createAccountData]);
 
-
   const responseFacebook = (responseFb: any) => {
     // Error si pas d'email
 
@@ -156,7 +160,10 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     });
   };
 
-  const onSubmitHandlerConnect = (data: { email: string; password: string }) => {
+  const onSubmitHandlerConnect = (data: {
+    email: string;
+    password: string;
+  }) => {
     loginAccount({
       variables: {
         email: data.email,
@@ -164,9 +171,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
       },
     }).then((response) => {
       if (response?.data?.tokenAuth?.token) {
-        authService.setStorageLoginToken(
-          response?.data?.tokenAuth?.token
-        );
+        authService.setStorageLoginToken(response?.data?.tokenAuth?.token);
         authService.setStorageLoginRefreshToken(
           response?.data?.tokenAuth?.refreshToken
         );
@@ -215,176 +220,185 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     });
   };
   const [isRevealPwd, setIsRevealPwd] = useState(false);
+
   return (
-    <div className="flex flex-col items-center justify-items-center w-full">
-      <p className="text-xl font-medium w-2/3 md:text-2xl | mt-16 text-center">
-        Création de ton espace DIY <br />
-      </p>
+    <div className=" flex justify-center items-center">
+     
 
-      <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
-        <div className="grid grid-cols-3 md:grid-cols-2">
-          <h3 className="col-span-2 text-sm mr-4 self-center justify-self-start | md:text-base md:justify-self-end md:col-span-1">
-            Si tu as déjà un compte:
-          </h3>
-          <button
-            onClick={() => loginOpen(true)}
-            className="flex items-center cursor-pointer align-middle
-              bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
-              hover:bg-white hover:border-green hover:text-green"
-          >
-            <h3 className="text-sm align-middle">Se connecter</h3>
-          </button>
-        </div>
-        <form
-          className="bg-white shadow-lg rounded-xl p-8 mb-4 mt-2"
-          onSubmit={handleSubmit(onSubmitHandler)}
-        >
-          <div className="mb-4 md:max-w-md">
-            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2">
-              Email
-            </label>
-            <input
-              className="shadow-lg appearance-none rounded py-2 px-3 mb-4 text-gray-700 h-12 w-full sm:w-80 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="email"
-              type="email"
-              {...register("email")}
-            ></input>
-            <p className="text-red text-xs italic">{errors.email?.message}</p>
-
-            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2 mt-4">
-              Nom d'utilisateur
-            </label>
-            <input
-              className="shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline"
-              id="utilisateur"
-              placeholder="nom utilisateur"
-              type="text"
-              {...register("utilisateur")}
-            ></input>
-            <p className="text-red text-xs italic">
-              {errors.utilisateur?.message}
-            </p>
-            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2 mt-4">
-              Mot de passe
-            </label>
-            <div className="flex flex-row justify-between items-center shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline">
-              <input
-                className=" appearance-none focus:outline-none focus:shadow-outline"
-                id="password"
-                type={isRevealPwd ? "text" : "password"}
-                placeholder="******************"
-                {...register("password")}
-              />
-              <img
-                title={isRevealPwd ? "Hide password" : "Show password"}
-                src={isRevealPwd ? mdpVisible : mdpNonVisible}
-                alt="logo visible"
-                onClick={() => setIsRevealPwd((prevState) => !prevState)}
-              />
-            </div>
-            <p className="text-red text-xs italic">
-              {errors.password?.message}
-            </p>
-            <label className="block text-gray-700 text-xs md:text-base mb-2">
-              Le mot de passe doit contenir 8 caractères, une majuscule, une
-              minuscule
-            </label>
-            <label className="block text-gray-700 text-base md:text-lg font-bold mb-2 mt-6">
-              Confirmation du mot de passe
-            </label>
-            <div className="flex flex-row items-center justify-between shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight">
-              <input
-                className="appearance-none focus:outline-none focus:shadow-outline"
-                id="passwordConfirmation"
-                type={isRevealPwd ? "text" : "password"}
-                placeholder="******************"
-                {...register("passwordConfirmation")}
-              />
-              <img
-                title={isRevealPwd ? "Hide password" : "Show password"}
-                src={isRevealPwd ? mdpVisible : mdpNonVisible}
-                alt="logo visible"
-                onClick={() => setIsRevealPwd((prevState) => !prevState)}
-              />
-            </div>
-            <p className="text-red text-xs italic">
-              {errors.passwordConfirmation?.message}
-            </p>
-          </div>
-          <div className="mb-10">
-            <label className="block text-gray-700 text-base font-bold md:text-lg mb-2">
-              Qui es-tu ?
-            </label>
-            <Controller
-              name="userCategoryLvl"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={optionsUserCategoryLvl}
-                  className={`w-2/3 md:w-1/2`}
-                />
-              )}
-            />
-            <p className="text-red text-xs italic">
-              {errors.userCategoryLvl?.message}
-            </p>
-          </div>
-          <div className="mb-10">
-            <label className="block text-gray-700 font-bold text-base md:text-lg mb-2">
-              A quel groupe appartiens-tu ?
-            </label>
-            <Controller
-              name="userCategoryAge"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={optionsUserCategoryAge}
-                  className={`w-2/3 md:w-1/2`}
-                />
-              )}
-            />
-            <p className="text-red text-xs italic">
-              {errors.userCategoryAge?.message}
-            </p>
-          </div>
-
-          <div className="flex w-full mb-4 mt-10 self-center ">
-            <input
-              type="checkbox"
-              className="w-6 h-6"
-              {...register("isFollowNewsletter")}
-              id="isFollowNewsletter"
-            />
-            <label className="text-gray-700 text-sm ml-2 self-center">
-              Coche la case si tu veux recevoir nos dernières actualités et les
-              tendances du secteur du DIY.
-            </label>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <button
-              className="flex justify-center items-center cursor-pointer align-middle
-              bg-blue rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
-              hover:bg-white hover:border-blue hover:text-blue"
-            >
-              Crée ton profil
-            </button>
-          </div>
-        </form>
-      </div>
-      <div>
-      <FacebookLogin
+      <div className="bg-white flex flex-col rounded-3xl items-center w-10/12 md:w-8/12 lg:w-2/6 gap-4">
+        
+        <h1 className=" text-xl  md:text-2xl font-bold lg:text-3xl text-center mt-10">
+          Création de ton espace DIY <br />
+        </h1>
+        <h2 className="text-base md:text-lg ">Quel type de compte veux-tu créer ?</h2>
+        <div>
+        <FacebookLogin
               // @ts-ignore
               appId={process.env.REACT_APP_FACEBOOK_ID}
               fields="name,email,picture"
               callback={responseFacebook}
+              cssClass="my-facebook-button-class"
+              textButton="Connexion avec Facebook"
+              
+              icon={<img src={FBIcon} alt="facebook icon" className="w-6 h-6 mr-4" />}
+              
             />
+            
             {errorLoginFb && (
               <div className="mt-4 text-red text-xs italic">{errorLoginFb}</div>
             )}
+        </div>
+        <div className="separator  text-gray-700 md:m-4">Ou</div>
+
+        <div className="flex flex-row items-center justify-evenly w-5/6 gap-8">
+        <div className="flex flex-col cursor-pointer shadow-lg justify-center items-center rounded-xl w-2/4 h-28 hover:bg-grey hover:text-white transition border-4 border-blue">
+
+          <img className="rounded-full shadow-lg  w-14"src={explorer} alt="logo explorateur" />
+         Explorateur
           </div>
+        <div className=" flex flex-col shadow-lg justify-center items-center border rounded-xl w-2/4 h-28 hover:bg-grey hover:text-white transition cursor-pointer">
+
+          
+          <img className="rounded-full shadow-lg w-14" src={creator} alt="logo créateur" />
+          Créateur
+          </div>
+      </div>
+
+        <div className="w-10/12">
+          <form className="flex flex-col gap-4 md:gap-8 my-6  md:my-10" onSubmit={handleSubmit(onSubmitHandler)}>
+            <div className="flex flex-row gap-4 items-center w-full">
+              <img className="md:w-8 md:h-8" src={loginMail} alt="icone email" />
+              <input
+                className="shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline "
+                id="email"
+                placeholder="Email"
+                type="email"
+                {...register("email")}
+              ></input>
+              <p className="text-red text-xs italic">{errors.email?.message}</p>
+            </div>
+
+            <div className="flex flex-row gap-4 items-center w-full">
+              <img className="md:w-8 md:h-8" src={userlogo} alt="icone email" />
+              <input
+                className="shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline "
+                id="utilisateur"
+                placeholder="Nom d'utilisateur"
+                type="text"
+                {...register("utilisateur")}
+              ></input>
+              <p className="text-red text-xs italic">{errors.email?.message}</p>
+            </div>
+
+            <div className="flex flex-row gap-4 items-center w-full">
+              <img
+                className="md:w-8 md:h-8"
+                src={loginPassword}
+                alt="icone mot de passe"
+              />
+              <div className="flex flex-row gap-4 items-center shadow-lg  border rounded-xl md:h-12 w-full text-gray-700 h-10 leading-tight  focus:shadow-outline ">
+                <input
+                  className="appearance-none py-2 px-3 lg:text-xl rounded-xl  focus:outline-none w-full h-full"
+                  id="password"
+                  type={isRevealPwd ? "text" : "password"}
+                  placeholder="Mot de passe"
+                  {...register("password")}
+                />
+                <img
+                  className="mr-2"
+                  src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                  alt="voir le mot de passe"
+                  onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                />
+              </div>
+              <p className="text-red text-xs italic">
+                {errors.password?.message}
+              </p>
+            </div>
+
+            <div className="flex flex-row gap-4 items-center w-full">
+              <img
+                className="md:w-8 md:h-8"
+                src={confirmpwd}
+                alt="icone mot de passe"
+              />
+              <div className="flex flex-row  items-center shadow-lg  border rounded-xl md:h-12 w-full text-gray-700 h-10 leading-tight  focus:shadow-outline ">
+                <input
+                  className="appearance-none py-2 px-3 lg:text-xl rounded-xl  focus:outline-none w-full h-full"
+                  id="passwordConfirmation"
+                  type={isRevealPwd ? "text" : "password"}
+                  placeholder="Confirmer le mot de passe"
+                  {...register("passwordConfirmation")}
+                />
+                <img
+                  className="mr-2"
+                  src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                  alt="voir le mot de passe"
+                  onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                />
+              </div>
+              <p className="text-red text-xs italic">
+                {errors.passwordConfirmation?.message}
+              </p>
+            </div>
+            <div className=" flex items-center">
+              <Controller
+                name="userCategoryLvl"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    options={optionsUserCategoryLvl}
+                    className={`w-full shadow-lg lg:text-xl`}
+                    placeholder="Qui est-tu ?"
+                  />
+                )}
+              />
+              <p className="text-red text-xs italic">
+                {errors.userCategoryLvl?.message}
+              </p>
+            </div>
+            <div className="flex   items-center">
+              <Controller
+              
+                name="userCategoryAge"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    options={optionsUserCategoryAge}
+                    className={`w-full shadow-lg lg:text-xl `}
+                    placeholder="A quel groupe appartiens-tu ?"
+                  />
+                )}
+              />
+              <p className="text-red text-xs italic">
+                {errors.userCategoryAge?.message}
+              </p>
+            </div>
+
+            <div className="flex w-full  self-center ">
+              <input
+                type="checkbox"
+                className="w-6 h-6"
+                {...register("isFollowNewsletter")}
+                id="isFollowNewsletter"
+              />
+              <label className="text-gray-700 text-sm ml-2 self-center">
+                Coche la case si tu veux recevoir nos dernières actualités et
+                les tendances du secteur du DIY.
+              </label>
+
+            </div>
+          </form>
+        </div>
+        <Button type="blue" className="h-10  font-extrabold">Crée ton profil</Button>
+
+
+        <div>
+              <p onClick={() => loginOpen(true)} className="underline m-4 md:m-10 text-sm md:text-base text-center cursor-pointer text-gray-700">Deja un compte ? - Se connecter</p>
+            </div>
+      </div>
     </div>
   );
 };

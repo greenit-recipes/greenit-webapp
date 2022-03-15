@@ -143,7 +143,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
           <div className="flex flex-col">
             
               <div className="flex flex-row items-center w-full">
-              <img className="w-8 h-8" src={loginMail} alt="icone email" />
+              <img className="w-8 h-8 ml-2" src={loginMail} alt="icone email" />
               <input
                 className="shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline m-4"
                 id="email"
@@ -155,7 +155,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               </div>
 
               <div className="flex flex-row items-center w-full">
-                <img className="w-8 h-8" src={loginPassword} alt="icone mot de passe" />
+                <img className="w-8 h-8 ml-2" src={loginPassword} alt="icone mot de passe" />
                 <div className="flex flex-row  items-center shadow-lg  border rounded-xl md:h-12 w-full text-gray-700 h-10 leading-tight  focus:shadow-outline m-4">
                   <input
                     className="appearance-none py-2 px-3 lg:text-xl rounded-xl  focus:outline-none w-full h-full"
@@ -165,6 +165,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                     {...register("password")}
                   />
                   <img
+                  className="mr-2"
                   src={isRevealPwd ? mdpVisible : mdpNonVisible}
                   alt="voir le mot de passe"
                   onClick={() => setIsRevealPwd((prevState) => !prevState)}
@@ -182,7 +183,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               Mot de passe oublié ?
             </a>
             </div>
-            <Button type="blue" className="h-10 font-bold">Crée ton profil</Button>
+            <Button type="blue" className="h-10 font-bold">Connexion</Button>
 
             <div className="separator m-4 text-gray-700 md:m-10">Ou</div>
 
@@ -203,7 +204,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
             )}
 
             <div>
-              <p onClick={() => loginOpen(false)} className="underline mb-4 md:m-10 text-sm md:text-base text-center cursor-pointer text-gray-700">Pas encore de compte ? - Créer son compte</p>
+              <p onClick={() => loginOpen(false)} className="underline m-4 md:m-10 text-sm md:text-base text-center cursor-pointer text-gray-700">Pas encore de compte ? - Créer son compte</p>
             </div>
           </div>
         </div>
