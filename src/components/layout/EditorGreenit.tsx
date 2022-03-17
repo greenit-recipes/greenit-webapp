@@ -36,6 +36,8 @@ export const EditorGreenit: React.FC<{onChange: any, value: any}> = ({ onChange,
           spellCheck
           editorState={editorState}
           onEditorStateChange={onEditorStateChange}
+          wrapperClassName="border rounded-lg"
+          editorClassName="ml-2"
         />
       </div>
   );

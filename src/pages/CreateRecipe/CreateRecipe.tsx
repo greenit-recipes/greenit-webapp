@@ -27,7 +27,6 @@ import {
   tiktoklogo,
   wwwlogo,
   ytlogo,
-  pastelogo,
 } from "../../icons";
 
 const schemaLink = yup.object().shape({
