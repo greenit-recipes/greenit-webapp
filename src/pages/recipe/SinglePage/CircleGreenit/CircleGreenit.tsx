@@ -1,5 +1,5 @@
 interface ICircleGreenit {
-  number: string;
+  number: any;
   text: string;
   symbol: string;
   icon: any;

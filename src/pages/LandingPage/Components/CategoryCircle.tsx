@@ -17,7 +17,7 @@ export const CategoryCircle: React.FC<CategoryCircleProps> = ({
   ].includes(name);
   return (
     <div className="flex flex-col | items-center">
-      <div className="w-20 h-20 md:w-24 md:h-24 bg-white mx-4 | rounded-full shadow-lg">
+      <div className="w-16 h-16 md:w-20 md:h-20 bg-white mx-4 | rounded-full shadow-lg">
         <Link to={`${RouteName.recipes}?${isTag ? `tags=${name}` : `category=${name}`}`}>
           <img
             loading="lazy"
@@ -28,7 +28,7 @@ export const CategoryCircle: React.FC<CategoryCircleProps> = ({
         </Link>
       </div>
       <div className="w-28 md:w-36">
-        <h3 className="pt-2 text-center  md:text-md"> {name} </h3>
+        <div className="pt-2 text-center"> {name} </div>
       </div>
     </div>
   );

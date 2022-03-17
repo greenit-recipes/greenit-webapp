@@ -12,7 +12,7 @@ import { RouteName } from "App";
 interface RecipeCardProps {
   enableShadow?: boolean;
   recipe: any;
-  inCarousel?: boolean;
+  isCarrousel?: boolean;
   isProfilPage?: boolean;
   parentFunction?: any;
   disabledFavoriteRecipe?: boolean;
@@ -23,8 +23,7 @@ interface RecipeCardProps {
 export const RecipeCard: React.FC<RecipeCardProps> = ({
   enableShadow = true,
   recipe,
-  inCarousel,
-  isProfilPage,
+  isCarrousel = false,
   parentFunction = null,
   disabledFavoriteRecipe = false,
   isRefetchData = false,
@@ -34,12 +33,12 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
   const isMobile = useIsMobile();
 
-  const imageHeight = isMobile ? 60 : 80;
-  const imageWidth = isMobile ? 40 : 52;
-  const bandeauWidth = isMobile ? 40 : 52;
+  const imageHeight = isMobile ? 56 : 72;
+  const imageWidth = isMobile ? 40 : 48;
+  const bandeauWidth = isMobile ? 40 : 48;
 
   return (
-    <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150 px-1 mb-14 md:mb-16 lg:mb-10">
+    <div className="transform sm:hover:scale-105 ease-linear relative transition-all duration-150 px-1 mb-14 md:mb-16 lg:mb-10">
       <Link
         to={{
           pathname: `${RouteName.recipes}/${recipe?.urlId}`,
@@ -62,7 +61,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           ></img>
         </div>
       </Link>
-      <LikeField recipe={recipe} isRecipeCard={true}></LikeField>
+      <LikeField recipe={recipe} isRecipeCard={true} isCarrousel={isCarrousel}></LikeField>
       <div
         className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-2xl -bottom-10 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
       >
@@ -80,9 +79,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             pathname: `${RouteName.recipes}/${recipe?.urlId}`,
           }}
         >
-          <h2 className="subpixel-antialiased | text-center mt-5 p-1 text-sm lg:">
+          <div className="fontQSmedium text-center mt-4 p-1 text-xs lg:text-sm">
             {recipe?.name}
-          </h2>
+          </div>
           <Icon
             nbOfIngredient={recipe?.numberOfIngredients}
             difficulty={

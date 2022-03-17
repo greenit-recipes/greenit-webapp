@@ -1,7 +1,7 @@
 import { UserBadge } from "components/layout/UserBadge";
 import { getLogoAndNameByUrl } from "helpers/social-media.helper";
-import { useRef } from "react";
 import "./HeaderRecipe.css";
+
 interface IHeaderRecipe {
   className?: string;
   recipe: any;
@@ -13,13 +13,13 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
   recipe,
   parentFcn
 }) => {
-  const user = null;
+  const user = recipe?.user;
 
   return (
     <div  
     ref={ (divElement) => { if(parentFcn) parentFcn(divElement?.clientHeight) } }
     className="fixed z-0 grid justify-items-center w-full pb-20 bgColorHeaderRecipe">
-      <div className="fontQSbold text-2xl lg:text-3xl mt-20">Alicds</div>
+      <div className="fontQSbold text-2xl lg:text-3xl mt-20">{recipe?.author?.username}</div>
       <div className="fontQSregular text-lg	mb-3">Créateur.ice</div>
       <div className="w-full pl-4 pr-4 lg:pl-0 lg:pr-0 lg:w-3/6 flex flex-col lg:flex-row fontQSmedium  mb-8 flex items-center justify-center">
         <UserBadge
@@ -44,7 +44,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
         </div>
         {
           // @ts-ignore
-          user && JSON.parse(user?.urlsSocialMedia)?.map((data: any, index: any) => (
+          user && JSON.parse(recipe?.author?.urlsSocialMedia)?.map((data: any, index: any) => (
               <a href={data?.url} key={index}>
         <div className="flex pt-2 pb-2 pl-2 pr-2 bg-white rounded fontQSmedium">
                   <img
