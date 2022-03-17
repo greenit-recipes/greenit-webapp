@@ -13,6 +13,9 @@ export const CREATE_ACCOUNT = gql`
     $userCategoryAge: String!
     $userWantFromGreenit: String!
     $isFollowNewsletter: String!
+    $urlsSocialMedia: JSONString!
+    $biographie: String!
+    $isCreatorProfil: String!
   ) {
     register(
       email: $email
@@ -23,6 +26,9 @@ export const CREATE_ACCOUNT = gql`
       userCategoryAge: $userCategoryAge
       userWantFromGreenit: $userWantFromGreenit
       isFollowNewsletter: $isFollowNewsletter
+      urlsSocialMedia: $urlsSocialMedia
+      biographie: $biographie
+      isCreatorProfil: $isCreatorProfil
     ) {
       success
       errors
@@ -111,6 +117,15 @@ export const UPDATE_IMAGE_ACCOUNT = gql`
   }
 `;
 
+export const UPDATE_ACCOUNT = gql`
+  mutation updateAccount($urlsSocialMedia: JSONString, $biographie: String) {
+    updateAccount(urlsSocialMedia: $urlsSocialMedia, biographie: $biographie) {
+      success
+      errors
+    }
+  }
+`;
+
 export const ME = gql`
   query Me {
     me {
@@ -121,6 +136,9 @@ export const ME = gql`
       idFacebook
       verified
       imageProfile
+      biographie
+      isCreatorProfil
+      urlsSocialMedia
       recipeAuthor {
         id
         urlId
@@ -130,6 +148,7 @@ export const ME = gql`
         difficulty
         numberOfLikes
         numberOfIngredients
+        nbrView
         category {
           name
         }
@@ -146,10 +165,6 @@ export const ME = gql`
         numberOfIngredients
         isLikedByCurrentUser
         isAddToFavoriteByCurrentUser
-        author {
-          imageProfile
-          username
-        }
         category {
           name
         }

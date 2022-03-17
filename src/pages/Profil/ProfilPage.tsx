@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { RouteName } from "App";
 import "App.css";
 import { Button, Loading, RecipeCard } from "components";
+import { CreatorProfil } from "./CreatorProfil";
 import { getImagePath } from "helpers/image.helper";
 import { defaultImageProfil, likedIconOff } from "icons";
 import { isEmpty } from "lodash";
@@ -9,11 +10,11 @@ import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
 import { Modal } from "pages/Profil/ModalProfil";
 import { CTACard } from "pages/recipe/ListPage/Components/CTACard";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useHistory } from "react-router-dom";
 import "reactjs-popup/dist/index.css";
 import { ME } from "services/auth.service";
 import { Container, Footer, Navbar } from "../../components";
-import { Helmet } from "react-helmet";
 
 const ProfilPage: React.FC = () => {
   useEffect(() => {
@@ -37,12 +38,13 @@ const ProfilPage: React.FC = () => {
     });
   }
   const user = data?.me;
-
   // Image
   const [userImage, setImage] = useState(user?.imageProfile);
 
   useEffect(() => {
-    setImage(user?.imageProfile ? getImagePath(user?.imageProfile) : user?.photoUrl);
+    setImage(
+      user?.imageProfile ? getImagePath(user?.imageProfile) : user?.photoUrl
+    );
   }, [user]);
 
   const refetchMe = () => refetch();
@@ -91,7 +93,7 @@ const ProfilPage: React.FC = () => {
           </div>
         </div>
       </Container>
-
+      {user?.isCreatorProfil && ( <CreatorProfil user={user}></CreatorProfil> ) }
       <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
         <button
           className={

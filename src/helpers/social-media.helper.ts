@@ -2,7 +2,7 @@ import { InstagramIcon, wwwlogo } from "icons";
 import { includes, forEach } from "lodash";
 
 const socialMedia = {
-  "instagram.com": {
+  "instagram": {
      name: "Instagram",
      icon: InstagramIcon
     },

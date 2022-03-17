@@ -1,55 +1,37 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
-import React, { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { mdpNonVisible, mdpVisible } from "icons";
+import {
+  optionsUserCategoryAge,
+  optionsUserCategoryLvl,
+  optionsUserWantFromGreenit,
+  schemaRegister,
+} from "pages/Register/registerHelper";
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import Select from "react-select";
-import authService, {
-  CREATE_ACCOUNT
-} from "services/auth.service";
-import * as yup from "yup";
-import { Footer, Navbar } from "../../components";
+import authService, { CREATE_ACCOUNT } from "services/auth.service";
+import { EditorGreenit, Footer, Navbar } from "../../components";
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import "./register.css";
-import { Helmet } from "react-helmet";
-import { mdpNonVisible, mdpVisible } from "icons";
-
-const schema = yup.object().shape({
-  email: yup.string().email().required("L'email est obligatoire."),
-  utilisateur: yup
-    .string()
-    .min(4, "Le nom d'utilisateur doit contenir au moins 4 caractères.")
-    .max(
-      16,
-      "Le nom d'utilisateur est trop long, il doit être moins de 16 caractères maximum."
-    )
-    .required("Le nom d'utilisateur est obligatoire.")
-    .matches(
-      /^[^$&+,:;=?@#¨|'<>^()%!¿§«»ω⊙¤°℃℉€¥£¢¡®©]*$/,
-      "Le nom d'utilisateur ne doit pas contenir de caractères spéciaux sauf('.', '_', '-')"
-    ),
-  password: yup
-    .string()
-    .max(
-      32,
-      "Mot de passe trop long, il doit être moins de 32 caractères maximum."
-    )
-    .required("Le mot de passe est obligatoire.")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/,
-      "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule."
-    ),
-  passwordConfirmation: yup
-    .string()
-    .oneOf(
-      [yup.ref("password"), null],
-      "Les mots de passe ne correspondent pas."
-    ),
-  userCategoryLvl: yup.object().required("Ce champ est obligatoire."),
-  userWantFromGreenit: yup.object().required("Ce champ est obligatoire."),
-  userCategoryAge: yup.object().required("Ce champ est obligatoire."),
-}); // _ - .
+import {
+  loginMail,
+  loginPassword,
+  confirmpwd,
+  userlogo,
+  creator,
+  explorer,
+  fblogo,
+  instalogo,
+  pintlogo,
+  tiktoklogo,
+  wwwlogo,
+  ytlogo,
+} from "icons";
+import { Button } from "../../components";
 
 const Register: React.FC = () => {
   const {
@@ -60,43 +42,26 @@ const Register: React.FC = () => {
     reset,
     control,
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaRegister),
+  });
+
+  const {
+    fields: urlsSocialMediaFields,
+    append: urlsSocialMediaAppend,
+    remove: urlsSocialMediaRemove,
+  } = useFieldArray({
+    control,
+    name: "urlsSocialMedia",
   });
   const history = useHistory();
   const [createAccount, { data: createAccountData, loading, error }] =
     useMutation(CREATE_ACCOUNT, { errorPolicy: "all" });
 
-  const [email, setEmail] = useState<string>("");
+  useEffect(() => {
+    urlsSocialMediaAppend({}, { shouldFocus: false });
+  }, []);
 
-  const optionsUserCategoryLvl = [
-    { value: "beginner", label: "Petit.e curieux.se, je débute dans le DIY." },
-    {
-      value: "intermediate",
-      label: "Explorateur.ice avisé.e, j'ai déjà des notions en DIY.",
-    },
-    { value: "advanced", label: "Adepte convaincu.e, je suis passioné.e de DIY !" },
-  ];
-
-  const optionsUserWantFromGreenit = [
-    {
-      value: "find_inspiration",
-      label: "Trouver de l'inspiration auprès de la communauté.",
-    },
-    {
-      value: "shared_talk",
-      label: "Discuter et partager mes connaissances sur le DIY.",
-    },
-    { value: "meet", label: "Rencontrer des adeptes du DIY." },
-  ];
-
-  const optionsUserCategoryAge = [
-    { value: "young", label: "Moins de 20 ans, jeune mais pas trop." },
-    { value: "young_adult", label: "Entre 20 et 35 ans, adulte mais pas trop non plus." },
-    { value: "adult", label: "Entre 35 et 50 ans, adulte mais pas que." },
-    { value: "senior", label: "Plus de 50 ans, interdit de m'appeler senior !" },
-  ];
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
@@ -110,7 +75,9 @@ const Register: React.FC = () => {
           message: "Cet email éxiste déjà.",
         });
       }
-      if (createAccountData?.register?.errors?.username?.[0]?.code === "unique") {
+      if (
+        createAccountData?.register?.errors?.username?.[0]?.code === "unique"
+      ) {
         setError("utilisateur", {
           message: "Ce nom existe déjà.",
         });
@@ -122,9 +89,8 @@ const Register: React.FC = () => {
     utilisateur: string;
     password: string;
     passwordConfirmation: string;
-    userCategoryLvl: string;
-    userCategoryAge: string;
-    userWantFromGreenit: string;
+    urlsSocialMedia: string[];
+    biographie: string;
     isFollowNewsletter: boolean;
   }) => {
     const getValue = (field: any) => field.value;
@@ -137,10 +103,10 @@ const Register: React.FC = () => {
         username: data.utilisateur,
         password1: data.password,
         password2: data.passwordConfirmation,
-        userCategoryLvl: getValue(data.userCategoryLvl),
-        userCategoryAge: getValue(data.userCategoryAge),
-        userWantFromGreenit: getValue(data.userWantFromGreenit),
         isFollowNewsletter: data.isFollowNewsletter,
+        urlsSocialMedia: JSON.stringify(data.urlsSocialMedia),
+        biographie: data.biographie,
+        isCreatorProfil: true,
       },
     }).then((dataAccount) => {
       if (!dataAccount?.data?.register?.success) return;
@@ -149,190 +115,220 @@ const Register: React.FC = () => {
   };
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   return (
-    <div className="grid justify-items-center w-full">
+    <div>
       <Navbar />
       <Helmet>
         <title>Créer un compte Greenit - Ton espace personnel DIY</title>
-        <meta name="description" content="Avec la création de ton compte sur Greenit Community, tu peux partager tes premières recettes maison, commenter et supporter les membres de la communauté et sauvegarder tes recettes préférées." />
+        <meta
+          name="description"
+          content="Avec la création de ton compte sur Greenit Community, tu peux partager tes premières recettes maison, commenter et supporter les membres de la communauté et sauvegarder tes recettes préférées."
+        />
       </Helmet>
       <BackgroundImage className="overflow-hidden" />
-      <h1 className="text-xl font-medium w-2/3 md:text-2xl | mt-16 text-center">
-        Création de ton espace DIY <br />
-      </h1>
+      <div className=" flex justify-center items-center">
+     
 
-      <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
-        <div className="grid grid-cols-3 md:grid-cols-2">
-          <h3 className="col-span-2 text-sm mr-4 self-center justify-self-start | md: md:justify-self-end md:col-span-1">
-            Si tu as déjà un compte:
-          </h3>
-          <Link to={RouteName.connexion}>
+      <div className="bg-white shadow-lg rounded-xl flex flex-col rounded-3xl items-center w-10/12 md:w-8/12 lg:w-2/6 gap-4">
+        
+        <h1 className=" text-xl  md:text-2xl font-bold lg:text-3xl text-center mt-10">
+          Création de ton espace DIY <br />
+        </h1>
+        <h2 className="text-base md:text-lg ">Quel type de compte veux-tu créer ?</h2>
+
+
+        <div className="flex flex-row items-center justify-evenly w-5/6 gap-8">
+        <div className=" flex flex-col shadow-lg justify-center items-center border rounded-xl w-2/4 h-28 hover:bg-grey hover:text-white transition cursor-pointer">
+
+          <img className="rounded-full shadow-lg  w-14"src={explorer} alt="logo explorateur" />
+         Explorateur
+          </div>
+        <div className="bg-grey-300 flex flex-col cursor-pointer shadow-lg justify-center items-center rounded-xl w-2/4 h-28 hover:bg-grey hover:text-white transition border-4 border-blue">
+
+          
+          <img className="rounded-full shadow-lg w-14" src={creator} alt="logo créateur" />
+          Créateur
+          </div>
+      </div>
+
+        <div className="w-10/12">
+          <form className="flex flex-col gap-4 md:gap-8 my-6  md:my-10" onSubmit={handleSubmit(onSubmitHandler)}>
+            <div className="flex flex-row gap-4 items-center w-full">
+              <img className="md:w-8 md:h-8" src={loginMail} alt="icone email" />
+              <input
+                className="shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline "
+                id="email"
+                placeholder="Email"
+                type="email"
+                {...register("email")}
+              ></input>
+              <p className="text-red text-xs italic">{errors.email?.message}</p>
+            </div>
+
+            <div className="flex flex-row gap-4 items-center w-full">
+              <img className="md:w-8 md:h-8" src={userlogo} alt="icone email" />
+              <input
+                className="shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline "
+                id="utilisateur"
+                placeholder="Nom d'utilisateur"
+                type="text"
+                {...register("utilisateur")}
+              ></input>
+              <p className="text-red text-xs italic">{errors.email?.message}</p>
+            </div>
+
+            <div className="flex flex-row gap-4 items-center w-full">
+              <img
+                className="md:w-8 md:h-8"
+                src={loginPassword}
+                alt="icone mot de passe"
+              />
+              <div className="flex flex-row gap-4 items-center shadow-lg  border rounded-xl md:h-12 w-full text-gray-700 h-10 leading-tight  focus:shadow-outline ">
+                <input
+                  className="appearance-none py-2 px-3 lg:text-xl rounded-xl  focus:outline-none w-full h-full"
+                  id="password"
+                  type={isRevealPwd ? "text" : "password"}
+                  placeholder="Mot de passe"
+                  {...register("password")}
+                />
+                <img
+                  className="mr-2 cursor-pointer"
+                  src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                  alt="voir le mot de passe"
+                  onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                />
+              </div>
+              <p className="text-red text-xs italic">
+                {errors.password?.message}
+              </p>
+            </div>
+
+            <div className="flex flex-row gap-4 items-center w-full">
+              <img
+                className="md:w-8 md:h-8"
+                src={confirmpwd}
+                alt="icone mot de passe"
+              />
+              <div className="flex flex-row  items-center shadow-lg  border rounded-xl md:h-12 w-full text-gray-700 h-10 leading-tight  focus:shadow-outline ">
+                <input
+                  className="appearance-none py-2 px-3 lg:text-xl rounded-xl  focus:outline-none w-full h-full"
+                  id="passwordConfirmation"
+                  type={isRevealPwd ? "text" : "password"}
+                  placeholder="Confirmer le mot de passe"
+                  {...register("passwordConfirmation")}
+                />
+                <img
+                  className="mr-2 cursor-pointer"
+                  src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                  alt="voir le mot de passe"
+                  onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                />
+              </div>
+              <p className="text-red text-xs italic">
+                {errors.passwordConfirmation?.message}
+              </p>
+            </div>
+
+            <div className="">
+            <label className="block text-gray-700 text-xl mb-2">
+              Biographie
+            </label>
+            <h3 className="block text-gray-700 text-sm mb-2">
+              Pourquoi tu utilises ces ingrédients ?
+              <br /> Comment tu utilises le produit ?
+            </h3>
+            <Controller
+              name="bio"
+              render={({ field }) => (<EditorGreenit {...field} />) }
+              control={control}
+            />
+            <p className="text-red text-xs italic">
+              {errors.biographie?.message}
+            </p>
+          </div>
+
+          <div className="flex  flex-col gap-2">
+            <label className="block text-gray-700 text-xl ">
+              Ajouter un lien
+            </label>
+            <h3 className="block text-gray-700 text-sm">
+              Ajoute un ou plusieurs lien vers tes réseaux sociaux <br />
+              Par exemple :
+            </h3>
+            <div className="flex flex-row gap-2 mb-4">
+                <img className="w-8" src={wwwlogo} alt="www-logo" />
+                <img className="w-8" src={fblogo} alt="facebook-logo" />
+                <img className="w-8" src={instalogo} alt="instagram-logo" />
+                <img className="w-8" src={ytlogo} alt="youtube-logo" />
+                <img className="w-8" src={tiktoklogo} alt="tiktok-logo" />
+                <img className="w-8" src={pintlogo} alt="pinterest-logo" />
+              </div>
+            <div className="">
+              <ul>
+                {urlsSocialMediaFields.map((item, index) => (
+                  <>
+                    <li key={index} className={`grid grid-rows-2 grid-cols-1`}>
+                      <input
+                        placeholder="www.exemple.com"
+                        className={`shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline `}
+                        {...register(`urlsSocialMedia.${index}.url`)}
+                      />
+
+                      <p className="text-red text-xs italic">
+                        {errors?.urlsSocialMedia?.[index]?.url?.message}
+                      </p>
+
+                      <div
+                        className="justify-self-end cursor-pointer mb-2 bg-red text-white rounded-lg py-1 px-2"
+                        onClick={() => urlsSocialMediaRemove(index)}
+                      >
+                        Supprimer
+                      </div>
+                    </li>
+                  </>
+                ))}
+              </ul>
+              <div
+                onClick={() => urlsSocialMediaAppend({}, { shouldFocus: true })}
+                className="bg-blue cursor-pointer text-white rounded-lg py-1 px-2 w-40 text-center"
+              >
+                Ajouter une étape
+              </div>
+            </div>
+            <p className="text-red text-xs italic">
+              {errors.urlsSocialMedia?.message}
+            </p>
+          </div>
+
+          <div className="flex w-full  self-center ">
+              <input
+                type="checkbox"
+                className="w-6 h-6 cursor-pointer"
+                {...register("isFollowNewsletter")}
+                id="isFollowNewsletter"
+              />
+              <label className="text-gray-700 text-sm ml-2 self-center">
+                Coche la case si tu veux recevoir nos dernières actualités et
+                les tendances du secteur du DIY.
+              </label>
+
+            </div>
+          </form>
+        </div>
+        <Button type="blue" className="h-10  font-extrabold">Crée ton profil</Button>
+        <Link to={RouteName.connexion}>
             <button
               className="flex items-center cursor-pointer align-middle
               bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
               hover:bg-white hover:border-green hover:text-green"
             >
+              
               <h3 className="text-sm align-middle">Se connecter</h3>
             </button>
           </Link>
-        </div>
-        <form
-          className="bg-white shadow-lg rounded-xl p-8 mb-4 mt-2"
-          onSubmit={handleSubmit(onSubmitHandler)}
-        >
-          <div className="mb-4 md:max-w-md">
-            <label className="block text-gray-700  md:text-lg font-bold mb-2">
-              Email
-            </label>
-            <input
-              className="shadow-lg appearance-none rounded py-2 px-3 mb-4 text-gray-700 h-12 w-full sm:w-80 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              placeholder="email"
-              type="email"
-              {...register("email")}
-            ></input>
-            <p className="text-red text-xs italic">
-              {errors.email?.message}
-            </p>
 
-            <label className="block text-gray-700  md:text-lg font-bold mb-2 mt-4">
-              Nom d'utilisateur
-            </label>
-            <input
-              className="shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline"
-              id="utilisateur"
-              placeholder="nom utilisateur"
-              type="text"
-              {...register("utilisateur")}
-            ></input>
-            <p className="text-red text-xs italic">
-              {errors.utilisateur?.message}
-            </p>
-            <label className="block text-gray-700  md:text-lg font-bold mb-2 mt-4">
-              Mot de passe
-            </label>
-            <div className="flex flex-row justify-between items-center shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight focus:outline-none focus:shadow-outline">
-            <input
-              className=" appearance-none focus:outline-none focus:shadow-outline"
-              id="password"
-              type={isRevealPwd ? "text" : "password"}
-              placeholder="******************"
-              {...register("password")}
-            />
-            <img title={isRevealPwd ? "Hide password" : "Show password"}
-            src={isRevealPwd ? mdpVisible : mdpNonVisible} alt="logo visible" 
-            onClick={() => setIsRevealPwd(prevState => !prevState)} />
-            </div>
-            <p className="text-red text-xs italic">
-              {errors.password?.message}
-            </p>
-            <label className="block text-gray-700 text-xs md: mb-2">
-              Le mot de passe doit contenir 8 caractères, une majuscule, une
-              minuscule
-            </label>
-            <label className="block text-gray-700  md:text-lg font-bold mb-2 mt-6">
-              Confirmation du mot de passe
-            </label>
-            <div className="flex flex-row items-center justify-between shadow-lg appearance-none rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-4 h-12 leading-tight">
-            <input
-              className="appearance-none focus:outline-none focus:shadow-outline"
-              id="passwordConfirmation"
-              type={isRevealPwd ? "text" : "password"}
-              placeholder="******************"
-              {...register("passwordConfirmation")}
-            />
-            <img title={isRevealPwd ? "Hide password" : "Show password"}
-            src={isRevealPwd ? mdpVisible : mdpNonVisible} alt="logo visible" 
-            onClick={() => setIsRevealPwd(prevState => !prevState)}/>
-            </div>
-            <p className="text-red text-xs italic">
-              {errors.passwordConfirmation?.message}
-            </p>
-          </div>
-          <div className="mb-10">
-            <label className="block text-gray-700  font-bold md:text-lg mb-2">
-              Qui es-tu ?
-            </label>
-            <Controller
-              name="userCategoryLvl"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={optionsUserCategoryLvl}
-                  className={`w-2/3 md:w-1/2`}
-                />
-              )}
-            />
-            <p className="text-red text-xs italic">
-              {errors.userCategoryLvl?.message}
-            </p>
-          </div>
-
-          <div className="mb-10">
-            <label className="block text-gray-700 font-bold  md:text-lg mb-2">
-              En quoi Greenit peut-il t'aider ?
-            </label>
-            <Controller
-              name="userWantFromGreenit"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={optionsUserWantFromGreenit}
-                  className={`w-2/3 md:w-1/2`}
-                />
-              )}
-            />
-            <p className="text-red text-xs italic">
-              {errors.userWantFromGreenit?.message}
-            </p>
-          </div>
-
-          <div className="mb-10">
-            <label className="block text-gray-700 font-bold  md:text-lg mb-2">
-              A quel groupe appartiens-tu ?
-            </label>
-            <Controller
-              name="userCategoryAge"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={optionsUserCategoryAge}
-                  className={`w-2/3 md:w-1/2`}
-                />
-              )}
-            />
-            <p className="text-red text-xs italic">
-              {errors.userCategoryAge?.message}
-            </p>
-          </div>
-
-          <div className="flex w-full mb-4 mt-10 self-center ">
-            <input
-              type="checkbox"
-              className="w-6 h-6"
-              {...register("isFollowNewsletter")}
-              id="isFollowNewsletter"
-            />
-
-            <label className="text-gray-700 text-sm ml-2 self-center">
-              Coche la case si tu veux recevoir nos dernières actualités et les
-              tendances du secteur du DIY.
-            </label>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <button
-              className="flex justify-center items-center cursor-pointer align-middle
-              bg-blue rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
-              hover:bg-white hover:border-blue hover:text-blue"
-            >
-              Crée ton profil
-            </button>
-          </div>
-        </form>
       </div>
+
+    </div>
       <Footer />
     </div>
   );

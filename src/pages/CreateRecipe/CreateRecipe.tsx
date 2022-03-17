@@ -27,7 +27,6 @@ import {
   tiktoklogo,
   wwwlogo,
   ytlogo,
-  pastelogo,
 } from "../../icons";
 
 const schemaLink = yup.object().shape({
@@ -136,12 +135,6 @@ const CreateRecipe: React.FC = () => {
     { value: RecipeDifficulty.Intermediate, label: "Moyen" },
     { value: RecipeDifficulty.Advanced, label: "Difficile" },
   ];
-
-  useEffect(() => {
-    ingredientsAppend({});
-    utensilsAppend({});
-    instructionsAppend({});
-  }, []);
 
   useEffect(() => {
     if (data?.register?.success === false || error) {
