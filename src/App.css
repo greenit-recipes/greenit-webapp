@@ -25,7 +25,7 @@
 
 body {
   font-family: QuickSand_Medium !important;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 h2 {
@@ -248,4 +248,8 @@ border-radius: 4px;
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.like-greenit {
+ right: 4.7rem;
 }

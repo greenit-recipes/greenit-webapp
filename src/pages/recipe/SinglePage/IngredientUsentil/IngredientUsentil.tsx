@@ -8,24 +8,18 @@ interface IIngredientUsentil {
 }
 
 export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
-  /* 
-    <div className="w-5/6">
-        <h2 className="pb-1 text-xl md:text-2xl">Ustensiles</h2>
-        {recipe?.utensils.map((item: any, index: number) => (
-          <h3 className="text-lg md:text-xl pt-2" key={index}>
-            {item.name}
-          </h3>
-        ))}
-      </div>
-    */
-
   const [isIngredientSelected, setIngredientSelected] = useState(true);
 
   return (
     <div className="flex items-center mt-14 mb-14">
       <div className="w-full">
-        <div className={`flex ${ isIngredientSelected ? "ingredient-border": "ingredient-border-ustensil"}`}>
-        
+        <div
+          className={`flex ${
+            isIngredientSelected
+              ? "ingredient-border"
+              : "ingredient-border-ustensil"
+          }`}
+        >
           <div
             className={`flex pb-1 cursor-pointer justify-center h-14 w-44 items-center ingredient-base ${
               isIngredientSelected
@@ -53,22 +47,16 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
             <div className="text-xl ml-2">Ustensiles</div>
           </div>
         </div>
-
-        {/* @ts-ignore*/}
-        {/*recipe.ingredients.map((item, index) => (
-          <h3 className="pt-2" key={index}>
-            {item.amount} {item.name}
-          </h3>
-        ))*/}
+        
         <div className={`${isIngredientSelected ? "" : "hidden"}`}>
-          <SectionIngredient />
-          <SectionIngredient />
-          <SectionIngredient />
-          <SectionIngredient />
-          <SectionIngredient />
+          {recipe.ingredients.map((item: any, index: any) => (
+            <SectionIngredient data={item} key={index} />
+          ))}
         </div>
         <div className={`${isIngredientSelected ? "hidden" : ""}`}>
-          <SectionUstensil />
+          {recipe.utensils.map((item: any, index: any) => (
+            <SectionUstensil data={item} key={index} />
+          ))}
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ mutation addViewRecipe($recipeId: String!) {
 `;
 
 const requestRefreshToken = async (recipeId: string) => {
-    return await client.mutate({
+    return client.mutate({
       mutation: ADD_VIEW_RECIPE,
       variables: {
         recipeId,

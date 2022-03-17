@@ -1,7 +1,7 @@
 import _ from "lodash";
 
-export const getImagePath = (imageProfile: string = "") => {
-    if (imageProfile) {
-        return process.env.REACT_APP_AWS_URL + imageProfile;
+export const getImagePath = (urlImage: string = "") => {
+    if (urlImage) {
+        return process.env.REACT_APP_AWS_URL + urlImage;
     }
 }

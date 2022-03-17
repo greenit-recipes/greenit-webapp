@@ -157,7 +157,6 @@ const ProfilPage: React.FC = () => {
                       recipe={recipe}
                       isRefetchData={true}
                       key={index}
-                      inCarousel={false}
                       isProfilPage={true}
                     />
                   </div>
@@ -192,7 +191,6 @@ const ProfilPage: React.FC = () => {
                     recipe={recipe}
                     key={index}
                     isProfilPage={true}
-                    inCarousel={false}
                   />
                 </div>
               </>

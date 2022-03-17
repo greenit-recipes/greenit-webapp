@@ -1,6 +1,6 @@
 import { RouteName } from "App";
 import { BugFormulaire } from "components/layout/BugFormulaire";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/lazy";
 import { Link } from "react-router-dom";
 import {
   BackgroundImage,
@@ -103,17 +103,17 @@ const LandingPage = () => {
       <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-4 mb-2 md:mt-4">
         <div className="mb-6">
           {!isMobile && (
-            <h5 className="text-green font-medium text-3xl md:text-5xl mb-2 |">
+            <h5 className="text-green font-medium text-3xl md:text-4xl mb-2 |">
               Greenit
             </h5>
           )}
-          <h1 className="text-2xl font-semibold md:text-4xl md:mb-1 inline lg:block |">
+          <h1 className="text-xl font-semibold md:text-3xl md:mb-1 inline lg:block |">
             La communauté du fait maison,
           </h1>
-          <h5 className="text-2xl font-semibold md:text-4xl | ml-2 lg:ml-0 md:mb-2 inline">
+          <h5 className="text-xl font-semibold md:text-3xl | ml-2 lg:ml-0 md:mb-2 inline">
             pour une consommation
           </h5>
-          <h5 className="text-green font-semibold text-2xl md:text-4xl | ml-2 inline">
+          <h5 className="text-green font-semibold text-2xl md:text-3xl | ml-2 inline">
             durable
           </h5>
         </div>
@@ -200,7 +200,7 @@ const LandingPage = () => {
           itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
         >
           {recipesBegginer?.map((recipe) => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} isCarrousel={true}/>
           ))}
         </Carousel>
       )}
@@ -232,8 +232,8 @@ const LandingPage = () => {
               title: "2 Recettes simples",
               number: "3",
             },
-          ].map((item) => (
-            <Link to={RouteName.starterPage}>
+          ].map((item, index) => (
+            <Link to={RouteName.starterPage} key={index}>
               <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150">
                 <div className="grid absolute  w-8 h-8  md:w-10 md:h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
                   <h2 className="text-center self-center font-bold  text-sm  lg:text-xl">
@@ -291,7 +291,7 @@ const LandingPage = () => {
           itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
         >
           {recipesOrderByLikes?.map((recipe) => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} isCarrousel={true}/>
           ))}
         </Carousel>
       )}
@@ -311,11 +311,13 @@ const LandingPage = () => {
             height="300px"
             width="310px"
             title="video ulule"
+            loading="lazy"
             src="https://fr.ulule.com/greenit-community/widget.html"
             scrolling="no"
           ></iframe>
           <div className="w-full px-4 sm:px-0 sm:w-96 lg:w-99">
             <iframe
+              loading="lazy"
               className="react-player"
               height="270px"
               width="100%"

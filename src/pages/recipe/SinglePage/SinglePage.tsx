@@ -24,7 +24,7 @@ import { BsWallet2 } from "react-icons/bs";
 import { GrMoney } from "react-icons/gr";
 import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
 import { RiShareForwardLine } from "react-icons/ri";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/lazy";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import authService from "services/auth.service";
@@ -160,7 +160,7 @@ const RecipeSinglePage = () => {
           className="grid absolute cursor-pointer rounded-full left-0 top-14 w-8 h-8 z-20 ml-3 | lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
           onClick={() => history.goBack()}
         >
-          <img alt="Retour icon" src={retourIcon} />
+          <img alt="Retour icon" loading="lazy" src={retourIcon} />
         </div>
         <HeaderRecipe
           parentFcn={setSizeCretorHeader}
@@ -214,7 +214,7 @@ const RecipeSinglePage = () => {
                       <IoFlaskOutline className="h-10 w-10 absolute icon-position-circle rotate-singlePage-chimie" />
                     }
                     symbol=""
-                    number="4"
+                    number={recipe?.substances?.length}
                     text="Subtances épargnée"
                   />
                   <CircleGreenit
@@ -224,7 +224,7 @@ const RecipeSinglePage = () => {
                     }
                     customClassName="ml-16"
                     symbol="€"
-                    number="4"
+                    number={recipe?.moneySaved}
                     text="Argent épargnée"
                   />
                   <CircleGreenit
@@ -234,7 +234,7 @@ const RecipeSinglePage = () => {
                     }
                     customClassName="ml-16"
                     symbol="g"
-                    number="10"
+                    number={recipe?.plasticSaved}
                     text="CO2 épargnée"
                   />
                 </div>
@@ -246,7 +246,7 @@ const RecipeSinglePage = () => {
                   src={getImagePath(recipe?.image)}
                   alt={recipe?.name}
                   loading="lazy"
-                  className="m-auto h-64 w-52 lg:w-64 lg:h-96 rounded-3xl"
+                  className="m-auto h-64 w-52 lg:w-64 lg:h-80 rounded-3xl"
                 />
                 {isMobile && (
                   <div className="flex items-center justify-center mt-8">
@@ -256,7 +256,7 @@ const RecipeSinglePage = () => {
                         <IoFlaskOutline className="h-6 w-6 absolute icon-position-circle-mobile rotate-singlePage-chimie" />
                       }
                       symbol=""
-                      number="4"
+                      number={recipe?.substances?.length}
                       text="Subtances épargnée"
                     />
                     <CircleGreenit
@@ -266,7 +266,7 @@ const RecipeSinglePage = () => {
                       }
                       customClassName="ml-16"
                       symbol="€"
-                      number="4"
+                      number={recipe?.moneySaved}
                       text="Argent épargnée"
                     />
                     <CircleGreenit
@@ -276,13 +276,12 @@ const RecipeSinglePage = () => {
                       }
                       customClassName="ml-16"
                       symbol="g"
-                      number="10"
+                      number={recipe?.plasticSaved}
                       text="CO2 épargnée"
                     />
                   </div>
                 )}
-                                 { isMobile && (<h2 className="text-xl mt-8">Description</h2>)} 
-
+                {isMobile && <h2 className="text-xl mt-8">Description</h2>}
 
                 <div className="mt-5 flex flex-col lg:ml-12">
                   {!isEmpty(recipe?.description) ? (
@@ -298,18 +297,23 @@ const RecipeSinglePage = () => {
                   <div className="pt-5 pb-2 fontQSbold ">Conservation</div>
                   <p>{recipe?.expiry}</p>
                   <div className="flex black mt-6">
-                    <div className="btn-single-page w-24 h-16">
+                    <div className="h-16">
                       <div className="text-center mb-1 mt-1"> Temps</div>
                       <div className="flex items-center justify-center">
                         <BiTimeFive className="w-6 h-6 mr-2" />
                         <div>{recipe?.duration} m</div>
                       </div>
                     </div>
-                    <div className="btn-single-page w-24 h-16 ml-6">
+                    <div
+                      className="
+                  px-1.5 h-16 ml-6"
+                    >
                       <div className="text-center mb-1 mt-1"> Prix</div>
                       <div className="flex items-center justify-center">
                         <GrMoney className="w-6 h-6 mr-2" />
-                        <div>2,7 €</div>
+                        <div>
+                          {recipe?.priceMin} € - {recipe?.priceMax} €
+                        </div>
                       </div>
                     </div>
                   </div>

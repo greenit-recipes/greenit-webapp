@@ -83,7 +83,7 @@ export const SimilarRecipe: React.FC<ISimilarRecipe> = (data) => {
           {
             // @ts-ignore
             recipes?.map((recipe) => (
-              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} isCarrousel={true}/>
             ))
           }
         </Carousel>

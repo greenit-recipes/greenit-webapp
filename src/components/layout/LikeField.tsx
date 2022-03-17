@@ -9,6 +9,7 @@ import { RouteName } from "App";
 interface ILikeField {
   className?: string;
   recipe: any;
+  isCarrousel?: any;
   isRecipeCard?: boolean;
   parentFunction?: any;
 }
@@ -17,6 +18,7 @@ export const LikeField: React.FC<ILikeField> = ({
   className,
   isRecipeCard = true,
   recipe,
+  isCarrousel = false,
   parentFunction = null,
 }) => {
   const [isLiked, setLiked] = useState(recipe?.isLikedByCurrentUser);
@@ -28,7 +30,7 @@ export const LikeField: React.FC<ILikeField> = ({
     <div
       className={
         isRecipeCard
-          ? `absolute h-8 lg:h-9 w-14 lg:w-16 top-1 left-26 lg:left-36 | grid justify-items-center | bg-white rounded-xl ${className}`
+          ? `absolute h-6 lg:h-8 w-12 lg:w-14  ${isCarrousel ? "like-greenit top-1": "top-1 right-2"} | grid justify-items-center | bg-white rounded-xl ${className}`
           : `flex ${className}`
       }
     >
@@ -50,29 +52,29 @@ export const LikeField: React.FC<ILikeField> = ({
           {isLiked ? (
             <img
               src={clapIconOn}
-              className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mb-1"
+              className="flex self-center w-6 h-6 lg:w-7 lg:h-7 mb-1"
               alt="likes"
               loading="lazy"
             />
           ) : (
             <img
               src={clapIconOff}
-              className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mb-1"
+              className="flex self-center w-6 h-6 lg:w-7 lg:h-7 mb-1"
               alt="likes"
               loading="lazy"
             />
           )}
-          <h2 className="flex self-center  lg:text-lg ml-1">{nbrLiked}</h2>
+          <div className="flex self-center ml-1">{nbrLiked}</div>
         </button>
       ) : (
-        <Link to={RouteName.register} className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mr-3">
+        <Link to={RouteName.register} className="flex self-center w-6 h-6 lg:w-7 lg:h-7 mr-3">
           <img
             src={clapIconOff}
-            className="flex self-center w-7 h-7 lg:w-8 lg:h-8"
+            className="flex self-center w-6 h-6 lg:w-7 lg:h-7"
             alt="likes"
             loading="lazy"
           />
-          <h2 className="flex self-center text-lg lg:text-lg ml-1">{nbrLiked}</h2>
+          <div className="flex self-center ml-1">{nbrLiked}</div>
         </Link>
       )}
       

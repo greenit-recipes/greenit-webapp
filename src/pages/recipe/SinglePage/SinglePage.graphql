@@ -9,10 +9,18 @@ query recipe($urlId: String!) {
       id
       name
       amount
+      description
+      image
+      alternative
+      isSupermarket
+      isOnline
+      isProductor
     }
     utensils {
       id
       name
+      image
+      amount
     }
     author {
       id
@@ -26,8 +34,18 @@ query recipe($urlId: String!) {
     isLikedByCurrentUser
     titleSeo
     metaDescriptionSeo
+    nbrView
+    priceMin
+    priceMax
+    moneySaved
+    plasticSaved
     category {
       name
+    }
+    substances {
+      name
+      groupSubs
+      effect
     }
     isAddToFavoriteByCurrentUser
     expiry
