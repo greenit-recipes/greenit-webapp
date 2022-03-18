@@ -27,6 +27,7 @@ import {
   issy,
   escapeTheCity,
   sixHTN,
+  Ustensil,
 } from "../../icons";
 import "../../pages/recipe/SinglePage/SinglePage.css";
 import { CategoryCircle } from "./Components/CategoryCircle";

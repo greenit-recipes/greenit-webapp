@@ -2,7 +2,13 @@ import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { Button } from "components";
-import { mdpNonVisible, mdpVisible, loginMail, loginPassword, FBIcon } from "icons";
+import {
+  mdpNonVisible,
+  mdpVisible,
+  loginMail,
+  loginPassword,
+  FBIcon,
+} from "icons";
 import { includes } from "lodash";
 import React, { useState } from "react";
 import FacebookLogin from "react-facebook-login";
@@ -140,50 +146,63 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
             <h1 className=" text-xl  md:text-2xl font-bold lg:text-3xl my-6 text-center">
               Connexion vers ton espace DIY <br />
             </h1>
-          <div className="flex flex-col">
-            
-              <div className="flex flex-row items-center w-full">
-              <img className="w-8 h-8 ml-2" src={loginMail} alt="icone email" />
-              <input
-                className="shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline m-4"
-                id="email"
-                placeholder="Email"
-                type="email"
-                {...register("email")}
-              ></input>
-              <p className="text-red text-xs italic">{errors.email?.message}</p>
-              </div>
-
-              <div className="flex flex-row items-center w-full">
-                <img className="w-8 h-8 ml-2" src={loginPassword} alt="icone mot de passe" />
-                <div className="flex flex-row  items-center shadow-lg  border rounded-xl md:h-12 w-full text-gray-700 h-10 leading-tight  focus:shadow-outline m-4">
-                  <input
-                    className="appearance-none py-2 px-3 lg:text-xl rounded-xl  focus:outline-none w-full h-full"
-                    id="password"
-                    type={isRevealPwd ? "text" : "password"}
-                    placeholder="Mot de passe"
-                    {...register("password")}
-                  />
+              <form
+                className="flex flex-col gap-4 md:gap-8 my-6  md:my-10"
+                onSubmit={handleSubmit(onSubmitHandler)}
+              >
+                <div className="flex flex-row items-center w-full">
                   <img
-                  className="mr-2"
-                  src={isRevealPwd ? mdpVisible : mdpNonVisible}
-                  alt="voir le mot de passe"
-                  onClick={() => setIsRevealPwd((prevState) => !prevState)}
-                />
+                    className="w-8 h-8 ml-2"
+                    src={loginMail}
+                    alt="icone email"
+                  />
+                  <input
+                    className="shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline m-4"
+                    id="email"
+                    placeholder="Email"
+                    type="email"
+                    {...register("email")}
+                  ></input>
                 </div>
                 <p className="text-red text-xs italic">
-                  {errors.password?.message}
-                </p>
-              </div>
+                    {errors.password?.message}
+                  </p>
 
-            <a
-              className="self-end mt-2 mb-6 px-4 text-sm lg:text-base text-blue font-bold"
-              href={RouteName.resetPassword}
-            >
-              Mot de passe oublié ?
-            </a>
-            </div>
-            <Button type="blue" className="h-10 font-bold">Connexion</Button>
+                <div className="flex flex-row items-center w-full">
+                  <img
+                    className="w-8 h-8 ml-2"
+                    src={loginPassword}
+                    alt="icone mot de passe"
+                  />
+                  <div className="flex flex-row  items-center shadow-lg  border rounded-xl md:h-12 w-full text-gray-700 h-10 leading-tight  focus:shadow-outline m-4">
+                    <input
+                      className="appearance-none py-2 px-3 lg:text-xl rounded-xl  focus:outline-none w-full h-full"
+                      id="password"
+                      type={isRevealPwd ? "text" : "password"}
+                      placeholder="Mot de passe"
+                      {...register("password")}
+                    />
+                    <img
+                      className="mr-2"
+                      src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                      alt="voir le mot de passe"
+                      onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                    />
+                  </div>
+                </div>
+                <p className="text-red text-xs italic">
+                    {errors.password?.message}
+                  </p>
+                <a
+                  className="self-end mt-2 mb-6 px-4 text-sm lg:text-base text-blue font-bold"
+                  href={RouteName.resetPassword}
+                >
+                  Mot de passe oublié ?
+                </a>
+                <Button type="blue" className="h-10 font-bold">
+                  Connexion
+                </Button>
+              </form>
 
             <div className="separator m-4 text-gray-700 md:m-10">Ou</div>
 
@@ -194,17 +213,26 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               callback={responseFacebook}
               cssClass="my-facebook-button-class"
               textButton="Connexion avec Facebook"
-              
-              icon={<img src={FBIcon} alt="facebook icon" className="w-6 h-6 mr-4" />}
-              
+              icon={
+                <img
+                  src={FBIcon}
+                  alt="facebook icon"
+                  className="w-6 h-6 mr-4"
+                />
+              }
             />
-            
+
             {errorLoginFb && (
               <div className="mt-4 text-red text-xs italic">{errorLoginFb}</div>
             )}
 
             <div>
-              <p onClick={() => loginOpen(false)} className="underline m-4 md:m-10 text-sm md:text-base text-center cursor-pointer text-gray-700">Pas encore de compte ? - Créer son compte</p>
+              <p
+                onClick={() => loginOpen(false)}
+                className="underline m-4 md:m-10 text-sm md:text-base text-center cursor-pointer text-gray-700"
+              >
+                Pas encore de compte ? - Créer son compte
+              </p>
             </div>
           </div>
         </div>

@@ -434,74 +434,55 @@ export const Navbar: React.FC = () => {
         <div className="flex justify-self-end">
           <SearchBarNav keyId="SearchNav" />
           {isLoggedIn ? (
-            <Link to={RouteName.createRecipe} className="flex">
+            <div className="rounded-full ease-linear transition-all duration-150 cursor-pointer">
+                                            <div className="flex">
+
               <Button
                 id="Share_a_recipe"
                 type="grey"
                 rounded="lg"
-                className="flex justify-end self-center | mr-2 cursor-pointer"
+                className="inline justify-end self-center | mr-2 cursor-pointer"
               >
                 Partager une recette
               </Button>
-            </Link>
+              </div>
+              </div>
           ) : (
-<<<<<<< HEAD
-            <Link to={RouteName.register} className="flex">
-              <Button
-                id="Share_a_recipe"
-                type="grey"
-                rounded="lg"
-                className="flex justify-end self-center | mr-2 cursor-pointer"
-              >
-                {" "}
-                Partager une recette
-              </Button>
-            </Link>
-=======
             <Modal
               btn={
-                <>
+                <div className="flex">
                   <Button
                     id="Share_a_recipe"
                     type="grey"
                     rounded="lg"
-                    className="flex justify-end self-center text-xl | mr-2 cursor-pointer"
+                    className="inline justify-end self-center text-xl | mr-2 cursor-pointer"
                   >
                     {" "}
                     Partager une recette
                   </Button>
-                </>
+                </div>
               }
             ></Modal>
->>>>>>> 1192b09 (add new modal for login register, and delete previous route)
           )}
           {isLoggedIn ? (
-            <Link to={RouteName.profil} className="flex">
+            <Link to={RouteName.profil}>
+              <div className="rounded-full ease-linear transition-all duration-150 cursor-pointer">
+                              <div className="flex">
               <Button
                 id="Access_Profil"
                 type="blue"
                 rounded="lg"
-                className="flex justify-end self-center | mr-4 cursor-pointer"
+                className="inline justify-end self-center | mr-4 cursor-pointer"
               >
                 Profil
               </Button>
+              </div>
+              </div>
             </Link>
           ) : (
-<<<<<<< HEAD
-            <Link to={RouteName.register} className="flex">
-              <Button
-                id="Create_Profil"
-                type="green"
-                rounded="lg"
-                className="flex justify-end self-center | cursor-pointer mr-2"
-              >
-                Créer un profil
-              </Button>
-            </Link>
-=======
             <Modal
               btn={
-                <>
+                <div className="flex">
                   <Button
                     id="Create_Profil"
                     type="green"
@@ -510,10 +491,9 @@ export const Navbar: React.FC = () => {
                   >
                     Accéder au profil
                   </Button>
-                </>
+                </div>
               }
             ></Modal>
->>>>>>> 1192b09 (add new modal for login register, and delete previous route)
           )}
         </div>
       </div>

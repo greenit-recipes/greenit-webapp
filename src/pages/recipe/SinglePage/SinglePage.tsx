@@ -14,7 +14,7 @@ import { isEmpty } from "lodash";
 import moment from "moment";
 import { IngredientUsentil } from "pages/recipe/SinglePage/IngredientUsentil/IngredientUsentil";
 import { Instruction } from "pages/recipe/SinglePage/Instructions/Instructions";
-import { checkUserAlreadyViewReipe } from "pages/recipe/SinglePage/SinglePage-helper";
+import { checkUserAlreadyViewRecipe } from "pages/recipe/SinglePage/SinglePage-helper";
 import { HelmetRecipe } from "pages/recipe/SinglePage/SinglePageHelmet";
 import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest";
 import React, { createRef, useEffect, useState } from "react";
@@ -36,33 +36,6 @@ import { CircleGreenit } from "./CircleGreenit/CircleGreenit";
 import { HeaderRecipe } from "./HeaderRecipe/HeaderRecipe";
 import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
 import "./SinglePage.css";
-import { RWebShare } from "react-web-share";
-import { checkUserAlreadyViewRecipe } from "pages/recipe/SinglePage/SinglePage-helper";
-
-interface InstructionProps {
-  index: number;
-  text: string;
-  isHighlighted: boolean;
-}
-const Instruction: React.FC<InstructionProps> = ({
-  index,
-  text,
-  isHighlighted,
-}) => {
-  return (
-    <div className="mt-5 flex inline-flex">
-      <div
-        className={`h-10 text-xl mr-5 rounded-full inline-flex items-center justify-center ${
-          isHighlighted ? "text-white bg-black" : "text-black bg-gray-200"
-        }`}
-        style={{ minWidth: "2.5rem" }}
-      >
-        {index}
-      </div>
-      <h3 className="text-lg lg:text-xl">{text}</h3>
-    </div>
-  );
-};
 
 const closest = (needle: number, haystack: any[]) => {
   return haystack.reduce((r: any, b: any) => {
@@ -120,7 +93,7 @@ const RecipeSinglePage = () => {
 
   useEffect(() => {
     setNbrComment(data?.recipe?.numberOfComments);
-    checkUserAlreadyViewRecipe(data?.recipe?.id)
+    checkUserAlreadyViewRecipe(data?.recipe?.id);
   }, [data]);
 
   const player = createRef<ReactPlayer>();
@@ -219,26 +192,10 @@ const RecipeSinglePage = () => {
                         className="flex justify-center items-center"
                         id="shared-recipe"
                       >
-                        {item.name}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 flex flex-col self-start mr-10">
-                    <h2 className="pb-1 text-xl md:text-2xl">Ingredients</h2>
-                    {/* @ts-ignore*/}
-                    {recipe.ingredients.map((item, index) => (
-                      <h3 className="text-lg md:text-xl pt-2" key={index}>
-                        {item.amount} {item.name}
-                      </h3>
-                    ))}
-                  </div>
-                  <div className="mt-5 flex flex-col self-start">
-                    <h2 className="pb-1 text-xl md:text-2xl">Ustensiles</h2>
-                    {recipe?.utensils?.map((item, index) => (
-                      <h3 className="text-lg md:text-xl pt-2" key={index}>
-                        {item.name}
-                      </h3>
-                    ))}
+                        <RiShareForwardLine className="justify-self-center ml-1 w-7 h-7" />
+                        <h2 className="text-center ml-2"> partage </h2>
+                      </button>
+                    </RWebShare>
                   </div>
                 </div>
 

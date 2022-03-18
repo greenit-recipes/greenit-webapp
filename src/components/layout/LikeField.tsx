@@ -1,11 +1,9 @@
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
-import { clapIconOn, clapIconOff } from "../../icons";
-import { ADD_OR_REMOVE_LIKE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
-import authService from "services/auth.service";
-import { Link } from "react-router-dom";
-import { RouteName } from "App";
 import { Modal } from "components/layout/Modal/Modal";
+import { ADD_OR_REMOVE_LIKE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
+import { useState } from "react";
+import authService from "services/auth.service";
+import { clapIconOff, clapIconOn } from "../../icons";
 
 interface ILikeField {
   className?: string;
@@ -26,7 +24,7 @@ export const LikeField: React.FC<ILikeField> = ({
   const [nbrLiked, setNbrLiked] = useState(recipe?.numberOfLikes);
   const [addOrRemoveLikeRecipe] = useMutation(ADD_OR_REMOVE_LIKE_RECIPE);
   const isLoggedIn = authService.isLoggedIn();
-
+console.log('isCarrousel -->', isCarrousel)
   return (
     <div
       className={

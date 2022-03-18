@@ -49,7 +49,7 @@ export const Modal: React.FC<IModal> = ({ btn, isModalLogin }) => {
             Fermer
           </button>
         </div>
-      ) : null}
+      ) : <></>}
     </>
   );
 };

@@ -1,7 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
-import { getLogByUrl } from "helpers/social-media.helper";
 import { mdpNonVisible, mdpVisible, loginMail, loginPassword, FBIcon, confirmpwd, userlogo, creator, explorer } from "icons";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -12,46 +11,11 @@ import authService, {
   CREATE_USER_FROM_AUTH,
   LOGIN_ACCOUNT,
 } from "services/auth.service";
-import * as yup from "yup";
 import "./register.css";
 import FacebookLogin from "react-facebook-login";
 import { includes } from "lodash";
 import { Button } from "components";
-
-const schema = yup.object().shape({
-  email: yup.string().email().required("L'email est obligatoire."),
-  utilisateur: yup
-    .string()
-    .min(4, "Le nom d'utilisateur doit contenir au moins 4 caractères.")
-    .max(
-      16,
-      "Le nom d'utilisateur est trop long, il doit être moins de 16 caractères maximum."
-    )
-    .required("Le nom d'utilisateur est obligatoire.")
-    .matches(
-      /^[^$&+,:;=?@#¨|'<>^()%!¿§«»ω⊙¤°℃℉€¥£¢¡®©]*$/,
-      "Le nom d'utilisateur ne doit pas contenir de caractères spéciaux sauf('.', '_', '-')"
-    ),
-  password: yup
-    .string()
-    .max(
-      32,
-      "Mot de passe trop long, il doit être moins de 32 caractères maximum."
-    )
-    .required("Le mot de passe est obligatoire.")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/,
-      "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule."
-    ),
-  passwordConfirmation: yup
-    .string()
-    .oneOf(
-      [yup.ref("password"), null],
-      "Les mots de passe ne correspondent pas."
-    ),
-  userCategoryLvl: yup.object().required("Ce champ est obligatoire."),
-  userCategoryAge: yup.object().required("Ce champ est obligatoire."),
-}); // _ - .
+import { optionsUserCategoryAge, optionsUserCategoryLvl, schemaRegister } from "pages/Register/registerHelper";
 
 export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   const {
@@ -62,7 +26,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     reset,
     control,
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaRegister),
   });
   const history = useHistory();
   const [loginAccount] = useMutation(LOGIN_ACCOUNT, {
@@ -79,33 +43,6 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   });
   const [createAccount, { data: createAccountData, loading, error }] =
     useMutation(CREATE_ACCOUNT, { errorPolicy: "all" });
-
-  const optionsUserCategoryLvl = [
-    { value: "beginner", label: "Petit.e curieux.se, je débute dans le DIY." },
-    {
-      value: "intermediate",
-      label: "Explorateur.ice avisé.e, j'ai déjà des notions en DIY.",
-    },
-    {
-      value: "advanced",
-      label: "Adepte convaincu.e, je suis passioné.e de DIY !",
-    },
-  ];
-
-  const optionsUserCategoryAge = [
-    { value: "young", label: "Moins de 20 ans, jeune mais pas trop." },
-    {
-      value: "young_adult",
-      label: "Entre 20 et 35 ans, adulte mais pas trop non plus.",
-    },
-    { value: "adult", label: "Entre 35 et 50 ans, adulte mais pas que." },
-    {
-      value: "senior",
-      label: "Plus de 50 ans, interdit de m'appeler senior !",
-    },
-  ];
-
-  console.log(")--->", getLogByUrl("https://www.instagram.com/?hl=en"));
 
   React.useEffect(() => {
     if (window.pageYOffset > 0) {
