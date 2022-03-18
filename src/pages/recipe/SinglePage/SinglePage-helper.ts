@@ -20,17 +20,17 @@ const requestRefreshToken = async (recipeId: string) => {
     });
   };
 
-export const checkUserAlreadyViewReipe = (idRecipe: string) => {
+export const checkUserAlreadyViewRecipe = (idRecipe: string) => {
   if (!idRecipe) return;
-  if (localStorage.getItem("hasAlreadyViewThisRecipe")) {
-    if (includes(localStorage.getItem("hasAlreadyViewThisRecipe"), idRecipe)) {
+  if (localStorage.getItem("recipeView")) {
+    if (includes(localStorage.getItem("recipeView"), idRecipe)) {
       return;
     }
     // @ts-ignore
-    localStorage.setItem("hasAlreadyViewThisRecipe",JSON.stringify([...JSON.parse(localStorage.getItem("hasAlreadyViewThisRecipe")), idRecipe]));
+    localStorage.setItem("recipeView",JSON.stringify([...JSON.parse(localStorage.getItem("recipeView")), idRecipe]));
     requestRefreshToken(idRecipe)
   } else {
-    localStorage.setItem("hasAlreadyViewThisRecipe", JSON.stringify([idRecipe]));
+    localStorage.setItem("recipeView", JSON.stringify([idRecipe]));
     requestRefreshToken(idRecipe)
   }
 };

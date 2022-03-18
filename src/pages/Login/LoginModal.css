@@ -1,33 +1,29 @@
-.input-1 {
-  appearance: none;
-  display: flex;
-  align-self: center;
-  height: 20px;
-  width: 20px;
-  background-color: tomato;
+.mobile {
+  background-color: white;
+  border-radius: 1.5rem;
+
+  @media (min-width: 1024px) {
+    background-image: none;
+    background-color: white;
+    width: 50%;
+
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 1.5rem; /* 12px */
+    border-bottom-right-radius: 1.5rem; /* 12px */
+  }
 }
 
-input[type=radio]:checked + label>img {
-  position: relative;
-  border: 1px solid #fff;
-  box-shadow: 0 0 3px 3px blue;
+@media (min-width: 1024px) {
+  .desktopbg {
+    background-image: url("../../icons/foam-texture.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 50%;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+  }
 }
-
-/* Stuff after this is only to make things more pretty */
-input[type=radio] + label>img {
-  width: 120px;
-  height: 120px;
-  transition: 500ms all;
-}
-
-input[type=radio]:checked + label>img {
-  transform: 
-    scale(1.02)
-}
-
-
-
-
 .separator {
   display: flex;
   align-items: center; 

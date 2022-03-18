@@ -44,6 +44,7 @@ import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
 import "./StarterPage.css";
 import useIsMobile from "hooks/isMobile";
 import { useEffect } from "react";
+import { Modal } from "components/layout/Modal/Modal";
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({
@@ -764,11 +765,13 @@ const StarterPage = () => {
           </Button>
         </Link>
       ) : (
-        <Link className="mt-4" to={RouteName.register}>
-          <Button id="SP_create_account" type="green">
-            Créer un profil
-          </Button>
-        </Link>
+        <Modal
+          btn={
+            <Button id="SP_create_account" type="green">
+              Créer un profil
+            </Button>
+          }
+        ></Modal>
       )}
 
       <div className="grid grid-cols-2 gap-x-2 | mt-10 mb-20">

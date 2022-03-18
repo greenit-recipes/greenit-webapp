@@ -1,14 +1,14 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BackgroundImage } from "components/layout/BackgroundImage";
+import { Modal } from "components/layout/Modal/Modal";
+import { Navbar } from "components/layout/Navbar";
 import React from "react";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { RESET_PASSWORD } from "services/auth.service";
 import * as yup from "yup";
-import { Navbar } from "components/layout/Navbar";
-import { RouteName } from "App";
-import { Helmet } from "react-helmet";
 
 const schema = yup.object().shape({
   password: yup
@@ -75,15 +75,18 @@ const ActivateResetPassword: React.FC = () => {
 
       <div className="w-full max-w-xs md:max-w-lg mt-10">
         <div className="grid grid-cols-2 md:w-96">
-          <Link to={RouteName.connexion}>
-            <button
-              className="flex items-center cursor-pointer
+          <Modal
+            isModalLogin={true}
+            btn={
+              <button
+                className="flex items-center cursor-pointer
               bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
               hover:bg-white hover:border-green hover:text-green"
-            >
-              <h3 className="text-sm">Se connecter</h3>
-            </button>
-          </Link>
+              >
+                <h3 className="text-sm">Se connecter</h3>
+              </button>
+            }
+          ></Modal>
         </div>
         <form
           className="bg-white shadow-lg rounded-xl p-12 mb-4 mt-2"

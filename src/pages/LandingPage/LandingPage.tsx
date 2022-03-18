@@ -1,5 +1,9 @@
 import { RouteName } from "App";
 import { BugFormulaire } from "components/layout/BugFormulaire";
+import "pages/LandingPage/LandingPage.css";
+import { Helmet } from "react-helmet";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import ReactPlayer from "react-player/lazy";
 import { Link } from "react-router-dom";
 import {
@@ -7,19 +11,15 @@ import {
   Button,
   Container,
   Footer,
-  Loading,
-  Navbar,
+  Loading, Navbar,
   RecipeCard,
-  SearchBar,
+  SearchBar
 } from "../../components";
 import { useRecipesQuery } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
 import {
-  Conseil,
-  Cooking,
-  Ustensil,
-  atelier,
-  corpsWhy,
+  atelier, Conseil,
+  Cooking, corpsWhy,
   landingPageCategories,
   money,
   planet,
@@ -27,13 +27,12 @@ import {
   issy,
   escapeTheCity,
   sixHTN,
+  Ustensil,
 } from "../../icons";
 import "../../pages/recipe/SinglePage/SinglePage.css";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
 import { Press } from "../../components/layout/TheyTalkAboutUs";
-import { Helmet } from "react-helmet";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "pages/LandingPage/LandingPage.css";
 

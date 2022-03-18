@@ -1,10 +1,9 @@
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
-import { clapIconOn, clapIconOff } from "../../icons";
+import { Modal } from "components/layout/Modal/Modal";
 import { ADD_OR_REMOVE_LIKE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
+import { useState } from "react";
 import authService from "services/auth.service";
-import { Link } from "react-router-dom";
-import { RouteName } from "App";
+import { clapIconOff, clapIconOn } from "../../icons";
 
 interface ILikeField {
   className?: string;
@@ -25,7 +24,7 @@ export const LikeField: React.FC<ILikeField> = ({
   const [nbrLiked, setNbrLiked] = useState(recipe?.numberOfLikes);
   const [addOrRemoveLikeRecipe] = useMutation(ADD_OR_REMOVE_LIKE_RECIPE);
   const isLoggedIn = authService.isLoggedIn();
-
+console.log('isCarrousel -->', isCarrousel)
   return (
     <div
       className={
@@ -64,20 +63,27 @@ export const LikeField: React.FC<ILikeField> = ({
               loading="lazy"
             />
           )}
-          <div className="flex self-center ml-1">{nbrLiked}</div>
+          <h2 className="flex self-center text-base lg:text-lg ml-1">
+            {nbrLiked}
+          </h2>
         </button>
       ) : (
-        <Link to={RouteName.register} className="flex self-center w-6 h-6 lg:w-7 lg:h-7 mr-3">
-          <img
-            src={clapIconOff}
-            className="flex self-center w-6 h-6 lg:w-7 lg:h-7"
-            alt="likes"
-            loading="lazy"
-          />
-          <div className="flex self-center ml-1">{nbrLiked}</div>
-        </Link>
+        <Modal
+          btn={
+            <div className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mr-3">
+              <img
+                src={clapIconOff}
+                className="flex self-center w-7 h-7 lg:w-8 lg:h-8"
+                alt="likes"
+                loading="lazy"
+              />
+              <h2 className="flex self-center text-lg lg:text-lg ml-1">
+                {nbrLiked}
+              </h2>
+            </div>
+          }
+        ></Modal>
       )}
-      
     </div>
   );
 };

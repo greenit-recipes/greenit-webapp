@@ -1,9 +1,9 @@
 import { useMutation } from "@apollo/client";
-import { RouteName } from "App";
+import { Modal } from "components/layout/Modal/Modal";
 import { Button } from "components/misc/Button";
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 import authService, {
   RESEND_ACTIVATION_EMAIL,
   VERIFY_ACCOUNT,
@@ -11,7 +11,6 @@ import authService, {
 } from "services/auth.service";
 import "../App.css";
 import { Footer, Navbar } from "../components";
-import { Helmet } from "react-helmet";
 
 const ActivateAccount: React.FC = () => {
   const { tokenActivationAccount } =
@@ -63,26 +62,31 @@ const ActivateAccount: React.FC = () => {
               commenter… et bien plus !
             </h4>
           </div>
-          <Link to={RouteName.connexion}>
-            <Button type="green">Se connecter à mon profil</Button>
-          </Link>
+          <Modal
+            isModalLogin={true}
+            btn={<Button type="green">Se connecter à mon profil</Button>}
+          ></Modal>
         </div>
       ) : (
         <div className="grid justify-items-center auto-rows-max h-screen mt-28">
           <div className="w-full">
             <h2 className="text-center text-2xl md:text-3xl">
-            Il y a eu un problème avec la création de ton compte ! 😥
+              Il y a eu un problème avec la création de ton compte ! 😥
             </h2>
             <h4 className="text-center text-xl md:text-2xl mt-10">
               Tu peux réessayer, si le problème persiste n’hésite pas à nous
               contacter.
             </h4>
           </div>
-          <Link to={RouteName.register}>
-            <Button className="mb-5" type="green">
-              Réessayer de créer un compte
-            </Button>
-          </Link>
+
+          <Modal
+            btn={
+              <Button className="mb-5 mt-5" type="green">
+                Réessayer de créer un compte
+              </Button>
+            }
+          ></Modal>
+
           <Button
             onClick={() => {
               resendActivationEMail({

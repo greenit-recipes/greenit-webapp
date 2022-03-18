@@ -1,31 +1,30 @@
-import React from "react";
-import "./App.css";
-import "./index.css";
-import { createBrowserHistory } from "history";
-import { Route, Router, Switch } from "react-router-dom";
-import RecipeListPage from "./pages/recipe/ListPage/ListPage";
-import LandingPage from "./pages/LandingPage/LandingPage";
-import PersonalizedSearch from "./pages/PersonalizedSearch";
-import ContactPage from "./pages/ContactPage";
-import WhyPage from "./pages/WhyPage";
-import NotFoundPage from "./pages/misc/NotFoundPage";
-import WorkshopPage from "./pages/WorkshopPage";
-import ProfilPage from "./pages/Profil/ProfilPage";
-import Register from "./pages/Register/register";
-import Login from "pages/Login/Login";
-import ActivateAccount from "pages/activate";
 import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
-import CreateRecipe from "pages/CreateRecipe/CreateRecipe";
-import RecipeSinglePage from "pages/recipe/SinglePage/SinglePage";
-import ForgetPassword from "pages/Login/ForgetPassword";
-import ActivateResetPassword from "pages/ActivateResetPassword";
-import RecipeCreatedPage from "pages/CreateRecipe/CreateRecipeSuccess";
+import { createBrowserHistory } from "history";
 import AccountCreated from "pages/AccountCreated";
-import IngredientPage from "pages/IngredientSpace/IngredientPage"
-import StarterPage from "pages/StarterSpace/StarterPage";
-import RecapPage from "pages/RecapPage";
+import ActivateAccount from "pages/activate";
+import ActivateResetPassword from "pages/ActivateResetPassword";
+import CreateRecipe from "pages/CreateRecipe/CreateRecipe";
+import RecipeCreatedPage from "pages/CreateRecipe/CreateRecipeSuccess";
+import IngredientPage from "pages/IngredientSpace/IngredientPage";
+import ForgetPassword from "pages/Login/ForgetPassword";
 import DeleteProfil from "pages/Profil/DeleteProfil";
+import RecapPage from "pages/RecapPage";
+import RecipeSinglePage from "pages/recipe/SinglePage/SinglePage";
+import StarterPage from "pages/StarterSpace/StarterPage";
+import React from "react";
+import { Route, Router, Switch } from "react-router-dom";
+import "./App.css";
+import "./index.css";
+import ContactPage from "./pages/ContactPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
+import NotFoundPage from "./pages/misc/NotFoundPage";
+import PersonalizedSearch from "./pages/PersonalizedSearch";
+import ProfilPage from "./pages/Profil/ProfilPage";
+import RecipeListPage from "./pages/recipe/ListPage/ListPage";
+import Register from "./pages/Register/register";
+import WhyPage from "./pages/WhyPage";
+import WorkshopPage from "./pages/WorkshopPage";
 
 export const history = createBrowserHistory();
 
@@ -46,7 +45,6 @@ export const RouteName = {
   recipes: "/recettes",
   createRecipe: "/creation-recette",
   profil: "/profil",
-  connexion: "/connexion",
   recap: "/recap",
   deleteProfil: "/supprimer-compte", // no index
 };
@@ -104,7 +102,6 @@ const App: React.FC = () => {
           exact
         />
         <Route exact path={RouteName.register} component={Register} />
-        <Route exact path={RouteName.connexion} component={Login} />
         <Route exact path={RouteName.recap} component={RecapPage} />
         <Route
           exact

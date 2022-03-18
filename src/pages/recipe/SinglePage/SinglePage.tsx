@@ -14,7 +14,7 @@ import { isEmpty } from "lodash";
 import moment from "moment";
 import { IngredientUsentil } from "pages/recipe/SinglePage/IngredientUsentil/IngredientUsentil";
 import { Instruction } from "pages/recipe/SinglePage/Instructions/Instructions";
-import { checkUserAlreadyViewReipe } from "pages/recipe/SinglePage/SinglePage-helper";
+import { checkUserAlreadyViewRecipe } from "pages/recipe/SinglePage/SinglePage-helper";
 import { HelmetRecipe } from "pages/recipe/SinglePage/SinglePageHelmet";
 import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest";
 import React, { createRef, useEffect, useState } from "react";
@@ -93,7 +93,7 @@ const RecipeSinglePage = () => {
 
   useEffect(() => {
     setNbrComment(data?.recipe?.numberOfComments);
-    checkUserAlreadyViewReipe(data?.recipe?.id);
+    checkUserAlreadyViewRecipe(data?.recipe?.id);
   }, [data]);
 
   const player = createRef<ReactPlayer>();

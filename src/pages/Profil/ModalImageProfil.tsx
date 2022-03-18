@@ -7,12 +7,12 @@ import * as yup from "yup";
 import { UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
 import { imageValidation } from "helpers/yup-validation.helper";
 
-interface ModalImageProfil {
+interface IModalImageProfil {
   parentFunction?: any;
   hasImageProfile?: boolean;
 }
 
-export const ModalImageProfil: React.FC<ModalImageProfil> = ({
+export const ModalImageProfil: React.FC<IModalImageProfil> = ({
   parentFunction,
   hasImageProfile = true,
 }) => {
