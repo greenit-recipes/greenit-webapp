@@ -21,7 +21,12 @@ export const Navbar: React.FC = () => {
     return (
       <div className="sticky top-0 z-50 bg-white w-full">
         <div className="grid grid-cols-3 items-center h-12">
-          <div className="w-full ml-2 items-center z-50">
+          <div
+            className="w-full ml-2 items-center z-50"
+            onClick={() => {
+              setToggle((prevState) => !prevState);
+            }}
+          >
             <div className="grid gap-2">
               <div
                 className={
@@ -181,14 +186,14 @@ export const Navbar: React.FC = () => {
                 ) : (
                   <Modal
                     btn={
-                      <>
+                      <div className="flex">
                         <h3
                           id="shareRecipe"
                           className="mb-2 cursor-pointer hover:text-green"
                         >
                           Partager une recette
                         </h3>{" "}
-                      </>
+                      </div>
                     }
                   ></Modal>
                 )}

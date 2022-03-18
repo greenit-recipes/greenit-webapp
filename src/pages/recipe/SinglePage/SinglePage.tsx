@@ -219,10 +219,26 @@ const RecipeSinglePage = () => {
                         className="flex justify-center items-center"
                         id="shared-recipe"
                       >
-                        <RiShareForwardLine className="justify-self-center ml-1 w-7 h-7" />
-                        <h2 className="text-center ml-2"> partage </h2>
-                      </button>
-                    </RWebShare>
+                        {item.name}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-4 flex flex-col self-start mr-10">
+                    <h2 className="pb-1 text-xl md:text-2xl">Ingredients</h2>
+                    {/* @ts-ignore*/}
+                    {recipe.ingredients.map((item, index) => (
+                      <h3 className="text-lg md:text-xl pt-2" key={index}>
+                        {item.amount} {item.name}
+                      </h3>
+                    ))}
+                  </div>
+                  <div className="mt-5 flex flex-col self-start">
+                    <h2 className="pb-1 text-xl md:text-2xl">Ustensiles</h2>
+                    {recipe?.utensils?.map((item, index) => (
+                      <h3 className="text-lg md:text-xl pt-2" key={index}>
+                        {item.name}
+                      </h3>
+                    ))}
                   </div>
                 </div>
 
