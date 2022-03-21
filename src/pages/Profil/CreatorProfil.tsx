@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { EditorGreenit } from "components";
+import { EditorGreenit, Button} from "components";
 import htmlToDraft from 'html-to-draftjs';
 import { getLogoAndNameByUrl } from "helpers/social-media.helper";
 import { filter, map, sum } from "lodash";
@@ -10,7 +10,12 @@ import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { UPDATE_ACCOUNT } from "services/auth.service";
 import * as yup from "yup";
 import HTMLReactParser from "html-react-parser";
-import { Cooking, clapIconOff, mdpVisible } from "../../icons"
+import { Cooking, clapIconOff, seen, edit } from "../../icons"
+import { RouteName } from "App";
+import { Link } from "react-router-dom";
+
+
+
 
 interface IUser {
   user: {
@@ -88,7 +93,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
   }, []);
 
   const [isEditLink, setEditLink] = useState(false);
-  const [isEditor, setEditor] = useState(false);
+  const [isEditor, setEditor] = useState(true);
   const [isDisplayStat, setDisplayStat] = useState(false);
   return (
     <div className="flex items-center flex-col w-11/12">
@@ -99,27 +104,27 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
         </div>
       )}
 
-        <div className="flex flex-row gap-2  items-center w-full lg:w-4/6">
+        <div className="flex flex-row gap-2  items-center w-full lg:w-5/12">
 
 
         <div className="flex flex-row gap-2 bg-blue rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
-          <img className="bg-white rounded-full w-10 h-10 lg:w-14 lg:h-14" src={Cooking} alt="logo recette" />
+          <img className="bg-white rounded-full w-10 h-10 lg:w-16 lg:h-16" src={Cooking} alt="logo recette" />
           <div>
-        <p className="text-sm">Recettes </p>
+        <p className="text-sm lg:text-lg">Recettes </p>
         <span className="font-extrabold text-2xl lg:text-3xl">{user?.recipeAuthor.length}</span>
         </div>
         </div>
         <div className="flex flex-row gap-2 bg-orange rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
-          <img className="bg-white rounded-full w-10 h-10 lg:w-14 lg:h-14" src={clapIconOff} alt="logo clap" />
+          <img className="bg-white rounded-full w-10 h-10 lg:w-16 lg:h-16" src={clapIconOff} alt="logo clap" />
         <div>
-        <p className="text-sm">claps </p>
+        <p className="text-sm lg:text-lg">claps </p>
         <span className="font-extrabold text-2xl lg:text-3xl">{sum(nbrLikes)}</span>
         </div>
         </div>
         <div className="flex flex-row gap-2 bg-yellow rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
-          <img className="bg-white rounded-full w-10 h-10 lg:w-14 lg:h-14" src={mdpVisible} alt="logo vues" />
+          <img className="bg-white rounded-full w-10 h-10 lg:w-16 lg:h-16" src={seen} alt="logo vues" />
           <div>
-        <p className="text-sm">Vues </p>
+        <p className="text-sm lg:text-lg">Vues </p>
         <span className="font-extrabold text-2xl lg:text-3xl">{sum(nbrView)}</span>
         </div>
         </div>
@@ -136,25 +141,22 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
         {!isDisplayStat ? "+ Plus " : "- Moins"} de statistiques
       </div>
       {isDisplayStat && <StatProfilForm></StatProfilForm>}
-      <div className="flex items-center w-11/12 h-px bg-grey grow mb-5 lg:w-4/6 lg:my-10"></div>
+      <div className="flex items-center w-11/12 h-px bg-grey grow mb-5 lg:w-5/12 lg:my-10"></div>
       
       
       <div className="flex lg:flex-row flex-col gap-12 lg:w-4/6">
         {/* Biographie */}
 
-        <div className="flex flex-col gap-4 lg:w-2/4">
-        <div className="">
-          <div>
-            <h2 className="mb-2 text-lg lg:text-xl font-bold">biographie</h2> 
-            <p
-              onClick={() => {
+        <div className="flex flex-col gap-8 lg:w-2/4">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-row gap-4">
+            <h2 className="text-lg lg:text-3xl font-bold">biographie</h2> 
+            <img src={edit} alt="logo editer" className="cursor-pointer" onClick={() => {
                 setEditor(!isEditor);
-              }}
-            >
-              ICON A METTRE
-            </p>
-            <p className="leading-tight lg:text-lg">{user?.biographie && HTMLReactParser(user?.biographie)}</p>
+              }}/>
             </div>
+            <p className="leading-tight lg:text-lg">{user?.biographie && HTMLReactParser(user?.biographie)}</p>
+
         </div>
         {!isEditor ? 
         <div>
@@ -182,41 +184,36 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
           </div>
         {/* Link */}
 
-        <div className="flex flex-col lg:w-2/4">
-          <div>
-            <h2 className="text-lg lg:text-xl font-bold">Liens vers vos espaces</h2>
-            <p
-              onClick={() => {
+        <div className="flex flex-col lg:w-2/4 gap-4">
+          <div className="flex flex-row gap-4">
+            <h2 className="text-lg lg:text-3xl font-bold">Liens vers vos espaces</h2>
+            
+              
+              <img src={edit} alt="logo editer" className="cursor-pointer" onClick={() => {
                 setEditLink(!isEditLink);
               }}
-            >
-              ICON A METTRE
-            </p>
+              />
           </div>
           {!isEditLink ? (
             <div >
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row flex-wrap gap-2">
               {
                 // @ts-ignore
                 JSON.parse(socialMedias)?.map(
                   (data: any, index: any) => (
                     <a href={data?.url} key={index}>
-                      <div className="flex flex-row gap-2 shadow-lg rounded-lg items-center justify-center border p-1">
+                      <div className="flex flex-row gap-2 shadow-lg rounded-lg items-center justify-center border p-2 lg:p-4">
                         <img
                           src={getLogoAndNameByUrl(data?.url)?.icon}
                           className="w-7 h-7"
                           alt={getLogoAndNameByUrl(data?.url)?.name}
                         />
-                        <div>{getLogoAndNameByUrl(data?.url)?.name}</div>
+                        <div className="lg:text-xl">{getLogoAndNameByUrl(data?.url)?.name}</div>
                       </div>
                     </a>
                   )
                 )
               }
-              <div className="flex flex-col items-center">
-
-
-              </div>
               
               </div>
               <div
@@ -231,21 +228,22 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
           ) : (
             <div>
               <form
-                className="bg-white shadow-lg rounded-xl p-8 mb-4 mt-2"
+                className=""
                 onSubmit={handleSubmit(onSubmitHandler)}
               >
                 {" "}
                 <div className="mb-10">
-                  <ul>
+                  <ul className="">
                     {urlsSocialMediaFields.map((item, index) => (
                       <>
                         <li
                           key={index}
-                          className={`flex`}
+                          className={`flex justify-between items-center shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline mb-2`}
                         >
-                          <p>Lien {index + 1} </p>
+                          <p className="text-sm lg:text-base">Lien {index + 1} </p>
+                          <div className="border h-full align-self-start"></div>
                           <input
-                            className={`border-2 mb-2`}
+                            className={`appearance-none text-sm lg:text-base  focus:outline-none focus:shadow-outline h-full`}
                             placeholder="Nouveau lien"
                             {...register(`urlsSocialMedia.${index}.url`)}
                           />
@@ -255,7 +253,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
                           </p>
 
                           <div
-                            className="justify-self-end cursor-pointer mb-2 bg-red text-white rounded-lg py-1 px-2"
+                            className=" cursor-pointer  bg-red text-sm lg:text-base text-white rounded-lg p-1 "
                             onClick={() => urlsSocialMediaRemove(index)}
                           >
                             Supprimer
@@ -277,7 +275,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
                   <button
                     className="flex justify-center items-center cursor-pointer align-middle
               bg-green rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
-              hover:bg-white hover:border-green hover:text-green"
+              hover:bg-white hover:border-green hover:text-green mb-4"
                   >
                     Valider
                   </button>
@@ -287,7 +285,19 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
           )}
         </div>
       </div>
-      <div className="flex items-center w-11/12 h-px bg-grey grow mb-5 lg:w-4/6 lg:my-10"></div>
+      <div className="flex items-center w-11/12 h-px bg-grey grow mb-5 lg:w-5/12 lg:my-10"></div>
+      <Button type="grey"
+                    rounded="lg"
+                    className="md:hidden w-full inline justify-end self-center text-xl | cursor-pointer mb-4">
+      <Link to={RouteName.createRecipe} className="flex">
+                    <h3
+                      id="shareRecipe"
+                      className=" cursor-pointer hover:text-green"
+                    >
+                      Partager une recette
+                    </h3>
+                  </Link>
+                  </Button>
     </div>
   );
 };
