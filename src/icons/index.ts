@@ -130,6 +130,7 @@ import userlogo from "./user.svg"
 import confirmpwd from "./confirmpwd.svg"
 import explorer from "./explorer.svg"
 import creator from "./influencer.svg"
+import edit from "./edit.png"
 
 
 export const landingPageCategories = [
@@ -264,4 +265,5 @@ export {
   confirmpwd,
   explorer,
   creator,
+  edit,
 };
