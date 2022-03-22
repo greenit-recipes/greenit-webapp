@@ -177,6 +177,7 @@ const RecipeSinglePage = () => {
                 <div className="flex justify-center items-center mb-10">
                   <FavouriteField
                     isToltipActif={false}
+                    isRecipePage={true}
                     customClassName="btn-single-page flex w-28"
                     recipe={data?.recipe}
                   ></FavouriteField>
@@ -215,7 +216,7 @@ const RecipeSinglePage = () => {
                     }
                     symbol=""
                     number={recipe?.substances?.length}
-                    text="Subtances épargnée"
+                    text="Substances épargnées"
                   />
                   <CircleGreenit
                     colorCircle="bg-yellow"
@@ -225,7 +226,7 @@ const RecipeSinglePage = () => {
                     customClassName="ml-16"
                     symbol="€"
                     number={recipe?.moneySaved}
-                    text="Argent épargnée"
+                    text="Argent économisé"
                   />
                   <CircleGreenit
                     colorCircle="bg-green"
@@ -235,7 +236,7 @@ const RecipeSinglePage = () => {
                     customClassName="ml-16"
                     symbol="g"
                     number={recipe?.plasticSaved}
-                    text="CO2 épargnée"
+                    text="Plastiques évités"
                   />
                 </div>
               )}
@@ -257,7 +258,7 @@ const RecipeSinglePage = () => {
                       }
                       symbol=""
                       number={recipe?.substances?.length}
-                      text="Subtances épargnée"
+                      text="Substances épargnées"
                     />
                     <CircleGreenit
                       colorCircle="bg-yellow"
@@ -267,7 +268,7 @@ const RecipeSinglePage = () => {
                       customClassName="ml-16"
                       symbol="€"
                       number={recipe?.moneySaved}
-                      text="Argent épargnée"
+                      text="Argent économisé"
                     />
                     <CircleGreenit
                       colorCircle="bg-green"
@@ -277,7 +278,7 @@ const RecipeSinglePage = () => {
                       customClassName="ml-16"
                       symbol="g"
                       number={recipe?.plasticSaved}
-                      text="CO2 épargnée"
+                      text="Plastiques évités"
                     />
                   </div>
                 )}
@@ -457,7 +458,7 @@ const RecipeSinglePage = () => {
                 <SimilarRecipe data={recipe}></SimilarRecipe>
               </div>
             )}
-            <div className="mt-6 flex flex-col">
+            <div className="mt-6 flex flex-col" ref={fieldRef}>
               <h2 className="text-xl lg:text-2xl">Discussion</h2>
               {recipe?.comments?.map((comment: any, index: number) => {
                 // @ts-ignore
@@ -466,6 +467,7 @@ const RecipeSinglePage = () => {
                     <div className="relative bg-orange bg-opacity-10 rounded-xl p-4">
                       <UserBadge
                         facebookImg={comment?.author?.photoUrl}
+                        isSinglePage={true}
                         image={comment?.author?.imageProfile}
                         name={comment?.author?.username}
                         className="mb-2"
@@ -473,7 +475,7 @@ const RecipeSinglePage = () => {
                       {comment?.author?.id === recipe?.author?.id && (
                         <div> (créateur de la recette) </div>
                       )}
-                      <div className="text-md lg:text-lg">
+                      <div className="text-md">
                         <h3 className=""> {comment?.comment} </h3>
                       </div>
                       <h3 className="absolute top-0 right-0 m-6 | ">

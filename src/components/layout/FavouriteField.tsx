@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { Modal } from "components/layout/Modal/Modal";
+import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useState } from "react";
 import authService from "services/auth.service";
@@ -9,6 +9,7 @@ interface IFavouriteField {
   customClassName?: string;
   recipe: any;
   isToltipActif?: boolean;
+  isRecipePage?: boolean;
   parentFunction?: any;
   isRefetchData?: boolean;
 }
@@ -17,6 +18,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
   recipe,
   parentFunction = null,
   isRefetchData = false,
+  isRecipePage = false,
   customClassName,
   isToltipActif = true,
 }) => {
@@ -72,19 +74,37 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
           )}
         </button>
       ) : (
-        <Modal
+        <div> { isRecipePage ? (<ModalLogGreenit
           btn={
-            <div className="tooltip grid justify-items-center">
+            <button>
+
+            <div className={`tooltip justify-items-center ${customClassName ? customClassName : "grid"}`} >
               <img
-                className="w-10 h-10 lg:w-12 lg:h-12"
+                className="w-10 h-10"
                 alt="dislike button"
                 src={likedIconOff}
                 loading="lazy"
               />
-              <span className="tooltiptext">Ajouter aux favoris</span>
+<div className="flex flex-col justify-center">favoris</div>
             </div>
+            </button>
           }
-        ></Modal>
+        ></ModalLogGreenit>) :  (<ModalLogGreenit
+          btn={
+            <button>
+
+            <div className={`tooltip justify-items-center ${customClassName ? customClassName : "grid"}`} >
+              <img
+                className="w-10 h-10"
+                alt="dislike button"
+                src={likedIconOff}
+                loading="lazy"
+              />
+<span className="tooltiptext">Ajouter aux favoris</span>            </div>
+            </button>
+          }
+        ></ModalLogGreenit>)}
+        </div>
       )}
     </div>
   );

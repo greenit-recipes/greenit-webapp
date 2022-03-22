@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BackgroundImage } from "components/layout/BackgroundImage";
-import { Modal } from "components/layout/Modal/Modal";
+import { ModalLogGreenit }  from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { Navbar } from "components/layout/Navbar";
 import React from "react";
 import { Helmet } from "react-helmet";
@@ -75,7 +75,7 @@ const ActivateResetPassword: React.FC = () => {
 
       <div className="w-full max-w-xs md:max-w-lg mt-10">
         <div className="grid grid-cols-2 md:w-96">
-          <Modal
+          <ModalLogGreenit
             isModalLogin={true}
             btn={
               <button
@@ -86,7 +86,7 @@ const ActivateResetPassword: React.FC = () => {
                 <h3 className="text-sm">Se connecter</h3>
               </button>
             }
-          ></Modal>
+          ></ModalLogGreenit>
         </div>
         <form
           className="bg-white shadow-lg rounded-xl p-12 mb-4 mt-2"

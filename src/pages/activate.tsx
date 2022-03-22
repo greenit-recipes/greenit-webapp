@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { Modal } from "components/layout/Modal/Modal";
+import { ModalLogGreenit }  from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { Button } from "components/misc/Button";
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
@@ -10,7 +10,7 @@ import authService, {
   WELCOME_NEW_USER,
 } from "services/auth.service";
 import "../App.css";
-import { Footer, Navbar } from "../components";
+import { Footer, Loading, Navbar } from "../components";
 
 const ActivateAccount: React.FC = () => {
   const { tokenActivationAccount } =
@@ -45,13 +45,17 @@ const ActivateAccount: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- empty dependency array
 
+  if (loading || !data) {
+    return <Loading />;
+  }
+
   return (
     <div className="flex flex-col | items-center self-center">
       <Helmet>
         <meta name="robots" content="noindex" />
       </Helmet>
       <Navbar />
-      {data?.verifyAccount?.success ? (
+      {(data?.verifyAccount?.success || data?.verifyAccount?.errors?.nonFieldErrors) ? (
         <div className="grid justify-items-center auto-rows-max h-screen mt-28">
           <div className="w-3/4">
             <h1 className="text-center text-2xl md:text-3xl">
@@ -62,10 +66,10 @@ const ActivateAccount: React.FC = () => {
               commenter… et bien plus !
             </h4>
           </div>
-          <Modal
+          <ModalLogGreenit
             isModalLogin={true}
             btn={<Button type="green">Se connecter à mon profil</Button>}
-          ></Modal>
+          ></ModalLogGreenit>
         </div>
       ) : (
         <div className="grid justify-items-center auto-rows-max h-screen mt-28">
@@ -79,13 +83,13 @@ const ActivateAccount: React.FC = () => {
             </h4>
           </div>
 
-          <Modal
+          <ModalLogGreenit
             btn={
               <Button className="mb-5 mt-5" type="green">
                 Réessayer de créer un compte
               </Button>
             }
-          ></Modal>
+          ></ModalLogGreenit>
 
           <Button
             onClick={() => {

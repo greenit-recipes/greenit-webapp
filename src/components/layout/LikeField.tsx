@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { Modal } from "components/layout/Modal/Modal";
+import { ModalLogGreenit }  from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { ADD_OR_REMOVE_LIKE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import { useState } from "react";
 import authService from "services/auth.service";
@@ -24,7 +24,6 @@ export const LikeField: React.FC<ILikeField> = ({
   const [nbrLiked, setNbrLiked] = useState(recipe?.numberOfLikes);
   const [addOrRemoveLikeRecipe] = useMutation(ADD_OR_REMOVE_LIKE_RECIPE);
   const isLoggedIn = authService.isLoggedIn();
-console.log('isCarrousel -->', isCarrousel)
   return (
     <div
       className={
@@ -63,26 +62,26 @@ console.log('isCarrousel -->', isCarrousel)
               loading="lazy"
             />
           )}
-          <h2 className="flex self-center text-base lg:text-lg ml-1">
+          <h2 className="flex self-center text-base lg:text-lg">
             {nbrLiked}
           </h2>
         </button>
       ) : (
-        <Modal
+        <ModalLogGreenit
           btn={
-            <div className="flex self-center w-7 h-7 lg:w-8 lg:h-8 mr-3">
+            <div className="flex self-center w-6 h-6 lg:w-8 lg:h-8 mr-3">
               <img
                 src={clapIconOff}
-                className="flex self-center w-7 h-7 lg:w-8 lg:h-8"
+                className="flex self-center w-6 h-6 lg:w-8 lg:h-8"
                 alt="likes"
                 loading="lazy"
               />
-              <h2 className="flex self-center text-lg lg:text-lg ml-1">
+              <h2 className="flex self-center text-lg lg:text-lg">
                 {nbrLiked}
               </h2>
             </div>
           }
-        ></Modal>
+        ></ModalLogGreenit>
       )}
     </div>
   );

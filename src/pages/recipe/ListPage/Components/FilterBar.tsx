@@ -1,6 +1,6 @@
 import { RouteName } from "App";
 import { BackgroundImage } from "components";
-import { Modal } from "components/layout/Modal/Modal";
+import { ModalLogGreenit }  from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { Button } from "components/misc/Button";
 import { find, flattenDeep, map, omit } from "lodash";
 import { FilterBarItem } from "pages/recipe/ListPage/Components/FilterBarItem";
@@ -109,7 +109,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                     </Button>
                   </Link>
                 ) : (
-                  <Modal
+                  <ModalLogGreenit
                     btn={
                       <>
                         <Button
@@ -120,7 +120,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                         </Button>
                       </>
                     }
-                  ></Modal>
+                  ></ModalLogGreenit>
                 )}
               </div>
             )}

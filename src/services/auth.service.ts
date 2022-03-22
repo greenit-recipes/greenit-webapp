@@ -1,7 +1,8 @@
 import { gql } from "@apollo/client";
-import { history } from "App";
+import { history, RouteName } from "App";
 import { client } from "index";
 import { isEmpty } from "lodash";
+import { includes } from "lodash";
 
 export const CREATE_ACCOUNT = gql`
   mutation CreateAccount(
@@ -9,13 +10,12 @@ export const CREATE_ACCOUNT = gql`
     $username: String!
     $password1: String!
     $password2: String!
-    $userCategoryLvl: String!
-    $userCategoryAge: String!
-    $userWantFromGreenit: String!
     $isFollowNewsletter: String!
-    $urlsSocialMedia: JSONString!
-    $biographie: String!
-    $isCreatorProfil: String!
+    $userCategoryLvl: String
+    $userCategoryAge: String
+    $urlsSocialMedia: JSONString
+    $biographie: String
+    $isCreatorProfil: String
   ) {
     register(
       email: $email
@@ -24,7 +24,6 @@ export const CREATE_ACCOUNT = gql`
       password2: $password2
       userCategoryLvl: $userCategoryLvl
       userCategoryAge: $userCategoryAge
-      userWantFromGreenit: $userWantFromGreenit
       isFollowNewsletter: $isFollowNewsletter
       urlsSocialMedia: $urlsSocialMedia
       biographie: $biographie
@@ -250,6 +249,14 @@ class Auth {
 
   isLoggedIn() {
     return !isEmpty(this.getToken());
+  }
+
+  isRedirectToProfil(pathname: string) {
+    return pathname === RouteName.activateResetPassword ||
+            includes(pathname , RouteName.resetPassword) ||
+            includes(pathname , "activate") ||
+            includes(pathname , RouteName.tokenActivationAccount) ||
+            pathname  === RouteName.register
   }
 
   requestRefreshToken = async () => {
