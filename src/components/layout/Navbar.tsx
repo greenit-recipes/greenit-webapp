@@ -434,18 +434,20 @@ export const Navbar: React.FC = () => {
         <div className="flex justify-self-end items-center">
           <SearchBarNav keyId="SearchNav" />
           {isLoggedIn ? (
-            <div className="rounded-full ease-linear transition-all duration-150 cursor-pointer">
-              <div className="flex">
-                <Button
-                  id="Share_a_recipe"
-                  type="grey"
-                  rounded="lg"
-                  className="inline justify-end self-center | mr-2 cursor-pointer"
-                >
-                  Partager une recette
-                </Button>
+            <Link to={RouteName.createRecipe} className="flex">
+              <div className="rounded-full ease-linear transition-all duration-150 cursor-pointer">
+                <div className="flex">
+                  <Button
+                    id="Share_a_recipe"
+                    type="grey"
+                    rounded="lg"
+                    className="inline justify-end self-center | mr-2 cursor-pointer"
+                  >
+                    Partager une recette
+                  </Button>
+                </div>
               </div>
-            </div>
+            </Link>
           ) : (
             <ModalLogGreenit
               btn={
