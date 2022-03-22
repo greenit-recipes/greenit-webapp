@@ -96,7 +96,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
   const [isEditor, setEditor] = useState(true);
   const [isDisplayStat, setDisplayStat] = useState(false);
   return (
-    <div className="flex items-center flex-col w-11/12">
+    <div className="flex items-center flex-col w-10/12 md:w-11/12">
       {/* Stat */}
       {updateAccountData?.updateAccount?.success && (
         <div className="text-green text-base md:text-base mb-2 | text-center whitespace-pre-line">
@@ -107,24 +107,24 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
         <div className="flex flex-row gap-2  items-center w-full lg:w-5/12">
 
 
-        <div className="flex flex-row gap-2 bg-blue rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
-          <img className="bg-white rounded-full w-10 h-10 lg:w-16 lg:h-16" src={Cooking} alt="logo recette" />
+        <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-blue rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
+          <img className="bg-white rounded-full w-9 h-9 lg:w-14 lg:h-14" src={Cooking} alt="logo recette" />
           <div>
-        <p className="text-sm lg:text-lg">Recettes </p>
+        <p className="text-sm lg:text-base">Recettes </p>
         <span className="font-extrabold text-2xl lg:text-3xl">{user?.recipeAuthor.length}</span>
         </div>
         </div>
-        <div className="flex flex-row gap-2 bg-orange rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
-          <img className="bg-white rounded-full w-10 h-10 lg:w-16 lg:h-16" src={clapIconOff} alt="logo clap" />
+        <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-orange rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
+          <img className="bg-white rounded-full w-10 h-10 lg:w-14 lg:h-14" src={clapIconOff} alt="logo clap" />
         <div>
-        <p className="text-sm lg:text-lg">claps </p>
+        <p className="text-sm lg:text-base">claps </p>
         <span className="font-extrabold text-2xl lg:text-3xl">{sum(nbrLikes)}</span>
         </div>
         </div>
-        <div className="flex flex-row gap-2 bg-yellow rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
-          <img className="bg-white rounded-full w-10 h-10 lg:w-16 lg:h-16" src={seen} alt="logo vues" />
+        <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-yellow rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
+          <img className="bg-white rounded-full w-10 h-10 lg:w-14 lg:h-14" src={seen} alt="logo vues" />
           <div>
-        <p className="text-sm lg:text-lg">Vues </p>
+        <p className="text-sm lg:text-base">Vues </p>
         <span className="font-extrabold text-2xl lg:text-3xl">{sum(nbrView)}</span>
         </div>
         </div>
@@ -147,10 +147,10 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
       <div className="flex lg:flex-row flex-col gap-12 lg:w-4/6">
         {/* Biographie */}
 
-        <div className="flex flex-col gap-8 lg:w-2/4">
+        <div className="flex flex-col lg:w-2/4">
         <div className="flex flex-col gap-4">
           <div className="flex flex-row items-center gap-4">
-            <h2 className="text-lg lg:text-xl font-bold">Biographie</h2> 
+            <h2 className="text-lg lg:text-xl font-semibold">Biographie</h2> 
             <img src={edit} alt="logo editer" className="cursor-pointer h-6" onClick={() => {
                 setEditor(!isEditor);
               }}/>
@@ -186,7 +186,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
 
         <div className="flex flex-col lg:w-2/4 gap-4">
           <div className="flex flex-row items-center gap-4">
-            <h2 className="text-lg lg:text-xl font-bold">Liens vers vos espaces</h2>
+            <h2 className="text-lg lg:text-xl font-semibold">Liens vers vos espaces</h2>
             
               
               <img src={edit} alt="logo editer" className="cursor-pointer h-6" onClick={() => {
@@ -202,7 +202,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
                 JSON.parse(socialMedias)?.map(
                   (data: any, index: any) => (
                     <a href={data?.url} key={index}>
-                      <div className="flex flex-row gap-2 shadow-lg rounded-lg items-center justify-center border p-2">
+                      <div className="flex flex-row gap-2 shadow-lg rounded-lg items-center justify-center border p-1 lg:p-2">
                         <img
                           src={getLogoAndNameByUrl(data?.url)?.icon}
                           className="w-7 h-7"
