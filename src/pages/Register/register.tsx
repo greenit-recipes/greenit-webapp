@@ -106,7 +106,6 @@ const Register: React.FC = () => {
       history.push(RouteName.accountCreated);
     });
   };
-  console.log("errors", errors)
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   return (
     <div>
