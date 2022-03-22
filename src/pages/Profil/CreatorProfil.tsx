@@ -156,14 +156,14 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
       <div className="flex lg:flex-row flex-col gap-12 lg:w-4/6">
         {/* Biographie */}
 
-        <div className="flex flex-col lg:w-2/4">
+        <div className="flex flex-col gap-4 lg:w-2/4">
           <div className="flex flex-col gap-4">
             <div className="flex flex-row items-center gap-4">
               <h2 className="text-lg lg:text-xl font-semibold">Biographie</h2>
               <FiEdit
               className="cursor-pointer w-6 h-6"
               onClick={() => {
-                setEditLink(!isEditLink);
+                setEditor(!isEditor);
               }}
               />
             </div>
