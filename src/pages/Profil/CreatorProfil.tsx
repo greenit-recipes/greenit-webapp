@@ -1,7 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { EditorGreenit, Button} from "components";
-import htmlToDraft from 'html-to-draftjs';
+import { EditorGreenit, Button } from "components";
 import { getLogoAndNameByUrl } from "helpers/social-media.helper";
 import { filter, map, sum } from "lodash";
 import { StatProfilForm } from "pages/Profil/Stat";
@@ -10,12 +9,11 @@ import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { UPDATE_ACCOUNT } from "services/auth.service";
 import * as yup from "yup";
 import HTMLReactParser from "html-react-parser";
-import { Cooking, clapIconOff, seen, edit } from "../../icons"
+import { Cooking, clapIconOff } from "../../icons";
 import { RouteName } from "App";
 import { Link } from "react-router-dom";
-
-
-
+import { FiEdit } from 'react-icons/fi';
+import { FaRegEye } from "react-icons/fa"
 
 interface IUser {
   user: {
@@ -81,8 +79,8 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
     name: "urlsSocialMedia",
   });
 
-   // @ts-ignore
-   const socialMedias = user?.urlsSocialMedia === "{}" ? null : user?.urlsSocialMedia
+  // @ts-ignore
+  const socialMedias = user?.urlsSocialMedia === "{}" ? null : user?.urlsSocialMedia;
 
   useEffect(() => {
     // @ts-ignore
@@ -99,37 +97,49 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
     <div className="flex items-center flex-col w-10/12 md:w-11/12">
       {/* Stat */}
       {updateAccountData?.updateAccount?.success && (
-        <div className="text-green text-base md:text-base mb-2 | text-center whitespace-pre-line">
+        <div className="text-green mb-2 | text-center whitespace-pre-line">
           Vos modifications ont été enregistrées
         </div>
       )}
 
-        <div className="flex flex-row gap-2  items-center w-full lg:w-5/12">
-
-
+      <div className="flex flex-row gap-2  items-center w-full lg:w-5/12">
         <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-blue rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
-          <img className="bg-white rounded-full w-9 h-9 lg:w-14 lg:h-14" src={Cooking} alt="logo recette" />
+          <img
+            className="bg-white rounded-full w-9 h-9 lg:w-14 lg:h-14 p-2"
+            src={Cooking}
+            alt="logo recette"
+          />
           <div>
-        <p className="text-sm lg:text-base">Recettes </p>
-        <span className="font-extrabold text-2xl lg:text-3xl">{user?.recipeAuthor.length}</span>
-        </div>
+            <p className="text-sm lg:text-base">Recettes </p>
+            <span className="font-extrabold text-2xl lg:text-3xl">
+              {user?.recipeAuthor.length}
+            </span>
+          </div>
         </div>
         <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-orange rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
-          <img className="bg-white rounded-full w-10 h-10 lg:w-14 lg:h-14" src={clapIconOff} alt="logo clap" />
-        <div>
-        <p className="text-sm lg:text-base">claps </p>
-        <span className="font-extrabold text-2xl lg:text-3xl">{sum(nbrLikes)}</span>
-        </div>
+          <img
+            className="bg-white rounded-full w-10 h-10 lg:w-14 lg:h-14"
+            src={clapIconOff}
+            alt="logo clap"
+          />
+          <div>
+            <p className="text-sm lg:text-base">claps </p>
+            <span className="font-extrabold text-2xl lg:text-3xl">
+              {sum(nbrLikes)}
+            </span>
+          </div>
         </div>
         <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-yellow rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
-          <img className="bg-white rounded-full w-10 h-10 lg:w-14 lg:h-14" src={seen} alt="logo vues" />
+          <FaRegEye
+          className="bg-white rounded-full w-10 h-10 lg:w-14 lg:h-14 p-2"
+          />
           <div>
-        <p className="text-sm lg:text-base">Vues </p>
-        <span className="font-extrabold text-2xl lg:text-3xl">{sum(nbrView)}</span>
+            <p className="text-sm lg:text-base">Vues </p>
+            <span className="font-extrabold text-2xl lg:text-3xl">
+              {sum(nbrView)}
+            </span>
+          </div>
         </div>
-        </div>
-      
-      
       </div>
       <div
         className=" my-6 lg:my-10  cursor-pointer text-center text-sm lg:text-base"
@@ -142,34 +152,37 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
       </div>
       {isDisplayStat && <StatProfilForm></StatProfilForm>}
       <div className="flex items-center w-11/12 h-px bg-grey grow mb-5 lg:w-5/12 "></div>
-      
-      
+
       <div className="flex lg:flex-row flex-col gap-12 lg:w-4/6">
         {/* Biographie */}
 
         <div className="flex flex-col lg:w-2/4">
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-row items-center gap-4">
-            <h2 className="text-lg lg:text-xl font-semibold">Biographie</h2> 
-            <img src={edit} alt="logo editer" className="cursor-pointer h-6" onClick={() => {
-                setEditor(!isEditor);
-              }}/>
-            </div>
-            <p className="leading-tight text-sm lg:text-base">{user?.biographie && HTMLReactParser(user?.biographie)}</p>
-
-        </div>
-        {!isEditor ? 
-        <div>
-          <form onSubmit={handleSubmitBio(onSubmitHandlerBio)}>
-            <Controller
-              name="bio"
-              render={({ field }) => {
-                return <EditorGreenit {...field} />;
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-row items-center gap-4">
+              <h2 className="text-lg lg:text-xl font-semibold">Biographie</h2>
+              <FiEdit
+              className="cursor-pointer w-6 h-6"
+              onClick={() => {
+                setEditLink(!isEditLink);
               }}
-              control={controlBio}
-              defaultValue={user?.biographie}
-            />
-             <div className="flex items-center justify-between">
+              />
+            </div>
+            <p className="leading-tight text-sm lg:text-base">
+              {user?.biographie && HTMLReactParser(user?.biographie)}
+            </p>
+          </div>
+          {!isEditor ? (
+            <div>
+              <form onSubmit={handleSubmitBio(onSubmitHandlerBio)}>
+                <Controller
+                  name="bio"
+                  render={({ field }) => {
+                    return <EditorGreenit {...field} />;
+                  }}
+                  control={controlBio}
+                  defaultValue={user?.biographie}
+                />
+                <div className="flex items-center justify-between">
                   <button
                     className="flex justify-center items-center cursor-pointer align-middle
               bg-green rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
@@ -178,29 +191,31 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
                     Valider
                   </button>
                 </div>
-          </form>
+              </form>
+            </div>
+          ) : null}
         </div>
-          : null  }
-          </div>
         {/* Link */}
 
         <div className="flex flex-col lg:w-2/4 gap-4">
           <div className="flex flex-row items-center gap-4">
-            <h2 className="text-lg lg:text-xl font-semibold">Liens vers vos espaces</h2>
-            
-              
-              <img src={edit} alt="logo editer" className="cursor-pointer h-6" onClick={() => {
-                setEditLink(!isEditLink);
-              }}
-              />
+            <h2 className="text-lg lg:text-xl font-semibold">
+              Liens vers vos espaces
+            </h2>
+
+            <FiEdit
+            className="cursor-pointer w-6 h-6"
+            onClick={() => {
+              setEditLink(!isEditLink);
+            }}
+            />
           </div>
           {!isEditLink ? (
-            <div >
+            <div>
               <div className="flex flex-row flex-wrap gap-2">
-              {
-                // @ts-ignore
-                JSON.parse(socialMedias)?.map(
-                  (data: any, index: any) => (
+                {
+                  // @ts-ignore
+                  JSON.parse(socialMedias)?.map((data: any, index: any) => (
                     <a href={data?.url} key={index}>
                       <div className="flex flex-row gap-2 shadow-lg rounded-lg items-center justify-center border p-1 lg:p-2">
                         <img
@@ -208,13 +223,13 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
                           className="w-7 h-7"
                           alt={getLogoAndNameByUrl(data?.url)?.name}
                         />
-                        <div className="text-sm lg:text-base">{getLogoAndNameByUrl(data?.url)?.name}</div>
+                        <div className="text-sm lg:text-base">
+                          {getLogoAndNameByUrl(data?.url)?.name}
+                        </div>
                       </div>
                     </a>
-                  )
-                )
-              }
-              
+                  ))
+                }
               </div>
               <div
                 onClick={() => setEditLink(!isEditLink)}
@@ -223,24 +238,21 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
                 + Ajouter un lien
               </div>
             </div>
-            
-            
           ) : (
             <div>
-              <form
-                className=""
-                onSubmit={handleSubmit(onSubmitHandler)}
-              >
+              <form onSubmit={handleSubmit(onSubmitHandler)}>
                 {" "}
                 <div className="mb-10">
-                  <ul className="">
+                  <ul>
                     {urlsSocialMediaFields.map((item, index) => (
                       <>
                         <li
                           key={index}
                           className={`flex justify-between items-center shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline mb-2`}
                         >
-                          <p className="text-sm lg:text-base">Lien {index + 1} </p>
+                          <p className="text-sm lg:text-base">
+                            Lien {index + 1}{" "}
+                          </p>
                           <div className="border h-full align-self-start"></div>
                           <input
                             className={`appearance-none text-sm lg:text-base  focus:outline-none focus:shadow-outline h-full`}
@@ -286,18 +298,17 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
         </div>
       </div>
       <div className="flex items-center w-11/12 h-px bg-grey grow mb-5 lg:w-5/12 lg:my-10"></div>
-      <Button type="grey"
-                    rounded="lg"
-                    className="md:hidden w-full inline justify-end self-center text-xl | cursor-pointer mb-4">
-      <Link to={RouteName.createRecipe} className="flex">
-                    <h3
-                      id="shareRecipe"
-                      className=" cursor-pointer hover:text-green"
-                    >
-                      Partager une recette
-                    </h3>
-                  </Link>
-                  </Button>
+      <Button
+        type="grey"
+        rounded="lg"
+        className="md:hidden w-full inline justify-end self-center text-xl | cursor-pointer mb-4"
+      >
+        <Link to={RouteName.createRecipe} className="flex">
+          <h3 id="shareRecipe" className=" cursor-pointer hover:text-green">
+            Partager une recette
+          </h3>
+        </Link>
+      </Button>
     </div>
   );
 };

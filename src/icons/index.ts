@@ -130,8 +130,6 @@ import userlogo from "./user.svg"
 import confirmpwd from "./confirmpwd.svg"
 import explorer from "./explorer.svg"
 import creator from "./influencer.svg"
-import edit from "./edit.png"
-import seen from "./seen.svg"
 
 export const landingPageCategories = [
   {
@@ -263,6 +261,4 @@ export {
   creator,
   loginMail,
   loginPassword,
-  edit,
-  seen,
 };
