@@ -1,55 +1,54 @@
-import { LoginModal } from "pages/Login/LoginModal";
-import { RegisterModal } from "pages/Register/register-modal";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import ReactDOM from "react-dom";
+import { CSSTransition } from "react-transition-group";
 import "./Modal.css";
+import useIsMobile from "hooks/isMobile";
+import { IoClose } from "react-icons/io5";
 
-interface IModal {
-  btn: any;
-  isModalLogin?: boolean;
-}
+const Modal = (props: any) => {
 
-export const Modal: React.FC<IModal> = ({ btn, isModalLogin }) => {
-  const [showModal, setShowModal] = useState(false);
-  const [isOpenLogin, setIsOpenLogin] = useState(isModalLogin || false);
-  useEffect(() => {
-    if (showModal) {
-      // à voir
-      document.body.classList.add("no-scroll");
+  const isMobile = useIsMobile()
 
-      return () => {
-        document.body.classList.remove("no-scroll");
-      };
+  const closeOnEscapeKeyDown = (e: any) => {
+    if ((e.charCode || e.keyCode) === 27) {
+      props.onClose();
     }
-  });
-  return (
-    <>
-      <div className="rounded-full ease-linear transition-all duration-150 cursor-pointer" onClick={() => setShowModal(true)}>
-      {btn}
-      </div>
-      {showModal ? (
-        <div className="overflow-x-hidden overflow-y-auto fixed cont z-50 outline-none focus:outline-none flex flex-col">
+  };
 
-          <div className="opacity-25 fixed inset-0 z-50 bg-black"></div>
-          <button
-            className="container-modal text-white text-xl"
-            type="button"
-            onClick={() => setShowModal(false)}
-          >
-            Fermer
-          </button>
-          {   /* @ts-ignore */ }
-          <div className="container-modal ">
-          {isOpenLogin ? (<LoginModal loginOpen={setIsOpenLogin}></LoginModal>) : <RegisterModal loginOpen={setIsOpenLogin}></RegisterModal>}
+  useEffect(() => {
+    document.body.addEventListener("keydown", closeOnEscapeKeyDown);
+    return function cleanup() {
+      document.body.removeEventListener("keydown", closeOnEscapeKeyDown);
+    };
+  }, []);
+
+  return ReactDOM.createPortal(
+    <CSSTransition
+      in={props.show}
+      unmountOnExit
+      timeout={{ enter: 0, exit: 300 }}
+    >
+      <div className={`modal ${props.isCenter ? "modal-is-center" : ""} `} onClick={props.onClose}>
+        <div className={`modal-content ${isMobile ? "w-11/12 my-5 mx-5": "mt-5 mb-5"}`} onClick={e => e.stopPropagation()}>
+          <div className="modal-header flex justify-end">
+            <h4 className="modal-title">{props.title}</h4>
+            
+            <button onClick={props.onClose} className="button">
+              <IoClose/>
+            </button>
           </div>
-          <button
-            className="container-modal text-white font-bold mt-10 text-3xl"
-            type="button"
-            onClick={() => setShowModal(false)}
-          >
-            Fermer
-          </button>
+          <div className="modal-body">{props.children}</div>
+          <div className="modal-footer">
+            <button onClick={props.onClose} className="button">
+              Fermer
+            </button>
+          </div>
         </div>
-      ) : <></>}
-    </>
+      </div>
+    </CSSTransition>,
+    // @ts-ignore
+    document.getElementById("root")
   );
 };
+
+export default Modal

@@ -1,10 +1,28 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
-import { mdpNonVisible, mdpVisible, loginMail, loginPassword, FBIcon, confirmpwd, userlogo, creator, explorer } from "icons";
+import { Button } from "components";
+import {
+  confirmpwd,
+  creator,
+  explorer,
+  loginMail,
+  loginPassword,
+  mdpNonVisible,
+  mdpVisible,
+  userlogo,
+} from "icons";
+import { includes } from "lodash";
+import {
+  optionsUserCategoryAge,
+  optionsUserCategoryLvl,
+  schemaRegister,
+} from "pages/Register/registerHelper";
 import React, { useState } from "react";
+import FacebookLogin from "react-facebook-login";
 import { Controller, useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { IoLogoFacebook } from "react-icons/io5";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import Select from "react-select";
 import authService, {
   CREATE_ACCOUNT,
@@ -12,10 +30,6 @@ import authService, {
   LOGIN_ACCOUNT,
 } from "services/auth.service";
 import "./register.css";
-import FacebookLogin from "react-facebook-login";
-import { includes } from "lodash";
-import { Button } from "components";
-import { optionsUserCategoryAge, optionsUserCategoryLvl, schemaRegister } from "pages/Register/registerHelper";
 
 export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   const {
@@ -67,6 +81,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
       }
     }
   }, [setError, error, createAccountData]);
+  const location = useLocation();
 
   const responseFacebook = (responseFb: any) => {
     // Error si pas d'email
@@ -112,17 +127,9 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
         authService.setStorageLoginRefreshToken(
           response?.data?.tokenAuth?.refreshToken
         );
-        history.listen((prev) => {
-          if (
-            prev?.pathname === RouteName.activateResetPassword ||
-            includes(prev?.pathname, RouteName.resetPassword) ||
-            includes(prev?.pathname, "activate") ||
-            includes(prev?.pathname, RouteName.tokenActivationAccount) ||
-            prev?.pathname === RouteName.register
-          ) {
-            history.push("/");
-          }
-        });
+        if (authService.isRedirectToProfil(location?.pathname)) {
+          history.push("/profil");
+        }
         history.goBack();
       }
     });
@@ -159,83 +166,101 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
   return (
-    <div className=" flex justify-center items-center">
-     
-
-      <div className="bg-white flex flex-col rounded-3xl items-center w-10/12 md:w-8/12 lg:w-2/6 gap-4">
-        
-        <h1 className=" text-xl  md:text-2xl font-bold lg:text-3xl text-center mt-10">
+    <div className="flex justify-center register-modal-size items-center">
+      <div className="bg-white flex flex-col rounded-3xl items-center">
+        <div className="text-lg font-bold lg:text-2xl text-center mb-4">
           Création de ton espace DIY <br />
-        </h1>
-        <h2 className="text-base md:text-lg ">Quel type de compte veux-tu créer ?</h2>
-        <div>
-        <FacebookLogin
-              // @ts-ignore
-              appId={process.env.REACT_APP_FACEBOOK_ID}
-              fields="name,email,picture"
-              callback={responseFacebook}
-              cssClass="my-facebook-button-class"
-              textButton="Connexion avec Facebook"
-              
-              icon={<img src={FBIcon} alt="facebook icon" className="w-6 h-6 mr-4" />}
-              
-            />
-            
-            {errorLoginFb && (
-              <div className="mt-4 text-red text-xs italic">{errorLoginFb}</div>
-            )}
+        </div>
+        <h2 className="text-base md:text-lg mb-4">
+          Quel type de compte veux-tu créer ?
+        </h2>
+        <div className="mb-4 lg:mb-1">
+          <FacebookLogin
+            // @ts-ignore
+            appId={process.env.REACT_APP_FACEBOOK_ID}
+            fields="name,email,picture"
+            callback={responseFacebook}
+            cssClass="my-facebook-button-class"
+            textButton="Connexion avec Facebook"
+            icon={<IoLogoFacebook className="w-6 h-6 mr-4" />}
+          />
+
+          {errorLoginFb && (
+            <div className="mt-6 text-red text-xs italic">{errorLoginFb}</div>
+          )}
         </div>
         <div className="separator  text-gray-700 md:m-4">Ou</div>
 
         <div className="flex flex-row items-center justify-evenly w-5/6 gap-8">
-        <div className="flex flex-col cursor-pointer shadow-lg justify-center items-center rounded-xl w-2/4 h-28 hover:bg-grey hover:text-white transition border-4 border-blue">
-
-          <img className="rounded-full shadow-lg  w-14"src={explorer} alt="logo explorateur" />
-         Explorateur
+          <div className="flex flex-col cursor-pointer shadow-lg justify-center items-center rounded-xl w-2/4 h-24 hover:bg-grey hover:text-white transition border-4 border-blue">
+            <img
+              className="rounded-full shadow-lg  w-12"
+              src={explorer}
+              alt="logo explorateur"
+            />
+            Explorateur
           </div>
-        <div className=" flex flex-col shadow-lg justify-center items-center border rounded-xl w-2/4 h-28 hover:bg-grey hover:text-white transition cursor-pointer">
+          <Link
+            to={RouteName.register}
+            className="flex flex-col shadow-lg justify-center items-center border rounded-xl w-2/4 h-24 hover:bg-grey hover:text-white transition cursor-pointer"
+          >
+            <img
+              className="rounded-full shadow-lg w-12"
+              src={creator}
+              alt="logo créateur"
+            />
+            Créateur
+          </Link>
+        </div>
 
-          
-          <img className="rounded-full shadow-lg w-14" src={creator} alt="logo créateur" />
-          Créateur
-          </div>
-      </div>
-
-        <div className="w-10/12">
-          <form className="flex flex-col gap-4 md:gap-8 my-6  md:my-10" onSubmit={handleSubmit(onSubmitHandler)}>
-            <div className="flex flex-row gap-4 items-center w-full">
-              <img className="md:w-8 md:h-8" src={loginMail} alt="icone email" />
+        <div className="w-10/12 lg:w-8/12">
+          <form
+            className="flex flex-col my-5 "
+            onSubmit={handleSubmit(onSubmitHandler)}
+          >
+            <div className="flex flex-row items-center w-full mt-6 ">
+              <img
+                className="md:w-6 md:h-6 mr-2"
+                src={loginMail}
+                alt="icone email"
+              />
               <input
-                className="shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline "
+                className="shadow-lg appearance-none border rounded-xl w-full  py-1 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline "
                 id="email"
                 placeholder="Email"
                 type="email"
                 {...register("email")}
               ></input>
-              <p className="text-red text-xs italic">{errors.email?.message}</p>
             </div>
+            <p className="text-red text-xs italic">{errors.email?.message}</p>
 
-            <div className="flex flex-row gap-4 items-center w-full">
-              <img className="md:w-8 md:h-8" src={userlogo} alt="icone email" />
+            <div className="flex flex-row items-center w-full mt-6 ">
+              <img
+                className="md:w-6 md:h-6 mr-2"
+                src={userlogo}
+                alt="icone email"
+              />
               <input
-                className="shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline "
+                className="shadow-lg appearance-none border rounded-xl w-full  py-1 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline "
                 id="utilisateur"
                 placeholder="Nom d'utilisateur"
                 type="text"
                 {...register("utilisateur")}
               ></input>
-              <p className="text-red text-xs italic">{errors.email?.message}</p>
             </div>
+            <p className="text-red text-xs italic">
+              {errors.utilisateur?.message}
+            </p>
 
-            <div className="flex flex-row gap-4 items-center w-full">
+            <div className="flex flex-row items-center w-full mt-6 ">
               <img
-                className="md:w-8 md:h-8"
+                className="md:w-6 md:h-6 mr-2"
                 src={loginPassword}
                 alt="icone mot de passe"
               />
-              <div className="flex flex-row gap-4 items-center shadow-lg  border rounded-xl md:h-12 w-full text-gray-700 h-10 leading-tight  focus:shadow-outline ">
+              <div className="flex flex-row items-center shadow-lg  border rounded-xl w-full text-gray-700 leading-tight  focus:shadow-outline ">
                 <input
-                  className="appearance-none py-2 px-3 lg:text-xl rounded-xl  focus:outline-none w-full h-full"
+                  className="appearance-none py-1 px-3 rounded-xl  focus:outline-none w-full h-full"
                   id="password"
                   type={isRevealPwd ? "text" : "password"}
                   placeholder="Mot de passe"
@@ -253,15 +278,15 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               </p>
             </div>
 
-            <div className="flex flex-row gap-4 items-center w-full">
+            <div className="flex flex-row items-center w-full mt-6">
               <img
-                className="md:w-8 md:h-8"
+                className="md:w-6 md:h-6 mr-2"
                 src={confirmpwd}
                 alt="icone mot de passe"
               />
-              <div className="flex flex-row  items-center shadow-lg  border rounded-xl md:h-12 w-full text-gray-700 h-10 leading-tight  focus:shadow-outline ">
+              <div className="flex flex-row  items-center shadow-lg  border rounded-xl w-full text-gray-700 leading-tight  focus:shadow-outline ">
                 <input
-                  className="appearance-none py-2 px-3 lg:text-xl rounded-xl  focus:outline-none w-full h-full"
+                  className="appearance-none py-1 px-3 rounded-xl  focus:outline-none w-full h-full"
                   id="passwordConfirmation"
                   type={isRevealPwd ? "text" : "password"}
                   placeholder="Confirmer le mot de passe"
@@ -278,7 +303,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                 {errors.passwordConfirmation?.message}
               </p>
             </div>
-            <div className=" flex items-center">
+            <div className=" flex items-center mt-6">
               <Controller
                 name="userCategoryLvl"
                 control={control}
@@ -286,35 +311,33 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                   <Select
                     {...field}
                     options={optionsUserCategoryLvl}
-                    className={`w-full shadow-lg lg:text-xl`}
+                    className={`w-full shadow-lg`}
                     placeholder="Qui est-tu ?"
                   />
                 )}
               />
-              <p className="text-red text-xs italic">
-                {errors.userCategoryLvl?.message}
-              </p>
             </div>
-            <div className="flex   items-center">
+            <p className="text-red text-xs italic">
+              {errors.userCategoryLvl?.message}
+            </p>
+            <div className="flex items-center mt-6">
               <Controller
-              
                 name="userCategoryAge"
                 control={control}
                 render={({ field }) => (
                   <Select
                     {...field}
                     options={optionsUserCategoryAge}
-                    className={`w-full shadow-lg lg:text-xl `}
+                    className={`w-full shadow-lg `}
                     placeholder="A quel groupe appartiens-tu ?"
                   />
                 )}
               />
-              <p className="text-red text-xs italic">
-                {errors.userCategoryAge?.message}
-              </p>
             </div>
-
-            <div className="flex w-full  self-center ">
+            <p className="text-red text-xs italic">
+              {errors.userCategoryAge?.message}
+            </p>
+            <div className="flex w-full self-center mt-6">
               <input
                 type="checkbox"
                 className="w-6 h-6"
@@ -325,16 +348,21 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                 Coche la case si tu veux recevoir nos dernières actualités et
                 les tendances du secteur du DIY.
               </label>
-
             </div>
+            <Button type="blue" className="font-extrabold mt-4">
+              Créer ton profil
+            </Button>
           </form>
         </div>
-        <Button type="blue" className="h-10  font-extrabold">Crée ton profil</Button>
-
 
         <div>
-              <p onClick={() => loginOpen(true)} className="underline m-4 md:m-10 text-sm md:text-base text-center cursor-pointer text-gray-700">Deja un compte ? - Se connecter</p>
-            </div>
+          <p
+            onClick={() => loginOpen(true)}
+            className="underline mt-4 mb-4 text-sm md:text-base text-center cursor-pointer text-gray-700"
+          >
+            Deja un compte ? - Se connecter
+          </p>
+        </div>
       </div>
     </div>
   );

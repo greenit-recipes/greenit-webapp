@@ -1,17 +1,70 @@
-.container-modal {
-    z-index: 100;
-}
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+    overflow-y: auto;
+    height: auto;
+  }
 
-.cont {
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px
-}
+  .modal.enter-done {
+    opacity: 1;
+    pointer-events: visible;
+  }
+  
+  .modal.exit {
+    opacity: 0;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+    transform: translateY(-200px);
+    border-radius: 4px;
+  }
+  
+  .modal.enter-done .modal-content {
+    transform: translateY(0);
+  }
+  
+  .modal.exit .modal-content {
+    transform: translateY(-200px);
+  }
+  
+  .modal-header,
+  .modal-footer {
+    padding: 10px;
+  }
 
-.no-scroll {
-    margin: 0; 
-    height: 100%; 
-    overflow: hidden
-}
+  .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .modal-is-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .modal-title {
+    margin: 0;
+  }
+  
+  .modal-body {
+    padding: 10px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+  

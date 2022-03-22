@@ -25,7 +25,9 @@ input[type=radio]:checked + label>img {
     scale(1.02)
 }
 
-
+.register-modal-size {
+  width: 30 rem;
+}
 
 
 .separator {

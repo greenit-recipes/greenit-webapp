@@ -44,7 +44,7 @@ import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
 import "./StarterPage.css";
 import useIsMobile from "hooks/isMobile";
 import { useEffect } from "react";
-import { Modal } from "components/layout/Modal/Modal";
+import { ModalLogGreenit }  from "components/layout/ModalLogGreenit/ModalLogGreenit";
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({
@@ -765,13 +765,13 @@ const StarterPage = () => {
           </Button>
         </Link>
       ) : (
-        <Modal
+        <ModalLogGreenit
           btn={
             <Button id="SP_create_account" type="green">
               Créer un profil
             </Button>
           }
-        ></Modal>
+        ></ModalLogGreenit>
       )}
 
       <div className="grid grid-cols-2 gap-x-2 | mt-10 mb-20">

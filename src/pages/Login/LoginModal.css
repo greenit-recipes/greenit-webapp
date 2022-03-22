@@ -70,3 +70,7 @@
  }
 
 }
+
+.login-modal-size {
+  width: 60rem !important;
+}

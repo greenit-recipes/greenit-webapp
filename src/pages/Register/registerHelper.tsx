@@ -38,9 +38,7 @@ export const schemaRegister = yup.object().shape({
       })
     )
     .min(1, "Ce champ est obligatoire"),
-  biographie: yup.string().required("Ce champ est obligatoire."),
   userCategoryLvl: yup.object().required("Ce champ est obligatoire."),
-  userWantFromGreenit: yup.object().required("Ce champ est obligatoire."),
   userCategoryAge: yup.object().required("Ce champ est obligatoire."),
 }); // _ - .
 

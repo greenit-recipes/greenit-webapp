@@ -2,18 +2,14 @@ import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { Button } from "components";
-import {
-  mdpNonVisible,
-  mdpVisible,
-  loginMail,
-  loginPassword,
-  FBIcon,
-} from "icons";
+import useIsMobile from "hooks/isMobile";
+import { mdpNonVisible, mdpVisible, loginMail, loginPassword } from "icons";
+import { IoLogoFacebook } from "react-icons/io5";
 import { includes } from "lodash";
 import React, { useState } from "react";
 import FacebookLogin from "react-facebook-login";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import authService, {
   CREATE_USER_FROM_AUTH,
   LOGIN_ACCOUNT,
@@ -77,6 +73,9 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     }
   }, [setError, error, data]);
 
+  const isMobile = useIsMobile();
+  const location = useLocation();
+
   const responseFacebook = (responseFb: any) => {
     // Error si pas d'email
 
@@ -119,18 +118,10 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
         authService.setStorageLoginRefreshToken(
           response?.data?.tokenAuth?.refreshToken
         );
-        history.listen((prev) => {
-          if (
-            prev?.pathname === RouteName.activateResetPassword ||
-            includes(prev?.pathname, RouteName.resetPassword) ||
-            includes(prev?.pathname, "activate") ||
-            includes(prev?.pathname, RouteName.tokenActivationAccount) ||
-            prev?.pathname === RouteName.register
-          ) {
-            history.push("/");
-          }
-        });
-        history.goBack();
+        if (authService.isRedirectToProfil(location?.pathname)) {
+          history.push("/profil");
+        }
+        window.location.reload();
       }
     });
     reset({ ...getValues(), password: "" });
@@ -139,70 +130,74 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
 
   return (
     <>
-      <div className=" flex flex-col items-center justify-items-center w-full">
-        <div className="lg:flex flex-row  w-10/12  md:w-7/12">
+      <div
+        className={`flex ${
+          isMobile ? "" : "login-modal-size"
+        } flex-col items-center justify-items-center`}
+      >
+        <div className="lg:flex flex-row w-full">
           <div className="desktopbg"> </div>
           <div className="mobile flex flex-col items-center">
-            <h1 className=" text-xl  md:text-2xl font-bold lg:text-3xl my-6 text-center">
+            <div className="text-xl font-bold text-center">
               Connexion vers ton espace DIY <br />
-            </h1>
-              <form
-                className="flex flex-col gap-4 md:gap-8 my-6  md:my-10"
-                onSubmit={handleSubmit(onSubmitHandler)}
-              >
-                <div className="flex flex-row items-center w-full">
-                  <img
-                    className="w-8 h-8 ml-2"
-                    src={loginMail}
-                    alt="icone email"
-                  />
-                  <input
-                    className="shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline m-4"
-                    id="email"
-                    placeholder="Email"
-                    type="email"
-                    {...register("email")}
-                  ></input>
-                </div>
-                <p className="text-red text-xs italic">
-                    {errors.password?.message}
-                  </p>
+            </div>
+            <form
+              className="flex flex-col lg:w-72 md:my-2"
+              onSubmit={handleSubmit(onSubmitHandler)}
+            >
+              <div className="flex flex-row items-center w-full">
+                <img
+                  className="w-6 h-6 ml-2"
+                  src={loginMail}
+                  alt="icone email"
+                />
+                <input
+                  className="shadow-lg appearance-none border rounded-xl w-full py-1 px-3  text-gray-700 h-8  leading-tight focus:outline-none focus:shadow-outline m-4"
+                  id="email"
+                  placeholder="Email"
+                  type="email"
+                  {...register("email")}
+                ></input>
+              </div>
+              <p className="text-red text-xs italic">
+                {errors.password?.message}
+              </p>
 
-                <div className="flex flex-row items-center w-full">
-                  <img
-                    className="w-8 h-8 ml-2"
-                    src={loginPassword}
-                    alt="icone mot de passe"
+              <div className="flex flex-row items-center w-full">
+                <img
+                  className="w-6 h-6 ml-2"
+                  src={loginPassword}
+                  alt="icone mot de passe"
+                />
+                <div className="flex flex-row  items-center shadow-lg  border rounded-xl w-full text-gray-700 h-8 leading-tight  focus:shadow-outline m-4">
+                  <input
+                    className="appearance-none rounded-xl py-1 px-3  focus:outline-none w-full h-full"
+                    id="password"
+                    type={isRevealPwd ? "text" : "password"}
+                    placeholder="Mot de passe"
+                    {...register("password")}
                   />
-                  <div className="flex flex-row  items-center shadow-lg  border rounded-xl md:h-12 w-full text-gray-700 h-10 leading-tight  focus:shadow-outline m-4">
-                    <input
-                      className="appearance-none py-2 px-3 lg:text-xl rounded-xl  focus:outline-none w-full h-full"
-                      id="password"
-                      type={isRevealPwd ? "text" : "password"}
-                      placeholder="Mot de passe"
-                      {...register("password")}
-                    />
-                    <img
-                      className="mr-2"
-                      src={isRevealPwd ? mdpVisible : mdpNonVisible}
-                      alt="voir le mot de passe"
-                      onClick={() => setIsRevealPwd((prevState) => !prevState)}
-                    />
-                  </div>
+                  <img
+                    className="mr-2"
+                    src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                    alt="voir le mot de passe"
+                    onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                  />
                 </div>
-                <p className="text-red text-xs italic">
-                    {errors.password?.message}
-                  </p>
-                <a
-                  className="self-end mt-2 mb-6 px-4 text-sm lg:text-base text-blue font-bold"
-                  href={RouteName.resetPassword}
-                >
-                  Mot de passe oublié ?
-                </a>
-                <Button type="blue" className="h-10 font-bold">
-                  Connexion
-                </Button>
-              </form>
+              </div>
+              <p className="text-red text-xs italic">
+                {errors.password?.message}
+              </p>
+              <a
+                className="self-end mt-2 mb-6 px-4 text-sm lg:text-base text-blue font-bold"
+                href={RouteName.resetPassword}
+              >
+                Mot de passe oublié ?
+              </a>
+              <Button type="blue" className="font-extrabold mt-4">
+                Connexion
+              </Button>
+            </form>
 
             <div className="separator m-4 text-gray-700 md:m-10">Ou</div>
 
@@ -213,13 +208,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               callback={responseFacebook}
               cssClass="my-facebook-button-class"
               textButton="Connexion avec Facebook"
-              icon={
-                <img
-                  src={FBIcon}
-                  alt="facebook icon"
-                  className="w-6 h-6 mr-4"
-                />
-              }
+              icon={<IoLogoFacebook className="w-6 h-6 mr-4" />}
             />
 
             {errorLoginFb && (
@@ -229,7 +218,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
             <div>
               <p
                 onClick={() => loginOpen(false)}
-                className="underline m-4 md:m-10 text-sm md:text-base text-center cursor-pointer text-gray-700"
+                className="underline m-4 md:m-10 text-sm text-center cursor-pointer text-gray-700"
               >
                 Pas encore de compte ? - Créer son compte
               </p>
