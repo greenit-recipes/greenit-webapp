@@ -132,7 +132,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
       
       </div>
       <div
-        className="mt-4 mb-4 lg:my-10  cursor-pointer text-center text-sm lg:text-base"
+        className=" my-6 lg:my-10  cursor-pointer text-center text-sm lg:text-base"
         onClick={() => {
           setDisplayStat(!isDisplayStat);
         }}
@@ -141,7 +141,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
         {!isDisplayStat ? "+ Plus " : "- Moins"} de statistiques
       </div>
       {isDisplayStat && <StatProfilForm></StatProfilForm>}
-      <div className="flex items-center w-11/12 h-px bg-grey grow mb-5 lg:w-5/12 lg:my-10"></div>
+      <div className="flex items-center w-11/12 h-px bg-grey grow mb-5 lg:w-5/12 "></div>
       
       
       <div className="flex lg:flex-row flex-col gap-12 lg:w-4/6">
@@ -149,13 +149,13 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
 
         <div className="flex flex-col gap-8 lg:w-2/4">
         <div className="flex flex-col gap-4">
-          <div className="flex flex-row gap-4">
-            <h2 className="text-lg lg:text-3xl font-bold">biographie</h2> 
-            <img src={edit} alt="logo editer" className="cursor-pointer" onClick={() => {
+          <div className="flex flex-row items-center gap-4">
+            <h2 className="text-lg lg:text-xl font-bold">Biographie</h2> 
+            <img src={edit} alt="logo editer" className="cursor-pointer h-6" onClick={() => {
                 setEditor(!isEditor);
               }}/>
             </div>
-            <p className="leading-tight lg:text-lg">{user?.biographie && HTMLReactParser(user?.biographie)}</p>
+            <p className="leading-tight text-sm lg:text-base">{user?.biographie && HTMLReactParser(user?.biographie)}</p>
 
         </div>
         {!isEditor ? 
@@ -185,11 +185,11 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
         {/* Link */}
 
         <div className="flex flex-col lg:w-2/4 gap-4">
-          <div className="flex flex-row gap-4">
-            <h2 className="text-lg lg:text-3xl font-bold">Liens vers vos espaces</h2>
+          <div className="flex flex-row items-center gap-4">
+            <h2 className="text-lg lg:text-xl font-bold">Liens vers vos espaces</h2>
             
               
-              <img src={edit} alt="logo editer" className="cursor-pointer" onClick={() => {
+              <img src={edit} alt="logo editer" className="cursor-pointer h-6" onClick={() => {
                 setEditLink(!isEditLink);
               }}
               />
@@ -202,13 +202,13 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
                 JSON.parse(socialMedias)?.map(
                   (data: any, index: any) => (
                     <a href={data?.url} key={index}>
-                      <div className="flex flex-row gap-2 shadow-lg rounded-lg items-center justify-center border p-2 lg:p-4">
+                      <div className="flex flex-row gap-2 shadow-lg rounded-lg items-center justify-center border p-2">
                         <img
                           src={getLogoAndNameByUrl(data?.url)?.icon}
                           className="w-7 h-7"
                           alt={getLogoAndNameByUrl(data?.url)?.name}
                         />
-                        <div className="lg:text-xl">{getLogoAndNameByUrl(data?.url)?.name}</div>
+                        <div className="text-sm lg:text-base">{getLogoAndNameByUrl(data?.url)?.name}</div>
                       </div>
                     </a>
                   )

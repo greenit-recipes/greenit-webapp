@@ -69,7 +69,7 @@ const ProfilPage: React.FC = () => {
         className="flex flex-col | items-center | mt-8 md:mt-20"
         padding
       >
-        <div className="grid grid-cols-2 gap-4 mb-8 md:mb-20">
+        <div className="grid grid-cols-2 gap-4 mb-10">
           <div className="grid justify-items-center bg-transparent h-32 w-32 md:h-40 md:w-40 rounded-full border-2 border-transparent hover:border-gray-400">
             <ModalImageProfil
               hasImageProfile={!!userImage}
