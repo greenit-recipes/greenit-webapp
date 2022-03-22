@@ -1,15 +1,16 @@
 import { RouteName } from "App";
 import { Container, Footer, Navbar } from "components";
-import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
+import Modal from "components/layout/Modal/Modal";
 import useIsMobile from "hooks/isMobile";
 import { CategoryCircle } from "pages/LandingPage/Components/CategoryCircle";
 import { AskQuestion } from "pages/StarterSpace/component/AskQuestion/AskQuestion";
 import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
-import { SharedWithFriend } from "pages/StarterSpace/component/SharedWithFriend/SharedWithFriend";
 import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
+import { RiShareForwardLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { RWebShare } from "react-web-share";
 import authService from "services/auth.service";
 import { Button, RecipeCard } from "../../components";
 import { useRecipesQuery } from "../../graphql";
@@ -19,6 +20,8 @@ import {
   Cooking, CremeCorp, Eau, EcorceArgume, Fouet, HuileRicin, IconAtelier, IconInternet, IconMarche, IconSite, landingPageCategories, Lessive, Livre, logo, Maryse, Producteur, SavonMarseille, Ustensil
 } from "../../icons";
 import "./StarterPage.css";
+
+
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({
@@ -148,7 +151,25 @@ const StarterPage = () => {
               <h3 className="text-sm  text-center font-light">{item.title}</h3>
             </div>
           ))}
-          <SharedWithFriend></SharedWithFriend>
+          <div className="flex flex-col justify-center items-center gap-2">
+          <h2>Motivez-vous avec vos ami.e.s :</h2>
+         
+          <RWebShare
+                      data={{
+                        url: window.location.href,
+                      }}
+                    >
+                        <button
+                        className="flex justify-center items-center border rounded-lg shadow-lg p-2"
+                        id="shared-recipe"
+                      >
+                        <RiShareForwardLine className="justify-self-center ml-1 w-6 h-6" />
+                        <h2 className="text-center ml-2"> partager le lien du guide </h2>
+                      </button>
+
+                    </RWebShare>
+                    </div>
+
         </div>
         <div ref={fieldRefEtape1}></div>
       </Container>
@@ -739,13 +760,13 @@ const StarterPage = () => {
           </Button>
         </Link>
       ) : (
-        <ModalLogGreenit
+        <Modal
           btn={
             <Button id="SP_create_account" type="green">
               Créer un profil
             </Button>
           }
-        ></ModalLogGreenit>
+        ></Modal>
       )}
 
       <div className="grid grid-cols-2 gap-x-2 | mt-10 mb-20">
