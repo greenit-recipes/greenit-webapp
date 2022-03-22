@@ -25,7 +25,6 @@ export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({ btn, isModalLogin 
   return (
     <div>
       <div
-        className="rounded-full ease-linear transition-all duration-150 cursor-pointer"
         onClick={() => setShowModal(true)}
       >
         {btn}

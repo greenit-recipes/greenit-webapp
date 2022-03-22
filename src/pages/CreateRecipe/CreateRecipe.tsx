@@ -1,8 +1,9 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
-import { Button, Footer, Navbar } from "components";
+import { Button, Footer, Navbar, Loading } from "components";
 import { BackgroundImage } from "components/layout/BackgroundImage";
+
 import {
   imageValidation,
   videoValidation,
@@ -156,8 +157,7 @@ const CreateRecipe: React.FC = () => {
       variables: {
         link: dataLink.link,
       },
-    }).then();
-    history.push(RouteName.recipeCreated);
+    }).then((res: any) => history.push(RouteName.recipeCreated));
   };
 
   const onSubmitHandler = (dataForm: {
@@ -202,8 +202,10 @@ const CreateRecipe: React.FC = () => {
         notesFromAuthor: dataForm.notes_from_author,
         textAssociate: dataForm.text_associate,
       },
+    }).then((res) => {
+      if (res?.data?.sendEmailRecipe?.success)
+        history.push(RouteName.recipeCreated);
     });
-    history.push(RouteName.recipeCreated);
   };
   useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -218,6 +220,33 @@ const CreateRecipe: React.FC = () => {
     utensilsAppend({}, { shouldFocus: false });
     instructionsAppend({}, { shouldFocus: false });
   }, []);
+
+  if (loadingCreateRecipe) {
+    return (
+      <div className="flex flex-col items-center justify-center mt-5">
+        <h2>
+          Minute papillon ! 🦋 <br />
+          Tes médias sont en train de se télécharger.
+          <br />
+          Ne quitte pas cette page, nous te rédigerons une fois l’upload
+          terminé.
+        </h2>
+        <Loading />
+      </div>
+    );
+  }
+
+  if (loadingLink) {
+    return (
+      <div className="flex flex-col items-center justify-center mt-5">
+        <h2>
+          Minute papillon ! 🦋 Ne quitte pas cette page, nous te rédigerons une
+          fois l'email envoyé.
+        </h2>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">
@@ -275,7 +304,8 @@ const CreateRecipe: React.FC = () => {
             <h3 className="block text-gray-700 text-sm mt-2">
               Toutes les recettes sont automatiquement créditées au profil du
               créateur.ice. <br></br>
-              Nous avons accès uniquement aux comptes Instagram et publications publics.
+              Nous avons accès uniquement aux comptes Instagram et publications
+              publics.
             </h3>
             <div className="flex flex-col lg:flex-row mt-4 lg:items-center">
               <h3 className="block text-gray-700 text-sm mr-4">

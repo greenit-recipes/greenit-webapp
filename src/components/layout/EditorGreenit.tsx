@@ -39,7 +39,7 @@ export const EditorGreenit: React.FC<{onChange: any, value: any}> = ({ onChange,
           wrapperClassName="border bg-white rounded-lg"
           editorClassName="ml-2"
           toolbar={{
-            options: ['inline', 'textAlign', 'history', 'link'],
+            options: ['inline', 'textAlign', 'history', 'link', 'emoji'],
             link: { inDropdown: true },
             history: { inDropdown: true },
             emoji: { inDropdown: true,     emojis: [

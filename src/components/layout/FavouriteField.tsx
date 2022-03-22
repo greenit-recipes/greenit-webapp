@@ -49,7 +49,9 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
         >
           {isFavorite ? (
             <div
-              className={`tooltip justify-items-center ${customClassName ? customClassName : "grid"}`}
+              className={`tooltip justify-items-center ${
+                customClassName ? customClassName : "grid"
+              }`}
             >
               <img
                 className="w-10 h-10"
@@ -57,11 +59,17 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 src={likedIconOn}
                 loading="lazy"
               />
-              { isToltipActif ? (<span className="tooltiptext">Retirer des favoris</span>) : (<div className="flex flex-col justify-center">favoris</div>)}
+              {isToltipActif ? (
+                <span className="tooltiptext">Retirer des favoris</span>
+              ) : (
+                <div className="flex flex-col justify-center">favoris</div>
+              )}
             </div>
           ) : (
             <div
-              className={`tooltip justify-items-center ${customClassName ? customClassName : "grid"}`}
+              className={`tooltip justify-items-center ${
+                customClassName ? customClassName : "grid"
+              }`}
             >
               <img
                 className="w-10 h-10"
@@ -69,41 +77,58 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 src={likedIconOff}
                 loading="lazy"
               />
-              { isToltipActif ? (<span className="tooltiptext">Ajouter aux favoris</span>) : (<div className="flex flex-col justify-center">favoris</div>)}
+              {isToltipActif ? (
+                <span className="tooltiptext">Ajouter aux favoris</span>
+              ) : (
+                <div className="flex flex-col justify-center">favoris</div>
+              )}
             </div>
           )}
         </button>
       ) : (
-        <div> { isRecipePage ? (<ModalLogGreenit
-          btn={
-            <button>
-
-            <div className={`tooltip justify-items-center ${customClassName ? customClassName : "grid"}`} >
-              <img
-                className="w-10 h-10"
-                alt="dislike button"
-                src={likedIconOff}
-                loading="lazy"
-              />
-<div className="flex flex-col justify-center">favoris</div>
-            </div>
-            </button>
-          }
-        ></ModalLogGreenit>) :  (<ModalLogGreenit
-          btn={
-            <button>
-
-            <div className={`tooltip justify-items-center ${customClassName ? customClassName : "grid"}`} >
-              <img
-                className="w-10 h-10"
-                alt="dislike button"
-                src={likedIconOff}
-                loading="lazy"
-              />
-<span className="tooltiptext">Ajouter aux favoris</span>            </div>
-            </button>
-          }
-        ></ModalLogGreenit>)}
+        <div>
+          {" "}
+          {isRecipePage ? (
+            <ModalLogGreenit
+              btn={
+                <button>
+                  <div
+                    className={`tooltip justify-items-center ${
+                      customClassName ? customClassName : "grid"
+                    }`}
+                  >
+                    <img
+                      className="w-10 h-10"
+                      alt="dislike button"
+                      src={likedIconOff}
+                      loading="lazy"
+                    />
+                    <div className="flex flex-col justify-center">favoris</div>
+                  </div>
+                </button>
+              }
+            ></ModalLogGreenit>
+          ) : (
+            <ModalLogGreenit
+              btn={
+                <button>
+                  <div
+                    className={`tooltip justify-items-center ${
+                      customClassName ? customClassName : "grid"
+                    }`}
+                  >
+                    <img
+                      className="w-10 h-10"
+                      alt="dislike button"
+                      src={likedIconOff}
+                      loading="lazy"
+                    />
+                    <span className="tooltiptext">Ajouter aux favoris</span>{" "}
+                  </div>
+                </button>
+              }
+            ></ModalLogGreenit>
+          )}
         </div>
       )}
     </div>

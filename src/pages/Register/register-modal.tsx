@@ -360,7 +360,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
             onClick={() => loginOpen(true)}
             className="underline mt-4 mb-4 text-sm md:text-base text-center cursor-pointer text-gray-700"
           >
-            Deja un compte ? - Se connecter
+            Déjà un compte ? Se connecter ici !
           </p>
         </div>
       </div>

@@ -16,7 +16,7 @@ import {
   tiktoklogo,
   userlogo,
   wwwlogo,
-  ytlogo
+  ytlogo,
 } from "icons";
 import { schemaRegisterCreatorProfil } from "pages/Register/registerHelper";
 import React, { useEffect, useState } from "react";
@@ -139,14 +139,19 @@ const Register: React.FC = () => {
             ></ModalLogGreenit>
           </div>
           <div className="flex flex-row items-center justify-center w-full gap-8 mt-4">
-            <div className=" flex flex-col shadow-lg justify-center items-center border rounded-xl w-2/4 h-28 hover:bg-grey hover:text-white transition cursor-pointer">
-              <img
-                className="rounded-full shadow-lg  w-14"
-                src={explorer}
-                alt="logo explorateur"
-              />
-              Explorateur
-            </div>
+            <ModalLogGreenit
+              btn={
+                <div className="flex flex-col shadow-lg justify-center items-center border rounded-xl w-2/4 h-28 hover:bg-grey hover:text-white transition cursor-pointer">
+                  <img
+                    className="rounded-full shadow-lg  w-14"
+                    src={explorer}
+                    alt="logo explorateur"
+                  />
+                  Explorateur
+                </div>
+              }
+            ></ModalLogGreenit>
+
             <div className="bg-grey-300 flex flex-col cursor-pointer shadow-lg justify-center items-center rounded-xl w-2/4 h-28 hover:bg-grey hover:text-white transition border-4 border-blue">
               <img
                 className="rounded-full shadow-lg w-14"
@@ -175,7 +180,9 @@ const Register: React.FC = () => {
               {...register("email")}
             ></input>
           </div>
-          <p className="text-red text-xs italic mt-2">{errors.email?.message}</p>
+          <p className="text-red text-xs italic mt-2">
+            {errors.email?.message}
+          </p>
 
           <div className="flex flex-row items-center w-full mt-6 ">
             <img
@@ -191,7 +198,9 @@ const Register: React.FC = () => {
               {...register("utilisateur")}
             ></input>
           </div>
-          <p className="text-red text-xs italic mt-2">{errors.utilisateur?.message}</p>
+          <p className="text-red text-xs italic mt-2">
+            {errors.utilisateur?.message}
+          </p>
 
           <div className="flex flex-row items-center w-full mt-6 ">
             <img
@@ -216,8 +225,8 @@ const Register: React.FC = () => {
             </div>
           </div>
           <p className="text-red text-xs italic mt-2">
-              {errors.password?.message}
-            </p>
+            {errors.password?.message}
+          </p>
 
           <div className="flex flex-row items-center w-full mt-6">
             <img
@@ -242,8 +251,8 @@ const Register: React.FC = () => {
             </div>
           </div>
           <p className="text-red text-xs italic mt-2">
-              {errors.passwordConfirmation?.message}
-            </p>
+            {errors.passwordConfirmation?.message}
+          </p>
 
           <div className="mt-8">
             <label className="block text-gray-700 text-xl mb-2">
@@ -260,8 +269,8 @@ const Register: React.FC = () => {
             />
           </div>
           <p className="text-red text-xs italic mt-2">
-              {errors.biographie?.message}
-            </p>
+            {errors.biographie?.message}
+          </p>
           <div className="flex mt-4 flex-col">
             <label className="block text-gray-700 text-xl ">
               Ajouter un lien
@@ -307,18 +316,19 @@ const Register: React.FC = () => {
               </ul>
               <div className="flex justify-end mb-2 ">
                 <div
-                onClick={() => urlsSocialMediaAppend({}, { shouldFocus: true })}
-                className="bg-blue cursor-pointer text-white rounded-lg py-1 px-2 w-40 text-center"
-               >
-                Ajouter un lien
+                  onClick={() =>
+                    urlsSocialMediaAppend({}, { shouldFocus: true })
+                  }
+                  className="bg-blue cursor-pointer text-white rounded-lg py-1 px-2 w-40 text-center"
+                >
+                  Ajouter un lien
                 </div>
               </div>
-
             </div>
           </div>
           <p className="text-red text-xs italic mt-2">
-              {errors.urlsSocialMedia?.message}
-            </p>
+            {errors.urlsSocialMedia?.message}
+          </p>
 
           <div className="flex w-full self-center mt-2">
             <input
