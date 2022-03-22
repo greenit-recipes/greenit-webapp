@@ -1,50 +1,24 @@
-import { BackgroundImage, Container, Footer, Navbar } from "components";
-import { Helmet } from "react-helmet";
-import {
-  logo,
-  Conseil,
-  Cooking,
-  Ustensil,
-  Christelle,
-  Catherine,
-  HuileRicin,
-  EcorceArgume,
-  Eau,
-  CremeCorp,
-  Lessive,
-  SavonMarseille,
-  CireAbeille,
-  BeurreKarite,
-  BicarSoude,
-  Bouteille,
-  Bocal,
-  IconAtelier,
-  Balance,
-  Bol,
-  Fouet,
-  IconInternet,
-  Livre,
-  IconMarche,
-  Maryse,
-  IconSite,
-  Producteur,
-  landingPageCategories,
-} from "../../icons";
-import { Button, RecipeCard } from "../../components";
-import authService from "services/auth.service";
-import { useRecipesQuery } from "../../graphql";
-import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { RouteName } from "App";
+import { Container, Footer, Navbar } from "components";
+import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
+import useIsMobile from "hooks/isMobile";
 import { CategoryCircle } from "pages/LandingPage/Components/CategoryCircle";
-import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
-import { SharedWithFriend } from "pages/StarterSpace/component/SharedWithFriend/SharedWithFriend";
 import { AskQuestion } from "pages/StarterSpace/component/AskQuestion/AskQuestion";
 import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
+import { SharedWithFriend } from "pages/StarterSpace/component/SharedWithFriend/SharedWithFriend";
+import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
+import { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import authService from "services/auth.service";
+import { Button, RecipeCard } from "../../components";
+import { useRecipesQuery } from "../../graphql";
+import {
+  Balance, BeurreKarite,
+  BicarSoude, Bocal, Bol, Bouteille, Catherine, Christelle, CireAbeille, Conseil,
+  Cooking, CremeCorp, Eau, EcorceArgume, Fouet, HuileRicin, IconAtelier, IconInternet, IconMarche, IconSite, landingPageCategories, Lessive, Livre, logo, Maryse, Producteur, SavonMarseille, Ustensil
+} from "../../icons";
 import "./StarterPage.css";
-import useIsMobile from "hooks/isMobile";
-import { useEffect } from "react";
-import { ModalLogGreenit }  from "components/layout/ModalLogGreenit/ModalLogGreenit";
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({

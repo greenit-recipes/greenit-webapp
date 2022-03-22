@@ -1,13 +1,8 @@
-import { RouteName } from "App";
-import { BackgroundImage } from "components";
-import { ModalLogGreenit }  from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { Button } from "components/misc/Button";
 import { find, flattenDeep, map, omit } from "lodash";
 import { FilterBarItem } from "pages/recipe/ListPage/Components/FilterBarItem";
 import { FilterBarSearch } from "pages/recipe/ListPage/Components/FilterBarSearch";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import authService from "services/auth.service";
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -31,7 +26,6 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   setScrollOffset,
 }) => {
   const [search, setSearch] = useState(params.get("search") || "");
-  const isLoggedIn = authService.isLoggedIn();
   const removeFilter = (valuex: any, key: any) => {
     let currentState = { ...currentFilters };
     currentState[key] = currentState[key].filter(
@@ -98,30 +92,6 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                   setSearch={setSearch}
                   setCurrentFilters={setCurrentFilters}
                 />
-                {isLoggedIn ? (
-                  <Link to={RouteName.createRecipe} className="flex">
-                    <Button
-                      id="shareRecipe"
-                      type="grey"
-                      className="self-center h-10 rounded-xl ml-4"
-                    >
-                      <h3 id="shareRecipe"> Partager une recette </h3>
-                    </Button>
-                  </Link>
-                ) : (
-                  <ModalLogGreenit
-                    btn={
-                      <>
-                        <Button
-                          type="grey"
-                          className="self-center h-10 rounded-xl ml-4"
-                        >
-                          <h3 id="shareRecipe"> Partager une recette </h3>
-                        </Button>
-                      </>
-                    }
-                  ></ModalLogGreenit>
-                )}
               </div>
             )}
             {isMobile && (

@@ -40,9 +40,14 @@ export const EditorGreenit: React.FC<{onChange: any, value: any}> = ({ onChange,
           editorClassName="ml-2"
           toolbar={{
             options: ['inline', 'textAlign', 'history', 'link', 'emoji'],
+            inline: {
+              options: ['bold', 'italic', 'underline'],
+            },
+            textAlign: { inDropdown: true },
             link: { inDropdown: true },
             history: { inDropdown: true },
-            emoji: { inDropdown: true,     emojis: [
+            emoji: { inDropdown: true,     
+              emojis: [
               '😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌', '🤓',
               '😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈',
               '🙉', '🙊', '👼', '👮', '🕵', '💂', '👳', '🎅', '👸', '👰', '👲', '🙍', '🙇', '🚶', '🏃', '💃',

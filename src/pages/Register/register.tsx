@@ -119,8 +119,8 @@ const Register: React.FC = () => {
       </Helmet>
       <BackgroundImage className="overflow-hidden" />
 
-      <div className="flex flex-col items-center justify-center">
-        <div className="w-full max-w-xs md:max-w-lg mt-1 w-4/12">
+      <div className="flex flex-col items-center justify-center mt-5 lg:mt-0">
+        <div className="w-full max-w-xs md:max-w-lg mt-1 lg:w-4/12">
           <div className="grid grid-cols-3 md:grid-cols-2">
             <h3 className="col-span-2 text-sm mr-4 self-center justify-self-start | md:text-base md:justify-self-end md:col-span-1">
               Si tu as déjà un compte:
@@ -147,7 +147,7 @@ const Register: React.FC = () => {
                     src={explorer}
                     alt="logo explorateur"
                   />
-                  Explorateur
+                  <div>Explorateur</div>
                 </div>
               }
             ></ModalLogGreenit>
@@ -158,12 +158,12 @@ const Register: React.FC = () => {
                 src={creator}
                 alt="logo créateur"
               />
-              Créateur
+              <div>Créateur</div>
             </div>
           </div>
         </div>
         <form
-          className="my-6 flex flex flex-col w-4/12"
+          className="my-6 flex flex flex-col w-10/12 lg:w-4/12"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="flex flex-row items-center w-full mt-6 ">
