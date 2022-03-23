@@ -49,7 +49,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
       )}
       <div className="mb-7">
         <div
-          className="flex mr-3 pt-2 pb-2 pl-2 pr-4 bg-white rounded fontQSmedium"
+          className="flex mr-3 pt-2 pb-2 pl-2 pr-4 cursor-pointer bg-white rounded fontQSmedium"
           onClick={() => {
             setIsDisplay(!isDisplay);
           }}
