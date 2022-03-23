@@ -16,7 +16,6 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
   recipe,
   parentFcn,
 }) => {
-  console.log("recipe?.author", recipe?.author);
   const [isDisplay, setIsDisplay] = useState(false);
 
   return (
@@ -47,7 +46,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
           aux recettes de tes créateurs.ices préféré.e.s !
         </div>
       )}
-      <div className="mb-7">
+      <div className="mb-5">
         <div
           className="flex mr-3 pt-2 pb-2 pl-2 pr-4 cursor-pointer bg-white rounded fontQSmedium"
           onClick={() => {
@@ -57,25 +56,28 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
           <CgProfile id="see-profil-createur" className="h-6 w-7 mr-3" />
           <div id="see-profil-createur">Voir le profil</div>
         </div>
-        {
-          // @ts-ignore
-          !recipe?.author?.urlsSocialMedia === ("{}" | "") &&
+      </div>
+      <div className="flex flex-row flex-wrap mt-2 mb-7">
+          {
+            // @ts-ignore
             JSON.parse(recipe?.author?.urlsSocialMedia)?.map(
               (data: any, index: any) => (
                 <a href={data?.url} key={index}>
-                  <div className="flex pt-2 pb-2 pl-2 pr-2 bg-white rounded fontQSmedium">
+                  <div className="flex flex-row mt-1 gap-2 ml-2 bg-white shadow-lg rounded-lg items-center justify-center border p-1 lg:p-2">
                     <img
                       src={getLogoAndNameByUrl(data?.url)?.icon}
                       className="w-7 h-7 self-center"
                       alt={getLogoAndNameByUrl(data?.url)?.name}
                     />
-                    <div>{getLogoAndNameByUrl(data?.url)?.name}</div>
+                    <div className="text-sm lg:text-base">
+                      {getLogoAndNameByUrl(data?.url)?.name}
+                    </div>
                   </div>
                 </a>
               )
             )
-        }
-      </div>
+          }
+        </div>
     </div>
   );
 };

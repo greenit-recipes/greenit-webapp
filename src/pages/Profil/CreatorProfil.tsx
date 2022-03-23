@@ -24,9 +24,10 @@ interface IUser {
       nbrView: string;
     }[];
   };
+  parentFunction?: any
 }
 
-export const CreatorProfil: React.FC<IUser> = ({ user }) => {
+export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
   const nbrLikes = map(user?.recipeAuthor, "numberOfLikes");
   const nbrView = map(user?.recipeAuthor, "nbrView");
 
@@ -59,6 +60,8 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
       variables: {
         urlsSocialMedia: JSON.stringify(socialsMedia),
       },
+    }).then(() => {
+      return parentFunction ? parentFunction().then(() => setEditLink(!isEditLink)) : null;
     });
   };
 
@@ -67,6 +70,8 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
       variables: {
         biographie: data?.bio,
       },
+    }).then(() => {
+      return parentFunction ? parentFunction() : null;
     });
   };
 
@@ -96,12 +101,6 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
   return (
     <div className="flex items-center flex-col w-10/12 md:w-11/12">
       {/* Stat */}
-      {updateAccountData?.updateAccount?.success && (
-        <div className="text-green mb-2 | text-center whitespace-pre-line">
-          Vos modifications ont été enregistrées
-        </div>
-      )}
-
       <div className="flex flex-row gap-2  items-center w-full lg:w-5/12">
         <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-blue rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
           <img
@@ -152,7 +151,11 @@ export const CreatorProfil: React.FC<IUser> = ({ user }) => {
       </div>
       {isDisplayStat && <StatProfilForm></StatProfilForm>}
       <div className="flex items-center w-11/12 h-px bg-grey grow mb-5 lg:w-5/12 "></div>
-
+      {updateAccountData?.updateAccount?.success && (
+        <div className="text-green mb-2 | text-center whitespace-pre-line">
+          Vos modifications ont été enregistrées
+        </div>
+      )}
       <div className="flex lg:flex-row flex-col gap-12 lg:w-4/6">
         {/* Biographie */}
 

@@ -36,7 +36,7 @@ const schemaLink = yup.object().shape({
 
 const schema = yup.object().shape({
   image: imageValidation(),
-  video: videoValidation(),
+  videoUrl: yup.string(),
   name: yup.string().required("Ce champ est obligatoire."),
   duration: yup.string().required("Ce champ est obligatoire."),
   description: yup.string().required("Ce champ est obligatoire."),
@@ -167,7 +167,7 @@ const CreateRecipe: React.FC = () => {
     userId: string;
     description: string;
     image: string[];
-    video: string[];
+    videoUrl: string;
     difficulty: string;
     ingredients: string[];
     duration: number;
@@ -189,7 +189,7 @@ const CreateRecipe: React.FC = () => {
         userUsername: data.me.username,
         userId: data.me.id,
         image: dataForm.image,
-        video: dataForm.video,
+        videoUrl: dataForm.videoUrl,
         description: dataForm.description,
         difficulty: getValue(dataForm.difficulty),
         ingredients: dataForm.ingredients,
@@ -563,14 +563,15 @@ const CreateRecipe: React.FC = () => {
 
           <div className="mb-10">
             <label className="block text-gray-700 text-xl mb-2">
-              Upload video
+              Lien de ton post ou de ta vidéo
             </label>
             <input
-              className="p-4 border-2"
-              type="file"
-              {...register("video")}
+              {...register("videoUrl")}
+              className="shadow appearance-none border rounded w-full lg:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Lien de ton post ou de ta vidéo"
+              type="text"
             ></input>
-            <p className="text-red text-xs italic">{errors.video?.message}</p>
+            <p className="text-red text-xs italic">{errors.videoUrl?.message}</p>
           </div>
 
           <div className="mb-10">

@@ -92,7 +92,7 @@ const ProfilPage: React.FC = () => {
           </div>
         </div>
       </Container>
-      {user?.isCreatorProfil && ( <CreatorProfil user={user}></CreatorProfil> ) }
+      {user?.isCreatorProfil && ( <CreatorProfil parentFunction={refetch} user={user}></CreatorProfil> ) }
       <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
         
         <button
