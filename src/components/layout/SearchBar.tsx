@@ -108,6 +108,7 @@ export const SearchBar: React.FC<{
 
   const SuggestionsListComponent = () => {
     return filteredSuggestions.length ? (
+      <div className="suggestions-box">
       <ul className="suggestions">
         {filteredSuggestions.map((suggestion, index) => {
           let className;
@@ -124,12 +125,13 @@ export const SearchBar: React.FC<{
           );
         })}
       </ul>
+      </div>
     ) : (
       <div className="no-suggestions mr-10">
         <span role="img" aria-label="tear emoji">
           😪
         </span>{" "}
-        <em>Aucune suggestion</em>
+        <em>Aucun Résultat</em>
       </div>
     );
   };
