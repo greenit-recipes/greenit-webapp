@@ -24,7 +24,6 @@ export const StatProfilForm: React.FC = () => {
   });
 
   const onSubmitHandler = (data: { question: string }) => {
-    console.log(",data -->", data);
     emailProfilPage({
       variables: {
         question: data?.question,
