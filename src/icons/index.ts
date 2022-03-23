@@ -1,4 +1,4 @@
-import { Icon } from './../components/misc/Icon';
+import { Icon } from "./../components/misc/Icon";
 // CATEGORIES
 import wellbeing from "./bien-être_icon.png";
 import corps from "./corps_recette.png";
@@ -46,6 +46,8 @@ import FBIcon from "./fb_icon.png";
 import MailIcon from "./mail_icon.png";
 import tiktokIcon from "./tiktok.png";
 import pinterestIcon from "./pinterest.png";
+import twitterIcon from "./twitter.png";
+import youtubeIcon from "./youtube.png";
 
 import clapIconOn from "./clap_icon_on.png";
 import clapIconOff from "./clap_icon_off.png";
@@ -111,25 +113,24 @@ import Webcam from "./icon_atelier_enligne.png";
 import PinLocation from "./icon_atelier.png";
 
 //CREATE RECIPE LOGOS
-import fblogo from "./icon_fb.png"
-import instalogo from "./icon_insta.png"
-import pintlogo from "./icon_pinterest.png"
-import tiktoklogo from "./icon_tiktok.png"
-import wwwlogo from "./icon_www.png"
-import ytlogo from "./icon_yt.png"
-import pastelogo from "./icon_paste.png"
+import fblogo from "./icon_fb.png";
+import instalogo from "./icon_insta.png";
+import pintlogo from "./icon_pinterest.png";
+import tiktoklogo from "./icon_tiktok.png";
+import wwwlogo from "./icon_www.png";
+import ytlogo from "./icon_yt.png";
+import pastelogo from "./icon_paste.png";
 
-import issy from "./issy_logo.jpg"
-import escapeTheCity from "./escape_the_city.jpeg"
-import sixHTN from "./18h39_fr.jpeg"
-
+import issy from "./issy_logo.jpg";
+import escapeTheCity from "./escape_the_city.jpeg";
+import sixHTN from "./18h39_fr.jpeg";
 
 import loginMail from "./mail-142.svg";
 import loginPassword from "./login-password-4.svg";
-import userlogo from "./user.svg"
-import confirmpwd from "./confirmpwd.svg"
-import explorer from "./explorer.svg"
-import creator from "./influencer.svg"
+import userlogo from "./user.svg";
+import confirmpwd from "./confirmpwd.svg";
+import explorer from "./explorer.svg";
+import creator from "./influencer.svg";
 
 export const landingPageCategories = [
   {
@@ -261,4 +262,6 @@ export {
   creator,
   loginMail,
   loginPassword,
+  twitterIcon,
+  youtubeIcon,
 };
