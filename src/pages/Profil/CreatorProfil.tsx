@@ -14,6 +14,7 @@ import { RouteName } from "App";
 import { Link } from "react-router-dom";
 import { FiEdit } from 'react-icons/fi';
 import { FaRegEye } from "react-icons/fa"
+import { isEmpty } from "lodash";
 
 interface IUser {
   user: {
@@ -218,7 +219,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
               <div className="flex flex-row flex-wrap gap-2">
                 {
                   // @ts-ignore
-                  JSON.parse(socialMedias)?.map((data: any, index: any) => (
+                  isEmpty(socialMedias) && JSON.parse(socialMedias)?.map((data: any, index: any) => (
                     <a href={data?.url} key={index}>
                       <div className="flex flex-row gap-2 shadow-lg rounded-lg items-center justify-center border p-1 lg:p-2">
                         <img

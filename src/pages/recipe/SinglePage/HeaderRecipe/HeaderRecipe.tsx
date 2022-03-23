@@ -4,6 +4,7 @@ import HTMLReactParser from "html-react-parser";
 import "./HeaderRecipe.css";
 import { CgProfile } from "react-icons/cg";
 import { useState } from "react";
+import { isEmpty } from "lodash";
 
 interface IHeaderRecipe {
   className?: string;
@@ -17,7 +18,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
   parentFcn,
 }) => {
   const [isDisplay, setIsDisplay] = useState(false);
-
+  console.log("recipe?.author?.urlsSocialMedia", recipe?.author?.urlsSocialMedia)
   return (
     <div
       ref={(divElement) => {
@@ -60,7 +61,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
       <div className="flex flex-row flex-wrap mt-2 mb-7">
           {
             // @ts-ignore
-            JSON.parse(recipe?.author?.urlsSocialMedia)?.map(
+            isEmpty(recipe?.author?.urlsSocialMedia) && JSON.parse(recipe?.author?.urlsSocialMedia)?.map(
               (data: any, index: any) => (
                 <a href={data?.url} key={index}>
                   <div className="flex flex-row mt-1 gap-2 ml-2 bg-white shadow-lg rounded-lg items-center justify-center border p-1 lg:p-2">
@@ -69,9 +70,6 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
                       className="w-7 h-7 self-center"
                       alt={getLogoAndNameByUrl(data?.url)?.name}
                     />
-                    <div className="text-sm lg:text-base">
-                      {getLogoAndNameByUrl(data?.url)?.name}
-                    </div>
                   </div>
                 </a>
               )
