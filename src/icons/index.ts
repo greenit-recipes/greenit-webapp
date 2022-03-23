@@ -252,11 +252,9 @@ export {
   PinLocation,
   LikedIconCommentOn,
   LikedIconCommentOff,
-
   issy,
   escapeTheCity,
   sixHTN,
-
   userlogo,
   confirmpwd,
   explorer,

@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
 import { RouteName } from "App";
 import "App.css";
-import { Button, Loading, RecipeCard } from "components";
+import { Button, Loading, RecipeCard} from "components";
 import { CreatorProfil } from "./CreatorProfil";
 import { getImagePath } from "helpers/image.helper";
-import { defaultImageProfil, likedIconOff } from "icons";
+import { defaultImageProfil, likedIconOff, likedIconOn, Cooking } from "icons";
 import { isEmpty } from "lodash";
 import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
 import { Modal } from "pages/Profil/ModalProfil";
@@ -64,11 +64,12 @@ const ProfilPage: React.FC = () => {
         />
       </Helmet>
 
+
       <Container
         className="flex flex-col | items-center | mt-8 md:mt-20"
         padding
       >
-        <div className="grid grid-cols-2 gap-4 mb-8 md:mb-20">
+        <div className="grid grid-cols-2 gap-4 mb-10">
           <div className="grid justify-items-center bg-transparent h-32 w-32 md:h-40 md:w-40 rounded-full border-2 border-transparent hover:border-gray-400">
             <ModalImageProfil
               hasImageProfile={!!userImage}
@@ -93,15 +94,7 @@ const ProfilPage: React.FC = () => {
       </Container>
       {user?.isCreatorProfil && ( <CreatorProfil user={user}></CreatorProfil> ) }
       <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
-        <button
-          className={
-            "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue" +
-            (!visible ? "outline-none border-blue" : "")
-          }
-          onClick={() => setVisible(false)}
-        >
-          <h3 className=" md:text-2xl">Recettes favorites</h3>
-        </button>
+        
         <button
           className={
             "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-green |" +
@@ -109,7 +102,23 @@ const ProfilPage: React.FC = () => {
           }
           onClick={() => setVisible(true)}
         >
+          <div className="flex flex-row items-center gap-2">
+          <img className="h-8" src={Cooking} alt="logo recette" />
           <h3 className=" md:text-2xl">Vos recettes</h3>
+          </div>
+        </button>
+        <button
+          className={
+            "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue" +
+            (!visible ? "outline-none border-blue" : "")
+          }
+          onClick={() => setVisible(false)}
+        >
+          <div className="flex flex-row items-center gap-2"> 
+            <img className="h-10" src={likedIconOn} alt="logo recettes favorites" />
+            <h3 className=" md:text-2xl">Recettes favorites</h3>
+
+          </div>
         </button>
       </div>
 
