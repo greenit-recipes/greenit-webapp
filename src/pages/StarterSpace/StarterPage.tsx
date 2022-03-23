@@ -5,11 +5,12 @@ import useIsMobile from "hooks/isMobile";
 import { CategoryCircle } from "pages/LandingPage/Components/CategoryCircle";
 import { AskQuestion } from "pages/StarterSpace/component/AskQuestion/AskQuestion";
 import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
-import { SharedWithFriend } from "pages/StarterSpace/component/SharedWithFriend/SharedWithFriend";
 import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
+import { RiShareForwardLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { RWebShare } from "react-web-share";
 import authService from "services/auth.service";
 import { Button, RecipeCard } from "../../components";
 import { useRecipesQuery } from "../../graphql";
@@ -148,7 +149,26 @@ const StarterPage = () => {
               <h3 className="text-sm  text-center font-light">{item.title}</h3>
             </div>
           ))}
-          <SharedWithFriend></SharedWithFriend>
+          <div className="flex flex-col justify-center items-center gap-2">
+            <h2>Motivez-vous avec vos ami.e.s :</h2>
+
+            <RWebShare
+              data={{
+                url: window.location.href,
+              }}
+            >
+              <button
+                className="flex justify-center items-center border rounded-lg shadow-lg p-2"
+                id="shared-recipe"
+              >
+                <RiShareForwardLine className="justify-self-center ml-1 w-6 h-6" />
+                <h2 className="text-center ml-2">
+                  {" "}
+                  partager le lien du guide{" "}
+                </h2>
+              </button>
+            </RWebShare>
+          </div>
         </div>
         <div ref={fieldRefEtape1}></div>
       </Container>
@@ -858,13 +878,29 @@ const StarterPage = () => {
               </div>
               <h2 className="text-lg text-center">Ateliers </h2>
               <p className="text-sm text-center font-light">
-                <a className="underline" target="_blank" href="https://www.atelier-diy.com">L’atelier du D.I.Y</a>
-                <br/><br/>
-                <a className="underline" target="_blank" href="https://labonnecomposition.fr">
+                <a
+                  className="underline"
+                  target="_blank"
+                  href="https://www.atelier-diy.com"
+                >
+                  L’atelier du D.I.Y
+                </a>
+                <br />
+                <br />
+                <a
+                  className="underline"
+                  target="_blank"
+                  href="https://labonnecomposition.fr"
+                >
                   La bonne composition à Paris
                 </a>
-                <br/><br/>
-                <a className="underline" target="_blank" href="https://www.lavandeetcamomille.com">
+                <br />
+                <br />
+                <a
+                  className="underline"
+                  target="_blank"
+                  href="https://www.lavandeetcamomille.com"
+                >
                   Lavande et Camomille à Lyon
                 </a>
               </p>
@@ -901,15 +937,29 @@ const StarterPage = () => {
               </div>
               <h2 className="text-lg text-center">Site internet </h2>
               <p className="text-sm text-center font-light">
-                <a className="underline" target="_blank" href="https://www.slow-cosmetique.org">
+                <a
+                  className="underline"
+                  target="_blank"
+                  href="https://www.slow-cosmetique.org"
+                >
                   Le site de la Slow Cosmétique
                 </a>
-                <br/><br/>
-                <a className="underline" target="_blank" href="https://www.aroma-zone.com/info/guide-des-huiles-essentielles/tous">
+                <br />
+                <br />
+                <a
+                  className="underline"
+                  target="_blank"
+                  href="https://www.aroma-zone.com/info/guide-des-huiles-essentielles/tous"
+                >
                   Le site d’Aroma-Zone pour leurs informations
                 </a>
-                <br/><br/>
-                <a className="underline" target="_blank" href="https://www.compagnie-des-sens.fr">
+                <br />
+                <br />
+                <a
+                  className="underline"
+                  target="_blank"
+                  href="https://www.compagnie-des-sens.fr"
+                >
                   Le site de la Compagnie des Sens
                 </a>
               </p>
