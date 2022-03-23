@@ -97,6 +97,9 @@ module.exports = {
         red: "#ED6D6D",
         bluelight: "#e0eaf8",
         greyL:"#F0F0F0",
+        rpiBlue: "#D6E6FA",
+        rpiOrange: "#FCDED1",
+        rpiYellow: "#FFEAC1",
       },
 
       keyframes: {

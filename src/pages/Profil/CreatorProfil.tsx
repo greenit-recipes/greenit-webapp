@@ -102,39 +102,39 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
   return (
     <div className="flex items-center flex-col w-10/12 md:w-11/12">
       {/* Stat */}
-      <div className="flex flex-row gap-2  items-center w-full lg:w-5/12">
-        <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-blue rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
-          <img
-            className="bg-white rounded-full w-9 h-9 lg:w-14 lg:h-14 p-2"
+      <div className="flex flex-row gap-2 justify-center w-full">
+        <div className="flex flex-row justify-evenly md:justify-center md:gap-2 rounded-lg items-center justify-center w-4/12 md:w-40 md:h-20 p-2 lg:py-6 bg-rpiBlue">
+        <img
+            className="bg-white rounded-full h-8 w-8 lg:w-12 lg:h-12 p-1"
             src={Cooking}
             alt="logo recette"
           />
           <div>
-            <p className="text-sm lg:text-base">Recettes </p>
+            <p className="text-xs lg:text-sm">Recettes </p>
             <span className="font-extrabold text-2xl lg:text-3xl">
               {user?.recipeAuthor.length}
             </span>
           </div>
         </div>
-        <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-orange rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
+        <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-rpiOrange rounded-lg items-center justify-center w-4/12 md:w-40 md:h-20 p-2 lg:py-6">
           <img
-            className="bg-white rounded-full w-10 h-10 lg:w-14 lg:h-14"
+            className="bg-white rounded-full w-8 h-8 lg:w-12 lg:h-12"
             src={clapIconOff}
             alt="logo clap"
+            w-12
+            h-12
           />
           <div>
-            <p className="text-sm lg:text-base">claps </p>
+            <p className="text-xs lg:text-sm">claps </p>
             <span className="font-extrabold text-2xl lg:text-3xl">
               {sum(nbrLikes)}
             </span>
           </div>
         </div>
-        <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-yellow rounded-lg items-center justify-center w-2/6 p-2 lg:py-6">
-          <FaRegEye
-          className="bg-white rounded-full w-10 h-10 lg:w-14 lg:h-14 p-2"
-          />
+        <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-rpiYellow rounded-lg items-center justify-center w-4/12 md:w-40 md:h-20 p-2 lg:py-6">
+          <FaRegEye className="bg-white rounded-full w-8 h-8 lg:w-12 lg:h-12 p-1" />
           <div>
-            <p className="text-sm lg:text-base">Vues </p>
+            <p className="text-xs lg:text-sm">Vues </p>
             <span className="font-extrabold text-2xl lg:text-3xl">
               {sum(nbrView)}
             </span>
@@ -142,7 +142,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
         </div>
       </div>
       <div
-        className=" my-6 lg:my-10  cursor-pointer text-center text-sm lg:text-base"
+        className=" my-6 lg:my-10  cursor-pointer text-center text-sm lg:sm font-semibold"
         onClick={() => {
           setDisplayStat(!isDisplayStat);
         }}
@@ -161,17 +161,17 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
         {/* Biographie */}
 
         <div className="flex flex-col gap-4 lg:w-2/4">
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-row items-center gap-4">
-              <h2 className="text-lg lg:text-xl font-semibold">Biographie</h2>
+          <div className="flex flex-col gap-4 ">
+            <div className="flex flex-row items-center gap-4 md:justify-center">
+              <h3 className="text-lg lg:text-xl font-semibold">Biographie</h3>
               <FiEdit
-              className="cursor-pointer w-6 h-6"
-              onClick={() => {
-                setEditor(!isEditor);
-              }}
+                className="cursor-pointer w-6 h-6"
+                onClick={() => {
+                  setEditor(!isEditor);
+                }}
               />
             </div>
-            <p className="leading-tight text-sm lg:text-base">
+            <p className="leading-tight text-sm lg:text-lg md:self-center">
               {user?.biographie && HTMLReactParser(user?.biographie)}
             </p>
           </div>
@@ -190,7 +190,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
                   <button
                     className="flex justify-center items-center cursor-pointer align-middle
               bg-green rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
-              hover:bg-white hover:border-green hover:text-green"
+              hover:bg-white hover:border-green hover:text-green mt-4"
                   >
                     Valider
                   </button>
@@ -202,21 +202,21 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
         {/* Link */}
 
         <div className="flex flex-col lg:w-2/4 gap-4">
-          <div className="flex flex-row items-center gap-4">
-            <h2 className="text-lg lg:text-xl font-semibold">
+          <div className="flex flex-row items-center md:justify-center gap-4">
+            <h3 className="text-lg lg:text-xl font-semibold">
               Liens vers vos espaces
-            </h2>
+            </h3>
 
             <FiEdit
-            className="cursor-pointer w-6 h-6"
-            onClick={() => {
-              setEditLink(!isEditLink);
-            }}
+              className="cursor-pointer w-6 h-6"
+              onClick={() => {
+                setEditLink(!isEditLink);
+              }}
             />
           </div>
           {!isEditLink ? (
             <div>
-              <div className="flex flex-row flex-wrap gap-2">
+              <div className="flex flex-row flex-wrap gap-2 md:justify-center">
                 {
                   // @ts-ignore
                   isEmpty(socialMedias) && JSON.parse(socialMedias)?.map((data: any, index: any) => (
@@ -224,7 +224,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
                       <div className="flex flex-row gap-2 shadow-lg rounded-lg items-center justify-center border p-1 lg:p-2">
                         <img
                           src={getLogoAndNameByUrl(data?.url)?.icon}
-                          className="w-7 h-7"
+                          className="w-5 h-5"
                           alt={getLogoAndNameByUrl(data?.url)?.name}
                         />
                         <div className="text-sm lg:text-base">
@@ -252,10 +252,10 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
                       <>
                         <li
                           key={index}
-                          className={`flex justify-between items-center shadow-lg appearance-none border lg:text-xl rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline mb-2`}
+                          className={`flex justify-between items-center shadow-lg appearance-none border lg:text-lg rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline mb-2`}
                         >
-                          <p className="text-sm lg:text-base">
-                            Lien {index + 1}{" "}
+                          <p className="text-sm lg:text-base whitespace-nowrap">
+                             {index + 1}{" "}
                           </p>
                           <div className="border h-full align-self-start"></div>
                           <input
@@ -269,7 +269,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
                           </p>
 
                           <div
-                            className=" cursor-pointer  bg-red text-sm lg:text-base text-white rounded-lg p-1 "
+                            className=" cursor-pointer bg-red text-sm lg:text-base text-white rounded-lg p-1 "
                             onClick={() => urlsSocialMediaRemove(index)}
                           >
                             Supprimer
@@ -305,7 +305,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
       <Button
         type="grey"
         rounded="lg"
-        className="md:hidden w-full inline justify-end self-center text-xl | cursor-pointer mb-4"
+        className="md:hidden w-full inline justify-end self-center text-base | cursor-pointer mb-4"
       >
         <Link to={RouteName.createRecipe} className="flex">
           <h3 id="shareRecipe" className=" cursor-pointer hover:text-green">

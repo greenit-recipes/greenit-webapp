@@ -24,7 +24,7 @@ export const StatProfilForm: React.FC = () => {
   });
 
   const onSubmitHandler = (data: { question: string }) => {
-      console.log(",data -->", data)
+    console.log(",data -->", data);
     emailProfilPage({
       variables: {
         question: data?.question,
@@ -39,16 +39,16 @@ export const StatProfilForm: React.FC = () => {
         onSubmit={handleSubmit(onSubmitHandler)}
       >
         <textarea
-          className="appearance-none rounded w-full sm:w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="appearance-none self-center rounded w-full sm:w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border"
           id="question"
-          rows={12}
-          cols={34}
+          rows={5}
+          cols={55}
           placeholder="Message..."
           {...register("question")}
         ></textarea>
 
         <div className="grid w-full justify-items-center">
-          <Button id="what_do_u_need" type="blue" className="p-4 h-10">
+          <Button id="what_do_u_need" type="green" className="p-4 h-10">
             Envoyer
           </Button>
         </div>

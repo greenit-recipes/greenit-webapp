@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { RouteName } from "App";
 import "App.css";
-import { Button, Loading, RecipeCard} from "components";
+import { Button, Loading, RecipeCard } from "components";
 import { CreatorProfil } from "./CreatorProfil";
 import { getImagePath } from "helpers/image.helper";
 import { defaultImageProfil, likedIconOff, likedIconOn, Cooking } from "icons";
@@ -42,7 +42,11 @@ const ProfilPage: React.FC = () => {
   const [userImage, setImage] = useState(user?.imageProfile);
 
   useEffect(() => {
-    setImage(user?.imageProfile ? getImagePath(user?.imageProfile) : user?.photoUrl+ "?type=large" );
+    setImage(
+      user?.imageProfile
+        ? getImagePath(user?.imageProfile)
+        : user?.photoUrl + "?type=large"
+    );
   }, [user]);
 
   const refetchMe = () => refetch();
@@ -63,7 +67,6 @@ const ProfilPage: React.FC = () => {
           content="Dans votre espace personnel Greenit, vous pouvez enregistrer vos recettes maison et accéder à vos recettes déjà publiées. Il suffit de vous créer un compte !"
         />
       </Helmet>
-
 
       <Container
         className="flex flex-col | items-center | mt-8 md:mt-20"
@@ -86,7 +89,7 @@ const ProfilPage: React.FC = () => {
           </div>
           <div className="flex flex-col | self-center">
             <div className="flex-inline overflow-clip overflow-hidden ...">
-              <h2 className="text-xl md:text-2xl">{user?.username}</h2>
+              <h1 className="text-xl md:text-3xl">{user?.username}</h1>
             </div>
             <Modal />
           </div>
@@ -94,7 +97,6 @@ const ProfilPage: React.FC = () => {
       </Container>
       {user?.isCreatorProfil && ( <CreatorProfil parentFunction={refetch} user={user}></CreatorProfil> ) }
       <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
-        
         <button
           className={
             "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-green |" +
@@ -103,8 +105,8 @@ const ProfilPage: React.FC = () => {
           onClick={() => setVisible(true)}
         >
           <div className="flex flex-row items-center gap-2">
-          <img className="h-8" src={Cooking} alt="logo recette" />
-          <h3 className=" md:text-2xl">Vos recettes</h3>
+            <img className="h-8" src={Cooking} alt="logo recette" />
+            <h3 className="text-lg md:text-xl">Vos recettes</h3>
           </div>
         </button>
         <button
@@ -114,10 +116,13 @@ const ProfilPage: React.FC = () => {
           }
           onClick={() => setVisible(false)}
         >
-          <div className="flex flex-row items-center gap-2"> 
-            <img className="h-10" src={likedIconOn} alt="logo recettes favorites" />
-            <h3 className=" md:text-2xl">Recettes favorites</h3>
-
+          <div className="flex flex-row items-center gap-2">
+            <img
+              className="h-10"
+              src={likedIconOn}
+              alt="logo recettes favorites"
+            />
+            <h3 className="text-lg md:text-xl">Recettes favorites</h3>
           </div>
         </button>
       </div>
@@ -133,10 +138,10 @@ const ProfilPage: React.FC = () => {
                     (visible ? " hidden" : "")
                   }
                 >
-                  <h2 className=" md:text-2xl">
+                  <h2 className=" md:text-xl">
                     Tu n'as pas encore de recette favorite
                   </h2>
-                  <h3 className=" md:text-xl mt-4">
+                  <h3 className=" md:text-lg mt-4">
                     Pour mettre une recette en favoris <br />
                     appuie sur le coeur de la recette
                   </h3>
