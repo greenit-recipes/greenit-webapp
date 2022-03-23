@@ -193,8 +193,8 @@ const RecipeSinglePage = () => {
                         className="flex justify-center items-center"
                         id="shared-recipe"
                       >
-                        <RiShareForwardLine className="justify-self-center ml-1 w-7 h-7" />
-                        <h2 className="text-center ml-2"> partage </h2>
+                        <RiShareForwardLine id="shared-recipe" className="justify-self-center ml-1 w-7 h-7" />
+                        <h2 id="shared-recipe" className="text-center ml-2"> partage </h2>
                       </button>
                     </RWebShare>
                   </div>
