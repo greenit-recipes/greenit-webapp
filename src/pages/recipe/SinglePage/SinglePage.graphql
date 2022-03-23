@@ -27,6 +27,8 @@ query recipe($urlId: String!) {
       imageProfile
       photoUrl
       username
+      biographie
+      urlsSocialMedia
     }
     notesFromAuthor
     numberOfLikes

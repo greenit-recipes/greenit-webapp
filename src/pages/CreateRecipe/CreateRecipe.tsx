@@ -141,7 +141,7 @@ const CreateRecipe: React.FC = () => {
     if (data?.register?.success === false || error) {
       if (data?.register?.errors?.email[0]?.code === "unique") {
         setError("email", {
-          message: "Cet email éxiste déjà.",
+          message: "Cet email existe déjà.",
         });
       }
       if (data?.register?.errors?.username[0]?.code === "unique") {
@@ -223,7 +223,7 @@ const CreateRecipe: React.FC = () => {
 
   if (loadingCreateRecipe) {
     return (
-      <div className="flex flex-col items-center justify-center mt-5">
+      <div className="flex flex-col items-center justify-center mt-5 h-screen ">
         <h2>
           Minute papillon ! 🦋 <br />
           Tes médias sont en train de se télécharger.
@@ -231,19 +231,17 @@ const CreateRecipe: React.FC = () => {
           Ne quitte pas cette page, nous te rédigerons une fois l’upload
           terminé.
         </h2>
-        <Loading />
       </div>
     );
   }
 
   if (loadingLink) {
     return (
-      <div className="flex flex-col items-center justify-center mt-5">
+      <div className="flex flex-col items-center justify-center mt-5 h-screen ">
         <h2>
           Minute papillon ! 🦋 Ne quitte pas cette page, nous te rédigerons une
           fois l'email envoyé.
         </h2>
-        <Loading />
       </div>
     );
   }

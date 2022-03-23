@@ -69,7 +69,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     if (createAccountData?.register?.success === false || error) {
       if (createAccountData?.register?.errors?.email?.[0]?.code === "unique") {
         setError("email", {
-          message: "Cet email éxiste déjà.",
+          message: "Cet email existe déjà.",
         });
       }
       if (

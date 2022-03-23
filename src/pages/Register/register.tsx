@@ -67,7 +67,7 @@ const Register: React.FC = () => {
     if (createAccountData?.register?.success === false || error) {
       if (createAccountData?.register?.errors?.email?.[0]?.code === "unique") {
         setError("email", {
-          message: "Cet email éxiste déjà.",
+          message: "Cet email existe déjà.",
         });
       }
       if (
@@ -141,9 +141,9 @@ const Register: React.FC = () => {
           <div className="flex flex-row items-center justify-center w-full gap-8 mt-4">
             <ModalLogGreenit
               btn={
-                <div className="flex flex-col shadow-lg justify-center items-center border rounded-xl w-2/4 h-28 hover:bg-grey hover:text-white transition cursor-pointer">
+                <div className="flex flex-col shadow-lg justify-center items-center border rounded-xl w-32 lg:w-52 h-28 hover:bg-grey hover:text-white transition cursor-pointer">
                   <img
-                    className="rounded-full shadow-lg  w-14"
+                    className="rounded-full shadow-lg w-14"
                     src={explorer}
                     alt="logo explorateur"
                   />
@@ -152,7 +152,7 @@ const Register: React.FC = () => {
               }
             ></ModalLogGreenit>
 
-            <div className="bg-grey-300 flex flex-col cursor-pointer shadow-lg justify-center items-center rounded-xl w-2/4 h-28 hover:bg-grey hover:text-white transition border-4 border-blue">
+            <div className="bg-grey-300 flex flex-col cursor-pointer shadow-lg justify-center items-center rounded-xl w-32 lg:w-52 h-28 hover:bg-grey hover:text-white transition border-4 border-blue">
               <img
                 className="rounded-full shadow-lg w-14"
                 src={creator}

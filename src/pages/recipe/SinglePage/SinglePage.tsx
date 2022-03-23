@@ -199,13 +199,6 @@ const RecipeSinglePage = () => {
                     </RWebShare>
                   </div>
                 </div>
-
-                <h3 className="text-center">
-                  {
-                    // @ts-ignore: Object is possibly 'null'.
-                    recipe && HTMLReactParser(recipe?.textAssociate)
-                  }
-                </h3>
               </div>
               {!isMobile && (
                 <div className="flex items-center justify-center mt-10">
