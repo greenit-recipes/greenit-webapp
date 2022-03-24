@@ -258,10 +258,6 @@ const Register: React.FC = () => {
             <label className="block text-gray-700 text-xl mb-2">
               Biographie
             </label>
-            <h3 className="block text-gray-700 text-sm mb-2">
-              Pourquoi tu utilises ces ingrédients ?
-              <br /> Comment tu utilises le produit ?
-            </h3>
             <Controller
               name="biographie"
               render={({ field }) => <EditorGreenit {...field} />}
