@@ -1,22 +1,33 @@
 .suggestions-box {
-  border-top: #999;
   z-index: 999;
   background-color: white;
   top: 54px;
   position: absolute;
   width: 100%;
   padding-left: 0;
-  border: 1px solid grey;
-  border-top-width: 0;
+  border: 1px solid black;
+  border-top: 1px solid #777;
   list-style: none;
   margin-top: 0;
   border-radius: 10px;
 }
 
 .no-suggestions {
-  color: #999;
-  padding: 0.4rem;
+  color: #777;
+  padding: 0.5rem;
   font-size: 0.9rem;
+  z-index: 999;
+  background-color: #f0f0f0;
+  top: 54px;
+  position: absolute;
+  width: 100%;
+  border: 1px solid black;
+  border-top: 1px solid #777;
+  list-style: none;
+  margin-top: 0;
+  border-radius: 10px;
+  max-height: 200px;
+  border-radius: 10px;
 }
 
 .suggestions {
@@ -24,7 +35,6 @@
   overflow-y: scroll;
   border-radius: 10px;
   scrollbar-width: thin;
-  border-top: 1px solid grey;
 }
 
 .suggestions::-webkit-scrollbar {
@@ -34,7 +44,7 @@
 }
 
 .suggestions::-webkit-scrollbar-thumb {
-  background-color: hsla(218, 100%, 42%, 1);
+  background-color: #777;
 }
 
 .suggestions li {
@@ -45,13 +55,21 @@
 
 .suggestion-active,
 .suggestions li:hover {
-  background: #ddd;
-  color: #222;
+  background: #d6e6fa;
   cursor: pointer;
   font-weight: 700;
 }
 
 .suggestions li:not(:last-of-type) {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #f0f0f0;
   border-width: 90%;
+}
+
+@media only screen and (max-width: 768px) {
+  .suggestions-box {
+    top: 38px;
+  }
+  .no-suggestions {
+    top: 38px;
+  }
 }

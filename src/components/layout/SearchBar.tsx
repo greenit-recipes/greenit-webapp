@@ -127,11 +127,11 @@ export const SearchBar: React.FC<{
       </ul>
       </div>
     ) : (
-      <div className="no-suggestions mr-10">
+      <div className="no-suggestions mr-8">
         <span role="img" aria-label="tear emoji">
           😪
         </span>{" "}
-        <em>Aucun Résultat</em>
+        <em>Aucun Résultat ...</em>
       </div>
     );
   };
