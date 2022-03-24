@@ -241,7 +241,7 @@ const RecipeSinglePage = () => {
                   src={getImagePath(recipe?.image)}
                   alt={recipe?.name}
                   loading="lazy"
-                  className="m-auto h-64 w-52 lg:w-64 lg:h-80 rounded-3xl"
+                  className="m-auto object-cover h-64 w-52 lg:w-64 lg:h-80 rounded-3xl"
                 />
                 {isMobile && (
                   <div className="flex items-center justify-center mt-8">

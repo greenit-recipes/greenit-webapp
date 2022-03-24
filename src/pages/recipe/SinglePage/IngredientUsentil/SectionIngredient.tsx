@@ -4,6 +4,7 @@ import HTMLReactParser from "html-react-parser";
 import { useState } from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
 import { RiComputerLine } from "react-icons/ri";
+import { BsShop } from "react-icons/bs";
 
 interface ISectionIngredient {
   className?: string;
@@ -67,7 +68,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
               <div className="fontQSbold">Où acheter ?</div>
               {data?.isSupermarket && (
                 <div className="flex ml-6 items-center">
-                  <RiComputerLine className="w-8 h-8 mr-2" />
+                  <BsShop className="w-8 h-8 mr-2" />
                   <div>
                     Biocop
                     <br />

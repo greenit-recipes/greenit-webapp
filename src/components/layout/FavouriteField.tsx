@@ -94,7 +94,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
           {isRecipePage ? (
             <ModalLogGreenit
               btn={
-                <button>
+                <button className= {isBtnDesing ? 'btn-single-page': ''}>
                   <div
                     className={`tooltip justify-items-center ${
                       customClassName ? customClassName : "grid"
