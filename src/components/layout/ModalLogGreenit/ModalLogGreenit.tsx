@@ -24,7 +24,7 @@ export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({ btn, isModalLogin 
   });
   return (
     <div>
-      <div
+      <div className="justify-items-center flex flex-col"
         onClick={() => setShowModal(true)}
       >
         {btn}
