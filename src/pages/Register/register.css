@@ -26,9 +26,8 @@ input[type=radio]:checked + label>img {
 }
 
 .register-modal-size {
-  width: 30 rem;
+  width: 30rem;
 }
-
 
 .separator {
   display: flex;

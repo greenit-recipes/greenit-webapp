@@ -18,7 +18,6 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
   parentFcn,
 }) => {
   const [isDisplay, setIsDisplay] = useState(false);
-  console.log("recipe?.author?.urlsSocialMedia", recipe?.author?.urlsSocialMedia)
   return (
     <div
       ref={(divElement) => {
@@ -61,7 +60,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
       <div className="flex flex-row flex-wrap mt-2 mb-7">
           {
             // @ts-ignore
-            isEmpty(recipe?.author?.urlsSocialMedia) && JSON.parse(recipe?.author?.urlsSocialMedia)?.map(
+            !isEmpty(JSON.parse(recipe?.author?.urlsSocialMedia)) && JSON.parse(recipe?.author?.urlsSocialMedia)?.map(
               (data: any, index: any) => (
                 <a href={data?.url} key={index}>
                   <div className="flex flex-row mt-1 gap-2 ml-2 bg-white shadow-lg rounded-lg items-center justify-center border p-1 lg:p-2">

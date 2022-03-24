@@ -9,6 +9,7 @@ interface IFavouriteField {
   customClassName?: string;
   recipe: any;
   isToltipActif?: boolean;
+  isBtnDesing?: boolean;
   isRecipePage?: boolean;
   parentFunction?: any;
   isRefetchData?: boolean;
@@ -20,6 +21,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
   isRefetchData = false,
   isRecipePage = false,
   customClassName,
+  isBtnDesing = false,
   isToltipActif = true,
 }) => {
   const isLoggedIn = authService.isLoggedIn();
@@ -35,6 +37,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
     <div className="grid justify-items-center">
       {isLoggedIn ? (
         <button
+        className= {isBtnDesing ? 'btn-single-page': ''}
           onClick={() => {
             if (!isRefetchData) setFavorite(!isFavorite);
             // @ts-ignore: Object is possibly 'null'.
@@ -111,7 +114,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
           ) : (
             <ModalLogGreenit
               btn={
-                <button>
+                <button className= {isBtnDesing ? 'btn-single-page': ''}>
                   <div
                     className={`tooltip justify-items-center ${
                       customClassName ? customClassName : "grid"

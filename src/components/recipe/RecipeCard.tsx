@@ -48,7 +48,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         <div>
           <img
             src={getImagePath(recipe?.image)}
-            alt="recette fait maison"
+            alt={recipe?.name}
             className={`flex flex-col object-cover | ${
               enableShadow && "shadow-lg"
             } ${`h-${imageHeight} w-${imageWidth}`}

@@ -2,6 +2,7 @@ import { IconNbrIngredient } from "components/misc/IconNbrIngredient";
 import { useState } from "react";
 import { SectionIngredient } from "./SectionIngredient";
 import { SectionUstensil } from "./SectionUsentil";
+import { GiForkKnifeSpoon } from "react-icons/gi";
 
 interface IIngredientUsentil {
   recipe: any;
@@ -43,7 +44,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
               setIngredientSelected(false);
             }}
           >
-            <IconNbrIngredient nbOfIngredient={recipe?.numberOfIngredients} />
+            <GiForkKnifeSpoon/>
             <div className="text-xl ml-2">Ustensiles</div>
           </div>
         </div>

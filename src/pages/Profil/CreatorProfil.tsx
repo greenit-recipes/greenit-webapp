@@ -12,8 +12,8 @@ import HTMLReactParser from "html-react-parser";
 import { Cooking, clapIconOff } from "../../icons";
 import { RouteName } from "App";
 import { Link } from "react-router-dom";
-import { FiEdit } from 'react-icons/fi';
-import { FaRegEye } from "react-icons/fa"
+import { FiEdit } from "react-icons/fi";
+import { FaRegEye } from "react-icons/fa";
 import { isEmpty } from "lodash";
 
 interface IUser {
@@ -25,7 +25,7 @@ interface IUser {
       nbrView: string;
     }[];
   };
-  parentFunction?: any
+  parentFunction?: any;
 }
 
 export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
@@ -62,7 +62,9 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
         urlsSocialMedia: JSON.stringify(socialsMedia),
       },
     }).then(() => {
-      return parentFunction ? parentFunction().then(() => setEditLink(!isEditLink)) : null;
+      return parentFunction
+        ? parentFunction().then(() => setEditLink(!isEditLink))
+        : null;
     });
   };
 
@@ -104,16 +106,16 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
       {/* Stat */}
       <div className="flex flex-row gap-2 justify-center w-full">
         <div className="flex flex-row justify-evenly md:justify-center md:gap-2 rounded-lg items-center justify-center w-4/12 md:w-40 md:h-20 p-2 lg:py-6 bg-rpiBlue">
-        <img
+          <img
             className="bg-white rounded-full h-8 w-8 lg:w-12 lg:h-12 p-1"
             src={Cooking}
             alt="logo recette"
           />
           <div>
             <p className="text-xs lg:text-sm">Recettes </p>
-            <span className="font-extrabold text-2xl lg:text-3xl">
+            <p className="font-extrabold text-2xl lg:text-3xl">
               {user?.recipeAuthor.length}
-            </span>
+            </p>
           </div>
         </div>
         <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-rpiOrange rounded-lg items-center justify-center w-4/12 md:w-40 md:h-20 p-2 lg:py-6">
@@ -121,23 +123,21 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
             className="bg-white rounded-full w-8 h-8 lg:w-12 lg:h-12"
             src={clapIconOff}
             alt="logo clap"
-            w-12
-            h-12
           />
           <div>
             <p className="text-xs lg:text-sm">claps </p>
-            <span className="font-extrabold text-2xl lg:text-3xl">
+            <p className="font-extrabold text-2xl lg:text-3xl">
               {sum(nbrLikes)}
-            </span>
+            </p>
           </div>
         </div>
         <div className="flex flex-row justify-evenly md:justify-center md:gap-2 bg-rpiYellow rounded-lg items-center justify-center w-4/12 md:w-40 md:h-20 p-2 lg:py-6">
           <FaRegEye className="bg-white rounded-full w-8 h-8 lg:w-12 lg:h-12 p-1" />
           <div>
             <p className="text-xs lg:text-sm">Vues </p>
-            <span className="font-extrabold text-2xl lg:text-3xl">
+            <p className="font-extrabold text-2xl lg:text-3xl">
               {sum(nbrView)}
-            </span>
+            </p>
           </div>
         </div>
       </div>
@@ -219,20 +219,20 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
               <div className="flex flex-row flex-wrap gap-2 md:justify-center">
                 {
                   // @ts-ignore
-                  isEmpty(socialMedias) && JSON.parse(socialMedias)?.map((data: any, index: any) => (
-                    <a href={data?.url} key={index}>
-                      <div className="flex flex-row gap-2 shadow-lg rounded-lg items-center justify-center border p-1 lg:p-2">
-                        <img
-                          src={getLogoAndNameByUrl(data?.url)?.icon}
-                          className="w-5 h-5"
-                          alt={getLogoAndNameByUrl(data?.url)?.name}
-                        />
-                        <div className="text-sm lg:text-base">
-                          {getLogoAndNameByUrl(data?.url)?.name}
+                  !isEmpty(JSON.parse(socialMedias)) && JSON.parse(socialMedias)?.map((data: any, index: any) => (
+                      <a href={data?.url} key={index}>
+                        <div className="flex flex-row gap-2 shadow-lg rounded-lg items-center justify-center border p-1 lg:p-2">
+                          <img
+                            src={getLogoAndNameByUrl(data?.url)?.icon}
+                            className="w-5 h-5"
+                            alt={getLogoAndNameByUrl(data?.url)?.name}
+                          />
+                          <div className="text-sm lg:text-base">
+                            {getLogoAndNameByUrl(data?.url)?.name}
+                          </div>
                         </div>
-                      </div>
-                    </a>
-                  ))
+                      </a>
+                    ))
                 }
               </div>
               <div
@@ -255,7 +255,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
                           className={`flex justify-between items-center shadow-lg appearance-none border lg:text-lg rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline mb-2`}
                         >
                           <p className="text-sm lg:text-base whitespace-nowrap">
-                             {index + 1}{" "}
+                            {index + 1}{" "}
                           </p>
                           <div className="border h-full align-self-start"></div>
                           <input

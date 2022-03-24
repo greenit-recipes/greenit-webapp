@@ -178,7 +178,8 @@ const RecipeSinglePage = () => {
                   <FavouriteField
                     isToltipActif={false}
                     isRecipePage={true}
-                    customClassName="btn-single-page flex w-28"
+                    isBtnDesing={true}
+                    customClassName="flex w-28"
                     recipe={data?.recipe}
                   ></FavouriteField>
                   <div className="flex w-28 btn-single-page w-10 h-10 ml-10">

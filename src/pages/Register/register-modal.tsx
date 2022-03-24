@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { Button } from "components";
+import useIsMobile from "hooks/isMobile";
 import {
   confirmpwd,
   creator,
@@ -134,6 +135,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
       }
     });
   };
+  const isMobile = useIsMobile()
 
   const onSubmitHandler = (data: {
     email: string;
@@ -166,7 +168,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
   return (
-    <div className="flex justify-center register-modal-size items-center">
+    <div className={`flex justify-center   ${!isMobile ? "register-modal-size" : ""} items-center`}>
       <div className="bg-white flex flex-col rounded-3xl items-center">
         <div className="text-lg font-bold lg:text-2xl text-center mb-4">
           Création de ton espace DIY <br />
@@ -192,24 +194,26 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
         <div className="separator  text-gray-700 md:m-4">Ou</div>
 
         <div className="flex flex-row items-center justify-evenly w-5/6 gap-8">
-          <div className="flex flex-col cursor-pointer shadow-lg justify-center items-center rounded-xl w-2/4 h-24 hover:bg-grey hover:text-white transition border-4 border-blue">
+          <div className="flex flex-col cursor-pointer shadow-lg justify-center items-center rounded-xl w-2/4 h-34 hover:bg-grey hover:text-white transition border-4 border-blue">
             <img
-              className="rounded-full shadow-lg  w-12"
+              className="rounded-full shadow-lg w-12 mt-2"
               src={explorer}
               alt="logo explorateur"
             />
-            Explorateur
+            <div>Explorateur</div>
+            <div className="w-5/6 text-xs text-center mt-2 mb-2 fontQSregular">Inspire-toi des recettes de la communauté ! Supporte les créateurs et ajoute tes recettes préférées en favoris !</div>
           </div>
           <Link
             to={RouteName.register}
-            className="flex flex-col shadow-lg justify-center items-center border rounded-xl w-2/4 h-24 hover:bg-grey hover:text-white transition cursor-pointer"
+            className="flex flex-col shadow-lg justify-center items-center border rounded-xl w-2/4 h-34 hover:bg-grey hover:text-white transition cursor-pointer"
           >
             <img
-              className="rounded-full shadow-lg w-12"
+              className="rounded-full shadow-lg w-12 mt-2"
               src={creator}
               alt="logo créateur"
             />
-            Créateur
+            <div>Créateur</div>
+            <div className="w-5/6 text-xs text-center mt-2 mb-2 fontQSregular">Partage tes recettes avec la communauté ! Ajoute des liens vers tes réseaux/site internet et accède à tes statistiques.</div>
           </Link>
         </div>
 
