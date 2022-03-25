@@ -35,6 +35,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
           <img
             className="h-12 w-12 rounded"
             alt={data?.name}
+            loading="lazy"
             src={getImagePath(data?.image)}
           ></img>
         </div>

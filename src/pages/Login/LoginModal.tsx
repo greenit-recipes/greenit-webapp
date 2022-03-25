@@ -206,6 +206,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               appId={process.env.REACT_APP_FACEBOOK_ID}
               fields="name,email,picture"
               callback={responseFacebook}
+              disableMobileRedirect={true}
               cssClass="my-facebook-button-class"
               textButton="Connexion avec Facebook"
               icon={<IoLogoFacebook className="w-6 h-6 mr-4" />}
