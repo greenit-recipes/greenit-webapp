@@ -1,7 +1,7 @@
 import { RouteName } from "App";
 import { includes, map, mapValues, omit, sum } from "lodash";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useHistory } from "react-router-dom";
 import {
@@ -18,9 +18,9 @@ import { scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
 import { Helmet } from "react-helmet";
+import { getObjectSession } from "helpers/session-helper";
 
 const RecipeListPage = () => {
-  const params = new URLSearchParams(window.location.search);
   const history = useHistory();
 
   const cleanDataPlayload = (filter: any) =>
@@ -29,37 +29,40 @@ const RecipeListPage = () => {
       return map(value, (x) => x.value);
     });
 
+  const sessionFilter = getObjectSession('filterListPage')
   // params trigger 2 requests before param and after getting param need to be fixed
-  const [isFirstLoading, setIsFirstLoading] = useState(false);
+          // @ts-ignore
+  const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [currentFilters, setCurrentFilters] = useState<any>({
-    search: params.get("search") ? params.get("search") : "",
-    tags: params.get("tags")
-      ? [{ title: params.get("tags"), value: params.get("tags") }]
+    search: sessionFilter?.search ? sessionFilter?.search : "",
+    tags: sessionFilter?.tags
+      ? map(sessionFilter?.tags, (x) => ({ title: x, value: x }))
       : [],
-    category: params.get("category")
-      ? [{ title: params.get("category"), value: params.get("category") }]
-      : [],
-    difficulty: [],
-    duration: [],
-    numberOfIngredients: [],
+    category: sessionFilter?.category
+    ? map(sessionFilter?.category, (x) => ({ title: x, value: x }))
+    : [],
+    difficulty: sessionFilter?.difficulty ? sessionFilter?.difficulty : [],
+    duration: sessionFilter?.duration ? sessionFilter?.duration : [],
+    numberOfIngredients: sessionFilter?.numberOfIngredients ? sessionFilter?.numberOfIngredients : [],
   });
 
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
-    fetchPolicy: "network-only",
-    variables: {
+    fetchPolicy: 'cache-first',
+        variables: {
       first: 15,
       filter: {
-        search: params.get("search") ? params.get("search") : "",
+        search: sessionFilter?.search ? sessionFilter?.search : "",
         // @ts-ignore
-        tags: params.get("tags") ? [params.get("tags")] : [],
+        tags: sessionFilter?.tags ? sessionFilter?.tags : [],
         // @ts-ignore
-        category: params.get("category") ? [params.get("category")] : [],
-        difficulty: [],
-        duration: [],
-        numberOfIngredients: [],
+        category: sessionFilter?.category ? sessionFilter?.category : [],
+        difficulty: sessionFilter?.difficulty ? sessionFilter?.difficulty : [],
+        duration: sessionFilter?.duration ? sessionFilter?.duration : [],
+        numberOfIngredients: sessionFilter?.numberOfIngredients ? sessionFilter?.numberOfIngredients : [],
       },
     },
   });
+  
 
   const isMobile = useIsMobile();
   // fixer ça
@@ -83,17 +86,16 @@ const RecipeListPage = () => {
   const [scrollOffset, setScrollOffset] = useState(0);
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && !isFirstLoading) {
       // to avoid a second request with state of filter
-      if (!isFirstLoading) {
-        setIsFirstLoading(true);
+        console.log("passe la")
+        const filterValue = cleanDataPlayload(currentFilters);
+        window.sessionStorage.setItem("filterListPage", JSON.stringify(filterValue));
+        refetch({ filter: filterValue });
         return;
-      }
-      const filterValue = cleanDataPlayload(currentFilters);
-      //localStorage.setItem("filterListPage", JSON.stringify(currentFilters));
-      refetch({ filter: filterValue });
     }
-  }, [currentFilters, refetch, loading]);
+    setIsFirstLoading(false)
+  }, [currentFilters,  loading]);
 
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -122,7 +124,6 @@ const RecipeListPage = () => {
           isMobile={isMobile}
           toggle={toggle}
           setScrollOffset={setScrollOffset}
-          params={params}
         />
       )}
 
@@ -137,7 +138,6 @@ const RecipeListPage = () => {
               isMobile={isMobile}
               toggle={toggle}
               setScrollOffset={setScrollOffset}
-              params={params}
             />
           </div>
           <ModalListPage
@@ -152,7 +152,6 @@ const RecipeListPage = () => {
               isMobile={isMobile}
               toggle={toggle}
               setScrollOffset={setScrollOffset}
-              params={params}
             />
           </ModalListPage>
         </div>

@@ -1,9 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { RouteName } from "App";
 import { Button, Footer, Loading, Navbar } from "components";
 import { FavouriteField } from "components/layout/FavouriteField";
 import { LikeComment } from "components/layout/LikeComment";
+import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { UserBadge } from "components/layout/UserBadge";
 import { getImagePath } from "helpers/image.helper";
 import { momentGreenit } from "helpers/time.helper";
@@ -25,7 +25,7 @@ import { GrMoney } from "react-icons/gr";
 import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
 import { RiShareForwardLine } from "react-icons/ri";
 import ReactPlayer from "react-player/lazy";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import authService from "services/auth.service";
 import * as yup from "yup";
@@ -167,7 +167,10 @@ const RecipeSinglePage = () => {
           recipe={recipe}
           className=""
         />
-        <div className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage" style={{ marginTop: ((sizeCretorHeader / 16) - 8) + "rem"}}>
+        <div
+          className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage"
+          style={{ marginTop: sizeCretorHeader / 16 - 8 + "rem" }}
+        >
           <div className="w-5/6 lg:w-4/6 mb-10">
             <div className="w-full h-auto">
               <div className="justify-center">
@@ -194,8 +197,14 @@ const RecipeSinglePage = () => {
                         className="flex justify-center items-center"
                         id="shared-recipe"
                       >
-                        <RiShareForwardLine id="shared-recipe" className="justify-self-center ml-1 w-7 h-7" />
-                        <h2 id="shared-recipe" className="text-center ml-2"> partage </h2>
+                        <RiShareForwardLine
+                          id="shared-recipe"
+                          className="justify-self-center ml-1 w-7 h-7"
+                        />
+                        <h2 id="shared-recipe" className="text-center ml-2">
+                          {" "}
+                          partage{" "}
+                        </h2>
                       </button>
                     </RWebShare>
                   </div>
@@ -331,6 +340,7 @@ const RecipeSinglePage = () => {
                   <div className="grid w-full h-full bg-white justify-items-center items-center">
                     <img
                       src={noVideo}
+                      loading="lazy"
                       alt={"Pas de vidéo"}
                       className="h-60 lg:h-80 object-cover rounded-lg"
                     ></img>
@@ -519,18 +529,20 @@ const RecipeSinglePage = () => {
                       Publier
                     </Button>
                   </div>
-                ) : (
-                  <Link to={RouteName.register}>
-                    <Button
-                      className="rounded focus:outline-none focus:shadow-outline"
-                      type="submit"
-                    >
-                      Se connecter pour discuter
-                    </Button>
-                  </Link>
+                ) : (<></>
                 )}
               </div>
             </form>
+            {!isLoggedIn &&  ( <ModalLogGreenit
+                    btn={
+                      <Button
+                        className="rounded focus:outline-none focus:shadow-outline w-52"
+                        type="blue"
+                      >
+                        Se connecter pour discuter
+                      </Button>
+                    }
+                  ></ModalLogGreenit>) }
           </div>
         </div>
         <Footer />

@@ -1,6 +1,7 @@
 import { RouteName } from "App";
 import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import "components/layout/Navbar.css";
+import { getObjectSession } from "helpers/session-helper";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import authService from "services/auth.service";
@@ -86,7 +87,7 @@ export const Navbar: React.FC = () => {
           }
         >
           <div className="flex flex-col">
-            <SearchBar keyId="SearchNavMobile" />
+            <SearchBar value={getObjectSession('filterListPage')?.search} keyId="SearchNavMobile" />
             <Link className="p-2 mt-3" to={RouteName.accueil}>
               <h2 id="home" className="text-white">
                 Accueil
@@ -432,7 +433,7 @@ export const Navbar: React.FC = () => {
       </div>
       <div className="grid items-center w-3/5 justify-self-end">
         <div className="flex justify-self-end items-center">
-          <SearchBarNav keyId="SearchNav" />
+          <SearchBarNav value={getObjectSession('filterListPage')?.search} keyId="SearchNav" />
           {isLoggedIn ? (
             <Link to={RouteName.createRecipe} className="flex">
               <div className="rounded-full ease-linear transition-all duration-150 cursor-pointer">

@@ -35,6 +35,7 @@ import { Newsletter } from "./Components/Newsletter";
 import { Press } from "../../components/layout/TheyTalkAboutUs";
 import "react-multi-carousel/lib/styles.css";
 import "pages/LandingPage/LandingPage.css";
+import { getObjectSession } from "helpers/session-helper";
 
 const responsiveCarouselLanding = {
   desktop: {
@@ -117,7 +118,7 @@ const LandingPage = () => {
           </h5>
         </div>
         <div className="lg:w-2/5">
-          <SearchBar keyId="searchBarLandingPage" />
+          <SearchBar value={getObjectSession('filterListPage')?.search} keyId="searchBarLandingPage" />
         </div>
       </Container>
       <div className="w-full sm:w-4/5 lg:w-2/3 | py-8 pl-6 | flex overflow-x-auto">
