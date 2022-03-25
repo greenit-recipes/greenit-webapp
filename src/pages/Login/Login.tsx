@@ -133,7 +133,8 @@ const Login: React.FC = () => {
             history.push("/");
           }
         });
-        history.goBack();
+        history.push("/");
+        //history.goBack();
       }
     });
     reset({...getValues(), password: ""});

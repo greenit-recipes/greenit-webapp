@@ -129,9 +129,9 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
           response?.data?.tokenAuth?.refreshToken
         );
         if (authService.isRedirectToProfil(location?.pathname)) {
-          history.push("/profil");
         }
-        history.goBack();
+        history.push("/profil");
+        //history.goBack()
       }
     });
   };
