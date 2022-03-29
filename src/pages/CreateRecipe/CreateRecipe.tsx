@@ -1,34 +1,31 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
-import { Button, Footer, Navbar, Loading } from "components";
+import { Button, Footer, Navbar } from "components";
 import { BackgroundImage } from "components/layout/BackgroundImage";
-
 import {
-  imageValidation,
-  videoValidation,
+  imageValidation
 } from "helpers/yup-validation.helper";
-import _ from "lodash";
+import { cloneDeep } from "lodash";
 import {
-  CREATE_EMAIL_RECIPE,
-  GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
-  EMAIL_LINK_SHARED_RECIPE,
+  CREATE_EMAIL_RECIPE, EMAIL_LINK_SHARED_RECIPE, GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import * as yup from "yup";
 import { RecipeDifficulty } from "../../graphql";
-import { Helmet } from "react-helmet";
 import {
   fblogo,
   instalogo,
   pintlogo,
   tiktoklogo,
   wwwlogo,
-  ytlogo,
+  ytlogo
 } from "../../icons";
+
 
 const schemaLink = yup.object().shape({
   link: yup.string().required("Ce champ est obligatoire."),
@@ -465,7 +462,7 @@ const CreateRecipe: React.FC = () => {
                   value: tags?.name,
                   label: tags?.name,
                 }));
-                const tagWithUserValue = _.cloneDeep(optionsTags);
+                const tagWithUserValue = cloneDeep(optionsTags);
                 const handleChange = (textType: string) => {
                   tagWithUserValue.push({
                     value: textType,
@@ -520,7 +517,7 @@ const CreateRecipe: React.FC = () => {
                         })
                       );
                       const ingredientsUserValue =
-                        _.cloneDeep(optionsIngredients);
+                        cloneDeep(optionsIngredients);
                       const handleChange = (textType: string) => {
                         ingredientsUserValue.push({
                           value: textType,
@@ -659,7 +656,7 @@ const CreateRecipe: React.FC = () => {
                         })
                       );
                       const optionsUtensilssUserValue =
-                        _.cloneDeep(optionsUtensilss);
+                        cloneDeep(optionsUtensilss);
                       const handleChange = (textType: string) => {
                         optionsUtensilssUserValue.push({
                           value: textType,

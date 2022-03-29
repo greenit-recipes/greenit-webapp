@@ -7,25 +7,12 @@ module.exports = {
     ],
     options: {
       safelist: [
-        "blue",
-        "yellow",
-        "orange",
-        "green",
-        "grey",
-        "red",
-        "bluelight",
-        "transform",
-        "rotate",
-        /^bg-/, /^text-/, /^border-/, /^h-/, /^w-/,/^m--/, /^ml--/, /^mt--/, /^mr--/, /^mb--/, /^rounded-/,  /^grid-cols-/, /^max-/, /^hover:/,
-        /^pl--/, /^pt--/, /^pr--/, /^pb--/,/^p--/,
-        /^my--/,
-        /^mx--/,
-        /^py--/,
-        /^px--/,
-        /^inset-/,
-        /^sm:/,
-        /^md:/,
-        /^lg:/,
+        "rounded-md",
+        "md:h-14",
+        "bg-submit", "submit",
+        "bg-success", "success",
+        "bg-error", "error",
+        "bg-info", "info",
       ],
     },
   },
@@ -43,6 +30,7 @@ module.exports = {
         '99': '30rem',
       },
       height: {
+        '14':	'3.5rem', /* 56px */
         '18': '4.5rem',
         '26': '6.5rem',
         '38': '9.5rem',
@@ -76,11 +64,6 @@ module.exports = {
       margin: {        
         '100': '33rem',
         '99': '28rem',            
-      },
-      screens: {
-        sm: "640px",
-        md: "768px",
-        lg: "1024px",
       },
       colors: {
       
