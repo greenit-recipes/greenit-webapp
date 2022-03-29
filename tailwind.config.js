@@ -6,13 +6,24 @@ module.exports = {
       './src/**/*.{js,jsx,ts,tsx,css}', "./public/index.html"
     ],
     options: {
-      safelist: [
+      safelist: [ // TO REMOVE COLOR DONT WORK WHEN PURGING
         "rounded-md",
         "md:h-14",
-        "bg-submit", "submit",
-        "bg-success", "success",
-        "bg-error", "error",
-        "bg-info", "info",
+        /submit/,
+        /success/,
+        /error/,
+        /info/,
+        /green/,
+        /blue/,
+        /yellow/,
+        /orange/,
+        /grey/,
+        /red/,
+        /bluelight/,
+        /greyL/,
+        /rpiBlue/,
+        /rpiOrange/,
+        /rpiYellow/,
       ],
     },
   },
@@ -66,7 +77,7 @@ module.exports = {
         '99': '28rem',            
       },
       colors: {
-      
+      // AJOUTER DANS LA SAFE LIST
         submit: "#8fb5e7",
         success: "#f9d58e",
         error: "#fec4b0",
@@ -76,7 +87,7 @@ module.exports = {
         blue: "#7BAAE8",
         yellow: "#FCD07B",
         orange: "#FFAF8D",
-        grey: "#707070",
+        grey: "#D6E6FA",
         red: "#ED6D6D",
         bluelight: "#e0eaf8",
         greyL:"#F0F0F0",
