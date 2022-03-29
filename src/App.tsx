@@ -1,30 +1,73 @@
+import { Loading } from "components";
 import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
 import { createBrowserHistory } from "history";
-import AccountCreated from "pages/AccountCreated";
-import ActivateAccount from "pages/activate";
-import ActivateResetPassword from "pages/ActivateResetPassword";
-import CreateRecipe from "pages/CreateRecipe/CreateRecipe";
-import RecipeCreatedPage from "pages/CreateRecipe/CreateRecipeSuccess";
-import IngredientPage from "pages/IngredientSpace/IngredientPage";
-import ForgetPassword from "pages/Login/ForgetPassword";
-import DeleteProfil from "pages/Profil/DeleteProfil";
-import RecapPage from "pages/RecapPage";
-import RecipeSinglePage from "pages/recipe/SinglePage/SinglePage";
-import StarterPage from "pages/StarterSpace/StarterPage";
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import ContactPage from "./pages/ContactPage";
-import LandingPage from "./pages/LandingPage/LandingPage";
-import NotFoundPage from "./pages/misc/NotFoundPage";
-import PersonalizedSearch from "./pages/PersonalizedSearch";
-import ProfilPage from "./pages/Profil/ProfilPage";
-import RecipeListPage from "./pages/recipe/ListPage/ListPage";
-import Register from "./pages/Register/register";
-import WhyPage from "./pages/WhyPage";
-import WorkshopPage from "./pages/WorkshopPage";
+
+const LandingPage = React.lazy(
+  () => import("./pages/LandingPage/LandingPage")
+)
+const AccountCreated = React.lazy(
+  () => import("pages/AccountCreated")
+)
+const ActivateAccount = React.lazy(
+  () => import("pages/activate")
+)
+const ActivateResetPassword = React.lazy(
+  () => import("pages/ActivateResetPassword")
+)
+const CreateRecipe = React.lazy(
+  () => import("pages/CreateRecipe/CreateRecipe")
+)
+const RecipeCreatedPage = React.lazy(
+  () => import("pages/CreateRecipe/CreateRecipeSuccess")
+)
+const IngredientPage = React.lazy(
+  () => import("pages/IngredientSpace/IngredientPage")
+)
+const ForgetPassword = React.lazy(
+  () => import("pages/Login/ForgetPassword")
+)
+const DeleteProfil = React.lazy(
+  () => import("pages/Profil/DeleteProfil")
+)
+const RecapPage = React.lazy(
+  () => import("pages/RecapPage")
+)
+const RecipeSinglePage = React.lazy(
+  () => import("pages/recipe/SinglePage/SinglePage")
+)
+const StarterPage = React.lazy(
+  () => import("pages/StarterSpace/StarterPage")
+)
+const ContactPage = React.lazy(
+  () => import("./pages/ContactPage")
+)
+const NotFoundPage = React.lazy(
+  () => import("./pages/misc/NotFoundPage")
+)
+const PersonalizedSearch = React.lazy(
+  () => import("./pages/PersonalizedSearch")
+)
+const ProfilPage = React.lazy(
+  () => import("./pages/Profil/ProfilPage")
+)
+const RecipeListPage = React.lazy(
+  () => import("./pages/recipe/ListPage/ListPage")
+)
+const Register = React.lazy(
+  () => import("./pages/Register/register")
+)
+const WhyPage = React.lazy(
+  () => import("./pages/WhyPage")
+)
+const WorkshopPage = React.lazy(
+  () => import("./pages/WorkshopPage")
+)
+
 
 export const history = createBrowserHistory();
 
@@ -51,6 +94,8 @@ export const RouteName = {
 
 const App: React.FC = () => {
   return (
+    <Suspense fallback={<Loading />}>
+
     <Router history={history}>
       <Switch>
         <PublicRoute path={RouteName.accueil} component={LandingPage} exact />
@@ -127,6 +172,8 @@ const App: React.FC = () => {
         <Route component={NotFoundPage} />
       </Switch>
     </Router>
+    </Suspense>
+
   );
 };
 // SI VOUS RAJOUTER UNE ROUTE, IL FAUT L'AJOUTEr RDANS LE FICHIER SITE_MAP ROUTE POUR LE REFERENCEMENT SEO
