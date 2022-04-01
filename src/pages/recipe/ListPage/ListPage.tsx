@@ -1,114 +1,124 @@
-import { RouteName } from "App";
-import { includes, map, mapValues, omit, sum } from "lodash";
+import { getObjectSession } from "helpers/session-helper";
+import { map, mapValues, omit, sum } from "lodash";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
-import { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useHistory } from "react-router-dom";
 import {
   BackgroundImage,
   Empty,
   Footer,
   Loading,
   Navbar,
-  RecipeCard,
+  RecipeCard
 } from "../../../components";
 import { RecipesQuery, useRecipesQuery } from "../../../graphql";
 import useIsMobile from "../../../hooks/isMobile";
 import { scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
-import { Helmet } from "react-helmet";
-import { getObjectSession } from "helpers/session-helper";
 
 const RecipeListPage = () => {
-  const history = useHistory();
-
+  
   const cleanDataPlayload = (filter: any) =>
     mapValues(filter, function (value, key) {
       if (key === "search") return value;
       return map(value, (x) => x.value);
     });
 
-  const sessionFilter = getObjectSession('filterListPage')
+  const sessionFilter = getObjectSession("filterListPage");
   // params trigger 2 requests before param and after getting param need to be fixed
-          // @ts-ignore
+  // @ts-ignore
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [currentFilters, setCurrentFilters] = useState<any>({
     search: sessionFilter?.search ? sessionFilter?.search : "",
-    tags: sessionFilter?.tags
-      ? map(sessionFilter?.tags, (x) => ({ title: x, value: x }))
-      : [],
-    category: sessionFilter?.category
-    ? map(sessionFilter?.category, (x) => ({ title: x, value: x }))
-    : [],
-    difficulty: sessionFilter?.difficulty ? sessionFilter?.difficulty : [],
-    duration: sessionFilter?.duration ? sessionFilter?.duration : [],
-    numberOfIngredients: sessionFilter?.numberOfIngredients ? sessionFilter?.numberOfIngredients : [],
+    tags: sessionFilter?.tags || [],
+    category: sessionFilter?.category || [],
+    difficulty: sessionFilter?.difficulty || [],
+    duration: sessionFilter?.duration || [],
+    numberOfIngredients: sessionFilter?.numberOfIngredients || [],
   });
 
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
-    fetchPolicy: 'cache-first',
-        variables: {
-      first: 15,
+    fetchPolicy: "cache-first",
+    variables: {
+      first: 45,
       filter: {
         search: sessionFilter?.search ? sessionFilter?.search : "",
         // @ts-ignore
-        tags: sessionFilter?.tags ? sessionFilter?.tags : [],
+        tags: sessionFilter?.tags ? map(sessionFilter?.tags, "value") : [],
         // @ts-ignore
-        category: sessionFilter?.category ? sessionFilter?.category : [],
-        difficulty: sessionFilter?.difficulty ? sessionFilter?.difficulty : [],
-        duration: sessionFilter?.duration ? sessionFilter?.duration : [],
-        numberOfIngredients: sessionFilter?.numberOfIngredients ? sessionFilter?.numberOfIngredients : [],
+        category: sessionFilter?.category
+          ? map(sessionFilter?.category, "value")
+          : [],
+        difficulty: sessionFilter?.difficulty
+          ? map(sessionFilter?.difficulty, "value")
+          : [],
+        duration: sessionFilter?.duration
+          ? map(sessionFilter?.duration, "value")
+          : [],
+        numberOfIngredients: sessionFilter?.numberOfIngredients
+          ? map(sessionFilter?.numberOfIngredients, "value")
+          : [],
       },
     },
   });
-  
 
   const isMobile = useIsMobile();
-  // fixer ça
-  useEffect(() => {
-    history.listen((prev: any) => {
-      if (includes(prev?.pathname, RouteName.recipes)) {
-        window.location.reload();
-      }
-    });
-  }, [history]);
 
-  useEffect(() => {
-    if (window.pageYOffset > 0) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-  }, []);
   const [toggle, setToggle] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
 
   useEffect(() => {
     if (!loading && !isFirstLoading) {
       // to avoid a second request with state of filter
-        console.log("passe la")
-        const filterValue = cleanDataPlayload(currentFilters);
-        window.sessionStorage.setItem("filterListPage", JSON.stringify(filterValue));
-        refetch({ filter: filterValue });
-        return;
+      const filterValue = cleanDataPlayload(currentFilters);
+      window.sessionStorage.setItem(
+        "filterListPage",
+        JSON.stringify(currentFilters)
+      );
+      refetch({ filter: filterValue });
+      return;
     }
-    setIsFirstLoading(false)
-  }, [currentFilters,  loading]);
+    if (!loading) setIsFirstLoading(false);
+  }, [currentFilters, loading]);
 
   const [isShowModal, setIsShowModal] = useState(false);
 
   if (loading) {
     return <Loading />;
   }
+
   const recipes = data?.allRecipes?.edges || [];
   const hasMore = data?.allRecipes?.pageInfo.hasNextPage || false;
-  const nbrFilter = sum(map(omit(currentFilters, 'search'), x => x?.length))
+  const refs = data?.allRecipes?.edges?.reduce(
+    (acc: any, value: any, key: any) => {
+      acc[key] = React.createRef();
+      return acc;
+    },
+    {}
+  );
+
+  const saveIndexScroll = (index: number) => {
+    window.sessionStorage.setItem(
+      "indexScrollListPage",
+      JSON.stringify(index)
+    );
+  }
+
+  const handleClick = (id: number) => {
+    return refs[id].current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  
+  const nbrFilter = sum(map(omit(currentFilters, "search"), (x) => x?.length));
   return (
     <div className={""}>
       <Navbar />
-      <BackgroundImage/>
+      <BackgroundImage />
       <Helmet>
         <title>Recettes DIY : Cosmétiques, produits ménagers | Greenit</title>
         <meta
@@ -158,6 +168,7 @@ const RecipeListPage = () => {
       )}
       <div className="flex justify-center">
         <div className="h-auto max-w-7xl justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
+          {/* to refacto infinite scroll*/}
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
@@ -166,7 +177,7 @@ const RecipeListPage = () => {
             endMessage={
               recipes?.length > 0 && (
                 <div className="text-center font-light">
-                    <div>Tu as tout vu ! </div>
+                  <div>Tu as tout vu ! </div>
                 </div>
               )
             }
@@ -202,15 +213,21 @@ const RecipeListPage = () => {
           >
             {isMobile ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 justify-center md:gap-y-10">
-                {recipes?.map((recipe, index) => (
-                  <RecipeCard recipe={recipe?.node} key={index} />
-                ))}
+                {recipes?.map((recipe, index) => {
+                  return (
+                    <div ref={refs[index]} key={index}>
+                      <RecipeCard onClickFunction={} recipe={recipe?.node} />
+                    </div>
+                  );
+                })}
               </div>
             ) : (
               <div className="grid grid-cols-1 justify-items-center | py-4 px-8 mb-14">
                 <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
                   {recipes?.map((recipe, index) => (
-                    <RecipeCard recipe={recipe?.node} key={index} />
+                    <div ref={refs[index]} key={index}>
+                      <RecipeCard onClickFunction={} recipe={recipe?.node} />
+                    </div>
                   ))}
                 </div>
               </div>

@@ -83,14 +83,6 @@ const RecipeSinglePage = () => {
 
   const isLoggedIn = authService.isLoggedIn();
   const [videoDuration, setVideoDuration] = useState<number>(0);
-  useEffect(() => {
-    if (window.pageYOffset > 0) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-  }, []);
 
   useEffect(() => {
     setNbrComment(data?.recipe?.numberOfComments);
@@ -327,7 +319,7 @@ const RecipeSinglePage = () => {
             </div>
 
             <IngredientUsentil recipe={recipe} />
-            <div className="flex w-full h-full flex flex-col lg:flex-row">
+            <div className="flex w-full h-full flex-col lg:flex-row">
               {isMobile && (
                 <>
                   <h2 className="text-xl">Instructions</h2>

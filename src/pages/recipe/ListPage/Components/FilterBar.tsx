@@ -32,13 +32,21 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     );
 
     setCurrentFilters(currentState);
-    //setCurrentFilters(toto);
   };
   const isCurrentFilterEmpty =
     flattenDeep(map(omit(currentFilters, "search"), (x) => x))?.length > 0;
 
   const removeFilters = () => {
-    setCurrentFilters({});
+    setCurrentFilters({
+      search: "",
+      // @ts-ignore
+      tags: [],
+      // @ts-ignore
+      category: [],
+      difficulty: [],
+      duration: [],
+      numberOfIngredients: [],
+    });
   };
   const handleFilter = (
     isSelected: boolean,

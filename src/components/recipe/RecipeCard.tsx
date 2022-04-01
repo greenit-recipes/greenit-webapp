@@ -1,13 +1,13 @@
+import { RouteName } from "App";
+import { LikeField } from "components/layout/LikeField";
 import { getImagePath } from "helpers/image.helper";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { RecipeDifficulty } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
-import { Icon } from "../misc";
 import { FavouriteField } from "../layout/FavouriteField";
-import { LikeField } from "components/layout/LikeField";
+import { Icon } from "../misc";
 import "./RecipeCard.css";
-import { RouteName } from "App";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
@@ -15,6 +15,7 @@ interface RecipeCardProps {
   isCarrousel?: boolean;
   isProfilPage?: boolean;
   parentFunction?: any;
+  onClickFunction?: any;
   disabledFavoriteRecipe?: boolean;
   isRefetchData?: boolean;
   isDisplayUserBadge?: boolean;
@@ -25,6 +26,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
   isCarrousel = false,
   parentFunction = null,
+  onClickFunction = null,
   disabledFavoriteRecipe = false,
   isRefetchData = false,
   isDisplayUserBadge = true,
@@ -32,7 +34,6 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const isMobile = useIsMobile();
-
   const imageHeight = isMobile ? 56 : 72;
   const imageWidth = isMobile ? 40 : 48;
   const bandeauWidth = isMobile ? 40 : 48;
@@ -42,6 +43,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       <Link
         to={{
           pathname: `${RouteName.recipes}/${recipe?.urlId}`,
+        }}
+        onClick={() => {
+          return onClickFunction ? onClickFunction() : onClickFunction;
         }}
         className={`inline-block ${!isMobile}`}
       >
@@ -61,7 +65,11 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           ></img>
         </div>
       </Link>
-      <LikeField recipe={recipe} isRecipeCard={true} isCarrousel={isCarrousel}></LikeField>
+      <LikeField
+        recipe={recipe}
+        isRecipeCard={true}
+        isCarrousel={isCarrousel}
+      ></LikeField>
       <div
         className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-2xl -bottom-10 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
       >
@@ -75,6 +83,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           </div>
         )}
         <Link
+          onClick={() => {
+            return onClickFunction ? onClickFunction() : onClickFunction;
+          }}
           to={{
             pathname: `${RouteName.recipes}/${recipe?.urlId}`,
           }}

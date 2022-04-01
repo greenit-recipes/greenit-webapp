@@ -18,8 +18,8 @@ export const CategoryCircle: React.FC<CategoryCircleProps> = ({
     "Avec les ingrédients de la cuisine",
   ].includes(name);
   return (
-    <div className="flex pointer flex-col | items-center" onClick={() => {
-      const value = isTag ? { tags: [name]} : { category: [name]}
+    <div className="flex cursor-pointer flex-col | items-center" onClick={() => {
+      const value = isTag ? { tags: [{ title: name, value : name}]} : { category: [{ title: name, value : name}]}
       setObjectFilterSession(getObjectSession('filterListPage'), value)
       history.push(RouteName.recipes);
     }}>

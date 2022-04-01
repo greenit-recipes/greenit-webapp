@@ -87,7 +87,7 @@ export const Navbar: React.FC = () => {
           }
         >
           <div className="flex flex-col">
-            <SearchBar value={getObjectSession('filterListPage')?.search} keyId="SearchNavMobile" />
+            <SearchBar keyId="SearchNavMobile" />
             <Link className="p-2 mt-3" to={RouteName.accueil}>
               <h2 id="home" className="text-white">
                 Accueil
@@ -433,7 +433,7 @@ export const Navbar: React.FC = () => {
       </div>
       <div className="grid items-center w-3/5 justify-self-end">
         <div className="flex justify-self-end items-center">
-          <SearchBarNav value={getObjectSession('filterListPage')?.search} keyId="SearchNav" />
+          <SearchBarNav keyId="SearchNav" />
           {isLoggedIn ? (
             <Link to={RouteName.createRecipe} className="flex">
               <div className="rounded-full ease-linear transition-all duration-150 cursor-pointer">
