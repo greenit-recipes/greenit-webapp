@@ -132,33 +132,6 @@ import confirmpwd from "./confirmpwd.svg";
 import explorer from "./explorer.svg";
 import creator from "./influencer.svg";
 
-export const landingPageCategories = [
-  {
-    icon: premierspas,
-    title: "Premiers pas",
-  },
-  {
-    icon: zeroWaste,
-    title: "Zéro-déchet",
-  },
-  {
-    icon: fridge,
-    title: "Avec les ingrédients de la cuisine",
-  },
-  {
-    icon: maison,
-    title: "Maison",
-  },
-  {
-    icon: visage,
-    title: "Visage",
-  },
-  {
-    icon: corps,
-    title: "Corps",
-  },
-];
-
 export {
   wellbeing,
   corps,

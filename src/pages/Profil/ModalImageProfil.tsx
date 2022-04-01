@@ -1,11 +1,11 @@
-import React from "react";
-import { useMutation, useQuery } from "@apollo/client";
-import { Button } from "components/misc/Button";
-import { useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
+import { Button } from "components/misc/Button";
 import { imageValidation } from "helpers/yup-validation.helper";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
+import * as yup from "yup";
 
 interface IModalImageProfil {
   parentFunction?: any;

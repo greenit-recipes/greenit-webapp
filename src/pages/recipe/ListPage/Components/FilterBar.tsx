@@ -1,4 +1,5 @@
 import { Button } from "components/misc/Button";
+import { getObjectSession } from "helpers/session-helper";
 import { find, flattenDeep, map, omit } from "lodash";
 import { FilterBarItem } from "pages/recipe/ListPage/Components/FilterBarItem";
 import { FilterBarSearch } from "pages/recipe/ListPage/Components/FilterBarSearch";
@@ -12,12 +13,10 @@ interface FilterBarProps {
   isOnlyForSearch?: boolean;
   toggle?: boolean;
   setScrollOffset: (val: number) => void;
-  params: URLSearchParams;
 }
 
 export const FilterBar: React.FC<FilterBarProps> = ({
   filter,
-  params,
   currentFilters,
   setCurrentFilters,
   isMobile,
@@ -25,7 +24,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   toggle,
   setScrollOffset,
 }) => {
-  const [search, setSearch] = useState(params.get("search") || "");
+  const [search, setSearch] = useState(getObjectSession('filterListPage')?.search || "");
   const removeFilter = (valuex: any, key: any) => {
     let currentState = { ...currentFilters };
     currentState[key] = currentState[key].filter(
@@ -33,13 +32,21 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     );
 
     setCurrentFilters(currentState);
-    //setCurrentFilters(toto);
   };
   const isCurrentFilterEmpty =
     flattenDeep(map(omit(currentFilters, "search"), (x) => x))?.length > 0;
 
   const removeFilters = () => {
-    setCurrentFilters({});
+    setCurrentFilters({
+      search: "",
+      // @ts-ignore
+      tags: [],
+      // @ts-ignore
+      category: [],
+      difficulty: [],
+      duration: [],
+      numberOfIngredients: [],
+    });
   };
   const handleFilter = (
     isSelected: boolean,

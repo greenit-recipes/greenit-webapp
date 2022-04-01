@@ -12,12 +12,13 @@ import { RiShareForwardLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import authService from "services/auth.service";
+import { landingPageCategories } from "utils";
 import { Button, RecipeCard } from "../../components";
 import { useRecipesQuery } from "../../graphql";
 import {
   Balance, BeurreKarite,
   BicarSoude, Bocal, Bol, Bouteille, Catherine, Christelle, CireAbeille, Conseil,
-  Cooking, CremeCorp, Eau, EcorceArgume, Fouet, HuileRicin, IconAtelier, IconInternet, IconMarche, IconSite, landingPageCategories, Lessive, Livre, logo, Maryse, Producteur, SavonMarseille, Ustensil
+  Cooking, CremeCorp, Eau, EcorceArgume, Fouet, HuileRicin, IconAtelier, IconInternet, IconMarche, IconSite, Lessive, Livre, logo, Maryse, Producteur, SavonMarseille, Ustensil
 } from "../../icons";
 import "./StarterPage.css";
 

@@ -1,6 +1,8 @@
 import { useHistory } from "react-router-dom";
 import { search } from "../../icons";
 import { RouteName } from "App";
+import { getObjectSession, setObjectFilterSession } from "helpers/session-helper";
+import { useState } from "react";
 
 export const SearchBarNav: React.FC<{
   size?: "small" | "large";
@@ -19,13 +21,15 @@ export const SearchBarNav: React.FC<{
 }) => {
   const isLarge = size === "large";
   const history = useHistory();
+  const [currentValue, setCurrentValue] = useState(value || "");
+
   const handleSubmit = () => {
     if (!onSubmit) {
-      history.push(
-        `${RouteName.recipes}/?search=${
-          (document.getElementById(keyId) as HTMLInputElement)?.value
-        }`
-      );
+      const currentSearchValue = {
+        search: (document.getElementById(keyId) as HTMLInputElement)?.value,
+      };
+      setObjectFilterSession(getObjectSession('filterListPage'), currentSearchValue)
+      history.push(RouteName.recipes);
     } else {
       onSubmit();
     }
@@ -46,13 +50,10 @@ export const SearchBarNav: React.FC<{
         onChange={(e) => {
           if (setValue) {
             setValue(e.target.value);
-          }
+          } 
+          setCurrentValue(e.target.value)
         }}
-        {...(value
-          ? {
-              value,
-            }
-          : {})}
+        value={currentValue}
       />
 
       <img

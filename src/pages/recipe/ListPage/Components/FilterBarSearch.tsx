@@ -4,7 +4,7 @@ export const FilterBarSearch: React.FC<{
     setCurrentFilters: (data: Record<string, any>) => void;
     search: string;
     keyId: string;
-    setSearch: (val: string) => void;
+    setSearch?: (val: string) => void;
   }> = ({ setCurrentFilters, search, keyId, setSearch }) => {
     return (
       <div>

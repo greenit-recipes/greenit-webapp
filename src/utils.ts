@@ -1,5 +1,7 @@
 // SOURCE = https://ohdoylerules.com/snippets/tailwind-screens-in-js/
 
+import { corps, fridge, maison, premierspas, visage, zeroWaste } from "icons";
+
 export const getBreakpoint = (screen = "") => {
   // "Theme" is an alias to where you keep your tailwind.config.js - most likely your project root
   const screens = {
@@ -56,6 +58,34 @@ export const getSecondsFromDuration = (duration: string) => {
   }
   return amount;
 };
+
+
+export const landingPageCategories = [
+  {
+    icon: premierspas,
+    title: "Premiers pas",
+  },
+  {
+    icon: zeroWaste,
+    title: "Zéro-déchet",
+  },
+  {
+    icon: fridge,
+    title: "Avec les ingrédients de la cuisine",
+  },
+  {
+    icon: maison,
+    title: "Maison",
+  },
+  {
+    icon: visage,
+    title: "Visage",
+  },
+  {
+    icon: corps,
+    title: "Corps",
+  },
+];
 
 export const filterData = [
   {

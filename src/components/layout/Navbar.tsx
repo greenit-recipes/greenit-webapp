@@ -1,6 +1,7 @@
 import { RouteName } from "App";
 import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import "components/layout/Navbar.css";
+import { getObjectSession } from "helpers/session-helper";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import authService from "services/auth.service";

@@ -4,6 +4,7 @@ import { RouteName } from "App";
 import { Button, Footer, Loading, Navbar } from "components";
 import { FavouriteField } from "components/layout/FavouriteField";
 import { LikeComment } from "components/layout/LikeComment";
+import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { UserBadge } from "components/layout/UserBadge";
 import { getImagePath } from "helpers/image.helper";
 import { momentGreenit } from "helpers/time.helper";
@@ -25,7 +26,7 @@ import { GrMoney } from "react-icons/gr";
 import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
 import { RiShareForwardLine } from "react-icons/ri";
 import ReactPlayer from "react-player/lazy";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import authService from "services/auth.service";
 import * as yup from "yup";
@@ -55,6 +56,8 @@ const schema = yup.object().shape({
 
 const RecipeSinglePage = () => {
   const history = useHistory();
+  const [havePreviousRoute, setHavePreviousRoute] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -82,14 +85,6 @@ const RecipeSinglePage = () => {
 
   const isLoggedIn = authService.isLoggedIn();
   const [videoDuration, setVideoDuration] = useState<number>(0);
-  useEffect(() => {
-    if (window.pageYOffset > 0) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-  }, []);
 
   useEffect(() => {
     setNbrComment(data?.recipe?.numberOfComments);
@@ -145,8 +140,8 @@ const RecipeSinglePage = () => {
       scrollIntoComment();
       reset();
     });
-  };
-
+  }
+  
   if (loading || !data) {
     return <Loading />;
   }
@@ -158,7 +153,9 @@ const RecipeSinglePage = () => {
         <Navbar />
         <div
           className="grid absolute cursor-pointer rounded-full left-0 top-14 w-8 h-8 z-20 ml-3 | lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
-          onClick={() => history.push(RouteName.recipes)}
+          onClick={() => {
+            history.goBack() // need to have previous path
+          }}
         >
           <img alt="Retour icon" loading="lazy" src={retourIcon} />
         </div>
@@ -167,7 +164,10 @@ const RecipeSinglePage = () => {
           recipe={recipe}
           className=""
         />
-        <div className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage" style={{ marginTop: ((sizeCretorHeader / 16) - 8) + "rem"}}>
+        <div
+          className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage"
+          style={{ marginTop: sizeCretorHeader / 16 - 8 + "rem" }}
+        >
           <div className="w-5/6 lg:w-4/6 mb-10">
             <div className="w-full h-auto">
               <div className="justify-center">
@@ -194,8 +194,14 @@ const RecipeSinglePage = () => {
                         className="flex justify-center items-center"
                         id="shared-recipe"
                       >
-                        <RiShareForwardLine id="shared-recipe" className="justify-self-center ml-1 w-7 h-7" />
-                        <h2 id="shared-recipe" className="text-center ml-2"> partage </h2>
+                        <RiShareForwardLine
+                          id="shared-recipe"
+                          className="justify-self-center ml-1 w-7 h-7"
+                        />
+                        <h2 id="shared-recipe" className="text-center ml-2">
+                          {" "}
+                          partage{" "}
+                        </h2>
                       </button>
                     </RWebShare>
                   </div>
@@ -317,7 +323,7 @@ const RecipeSinglePage = () => {
             </div>
 
             <IngredientUsentil recipe={recipe} />
-            <div className="flex w-full h-full flex flex-col lg:flex-row">
+            <div className="flex w-full h-full flex-col lg:flex-row">
               {isMobile && (
                 <>
                   <h2 className="text-xl">Instructions</h2>
@@ -331,6 +337,7 @@ const RecipeSinglePage = () => {
                   <div className="grid w-full h-full bg-white justify-items-center items-center">
                     <img
                       src={noVideo}
+                      loading="lazy"
                       alt={"Pas de vidéo"}
                       className="h-60 lg:h-80 object-cover rounded-lg"
                     ></img>
@@ -519,18 +526,20 @@ const RecipeSinglePage = () => {
                       Publier
                     </Button>
                   </div>
-                ) : (
-                  <Link to={RouteName.register}>
-                    <Button
-                      className="rounded focus:outline-none focus:shadow-outline"
-                      type="submit"
-                    >
-                      Se connecter pour discuter
-                    </Button>
-                  </Link>
+                ) : (<></>
                 )}
               </div>
             </form>
+            {!isLoggedIn &&  ( <ModalLogGreenit
+                    btn={
+                      <Button
+                        className="rounded focus:outline-none focus:shadow-outline w-52"
+                        type="blue"
+                      >
+                        Se connecter pour discuter
+                      </Button>
+                    }
+                  ></ModalLogGreenit>) }
           </div>
         </div>
         <Footer />

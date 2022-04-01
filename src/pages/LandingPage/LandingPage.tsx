@@ -20,7 +20,6 @@ import useIsMobile from "../../hooks/isMobile";
 import {
   atelier, Conseil,
   Cooking, corpsWhy,
-  landingPageCategories,
   money,
   planet,
   wellbeing,
@@ -35,6 +34,8 @@ import { Newsletter } from "./Components/Newsletter";
 import { Press } from "../../components/layout/TheyTalkAboutUs";
 import "react-multi-carousel/lib/styles.css";
 import "pages/LandingPage/LandingPage.css";
+import { getObjectSession } from "helpers/session-helper";
+import { landingPageCategories } from "utils";
 
 const responsiveCarouselLanding = {
   desktop: {

@@ -1,6 +1,6 @@
 // craco.config.js
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const purgecss = require('@fullhuman/postcss-purgecss');
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+//const purgecss = require('@fullhuman/postcss-purgecss');
 
 module.exports = {
   style: {
