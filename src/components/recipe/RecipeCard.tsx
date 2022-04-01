@@ -15,10 +15,11 @@ interface RecipeCardProps {
   isCarrousel?: boolean;
   isProfilPage?: boolean;
   parentFunction?: any;
-  onClickFunction?: any;
+  onClickFunctionListPage?: any;
   disabledFavoriteRecipe?: boolean;
   isRefetchData?: boolean;
   isDisplayUserBadge?: boolean;
+  index?: number;
 }
 
 export const RecipeCard: React.FC<RecipeCardProps> = ({
@@ -26,10 +27,11 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
   isCarrousel = false,
   parentFunction = null,
-  onClickFunction = null,
+  onClickFunctionListPage = null,
   disabledFavoriteRecipe = false,
   isRefetchData = false,
   isDisplayUserBadge = true,
+  index,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -45,7 +47,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           pathname: `${RouteName.recipes}/${recipe?.urlId}`,
         }}
         onClick={() => {
-          return onClickFunction ? onClickFunction() : onClickFunction;
+          return onClickFunctionListPage ? onClickFunctionListPage(index) : null;
         }}
         className={`inline-block ${!isMobile}`}
       >
@@ -84,7 +86,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         )}
         <Link
           onClick={() => {
-            return onClickFunction ? onClickFunction() : onClickFunction;
+            return onClickFunctionListPage ? onClickFunctionListPage(index) : null;
           }}
           to={{
             pathname: `${RouteName.recipes}/${recipe?.urlId}`,

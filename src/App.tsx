@@ -7,67 +7,40 @@ import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
 
-const LandingPage = React.lazy(
-  () => import("./pages/LandingPage/LandingPage")
-)
-const AccountCreated = React.lazy(
-  () => import("pages/AccountCreated")
-)
-const ActivateAccount = React.lazy(
-  () => import("pages/activate")
-)
+const LandingPage = React.lazy(() => import("./pages/LandingPage/LandingPage"));
+const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
+const ActivateAccount = React.lazy(() => import("pages/activate"));
 const ActivateResetPassword = React.lazy(
   () => import("pages/ActivateResetPassword")
-)
+);
 const CreateRecipe = React.lazy(
   () => import("pages/CreateRecipe/CreateRecipe")
-)
+);
 const RecipeCreatedPage = React.lazy(
   () => import("pages/CreateRecipe/CreateRecipeSuccess")
-)
+);
 const IngredientPage = React.lazy(
   () => import("pages/IngredientSpace/IngredientPage")
-)
-const ForgetPassword = React.lazy(
-  () => import("pages/Login/ForgetPassword")
-)
-const DeleteProfil = React.lazy(
-  () => import("pages/Profil/DeleteProfil")
-)
-const RecapPage = React.lazy(
-  () => import("pages/RecapPage")
-)
+);
+const ForgetPassword = React.lazy(() => import("pages/Login/ForgetPassword"));
+const DeleteProfil = React.lazy(() => import("pages/Profil/DeleteProfil"));
+const RecapPage = React.lazy(() => import("pages/RecapPage"));
 const RecipeSinglePage = React.lazy(
   () => import("pages/recipe/SinglePage/SinglePage")
-)
-const StarterPage = React.lazy(
-  () => import("pages/StarterSpace/StarterPage")
-)
-const ContactPage = React.lazy(
-  () => import("./pages/ContactPage")
-)
-const NotFoundPage = React.lazy(
-  () => import("./pages/misc/NotFoundPage")
-)
+);
+const StarterPage = React.lazy(() => import("pages/StarterSpace/StarterPage"));
+const ContactPage = React.lazy(() => import("./pages/ContactPage"));
+const NotFoundPage = React.lazy(() => import("./pages/misc/NotFoundPage"));
 const PersonalizedSearch = React.lazy(
   () => import("./pages/PersonalizedSearch")
-)
-const ProfilPage = React.lazy(
-  () => import("./pages/Profil/ProfilPage")
-)
+);
+const ProfilPage = React.lazy(() => import("./pages/Profil/ProfilPage"));
 const RecipeListPage = React.lazy(
   () => import("./pages/recipe/ListPage/ListPage")
-)
-const Register = React.lazy(
-  () => import("./pages/Register/register")
-)
-const WhyPage = React.lazy(
-  () => import("./pages/WhyPage")
-)
-const WorkshopPage = React.lazy(
-  () => import("./pages/WorkshopPage")
-)
-
+);
+const Register = React.lazy(() => import("./pages/Register/register"));
+const WhyPage = React.lazy(() => import("./pages/WhyPage"));
+const WorkshopPage = React.lazy(() => import("./pages/WorkshopPage"));
 
 export const history = createBrowserHistory();
 
@@ -95,85 +68,83 @@ export const RouteName = {
 const App: React.FC = () => {
   return (
     <Suspense fallback={<Loading />}>
-
-    <Router history={history}>
-      <Switch>
-        <PublicRoute path={RouteName.accueil} component={LandingPage} exact />
-        <PublicRoute path={RouteName.why} component={WhyPage} exact />
-        <PublicRoute path={RouteName.contact} component={ContactPage} exact />
-        <PublicRoute
-          path={RouteName.recipes}
-          component={RecipeListPage}
-          exact
-        />
-        <PublicRoute
-          path="/recettes/:name"
-          component={RecipeSinglePage}
-          exact
-        />
-        <PublicRoute
-          path="/personalizedSearch"
-          component={PersonalizedSearch}
-          exact
-        />
-        <PublicRoute
-          path={RouteName.ingredientPage}
-          component={IngredientPage}
-          exact
-        />
-        <PublicRoute
-          path={RouteName.workshops}
-          component={WorkshopPage}
-          exact
-        />
-        <PublicRoute
-          path={RouteName.starterPage}
-          component={StarterPage}
-          exact
-        />
-        <PrivateRoute
-          path={RouteName.deleteProfil}
-          component={DeleteProfil}
-          exact
-        />
-        <PrivateRoute
-          path={RouteName.createRecipe}
-          component={CreateRecipe}
-          exact
-        />
-        <PrivateRoute
-          path={RouteName.recipeCreated}
-          component={RecipeCreatedPage}
-          exact
-        />
-        <Route exact path={RouteName.register} component={Register} />
-        <Route exact path={RouteName.recap} component={RecapPage} />
-        <Route
-          exact
-          path={RouteName.resetPassword}
-          component={ForgetPassword}
-        />
-        <PrivateRoute component={ProfilPage} path={RouteName.profil} exact />
-        <Route
-          exact
-          path={RouteName.tokenActivationAccount}
-          component={ActivateAccount}
-        />
-        <Route
-          exact
-          path={RouteName.accountCreated}
-          component={AccountCreated}
-        />
-        <Route
-          exact
-          path={RouteName.activateResetPassword}
-          component={ActivateResetPassword}
-        />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </Router>
+      <Router history={history}>
+        <Switch>
+          <PublicRoute path={RouteName.accueil} component={LandingPage} exact />
+          <PublicRoute path={RouteName.why} component={WhyPage} exact />
+          <PublicRoute path={RouteName.contact} component={ContactPage} exact />
+          <PublicRoute
+            path={RouteName.recipes}
+            component={RecipeListPage}
+            exact
+          />
+          <PublicRoute
+            path="/recettes/:name"
+            component={RecipeSinglePage}
+            exact
+          />
+          <PublicRoute
+            path="/personalizedSearch"
+            component={PersonalizedSearch}
+            exact
+          />
+          <PublicRoute
+            path={RouteName.ingredientPage}
+            component={IngredientPage}
+            exact
+          />
+          <PublicRoute
+            path={RouteName.workshops}
+            component={WorkshopPage}
+            exact
+          />
+          <PublicRoute
+            path={RouteName.starterPage}
+            component={StarterPage}
+            exact
+          />
+          <PrivateRoute
+            path={RouteName.deleteProfil}
+            component={DeleteProfil}
+            exact
+          />
+          <PrivateRoute
+            path={RouteName.createRecipe}
+            component={CreateRecipe}
+            exact
+          />
+          <PrivateRoute
+            path={RouteName.recipeCreated}
+            component={RecipeCreatedPage}
+            exact
+          />
+          <Route exact path={RouteName.register} component={Register} />
+          <Route exact path={RouteName.recap} component={RecapPage} />
+          <Route
+            exact
+            path={RouteName.resetPassword}
+            component={ForgetPassword}
+          />
+          <PrivateRoute component={ProfilPage} path={RouteName.profil} exact />
+          <Route
+            exact
+            path={RouteName.tokenActivationAccount}
+            component={ActivateAccount}
+          />
+          <Route
+            exact
+            path={RouteName.accountCreated}
+            component={AccountCreated}
+          />
+          <Route
+            exact
+            path={RouteName.activateResetPassword}
+            component={ActivateResetPassword}
+          />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Router>
     </Suspense>
-
   );
 };
 // SI VOUS RAJOUTER UNE ROUTE, IL FAUT L'AJOUTEr RDANS LE FICHIER SITE_MAP ROUTE POUR LE REFERENCEMENT SEO

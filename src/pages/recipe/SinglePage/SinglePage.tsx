@@ -56,6 +56,8 @@ const schema = yup.object().shape({
 
 const RecipeSinglePage = () => {
   const history = useHistory();
+  const [havePreviousRoute, setHavePreviousRoute] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -138,8 +140,8 @@ const RecipeSinglePage = () => {
       scrollIntoComment();
       reset();
     });
-  };
-
+  }
+  
   if (loading || !data) {
     return <Loading />;
   }
@@ -151,7 +153,9 @@ const RecipeSinglePage = () => {
         <Navbar />
         <div
           className="grid absolute cursor-pointer rounded-full left-0 top-14 w-8 h-8 z-20 ml-3 | lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
-          onClick={() => history.push(RouteName.recipes)}
+          onClick={() => {
+            history.goBack() // need to have previous path
+          }}
         >
           <img alt="Retour icon" loading="lazy" src={retourIcon} />
         </div>

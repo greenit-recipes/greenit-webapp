@@ -42,7 +42,7 @@ const RecipeListPage = () => {
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
     fetchPolicy: "cache-first",
     variables: {
-      first: 45,
+      first: 15,
       filter: {
         search: sessionFilter?.search ? sessionFilter?.search : "",
         // @ts-ignore
@@ -63,6 +63,10 @@ const RecipeListPage = () => {
       },
     },
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const isMobile = useIsMobile();
 
@@ -216,7 +220,7 @@ const RecipeListPage = () => {
                 {recipes?.map((recipe, index) => {
                   return (
                     <div ref={refs[index]} key={index}>
-                      <RecipeCard onClickFunction={} recipe={recipe?.node} />
+                      <RecipeCard onClickFunctionListPage={saveIndexScroll} index={index + 1} recipe={recipe?.node} />
                     </div>
                   );
                 })}
@@ -226,7 +230,7 @@ const RecipeListPage = () => {
                 <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
                   {recipes?.map((recipe, index) => (
                     <div ref={refs[index]} key={index}>
-                      <RecipeCard onClickFunction={} recipe={recipe?.node} />
+                      <RecipeCard onClickFunctionListPage={saveIndexScroll} index={index + 1} recipe={recipe?.node} />
                     </div>
                   ))}
                 </div>
