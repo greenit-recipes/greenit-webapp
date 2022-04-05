@@ -342,7 +342,7 @@ export const Navbar: React.FC = () => {
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.workshops}>
             <NavButton id="workshops" type="yellow">
-              Ateliers
+              Se former
             </NavButton>
           </Link>
           <div id="navlist" className="grid justify-items-start pt-2">
@@ -353,30 +353,6 @@ export const Navbar: React.FC = () => {
                   className="mb-2 cursor-pointer hover:text-yellow"
                 >
                   Tous les ateliers
-                </h3>
-              </Link>
-              <Link to={RouteName.workshops + "?scroolTo=physiqueWorkshop"}>
-                <h3
-                  id="ftfWorkshops"
-                  className="mb-2 cursor-pointer hover:text-yellow"
-                >
-                  Ateliers en présentiel
-                </h3>
-              </Link>
-              <Link to={RouteName.workshops + "?scroolTo=onlineWorkshop"}>
-                <h3
-                  id="onlineWorkshops"
-                  className="mb-2 cursor-pointer hover:text-yellow"
-                >
-                  Ateliers en ligne
-                </h3>
-              </Link>
-              <Link to={RouteName.workshops + "?scroolTo=suggestWorkshop"}>
-                <h3
-                  id="suggestWorkshop"
-                  className="mb-2 cursor-pointer hover:text-yellow"
-                >
-                  Proposer un atelier
                 </h3>
               </Link>
             </div>
