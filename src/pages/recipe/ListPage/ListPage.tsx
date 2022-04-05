@@ -95,29 +95,6 @@ const RecipeListPage = () => {
 
   const recipes = data?.allRecipes?.edges || [];
   const hasMore = data?.allRecipes?.pageInfo.hasNextPage || false;
-  const refs = data?.allRecipes?.edges?.reduce(
-    (acc: any, value: any, key: any) => {
-      acc[key] = React.createRef();
-      return acc;
-    },
-    {}
-  );
-
-  const saveIndexScroll = (index: number) => {
-    window.sessionStorage.setItem(
-      "indexScrollListPage",
-      JSON.stringify(index)
-    );
-  }
-
-  const handleClick = (id: number) => {
-    return refs[id].current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
-  
   const nbrFilter = sum(map(omit(currentFilters, "search"), (x) => x?.length));
   return (
     <div className={""}>
@@ -219,9 +196,7 @@ const RecipeListPage = () => {
               <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 justify-center md:gap-y-10">
                 {recipes?.map((recipe, index) => {
                   return (
-                    <div ref={refs[index]} key={index}>
-                      <RecipeCard onClickFunctionListPage={saveIndexScroll} index={index + 1} recipe={recipe?.node} />
-                    </div>
+                      <RecipeCard recipe={recipe?.node} />
                   );
                 })}
               </div>
@@ -229,9 +204,7 @@ const RecipeListPage = () => {
               <div className="grid grid-cols-1 justify-items-center | py-4 px-8 mb-14">
                 <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
                   {recipes?.map((recipe, index) => (
-                    <div ref={refs[index]} key={index}>
-                      <RecipeCard onClickFunctionListPage={saveIndexScroll} index={index + 1} recipe={recipe?.node} />
-                    </div>
+                      <RecipeCard recipe={recipe?.node} />
                   ))}
                 </div>
               </div>

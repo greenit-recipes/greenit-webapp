@@ -480,7 +480,7 @@ const StarterPage = () => {
             </h2>
             <div className="flex flex-col m-4 w-60 items-center self-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
               <p className="text-center text-sm font-light  mb-2">
-                Nous conseillons Joli'essence 🇫🇷 pour l'acessibilité et la
+                Nous conseillons Mycosmetik 🇫🇷 pour l'acessibilité et la
                 qualité des produits. 👇
               </p>
               <div>
@@ -490,14 +490,8 @@ const StarterPage = () => {
                   href="#"
                   onClick={() => {
                     window.open(
-                      "https://www.joliessence.com/huiles-vegetales-bio/39-huile-vegetale-vierge-de-ricin-bio-3760103751724.html?search_query=ricin&results=20#/2-contenance-100_ml"
-                    ) &&
-                      window.open(
-                        "https://www.joliessence.com/beurres-vegetaux-et-cires-bio/54-beurre-karite-bio-100ml-3760103751632.html?search_query=beurre+de+karite&results=292"
-                      ) &&
-                      window.open(
-                        "https://www.joliessence.com/beurres-vegetaux-et-cires-bio/55-cire-d-abeille-jaune-bio-30g-3760103751649.html"
-                      );
+                      "https://www.mycosmetik.fr/#ae411                      "
+                    )
                   }}
                   type="orange"
                   className="w-32 h-10"
@@ -506,10 +500,6 @@ const StarterPage = () => {
                   Commander
                 </Button>
               </div>
-              <p className="pt-4 text-center text-sm font-light self-end">
-                Ceci n'est pas un lien sponsorisé. Greenit ne touche pas
-                d'argent. 🌱
-              </p>
             </div>
             <p className="lg:text-center text-sm text-sm font-light lg:mt-6">
               En achetant ces ingrédients, vous pouvez faire{" "}
@@ -843,7 +833,7 @@ const StarterPage = () => {
               <p className="text-sm text-center font-light">
                 En ligne, l’offre est bien plus grande, mais attention à la
                 qualité ! Nous recommandons certaines marques françaises comme :
-                Vos huiles, La compagnie des sens ou Joli essence. Sur ces
+                Vos huiles, La compagnie des sens ou MyCosmetik. Sur ces
                 sites, vous trouverez absolument tout ce dont vous avez besoin :
                 ingrédients cosmétiques, huiles essentielles, poudres végétales
                 et ingrédients pour le ménage.

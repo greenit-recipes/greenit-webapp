@@ -7,6 +7,7 @@ import { LikeComment } from "components/layout/LikeComment";
 import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { UserBadge } from "components/layout/UserBadge";
 import { getImagePath } from "helpers/image.helper";
+import { getObjectSession } from "helpers/session-helper";
 import { momentGreenit } from "helpers/time.helper";
 import { getUuidFromId } from "helpers/user.helper";
 import useIsMobile from "hooks/isMobile";
@@ -154,7 +155,8 @@ const RecipeSinglePage = () => {
         <div
           className="grid absolute cursor-pointer rounded-full left-0 top-14 w-8 h-8 z-20 ml-3 | lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
           onClick={() => {
-            history.goBack() // need to have previous path
+            if (getObjectSession("pathname")) history.goBack() // need to have previous path
+            else history.push(RouteName.recipes)
           }}
         >
           <img alt="Retour icon" loading="lazy" src={retourIcon} />

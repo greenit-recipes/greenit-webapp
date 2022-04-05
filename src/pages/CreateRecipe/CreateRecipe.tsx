@@ -3,12 +3,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { Button, Footer, Navbar } from "components";
 import { BackgroundImage } from "components/layout/BackgroundImage";
-import {
-  imageValidation
-} from "helpers/yup-validation.helper";
+import { imageValidation } from "helpers/yup-validation.helper";
 import { cloneDeep } from "lodash";
 import {
-  CREATE_EMAIL_RECIPE, EMAIL_LINK_SHARED_RECIPE, GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
+  CREATE_EMAIL_RECIPE,
+  EMAIL_LINK_SHARED_RECIPE,
+  GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
@@ -23,9 +23,8 @@ import {
   pintlogo,
   tiktoklogo,
   wwwlogo,
-  ytlogo
+  ytlogo,
 } from "../../icons";
-
 
 const schemaLink = yup.object().shape({
   link: yup.string().required("Ce champ est obligatoire."),
@@ -269,15 +268,19 @@ const CreateRecipe: React.FC = () => {
         >
           <div className="mb-4">
             <h2 className="text-lg md:text-2xl font-semibold">
-              À partir d'un lien existant
+              Partage ta recette à partir d'un lien existant
             </h2>
             <h3 className="block text-sm mt-2 font-semibold">
               Tu souhaites partager une recette de ton blog, ton instagram ou
               une publication facebook ?
             </h3>
+            <h3 className="block text-sm mt-2 font-semibold">
+              Nous faisons attention à la duplication de contenu et nous
+              t'enverrons un mail quand ta recette sera publiée !
+            </h3>
             <h3 className="block text-sm font-bold">
               Ajoute le lien de la recette et nous la partagerons avec la
-              communauté !
+              communauté.
             </h3>
           </div>
           <div className="flex flex-col lg:flex-row items-center">
@@ -568,7 +571,9 @@ const CreateRecipe: React.FC = () => {
               placeholder="Lien de ton post ou de ta vidéo"
               type="text"
             ></input>
-            <p className="text-red text-xs italic">{errors.videoUrl?.message}</p>
+            <p className="text-red text-xs italic">
+              {errors.videoUrl?.message}
+            </p>
           </div>
 
           <div className="mb-10">
