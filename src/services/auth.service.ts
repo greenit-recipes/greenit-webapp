@@ -148,9 +148,18 @@ export const ME = gql`
         numberOfLikes
         numberOfIngredients
         nbrView
-        category {
+      }
+      recipeMadeUser {
+        recipe {
+          id
+          urlId
           name
+          image
+          moneySaved
+          plasticSaved
+          numberOfSubstances
         }
+        amount
       }
       recipeFavorite {
         id
@@ -164,9 +173,6 @@ export const ME = gql`
         numberOfIngredients
         isLikedByCurrentUser
         isAddToFavoriteByCurrentUser
-        category {
-          name
-        }
       }
     }
   }
@@ -252,11 +258,13 @@ class Auth {
   }
 
   isRedirectToProfil(pathname: string) {
-    return pathname === RouteName.activateResetPassword ||
-            includes(pathname , RouteName.resetPassword) ||
-            includes(pathname , "activate") ||
-            includes(pathname , RouteName.tokenActivationAccount) ||
-            pathname  === RouteName.register
+    return (
+      pathname === RouteName.activateResetPassword ||
+      includes(pathname, RouteName.resetPassword) ||
+      includes(pathname, "activate") ||
+      includes(pathname, RouteName.tokenActivationAccount) ||
+      pathname === RouteName.register
+    );
   }
 
   requestRefreshToken = async () => {

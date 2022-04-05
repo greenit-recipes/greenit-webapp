@@ -4,6 +4,7 @@ import { RouteName } from "App";
 import { Button, Footer, Loading, Navbar } from "components";
 import { FavouriteField } from "components/layout/FavouriteField";
 import { LikeComment } from "components/layout/LikeComment";
+import { MadeRecipe } from "components/layout/MadeRecipe";
 import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { UserBadge } from "components/layout/UserBadge";
 import { getImagePath } from "helpers/image.helper";
@@ -184,6 +185,7 @@ const RecipeSinglePage = () => {
                     customClassName="flex w-28"
                     recipe={data?.recipe}
                   ></FavouriteField>
+                  <MadeRecipe customClassName="ml-10"  recipe={data?.recipe}/>
                   <div className="flex w-28 btn-single-page w-10 h-10 ml-10">
                     <RWebShare
                       data={{

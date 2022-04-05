@@ -274,9 +274,8 @@ const CreateRecipe: React.FC = () => {
               Tu souhaites partager une recette de ton blog, ton instagram ou
               une publication facebook ?
             </h3>
-            <h3 className="block text-sm mt-2 font-semibold">
-              Nous faisons attention à la duplication de contenu et nous
-              t'enverrons un mail quand ta recette sera publiée !
+            <h3 className="block text-sm font-semibold">
+              Nous faisons attention à la duplication de contenu et nous t'enverrons un mail quand ta recette sera publiée ! 
             </h3>
             <h3 className="block text-sm font-bold">
               Ajoute le lien de la recette et nous la partagerons avec la

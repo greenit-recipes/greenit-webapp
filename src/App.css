@@ -189,6 +189,16 @@ border-radius: 4px;
   border-radius: 5px;
 }
 
+.icon-position-circle {
+  left: -6px;
+  top: -5px;
+}
+
+.icon-position-circle-mobile {
+  left: -3px;
+  top: -2px;
+}
+
 .button_contact:hover {
   background-color: transparent;
   color: #83d489;

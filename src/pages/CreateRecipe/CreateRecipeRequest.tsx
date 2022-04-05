@@ -126,3 +126,11 @@ export const ADD_OR_REMOVE_FAVORITE_RECIPE = gql`
     }
   }
 `;
+
+export const ADD_OR_REMOVE_MADE_RECIPE = gql`
+  mutation addOrRemoveMadeRecipe($recipeId: String!) {
+    addOrRemoveMadeRecipe(recipeId: $recipeId) {
+      success
+    }
+  }
+`;
