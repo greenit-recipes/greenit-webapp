@@ -263,6 +263,26 @@ const WorkshopPage = () => {
             </div>
           </div>
         </div>
+        <div className="w-4/5 mb-10 mt-8 flex-col hidden">
+          <div className="grid md:grid-cols-4">
+            <div className="mt-6 rounded">
+              <div className="h-9/12 grid md:justify-items-center">
+                <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
+                  <div className="flex justify-center items-center align-middle">
+                    <a
+                      href={"https://www.instagram.com/eclatdessences/"}
+                      target="_blank"
+                    >
+                      <button id="book4-1" className="button_reserver">
+                        Reserver
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <Container className="flex flex-col | items-center | mt-6 md:mt-16 p-6">
           <h2 className="text-xl md:text-2xl | text-center">
             Clique sur la region où tu aimerais avoir un atelier :

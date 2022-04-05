@@ -1,13 +1,10 @@
 import { Loading } from "components";
 import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
-import { getObjectSession } from "helpers/session-helper";
 import { createBrowserHistory } from "history";
 import LandingPage from "pages/LandingPage/LandingPage";
-import React, { Suspense, useEffect } from "react";
-import { Route, Router, Switch, useLocation } from "react-router-dom";
-import { toNumber  } from "lodash";
-
+import React, { Suspense } from "react";
+import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
 
@@ -69,7 +66,7 @@ export const RouteName = {
 };
 
 const App: React.FC = () => {
-  history.listen((x) => window.sessionStorage.setItem("pathname",   JSON.stringify(x?.pathname)));
+  history.listen((x) => window.sessionStorage.setItem("pathname", JSON.stringify(x?.pathname)));
   return (
     <Suspense fallback={<Loading />}>
       <Router history={history}>
