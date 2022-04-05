@@ -9,6 +9,7 @@ module.exports = {
       safelist: [ // TO REMOVE COLOR DONT WORK WHEN PURGING
         "rounded-md",
         "md:h-14",
+        "md:h-9",
         /submit/,
         /success/,
         /error/,
