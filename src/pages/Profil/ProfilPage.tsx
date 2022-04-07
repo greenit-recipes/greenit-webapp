@@ -87,7 +87,7 @@ const ProfilPage: React.FC = () => {
         </div>
         <div className="flex flex-col | self-center">
           <div className="flex-inline overflow-clip overflow-hidden ...">
-            <h1 className="text-xl md:text-3xl">{user?.username}</h1>
+            <h1 className="text-2xl fontQSemibold md:text-3xl">{user?.username}</h1>
           </div>
           <Modal />
         </div>

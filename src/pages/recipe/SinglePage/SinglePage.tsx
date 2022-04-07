@@ -174,7 +174,7 @@ const RecipeSinglePage = () => {
           <div className="w-5/6 mb-10 lg:w-4/6">
             <div className="w-full h-auto">
               <div className="justify-center">
-                <h1 className="mb-5 text-2xl text-center lg:text-3xl fontQSsemibold">
+                <h1 className="mb-5 text-xl text-center lg:text-2xl fontQSsemibold">
                   {recipe?.name}
                 </h1>
                 <div className="flex items-center justify-center mb-10">

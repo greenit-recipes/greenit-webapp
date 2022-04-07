@@ -63,8 +63,8 @@ export const ExplorateurProfil: React.FC<IUser> = ({
   return (
     <div className="flex flex-col items-center mb-14">
       <div className="w-full lg:w-4/6">
-        <div>Ton impact</div>
-        <div>Le select {amountTotal}</div>
+        <div className="text-2xl font-semibold text-center">Ton impact</div>
+        <div className="button-with-border-radius">{amountTotal} produits fabriqués</div>
         <div>
           <div>Recettes faites</div>
           <div>Nombre de produits fabriqués</div>
