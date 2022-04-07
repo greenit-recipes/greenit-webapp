@@ -36,9 +36,10 @@ export const AskQuestion: React.FC = () => {
     }).then(() => reset());
   };
   return (
-    <div className="flex flex-col justify-items-center self-center mb-20 lg:w-1/3">
+    <div className="flex flex-col self-center mb-20 justify-items-center lg:w-1/3">
       <form
-        className="flex flex-col gap-2 w-full"
+        className="flex flex-col w-full gap-2"
+                    // @ts-ignore
         onSubmit={handleSubmit(onSubmitHandler)}
       >
         <textarea
@@ -50,7 +51,7 @@ export const AskQuestion: React.FC = () => {
           {...register("question")}
         ></textarea>
         <div>
-          <p className="text-red-500 text-xs italic">
+          <p className="text-xs italic text-red-500">
             {errors.question?.message}
           </p>
         </div>
@@ -62,10 +63,10 @@ export const AskQuestion: React.FC = () => {
           {...register("email")}
         ></input>
         <div>
-          <p className="text-red-500 text-xs italic">{errors.email?.message}</p>
+          <p className="text-xs italic text-red-500">{errors.email?.message}</p>
         </div>
         <div className="grid w-full justify-items-center">
-          <Button id="send_question" type="blue" className="p-4 h-10 mt-4">
+          <Button id="send_question" type="blue" className="h-10 p-4 mt-4">
             Envoyer
           </Button>
         </div>

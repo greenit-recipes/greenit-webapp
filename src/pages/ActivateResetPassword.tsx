@@ -63,7 +63,7 @@ const ActivateResetPassword: React.FC = () => {
     }).then(() => reset());
   };
   return (
-    <div className="grid justify-items-center w-full">
+    <div className="grid w-full justify-items-center">
       <Navbar />
       <Helmet>
         <meta name="robots" content="noindex" />
@@ -73,15 +73,13 @@ const ActivateResetPassword: React.FC = () => {
         Réinitialisation du mot de passe. <br />
       </h3>
 
-      <div className="w-full max-w-xs md:max-w-lg mt-10">
+      <div className="w-full max-w-xs mt-10 md:max-w-lg">
         <div className="grid grid-cols-2 md:w-96">
           <ModalLogGreenit
             isModalLogin={true}
             btn={
               <button
-                className="flex items-center cursor-pointer
-              bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
-              hover:bg-white hover:border-green hover:text-green"
+                className="flex items-center h-8 p-2 text-xl text-white border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green"
               >
                 <h3 className="text-sm">Se connecter</h3>
               </button>
@@ -89,49 +87,48 @@ const ActivateResetPassword: React.FC = () => {
           ></ModalLogGreenit>
         </div>
         <form
-          className="bg-white shadow-lg rounded-xl p-12 mb-4 mt-2"
-          onSubmit={handleSubmit(onSubmitHandler)}
+          className="p-12 mt-2 mb-4 bg-white shadow-lg rounded-xl"
+            // @ts-ignore
+            onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
-            <label className="block text-gray-700 text-lg font-bold mb-2">
+            <label className="block mb-2 text-lg font-bold text-gray-700">
               Mot de passe
             </label>
             <input
-              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 mb-4 leading-tight text-gray-700 rounded shadow-lg appearance-none focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
               placeholder="******************"
               {...register("password")}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-xs italic text-red-500">
               {errors.password?.message}
             </p>
-            <label className="block text-gray-700 text-sm mb-2">
+            <label className="block mb-2 text-sm text-gray-700">
               Le mot de passe doit contenir 8 caractères, une majuscule, une
               minuscule
             </label>
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-lg font-bold mb-2">
+            <label className="block mb-2 text-lg font-bold text-gray-700">
               Confirmation mot de passe
             </label>
             <input
-              className="shadow-lg appearance-none rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 mb-4 leading-tight text-gray-700 rounded shadow-lg appearance-none focus:outline-none focus:shadow-outline"
               id="passwordConfirmation"
               type="password"
               placeholder="******************"
               {...register("passwordConfirmation")}
             />
-            <p className="text-red-500 text-xs italic">
+            <p className="text-xs italic text-red-500">
               {errors.passwordConfirmation?.message}
             </p>
           </div>
 
           <div className="flex items-center justify-between">
             <button
-              className="flex justify-center items-center cursor-pointer
-              bg-blue rounded-lg p-3 h-10  mr-5 text-lg bold text-white border-2 border-transparent
-              hover:bg-white hover:border-blue hover:text-blue"
+              className="flex items-center justify-center h-10 p-3 mr-5 text-lg text-white border-2 border-transparent rounded-lg cursor-pointer bg-blue bold hover:bg-white hover:border-blue hover:text-blue"
             >
               Envoyer
             </button>

@@ -32,11 +32,12 @@ export const SharedWithFriend: React.FC = () => {
   };
   return (
     <div className="grid lg:col-span-2 gap-4 justify-items-center self-center | mt-8 lg:mt-0">
-      <h2 className="text-sm lg: font-regular text-center">
+      <h2 className="text-sm text-center lg: font-regular">
         Motivez-vous avec vos ami.e.s :
       </h2>
       <form
         className="flex flex-col gap-4"
+                    // @ts-ignore
         onSubmit={handleSubmit(onSubmitHandler)}
       >
         <input
@@ -48,12 +49,12 @@ export const SharedWithFriend: React.FC = () => {
         ></input>
 
         <div className="grid w-full justify-items-center">
-          <Button id="share_friends" type="blue" className="p-4 h-10">
+          <Button id="share_friends" type="blue" className="h-10 p-4">
             Envoyer le lien du guide
           </Button>
         </div>
         <div>
-          <p className="text-red-500 text-xs italic">
+          <p className="text-xs italic text-red-500">
             {
               errors.email?.message
             }

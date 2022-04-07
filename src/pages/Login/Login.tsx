@@ -142,7 +142,7 @@ const Login: React.FC = () => {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
   return (
-    <div className="grid justify-items-center w-full">
+    <div className="grid w-full justify-items-center">
       <Navbar />
       <div className="hidden">
      <FacebookLogin
@@ -152,7 +152,7 @@ const Login: React.FC = () => {
         callback={responseFacebook}
       />
       </div>
-     { errorLoginFb && (<div className="mt-4 text-red text-xs italic">{errorLoginFb}</div>)}
+     { errorLoginFb && (<div className="mt-4 text-xs italic text-red">{errorLoginFb}</div>)}
       <Helmet>
         <title>Connexion - Espace DIY | Greenit Community</title>
         <meta
@@ -164,43 +164,42 @@ const Login: React.FC = () => {
       <h1 className="text-xl font-medium w-2/3 md:text-2xl | mt-16 text-center">
         Connexion vers ton espace DIY <br />
       </h1>
-      <div className="w-full max-w-xs md:max-w-lg mt-10 mb-20">
-        <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 w-4/5">
-          <h3 className="text-sm md: self-center">
+      <div className="w-full max-w-xs mt-10 mb-20 md:max-w-lg">
+        <div className="grid w-4/5 grid-rows-2 md:grid-cols-2 md:grid-rows-1">
+          <h3 className="self-center text-sm md:">
             Si tu veux créer un compte :
           </h3>
           <Link to={RouteName.register}>
             <button
-              className="flex items-center cursor-pointer
-              ml-2 bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
-            hover:bg-white hover:border-green hover:text-green"
+              className="flex items-center h-8 p-2 ml-2 text-xl text-white border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green"
             >
               <h3 className="text-sm align-middle">Créer un compte</h3>
             </button>
           </Link>
         </div>
         <form
-          className="bg-white shadow-lg rounded-xl p-10 mb-4 mt-5"
+          className="p-10 mt-5 mb-4 bg-white shadow-lg rounded-xl"
+                      // @ts-ignore
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
-            <label className="block text-gray-700  md:text-lg font-bold mb-2">
+            <label className="block mb-2 font-bold text-gray-700 md:text-lg">
               Email
             </label>
             <input
-              className="shadow-lg appearance-none border rounded w-full sm:w-80 py-2 px-3 text-gray-700 h-12 leading-tight focus:outline-none focus:shadow-outline mb-6"
+              className="w-full h-12 px-3 py-2 mb-6 leading-tight text-gray-700 border rounded shadow-lg appearance-none sm:w-80 focus:outline-none focus:shadow-outline"
               id="email"
               placeholder="email"
               type="email"
               {...register("email")}
             ></input>
-            <p className="text-red text-xs italic">{errors.email?.message}</p>
+            <p className="text-xs italic text-red">{errors.email?.message}</p>
           </div>
           <div className="mb-10">
-            <label className="block text-gray-700  md:text-lg font-bold mb-2">
+            <label className="block mb-2 font-bold text-gray-700 md:text-lg">
               Mot de passe
             </label>
-            <div className="flex flex-row justify-between items-center shadow-lg  border rounded w-full sm:w-80 py-2 px-3 text-gray-700 mb-3 h-12 leading-tight  focus:shadow-outline">
+            <div className="flex flex-row items-center justify-between w-full h-12 px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow-lg sm:w-80 focus:shadow-outline">
             <input
               className="appearance-none focus:outline-none"
               id="password"
@@ -212,24 +211,22 @@ const Login: React.FC = () => {
             <img src={isRevealPwd ? mdpVisible : mdpNonVisible} alt="voir le mot de passe"            
             onClick={() => setIsRevealPwd(prevState => !prevState)}/>
             </div>
-            <p className="text-red text-xs italic">
+            <p className="text-xs italic text-red">
               {errors.password?.message}
             </p>
-            <label className="block text-gray-700 text-sm mb-2">
+            <label className="block mb-2 text-sm text-gray-700">
               Mot de passe (Le mot de passe doit contenir 8 caractères, une
               majuscule, une minuscule)
             </label>
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="flex justify-center items-center cursor-pointer align-middle
-              bg-blue rounded-lg p-3 h-10  mr-5  md:text-lg bold text-white border-2 border-transparent
-              hover:bg-white hover:border-blue hover:text-blue"
+              className="flex items-center justify-center h-10 p-3 mr-5 text-white align-middle border-2 border-transparent rounded-lg cursor-pointer bg-blue md:text-lg bold hover:bg-white hover:border-blue hover:text-blue"
             >
               Connexion
             </button>
             <a
-              className="inline-block align-baseline font-medium text-sm hover:text-blue"
+              className="inline-block text-sm font-medium align-baseline hover:text-blue"
               href={RouteName.resetPassword}
             >
               Mot de passe oublié ?

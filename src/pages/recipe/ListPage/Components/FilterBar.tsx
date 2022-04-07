@@ -83,7 +83,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           setCurrentFilters={setCurrentFilters}
         />
       ) : (
-        <div className="w-full grid justify-items-start lg:justify-items-center bg-white">
+        <div className="grid w-full bg-white justify-items-start lg:justify-items-center">
           <div
             className={
               isMobile
@@ -92,7 +92,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             }
           >
             {!isMobile && (
-              <div className="flex w-11/12 self-center">
+              <div className="flex self-center w-11/12">
                 <FilterBarSearch
                   search={search}
                   keyId="SearchFilterBar"
@@ -103,11 +103,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             )}
             {isMobile && (
               <Button
-                className="p-2 right-0 mr-3 fixed top-14"
+                className="fixed right-0 p-2 mr-3 top-14"
                 type="red"
                 onClick={() => removeFilters()}
               >
-                <h3 className="text-end text-sm">Supprimer les filtres X</h3>
+                <h3 className="text-sm text-end">Supprimer les filtres X</h3>
               </Button>
             )}
             <div className={isMobile ? "" : "grid grid-cols-5 mt-4 w-10/12"}>
@@ -134,7 +134,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             </div>
 
             {!isMobile && (
-              <div className="flex-col w-11/12 h-auto bg-bluelight rounded-lg px-4 py-2 mt-4">
+              <div className="flex-col w-11/12 h-auto px-4 py-2 mt-4 rounded-lg bg-blueL">
                 {isCurrentFilterEmpty && (
                   <>
                     <div className="flex">
@@ -147,7 +147,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                           (item: any, key: any) =>
                             map(item, (value, index) => (
                               <div
-                                className="flex h-8 inline bg-blue text-white rounded-lg px-3 py-1 ml-2 mb-2"
+                                className="flex inline h-8 px-3 mb-2 ml-2 text-white rounded-lg bg-blue py-1"
                                 key={index}
                               >
                                 <p>{value.title}</p>

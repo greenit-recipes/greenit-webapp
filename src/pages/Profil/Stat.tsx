@@ -35,10 +35,11 @@ export const StatProfilForm: React.FC = () => {
       <div>De quoi as-tu besoin ?</div>
       <form
         className="flex flex-col gap-4"
+        // @ts-ignore
         onSubmit={handleSubmit(onSubmitHandler)}
       >
         <textarea
-          className="appearance-none self-center rounded w-full sm:w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border"
+          className="self-center w-full p-4 mb-4 leading-tight text-gray-700 border rounded appearance-none sm:w-3/4 focus:outline-none focus:shadow-outline"
           id="question"
           rows={5}
           cols={55}
@@ -47,12 +48,12 @@ export const StatProfilForm: React.FC = () => {
         ></textarea>
 
         <div className="grid w-full justify-items-center">
-          <Button id="what_do_u_need" type="green" className="p-4 h-10">
+          <Button id="what_do_u_need" type="green" className="h-10 p-4">
             Envoyer
           </Button>
         </div>
         <div>
-          <p className="text-red-500 text-xs italic">
+          <p className="text-xs italic text-red-500">
             {errors.question?.message}
           </p>
         </div>

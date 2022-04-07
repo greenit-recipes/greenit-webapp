@@ -125,6 +125,15 @@ export const UPDATE_ACCOUNT = gql`
   }
 `;
 
+
+export const PLUS_OR_LESS_RECIPE = gql`
+  mutation plusOrLessMadeRecipe($recipeId: String!, $isLess: Boolean!) {
+    plusOrLessMadeRecipe(recipeId: $recipeId, isLess: $isLess) {
+      success
+    }
+  }
+`;
+
 export const ME = gql`
   query Me {
     me {

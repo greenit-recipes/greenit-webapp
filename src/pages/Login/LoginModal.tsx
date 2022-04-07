@@ -135,14 +135,15 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
           isMobile ? "" : "login-modal-size"
         } flex-col items-center justify-items-center`}
       >
-        <div className="lg:flex flex-row w-full">
+        <div className="flex-row w-full lg:flex">
           <div className="desktopbg"> </div>
-          <div className="mobile flex flex-col items-center">
+          <div className="flex flex-col items-center mobile">
             <div className="text-xl font-bold text-center">
               Connexion vers ton espace DIY <br />
             </div>
             <form
               className="flex flex-col lg:w-72 md:my-2"
+                          // @ts-ignore
               onSubmit={handleSubmit(onSubmitHandler)}
             >
               <div className="flex flex-row items-center w-full">
@@ -152,14 +153,14 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                   alt="icone email"
                 />
                 <input
-                  className="shadow-lg appearance-none border rounded-xl w-full py-1 px-3  text-gray-700 h-8  leading-tight focus:outline-none focus:shadow-outline m-4"
+                  className="w-full h-8 px-3 m-4 leading-tight text-gray-700 border shadow-lg appearance-none rounded-xl py-1 focus:outline-none focus:shadow-outline"
                   id="email"
                   placeholder="Email"
                   type="email"
                   {...register("email")}
                 ></input>
               </div>
-              <p className="text-red text-xs italic">
+              <p className="text-xs italic text-red">
                 {errors.password?.message}
               </p>
 
@@ -169,9 +170,9 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                   src={loginPassword}
                   alt="icone mot de passe"
                 />
-                <div className="flex flex-row  items-center shadow-lg  border rounded-xl w-full text-gray-700 h-8 leading-tight  focus:shadow-outline m-4">
+                <div className="flex flex-row items-center w-full h-8 m-4 leading-tight text-gray-700 border shadow-lg rounded-xl focus:shadow-outline">
                   <input
-                    className="appearance-none rounded-xl py-1 px-3  focus:outline-none w-full h-full"
+                    className="w-full h-full px-3 appearance-none rounded-xl py-1 focus:outline-none"
                     id="password"
                     type={isRevealPwd ? "text" : "password"}
                     placeholder="Mot de passe"
@@ -185,21 +186,21 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                   />
                 </div>
               </div>
-              <p className="text-red text-xs italic">
+              <p className="text-xs italic text-red">
                 {errors.password?.message}
               </p>
               <a
-                className="self-end mt-2 mb-6 px-4 text-sm lg:text-base text-blue font-bold"
+                className="self-end px-4 mt-2 mb-6 text-sm font-bold lg:text-base text-blue"
                 href={RouteName.resetPassword}
               >
                 Mot de passe oublié ?
               </a>
-              <Button type="blue" className="font-extrabold mt-4">
+              <Button type="blue" className="mt-4 font-extrabold">
                 Connexion
               </Button>
             </form>
 
-            <div className="separator m-4 text-gray-700 md:m-10">Ou</div>
+            <div className="m-4 text-gray-700 separator md:m-10">Ou</div>
 
             <FacebookLogin
               // @ts-ignore
@@ -213,13 +214,13 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
             />
 
             {errorLoginFb && (
-              <div className="mt-4 text-red text-xs italic">{errorLoginFb}</div>
+              <div className="mt-4 text-xs italic text-red">{errorLoginFb}</div>
             )}
 
             <div>
               <p
                 onClick={() => loginOpen(false)}
-                className="underline m-4 md:m-10 text-sm text-center cursor-pointer text-gray-700"
+                className="m-4 text-sm text-center text-gray-700 underline cursor-pointer md:m-10"
               >
                 Pas encore de compte ? - Créer son compte
               </p>

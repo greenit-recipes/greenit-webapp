@@ -154,7 +154,7 @@ const RecipeSinglePage = () => {
       <div className="flex flex-col | items-center">
         <Navbar />
         <div
-          className="grid absolute cursor-pointer rounded-full left-0 top-14 w-8 h-8 z-20 ml-3 | lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
+          className="absolute left-0 z-20 grid w-8 h-8 ml-3 rounded-full cursor-pointer top-14 lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
           onClick={() => {
             if (getObjectSession("pathname")) history.goBack() // need to have previous path
             else history.push(RouteName.recipes)
@@ -171,13 +171,13 @@ const RecipeSinglePage = () => {
           className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage"
           style={{ marginTop: sizeCretorHeader / 16 - 8 + "rem" }}
         >
-          <div className="w-5/6 lg:w-4/6 mb-10">
+          <div className="w-5/6 mb-10 lg:w-4/6">
             <div className="w-full h-auto">
               <div className="justify-center">
-                <h1 className="text-2xl lg:text-3xl text-center fontQSsemibold mb-5">
+                <h1 className="mb-5 text-2xl text-center lg:text-3xl fontQSsemibold">
                   {recipe?.name}
                 </h1>
-                <div className="flex justify-center items-center mb-10">
+                <div className="flex items-center justify-center mb-10">
                   <FavouriteField
                     isToltipActif={false}
                     isRecipePage={true}
@@ -186,7 +186,7 @@ const RecipeSinglePage = () => {
                     recipe={data?.recipe}
                   ></FavouriteField>
                   <MadeRecipe customClassName="ml-10"  recipe={data?.recipe}/>
-                  <div className="flex w-28 btn-single-page w-10 h-10 ml-10">
+                  <div className="flex w-10 h-10 ml-10 w-28 btn-single-page">
                     <RWebShare
                       data={{
                         text: recipe?.titleSeo,
@@ -195,14 +195,14 @@ const RecipeSinglePage = () => {
                       }}
                     >
                       <button
-                        className="flex justify-center items-center"
+                        className="flex items-center justify-center"
                         id="shared-recipe"
                       >
                         <RiShareForwardLine
                           id="shared-recipe"
-                          className="justify-self-center ml-1 w-7 h-7"
+                          className="ml-1 justify-self-center w-7 h-7"
                         />
-                        <h2 id="shared-recipe" className="text-center ml-2">
+                        <h2 id="shared-recipe" className="ml-2 text-center">
                           {" "}
                           partage{" "}
                         </h2>
@@ -216,7 +216,7 @@ const RecipeSinglePage = () => {
                   <CircleGreenit
                     colorCircle="bg-orange"
                     icon={
-                      <IoFlaskOutline className="h-10 w-10 absolute icon-position-circle rotate-singlePage-chimie" />
+                      <IoFlaskOutline className="absolute w-10 h-10 icon-position-circle rotate-singlePage-chimie" />
                     }
                     symbol=""
                     number={recipe?.substances?.length}
@@ -225,7 +225,7 @@ const RecipeSinglePage = () => {
                   <CircleGreenit
                     colorCircle="bg-yellow"
                     icon={
-                      <BsWallet2 className="h-9 w-9 absolute icon-position-circle rotate-singlePage-wallet" />
+                      <BsWallet2 className="absolute h-9 w-9 icon-position-circle rotate-singlePage-wallet" />
                     }
                     customClassName="ml-16"
                     symbol="€"
@@ -235,7 +235,7 @@ const RecipeSinglePage = () => {
                   <CircleGreenit
                     colorCircle="bg-green"
                     icon={
-                      <IoEarthOutline className="h-10 w-10 absolute icon-position-circle" />
+                      <IoEarthOutline className="absolute w-10 h-10 icon-position-circle" />
                     }
                     customClassName="ml-16"
                     symbol="g"
@@ -245,20 +245,20 @@ const RecipeSinglePage = () => {
                 </div>
               )}
               {/* Description + image */}
-              <div className="flex flex-col lg:flex-row md mt-8">
+              <div className="flex flex-col mt-8 lg:flex-row md">
                 <img
                   // @ts-ignore
                   src={getImagePath(recipe?.image)}
                   alt={recipe?.name}
                   loading="lazy"
-                  className="m-auto object-cover h-64 w-52 lg:w-64 lg:h-80 rounded-3xl"
+                  className="object-cover h-64 m-auto w-52 lg:w-64 lg:h-80 rounded-3xl"
                 />
                 {isMobile && (
                   <div className="flex items-center justify-center mt-8">
                     <CircleGreenit
                       colorCircle="bg-orange"
                       icon={
-                        <IoFlaskOutline className="h-6 w-6 absolute icon-position-circle-mobile rotate-singlePage-chimie" />
+                        <IoFlaskOutline className="absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-chimie" />
                       }
                       symbol=""
                       number={recipe?.substances?.length}
@@ -267,7 +267,7 @@ const RecipeSinglePage = () => {
                     <CircleGreenit
                       colorCircle="bg-yellow"
                       icon={
-                        <BsWallet2 className="h-6 w-6 absolute icon-position-circle-mobile rotate-singlePage-wallet" />
+                        <BsWallet2 className="absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-wallet" />
                       }
                       customClassName="ml-16"
                       symbol="€"
@@ -277,7 +277,7 @@ const RecipeSinglePage = () => {
                     <CircleGreenit
                       colorCircle="bg-green"
                       icon={
-                        <IoEarthOutline className="h-6 w-6 absolute icon-position-circle-mobile" />
+                        <IoEarthOutline className="absolute w-6 h-6 icon-position-circle-mobile" />
                       }
                       customClassName="ml-16"
                       symbol="g"
@@ -286,9 +286,9 @@ const RecipeSinglePage = () => {
                     />
                   </div>
                 )}
-                {isMobile && <h2 className="text-xl mt-8">Description</h2>}
+                {isMobile && <h2 className="mt-8 text-xl">Description</h2>}
 
-                <div className="mt-5 flex flex-col lg:ml-12">
+                <div className="flex flex-col mt-5 lg:ml-12">
                   {!isEmpty(recipe?.description) ? (
                     <div className="w-full lg:w-5/6">
                       {
@@ -301,9 +301,9 @@ const RecipeSinglePage = () => {
                   )}
                   <div className="pt-5 pb-2 fontQSbold ">Conservation</div>
                   <p>{recipe?.expiry}</p>
-                  <div className="flex black mt-6">
+                  <div className="flex mt-6 black">
                     <div className="h-16">
-                      <div className="text-center mb-1 mt-1"> Temps</div>
+                      <div className="mt-1 mb-1 text-center"> Temps</div>
                       <div className="flex items-center justify-center">
                         <BiTimeFive className="w-6 h-6 mr-2" />
                         <div>{recipe?.duration} m</div>
@@ -313,7 +313,7 @@ const RecipeSinglePage = () => {
                       className="
                   px-1.5 h-16 ml-6"
                     >
-                      <div className="text-center mb-1 mt-1"> Prix</div>
+                      <div className="mt-1 mb-1 text-center"> Prix</div>
                       <div className="flex items-center justify-center">
                         <GrMoney className="w-6 h-6 mr-2" />
                         <div>
@@ -327,23 +327,23 @@ const RecipeSinglePage = () => {
             </div>
 
             <IngredientUsentil recipe={recipe} />
-            <div className="flex w-full h-full flex-col lg:flex-row">
+            <div className="flex flex-col w-full h-full lg:flex-row">
               {isMobile && (
                 <>
                   <h2 className="text-xl">Instructions</h2>
-                  <h3 className="text-xs mb-5">
+                  <h3 className="mb-5 text-xs">
                     ⤹ Clique sur les numéros pour faire avancer la vidéo
                   </h3>{" "}
                 </>
               )}
               <div className="h-60 lg:h-96 lg:w-2/6 rounded-2xl">
                 {isEmpty(recipe?.videoUrl) && isEmpty(recipe?.video) ? (
-                  <div className="grid w-full h-full bg-white justify-items-center items-center">
+                  <div className="grid items-center w-full h-full bg-white justify-items-center">
                     <img
                       src={noVideo}
                       loading="lazy"
                       alt={"Pas de vidéo"}
-                      className="h-60 lg:h-80 object-cover rounded-lg"
+                      className="object-cover rounded-lg h-60 lg:h-80"
                     ></img>
                   </div>
                 ) : (
@@ -442,11 +442,11 @@ const RecipeSinglePage = () => {
                 })}
               </div>
             </div>
-            <div className="mt-8 flex flex-col">
+            <div className="flex flex-col mt-8">
               <h2 className="pb-2 text-xl lg:text-2xl">Conseils de l'auteur</h2>
               <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
             </div>
-            <div className="mt-8 flex flex-col">
+            <div className="flex flex-col mt-8">
               <p className="text-xs text-grey">
                 Quelques précautions sont à prendre lors de la confection de vos
                 produits. Pour chaque recette postée, nous passons du temps à
@@ -458,18 +458,18 @@ const RecipeSinglePage = () => {
               </p>
             </div>
             {recipe && (
-              <div className="mt-6 flex flex-col mb-5">
+              <div className="flex flex-col mt-6 mb-5">
                 <h2 className="text-xl lg:text-2xl">Recettes similaires</h2>
                 <SimilarRecipe data={recipe}></SimilarRecipe>
               </div>
             )}
-            <div className="mt-6 flex flex-col" ref={fieldRef}>
+            <div className="flex flex-col mt-6" ref={fieldRef}>
               <h2 className="text-xl lg:text-2xl">Discussion</h2>
               {recipe?.comments?.map((comment: any, index: number) => {
                 // @ts-ignore
                 return (
-                  <div className="mt-3 flex flex-col" key={index}>
-                    <div className="relative bg-orange bg-opacity-10 rounded-xl p-4">
+                  <div className="flex flex-col mt-3" key={index}>
+                    <div className="relative p-4 bg-orange bg-opacity-10 rounded-xl">
                       <UserBadge
                         facebookImg={comment?.author?.photoUrl}
                         isSinglePage={true}
@@ -502,24 +502,25 @@ const RecipeSinglePage = () => {
               })}
             </div>
             <form
-              className="filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10 p-4 mb-4 mt-10"
+              className="p-4 mt-10 mb-4 filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10"
+                          // @ts-ignore
               onSubmit={handleSubmit(onSubmitHandler)}
             >
               <div className="mb-4">
-                <label className="block text-gray-700  lg:text-lg mb-2">
+                <label className="block mb-2 text-gray-700 lg:text-lg">
                   Partage tes retours et tes astuces !
                 </label>
               </div>
               <div className="flex items-center justify-between">
                 {isLoggedIn ? (
-                  <div className="mb-4 w-full">
+                  <div className="w-full mb-4">
                     <textarea
-                      className="appearance-none rounded w-full sm:w-3/4 mb-4 p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="w-full p-4 mb-4 leading-tight text-gray-700 rounded appearance-none sm:w-3/4 focus:outline-none focus:shadow-outline"
                       id="comment"
                       placeholder="Commentaire"
                       {...register("comment")}
                     ></textarea>
-                    <p className="text-red-500 text-xs italic">
+                    <p className="text-xs italic text-red-500">
                       {errors.comment?.message}
                     </p>
 

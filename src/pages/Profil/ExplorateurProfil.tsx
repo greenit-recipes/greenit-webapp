@@ -1,113 +1,118 @@
 import { useMutation } from "@apollo/client";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { RouteName } from "App";
+import { Loading } from "components";
+import { getImagePath } from "helpers/image.helper";
 import useIsMobile from "hooks/isMobile";
-import { filter, map, sum } from "lodash";
+import { map, sum, toNumber, orderBy } from "lodash";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React from "react";
 import { BsWallet2 } from "react-icons/bs";
+import { HiOutlinePlus } from "react-icons/hi";
+import { IoIosRemove } from "react-icons/io";
 import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
-import { UPDATE_ACCOUNT } from "services/auth.service";
-import * as yup from "yup";
+import { Link } from "react-router-dom";
+import { PLUS_OR_LESS_RECIPE } from "services/auth.service";
 
 interface IUser {
   recipeMadeUser: any;
   parentFunction?: any;
+  isLoad: boolean;
 }
 
 export const ExplorateurProfil: React.FC<IUser> = ({
   recipeMadeUser,
   parentFunction,
+  isLoad,
 }) => {
   const substancesRecipes = sum(
-    map(recipeMadeUser, (x) => x.amount * x.recipe.numberOfSubstances)
+    map(recipeMadeUser, (x) => x.recipe.numberOfSubstances)
   );
   const moneySavedRecipes = sum(
-    map(recipeMadeUser, (x) => x.amount * x.recipe.moneySaved)
+    map(
+      recipeMadeUser,
+      (x) => toNumber(x.amount) * toNumber(x.recipe.moneySaved)
+    )
   );
   const plasticSavedRecipes = sum(
-    map(recipeMadeUser, (x) => x.amount * x.recipe.plasticSaved)
+    map(
+      recipeMadeUser,
+      (x) => toNumber(x.amount) * toNumber(x.recipe.plasticSaved)
+    )
   );
-  const [updateAccount, { data: updateAccountData, loading, error }] =
-    useMutation(UPDATE_ACCOUNT, { errorPolicy: "all" });
 
-  const { register, handleSubmit, setError, reset, control } = useForm({
-    resolver: yupResolver(
-      yup.object().shape({
-        urlSocialMedia: yup
-          .array(
-            yup.object({
-              url: yup.string().required("Ce champ est obligatoire."),
-            })
-          )
-          .min(1, "Ce champ est obligatoire"),
-      })
-    ),
-  });
+  const amountTotal = sum(map(recipeMadeUser, (x) => toNumber(x.amount)));
 
-  console.log("recipeMadeUser -->", recipeMadeUser);
+  const [plusOrLessRecipe, { loading, error }] = useMutation(
+    PLUS_OR_LESS_RECIPE,
+    { errorPolicy: "all" }
+  );
+
   const isMobile = useIsMobile();
 
-  const {
-    formState: { errors },
-    handleSubmit: handleSubmitBio,
-    control: controlBio,
-  } = useForm();
-
-  const onSubmitHandler = (data: { urlsSocialMedia: [{ url: string }] }) => {
-    const socialsMedia = filter(data?.urlsSocialMedia, (x) => !!x?.url);
-    updateAccount({
+  const onSubmitHandlerPlusOrLess = (recipeId: number, isLess: boolean) => {
+    plusOrLessRecipe({
       variables: {
-        urlsSocialMedia: JSON.stringify(socialsMedia),
-      },
-    }).then(() => {
-      return parentFunction
-        ? parentFunction().then(() => setEditLink(!isEditLink))
-        : null;
-    });
-  };
-
-  const onSubmitHandlerBio = (data: { bio: string }) => {
-    updateAccount({
-      variables: {
-        biographie: data?.bio,
+        recipeId,
+        isLess,
       },
     }).then(() => {
       return parentFunction ? parentFunction() : null;
     });
   };
 
-  const [isEditLink, setEditLink] = useState(false);
-  const [isEditor, setEditor] = useState(true);
-  const [isDisplayStat, setDisplayStat] = useState(false);
   return (
-    <div className="mb-14">
-      <div>
+    <div className="flex flex-col items-center mb-14">
+      <div className="w-full lg:w-4/6">
         <div>Ton impact</div>
-      </div>
-      <div>Le select</div>
-      <div>
-        <div
-          className={`flex items-center btnProfilPage ingredient-shadow max-h-32 mt-4 ${
-            !isMobile ? "cursor-pointer" : ""
-          }`}
-          onClick={() => {
-            if (!isMobile) return;
-          }}
-        >
-          <div className="flex justify-between items-center w-1/6">
-            <img
-              className="h-12 w-12 rounded"
-              //alt={data?.name}
-              loading="lazy"
-              //src={getImagePath(data?.image)}
-            ></img>
-          </div>
-          <div className="w-4/6 ml-14"> Gel de lin maison</div>
-          <div className="w-1/6">
-            <div className="flex items-center justify-end w-full">
-              <p>Un truc</p>
-            </div>
+        <div>Le select {amountTotal}</div>
+        <div>
+          <div>Recettes faites</div>
+          <div>Nombre de produits fabriqués</div>
+          <div className={``}>
+            {orderBy(recipeMadeUser, "recipe.name").map(
+              (item: any, index: any) => (
+                <div
+                  key={item?.recipe?.id}
+                  className={`flex items-center btnProfilPage ingredient-shadow max-h-32 mt-4 ${
+                    !isMobile ? "" : ""
+                  }`}
+                >
+                  <Link to={`${RouteName.recipes}/${item?.recipe?.urlId}`}>
+                    <div className="flex items-center justify-between">
+                      <img
+                        className="object-cover rounded h-14 w-14 lg:h-12 lg:w-12"
+                        alt={item?.recipe?.name}
+                        loading="lazy"
+                        src={getImagePath(item?.recipe?.image)}
+                      ></img>
+                    </div>
+                  </Link>
+
+                  <div className="w-5/6 ml-14"> {item?.recipe?.name}</div>
+                  <div className="w-1/6">
+                    <div className="flex items-center justify-end w-full">
+                      <IoIosRemove
+                        className="w-5 h-5 cursor-pointer"
+                        onClick={() => {
+                          onSubmitHandlerPlusOrLess(item?.recipe?.id, true);
+                        }}
+                      />
+                      <div className="flex items-center justify-center w-10 h-10 rounded-full">
+                        {item?.amount}
+                      </div>
+                      <HiOutlinePlus
+                        className="w-5 h-5 cursor-pointer"
+                        onClick={() => {
+                          onSubmitHandlerPlusOrLess(item?.recipe?.id, false);
+                        }}
+                      />
+
+                      {isLoad && <Loading />}
+                    </div>
+                  </div>
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>
@@ -115,7 +120,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-orange"
           icon={
-            <IoFlaskOutline className="h-10 w-10 absolute icon-position-circle rotate-singlePage-chimie" />
+            <IoFlaskOutline className="absolute w-10 h-10 icon-position-circle rotate-singlePage-chimie" />
           }
           symbol=""
           number={substancesRecipes}
@@ -124,7 +129,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-yellow"
           icon={
-            <BsWallet2 className="h-9 w-9 absolute icon-position-circle rotate-singlePage-wallet" />
+            <BsWallet2 className="absolute h-9 w-9 icon-position-circle rotate-singlePage-wallet" />
           }
           customClassName="ml-16"
           symbol="€"
@@ -134,7 +139,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-green"
           icon={
-            <IoEarthOutline className="h-10 w-10 absolute icon-position-circle" />
+            <IoEarthOutline className="absolute w-10 h-10 icon-position-circle" />
           }
           customClassName="ml-16"
           symbol="g"

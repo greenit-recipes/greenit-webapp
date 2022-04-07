@@ -35,7 +35,7 @@ export const SearchBarNav: React.FC<{
     }
   };
   return (
-    <div className="flex flex-row h-9 w-44 mr-2 rounded-lg border-1 border-grey">
+    <div className="flex flex-row mr-2 border rounded-lg h-9 w-44 border-grey">
       <input
         type="text"
         className={`w-full h-full bg-transparent ml-2 | text-sm md:
@@ -59,7 +59,7 @@ export const SearchBarNav: React.FC<{
       <img
         alt="search icon"
         src={search}
-        className="w-6 h-6 self-center mr-2"
+        className="self-center w-6 h-6 mr-2"
         onClick={() => {
           handleSubmit();
         }}

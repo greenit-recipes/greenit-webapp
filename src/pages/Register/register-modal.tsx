@@ -169,11 +169,11 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
 
   return (
     <div className={`flex justify-center   ${!isMobile ? "register-modal-size" : ""} items-center`}>
-      <div className="bg-white flex flex-col rounded-3xl items-center">
-        <div className="text-lg font-bold lg:text-2xl text-center mb-4">
+      <div className="flex flex-col items-center bg-white rounded-3xl">
+        <div className="mb-4 text-lg font-bold text-center lg:text-2xl">
           Création de ton espace DIY <br />
         </div>
-        <h2 className="text-base md:text-lg mb-4">
+        <h2 className="mb-4 text-base md:text-lg">
           Quel type de compte veux-tu créer ?
         </h2>
         <div className="mb-4 lg:mb-1">
@@ -189,83 +189,84 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
           />
 
           {errorLoginFb && (
-            <div className="mt-6 text-red text-xs italic">{errorLoginFb}</div>
+            <div className="mt-6 text-xs italic text-red">{errorLoginFb}</div>
           )}
         </div>
-        <div className="separator  text-gray-700 md:m-4">Ou</div>
+        <div className="text-gray-700 separator md:m-4">Ou</div>
 
-        <div className="flex flex-row items-center justify-evenly w-5/6 gap-8">
-          <div className="flex flex-col cursor-pointer shadow-lg justify-center items-center rounded-xl w-2/4 h-34 hover:bg-grey hover:text-white transition border-4 border-blue">
+        <div className="flex flex-row items-center w-5/6 gap-8 justify-evenly">
+          <div className="flex flex-col items-center justify-center w-2/4 transition border-4 shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white border-blue">
             <img
-              className="rounded-full shadow-lg w-12 mt-2"
+              className="w-12 mt-2 rounded-full shadow-lg"
               src={explorer}
               alt="logo explorateur"
             />
             <div>Explorateur</div>
-            <div className="w-5/6 text-xs text-center mt-2 mb-2 fontQSregular">Inspire-toi des recettes de la communauté ! Supporte les créateurs et ajoute tes recettes préférées en favoris !</div>
+            <div className="w-5/6 mt-2 mb-2 text-xs text-center fontQSregular">Inspire-toi des recettes de la communauté ! Supporte les créateurs et ajoute tes recettes préférées en favoris !</div>
           </div>
           <Link
             to={RouteName.register}
-            className="flex flex-col shadow-lg justify-center items-center border rounded-xl w-2/4 h-34 hover:bg-grey hover:text-white transition cursor-pointer"
+            className="flex flex-col items-center justify-center w-2/4 transition border shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white"
           >
             <img
-              className="rounded-full shadow-lg w-12 mt-2"
+              className="w-12 mt-2 rounded-full shadow-lg"
               src={creator}
               alt="logo créateur"
             />
             <div>Créateur</div>
-            <div className="w-5/6 text-xs text-center mt-2 mb-2 fontQSregular">Partage tes recettes avec la communauté ! Ajoute des liens vers tes réseaux/site internet et accède à tes statistiques.</div>
+            <div className="w-5/6 mt-2 mb-2 text-xs text-center fontQSregular">Partage tes recettes avec la communauté ! Ajoute des liens vers tes réseaux/site internet et accède à tes statistiques.</div>
           </Link>
         </div>
 
         <div className="w-10/12 lg:w-8/12">
           <form
             className="flex flex-col my-5 "
+                        // @ts-ignore
             onSubmit={handleSubmit(onSubmitHandler)}
           >
             <div className="flex flex-row items-center w-full mt-6 ">
               <img
-                className="md:w-6 md:h-6 mr-2"
+                className="mr-2 md:w-6 md:h-6"
                 src={loginMail}
                 alt="icone email"
               />
               <input
-                className="shadow-lg appearance-none border rounded-xl w-full  py-1 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline "
+                className="w-full px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-xl py-1 focus:outline-none focus:shadow-outline "
                 id="email"
                 placeholder="Email"
                 type="email"
                 {...register("email")}
               ></input>
             </div>
-            <p className="text-red text-xs italic">{errors.email?.message}</p>
+            <p className="text-xs italic text-red">{errors.email?.message}</p>
 
             <div className="flex flex-row items-center w-full mt-6 ">
               <img
-                className="md:w-6 md:h-6 mr-2"
+                className="mr-2 md:w-6 md:h-6"
                 src={userlogo}
                 alt="icone email"
               />
               <input
-                className="shadow-lg appearance-none border rounded-xl w-full  py-1 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline "
+                className="w-full px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-xl py-1 focus:outline-none focus:shadow-outline "
                 id="utilisateur"
                 placeholder="Nom d'utilisateur"
                 type="text"
                 {...register("utilisateur")}
               ></input>
             </div>
-            <p className="text-red text-xs italic">
+            <p className="text-xs italic text-red">
               {errors.utilisateur?.message}
             </p>
 
             <div className="flex flex-row items-center w-full mt-6 ">
               <img
-                className="md:w-6 md:h-6 mr-2"
+                className="mr-2 md:w-6 md:h-6"
                 src={loginPassword}
                 alt="icone mot de passe"
               />
-              <div className="flex flex-row items-center shadow-lg  border rounded-xl w-full text-gray-700 leading-tight  focus:shadow-outline ">
+              <div className="flex flex-row items-center w-full leading-tight text-gray-700 border shadow-lg rounded-xl focus:shadow-outline ">
                 <input
-                  className="appearance-none py-1 px-3 rounded-xl  focus:outline-none w-full h-full"
+                  className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                   id="password"
                   type={isRevealPwd ? "text" : "password"}
                   placeholder="Mot de passe"
@@ -278,20 +279,20 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                   onClick={() => setIsRevealPwd((prevState) => !prevState)}
                 />
               </div>
-              <p className="text-red text-xs italic">
+              <p className="text-xs italic text-red">
                 {errors.password?.message}
               </p>
             </div>
 
             <div className="flex flex-row items-center w-full mt-6">
               <img
-                className="md:w-6 md:h-6 mr-2"
+                className="mr-2 md:w-6 md:h-6"
                 src={confirmpwd}
                 alt="icone mot de passe"
               />
-              <div className="flex flex-row  items-center shadow-lg  border rounded-xl w-full text-gray-700 leading-tight  focus:shadow-outline ">
+              <div className="flex flex-row items-center w-full leading-tight text-gray-700 border shadow-lg rounded-xl focus:shadow-outline ">
                 <input
-                  className="appearance-none py-1 px-3 rounded-xl  focus:outline-none w-full h-full"
+                  className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                   id="passwordConfirmation"
                   type={isRevealPwd ? "text" : "password"}
                   placeholder="Confirmer le mot de passe"
@@ -304,11 +305,11 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                   onClick={() => setIsRevealPwd((prevState) => !prevState)}
                 />
               </div>
-              <p className="text-red text-xs italic">
+              <p className="text-xs italic text-red">
                 {errors.passwordConfirmation?.message}
               </p>
             </div>
-            <div className=" flex items-center mt-6">
+            <div className="flex items-center mt-6 ">
               <Controller
                 name="userCategoryLvl"
                 control={control}
@@ -322,7 +323,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                 )}
               />
             </div>
-            <p className="text-red text-xs italic">
+            <p className="text-xs italic text-red">
               {errors.userCategoryLvl?.message}
             </p>
             <div className="flex items-center mt-6">
@@ -339,22 +340,22 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                 )}
               />
             </div>
-            <p className="text-red text-xs italic">
+            <p className="text-xs italic text-red">
               {errors.userCategoryAge?.message}
             </p>
-            <div className="flex w-full self-center mt-6">
+            <div className="flex self-center w-full mt-6">
               <input
                 type="checkbox"
                 className="w-6 h-6"
                 {...register("isFollowNewsletter")}
                 id="isFollowNewsletter"
               />
-              <label className="text-gray-700 text-sm ml-2 self-center">
+              <label className="self-center ml-2 text-sm text-gray-700">
                 Coche la case si tu veux recevoir nos dernières actualités et
                 les tendances du secteur du DIY.
               </label>
             </div>
-            <Button type="blue" className="font-extrabold mt-4">
+            <Button type="blue" className="mt-4 font-extrabold">
               Créer ton profil
             </Button>
           </form>
@@ -363,7 +364,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
         <div>
           <p
             onClick={() => loginOpen(true)}
-            className="underline mt-4 mb-4 text-sm md:text-base text-center cursor-pointer text-gray-700"
+            className="mt-4 mb-4 text-sm text-center text-gray-700 underline cursor-pointer md:text-base"
           >
             Déjà un compte ? Se connecter ici !
           </p>

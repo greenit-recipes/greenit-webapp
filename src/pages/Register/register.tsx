@@ -120,7 +120,7 @@ const Register: React.FC = () => {
       <BackgroundImage className="overflow-hidden" />
 
       <div className="flex flex-col items-center justify-center mt-5 lg:mt-0">
-        <div className="w-full max-w-xs md:max-w-lg mt-1 lg:w-4/12">
+        <div className="w-full max-w-xs mt-1 md:max-w-lg lg:w-4/12">
           <div className="grid grid-cols-3 md:grid-cols-2">
             <h3 className="col-span-2 text-sm mr-4 self-center justify-self-start | md:text-base md:justify-self-end md:col-span-1">
               Si tu as déjà un compte:
@@ -129,9 +129,7 @@ const Register: React.FC = () => {
               isModalLogin={true}
               btn={
                 <button
-                  className="flex items-center cursor-pointer align-middle
-              bg-green rounded-lg p-2 h-8 text-xl bold text-white border-2 border-transparent
-              hover:bg-white hover:border-green hover:text-green"
+                  className="flex items-center h-8 p-2 text-xl text-white align-middle border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green"
                 >
                   <h3 className="text-sm align-middle">Se connecter</h3>
                 </button>
@@ -141,7 +139,7 @@ const Register: React.FC = () => {
           <div className="flex flex-row items-center justify-center w-full gap-8 mt-4">
             <ModalLogGreenit
               btn={
-                <div className="flex flex-col shadow-lg justify-center items-center border rounded-xl w-32 lg:w-52 h-28 hover:bg-grey hover:text-white transition cursor-pointer">
+                <div className="flex flex-col items-center justify-center w-32 transition border shadow-lg cursor-pointer rounded-xl lg:w-52 h-28 hover:bg-grey hover:text-white">
                   <img
                     className="rounded-full shadow-lg w-14"
                     src={explorer}
@@ -152,7 +150,7 @@ const Register: React.FC = () => {
               }
             ></ModalLogGreenit>
 
-            <div className="bg-grey-300 flex flex-col cursor-pointer shadow-lg justify-center items-center rounded-xl w-32 lg:w-52 h-28 hover:bg-grey hover:text-white transition border-4 border-blue">
+            <div className="flex flex-col items-center justify-center w-32 transition border-4 shadow-lg cursor-pointer bg-grey-300 rounded-xl lg:w-52 h-28 hover:bg-grey hover:text-white border-blue">
               <img
                 className="rounded-full shadow-lg w-14"
                 src={creator}
@@ -163,54 +161,55 @@ const Register: React.FC = () => {
           </div>
         </div>
         <form
-          className="my-6 flex flex flex-col w-10/12 lg:w-4/12"
+          className="flex flex-col w-10/12 my-6 lg:w-4/12"
+                      // @ts-ignore
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="flex flex-row items-center w-full mt-6 ">
             <img
-              className="md:w-6 md:h-6 mr-2"
+              className="mr-2 md:w-6 md:h-6"
               src={loginMail}
               alt="icone email"
             />
             <input
-              className="shadow-lg appearance-none border rounded-xl w-full  py-1 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline "
+              className="w-full px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-xl py-1 focus:outline-none focus:shadow-outline "
               id="email"
               placeholder="Email"
               type="email"
               {...register("email")}
             ></input>
           </div>
-          <p className="text-red text-xs italic mt-2">
+          <p className="mt-2 text-xs italic text-red">
             {errors.email?.message}
           </p>
 
           <div className="flex flex-row items-center w-full mt-6 ">
             <img
-              className="md:w-6 md:h-6 mr-2"
+              className="mr-2 md:w-6 md:h-6"
               src={userlogo}
               alt="icone email"
             />
             <input
-              className="shadow-lg appearance-none border rounded-xl w-full  py-1 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline "
+              className="w-full px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-xl py-1 focus:outline-none focus:shadow-outline "
               id="utilisateur"
               placeholder="Nom d'utilisateur"
               type="text"
               {...register("utilisateur")}
             ></input>
           </div>
-          <p className="text-red text-xs italic mt-2">
+          <p className="mt-2 text-xs italic text-red">
             {errors.utilisateur?.message}
           </p>
 
           <div className="flex flex-row items-center w-full mt-6 ">
             <img
-              className="md:w-6 md:h-6 mr-2"
+              className="mr-2 md:w-6 md:h-6"
               src={loginPassword}
               alt="icone mot de passe"
             />
-            <div className="flex flex-row items-center shadow-lg  border rounded-xl w-full text-gray-700 leading-tight  focus:shadow-outline ">
+            <div className="flex flex-row items-center w-full leading-tight text-gray-700 border shadow-lg rounded-xl focus:shadow-outline ">
               <input
-                className="appearance-none py-1 px-3 rounded-xl  focus:outline-none w-full h-full"
+                className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                 id="password"
                 type={isRevealPwd ? "text" : "password"}
                 placeholder="Mot de passe"
@@ -224,19 +223,19 @@ const Register: React.FC = () => {
               />
             </div>
           </div>
-          <p className="text-red text-xs italic mt-2">
+          <p className="mt-2 text-xs italic text-red">
             {errors.password?.message}
           </p>
 
           <div className="flex flex-row items-center w-full mt-6">
             <img
-              className="md:w-6 md:h-6 mr-2"
+              className="mr-2 md:w-6 md:h-6"
               src={confirmpwd}
               alt="icone mot de passe"
             />
-            <div className="flex flex-row  items-center shadow-lg  border rounded-xl w-full text-gray-700 leading-tight  focus:shadow-outline ">
+            <div className="flex flex-row items-center w-full leading-tight text-gray-700 border shadow-lg rounded-xl focus:shadow-outline ">
               <input
-                className="appearance-none py-1 px-3 rounded-xl  focus:outline-none w-full h-full"
+                className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                 id="passwordConfirmation"
                 type={isRevealPwd ? "text" : "password"}
                 placeholder="Confirmer le mot de passe"
@@ -250,12 +249,12 @@ const Register: React.FC = () => {
               />
             </div>
           </div>
-          <p className="text-red text-xs italic mt-2">
+          <p className="mt-2 text-xs italic text-red">
             {errors.passwordConfirmation?.message}
           </p>
 
           <div className="mt-8">
-            <label className="block text-gray-700 text-xl mb-2">
+            <label className="block mb-2 text-xl text-gray-700">
               Biographie
             </label>
             <Controller
@@ -264,14 +263,14 @@ const Register: React.FC = () => {
               control={control}
             />
           </div>
-          <p className="text-red text-xs italic mt-2">
+          <p className="mt-2 text-xs italic text-red">
             {errors.biographie?.message}
           </p>
-          <div className="flex mt-4 flex-col">
-            <label className="block text-gray-700 text-xl ">
+          <div className="flex flex-col mt-4">
+            <label className="block text-xl text-gray-700 ">
               Ajouter un lien
             </label>
-            <h3 className="block text-gray-700 text-sm">
+            <h3 className="block text-sm text-gray-700">
               Ajoute un ou plusieurs lien vers tes réseaux sociaux <br />
               Par exemple :
             </h3>
@@ -295,13 +294,13 @@ const Register: React.FC = () => {
                       />
 
                       {errors?.urlsSocialMedia && (
-                        <p className="text-red text-xs italic mt-2">
+                        <p className="mt-2 text-xs italic text-red">
                           {errors?.urlsSocialMedia?.[index]?.url?.message}
                         </p>
                       )}
 
                       <div
-                        className="justify-self-end cursor-pointer mb-2 mt-2 bg-red text-white rounded-lg py-1 px-2"
+                        className="px-2 mt-2 mb-2 text-white rounded-lg cursor-pointer justify-self-end bg-red py-1"
                         onClick={() => urlsSocialMediaRemove(index)}
                       >
                         Supprimer
@@ -315,30 +314,30 @@ const Register: React.FC = () => {
                   onClick={() =>
                     urlsSocialMediaAppend({}, { shouldFocus: true })
                   }
-                  className="bg-blue cursor-pointer text-white rounded-lg py-1 px-2 w-40 text-center"
+                  className="w-40 px-2 text-center text-white rounded-lg cursor-pointer bg-blue py-1"
                 >
                   Ajouter un lien
                 </div>
               </div>
             </div>
           </div>
-          <p className="text-red text-xs italic mt-2">
+          <p className="mt-2 text-xs italic text-red">
             {errors.urlsSocialMedia?.message}
           </p>
 
-          <div className="flex w-full self-center mt-2">
+          <div className="flex self-center w-full mt-2">
             <input
               type="checkbox"
               className="w-6 h-6 cursor-pointer"
               {...register("isFollowNewsletter")}
               id="isFollowNewsletter"
             />
-            <label className="text-gray-700 text-sm ml-2 self-center">
+            <label className="self-center ml-2 text-sm text-gray-700">
               Coche la case si tu veux recevoir nos dernières actualités et les
               tendances du secteur du DIY.
             </label>
           </div>
-          <Button type="blue" className="font-extrabold mt-4">
+          <Button type="blue" className="mt-4 font-extrabold">
             Créer ton profil
           </Button>
         </form>

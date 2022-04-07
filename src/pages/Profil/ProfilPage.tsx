@@ -29,7 +29,7 @@ const ProfilPage: React.FC = () => {
   }, []);
 
   const { loading, data, refetch } = useQuery(ME, {
-    fetchPolicy: "no-cache",
+    fetchPolicy: "network-only",
   });
 
   const history = useHistory();
@@ -70,8 +70,8 @@ const ProfilPage: React.FC = () => {
         />
       </Helmet>
 
-      <div className="fixed z-0 grid justify-items-center w-full pb-20 bgColorHeaderProfil">
-        <div className="grid mt-20 justify-items-center bg-transparent h-32 w-32 md:h-40 md:w-40 rounded-full border-2 border-transparent hover:border-gray-400">
+      <div className="fixed z-0 grid w-full pb-20 justify-items-center bgColorHeaderProfil">
+        <div className="grid w-32 h-32 mt-20 bg-transparent border-2 border-transparent rounded-full justify-items-center md:h-40 md:w-40 hover:border-gray-400">
           <ModalImageProfil
             hasImageProfile={!!userImage}
             parentFunction={refetch}
@@ -93,13 +93,13 @@ const ProfilPage: React.FC = () => {
         </div>
       </div>
       <div className="w-full flex flex-col | items-center  z-20 rounded-profil mt-72 pt-10 bg-white">
-      <div className="w-5/6 lg:w-4/6 mb-10">
+      <div className="w-5/6 mb-10 lg:w-4/6">
 
         {user?.isCreatorProfil && (
           <CreatorProfil parentFunction={refetch} user={user}></CreatorProfil>
           )}
         {!user?.isCreatorProfil && (
-          <ExplorateurProfil parentFunction={refetch} recipeMadeUser={user?.recipeMadeUser}></ExplorateurProfil>
+          <ExplorateurProfil isLoad={loading} parentFunction={refetch} recipeMadeUser={user?.recipeMadeUser}></ExplorateurProfil>
         )}
         <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
           <button
@@ -135,7 +135,7 @@ const ProfilPage: React.FC = () => {
         <div className="flex flex-col mb-20 | items-center">
           <div className={"text-center" + (visible ? " hidden" : "")}>
             {!visible && (
-              <div className="grid grid-cols-2 gap-2 md:grid-cols-3 auto-rows-auto justify-items-center mt-5">
+              <div className="grid grid-cols-2 gap-2 mt-5 md:grid-cols-3 auto-rows-auto justify-items-center">
                 {isEmpty(user?.recipeFavorite) && (
                   <div
                     className={
@@ -146,7 +146,7 @@ const ProfilPage: React.FC = () => {
                     <h2 className=" md:text-xl">
                       Tu n'as pas encore de recette favorite
                     </h2>
-                    <h3 className=" md:text-lg mt-4">
+                    <h3 className="mt-4 md:text-lg">
                       Pour mettre une recette en favoris <br />
                       appuie sur le coeur de la recette
                     </h3>
@@ -169,7 +169,7 @@ const ProfilPage: React.FC = () => {
                   <>
                     <div
                       key={index}
-                      className="col-span-1 w-full sm:mb-6 justify-center"
+                      className="justify-center w-full col-span-1 sm:mb-6"
                     >
                       <RecipeCard
                         parentFunction={refetchMe}
@@ -185,14 +185,14 @@ const ProfilPage: React.FC = () => {
             )}
           </div>
           {visible && (
-            <div className="grid grid-cols-2 sm:gap-2 md:grid-cols-3 auto-rows-auto justify-items-center mt-5">
+            <div className="grid grid-cols-2 mt-5 sm:gap-2 md:grid-cols-3 auto-rows-auto justify-items-center">
               <CTACard
                 className="lg:mt-2 lg:mb-6"
                 type="blue"
                 link={RouteName.createRecipe}
               >
                 <button id="Share_a_recipe" className="w-11/12 lg:w-10/12">
-                  <h2 className="text-center text-lg lg:text-xl text-white mt-28 lg:mt-36">
+                  <h2 className="text-lg text-center text-white lg:text-xl mt-28 lg:mt-36">
                     Publier une nouvelle recette
                   </h2>
                 </button>
@@ -201,7 +201,7 @@ const ProfilPage: React.FC = () => {
                 <>
                   <div
                     key={index}
-                    className="col-span-1 w-full mb-6 md:mb-12 justify-center"
+                    className="justify-center w-full col-span-1 mb-6 md:mb-12"
                   >
                     <RecipeCard
                       isDisplayUserBadge={false}

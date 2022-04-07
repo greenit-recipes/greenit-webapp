@@ -39,7 +39,7 @@ export const SearchBar: React.FC<{
   };
   return (
     <div
-      className={`${totalSize} | flex | relative bg-white rounded-xl border-1 border-grey `}
+      className={`${totalSize} | flex | relative bg-white rounded-xl border border-grey `}
     >
       <input
         type="text"
