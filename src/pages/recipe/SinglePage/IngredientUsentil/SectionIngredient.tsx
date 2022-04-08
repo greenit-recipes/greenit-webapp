@@ -28,12 +28,12 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
           if (!isMobile) setArrowDown(!isArrowDown);
         }}
       >
-        <div className="flex justify-between items-center w-1/6">
-          <div className="flex p-5 lg:p-0 items-center justify-center text-center rounded-l-md ingredient-section w-full h-12">
+        <div className="flex items-center justify-between w-1/6">
+          <div className="flex items-center justify-center w-full h-12 p-5 text-center lg:p-0 rounded-l-md ingredient-section">
             {data?.amount}
           </div>
           <img
-            className="h-12 w-12 rounded"
+            className="w-12 h-12 rounded"
             alt={data?.name}
             loading="lazy"
             src={getImagePath(data?.image)}
@@ -45,8 +45,8 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
             <HiOutlineChevronDown
               className={`w-6 h-6  mr-6 cursor-pointer ${
                 isArrowDown
-                  ? "ingredient-section-arrow-up"
-                  : "ingredient-section-arrow-down"
+                  ? "section-arrow-up"
+                  : "section-arrow-down"
               }`}
               onClick={() => {
                 setArrowDown(!isArrowDown);
@@ -57,18 +57,18 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
       </div>
       <div
         className={
-          !isArrowDown ? "ingredient-fadeIn-arrow" : " ingredient-fadeOut-arrow"
+          !isArrowDown ? "fadeIn-arrow" : " fadeOut-arrow"
         }
       >
-        <div className="bg-greyL rounded-b">
-          <div className="w-5/6  lg:w-4/6  ml-6">
+        <div className="rounded-b bg-greyL">
+          <div className="w-5/6 ml-6 lg:w-4/6">
             <div className="pt-4">{data?.description && HTMLReactParser(data?.description)}</div>
             <h2 className="pt-6 fontQSbold">Alternatives</h2>
             <div>{data?.alternative && HTMLReactParser(data?.alternative)}</div>
-            <div className="flex-col lg:flex-row pt-4 items-center pb-6">
+            <div className="flex-col items-center pt-4 pb-6 lg:flex-row">
               <div className="fontQSbold">Où acheter ?</div>
               {data?.isSupermarket && (
-                <div className="flex ml-6 items-center">
+                <div className="flex items-center ml-6">
                   <BsShop className="w-8 h-8 mr-2" />
                   <div>
                     Biocop
@@ -79,7 +79,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
               )}
 
               {data?.isOnline && (
-                <div className="flex ml-6 items-center">
+                <div className="flex items-center ml-6">
                   <RiComputerLine className="w-8 h-8 mr-2" />
                   <div>En ligne</div>
                 </div>

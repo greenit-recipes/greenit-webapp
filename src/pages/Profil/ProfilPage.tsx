@@ -70,14 +70,14 @@ const ProfilPage: React.FC = () => {
         />
       </Helmet>
 
-      <div className="fixed z-0 grid w-full pb-20 justify-items-center bgColorHeaderProfil">
+      <div className="fixed z-0 grid w-full pb-28 justify-items-center bgColorHeaderProfil">
         <div className="grid w-32 h-32 mt-20 bg-transparent border-2 border-transparent rounded-full justify-items-center md:h-40 md:w-40 hover:border-gray-400">
           <ModalImageProfil
             hasImageProfile={!!userImage}
             parentFunction={refetch}
           />
           <img
-            className={`object-cover h-32 w-32 md:h-36 md:w-36
+            className={`object-cover h-28 w-28 md:h-28 md:w-28
               rounded-full | self-center`}
             // @ts-ignore
             src={userImage ? userImage : defaultImageProfil}
@@ -87,7 +87,7 @@ const ProfilPage: React.FC = () => {
         </div>
         <div className="flex flex-col | self-center">
           <div className="flex-inline overflow-clip overflow-hidden ...">
-            <h1 className="text-2xl fontQSemibold md:text-3xl">{user?.username}</h1>
+            <h1 className="text-2xl fontQSemibold md:text-2xl">{user?.username}</h1>
           </div>
           <Modal />
         </div>
@@ -111,7 +111,7 @@ const ProfilPage: React.FC = () => {
           >
             <div className="flex flex-row items-center gap-2">
               <img className="h-8" src={Cooking} alt="logo recette" />
-              <h3 className="text-lg md:text-xl">Vos recettes</h3>
+              <h3 className="text-left text-lg md:text-xl">Vos recettes</h3>
             </div>
           </button>
           <button
@@ -127,7 +127,7 @@ const ProfilPage: React.FC = () => {
                 src={likedIconOn}
                 alt="logo recettes favorites"
               />
-              <h3 className="text-lg md:text-xl">Recettes favorites</h3>
+              <h3 className="text-left text-lg md:text-xl">Recettes favorites</h3>
             </div>
           </button>
         </div>

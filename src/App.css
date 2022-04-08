@@ -40,6 +40,7 @@ h4 {
   font-family: QuickSand_Light;
 }
 
+/* UI-KIT SIZE */
 
 .fontQSmedium {
   font-family: QuickSand_Medium;
@@ -55,10 +56,6 @@ h4 {
 
 .fontQSregular {
   font-family: QuickSand_Regular;
-}
-
-.fontQSsemibold {
-  font: normal normal 600 35px/44px Quicksand;
 }
 
 .text_logo {
@@ -270,4 +267,29 @@ border-radius: 4px;
 
 .selectStyle {  
   height: 100px;
+}
+
+
+/* ARROW */
+
+.section-arrow-down {
+  transform: rotate(-180deg);
+  transition: transform 0.50s;
+}
+
+.section-arrow-up {
+  transform: rotate(0deg);
+  transition: transform 0.40s ease-in;
+}
+
+.fadeIn-arrow { 
+  max-height: 1500px;
+  transition: max-height 0.75s ease-in;
+  overflow: hidden;
+}
+
+.fadeOut-arrow {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-out;
 }

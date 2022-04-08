@@ -29,7 +29,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
     <>
       {isLoggedIn ? (
         <button
-          className={`btn-single-page w-40 flex ${
+          className={`btn-single-page p-2 flex ${
             customClassName ? customClassName : ""
           }`}
           onClick={() => {
@@ -50,7 +50,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
             ) : (
               <FiSquare className="w-6 h-6"></FiSquare>
             )}
-            <div className="flex flex-col justify-center">recette réalisée</div>
+            <div className="flex flex-col justify-center ml-1">recette réalisée</div>
           </div>
         </button>
       ) : (
@@ -58,7 +58,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
           <ModalLogGreenit
             btn={
               <button
-                className={`btn-single-page ${
+                className={`btn-single-page p-2 flex ${
                   customClassName ? customClassName : ""
                 }`}
               >
@@ -69,7 +69,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
                     <FiSquare className="w-6 h-6"></FiSquare>
                   )}
 
-                  <div className="flex flex-col justify-center">
+                  <div className="flex flex-col justify-center ml-1 ">
                     recette réalisée
                   </div>
                 </div>
