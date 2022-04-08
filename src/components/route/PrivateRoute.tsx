@@ -9,7 +9,7 @@ const PrivateRoute = ({ component: Component, ...rest }: any) => {
     <Route
       {...rest}
       render={(props) =>
-        authService.getToken() ? <Component {...props} /> : <Redirect to="/" />
+        authService.getToken() ? <Component key={Date.now()} {...props} /> : <Redirect to="/" />
       }
     />
   )

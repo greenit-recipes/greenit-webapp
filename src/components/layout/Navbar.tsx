@@ -20,10 +20,10 @@ export const Navbar: React.FC = () => {
 
   if (isMobile) {
     return (
-      <div className="sticky top-0 z-50 bg-white w-full">
-        <div className="grid grid-cols-3 items-center h-12">
+      <div className="sticky top-0 z-50 w-full bg-white">
+        <div className="grid items-center h-12 grid-cols-3">
           <div
-            className="w-full ml-2 items-center z-50"
+            className="z-50 items-center w-full ml-2"
             onClick={() => {
               setToggle((prevState) => !prevState);
             }}
@@ -38,16 +38,16 @@ export const Navbar: React.FC = () => {
               ></div>
             </div>
           </div>
-          <Link to="/" className=" z-50">
+          <Link to="/" className="z-50 ">
             <h5
               id="home"
-              className="text-green text-center self-center text-3xl font-medium"
+              className="self-center text-3xl font-medium text-center text-green"
             >
               Greenit
             </h5>
           </Link>
           {isLoggedIn ? (
-            <div className="w-full grid justify-items-end">
+            <div className="grid w-full justify-items-end">
               <Link to={RouteName.profil}>
                 <Button
                   id="Access_Profil"
@@ -55,22 +55,22 @@ export const Navbar: React.FC = () => {
                   rounded="lg"
                   className="mr-1"
                 >
-                  <h2 id="Access_Profil" className="text-white text-xs">
+                  <h2 id="Access_Profil" className="text-xs text-white">
                     Profil
                   </h2>
                 </Button>
               </Link>
             </div>
           ) : (
-            <div className="w-full grid justify-items-end">
+            <div className="grid w-full justify-items-end">
               <ModalLogGreenit
                 btn={
                   <>
                     <button
                       id="Create_Profil"
-                      className="rounded-lg p-2 bg-blue mr-1"
+                      className="p-2 mr-1 rounded-lg bg-blue"
                     >
-                      <h2 id="Create_Profil" className="text-white text-xs">
+                      <h2 id="Create_Profil" className="text-xs text-white">
                         Créer un profil
                       </h2>
                     </button>
@@ -139,7 +139,7 @@ export const Navbar: React.FC = () => {
   }
   return (
     <div className="flex flex-row h-16 w-full | sticky top-0 bg-white z-50">
-      <div className="grid justify-items-center items-center">
+      <div className="grid items-center justify-items-center">
         <Link to={RouteName.accueil}>
           <img
             src={logo}
@@ -150,7 +150,7 @@ export const Navbar: React.FC = () => {
           />
         </Link>
       </div>
-      <div className="flex flex-row ml-4 w-2/3 h-full items-center justify-items-start">
+      <div className="flex flex-row items-center w-2/3 h-full ml-4 justify-items-start">
         <Link to={RouteName.accueil}>
           <NavButton id="home" type="black">
             Accueil
@@ -163,8 +163,8 @@ export const Navbar: React.FC = () => {
             </NavButton>
           </Link>
           <div id="navlist_big">
-            <div className="grid grid-cols-3 w-2/5 justify-items-center ml-20 pt-2">
-              <div className="flex flex-col text-lg pt-4">
+            <div className="grid w-2/5 grid-cols-3 pt-2 ml-20 justify-items-center">
+              <div className="flex flex-col pt-4 text-lg">
                 <h2 className="mb-2 cursor-default">Raccourcis</h2>
 
                 <Link id="allRecipes" to={RouteName.recipes}>
@@ -212,7 +212,7 @@ export const Navbar: React.FC = () => {
                 >
                   <h3
                     id="withKitchenIngredients"
-                    className="mb-2 cursor-pointer text-left hover:text-green"
+                    className="mb-2 text-left cursor-pointer hover:text-green"
                   >
                     Avec les ingrédients de la cuisine
                   </h3>
@@ -226,7 +226,7 @@ export const Navbar: React.FC = () => {
                   </h3>
                 </Link>
               </div>
-              <div className="flex flex-col text-lg pt-4">
+              <div className="flex flex-col pt-4 text-lg">
                 <h2 className="mb-2 cursor-default">Catégories</h2>{" "}
                 <Link id="house" to={`${RouteName.recipes}?category=Maison`}>
                   <h3
@@ -293,7 +293,7 @@ export const Navbar: React.FC = () => {
                   </h3>
                 </Link>
               </div>
-              <div className="flex flex-col text-lg pt-4">
+              <div className="flex flex-col pt-4 text-lg">
                 <h2 className="mb-2 cursor-default">Type de produit</h2>
                 <Link to={`${RouteName.recipes}?search=Savon`}>
                   <h3
@@ -345,8 +345,8 @@ export const Navbar: React.FC = () => {
               Se former
             </NavButton>
           </Link>
-          <div id="navlist" className="grid justify-items-start pt-2">
-            <div className="flex flex-col text-lg ml-40 pt-4">
+          <div id="navlist" className="grid pt-2 justify-items-start">
+            <div className="flex flex-col pt-4 ml-40 text-lg">
               <Link to={RouteName.workshops}>
                 <h3
                   id="allWorkshops"
@@ -364,12 +364,12 @@ export const Navbar: React.FC = () => {
               Se lancer
             </NavButton>
           </Link>
-          <div id="navlist" className="grid justify-items-start pt-2">
-            <div className="flex flex-col w-96 text-lg ml-99 pt-4">
+          <div id="navlist" className="grid pt-2 justify-items-start">
+            <div className="flex flex-col pt-4 text-lg w-96 ml-99">
               <Link to={RouteName.starterPage}>
                 <h3
                   id="fiveStepGuide"
-                  className="mb-2 cursor-pointer text-left hover:text-blue"
+                  className="mb-2 text-left cursor-pointer hover:text-blue"
                 >
                   Le guide en 5 étapes pour se lancer dans le fait-maison avec 3
                   recettes faciles pour débuter, les ustensiles et ingrédients
@@ -385,8 +385,8 @@ export const Navbar: React.FC = () => {
               Le projet
             </NavButton>
           </Link>
-          <div id="navlist" className="grid justify-items-start pt-2">
-            <div className="flex flex-col text-lg pt-4 ml-100">
+          <div id="navlist" className="grid pt-2 justify-items-start">
+            <div className="flex flex-col pt-4 text-lg ml-100">
               <Link to={RouteName.why}>
                 <h3
                   id="whyGreenit"
@@ -408,11 +408,11 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
       <div className="grid items-center w-3/5 justify-self-end">
-        <div className="flex justify-self-end items-center">
+        <div className="flex items-center justify-self-end">
           <SearchBarNav keyId="SearchNav" />
           {isLoggedIn ? (
             <Link to={RouteName.createRecipe} className="flex">
-              <div className="rounded-full ease-linear transition-all duration-150 cursor-pointer">
+              <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
                 <div className="flex">
                   <Button
                     id="Share_a_recipe"
@@ -428,7 +428,7 @@ export const Navbar: React.FC = () => {
           ) : (
             <ModalLogGreenit
               btn={
-                <div className="rounded-full ease-linear transition-all duration-150 cursor-pointer">
+                <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
                   <div className="flex">
                     <Button
                       id="Share_a_recipe"
@@ -445,7 +445,7 @@ export const Navbar: React.FC = () => {
           )}
           {isLoggedIn ? (
             <Link to={RouteName.profil}>
-              <div className="rounded-full ease-linear transition-all duration-150 cursor-pointer">
+              <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
                 <div className="flex">
                   <Button
                     id="Access_Profil"

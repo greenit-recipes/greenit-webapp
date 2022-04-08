@@ -1,9 +1,10 @@
 import { getObjectSession } from "helpers/session-helper";
-import { map, mapValues, omit, sum } from "lodash";
+import { isEmpty, map, mapValues, omit, sum } from "lodash";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useHistory } from "react-router-dom";
 import {
   BackgroundImage,
   Empty,
@@ -25,20 +26,49 @@ const RecipeListPage = () => {
       if (key === "search") return value;
       return map(value, (x) => x.value);
     });
+  const params = new URLSearchParams(window.location.search);
+  const history = useHistory()
 
   const sessionFilter = getObjectSession("filterListPage");
+  const searchSession = sessionFilter?.search ? sessionFilter?.search : ""
+  const tagsSession =  sessionFilter?.tags || []
+  const categorySession = sessionFilter?.category || []
+
+  const getAndDeleteParamsUrl = (urlParams: string) => {
+    // For SEO url (delete url after search google)
+    if (!params.get(urlParams)) return
+    const currentParams = params.get(urlParams);
+    params.delete(urlParams)
+    history.replace({
+      search: params.toString(),
+    })
+
+    if (urlParams === "search") {
+      window.sessionStorage.setItem(
+        "filterListPage",
+        JSON.stringify({ [urlParams] : currentParams})
+      );
+      return currentParams
+    }
+    window.sessionStorage.setItem(
+      "filterListPage",
+      JSON.stringify({ [urlParams] : [{ title: currentParams, value: currentParams }]})
+    );
+    return ([{ title: currentParams, value: currentParams }]);
+  }
+
   // params trigger 2 requests before param and after getting param need to be fixed
   // @ts-ignore
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [currentFilters, setCurrentFilters] = useState<any>({
-    search: sessionFilter?.search ? sessionFilter?.search : "",
-    tags: sessionFilter?.tags || [],
-    category: sessionFilter?.category || [],
+    search: params.get("search") ? getAndDeleteParamsUrl("search") : searchSession,
+    tags: params.get("tags") ? getAndDeleteParamsUrl("tags") : tagsSession,
+    category: params.get("category") ? getAndDeleteParamsUrl("category") : categorySession,
     difficulty: sessionFilter?.difficulty || [],
     duration: sessionFilter?.duration || [],
     numberOfIngredients: sessionFilter?.numberOfIngredients || [],
   });
-
+  
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
     fetchPolicy: "cache-first",
     variables: {
@@ -119,8 +149,8 @@ const RecipeListPage = () => {
       )}
 
       {isMobile && (
-        <div className="grid justify-items-center bg-white py-2 z-30">
-          <div className="w-4/5 self-center">
+        <div className="z-30 grid py-2 bg-white justify-items-center">
+          <div className="self-center w-4/5">
             <FilterBar
               isOnlyForSearch={true}
               filter={filterData}
@@ -157,7 +187,7 @@ const RecipeListPage = () => {
             scrollThreshold={0.5}
             endMessage={
               recipes?.length > 0 && (
-                <div className="text-center font-light">
+                <div className="font-light text-center">
                   <div>Tu as tout vu ! </div>
                 </div>
               )
@@ -193,7 +223,7 @@ const RecipeListPage = () => {
             }}
           >
             {isMobile ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-4 md:gap-x-4 justify-center md:gap-y-10">
+              <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
                 {recipes?.map((recipe, index) => {
                   return (
                       <RecipeCard recipe={recipe?.node} />
@@ -216,8 +246,7 @@ const RecipeListPage = () => {
       <img
         src={scrollToTop}
         alt="scroll to top"
-        className="fixed bottom-6 
-        right-4 z-20 h-12 w-12 cursor-pointer"
+        className="fixed z-20 w-12 h-12 cursor-pointer bottom-6 right-4"
         id="scrollToTop"
         onClick={() => {
           window.scrollTo({
