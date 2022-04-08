@@ -2,10 +2,10 @@ import { useQuery } from "@apollo/client";
 import { RouteName } from "App";
 import "App.css";
 import { Button, Loading, RecipeCard } from "components";
-import { CreatorProfil } from "./CreatorProfil";
 import { getImagePath } from "helpers/image.helper";
-import { defaultImageProfil, likedIconOff, likedIconOn, Cooking } from "icons";
+import { Cooking, defaultImageProfil, likedIconOff, likedIconOn } from "icons";
 import { isEmpty } from "lodash";
+import { ExplorateurProfil } from "pages/Profil/ExplorateurProfil";
 import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
 import { Modal } from "pages/Profil/ModalProfil";
 import { CTACard } from "pages/recipe/ListPage/Components/CTACard";
@@ -14,7 +14,9 @@ import { Helmet } from "react-helmet";
 import { Link, useHistory } from "react-router-dom";
 import "reactjs-popup/dist/index.css";
 import { ME } from "services/auth.service";
-import { Container, Footer, Navbar } from "../../components";
+import { Footer, Navbar } from "../../components";
+import { CreatorProfil } from "./CreatorProfil";
+import "./Profil.css";
 
 const ProfilPage: React.FC = () => {
   useEffect(() => {
@@ -27,7 +29,7 @@ const ProfilPage: React.FC = () => {
   }, []);
 
   const { loading, data, refetch } = useQuery(ME, {
-    fetchPolicy: "no-cache",
+    fetchPolicy: "network-only",
   });
 
   const history = useHistory();
@@ -68,108 +70,144 @@ const ProfilPage: React.FC = () => {
         />
       </Helmet>
 
-      <Container
-        className="flex flex-col | items-center | mt-8 md:mt-20"
-        padding
-      >
-        <div className="grid grid-cols-2 gap-4 mb-10">
-          <div className="grid justify-items-center bg-transparent h-32 w-32 md:h-40 md:w-40 rounded-full border-2 border-transparent hover:border-gray-400">
-            <ModalImageProfil
-              hasImageProfile={!!userImage}
-              parentFunction={refetch}
-            />
-            <img
-              className={`object-cover h-32 w-32 md:h-36 md:w-36
+      <div className="fixed z-0 grid w-full pb-28 justify-items-center bgColorHeaderProfil">
+        <div className="grid w-32 h-32 mt-20 bg-transparent border-2 border-transparent rounded-full justify-items-center md:h-40 md:w-40 hover:border-gray-400">
+          <ModalImageProfil
+            hasImageProfile={!!userImage}
+            parentFunction={refetch}
+          />
+          <img
+            className={`object-cover h-28 w-28 md:h-28 md:w-28
               rounded-full | self-center`}
-              // @ts-ignore
-              src={userImage ? userImage : defaultImageProfil}
-              alt="user profil"
-              loading="lazy"
-            ></img>
-          </div>
-          <div className="flex flex-col | self-center">
-            <div className="flex-inline overflow-clip overflow-hidden ...">
-              <h1 className="text-xl md:text-3xl">{user?.username}</h1>
-            </div>
-            <Modal />
-          </div>
+            // @ts-ignore
+            src={userImage ? userImage : defaultImageProfil}
+            alt="user profil"
+            loading="lazy"
+          ></img>
         </div>
-      </Container>
-      {user?.isCreatorProfil && ( <CreatorProfil parentFunction={refetch} user={user}></CreatorProfil> ) }
-      <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
-        <button
-          className={
-            "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-green |" +
-            (visible ? "outline-none border-green" : "")
-          }
-          onClick={() => setVisible(true)}
-        >
-          <div className="flex flex-row items-center gap-2">
-            <img className="h-8" src={Cooking} alt="logo recette" />
-            <h3 className="text-lg md:text-xl">Vos recettes</h3>
+        <div className="flex flex-col | self-center">
+          <div className="flex-inline overflow-clip overflow-hidden ...">
+            <h1 className="text-2xl fontQSemibold md:text-2xl">{user?.username}</h1>
           </div>
-        </button>
-        <button
-          className={
-            "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue" +
-            (!visible ? "outline-none border-blue" : "")
-          }
-          onClick={() => setVisible(false)}
-        >
-          <div className="flex flex-row items-center gap-2">
-            <img
-              className="h-10"
-              src={likedIconOn}
-              alt="logo recettes favorites"
-            />
-            <h3 className="text-lg md:text-xl">Recettes favorites</h3>
-          </div>
-        </button>
+          <Modal />
+        </div>
       </div>
+      <div className="w-full flex flex-col | items-center  z-20 rounded-profil mt-72 pt-10 bg-white">
+      <div className="w-5/6 mb-10 lg:w-4/6">
 
-      <div className="flex flex-col mb-20 | items-center">
-        <div className={"text-center" + (visible ? " hidden" : "")}>
-          {!visible && (
-            <div className="grid grid-cols-2 gap-2 md:grid-cols-3 auto-rows-auto justify-items-center mt-5">
-              {isEmpty(user?.recipeFavorite) && (
-                <div
-                  className={
-                    "grid text-center col-span-3 w-full mb-56 mt-8 justify-items-center" +
-                    (visible ? " hidden" : "")
-                  }
-                >
-                  <h2 className=" md:text-xl">
-                    Tu n'as pas encore de recette favorite
-                  </h2>
-                  <h3 className=" md:text-lg mt-4">
-                    Pour mettre une recette en favoris <br />
-                    appuie sur le coeur de la recette
-                  </h3>
-                  <div>
-                    <img
-                      className="w-12 h-12"
-                      src={likedIconOff}
-                      alt="like icon off"
-                    />
+        {user?.isCreatorProfil && (
+          <CreatorProfil parentFunction={refetch} user={user}></CreatorProfil>
+          )}
+        {!user?.isCreatorProfil && (
+          <ExplorateurProfil isLoad={loading} parentFunction={refetch} recipeMadeUser={user?.recipeMadeUser}></ExplorateurProfil>
+        )}
+        <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
+          <button
+            className={
+              "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-green |" +
+              (visible ? "outline-none border-green" : "")
+            }
+            onClick={() => setVisible(true)}
+          >
+            <div className="flex flex-row items-center gap-2">
+              <img className="h-8" src={Cooking} alt="logo recette" />
+              <h3 className="text-left text-lg md:text-xl">Vos recettes</h3>
+            </div>
+          </button>
+          <button
+            className={
+              "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue" +
+              (!visible ? "outline-none border-blue" : "")
+            }
+            onClick={() => setVisible(false)}
+          >
+            <div className="flex flex-row items-center gap-2">
+              <img
+                className="h-10"
+                src={likedIconOn}
+                alt="logo recettes favorites"
+              />
+              <h3 className="text-left text-lg md:text-xl">Recettes favorites</h3>
+            </div>
+          </button>
+        </div>
+
+        <div className="flex flex-col mb-20 | items-center">
+          <div className={"text-center" + (visible ? " hidden" : "")}>
+            {!visible && (
+              <div className="grid grid-cols-2 gap-2 mt-5 md:grid-cols-3 auto-rows-auto justify-items-center">
+                {isEmpty(user?.recipeFavorite) && (
+                  <div
+                    className={
+                      "grid text-center col-span-3 w-full mb-56 mt-8 justify-items-center" +
+                      (visible ? " hidden" : "")
+                    }
+                  >
+                    <h2 className=" md:text-xl">
+                      Tu n'as pas encore de recette favorite
+                    </h2>
+                    <h3 className="mt-4 md:text-lg">
+                      Pour mettre une recette en favoris <br />
+                      appuie sur le coeur de la recette
+                    </h3>
+                    <div>
+                      <img
+                        className="w-12 h-12"
+                        src={likedIconOff}
+                        alt="like icon off"
+                      />
+                    </div>
+                    <Link to={RouteName.recipes}>
+                      <Button className="mt-5" type="blue">
+                        Explorer des recettes
+                      </Button>
+                    </Link>
                   </div>
-                  <Link to={RouteName.recipes}>
-                    <Button className="mt-5" type="blue">
-                      Explorer des recettes
-                    </Button>
-                  </Link>
-                </div>
-              )}
+                )}
 
-              {user?.recipeFavorite?.map((recipe: any, index: any) => (
+                {user?.recipeFavorite?.map((recipe: any, index: any) => (
+                  <>
+                    <div
+                      key={index}
+                      className="justify-center w-full col-span-1 sm:mb-6"
+                    >
+                      <RecipeCard
+                        parentFunction={refetchMe}
+                        recipe={recipe}
+                        isRefetchData={true}
+                        key={index}
+                        isProfilPage={true}
+                      />
+                    </div>
+                  </>
+                ))}
+              </div>
+            )}
+          </div>
+          {visible && (
+            <div className="grid grid-cols-2 mt-5 sm:gap-2 md:grid-cols-3 auto-rows-auto justify-items-center">
+              <CTACard
+                className="lg:mt-2 lg:mb-6"
+                type="blue"
+                link={RouteName.createRecipe}
+              >
+                <button id="Share_a_recipe" className="w-11/12 lg:w-10/12">
+                  <h2 className="text-lg text-center text-white lg:text-xl mt-28 lg:mt-36">
+                    Publier une nouvelle recette
+                  </h2>
+                </button>
+              </CTACard>
+              {user?.recipeAuthor?.map((recipe: any, index: any) => (
                 <>
                   <div
                     key={index}
-                    className="col-span-1 w-full sm:mb-6 justify-center"
+                    className="justify-center w-full col-span-1 mb-6 md:mb-12"
                   >
                     <RecipeCard
+                      isDisplayUserBadge={false}
                       parentFunction={refetchMe}
+                      disabledFavoriteRecipe={true}
                       recipe={recipe}
-                      isRefetchData={true}
                       key={index}
                       isProfilPage={true}
                     />
@@ -179,38 +217,7 @@ const ProfilPage: React.FC = () => {
             </div>
           )}
         </div>
-        {visible && (
-          <div className="grid grid-cols-2 sm:gap-2 md:grid-cols-3 auto-rows-auto justify-items-center mt-5">
-            <CTACard
-              className="lg:mt-2 lg:mb-6"
-              type="blue"
-              link={RouteName.createRecipe}
-            >
-              <button id="Share_a_recipe" className="w-11/12 lg:w-10/12">
-                <h2 className="text-center text-lg lg:text-xl text-white mt-28 lg:mt-36">
-                  Publier une nouvelle recette
-                </h2>
-              </button>
-            </CTACard>
-            {user?.recipeAuthor?.map((recipe: any, index: any) => (
-              <>
-                <div
-                  key={index}
-                  className="col-span-1 w-full mb-6 md:mb-12 justify-center"
-                >
-                  <RecipeCard
-                    isDisplayUserBadge={false}
-                    parentFunction={refetchMe}
-                    disabledFavoriteRecipe={true}
-                    recipe={recipe}
-                    key={index}
-                    isProfilPage={true}
-                  />
-                </div>
-              </>
-            ))}
-          </div>
-        )}
+        </div>
       </div>
 
       <Footer />

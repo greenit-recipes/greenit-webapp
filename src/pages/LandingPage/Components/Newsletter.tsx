@@ -31,13 +31,17 @@ export const Newsletter: React.FC = () => {
     }).then(() => reset());
   };
   return (
-    <Container className="w-full md:w-3/5 h-full" margin={10} itemsCenter>
+    <Container className="w-full h-full md:w-3/5" margin={10} itemsCenter>
       <h2 className="text-xl md:text-2xl sm:w-3/4 | px-5 text-center">
         Inscris toi à la newsletter pour découvrir des astuces DIY
         {"\n"} et être au courant des nouvelles recettes !
       </h2>
 
-      <form className="md:flex p-6" onSubmit={handleSubmit(onSubmitHandler)}>
+      <form
+        className="p-6 md:flex"
+        // @ts-ignore
+        onSubmit={handleSubmit(onSubmitHandler)}
+      >
         <input
           className="shadow-lg rounded-lg h-12 w-full px-3 text-gray-700 min-w-18 border-2 border-grey-200 | focus:outline-none focus:shadow-outline"
           id="email"
@@ -46,13 +50,13 @@ export const Newsletter: React.FC = () => {
           {...register("email")}
         ></input>
 
-        <div className="grid w-full justify-items-center mt-4 md:mt-0 md:ml-4">
+        <div className="grid w-full mt-4 justify-items-center md:mt-0 md:ml-4">
           <Button type="green" className="p-4 sm:h-12">
             Rejoindre
           </Button>
         </div>
         <div>
-          <p className="text-red-500 text-xs italic">{errors.email?.message}</p>
+          <p className="text-xs italic text-red-500">{errors.email?.message}</p>
         </div>
       </form>
       {data?.createNewsletter?.success && (
@@ -61,7 +65,7 @@ export const Newsletter: React.FC = () => {
           boite mail !
         </div>
       )}
-      <div className="w-3/4 text-xs md:text-sm text-center lg:mx-80">
+      <div className="w-3/4 text-xs text-center md:text-sm lg:mx-80">
         Nous utilisons cette newsletter uniquement pour garder notre communauté
         informée des évolutions de Greenit ainsi que pour connaître vos avis sur
         certaines décisions. Vous pouvez vous désinscrire à tout moment en nous

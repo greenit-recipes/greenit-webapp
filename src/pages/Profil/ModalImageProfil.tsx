@@ -49,12 +49,12 @@ export const ModalImageProfil: React.FC<IModalImageProfil> = ({
   return (
     <>
       <div
-        className="absolute h-32 w-32 md:h-40 md:w-40 rounded-full ease-linear transition-all duration-150 cursor-pointer"
+        className="absolute w-32 h-32 transition-all duration-150 ease-linear rounded-full cursor-pointer md:h-40 md:w-40"
         onClick={() => setShowModal(true)}
       >
         {!hasImageProfile && (
-          <div className="grid w-full h-full rounded-full justify-items-center items-center">
-            <h2 className="text-xs text-grey-700 bg-white p-2 rounded-3xl opacity-75">
+          <div className="grid items-center w-full h-full rounded-full justify-items-center">
+            <h2 className="p-2 text-xs bg-white opacity-75 text-grey-700 rounded-3xl">
               Ajoute ta photo
             </h2>
           </div>
@@ -62,14 +62,15 @@ export const ModalImageProfil: React.FC<IModalImageProfil> = ({
       </div>
       {showModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto my-6 mx-auto w-3/4 md:w-1/3">
+          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+            <div className="relative w-auto w-3/4 mx-auto my-6 md:w-1/3">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                <h2 className="text-xl p-4">Change ta photo</h2>
+              <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                <h2 className="p-4 text-xl">Change ta photo</h2>
                 {/*header*/}
                 <form
-                  className=" p-4 mb-4"
+                  className="p-4 mb-4 "
+                              // @ts-ignore
                   onSubmit={handleSubmit(onSubmitHandler)}
                 >
                   <div>
@@ -77,21 +78,21 @@ export const ModalImageProfil: React.FC<IModalImageProfil> = ({
                       Upload l'image ici 👇
                     </label>
                     <input
-                      className="shadow appearance-none border rounded w-full py-4 px-2 my-3 text-gray-700 text-sm leading-tight focus:outline-none focus:shadow-outline"
+                      className="w-full px-2 py-1-4 my-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       type="file"
                       {...register("image")}
                     ></input>
                   </div>
-                  <p className="text-red-500 text-xs italic">
+                  <p className="text-xs italic text-red-500">
                     {errors?.image?.message}
                   </p>
                   <Button type="blue">Valider</Button>
                 </form>
 
                 {/*footer*/}
-                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                <div className="flex items-center justify-end p-6 border-t border-solid rounded-b border-blueGray-200">
                   <button
-                    className="text-red bg-emerald-500 active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="px-6 py-3 mb-1 mr-1 text-sm font-bold uppercase transition-all duration-150 ease-linear rounded shadow outline-none text-red bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
@@ -101,7 +102,7 @@ export const ModalImageProfil: React.FC<IModalImageProfil> = ({
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
         </>
       ) : null}
     </>

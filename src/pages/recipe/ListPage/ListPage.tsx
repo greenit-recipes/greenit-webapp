@@ -11,7 +11,7 @@ import {
   Footer,
   Loading,
   Navbar,
-  RecipeCard
+  RecipeCard,
 } from "../../../components";
 import { RecipesQuery, useRecipesQuery } from "../../../graphql";
 import useIsMobile from "../../../hooks/isMobile";
@@ -20,7 +20,6 @@ import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
 
 const RecipeListPage = () => {
-  
   const cleanDataPlayload = (filter: any) =>
     mapValues(filter, function (value, key) {
       if (key === "search") return value;
@@ -95,8 +94,8 @@ const RecipeListPage = () => {
   });
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   const isMobile = useIsMobile();
 
@@ -225,16 +224,14 @@ const RecipeListPage = () => {
             {isMobile ? (
               <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
                 {recipes?.map((recipe, index) => {
-                  return (
-                      <RecipeCard recipe={recipe?.node} />
-                  );
+                  return <RecipeCard recipe={recipe?.node} />;
                 })}
               </div>
             ) : (
-              <div className="grid grid-cols-1 justify-items-center | py-4 px-8 mb-14">
+              <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
                 <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
                   {recipes?.map((recipe, index) => (
-                      <RecipeCard recipe={recipe?.node} />
+                    <RecipeCard recipe={recipe?.node} />
                   ))}
                 </div>
               </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { HiOutlineChevronDown } from "react-icons/hi";
 
 interface ButtonProps {
   type: "blue" | "green" | "yellow" | "orange" | "grey" | "red" | "submit";
@@ -6,8 +7,11 @@ interface ButtonProps {
   rounded?: string;
   className?: string;
   onClick?: () => void;
+  onClickArrow?: (isArrowDown: boolean) => void;
   disabled?: boolean;
   href?: string;
+  haveArrow?: boolean;
+  isArrowDown?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -17,6 +21,9 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   id,
   onClick,
+  onClickArrow,
+  haveArrow,
+  isArrowDown,
 }) => {
   return (
     <button
@@ -34,10 +41,22 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={() => {
         if (onClick) {
           onClick();
+        } else if (onClickArrow) {
+          // @ts-ignore
+          onClickArrow(!isArrowDown);
         }
       }}
     >
       {children}
+      {haveArrow && (
+        <HiOutlineChevronDown
+          className={`w-6 h-6 ml-2 cursor-pointer ${
+            isArrowDown
+              ? "section-arrow-up"
+              : "section-arrow-down"
+          }`}
+        />
+      )}
     </button>
   );
 };

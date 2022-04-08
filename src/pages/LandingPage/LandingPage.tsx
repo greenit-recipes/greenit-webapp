@@ -11,15 +11,18 @@ import {
   Button,
   Container,
   Footer,
-  Loading, Navbar,
+  Loading,
+  Navbar,
   RecipeCard,
-  SearchBar
+  SearchBar,
 } from "../../components";
 import { useRecipesQuery } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
 import {
-  atelier, Conseil,
-  Cooking, corpsWhy,
+  atelier,
+  Conseil,
+  Cooking,
+  corpsWhy,
   money,
   planet,
   wellbeing,
@@ -121,7 +124,7 @@ const LandingPage = () => {
           <SearchBar keyId="searchBarLandingPage" />
         </div>
       </Container>
-      <div className="w-full sm:w-4/5 lg:w-2/3 | py-8 pl-6 | flex overflow-x-auto">
+      <div className="w-full sm:w-4/5 lg:w-2/3 | py-9 pl-6 | flex overflow-x-auto">
         <div className="flex flex-row">
           {landingPageCategories.slice(0, 1).map((item) => (
             <CategoryCircle
@@ -137,7 +140,7 @@ const LandingPage = () => {
               key={item.title}
             />
           ))}
-          <div className="w-1 h-18 border-r-1 border-grey self-center mb-14 mx-6"></div>
+          <div className="self-center w-1 mx-6 border-r h-18 border-grey mb-14"></div>
           {landingPageCategories.slice(3).map((item) => (
             <CategoryCircle
               name={item.title}
@@ -153,7 +156,7 @@ const LandingPage = () => {
           Notre sélection de recettes
         </h2>
         {isMobile ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 mb-2">
+          <div className="grid grid-cols-2 mt-4 mb-2 sm:grid-cols-3">
             {recipes?.slice(0, 6).map((recipe, index: number) => (
               <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
             ))}
@@ -175,7 +178,7 @@ const LandingPage = () => {
       </h2>
       {isMobile ? (
         <div className="w-full pl-4 overflow-x-auto">
-          <div className="w-max flex">
+          <div className="flex w-max">
             {recipesBegginer?.map((recipe) => (
               <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
             ))}
@@ -200,7 +203,11 @@ const LandingPage = () => {
           itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
         >
           {recipesBegginer?.map((recipe) => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} isCarrousel={true}/>
+            <RecipeCard
+              recipe={recipe?.node}
+              key={recipe?.node?.id}
+              isCarrousel={true}
+            />
           ))}
         </Carousel>
       )}
@@ -209,13 +216,13 @@ const LandingPage = () => {
           <h2 className="text-xl px-6 md:px-0 md:text-2xl | mb-4 text-center">
             Le guide pour se lancer dans le DIY
           </h2>
-          <h3 className="text-sm lg: font-light text-center">
+          <h3 className="text-sm font-light text-center lg:">
             3 étapes simples pour vous lancer dans le fait-maison, co-écrit avec
             des experts de la communauté Greenit !
           </h3>
         </div>
 
-        <div className="flex flex-row justify-evenly gap-2 lg:gap-6 my-6">
+        <div className="flex flex-row gap-2 my-6 justify-evenly lg:gap-6">
           {[
             {
               icon: Conseil,
@@ -235,20 +242,20 @@ const LandingPage = () => {
           ].map((item, index) => (
             <Link to={RouteName.starterPage} key={index}>
               <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150">
-                <div className="grid absolute  w-8 h-8  md:w-10 md:h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
-                  <h2 className="text-center self-center font-bold  text-sm  lg:text-xl">
+                <div className="absolute grid w-8 h-8 m-2 -mt-4 -ml-4 bg-white rounded-full shadow-sm md:w-10 md:h-10">
+                  <h2 className="self-center text-sm font-bold text-center lg:text-xl">
                     {item.number}
                   </h2>
                 </div>
                 <div className="grid justify-items-center">
                   <img
                     src={item.icon}
-                    className="w-8 md:w-16 self-center items-center"
+                    className="items-center self-center w-8 md:w-16"
                     alt="conseils_diy"
                     loading="lazy"
                   />{" "}
                 </div>
-                <h3 className="text-xs lg:text-sm  text-center font-light">
+                <h3 className="text-xs font-light text-center lg:text-sm">
                   {item.title}
                 </h3>
               </div>
@@ -266,7 +273,7 @@ const LandingPage = () => {
       </h2>
       {isMobile ? (
         <div className="w-full pl-4 overflow-x-auto">
-          <div className="w-max flex">
+          <div className="flex w-max">
             {recipesOrderByLikes?.map((recipe) => (
               <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
             ))}
@@ -291,23 +298,27 @@ const LandingPage = () => {
           itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
         >
           {recipesOrderByLikes?.map((recipe) => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} isCarrousel={true}/>
+            <RecipeCard
+              recipe={recipe?.node}
+              key={recipe?.node?.id}
+              isCarrousel={true}
+            />
           ))}
         </Carousel>
       )}
 
-      <Container className="w-full text-center mt-20" itemsCenter>
+      <Container className="w-full mt-20 text-center" itemsCenter>
         <h2 className="text-xl md:text-2xl | mb-2 text-center">
           🙏 Merci à tous pour votre grande générosité ! 🌱
         </h2>
 
-        <h3 className=" w-full sm:w-2/3 md:w-2/5 px-4 md:p-1 mb-6 text-md md:text-xl text-center">
+        <h3 className="w-full px-4 mb-6 text-center sm:w-2/3 md:w-2/5 md:p-1 text-md md:text-xl">
           Grâce aux dons de toute la communauté nous pouvons continuer à
           développer Greenit, avec toujours plus de DIY !
         </h3>
         <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 md:-ml-10">
           <iframe
-            className="react-player px-4 sm:px-0 justify-self-center"
+            className="px-4 react-player sm:px-0 justify-self-center"
             height="300px"
             width="310px"
             title="video ulule"
@@ -334,7 +345,7 @@ const LandingPage = () => {
           Nos tutos vidéos pour commencer
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 sm:grid-rows-1 gap-2 md:gap-8 pt-4 w-4/5 lg:w-3/5">
+        <div className="grid w-4/5 grid-cols-1 grid-rows-2 gap-2 pt-4 sm:grid-cols-2 sm:grid-rows-1 md:gap-8 lg:w-3/5">
           <div className="relative h-64 md:h-80">
             <ReactPlayer
               url="https://youtu.be/ZeNRzJg0CKo"
@@ -367,9 +378,9 @@ const LandingPage = () => {
         </div>
       </Container>
 
-      <div className="mt-10 grid bg-orange w-full py-12 px-6 justify-items-center">
+      <div className="grid w-full px-6 py-12 mt-10 bg-orange justify-items-center">
         <div className="grid mb-8 text-center">
-          <h2 className="text-white text-xl md:text-2xl mb-2">
+          <h2 className="mb-2 text-xl text-white md:text-2xl">
             Tous les ateliers DIY proches de chez toi !{" "}
           </h2>
           <h3 className="text-white text-lg md:text-xl | text-center whitespace-pre-line">
@@ -380,7 +391,7 @@ const LandingPage = () => {
           <div className="relative justify-center">
             <img src={atelier} className="w-56 h-56" alt="liked button" />
           </div>
-          <Link className="self-top mt-5" to={RouteName.workshops}>
+          <Link className="mt-5 self-top" to={RouteName.workshops}>
             <Button className="border-white" type="orange">
               Explorer des ateliers
             </Button>
@@ -389,14 +400,14 @@ const LandingPage = () => {
       </div>
 
       <Container
-        className="w-full md:w-3/5 h-full mb-6"
+        className="w-full h-full mb-6 md:w-3/5"
         itemsCenter
         padding={isMobile}
       >
         <h2 className="text-xl md:text-2xl | mt-20 lg:mb-10 text-center">
           Pourquoi Greenit ?
         </h2>
-        <div className="grid grid-cols-2 gap-8 md:gap-12 justify-items-center mt-8">
+        <div className="grid grid-cols-2 gap-8 mt-8 md:gap-12 justify-items-center">
           {[
             { text: "Pour la planète", color: "#8AD554", icon: planet },
             { text: "Pour ton corps", color: "#7EAADD", icon: corpsWhy },
@@ -407,7 +418,7 @@ const LandingPage = () => {
               <img
                 src={item.icon}
                 alt={item.text}
-                className="w-28 h-28 md:w-32 md:h-32 pb-2"
+                className="pb-2 w-28 h-28 md:w-32 md:h-32"
                 loading="lazy"
               ></img>
               <h2 className="text-md md:text-xl" style={{ color: item.color }}>
@@ -416,7 +427,7 @@ const LandingPage = () => {
             </div>
           ))}
         </div>
-        <h3 className="mt-10 mb-4 text-md md:text-xl text-center">
+        <h3 className="mt-10 mb-4 text-center text-md md:text-xl">
           Greenit est une initiative visant à encourager une consommation <br />
           plus durable et responsable.
         </h3>
@@ -426,13 +437,13 @@ const LandingPage = () => {
       </Container>
       <Newsletter />
       <Container
-        className="w-full md:mt-20 md:w-3/5 h-full my-6 px-6"
+        className="w-full h-full px-6 my-6 md:mt-20 md:w-3/5"
         itemsCenter
       >
         <h2 className="text-xl md:text-2xl | lg:mb-10 text-center">
           On parle de nous !
         </h2>
-        <div className="flex justify-between flex-col lg:flex-row mb-20">
+        <div className="flex flex-col justify-between mb-20 lg:flex-row">
           <Press
             title='"Ces 3 amis ont crée un site qui propose des dizaines de recettes zéro déchet à faire soi-même"'
             image={sixHTN}

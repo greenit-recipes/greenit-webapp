@@ -50,10 +50,10 @@ export const Icon: React.FC<IconProps> = ({
 
   let child;
   child = (
-    <div className="flex flex-cols w-full my-1">
+    <div className="flex w-full my-1 flex-cols">
       <div className="grid w-1/2 pl-4">
         <div className="grid grid-cols-2 justify-items-center justify-self-center ">
-          <h3 className="text-sm lg:text-xl self-center -mr-3">
+          <h3 className="self-center -mr-3 text-sm lg:text-xl">
             {nbOfIngredient}
           </h3>
           <img
@@ -63,9 +63,9 @@ export const Icon: React.FC<IconProps> = ({
           />
         </div>
       </div>
-      <div className="border-r-1 h-5 w-0 border-grey self-center"></div>
+      <div className="self-center w-0 h-5 border-r border-grey"></div>
       <div className="grid w-1/2 pr-4 justify-items-center">
-        <h3 className="text-sm lg:text-lg self-center">{difficulty}</h3>
+        <h3 className="self-center text-sm lg:text-lg">{difficulty}</h3>
       </div>
     </div>
   );

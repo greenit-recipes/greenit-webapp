@@ -28,17 +28,17 @@ const DeleteProfil: React.FC = () => {
           nous exprimer ce qui te déplaît chez Greenit !
         </h3>
 
-        <div className="flex bg-white border-1 border-black rounded-lg p-6">
+        <div className="flex p-6 bg-white border border-black rounded-lg">
           <a
             href="mailto:hello@greenitcommunity.com"
-            className="inline-flex gap-x-2 cursor-pointer"
+            className="inline-flex cursor-pointer gap-x-2"
           >
             <img
               src={MailIcon}
               alt="greenit mail"
-              className="w-6 h-6 self-center"
+              className="self-center w-6 h-6"
             />
-            <h3 className=" md:text-xl self-center">
+            <h3 className="self-center md:text-xl">
               hello@greenitcommunity.com
             </h3>
           </a>

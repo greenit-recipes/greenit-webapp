@@ -41,6 +41,7 @@ query recipe($urlId: String!) {
     priceMax
     moneySaved
     plasticSaved
+    isMadeByCurrentUser
     category {
       name
     }

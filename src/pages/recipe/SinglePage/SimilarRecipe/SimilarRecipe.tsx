@@ -50,7 +50,7 @@ export const SimilarRecipe: React.FC<ISimilarRecipe> = (data) => {
   return (
     <>
       {isMobile ? (
-        <div className="w-full py-4 overflow-x-auto">
+        <div className="w-full py-1-4 overflow-x-auto">
           <div className="w-max flex">
             {
               // @ts-ignore

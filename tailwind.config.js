@@ -10,27 +10,33 @@ module.exports = {
         "rounded-md",
         "md:h-14",
         "md:h-9",
-        /submit/,
-        /success/,
-        /error/,
-        /info/,
-        /green/,
-        /blue/,
-        /yellow/,
-        /orange/,
-        /grey/,
-        /red/,
-        /bluelight/,
-        /greyL/,
-        /rpiBlue/,
-        /rpiOrange/,
-        /rpiYellow/,
+        /hover:text-/,
+        /hover:bg-/,
+        /hover:border-/
       ],
     },
+  }, variants: {
+    extend: {},
   },
+  plugins: [],
   theme: {
+    colors: {
+      // Base COLOR
+      transparent: 'transparent',
+      current: 'currentColor',
+      blue: "#7BAAE8",
+      yellow: "#FCD07B",
+      orange: "#FFAF8D",
+      grey: "#707070",
+      black: "#1C1C1C",
+      red: "#F25356",
+      white: '#ffffff',
+      green: "#6ECB75"
+
+    },
+
     extend: {
-      borderWidth: { 
+      borderWidth: {
         '1': '1px'
       },
       width: {
@@ -42,7 +48,7 @@ module.exports = {
         '99': '30rem',
       },
       height: {
-        '14':	'3.5rem', /* 56px */
+        '14': '3.5rem', /* 56px */
         '18': '4.5rem',
         '26': '6.5rem',
         '38': '9.5rem',
@@ -73,28 +79,9 @@ module.exports = {
         '64': '16rem',
         '96': '24rem',
       },
-      margin: {        
+      margin: {
         '100': '33rem',
-        '99': '28rem',            
-      },
-      colors: {
-      // AJOUTER DANS LA SAFE LIST
-        submit: "#8fb5e7",
-        success: "#f9d58e",
-        error: "#fec4b0",
-        info: "83d489",
-
-        green: "#6ECB75",
-        blue: "#7BAAE8",
-        yellow: "#FCD07B",
-        orange: "#FFAF8D",
-        grey: "#707070",
-        red: "#ED6D6D",
-        bluelight: "#e0eaf8",
-        greyL:"#F0F0F0",
-        rpiBlue: "#D6E6FA",
-        rpiOrange: "#FCDED1",
-        rpiYellow: "#FFEAC1",
+        '99': '28rem',
       },
 
       keyframes: {
@@ -102,18 +89,27 @@ module.exports = {
           "50%": { transform: "rotate(90deg)" },
         }
       },
+      colors: {
+        greenL: "#DEF7E4",
+        blueL: "#D6E6FA",
+        orangeL: "#FCDED1",
+        yellowL: "#FFEAC1",
+        greyL: "#F0F0F0",
+        redL: "#ED6D6D",
+      },
       animation: {
         rotate: "rotate 200ms ease-in"
       },
       fontFamily: {
         light: ['QuickSand_Light.ttf'],
         medium: ['QuickSand_Medium.ttf'],
-        regular: ['QuickSand_Regular.ttf'],    
+        regular: ['QuickSand_Regular.ttf'],
         semibold: ['QuickSand_SemiBold.ttf'],
-        bold: ['QuickSand_Bold.ttf'],    
+        bold: ['QuickSand_Bold.ttf'],
         body: ["Quicksand-Medium"],
         legend: ["Quicksand-Light"],
       },
-    },
+    }
   },
+
 };

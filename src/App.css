@@ -40,6 +40,7 @@ h4 {
   font-family: QuickSand_Light;
 }
 
+/* UI-KIT SIZE */
 
 .fontQSmedium {
   font-family: QuickSand_Medium;
@@ -49,12 +50,12 @@ h4 {
   font-family: QuickSand_Bold;
 }
 
-.fontQSregular {
-  font-family: QuickSand_Regular;
+.fontQSemibold {
+  font-family: QuickSand_SemiBold;
 }
 
-.fontQSsemibold {
-  font: normal normal 600 35px/44px Quicksand;
+.fontQSregular {
+  font-family: QuickSand_Regular;
 }
 
 .text_logo {
@@ -189,6 +190,16 @@ border-radius: 4px;
   border-radius: 5px;
 }
 
+.icon-position-circle {
+  left: -6px;
+  top: -5px;
+}
+
+.icon-position-circle-mobile {
+  left: -3px;
+  top: -2px;
+}
+
 .button_contact:hover {
   background-color: transparent;
   color: #83d489;
@@ -256,4 +267,29 @@ border-radius: 4px;
 
 .selectStyle {  
   height: 100px;
+}
+
+
+/* ARROW */
+
+.section-arrow-down {
+  transform: rotate(-180deg);
+  transition: transform 0.50s;
+}
+
+.section-arrow-up {
+  transform: rotate(0deg);
+  transition: transform 0.40s ease-in;
+}
+
+.fadeIn-arrow { 
+  max-height: 1500px;
+  transition: max-height 0.75s ease-in;
+  overflow: hidden;
+}
+
+.fadeOut-arrow {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-out;
 }
