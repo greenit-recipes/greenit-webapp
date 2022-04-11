@@ -185,8 +185,8 @@ const RecipeSinglePage = () => {
                     customClassName="flex w-28"
                     recipe={data?.recipe}
                   ></FavouriteField>
-                  <MadeRecipe customClassName="ml-10"  recipe={data?.recipe}/>
-                  <div className="flex w-10 h-10 ml-10 w-28 btn-single-page">
+                  <MadeRecipe customClassName="ml-3 lg:ml-10"  recipe={data?.recipe}/>
+                  <div className="flex w-10 h-10 ml-3 lg:ml-10 w-28 btn-single-page">
                     <RWebShare
                       data={{
                         text: recipe?.titleSeo,
@@ -526,7 +526,7 @@ const RecipeSinglePage = () => {
 
                     <Button
                       className="w-24 rounded focus:outline-none focus:shadow-outline"
-                      type="submit"
+                      type="blue"
                     >
                       Publier
                     </Button>

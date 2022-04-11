@@ -50,7 +50,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
             ) : (
               <FiSquare className="w-6 h-6"></FiSquare>
             )}
-            <div className="flex flex-col justify-center ml-1">recette réalisée</div>
+            <div className="flex flex-col justify-center ml-1">réalisée</div>
           </div>
         </button>
       ) : (
@@ -70,7 +70,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
                   )}
 
                   <div className="flex flex-col justify-center ml-1 ">
-                    recette réalisée
+                    réalisée
                   </div>
                 </div>
               </button>

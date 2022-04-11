@@ -30,11 +30,10 @@ const Modal = (props: any) => {
     >
       <div className={`modal ${props.isCenter ? "modal-is-center" : ""} `} onClick={props.onClose}>
         <div className={`modal-content ${isMobile ? "w-11/12 my-5 mx-5": "mt-5 mb-5"}`} onClick={e => e.stopPropagation()}>
-          <div className="modal-header flex justify-end">
-            <h4 className="modal-title">{props.title}</h4>
-            
-            <button onClick={props.onClose} className="button">
-              <IoClose/>
+          <div className="modal-header">
+            <h2 className="modal-title">{props.title}</h2>
+            <button onClick={props.onClose} className="button absolute right-2">
+              <IoClose className="h-10 w-5"/>
             </button>
           </div>
           <div className="modal-body">{props.children}</div>

@@ -2,7 +2,7 @@ import React from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
 
 interface ButtonProps {
-  type: "blue" | "green" | "yellow" | "orange" | "grey" | "red" | "submit";
+  type: "blue" | "green" | "yellow" | "orange" | "grey" | "red" | "blueL";
   id?: string;
   rounded?: string;
   className?: string;

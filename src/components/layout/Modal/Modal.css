@@ -45,6 +45,7 @@
     padding: 10px;
   }
 
+  .modal-header,
   .modal-footer {
     display: flex;
     align-items: center;
