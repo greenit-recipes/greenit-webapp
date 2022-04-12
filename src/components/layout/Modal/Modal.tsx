@@ -33,7 +33,7 @@ const Modal = (props: any) => {
           <div className="modal-header">
             <h2 className="modal-title">{props.title}</h2>
             <button onClick={props.onClose} className="button absolute right-2">
-              <IoClose className="h-10 w-5"/>
+              <IoClose className="h-10 w-7"/>
             </button>
           </div>
           <div className="modal-body">{props.children}</div>

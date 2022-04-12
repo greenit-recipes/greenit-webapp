@@ -1,0 +1,14 @@
+.border-kpi {
+    border: 1px solid #707070;
+    opacity: 1;
+    width: 60%;
+    height: 0px;
+    text-align: center;
+    margin: auto;
+    margin-top: 1.25rem;
+}
+
+.positionCircleModalKpi {
+    top: -20px;
+    left: -14px;
+}

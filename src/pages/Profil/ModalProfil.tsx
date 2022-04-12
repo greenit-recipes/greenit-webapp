@@ -6,7 +6,6 @@ import authService from "services/auth.service";
 
 export const ModalProfil: React.FC = () => {
   const isMobile = useIsMobile();
-  const [showModal, setShowModal] = React.useState(false);
   return (
     <>
       <div

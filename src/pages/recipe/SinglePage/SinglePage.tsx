@@ -5,6 +5,7 @@ import { Button, Footer, Loading, Navbar } from "components";
 import { FavouriteField } from "components/layout/FavouriteField";
 import { LikeComment } from "components/layout/LikeComment";
 import { MadeRecipe } from "components/layout/MadeRecipe";
+import Modal from "components/layout/Modal/Modal";
 import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { UserBadge } from "components/layout/UserBadge";
 import { getImagePath } from "helpers/image.helper";
@@ -17,6 +18,7 @@ import { isEmpty } from "lodash";
 import moment from "moment";
 import { IngredientUsentil } from "pages/recipe/SinglePage/IngredientUsentil/IngredientUsentil";
 import { Instruction } from "pages/recipe/SinglePage/Instructions/Instructions";
+import { ModalKpi } from "pages/recipe/SinglePage/modalKpi/modalKpi";
 import { checkUserAlreadyViewRecipe } from "pages/recipe/SinglePage/SinglePage-helper";
 import { HelmetRecipe } from "pages/recipe/SinglePage/SinglePageHelmet";
 import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest";
@@ -80,6 +82,11 @@ const RecipeSinglePage = () => {
     },
   });
 
+  const [showModal, setShowModal] = useState(false);
+  // @ts-ignore
+  const [typeModal, setTypeModal] = useState<"plastic" | "money" | "substance">(null);
+  const [numberModal, setNumberModal] = useState(0);
+
   // Comments
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
   const [nbrComment, setNbrComment] = useState(data?.recipe?.numberOfComments);
@@ -142,8 +149,8 @@ const RecipeSinglePage = () => {
       scrollIntoComment();
       reset();
     });
-  }
-  
+  };
+
   if (loading || !data) {
     return <Loading />;
   }
@@ -156,8 +163,8 @@ const RecipeSinglePage = () => {
         <div
           className="absolute left-0 z-20 grid w-8 h-8 ml-3 rounded-full cursor-pointer top-14 lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
           onClick={() => {
-            if (getObjectSession("pathname")) history.goBack() // need to have previous path
-            else history.push(RouteName.recipes)
+            if (getObjectSession("pathname")) history.goBack(); // need to have previous path
+            else history.push(RouteName.recipes);
           }}
         >
           <img alt="Retour icon" loading="lazy" src={retourIcon} />
@@ -185,7 +192,10 @@ const RecipeSinglePage = () => {
                     customClassName="flex w-28"
                     recipe={data?.recipe}
                   ></FavouriteField>
-                  <MadeRecipe customClassName="ml-3 lg:ml-10"  recipe={data?.recipe}/>
+                  <MadeRecipe
+                    customClassName="ml-3 lg:ml-10"
+                    recipe={data?.recipe}
+                  />
                   <div className="flex w-10 h-10 ml-3 lg:ml-10 w-28 btn-single-page">
                     <RWebShare
                       data={{
@@ -211,37 +221,70 @@ const RecipeSinglePage = () => {
                   </div>
                 </div>
               </div>
+              <Modal
+                onClose={() => setShowModal(false)}
+                show={showModal}
+              >
+                <ModalKpi substances={recipe?.substances} nameKpi={typeModal} number={numberModal}></ModalKpi>
+              </Modal>
               {!isMobile && (
                 <div className="flex items-center justify-center mt-10">
-                  <CircleGreenit
-                    colorCircle="bg-orange"
-                    icon={
-                      <IoFlaskOutline className="absolute w-10 h-10 icon-position-circle rotate-singlePage-chimie" />
-                    }
-                    symbol=""
-                    number={recipe?.substances?.length}
-                    text="Substances épargnées"
-                  />
-                  <CircleGreenit
-                    colorCircle="bg-yellow"
-                    icon={
-                      <BsWallet2 className="absolute h-9 w-9 icon-position-circle rotate-singlePage-wallet" />
-                    }
-                    customClassName="ml-16"
-                    symbol="€"
-                    number={recipe?.moneySaved}
-                    text="Argent économisé"
-                  />
-                  <CircleGreenit
-                    colorCircle="bg-green"
-                    icon={
-                      <IoEarthOutline className="absolute w-10 h-10 icon-position-circle" />
-                    }
-                    customClassName="ml-16"
-                    symbol="g"
-                    number={recipe?.plasticSaved}
-                    text="Plastiques évités"
-                  />
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => {
+                      setTypeModal("substance");
+                      setNumberModal(recipe?.substances?.length || 0);
+                      setShowModal(true);
+                    }}
+                  >
+                    <CircleGreenit
+                      colorCircle="bg-orange"
+                      icon={
+                        <IoFlaskOutline className="absolute w-8 h-8 icon-position-circle rotate-singlePage-chimie" />
+                      }
+                      symbol=""
+                      number={recipe?.substances?.length}
+                      text="Substances épargnées"
+                    />
+                  </div>
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => {
+                      setTypeModal("money");
+                      setNumberModal(recipe?.moneySaved || 0);
+                      setShowModal(true);
+                    }}
+                  >
+                    <CircleGreenit
+                      colorCircle="bg-yellow"
+                      icon={
+                        <BsWallet2 className="absolute h-7 w-7 icon-position-circle rotate-singlePage-wallet" />
+                      }
+                      customClassName="ml-16"
+                      symbol="€"
+                      number={recipe?.moneySaved}
+                      text="Argent économisé"
+                    />
+                  </div>
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => {
+                      setTypeModal("plastic");
+                      setNumberModal(recipe?.plasticSaved || 0);
+                      setShowModal(true);
+                    }}
+                  >
+                    <CircleGreenit
+                      colorCircle="bg-green"
+                      icon={
+                        <IoEarthOutline className="absolute w-8 h-8 icon-position-circle" />
+                      }
+                      customClassName="ml-16"
+                      symbol="g"
+                      number={recipe?.plasticSaved}
+                      text="Plastiques évités"
+                    />
+                  </div>
                 </div>
               )}
               {/* Description + image */}
@@ -255,35 +298,62 @@ const RecipeSinglePage = () => {
                 />
                 {isMobile && (
                   <div className="flex items-center justify-center mt-8">
-                    <CircleGreenit
-                      colorCircle="bg-orange"
-                      icon={
-                        <IoFlaskOutline className="absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-chimie" />
-                      }
-                      symbol=""
-                      number={recipe?.substances?.length}
-                      text="Substances épargnées"
-                    />
-                    <CircleGreenit
-                      colorCircle="bg-yellow"
-                      icon={
-                        <BsWallet2 className="absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-wallet" />
-                      }
-                      customClassName="ml-16"
-                      symbol="€"
-                      number={recipe?.moneySaved}
-                      text="Argent économisé"
-                    />
-                    <CircleGreenit
-                      colorCircle="bg-green"
-                      icon={
-                        <IoEarthOutline className="absolute w-6 h-6 icon-position-circle-mobile" />
-                      }
-                      customClassName="ml-16"
-                      symbol="g"
-                      number={recipe?.plasticSaved}
-                      text="Plastiques évités"
-                    />
+                    <div
+                      className="cursor-pointer"
+                      onClick={() => {
+                        setTypeModal("substance");
+                        setNumberModal(recipe?.substances?.length || 0);
+                        setShowModal(true);
+                      }}
+                    >
+                      <CircleGreenit
+                        colorCircle="bg-orange"
+                        icon={
+                          <IoFlaskOutline className="absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-chimie" />
+                        }
+                        symbol=""
+                        number={recipe?.substances?.length}
+                        text="Substances épargnées"
+                      />
+                    </div>
+                    <div
+                      className="cursor-pointer"
+                      onClick={() => {
+                        setTypeModal("money");
+                        setNumberModal(recipe?.substances?.length || 0);
+                        setShowModal(true);
+                      }}
+                    >
+                      <CircleGreenit
+                        colorCircle="bg-yellow"
+                        icon={
+                          <BsWallet2 className="absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-wallet" />
+                        }
+                        customClassName="ml-16"
+                        symbol="€"
+                        number={recipe?.moneySaved}
+                        text="Argent économisé"
+                      />
+                    </div>{" "}
+                    <div
+                      className="cursor-pointer"
+                      onClick={() => {
+                        setTypeModal("substance");
+                        setNumberModal(recipe?.substances?.length || 0);
+                        setShowModal(true);
+                      }}
+                    >
+                      <CircleGreenit
+                        colorCircle="bg-green"
+                        icon={
+                          <IoEarthOutline className="absolute w-6 h-6 icon-position-circle-mobile" />
+                        }
+                        customClassName="ml-16"
+                        symbol="g"
+                        number={recipe?.plasticSaved}
+                        text="Plastiques évités"
+                      />
+                    </div>
                   </div>
                 )}
                 {isMobile && <h2 className="mt-8 text-xl">Description</h2>}
@@ -299,7 +369,7 @@ const RecipeSinglePage = () => {
                   ) : (
                     ""
                   )}
-                  <div className="pt-5 pb-2 fontQSbold ">Conservation</div>
+                  <div className="pt-5 pb-2 fontQSemibold ">Conservation</div>
                   <p>{recipe?.expiry}</p>
                   <div className="flex mt-6 black">
                     <div className="h-16">
@@ -503,7 +573,7 @@ const RecipeSinglePage = () => {
             </div>
             <form
               className="p-4 mt-10 mb-4 filter drop-shadow-xl rounded-xl bg-blue bg-opacity-10"
-                          // @ts-ignore
+              // @ts-ignore
               onSubmit={handleSubmit(onSubmitHandler)}
             >
               <div className="mb-4">
@@ -531,20 +601,23 @@ const RecipeSinglePage = () => {
                       Publier
                     </Button>
                   </div>
-                ) : (<></>
+                ) : (
+                  <></>
                 )}
               </div>
             </form>
-            {!isLoggedIn &&  ( <ModalLogGreenit
-                    btn={
-                      <Button
-                        className="rounded focus:outline-none focus:shadow-outline w-52"
-                        type="blue"
-                      >
-                        Se connecter pour discuter
-                      </Button>
-                    }
-                  ></ModalLogGreenit>) }
+            {!isLoggedIn && (
+              <ModalLogGreenit
+                btn={
+                  <Button
+                    className="rounded focus:outline-none focus:shadow-outline w-52"
+                    type="blue"
+                  >
+                    Se connecter pour discuter
+                  </Button>
+                }
+              ></ModalLogGreenit>
+            )}
           </div>
         </div>
         <Footer />

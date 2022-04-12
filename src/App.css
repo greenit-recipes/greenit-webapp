@@ -293,3 +293,18 @@ border-radius: 4px;
   max-height: 0;
   transition: max-height 0.5s ease-out;
 }
+
+
+/* Modal size */ 
+
+.small-modal {
+  width: 20rem !important;
+}
+
+.medium-modal {
+  width: 40rem !important;
+}
+
+.large-modal {
+  width: 60rem !important;
+}
