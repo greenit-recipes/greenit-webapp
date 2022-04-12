@@ -63,10 +63,10 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
         <div className="rounded-b bg-greyL">
           <div className="w-5/6 ml-6 lg:w-4/6">
             <div className="pt-4">{data?.description && HTMLReactParser(data?.description)}</div>
-            <h2 className="pt-6 fontQSbold">Alternatives</h2>
+            <h2 className="pt-4 fontQSemibold">Alternatives</h2>
             <div>{data?.alternative && HTMLReactParser(data?.alternative)}</div>
             <div className="flex-col items-center pt-4 pb-6 lg:flex-row">
-              <div className="fontQSbold">Où acheter ?</div>
+              <div className="fontQSemibold">Où acheter ?</div>
               {data?.isSupermarket && (
                 <div className="flex items-center ml-6">
                   <BsShop className="w-8 h-8 mr-2" />
