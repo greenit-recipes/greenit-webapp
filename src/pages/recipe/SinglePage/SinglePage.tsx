@@ -338,7 +338,7 @@ const RecipeSinglePage = () => {
                     <div
                       className="cursor-pointer"
                       onClick={() => {
-                        setTypeModal("substance");
+                        setTypeModal("plastic");
                         setNumberModal(recipe?.substances?.length || 0);
                         setShowModal(true);
                       }}
