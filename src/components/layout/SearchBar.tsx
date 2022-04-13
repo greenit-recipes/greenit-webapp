@@ -4,7 +4,6 @@ import { search } from "../../icons";
 import { RouteName } from "App";
 import { useEffect, useState } from "react";
 import "./SearchBar.css";
-import { orderBy } from "lodash";
 
 export const SearchBar: React.FC<{
   size?: "small" | "large";
@@ -12,11 +11,6 @@ export const SearchBar: React.FC<{
   value?: string;
   onSubmit?: () => void;
   keyId?: string;
-  hideSearchIcon?: boolean;
-}> = ({
-  size = "large",
-  value,
-  setValue,
   suggestions?: string[];
   suggestionIsActive?: boolean;
   isLoading?: boolean;
@@ -45,6 +39,11 @@ export const SearchBar: React.FC<{
       };
       setObjectFilterSession(getObjectSession('filterListPage'), currentSearchValue)
       history.push(RouteName.recipes);
+    }
+    else {
+      onSubmit();
+    }
+  }
 
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
@@ -53,21 +52,23 @@ export const SearchBar: React.FC<{
 
   useEffect(() => {
     // Filter our suggestions that don't contain the user's input
-    console.log("suggestion", suggestions);
+   if (!suggestionIsActive) return
     if (suggestions.length === 0 && isLoading) return;
     // @ts-ignore
     setFilteredSuggestions(suggestions);
     setActiveSuggestionIndex(0);
     setShowSuggestions(true);
-  }, [suggestions]);
+  }, [suggestionIsActive, suggestions, isLoading]);
 
   const onChange = (e: any) => {
+    console.log("e", e)
     const userInput = e.target.value;
 
     if (setValue) {
+      console.log('setValue')
       setValue(userInput);
     }
-
+    console.log("setInput")
     setInput(userInput);
   };
 
@@ -79,6 +80,7 @@ export const SearchBar: React.FC<{
   };
 
   const onKeyDown = (e: any) => {
+    console.log("passe la")
     if (e.key === "Enter") {
       handleSubmit();
     }
@@ -136,17 +138,6 @@ export const SearchBar: React.FC<{
     );
   };
 
-  const handleSubmit = () => {
-    if (!onSubmit) {
-      history.push(
-        `${RouteName.recipes}/?search=${
-          (document.getElementById(keyId) as HTMLInputElement)?.value
-        }`
-      );
-    } else {
-      onSubmit();
-    }
-  };
   return (
     <div
       className={`${totalSize} | flex | relative bg-white rounded-xl border-1 border-grey `}
@@ -157,6 +148,7 @@ export const SearchBar: React.FC<{
           } | pl-5 w-full | focus:outline-none`}
         onKeyDown={onKeyDown}
         onFocus={(event) => {
+          console.log('OnFocus')
           event.target.setAttribute("autocomplete", "off");
         }}
         placeholder="Recherche ..."

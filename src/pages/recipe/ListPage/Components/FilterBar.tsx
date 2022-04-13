@@ -25,6 +25,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   setScrollOffset,
 }) => {
   const [search, setSearch] = useState(getObjectSession('filterListPage')?.search || "");
+  console.log("search",search)
   const removeFilter = (valuex: any, key: any) => {
     let currentState = { ...currentFilters };
     currentState[key] = currentState[key].filter(

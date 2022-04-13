@@ -223,15 +223,15 @@ const RecipeListPage = () => {
           >
             {isMobile ? (
               <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
-                {recipes?.map((recipe, index) => {
-                  return <RecipeCard recipe={recipe?.node} />;
+                {recipes?.map((recipe) => {
+                  return <div key={recipe?.node?.id}><RecipeCard recipe={recipe?.node} /></div>;
                 })}
               </div>
             ) : (
               <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
                 <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
-                  {recipes?.map((recipe, index) => (
-                    <RecipeCard recipe={recipe?.node} />
+                  {recipes?.map((recipe) => (
+                    <div key={recipe?.node?.id}><RecipeCard recipe={recipe?.node} /></div>
                   ))}
                 </div>
               </div>
