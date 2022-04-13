@@ -176,7 +176,7 @@ const RecipeSinglePage = () => {
         />
         <div
           className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage"
-          style={{ marginTop: sizeCretorHeader / 16 - 10 + "rem" }}
+          style={{ marginTop: sizeCretorHeader / 16 - 9 + "rem" }}
         >
           <div className="w-5/6 mb-10 lg:w-4/6">
             <div className="w-full h-auto">

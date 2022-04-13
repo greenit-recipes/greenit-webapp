@@ -49,12 +49,13 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
       <div className="mb-5">
         <div
           className="flex pt-2 pb-2 pl-2 pr-4 mr-3 bg-white rounded cursor-pointer fontQSmedium"
+          id="see-profil-createur"
           onClick={() => {
             setIsDisplay(!isDisplay);
           }}
         >
-          <CgProfile id="see-profil-createur" className="h-6 mr-3 w-7" />
-          <div id="see-profil-createur">Voir le profil</div>
+          <CgProfile className="h-6 mr-3 w-7" />
+          <div>Voir le profil</div>
         </div>
       </div>
       <div className="flex flex-row flex-wrap mt-2 mb-7">
