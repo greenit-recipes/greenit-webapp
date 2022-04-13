@@ -460,7 +460,7 @@ const RecipeSinglePage = () => {
                         }}
                       >
                         <div
-                          className={`h-10 text-xl mr-5 w-10 rounded-full inline-flex items-center justify-center bg-gray-200`}
+                          className={`h-10 text-xl mr-5 w-10 rounded-full inline-flex items-center justify-center bg-greyL`}
                           style={{ minWidth: "2.5rem" }}
                         >
                           {index + 1}
