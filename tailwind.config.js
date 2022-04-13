@@ -24,14 +24,14 @@ module.exports = {
       // Base COLOR
       transparent: 'transparent',
       current: 'currentColor',
-      blue: "#7BAAE8",
-      yellow: "#FCD07B",
-      orange: "#FFAF8D",
+      blue: "#609DED",
+      yellow: "#FCCB6C",
+      orange: "#FFA781",
       grey: "#707070",
       black: "#1C1C1C",
-      red: "#F25356",
+      red: "#E24E51",
       white: '#ffffff',
-      green: "#6ECB75"
+      green: "#4BCB6A"
 
     },
 
