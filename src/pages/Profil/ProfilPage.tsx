@@ -150,7 +150,7 @@ const ProfilPage: React.FC = () => {
               }
               onClick={() => setVisible(true)}
             >
-              <div className="flex flex-row items-center gap-2">
+              <div className="flex flex-row items-center justify-center	 gap-2">
                 <img className="h-8" src={Cooking} alt="logo recette" />
                 <h3 className="text-left text-lg md:text-xl">Vos recettes</h3>
               </div>
@@ -162,7 +162,7 @@ const ProfilPage: React.FC = () => {
               }
               onClick={() => setVisible(false)}
             >
-              <div className="flex flex-row items-center gap-2">
+              <div className="flex flex-row items-center justify-center	 gap-2">
                 <img
                   className="h-10"
                   src={likedIconOn}

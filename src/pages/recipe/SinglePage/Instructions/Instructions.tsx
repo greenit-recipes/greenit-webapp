@@ -18,7 +18,11 @@ export const Instruction: React.FC<IInstruction> = ({
   return isMobile ? (
     <div className={`flex items-center justify-center`}>
       <div
-        className={`h-10 text-xl mr-5 rounded-full flex items-center justify-center bg-greyL instruction-video-down`}
+        className={`h-10 text-xl mr-5 rounded-full flex items-center justify-center instruction-video-down ${
+          isHighlighted
+            ? "text-white bg-black"
+            : "text-black bg-greyL"
+        }`}
         style={{ minWidth: "2.5rem" }}
       >
         {index}
