@@ -12,6 +12,7 @@ import { IoIosRemove } from "react-icons/io";
 import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { PLUS_OR_LESS_RECIPE } from "services/auth.service";
+import { FiSquare } from "react-icons/fi";
 
 interface IUser {
   recipeMadeUser: any;
@@ -131,7 +132,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
                   </div>
                 )
               )}
-             { !recipeMadeUser.length && (<div className="text-center mt-4" >Ajoute les recettes déjà réalisées pour mesurer ton impact !</div>)}
+             { !recipeMadeUser.length && (<div className="flex"><div className="text-center mt-4 text-sm" >Ajoute les recettes déjà réalisées pour mesurer ton impact !</div> <FiSquare className="text-center mt-8 w-6 h-6"></FiSquare></div>)}
             </div>
           </div>
         </div>
@@ -140,7 +141,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-orange"
           icon={
-            <IoFlaskOutline className= { isMobile ? "absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-chimie" :`absolute w-10 h-10 icon-position-circle rotate-singlePage-chimie`}/>
+            <IoFlaskOutline className= { isMobile ? "absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-chimie" :`absolute w-8 h-8 icon-position-circle rotate-singlePage-chimie`}/>
           }
           symbol=""
           number={substancesRecipes}
@@ -149,7 +150,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-yellow"
           icon={
-            <BsWallet2 className= {  isMobile ? "absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-wallet" : `absolute h-9 w-9 icon-position-circle rotate-singlePage-wallet`}/>
+            <BsWallet2 className= {  isMobile ? "absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-wallet" : `absolute h-7 w-7 icon-position-circle rotate-singlePage-wallet`}/>
           }
           customClassName="ml-16"
           symbol="€"
@@ -159,7 +160,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-green"
           icon={
-            <IoEarthOutline className= { isMobile ? "absolute w-6 h-6 icon-position-circle-mobile" : "absolute w-10 h-10 icon-position-circle"}/>
+            <IoEarthOutline className= { isMobile ? "absolute w-6 h-6 icon-position-circle-mobile" : "absolute w-8 h-8 icon-position-circle"}/>
           }
           customClassName="ml-16"
           symbol="g"

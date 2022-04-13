@@ -152,7 +152,7 @@ const ProfilPage: React.FC = () => {
             >
               <div className="flex flex-row items-center gap-2">
                 <img className="h-8" src={Cooking} alt="logo recette" />
-                <h3 className="text-left text-lg md:text-xl">Vos recettes</h3>
+                <h3 className="text-left text-lg md:text-xl m-auto">Vos recettes</h3>
               </div>
             </button>
             <button
@@ -168,7 +168,7 @@ const ProfilPage: React.FC = () => {
                   src={likedIconOn}
                   alt="logo recettes favorites"
                 />
-                <h3 className="text-left text-lg md:text-xl">
+                <h3 className="text-left text-lg md:text-xl m-auto">
                   Recettes favorites
                 </h3>
               </div>

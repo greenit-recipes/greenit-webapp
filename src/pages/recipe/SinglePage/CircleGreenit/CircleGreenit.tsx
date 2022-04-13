@@ -31,11 +31,11 @@ export const CircleGreenit: React.FC<ICircleGreenit> = ({
         {icon}
         {!isOnlyIcon && (
           <div className="text-center fontQSemibold text-xl lg:text-2xl">
-            {!isSymbolAtEndOfLine && (
+            {symbol && !isSymbolAtEndOfLine && (
               <span className="fontQSmedium text-xl mr-2">{symbol} </span>
             )}
             {number}
-            {isSymbolAtEndOfLine && (
+            {symbol && isSymbolAtEndOfLine && (
               <span className="fontQSmedium text-xl ml-2">{symbol}</span>
             )}
           </div>
