@@ -38,6 +38,19 @@
   </script>
   <!-- End Google Tag Manager -->
 
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E98FJJ53V8"></script>
+  <script>
+    if (window.location.host === "greenitcommunity.com") {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-E98FJJ53V8');
+    }
+  </script>
+  
   <!-- Matomo -->
   <script>
     if (window.location.host === "greenitcommunity.com") {
@@ -61,31 +74,6 @@
       _mtm.push({ 'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start' });
       var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
       g.async = true; g.src = 'https://cdn.matomo.cloud/greenitcommunity.matomo.cloud/container_y2SZ6Brm.js'; s.parentNode.insertBefore(g, s);
-    }
-  </script>
-
-  <script>
-    if (window.location.host === "35.180.133.71") {
-      var _paq = (window._paq = window._paq || []);
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(["trackPageView"]);
-      _paq.push(["trackVisibleContentImpressions"]);
-      _paq.push(["enableLinkTracking"]);
-      (function () {
-        var u = "https://greenitcommunity.matomo.cloud/";
-        _paq.push(["setTrackerUrl", u + "matomo.php"]);
-        _paq.push(["setSiteId", "2"]);
-        var d = document,
-          g = d.createElement("script"),
-          s = d.getElementsByTagName("script")[0];
-        g.async = true;
-        g.src = "//cdn.matomo.cloud/greenitcommunity.matomo.cloud/matomo.js";
-        s.parentNode.insertBefore(g, s);
-      })();
-      var _mtm = window._mtm = window._mtm || [];
-      _mtm.push({ 'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start' });
-      var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-      g.async = true; g.src = 'https://cdn.matomo.cloud/greenitcommunity.matomo.cloud/container_vUblGmRD.js'; s.parentNode.insertBefore(g, s);
     }
   </script>
   <!-- End Matomo Code -->
