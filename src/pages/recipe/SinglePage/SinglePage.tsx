@@ -320,7 +320,7 @@ const RecipeSinglePage = () => {
                       className="cursor-pointer"
                       onClick={() => {
                         setTypeModal("money");
-                        setNumberModal(recipe?.substances?.length || 0);
+                        setNumberModal(recipe?.moneySaved || 0);
                         setShowModal(true);
                       }}
                     >
@@ -339,7 +339,7 @@ const RecipeSinglePage = () => {
                       className="cursor-pointer"
                       onClick={() => {
                         setTypeModal("plastic");
-                        setNumberModal(recipe?.substances?.length || 0);
+                        setNumberModal(recipe?.plasticSaved || 0);
                         setShowModal(true);
                       }}
                     >

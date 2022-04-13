@@ -132,7 +132,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
                   </div>
                 )
               )}
-             { !recipeMadeUser.length && (<div className="flex flex-col"><div className="text-center mt-4 text-sm" >Ajoute les recettes déjà réalisées pour mesurer ton impact !</div> <FiSquare className="text-center mt-2 m-auto w-6 h-6"></FiSquare></div>)}
+             { !recipeMadeUser.length && (<div className="text-center mt-4 text-sm" >Ajoute les recettes déjà réalisées pour mesurer ton impact !</div>)}
             </div>
           </div>
         </div>
