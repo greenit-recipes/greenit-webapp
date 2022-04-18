@@ -1,11 +1,16 @@
+import { useQuery } from "@apollo/client";
 import { RouteName } from "App";
 import { BugFormulaire } from "components/layout/BugFormulaire";
+import debounce from "lodash/debounce";
+import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 import "pages/LandingPage/LandingPage.css";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ReactPlayer from "react-player/lazy";
 import { Link } from "react-router-dom";
+import { landingPageCategories } from "utils";
 import {
   BackgroundImage,
   Button,
@@ -14,33 +19,22 @@ import {
   Loading,
   Navbar,
   RecipeCard,
-  SearchBar,
+  SearchBar
 } from "../../components";
+import { Press } from "../../components/layout/TheyTalkAboutUs";
 import { useRecipesQuery } from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
-import debounce from "lodash/debounce";
 import {
   atelier,
   Conseil,
   Cooking,
-  corpsWhy,
-  money,
-  planet,
-  wellbeing,
-  issy,
-  escapeTheCity,
-  sixHTN,
-  Ustensil,
+  corpsWhy, escapeTheCity, issy, money,
+  planet, sixHTN,
+  Ustensil, wellbeing
 } from "../../icons";
 import "../../pages/recipe/SinglePage/SinglePage.css";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
-import { Press } from "../../components/layout/TheyTalkAboutUs";
-import "react-multi-carousel/lib/styles.css";
-import "pages/LandingPage/LandingPage.css";
-import { getObjectSession } from "helpers/session-helper";
-import { landingPageCategories } from "utils";
-import { useState } from "react";
 
 const responsiveCarouselLanding = {
   desktop: {
@@ -68,17 +62,14 @@ const LandingPage = () => {
     data: dataIsDiplayHome,
     refetch,
   } = useRecipesQuery({
-    fetchPolicy: "no-cache",
     variables: { first: 8, filter: { isDisplayHome: true } },
   });
 
   const { data: dataBegginer } = useRecipesQuery({
-    fetchPolicy: "no-cache",
     variables: { first: 8, filter: { tags: ["Premiers pas"] } },
   });
 
   const { data: dataNbrLikes } = useRecipesQuery({
-    fetchPolicy: "no-cache",
     variables: { first: 8, filter: { isOrderByNumberLike: true } },
   });
 
@@ -87,9 +78,10 @@ const LandingPage = () => {
   const setSearchTermDebounced = debounce(setSearchTerm, 500);
 
   // Ne par run au premier lancement
-  const { data: autoCompleteData, loading : autoCompleteLoading, } = useRecipesQuery({
-    fetchPolicy: "no-cache",
-    variables: { first: 8, filter: { search: searchTerm } },
+  const { data: autoCompleteData, loading : autoCompleteLoading, } = useQuery(SEARCH_AUTO_COMPLETE_RECIPE, {
+    fetchPolicy: "network-only",
+    variables: { search: searchTerm },
+    skip: searchTerm ? false :true,
   });
 
   if (loading || !dataIsDiplayHome || !dataBegginer || !dataNbrLikes) {
@@ -99,7 +91,7 @@ const LandingPage = () => {
   const recipes = dataIsDiplayHome.allRecipes?.edges || [];
   const recipesBegginer = dataBegginer.allRecipes?.edges || [];
   const recipesOrderByLikes = dataNbrLikes.allRecipes?.edges || [];
-  const recipesAutoComplete = autoCompleteData?.allRecipes?.edges || [];
+  const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {recipes: [], ingredients: [], otherSearch: 0};
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -139,7 +131,7 @@ const LandingPage = () => {
           setValue={setSearchTermDebounced}
           isLoading={autoCompleteLoading}
                 // @ts-ignore
-          suggestions={recipesAutoComplete?.map((x) => x?.node?.name)}/>
+          suggestions={recipesAutoComplete}/>
         </div>
       </Container>
       <div className="w-full sm:w-4/5 lg:w-2/3 | py-9 pl-6 | flex overflow-x-auto">

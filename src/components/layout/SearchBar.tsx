@@ -1,9 +1,13 @@
-import { getObjectSession, setObjectFilterSession } from "helpers/session-helper";
-import { useHistory } from "react-router-dom";
+import {
+  getObjectSession,
+  setObjectFilterSession,
+} from "helpers/session-helper";
+import { Link, useHistory } from "react-router-dom";
 import { search } from "../../icons";
 import { RouteName } from "App";
 import { useEffect, useState } from "react";
 import "./SearchBar.css";
+import { isEmpty } from "lodash";
 
 export const SearchBar: React.FC<{
   size?: "small" | "large";
@@ -11,14 +15,18 @@ export const SearchBar: React.FC<{
   value?: string;
   onSubmit?: () => void;
   keyId?: string;
-  suggestions?: string[];
+  suggestions?: {
+    recipes: [{ name: string; urlId: string }];
+    ingredients: [{ name: string }];
+    otherSearch: number;
+  };
   suggestionIsActive?: boolean;
   isLoading?: boolean;
   hideSearchIcon?: boolean;
 }> = ({
   size = "large",
   value = "",
-  suggestions = [],
+  suggestions = { recipes: [], ingredients: [], otherSearch: 0 },
   suggestionIsActive = false,
   setValue,
   isLoading = false,
@@ -37,13 +45,15 @@ export const SearchBar: React.FC<{
       const currentSearchValue = {
         search: (document.getElementById(keyId) as HTMLInputElement)?.value,
       };
-      setObjectFilterSession(getObjectSession('filterListPage'), currentSearchValue)
+      setObjectFilterSession(
+        getObjectSession("filterListPage"),
+        currentSearchValue
+      );
       history.push(RouteName.recipes);
-    }
-    else {
+    } else {
       onSubmit();
     }
-  }
+  };
 
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
@@ -52,8 +62,14 @@ export const SearchBar: React.FC<{
 
   useEffect(() => {
     // Filter our suggestions that don't contain the user's input
-   if (!suggestionIsActive) return
-    if (suggestions.length === 0 && isLoading) return;
+    if (!suggestionIsActive) return;
+    if (!suggestions) return;
+    if (
+      suggestions?.recipes.length === 0 &&
+      suggestions?.ingredients.length === 0 &&
+      isLoading
+    )
+      return;
     // @ts-ignore
     setFilteredSuggestions(suggestions);
     setActiveSuggestionIndex(0);
@@ -61,14 +77,11 @@ export const SearchBar: React.FC<{
   }, [suggestionIsActive, suggestions, isLoading]);
 
   const onChange = (e: any) => {
-    console.log("e", e)
     const userInput = e.target.value;
 
     if (setValue) {
-      console.log('setValue')
       setValue(userInput);
     }
-    console.log("setInput")
     setInput(userInput);
   };
 
@@ -79,12 +92,13 @@ export const SearchBar: React.FC<{
     setShowSuggestions(false);
   };
 
+  const onClickRecipes = (e: any) => {};
+
   const onKeyDown = (e: any) => {
-    console.log("passe la")
     if (e.key === "Enter") {
       handleSubmit();
     }
-
+    /*
     if (e.keyCode === 13) {
       setInput(filteredSuggestions[activeSuggestionIndex]);
       setActiveSuggestionIndex(0);
@@ -105,28 +119,41 @@ export const SearchBar: React.FC<{
       }
 
       setActiveSuggestionIndex(activeSuggestionIndex + 1);
-    }
+    } */
   };
 
   const SuggestionsListComponent = () => {
-    return filteredSuggestions.length ? (
+        /* @ts-ignore */
+    return filteredSuggestions?.recipes.length ? (
       <div className="suggestions-box">
-      <ul className="suggestions">
-        {filteredSuggestions.map((suggestion, index) => {
-          let className;
-
-          // Flag the active suggestion with a class
-          if (index === activeSuggestionIndex) {
-            className = "suggestion-active";
-          }
-
-          return (
-            <li className={className} key={suggestion} onClick={onClick}>
-              {suggestion}
-            </li>
-          );
-        })}
-      </ul>
+        <ul className="suggestions">
+          {/* @ts-ignore */}
+          {!isEmpty(filteredSuggestions?.recipes) && <li>recette</li>}
+          {/* @ts-ignore */}
+          {filteredSuggestions?.recipes.map((suggestion, index) => {
+            return (
+              <li key={index} onClick={onClickRecipes}>
+                <Link
+                  to={{
+                    pathname: `${RouteName.recipes}/${suggestion?.urlId}`,
+                  }}
+                >
+                  {suggestion?.name}
+                </Link>
+              </li>
+            );
+          })}
+          {/* @ts-ignore */}
+          {  !isEmpty(filteredSuggestions?.ingredients) && <li>ingredient</li>}
+          {/* @ts-ignore */}
+          {filteredSuggestions?.ingredients.map((suggestion, index) => {
+            return (
+              <li  key={index} onClick={onClick}>
+                {suggestion?.name}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     ) : (
       <div className="no-suggestions mr-8">
@@ -148,7 +175,6 @@ export const SearchBar: React.FC<{
           } | pl-5 w-full | focus:outline-none`}
         onKeyDown={onKeyDown}
         onFocus={(event) => {
-          console.log('OnFocus')
           event.target.setAttribute("autocomplete", "off");
         }}
         placeholder="Recherche ..."
