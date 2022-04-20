@@ -119,8 +119,6 @@ const RecipeListPage = () => {
 
   useEffect(() => {
     if (!loading && !isFirstLoading) {
-      console.log("passe ici")
-      console.log(currentFilters)
       // to avoid a second request with state of filter
       const filterValue = cleanDataPlayload(currentFilters);
       window.sessionStorage.setItem(

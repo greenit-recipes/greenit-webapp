@@ -43,18 +43,14 @@ export const SearchBar: React.FC<{
     isLarge ? "12" : "10"
   }`;
   const handleSubmit = () => {
-    console.log('passe')
     if (!onSubmit) {
       const currentSearchValue = {
         search: (document.getElementById(keyId) as HTMLInputElement)?.value,
       };
-      console.log("currentSearchValue", currentSearchValue)
       window.sessionStorage.setItem(
         "filterListPage",
         JSON.stringify(currentSearchValue )
       );
-      console.log('getObjectSession("filterListPage"),',  getObjectSession("filterListPage"),)
-      history.push(RouteName.recipes);
     } else {
       onSubmit();
     }
