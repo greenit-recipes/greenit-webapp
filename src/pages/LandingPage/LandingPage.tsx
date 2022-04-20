@@ -75,7 +75,7 @@ const LandingPage = () => {
 
 
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const setSearchTermDebounced = debounce(setSearchTerm, 500);
+  const setSearchTermDebounced = debounce(setSearchTerm, 250);
 
   // Ne par run au premier lancement
   const { data: autoCompleteData, loading : autoCompleteLoading, } = useQuery(SEARCH_AUTO_COMPLETE_RECIPE, {
@@ -91,7 +91,7 @@ const LandingPage = () => {
   const recipes = dataIsDiplayHome.allRecipes?.edges || [];
   const recipesBegginer = dataBegginer.allRecipes?.edges || [];
   const recipesOrderByLikes = dataNbrLikes.allRecipes?.edges || [];
-  const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {recipes: [], ingredients: [], otherSearch: 0};
+  const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {recipes: [], ingredients: [], totalRecipes: 0};
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -108,7 +108,7 @@ const LandingPage = () => {
       <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
 
-      <Container className="flex flex-col | w-4/5 px-4 sm:w-2/3 items-start | mt-4 mb-2 md:mt-4">
+      <Container className="flex flex-col w-11/12 | lg:w-4/5 px-4 sm:w-2/3 items-start | mt-4 mb-2 md:mt-4">
         <div className="mb-6">
           {!isMobile && (
             <h5 className="text-green font-medium text-3xl md:text-4xl mb-2 |">
@@ -125,7 +125,7 @@ const LandingPage = () => {
             durable
           </h5>
         </div>
-        <div className="lg:w-2/5">
+        <div className="w-full mb-2 lg:w-2/5">
           <SearchBar keyId="searchBarLandingPage" 
           suggestionIsActive={true} 
           setValue={setSearchTermDebounced}
@@ -134,7 +134,7 @@ const LandingPage = () => {
           suggestions={recipesAutoComplete}/>
         </div>
       </Container>
-      <div className="w-full sm:w-4/5 lg:w-2/3 | py-9 pl-6 | flex overflow-x-auto">
+      <div className="w-full sm:w-4/5 lg:w-2/3 | py-2 pl-6 | flex overflow-x-auto">
         <div className="flex flex-row">
           {landingPageCategories.slice(0, 1).map((item) => (
             <CategoryCircle
@@ -161,7 +161,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <Container className="mb-14" itemsCenter>
+      <Container className="mb-14 mt-2" itemsCenter>
         <h2 className="text-xl md:text-2xl | mb-2 lg:mb-6 text-center">
           Notre sélection de recettes
         </h2>

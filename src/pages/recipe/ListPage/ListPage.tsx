@@ -1,5 +1,8 @@
+import { useQuery } from "@apollo/client";
 import { getObjectSession } from "helpers/session-helper";
 import { isEmpty, map, mapValues, omit, sum } from "lodash";
+import debounce from "lodash/debounce";
+import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -56,6 +59,18 @@ const RecipeListPage = () => {
     return ([{ title: currentParams, value: currentParams }]);
   }
 
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const setSearchTermDebounced = debounce(setSearchTerm, 250);
+
+  // Ne par run au premier lancement
+  const { data: autoCompleteData, loading : autoCompleteLoading, } = useQuery(SEARCH_AUTO_COMPLETE_RECIPE, {
+    fetchPolicy: "network-only",
+    variables: { search: searchTerm },
+    skip: searchTerm ? false :true,
+  });
+  const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {recipes: [], ingredients: [], totalRecipes: 0};
+
   // params trigger 2 requests before param and after getting param need to be fixed
   // @ts-ignore
   const [isFirstLoading, setIsFirstLoading] = useState(true);
@@ -104,6 +119,8 @@ const RecipeListPage = () => {
 
   useEffect(() => {
     if (!loading && !isFirstLoading) {
+      console.log("passe ici")
+      console.log(currentFilters)
       // to avoid a second request with state of filter
       const filterValue = cleanDataPlayload(currentFilters);
       window.sessionStorage.setItem(
@@ -115,6 +132,8 @@ const RecipeListPage = () => {
     }
     if (!loading) setIsFirstLoading(false);
   }, [currentFilters, loading]);
+
+  const searchText = getObjectSession("filterListPage")?.search
 
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -137,7 +156,11 @@ const RecipeListPage = () => {
         />
       </Helmet>
       {!isMobile && (
+        <>
         <FilterBar
+          recipesAutoComplete={recipesAutoComplete}
+          setSearch={setSearchTermDebounced}
+          search={searchTerm}
           filter={filterData}
           currentFilters={currentFilters}
           setCurrentFilters={setCurrentFilters}
@@ -145,6 +168,7 @@ const RecipeListPage = () => {
           toggle={toggle}
           setScrollOffset={setScrollOffset}
         />
+        </>
       )}
 
       {isMobile && (
@@ -152,6 +176,9 @@ const RecipeListPage = () => {
           <div className="self-center w-4/5">
             <FilterBar
               isOnlyForSearch={true}
+              recipesAutoComplete={recipesAutoComplete}
+              search={searchTerm}
+              setSearch={setSearchTermDebounced}
               filter={filterData}
               currentFilters={currentFilters}
               setCurrentFilters={setCurrentFilters}
@@ -160,6 +187,10 @@ const RecipeListPage = () => {
               setScrollOffset={setScrollOffset}
             />
           </div>
+          <div className="w-4/5 mt-4 border-b-1 pb-2">
+            <p className="text-sm font-bold mb-1">"{searchText}"</p>
+            <p className="text-xs">20 résultats</p>
+          </div>
           <ModalListPage
             nbrFilter={nbrFilter}
             isShowModal={isShowModal}
@@ -167,6 +198,9 @@ const RecipeListPage = () => {
           >
             <FilterBar
               filter={filterData}
+              recipesAutoComplete={recipesAutoComplete}
+              search={searchTerm}
+              setSearch={setSearchTermDebounced}
               currentFilters={currentFilters}
               setCurrentFilters={setCurrentFilters}
               isMobile={isMobile}
@@ -224,14 +258,20 @@ const RecipeListPage = () => {
             {isMobile ? (
               <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
                 {recipes?.map((recipe) => {
-                  return <div key={recipe?.node?.id}><RecipeCard recipe={recipe?.node} /></div>;
+                  return (
+                    <div key={recipe?.node?.id}>
+                      <RecipeCard recipe={recipe?.node} />
+                    </div>
+                  );
                 })}
               </div>
             ) : (
               <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
                 <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
                   {recipes?.map((recipe) => (
-                    <div key={recipe?.node?.id}><RecipeCard recipe={recipe?.node} /></div>
+                    <div key={recipe?.node?.id}>
+                      <RecipeCard recipe={recipe?.node} />
+                    </div>
                   ))}
                 </div>
               </div>

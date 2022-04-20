@@ -1,8 +1,11 @@
 import { useHistory } from "react-router-dom";
-import { search } from "../../icons";
 import { RouteName } from "App";
-import { getObjectSession, setObjectFilterSession } from "helpers/session-helper";
+import {
+  getObjectSession,
+  setObjectFilterSession,
+} from "helpers/session-helper";
 import { useState } from "react";
+import { GoSearch } from "react-icons/go";
 
 export const SearchBarNav: React.FC<{
   size?: "small" | "large";
@@ -28,14 +31,17 @@ export const SearchBarNav: React.FC<{
       const currentSearchValue = {
         search: (document.getElementById(keyId) as HTMLInputElement)?.value,
       };
-      setObjectFilterSession(getObjectSession('filterListPage'), currentSearchValue)
+      setObjectFilterSession(
+        getObjectSession("filterListPage"),
+        currentSearchValue
+      );
       history.push(RouteName.recipes);
     } else {
       onSubmit();
     }
   };
   return (
-    <div className="flex flex-row mr-2 border rounded-lg h-9 w-44 border-grey">
+    <div className="flex flex-row mr-2 border rounded-md h-9 w-56 border-grey">
       <input
         type="text"
         className={`w-full h-full bg-transparent ml-2 | text-sm md:
@@ -45,25 +51,23 @@ export const SearchBarNav: React.FC<{
             handleSubmit();
           }
         }}
-        placeholder="Recherche ..."
+        placeholder="Une recette, un ingredient..."
         id={keyId}
         onChange={(e) => {
           if (setValue) {
             setValue(e.target.value);
-          } 
-          setCurrentValue(e.target.value)
+          }
+          setCurrentValue(e.target.value);
         }}
         value={currentValue}
       />
 
-      <img
-        alt="search icon"
-        src={search}
-        className="self-center w-6 h-6 mr-2"
+      <GoSearch
+        className="self-center w-6 h-6 mr-2 cursor-pointer"
         onClick={() => {
           handleSubmit();
         }}
-      />
+      ></GoSearch>
     </div>
   );
 };

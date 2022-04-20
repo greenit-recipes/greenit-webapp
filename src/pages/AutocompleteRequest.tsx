@@ -10,7 +10,7 @@ export const SEARCH_AUTO_COMPLETE_RECIPE = gql`
       ingredients {
         name
       }
-      otherSearch
+      totalRecipes
     }
   }
 `;
