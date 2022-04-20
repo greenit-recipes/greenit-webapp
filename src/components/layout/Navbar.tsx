@@ -408,7 +408,6 @@ export const Navbar: React.FC = () => {
       </div>
       <div className="grid items-center w-3/5 justify-self-end">
         <div className="flex items-center justify-self-end">
-          <SearchBarNav keyId="SearchNav" />
           {isLoggedIn ? (
             <Link to={RouteName.createRecipe} className="flex">
               <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">

@@ -64,7 +64,7 @@ h4 {
 }
 
 .button-with-border-radius {
-  background: #FFFFFF 0% 0% no-repeat padding-box;
+background: #FFFFFF 0% 0% no-repeat padding-box;
 box-shadow: 0px 0px 10px #69696929;
 border-radius: 4px;
 } 

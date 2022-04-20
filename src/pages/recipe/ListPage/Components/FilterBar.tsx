@@ -10,6 +10,9 @@ interface FilterBarProps {
   currentFilters: Record<string, any>;
   setCurrentFilters: (filter: Record<string, any>) => void;
   isMobile?: boolean;
+  recipesAutoComplete?: any;
+  setSearch: any;
+  search: any;
   isOnlyForSearch?: boolean;
   toggle?: boolean;
   setScrollOffset: (val: number) => void;
@@ -19,12 +22,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   filter,
   currentFilters,
   setCurrentFilters,
+  recipesAutoComplete,
+  setSearch,
+  search,
   isMobile,
   isOnlyForSearch = false,
   toggle,
   setScrollOffset,
 }) => {
-  const [search, setSearch] = useState(getObjectSession('filterListPage')?.search || "");
   const removeFilter = (valuex: any, key: any) => {
     let currentState = { ...currentFilters };
     currentState[key] = currentState[key].filter(
@@ -35,6 +40,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   };
   const isCurrentFilterEmpty =
     flattenDeep(map(omit(currentFilters, "search"), (x) => x))?.length > 0;
+
+  const searchText = getObjectSession("filterListPage")?.search
 
   const removeFilters = () => {
     setCurrentFilters({
@@ -77,6 +84,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     <>
       {isOnlyForSearch ? (
         <FilterBarSearch
+          customClass="w-3/6"
+          recipesAutoComplete={recipesAutoComplete}
           search={search}
           keyId="SearchFilterBarForMobile"
           setSearch={setSearch}
@@ -88,17 +97,25 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             className={
               isMobile
                 ? "w-full grid px-4 mt-10 mb-6"
-                : "grid grid-rows-2 justify-items-center w-full max-w-6xl p-4 mt-4 rounded-lg"
+                : "grid justify-items-center w-full max-w-6xl p-4 rounded-lg"
             }
           >
             {!isMobile && (
-              <div className="flex self-center w-11/12">
+              <div className="flex self-center w-11/12 flex-col">
                 <FilterBarSearch
+                  customClass="w-2/6"
+                  recipesAutoComplete={recipesAutoComplete}
                   search={search}
                   keyId="SearchFilterBar"
                   setSearch={setSearch}
                   setCurrentFilters={setCurrentFilters}
                 />
+                <div className="mt-4 border-b-1 pb-2 mb-2">
+                  <p className="mb-1">
+                    <span className="text-sm mr-2">Résultats pour </span>{" "}
+                    <span className="font-bold text-lg">"{searchText}"</span>
+                  </p>
+                </div>
               </div>
             )}
             {isMobile && (

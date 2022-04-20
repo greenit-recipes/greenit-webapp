@@ -3,25 +3,21 @@ import { SearchBar } from "../../../../components";
 export const FilterBarSearch: React.FC<{
     setCurrentFilters: (data: Record<string, any>) => void;
     search: string;
+    customClass: string;
+    recipesAutoComplete: any;
     keyId: string;
     setSearch?: (val: string) => void;
-  }> = ({ setCurrentFilters, search, keyId, setSearch }) => {
+  }> = ({ setCurrentFilters, search, customClass, keyId, recipesAutoComplete, setSearch }) => {
     return (
-      <div>
+      <div className={customClass}>
         <SearchBar
           keyId={keyId}
+          customClassList={"z-40"}
           size="small"
-          value={search}
+          suggestionIsActive={true} 
+          suggestions={recipesAutoComplete}
           setValue={setSearch}
-          onSubmit={() => {
-            setCurrentFilters((prevState: Record<string, any>) => {
-              return {
-                ...prevState,
-                search: search,
-              };
-            });
-          }}
         />
-      </div>
+        </div>
     );
   };

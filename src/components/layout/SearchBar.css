@@ -1,0 +1,85 @@
+.suggestions-box {
+  background-color: white;
+  padding-left: 0;
+  border: 1px solid black;
+  border-top: 1px solid #777;
+  list-style: none;
+  margin-top: 0;
+}
+
+.no-suggestions {
+  color: #777;
+  font-size: 0.9rem;
+  background-color: #f0f0f0;
+  border: 1px solid black;
+  border-top: 1px solid #777;
+  list-style: none;
+  margin-top: 0;
+  max-height: 200px;
+}
+
+
+
+.suggestions-content {
+  top: 2.9em;
+  position: absolute;
+  padding-left: 0.5rem;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 10px #69696929;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .search-bar::placeholder {
+    font-size: 0.80em;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .suggestions-content {
+    top: 2.4em;
+  }
+}
+
+.suggestions {
+  z-index: 120;
+  max-height: 400px;
+  overflow-y: scroll;
+  border-radius: 10px;
+  scrollbar-width: thin;
+}
+
+.suggestions::-webkit-scrollbar {
+  width: 0.2rem;
+  height: 0rem;
+  border-radius: 20px;
+}
+
+.suggestions::-webkit-scrollbar-thumb {
+  background-color: #777;
+}
+
+.suggestions li {
+  padding: 0.2rem;
+}
+
+.search-recipe,
+.search-ingredient:hover {
+  cursor: default !important;
+  background: #ffffff !important;
+}
+
+.suggestion-active,
+.suggestions li:hover {
+  border-radius: 5px;
+  background: #d6e6fa;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.suggestions li:not(:last-of-type) {
+  border-width: 90%;
+}

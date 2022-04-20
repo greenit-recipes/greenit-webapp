@@ -60,7 +60,6 @@ const schema = yup.object().shape({
 
 const RecipeSinglePage = () => {
   const history = useHistory();
-  const [havePreviousRoute, setHavePreviousRoute] = useState(false);
 
   const {
     register,
