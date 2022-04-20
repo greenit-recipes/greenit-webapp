@@ -51,6 +51,7 @@ export const SearchBar: React.FC<{
         "filterListPage",
         JSON.stringify(currentSearchValue )
       );
+      history.push(RouteName.recipes);
     } else {
       onSubmit();
     }
