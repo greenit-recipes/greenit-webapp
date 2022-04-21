@@ -84,7 +84,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     <>
       {isOnlyForSearch ? (
         <FilterBarSearch
-          customClass="w-3/6"
+          customClass="w-full lg:w-3/6"
           recipesAutoComplete={recipesAutoComplete}
           search={search}
           keyId="SearchFilterBarForMobile"
@@ -110,12 +110,16 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                   setSearch={setSearch}
                   setCurrentFilters={setCurrentFilters}
                 />
-                <div className="mt-4 border-b-1 pb-2 mb-2">
-                  <p className="mb-1">
-                    <span className="text-sm mr-2">Résultats pour </span>{" "}
-                    <span className="font-bold text-lg">"{searchText}"</span>
-                  </p>
-                </div>
+                {searchText &&  searchText.length && (
+                    <div className="mt-4 border-b-1 pb-2 mb-2">
+                      <p className="mb-1">
+                        <span className="text-sm mr-2">Résultats pour </span>{" "}
+                        <span className="font-bold text-lg">
+                          "{searchText}"
+                        </span>
+                      </p>
+                    </div>
+                  )}
               </div>
             )}
             {isMobile && (

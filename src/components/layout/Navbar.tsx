@@ -9,13 +9,17 @@ import { Button } from "../";
 import useIsMobile from "../../hooks/isMobile";
 import { logo } from "../../icons";
 import { NavButton } from "../misc/NavButton";
-import { SearchBarNav } from "./SearchBarNav";
 
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const [toggle, setToggle] = useState(false);
 
   const isLoggedIn = authService.isLoggedIn();
+
+  const resetFilter = () =>window.sessionStorage.setItem(
+    "filterListPage",
+    JSON.stringify({})
+  );
 
   if (isMobile) {
     return (
@@ -92,7 +96,7 @@ export const Navbar: React.FC = () => {
                 Accueil
               </h2>
             </Link>
-            <Link className="p-2" to={RouteName.recipes}>
+            <Link className="p-2" to={RouteName.recipes} onClick={() => resetFilter()}>
               <div className="border-b-2 border-transparent">
                 <h2 id="recipes" className="text-white focus:text-green">
                   Recettes
@@ -156,7 +160,7 @@ export const Navbar: React.FC = () => {
           </NavButton>
         </Link>
         <div className="w-auto" id="navmenu_big">
-          <Link to={RouteName.recipes}>
+          <Link to={RouteName.recipes} onClick={() => resetFilter()}>
             <NavButton id="recipes" type="green">
               Recettes
             </NavButton>
@@ -166,7 +170,7 @@ export const Navbar: React.FC = () => {
               <div className="flex flex-col pt-4 text-lg">
                 <h2 className="mb-2 cursor-default">Raccourcis</h2>
 
-                <Link id="allRecipes" to={RouteName.recipes}>
+                <Link id="allRecipes" to={RouteName.recipes} onClick={() => resetFilter()}>
                   <h3
                     id="allRecipes"
                     className="mb-2 cursor-pointer hover:text-green"

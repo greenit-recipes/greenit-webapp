@@ -185,10 +185,11 @@ const RecipeListPage = () => {
               setScrollOffset={setScrollOffset}
             />
           </div>
-          <div className="w-4/5 mt-4 border-b-1 pb-2">
-            <p className="text-sm font-bold mb-1">"{searchText}"</p>
-            <p className="text-xs">20 résultats</p>
+          { searchText && searchText.length && (
+            <div className="w-4/5 mt-4 border-b-1 pb-2">
+            <p className="text-sm font-bold mb-1">Résultat pour "{searchText}"</p>
           </div>
+          )}
           <ModalListPage
             nbrFilter={nbrFilter}
             isShowModal={isShowModal}

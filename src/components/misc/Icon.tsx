@@ -59,7 +59,7 @@ export const Icon: React.FC<IconProps> = ({
           <img
             alt="greenit logo"
             src={itemNbOfIngredients}
-            className={`h-${height ?? 7} w-${width ?? 6} md:h-${height ?? 9} md:w-${width ?? 8} self-center pb-1`}
+            className={`h-${height ?? 7} w-${width ?? 6} lg:h-${height ?? 9} lg:w-${width ?? 8} self-center pb-1`}
           />
         </div>
       </div>

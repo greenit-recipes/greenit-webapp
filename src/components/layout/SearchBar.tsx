@@ -88,10 +88,14 @@ export const SearchBar: React.FC<{
   };
 
   const onClick = (e: any) => {
-    setFilteredSuggestions([]);
-    setInput(e.target.innerText);
-    setActiveSuggestionIndex(0);
-    setShowSuggestions(false);
+    const currentSearchValue = {
+      search: e.target.innerText,
+    };
+    window.sessionStorage.setItem(
+      "filterListPage",
+      JSON.stringify(currentSearchValue)
+    );
+    history.push(RouteName.recipes);
   };
 
   const onClickRecipes = (e: any) => {};
@@ -127,7 +131,7 @@ export const SearchBar: React.FC<{
   const SuggestionsListComponent = () => {
         /* @ts-ignore */
     return filteredSuggestions?.recipes.length || filteredSuggestions?.ingredients.length ? (
-      <div className={"suggestions-content suggestions-box " + customClassList}>
+      <div className={"suggestions-content suggestions-box z-50 " + customClassList}>
         <ul className="suggestions">
           {/* @ts-ignore */}
           {!isEmpty(filteredSuggestions?.recipes) && <li className="text-sm text-blue mt-2 search-recipe">Recettes</li>}
