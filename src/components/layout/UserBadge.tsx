@@ -34,6 +34,7 @@ export const UserBadge: React.FC<IUserBadge> = ({
               // @ts-ignore
               src={normalImage ? normalImage : defaultImageProfil}
               alt="badge"
+              loading="lazy"
               className={
                 isRecipeCard
                   ? `rounded-full bg-white shadow-lg mr-2 w-9 min-w-9 h-9 self-center object-cover`
@@ -51,6 +52,7 @@ export const UserBadge: React.FC<IUserBadge> = ({
               // @ts-ignore
               src={normalImage ? normalImage : defaultImageProfil}
               alt="badge"
+              loading="lazy"
               className="rounded-full h-28 md:w-28 object-cover"
             />
       )}
