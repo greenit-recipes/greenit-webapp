@@ -25,17 +25,17 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
       }}
       className="fixed z-0 grid w-full pb-20 justify-items-center bgColorHeaderRecipe"
     >
-      <div className="mt-20 text-xl lg:text-2xl">
+      <div className="mt-12 lg:mt-20 text-xl lg:text-2xl">
         {recipe?.author?.username}
       </div>
-      <div className="mb-1 text-lg fontQSregular">Créateur.ice</div>
+      <div className="mb-1 fontQSregular">Créateur.ice</div>
       <div className="flex flex-col items-center justify-center w-full pl-4 pr-4  lg:pl-0 lg:pr-0 lg:w-3/6 lg:flex-row fontQSmedium">
         <UserBadge
           image={recipe?.author?.imageProfile}
           // @ts-ignore
           facebookImg={recipe?.author?.photoUrl}
         ></UserBadge>
-        <div className="flex items-center lg:ml-5">
+        <div className="flex items-center lg:ml-5 text-sm lg:text-base">
           {recipe?.author?.biographie &&
             HTMLReactParser(recipe?.author?.biographie)}
         </div>
@@ -46,10 +46,10 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
           aux recettes de tes créateurs.ices préféré.e.s !
         </div>
       )}
-      <div className="flex-row lg:flex justify-center items-center mb-5">
+      <div className="flex flex-row lg:flex justify-center items-center mb-5 mt-2">
         <div>
           <div
-            className="flex pt-2 pb-2 pl-2 pr-4 mr-6 bg-white rounded cursor-pointer fontQSmedium"
+            className="flex pt-1 pb-1 pl-2 pr-4 mr-6 bg-white rounded cursor-pointer fontQSmedium"
             id="see-profil-createur"
             onClick={() => {
               setIsDisplay(!isDisplay);
@@ -66,10 +66,10 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
               JSON.parse(recipe?.author?.urlsSocialMedia)?.map(
                 (data: any, index: any) => (
                   <a href={data?.url} key={index}>
-                    <div className="flex flex-row items-center justify-center object-cover gap-2  ml-2 bg-white border rounded-lg shadow-lg lg:p-2">
+                    <div className="flex flex-row items-center justify-center object-cover gap-2 w-8 lg:w-10 h-8 ml-2 bg-white border rounded-lg shadow-lg lg:p-2">
                       <img
                         src={getLogoAndNameByUrl(data?.url)?.icon}
-                        className="self-center w-8 h-8 lg:w-6 lg:h-6"
+                        className="self-center w-6 h-6"
                         alt={getLogoAndNameByUrl(data?.url)?.name}
                       />
                     </div>
