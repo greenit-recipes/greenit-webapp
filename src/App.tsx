@@ -109,12 +109,12 @@ const App: React.FC = () => {
             component={DeleteProfil}
             exact
           />
-          <PrivateRoute
+          <PublicRoute
             path={RouteName.createRecipe}
             component={CreateRecipe}
             exact
           />
-          <PrivateRoute
+          <PublicRoute
             path={RouteName.recipeCreated}
             component={RecipeCreatedPage}
             exact
