@@ -88,7 +88,6 @@ const CreateRecipe: React.FC = () => {
   const isLoggedIn = authService.isLoggedIn();
 
   const onSubmitHandlerLink = (dataLink: { link: string }) => {
-    history.push(RouteName.recipeCreated)
     emailLinkSharedRecipe({
       variables: {
         link: dataLink.link,
