@@ -113,6 +113,11 @@ export const Navbar: React.FC = () => {
                 Se lancer
               </h2>
             </Link>
+            <Link className="p-2" to={RouteName.createRecipe}>
+              <h2 id="sharedRecipeNavMobile" className="text-white">
+                Partager une recette
+              </h2>
+            </Link>
             <Link className="p-2" to={RouteName.why}>
               <h2 id="project" className="text-white">
                 Le projet
@@ -188,18 +193,14 @@ export const Navbar: React.FC = () => {
                     </h3>
                   </Link>
                 ) : (
-                  <ModalLogGreenit
-                    btn={
-                      <div className="flex">
-                        <h3
-                          id="shareRecipe"
-                          className="mb-2 cursor-pointer hover:text-green"
-                        >
-                          Partager une recette
-                        </h3>{" "}
-                      </div>
-                    }
-                  ></ModalLogGreenit>
+                  <Link to={RouteName.createRecipe} className="flex">
+                    <h3
+                      id="shareRecipe"
+                      className="mb-2 cursor-pointer hover:text-green"
+                    >
+                      Partager une recette
+                    </h3>
+                  </Link>
                 )}
 
                 <Link to={`${RouteName.recipes}?tags=Premiers pas`}>
@@ -428,22 +429,20 @@ export const Navbar: React.FC = () => {
               </div>
             </Link>
           ) : (
-            <ModalLogGreenit
-              btn={
-                <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
-                  <div className="flex">
-                    <Button
-                      id="Share_a_recipe"
-                      type="grey"
-                      rounded="lg"
-                      className="inline justify-end self-center | mr-2 cursor-pointer"
-                    >
-                      Partager une recette
-                    </Button>
-                  </div>
-                </div>
-              }
-            ></ModalLogGreenit>
+            <Link to={RouteName.createRecipe} className="flex">
+            <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
+              <div className="flex">
+                <Button
+                  id="Share_a_recipe"
+                  type="grey"
+                  rounded="lg"
+                  className="inline justify-end self-center | mr-2 cursor-pointer"
+                >
+                  Partager une recette
+                </Button>
+              </div>
+            </div>
+          </Link>
           )}
           {isLoggedIn ? (
             <Link to={RouteName.profil}>
@@ -466,7 +465,7 @@ export const Navbar: React.FC = () => {
                 <div className="flex">
                   <Button
                     id="Create_Profil"
-                    type="green"
+                    type="blue"
                     rounded="lg"
                     className="inline justify-end self-center | cursor-pointer mr-2"
                   >
