@@ -5,15 +5,13 @@ import { Button } from "components";
 import useIsMobile from "hooks/isMobile";
 import {
   confirmpwd,
-  creator,
-  explorer,
+  gifModalProfil,
   loginMail,
   loginPassword,
   mdpNonVisible,
   mdpVisible,
   userlogo,
 } from "icons";
-import { includes } from "lodash";
 import {
   optionsUserCategoryAge,
   optionsUserCategoryLvl,
@@ -135,7 +133,7 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
       }
     });
   };
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
 
   const onSubmitHandler = (data: {
     email: string;
@@ -168,15 +166,57 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
   return (
-    <div className={`flex justify-center   ${!isMobile ? "register-modal-size" : ""} items-center`}>
+    <div
+      className={`flex justify-center   ${
+        !isMobile ? "register-modal-size" : ""
+      } items-center`}
+    >
       <div className="flex flex-col items-center bg-white rounded-3xl">
-        <div className="mb-4 text-lg font-bold text-center lg:text-2xl">
-          Création de ton espace DIY <br />
+        <div className="mb-4 text-xl font-bold text-center">
+          Créé ton espace DIY
+          <br />
         </div>
+        <div>
+          <p
+            onClick={() => loginOpen(true)}
+            className="mb-4 text-sm text-center text-blue underline cursor-pointer md:text-base"
+          >
+            Déjà un compte ? Se connecter ici !
+          </p>
+        </div>
+        <img
+          className="mr-2 w-60 h-70 "
+          src={gifModalProfil}
+          alt="gif email"
+        />
         <h2 className="mb-4 text-base md:text-lg">
           Quel type de compte veux-tu créer ?
         </h2>
-        <div className="mb-4 lg:mb-1">
+        <div className="flex flex-row w-5/6 gap-8 justify-evenly">
+          <div className="flex flex-col w-2/4 ">
+            <div className="flex flex-col items-center transition border-4 shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white border-blue">
+              <div className="size-emoji-modal">🧑‍🎨</div>
+              <div className="mb-2">Explorateur</div>
+            </div>
+            <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
+              Trouve de l’inspiration réalise tes recettes en toute simplicité !
+            </div>
+          </div>
+          <div className="flex flex-col w-2/4 ">
+            <Link
+              to={RouteName.register}
+              className="flex flex-col items-center transition border shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white"
+            >
+              <div className="size-emoji-modal">🕵️‍♀️</div>
+              <div className="mb-2">Créateur</div>
+            </Link>
+
+            <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
+              Partage tes créations avec la communauté !
+            </div>
+          </div>
+        </div>
+        <div className="mb-4 lg:mb-1 mt-2">
           <FacebookLogin
             // @ts-ignore
             appId={process.env.REACT_APP_FACEBOOK_ID}
@@ -193,35 +233,10 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
           )}
         </div>
         <div className="text-gray-700 separator md:m-4">Ou</div>
-
-        <div className="flex flex-row items-center w-5/6 gap-8 justify-evenly">
-          <div className="flex flex-col items-center justify-center w-2/4 transition border-4 shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white border-blue">
-            <img
-              className="w-12 mt-2 rounded-full shadow-lg"
-              src={explorer}
-              alt="logo explorateur"
-            />
-            <div>Explorateur</div>
-            <div className="w-5/6 mt-2 mb-2 text-xs text-center fontQSregular">Inspire-toi des recettes de la communauté ! Supporte les créateurs et ajoute tes recettes préférées en favoris !</div>
-          </div>
-          <Link
-            to={RouteName.register}
-            className="flex flex-col items-center justify-center w-2/4 transition border shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white"
-          >
-            <img
-              className="w-12 mt-2 rounded-full shadow-lg"
-              src={creator}
-              alt="logo créateur"
-            />
-            <div>Créateur</div>
-            <div className="w-5/6 mt-2 mb-2 text-xs text-center fontQSregular">Partage tes recettes avec la communauté ! Ajoute des liens vers tes réseaux/site internet et accède à tes statistiques.</div>
-          </Link>
-        </div>
-
         <div className="w-10/12 lg:w-8/12">
           <form
-            className="flex flex-col my-5 "
-                        // @ts-ignore
+            className="flex flex-col "
+            // @ts-ignore
             onSubmit={handleSubmit(onSubmitHandler)}
           >
             <div className="flex flex-row items-center w-full mt-6 ">
@@ -359,15 +374,6 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               Créer ton profil
             </Button>
           </form>
-        </div>
-
-        <div>
-          <p
-            onClick={() => loginOpen(true)}
-            className="mt-4 mb-4 text-sm text-center text-gray-700 underline cursor-pointer md:text-base"
-          >
-            Déjà un compte ? Se connecter ici !
-          </p>
         </div>
       </div>
     </div>

@@ -142,19 +142,10 @@ const CreateRecipe: React.FC = () => {
         >
           <div className="mb-4">
             <h2 className="text-lg font-semibold md:text-2xl">
-              Partage ta recette à partir d'un lien existant
+            À partir d’un lien existant
             </h2>
             <h3 className="block mt-2 text-sm font-semibold">
-              Tu souhaites partager une recette de ton blog, ton instagram ou
-              une publication facebook ?
-            </h3>
-            <h3 className="block text-sm font-semibold">
-              Nous faisons attention à la duplication de contenu et nous
-              t'enverrons un mail quand ta recette sera publiée !
-            </h3>
-            <h3 className="block text-sm font-bold">
-              Ajoute le lien de la recette et nous la partagerons avec la
-              communauté.
+            Tu souhaites partager une recette de ton blog, ton instagram ou une publication facebook ? Ajoute le lien de ta recette et nous la partagerons avec la communauté !
             </h3>
           </div>
           <div className="flex flex-col items-center lg:flex-row">
@@ -174,10 +165,7 @@ const CreateRecipe: React.FC = () => {
           </p>
           <div className="mt-4">
             <h3 className="block mt-2 text-sm text-gray-700">
-              Toutes les recettes sont automatiquement créditées au profil du
-              créateur.ice. <br></br>
-              Nous avons accès uniquement aux comptes Instagram et publications
-              publics.
+            Nous nous assurons qu’il n’y ait pas de duplication de contenu et que le.a créateur.ice soit créditée
             </h3>
             <div className="flex flex-col mt-4 lg:flex-row lg:items-center">
               <h3 className="block mr-4 text-sm text-gray-700">
