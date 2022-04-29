@@ -142,10 +142,12 @@ const CreateRecipe: React.FC = () => {
         >
           <div className="mb-4">
             <h2 className="text-lg font-semibold md:text-2xl">
-            À partir d’un lien existant
+              À partir d’un lien existant
             </h2>
             <h3 className="block mt-2 text-sm font-semibold">
-            Tu souhaites partager une recette de ton blog, ton instagram ou une publication facebook ? Ajoute le lien de ta recette et nous la partagerons avec la communauté !
+              Tu souhaites partager une recette de ton blog, ton Instagram ou
+              une publication Facebook ? Ajoute le lien de ta recette et nous la
+              partagerons avec la communauté !{" "}
             </h3>
           </div>
           <div className="flex flex-col items-center lg:flex-row">
@@ -165,7 +167,8 @@ const CreateRecipe: React.FC = () => {
           </p>
           <div className="mt-4">
             <h3 className="block mt-2 text-sm text-gray-700">
-            Nous nous assurons qu’il n’y ait pas de duplication de contenu et que le.a créateur.ice soit créditée
+              Nous nous assurons qu’il n’y ait pas de duplication de contenu et
+              que le.a créateur.ice soit crédité.e.
             </h3>
             <div className="flex flex-col mt-4 lg:flex-row lg:items-center">
               <h3 className="block mr-4 text-sm text-gray-700">
@@ -190,8 +193,14 @@ const CreateRecipe: React.FC = () => {
             className="p-4 my-10 bg-white rounded-lg shadow-lg md:p-10 md:w-1/2"
             // @ts-ignore
           >
-            <div className="text-xl mb-2">Pour ajouter une recette en utilisant un formulaire, connecte-toi !</div>
-            <h3 className="text-sm font-semibold">Personnalise entiérement les éléments de ta recette et ajoute tes conseils de créateurs</h3>
+            <div className="text-xl mb-2">
+              Pour ajouter une recette en utilisant un formulaire, connecte-toi
+              !
+            </div>
+            <h3 className="text-sm font-semibold">
+              Personnalise entièrement les éléments de ta recette et ajoute tes
+              conseils de créateurs.ices.
+            </h3>
             <ModalLogGreenit
               btn={
                 <div className="flex m-auto mt-6">

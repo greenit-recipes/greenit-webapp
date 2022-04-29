@@ -126,7 +126,7 @@ import escapeTheCity from "./escape_the_city.jpeg";
 import sixHTN from "./18h39_fr.jpeg";
 
 import loginMail from "./mail-142.svg";
-import gifModalProfil from "./GifModalProfil.gif";
+import gifModalProfil from "./GreenitGIFFinal.gif";
 import loginPassword from "./login-password-4.svg";
 import userlogo from "./user.svg";
 import confirmpwd from "./confirmpwd.svg";
