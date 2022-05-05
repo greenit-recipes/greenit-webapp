@@ -1,30 +1,14 @@
 import { RouteName } from "App";
-import React, { useEffect, useRef, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import useIsMobile from "../hooks/isMobile";
-import { Container, Footer, Navbar } from "../components";
 import { Button } from "components/misc/Button";
-import {
-  PhotoAtelier,
-  KabaAtelier1,
-  KabaAtelier2,
-  KabaLogo,
-  MargauxAtelier,
-  MargauxLogo,
-  ChristelleAtelier,
-  ChristelleAtelier1,
-  ChristelleAtelier2,
-  ChristelleLogo,
-  logo,
-  LCParfum,
-  LCBougie,
-  LCPAtelier,
-  LCShampoing,
-  Webcam,
-  PinLocation,
-} from "../../src/icons";
 import { includes } from "lodash";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { Link, useHistory } from "react-router-dom";
+import {
+  logo, PhotoAtelier, Webcam
+} from "../../src/icons";
+import { Container, Footer, Navbar } from "../components";
+import useIsMobile from "../hooks/isMobile";
 
 const WorkshopPage = () => {
   const [isIncoming, setIsIncoming] = useState(false);

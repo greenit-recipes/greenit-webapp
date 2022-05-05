@@ -30,7 +30,11 @@ import authService, {
 } from "services/auth.service";
 import "./register.css";
 
-export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
+export const RegisterModal: React.FC<{
+  loginOpen: any;
+  enabledGif?: boolean;
+  enabledSectionIcon?: boolean;
+}> = ({ loginOpen, enabledGif = true, enabledSectionIcon = true }) => {
   const {
     register,
     handleSubmit,
@@ -184,38 +188,46 @@ export const RegisterModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
             Déjà un compte ? Se connecter ici !
           </p>
         </div>
-        <img
-          className="mr-2 w-60 h-70 "
-          src={gifModalProfil}
-          alt="gif email"
-        />
-        <h2 className="mb-4 text-base md:text-lg">
-          Quel type de compte veux-tu créer ?
-        </h2>
-        <div className="flex flex-row w-5/6 gap-8 justify-evenly">
-          <div className="flex flex-col w-2/4 ">
-            <div className="flex flex-col items-center transition border-4 shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white border-blue">
-              <div className="size-emoji-modal">🧑‍🎨</div>
-              <div className="mb-2">Explorateur</div>
-            </div>
-            <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
-              Trouve de l’inspiration réalise tes recettes en toute simplicité !
-            </div>
-          </div>
-          <div className="flex flex-col w-2/4 ">
-            <Link
-              to={RouteName.register}
-              className="flex flex-col items-center transition border shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white"
-            >
-              <div className="size-emoji-modal">🕵️‍♀️</div>
-              <div className="mb-2">Créateur</div>
-            </Link>
+        {enabledGif && (
+          <img
+            className="mr-2 w-60 h-70 "
+            src={gifModalProfil}
+            alt="gif email"
+          />
+        )}
+        {enabledSectionIcon && (
+          <>
+            <h2 className="mb-4 text-base md:text-lg">
+              Quel type de compte veux-tu créer ?
+            </h2>
+            <div className="flex flex-row w-5/6 gap-8 justify-evenly">
+              <div className="flex flex-col w-2/4 ">
+                <div className="flex flex-col items-center transition border-4 shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white border-blue">
+                  <div className="size-emoji-modal">🧑‍🎨</div>
+                  <div className="mb-2">Explorateur</div>
+                </div>
+                <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
+                  Trouve de l’inspiration réalise tes recettes en toute
+                  simplicité !
+                </div>
+              </div>
+              <div className="flex flex-col w-2/4 ">
+                <Link
+                  to={RouteName.register}
+                  className="flex flex-col items-center transition border shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white"
+                >
+                  <div className="size-emoji-modal">🕵️‍♀️</div>
+                  <div className="mb-2">Créateur</div>
+                </Link>
 
-            <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
-              Partage tes créations avec la communauté !
+                <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
+                  Partage tes créations avec la communauté !
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
+
         <div className="mb-4 lg:mb-1 mt-2">
           <FacebookLogin
             // @ts-ignore

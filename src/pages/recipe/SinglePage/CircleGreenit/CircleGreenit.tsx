@@ -3,6 +3,7 @@ interface ICircleGreenit {
   text?: string;
   symbol?: string;
   icon: any;
+  sizeCircle?: string;
   customClassName?: string;
   isSymbolAtEndOfLine?: boolean;
   isOnlyIcon?: boolean;
@@ -15,17 +16,17 @@ export const CircleGreenit: React.FC<ICircleGreenit> = ({
   colorCircle,
   symbol,
   icon,
+  sizeCircle = null,
   customClassName = "",
   isSymbolAtEndOfLine = true,
   isOnlyIcon = false,
 }) => {
+  const sizeCircleDefault = sizeCircle ? sizeCircle :  "w-16 h-16 lg:w-20 lg:h-20"
   return (
     <div className={`${customClassName} flex flex-col | items-center`}>
       <div
         className={
-          "w-16 h-16 lg:w-20 lg:h-20 rounded-full flex items-center justify-center relative" +
-          " " +
-          colorCircle
+         `${sizeCircleDefault} rounded-full flex items-center justify-center relative ${colorCircle}`
         }
       >
         {icon}

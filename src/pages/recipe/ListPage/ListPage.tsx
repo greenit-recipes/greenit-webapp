@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { getObjectSession } from "helpers/session-helper";
-import { isEmpty, map, mapValues, omit, sum } from "lodash";
+import { map, mapValues, omit, sum } from "lodash";
 import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
@@ -14,7 +14,7 @@ import {
   Footer,
   Loading,
   Navbar,
-  RecipeCard,
+  RecipeCard
 } from "../../../components";
 import { RecipesQuery, useRecipesQuery } from "../../../graphql";
 import useIsMobile from "../../../hooks/isMobile";

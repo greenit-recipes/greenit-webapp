@@ -19,6 +19,7 @@ interface RecipeCardProps {
   disabledFavoriteRecipe?: boolean;
   isRefetchData?: boolean;
   isDisplayUserBadge?: boolean;
+  isLikeDisabled?: boolean;
   index?: number;
 }
 
@@ -30,6 +31,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   onClickFunctionListPage = null,
   disabledFavoriteRecipe = false,
   isRefetchData = false,
+  isLikeDisabled = false,
   isDisplayUserBadge = true,
   index,
 }) => {
@@ -67,11 +69,12 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           ></img>
         </div>
       </Link>
-      <LikeField
+      { !isLikeDisabled && (<LikeField
         recipe={recipe}
         isRecipeCard={true}
         isCarrousel={isCarrousel}
-      ></LikeField>
+      ></LikeField>)}
+
       <div
         className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-2xl -bottom-10 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
       >
