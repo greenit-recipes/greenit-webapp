@@ -41,6 +41,7 @@ const RecipeListPage = React.lazy(
 const Register = React.lazy(() => import("./pages/Register/register"));
 const WhyPage = React.lazy(() => import("./pages/WhyPage"));
 const WorkshopPage = React.lazy(() => import("./pages/WorkshopPage"));
+const GreenitFullXp = React.lazy(() => import("./pages/GreenitFullXp/genericFullXp"));
 
 export const history = createBrowserHistory();
 
@@ -53,6 +54,7 @@ export const RouteName = {
     "/activate/mot-de-passe-oublié/:tokenActivationAccount", // no index
   register: "/creation-compte",
   recipeCreated: "/ajout-recette", // no index
+  greenitFullXp: "/commande-box",
   workshops: "/ateliers",
   ingredientPage: "/ingredients", // no index ( a activer quand on sort la page)
   starterPage: "/page-debutant-diy",
@@ -117,6 +119,11 @@ const App: React.FC = () => {
           <PublicRoute
             path={RouteName.recipeCreated}
             component={RecipeCreatedPage}
+            exact
+          />
+          <PublicRoute
+            path={RouteName.greenitFullXp}
+            component={GreenitFullXp}
             exact
           />
           <Route exact path={RouteName.register} component={Register} />

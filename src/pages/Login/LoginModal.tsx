@@ -70,6 +70,15 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
           message: "L'email ou le mot de passe est invalide.",
         });
       }
+
+      if (
+        data?.tokenAuth?.errors?.nonFieldErrors?.[0]?.code ===
+        "not_verified"
+      ) { 
+        setError("password", {
+          message: "Activer votre compte dans les mails.",
+        });
+      }
     }
   }, [setError, error, data]);
 

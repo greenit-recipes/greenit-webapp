@@ -1,19 +1,18 @@
-import { getBreakpoint } from "../utils";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(true);
-  const checkIsMobile = () => {
-    const breakpoints = getBreakpoint();
-    setIsMobile(
-      !breakpoints.md || (breakpoints.xs && breakpoints.sm && !breakpoints.lg)
-    );
-  };
+  const [width, setWidth] = useState<number>(window.innerWidth);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
   useEffect(() => {
-    checkIsMobile();
-    window.addEventListener("resize", checkIsMobile);
-    return () => window.removeEventListener("resize", checkIsMobile);
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
   }, []);
+  const isMobile = width <= 640;
   return isMobile;
 };
 
