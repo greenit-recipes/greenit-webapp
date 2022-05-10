@@ -18,6 +18,7 @@ import { CreatorProfil } from "./CreatorProfil";
 import "./Profil.css";
 import Modal from "components/layout/Modal/Modal";
 import { ModalProfil } from "pages/Profil/ModalProfil";
+import { ProfilGreenitFullXp } from "pages/Profil/ProfilGreenitFullXp";
 
 const ProfilPage: React.FC = () => {
   useEffect(() => {
@@ -142,6 +143,7 @@ const ProfilPage: React.FC = () => {
               recipeMadeUser={user?.recipeMadeUser}
             ></ExplorateurProfil>
           )}
+          <ProfilGreenitFullXp></ProfilGreenitFullXp>
           <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
             <button
               className={

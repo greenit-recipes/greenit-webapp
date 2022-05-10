@@ -41,7 +41,17 @@ const RecipeListPage = React.lazy(
 const Register = React.lazy(() => import("./pages/Register/register"));
 const WhyPage = React.lazy(() => import("./pages/WhyPage"));
 const WorkshopPage = React.lazy(() => import("./pages/WorkshopPage"));
-const GreenitFullXp = React.lazy(() => import("./pages/GreenitFullXp/genericFullXp"));
+const GreenitFullXp = React.lazy(
+  () => import("./pages/GreenitFullXp/genericFullXp")
+);
+const TutoFullXpBeginner = React.lazy(
+  () => import("./pages/Profil/TutoFullXpBeginner/tutoFullXpBeginner")
+);
+
+const StartDiyGreenitFullXp = React.lazy(
+  () => import("./pages/GreenitFullXp/StartDiy/StartDiyGreenitFullXp")
+);
+
 
 export const history = createBrowserHistory();
 
@@ -65,10 +75,14 @@ export const RouteName = {
   profil: "/profil",
   recap: "/recap",
   deleteProfil: "/supprimer-compte", // no index
+  tutoFullXpBeginner: "/tuto-box-débutant",
+  startDiyGreenitFullXp: "/se-lancer-dans-le-fait-maison",
 };
 
 const App: React.FC = () => {
-  history.listen((x) => window.sessionStorage.setItem("pathname", JSON.stringify(x?.pathname)));
+  history.listen((x) =>
+    window.sessionStorage.setItem("pathname", JSON.stringify(x?.pathname))
+  );
   return (
     <Suspense fallback={<Loading />}>
       <Router history={history}>
@@ -134,6 +148,16 @@ const App: React.FC = () => {
             component={ForgetPassword}
           />
           <PrivateRoute component={ProfilPage} path={RouteName.profil} exact />
+          <PublicRoute // faire un composant qui filtre sur si le mec est isBox ou non
+            path={RouteName.tutoFullXpBeginner}
+            component={TutoFullXpBeginner}
+            exact
+          />
+          <PublicRoute
+            path={RouteName.startDiyGreenitFullXp}
+            component={StartDiyGreenitFullXp}
+            exact
+          />
           <Route
             exact
             path={RouteName.tokenActivationAccount}
