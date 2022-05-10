@@ -33,8 +33,7 @@ export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
             🌱 Juste l’essentiel : pas de gâchis et des contenants en verre
           </p>
           <p className="mt-2 mb-2 text-sm">
-            💪 12 substances toxiques épargnées, 26 g de plastique évitées et
-            30% d’économie
+            💪 20 substances toxiques épargnées, 190 g de plastique évités et 32% d’économie
           </p>
         </div>
         {!isMobile && (
