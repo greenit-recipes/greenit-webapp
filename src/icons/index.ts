@@ -136,6 +136,7 @@ import creator from "./influencer.svg";
 // FUll XP GREENIT
 
 import boxGreenit from './box_greenit.gif';
+import boxGreenitMobile from './GreenitFullXpGIFMobile.gif';
 
 export {
   wellbeing,
@@ -244,4 +245,5 @@ export {
   youtubeIcon,
   gifModalProfil,
   boxGreenit,
+  boxGreenitMobile,
 };

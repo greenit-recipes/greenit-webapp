@@ -1,10 +1,10 @@
 import { gql, useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { boxGreenit } from "icons";
+import { boxGreenit, boxGreenitMobile } from "icons";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { MdOutlineEmail } from "react-icons/md";
+import useIsMobile from "hooks/isMobile";
 
 const EMAIL_HEADBAND = gql`
   mutation EmailHeadband($email: String!) {
@@ -18,6 +18,8 @@ const GreenitFullXpModal = () => {
   const schema = yup.object().shape({
     email: yup.string().email("L'email n'est pas valide.").required("L'email est obligatoire."),
   }); // _ - .
+
+ const isMobile = useIsMobile()
 
   const [message, setMessage] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
@@ -65,12 +67,12 @@ const GreenitFullXpModal = () => {
       </p>
       <p className="text-center">
         Ajoute ton adresse email pour être informé{" "}
-        <b className="text-lg">de sa sortie !</b>
+        <b>de sa sortie !</b>
       </p>
       <img
         loading="lazy"
-        className="w-10/12 mt-4 lg:mt-0 lg:h-60 m-auto w-full| flex place-self-center"
-        src={boxGreenit}
+        className="mt-4 lg:mt-0 lg:h-60 m-auto w-full| flex place-self-center"
+        src={isMobile ? boxGreenitMobile : boxGreenit}
         alt="box"
       ></img>{" "}
       <div className="flex justify-center">
@@ -80,7 +82,7 @@ const GreenitFullXpModal = () => {
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="flex justify-center">
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full">
               <label className="mb-2 text-xs text-gray-700 text-left">
                 Email
               </label>
@@ -92,8 +94,8 @@ const GreenitFullXpModal = () => {
               ></input>
             </div>
           </div>
-          <button className="flex items-center justify-center h-10 p-3 w-40 m-auto bg-white border-green text-green hover:text-white align-middle border-2 border-transparent rounded-lg cursor-pointer hover:bg-green bold ">
-            Envoyer
+          <button className="flex items-center justify-center h-10 p-3 w-full m-auto bg-white border-green text-green hover:text-white align-middle border-2 border-transparent rounded-lg cursor-pointer hover:bg-green bold ">
+          Rejoindre la liste d’attente
           </button>
           <p className="text-xs italic text-red">{errors.email?.message}</p>
           <p className="text-xs italic text-red">{errorEmail}</p>
