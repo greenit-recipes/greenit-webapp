@@ -27,3 +27,11 @@ export const CREATE_ORDER = gql`
     }
   }
 `;
+
+export const EMAIL_GREENIT_FULL_XP = gql`
+  mutation EmailGreenitFullXp($question: String!, $typeEmail: String!) {
+    emailGreenitFullXp(question: $question, typeEmail: $typeEmail) {
+      success
+    }
+  }
+`;

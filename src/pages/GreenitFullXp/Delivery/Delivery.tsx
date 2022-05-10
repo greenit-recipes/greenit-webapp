@@ -44,7 +44,6 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
   const [createOrder, { data, loading, error }] = useMutation(CREATE_ORDER);
 
   const onSubmitHandler = (data: any) => {
-    console.log("data", data);
     createOrder({
       variables: {
         ...data,
