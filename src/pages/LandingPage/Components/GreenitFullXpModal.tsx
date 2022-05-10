@@ -63,7 +63,7 @@ const GreenitFullXpModal = () => {
       </p>
       <p className="text-lg text-center mt-5">
         Envie de découvrir notre box{" "}
-        <span className="text-green">Premiers Pas ?</span>
+       <br/> <span className="text-green">Premiers Pas ?</span>
       </p>
       <p className="text-center">
         Ajoute ton adresse email pour être informé{" "}

@@ -46,7 +46,7 @@ export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
         )}
       </div>
 
-      <div className="flex bg-greenL lg:pl-10 h-16 items-center">
+      <div className="flex bg-greenL lg:pl-20 h-16 items-center">
         <button
           id="landing_tenez_moi_au_courant"
           className="p-1 ml-2 mr-4 w-52 text-sm lg:text-base order-2 lg:order-1 text-white rounded-lg bg-green"
