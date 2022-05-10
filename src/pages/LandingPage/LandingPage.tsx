@@ -1,8 +1,11 @@
 import { useQuery } from "@apollo/client";
 import { RouteName } from "App";
 import { BugFormulaire } from "components/layout/BugFormulaire";
+import Modal from "components/layout/Modal/Modal";
 import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
+import { GreenitFullXpHeadband } from "pages/LandingPage/Components/GreenitFullXpHeadband";
+import GreenitFullXpModal from "pages/LandingPage/Components/GreenitFullXpModal";
 import "pages/LandingPage/LandingPage.css";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
@@ -73,6 +76,7 @@ const LandingPage = () => {
     variables: { first: 8, filter: { isOrderByNumberLike: true } },
   });
 
+  const [showModalComingSoon, setShowModalComingSoon] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const setSearchTermDebounced = debounce(setSearchTerm, 250);
@@ -107,7 +111,14 @@ const LandingPage = () => {
       </Helmet>
       <BugFormulaire />
       <BackgroundImage className="overflow-hidden" />
-
+      <GreenitFullXpHeadband showModal={setShowModalComingSoon}/>
+      <Modal
+        isCenter={true}
+        onClose={() => setShowModalComingSoon(false)}
+        show={showModalComingSoon}
+      >
+        <GreenitFullXpModal/>
+      </Modal>
       <Container className="flex flex-col w-11/12 | lg:w-4/5 px-4 sm:w-2/3 items-start | mt-4 mb-2 md:mt-4">
         <div className="mb-6">
           {!isMobile && (
