@@ -38,8 +38,9 @@ export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
         </div>
         {!isMobile && (
           <img
+          style={{width: "40rem"}}
             loading="lazy"
-            className="h-full lg:h-60 w-full lg:w-2/5 | flex place-self-center"
+            className="h-full lg:h-60  | flex place-self-center"
             src={boxGreenit}
             alt="box"
           ></img>
