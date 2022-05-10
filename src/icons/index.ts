@@ -133,6 +133,10 @@ import confirmpwd from "./confirmpwd.svg";
 import explorer from "./explorer.svg";
 import creator from "./influencer.svg";
 
+// FUll XP GREENIT
+
+import boxGreenit from './box_greenit.gif';
+
 export {
   wellbeing,
   corps,
@@ -239,4 +243,5 @@ export {
   twitterIcon,
   youtubeIcon,
   gifModalProfil,
+  boxGreenit,
 };
