@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   darkMode: false, // or 'media' or 'class'
   purge: {
@@ -20,6 +22,12 @@ module.exports = {
   },
   plugins: [],
   theme: {
+    screens: {
+      'mlg': {'max': '1024px'},
+      'mmd': {'max': '768px'},
+      'msm': {'max': '640px'},
+      ...defaultTheme.screens
+    },
     colors: {
       // Base COLOR
       transparent: 'transparent',
@@ -31,11 +39,12 @@ module.exports = {
       black: "#1C1C1C",
       red: "#E24E51",
       white: '#ffffff',
-      green: "#4BCB6A"
-
+      green: "#4BCB6A",
     },
-
     extend: {
+      // fontSize: {
+      //   xl: ['20px', '24px'],
+      // },
       borderWidth: {
         '1': '1px'
       },
@@ -96,6 +105,8 @@ module.exports = {
         yellowL: "#FFEAC1",
         greyL: "#F0F0F0",
         redL: "#ED6D6D",
+        inactive: "#D1D1D1",
+        active: "#1CC466",
       },
       animation: {
         rotate: "rotate 200ms ease-in"

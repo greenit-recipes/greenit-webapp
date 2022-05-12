@@ -134,9 +134,9 @@ import explorer from "./explorer.svg";
 import creator from "./influencer.svg";
 
 // FUll XP GREENIT
-
 import boxGreenit from './box_greenit.gif';
 import boxGreenitMobile from './GreenitFullXpGIFMobile.gif';
+import boxIngredient from "./visage_recette.jpeg";
 
 export {
   wellbeing,
@@ -246,4 +246,5 @@ export {
   gifModalProfil,
   boxGreenit,
   boxGreenitMobile,
+  boxIngredient
 };
