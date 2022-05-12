@@ -1,7 +1,10 @@
+import { RouteName } from "App";
 import { Navbar } from "components";
 import { previousPath } from "helpers/route-helper";
 import { retourIcon } from "icons";
 import React from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 const steps = [
   {
@@ -29,8 +32,18 @@ const steps = [
 ];
 const FindOutMoreBoxGreentilFullXP = () => {
   return (
-    <div className="flex flex-col">
-        <Navbar/>
+    <div className="flex flex-col bg-white">
+      <Helmet>
+        <title>
+          Votre Box Premiers Pas - le DIY accessible conçu pour les débutants !
+        </title>
+        <meta
+          name="description"
+          content="Envie de réaliser vos produits DIY mais vous ne savez pas par où commencer ? Greenit a conçu une box Premiers Pas, avec 3 recettes simplissimes pour débuter dans le fait-maison. Au menu, une recette de produits ménagers, cosmétiques et hygiènes."
+        />
+      </Helmet>
+      <Navbar />
+
       <div
         className="absolute left-0 mt-2 z-20 grid w-8 h-8 ml-3 rounded-full cursor-pointer top-18 lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
         onClick={() => {
@@ -39,16 +52,14 @@ const FindOutMoreBoxGreentilFullXP = () => {
       >
         <img alt="Retour icon" loading="lazy" src={retourIcon} />
       </div>
-        <div className="flex flex-col mb-6 mt-10 lg:text-start">
-            {" "}
-            <h1 className="text-2xl font-medium text-center">
-              La formule Premiers Pas
-            </h1>
-            <p className="text-center">
-              en <span className="text-blue">3 </span>étapes
-            </p>
-        </div>
-        <div className="flex flex-col lg:flex-row items-center m-auto lg:mt-2">
+      <div className="flex flex-col mb-6 mt-10 text-center">
+        {" "}
+        <h1 className="text-2xl font-medium ">La formule Premiers Pas</h1>
+        <p className="">
+          en <span className="text-blue">3 </span>étapes
+        </p>
+      </div>
+      <div className="flex flex-col lg:flex-row items-center m-auto lg:mt-2">
         {steps.map((item, index) => (
           <div key={index} className="text-center lg:ml-10 lg:mr-10 lg:mt-5">
             <div
@@ -72,7 +83,14 @@ const FindOutMoreBoxGreentilFullXP = () => {
           </div>
         ))}
       </div>
-      <p className="text-center lg:text-left mb-10">Alors, tenté.e ?</p>
+
+      <Link to={RouteName.greenitFullXp}>
+            <button
+              className={`btn-single-page flex justify-center mt-2 p-2 h-10 w-full lg:w-1/4 bg-green text-white m-auto`}
+            >
+              Je commande ma box Premiers Pas
+            </button>
+          </Link>
     </div>
   );
 };

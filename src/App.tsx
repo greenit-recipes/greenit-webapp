@@ -79,7 +79,7 @@ export const RouteName = {
   deleteProfil: "/supprimer-compte", // no index
   tutoFullXpBeginner: "/tuto-box-débutant",
   startDiyGreenitFullXp: "/se-lancer-dans-le-fait-maison",
-  findOUtMoreBoxGreentilFullXP: "/en-savoir-plus-box",
+  findOUtMoreBoxGreentilFullXP: "/commande-info",
 };
 
 const App: React.FC = () => {

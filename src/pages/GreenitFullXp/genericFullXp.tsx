@@ -38,15 +38,14 @@ const GenericFullXp = () => {
   return (
     <div className="mb-24">
       <Helmet>
-        <title></title>
-        <meta name="" content="" />
+        <title>Coffret DIY débutants - Réalisez vos produits maison</title>
+        <meta name="description" content="Coffret pour les débutants en fait-maison. Une box spécialement conçue pour les premiers pas en DIY. Réalisez tous vos produits hygiènes, cosmétiques et ménagers. Greenit vous livre des ingrédients et vous réalisez !" />
       </Helmet>
       <div
         className="absolute left-0 z-20 grid w-8 h-8 ml-3 rounded-full cursor-pointer top-18 lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
         onClick={() => {
           const currentIndexNavigation = findIndex(menuFullXp, { name: menu });
-          console.log(!!currentIndexNavigation)
-          if (menuFullXp[0].name === menu || !!currentIndexNavigation) previousPath()
+          if (menuFullXp[0].name === menu || !(!!currentIndexNavigation)) previousPath()
           setMenuWithCoockie(menuFullXp[currentIndexNavigation - 1]?.name);
         }}
       >

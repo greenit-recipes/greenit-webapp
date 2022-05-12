@@ -1,3 +1,4 @@
+import { gql, useMutation } from "@apollo/client";
 import { RouteName } from "App";
 import Modal from "components/layout/Modal/Modal";
 import ModalHelp from "components/layout/modalHelp";
@@ -5,14 +6,31 @@ import { useState } from "react";
 import { AiFillCheckSquare } from "react-icons/ai";
 import { FiSquare } from "react-icons/fi";
 import { Link } from "react-router-dom";
+
 interface IProfilGreenitFullXp {
   isRecipeMadeBeginnerBox: boolean;
+  parentFunction: any;
 }
+
+const UPDATE_RECIPE_MADE_BEGINNER_BOX = gql`
+  mutation UpdateRecipeMadeBeginnerBox($isRecipeMadeBeginnerBox: Boolean!) {
+    updateRecipeMadeBeginnerBox(
+      isRecipeMadeBeginnerBox: $isRecipeMadeBeginnerBox
+    ) {
+      success
+    }
+  }
+`;
+
 export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
   isRecipeMadeBeginnerBox,
+  parentFunction,
 }) => {
-  const [isMade, setMade] = useState(isRecipeMadeBeginnerBox || false);
+  const [isMadeBeginnerBox, setMadeBeginnerBox] = useState(
+    isRecipeMadeBeginnerBox || false
+  );
   const [showModalHelp, setShowModalHelp] = useState(false);
+  const [updateRecipeFullXp] = useMutation(UPDATE_RECIPE_MADE_BEGINNER_BOX);
 
   return (
     <div className="rounded-2xl bg-blueL p-5 lg:w-3/5 m-auto mb-4">
@@ -50,11 +68,18 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
       <button
         className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-full bg-white`}
         onClick={() => {
-          setMade(!showModalHelp)
+          setMadeBeginnerBox(!isMadeBeginnerBox);
+          updateRecipeFullXp({
+            variables: {
+              isRecipeMadeBeginnerBox: !isMadeBeginnerBox,
+            },
+          }).then(() => {
+            return parentFunction()
+          });
         }}
       >
         <div className={`flex justify-items-center `}>
-          {isMade ? (
+          {isMadeBeginnerBox ? (
             <AiFillCheckSquare className="w-6 h-6"></AiFillCheckSquare>
           ) : (
             <FiSquare className="w-6 h-6"></FiSquare>
@@ -79,7 +104,12 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
         onClose={() => setShowModalHelp(false)}
         show={showModalHelp}
       >
-        <ModalHelp messageModal={"⚠️ J’ai un problème avec mon colis"} subMessageModal={"Nous sommes navrés de l’apprendre, contacte notre service client et nous tenterons de trouver une solution 🙂"}></ModalHelp>
+        <ModalHelp
+          messageModal={"⚠️ J’ai un problème avec mon colis"}
+          subMessageModal={
+            "Nous sommes navrés de l’apprendre, contacte notre service client et nous tenterons de trouver une solution 🙂"
+          }
+        ></ModalHelp>
       </Modal>
     </div>
   );

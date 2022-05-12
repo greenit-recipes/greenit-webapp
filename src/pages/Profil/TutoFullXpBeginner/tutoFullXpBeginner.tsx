@@ -47,34 +47,53 @@ const TutoFullXpBeginner = () => {
         <meta name="description" content="" />
       </Helmet>
       <Navbar />
-      <div className="flex flex-col items-center justify-around">
-        <div className="flex flex-col justify-between lg:ml-0 mt-4">
-          <h1 className="text-2xl font-medium text-center w-3/5 m-auto">
-            C’est le moment de tambouiller !
-          </h1>
-          <p className="text-center mt-4">
-            Clique sur les recettes pour commencer !
-          </p>
+      <div className="flex flex-col lg:flex-row items-center justify-around lg:justify-start lg:pl-32">
+        <div>
+          <div className="flex flex-col justify-between lg:ml-0 mt-4">
+            <h1 className="text-2xl font-medium text-center w-3/5 lg:w-full lg:text-left m-auto">
+              C’est le moment de tambouiller !
+            </h1>
+            <p className="text-center lg:text-left mt-4">
+              Clique sur les recettes pour commencer !
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center mt-6">
+            {recipesBegginerFullXp.map((recipe, index) => (
+              <RecipeCard
+                disabledFavoriteRecipe={true}
+                isLikeDisabled={true}
+                recipe={recipe}
+                key={recipe?.name}
+              />
+            ))}
+          </div>
         </div>
-        <div className="flex flex-wrap justify-center mt-6">
-          {recipesBegginerFullXp.map((recipe, index) => (
-            <RecipeCard
-              disabledFavoriteRecipe={true}
-              isLikeDisabled={true}
-              recipe={recipe}
-              key={recipe?.name}
-            />
-          ))}
-        </div>
+
+        {!isMobile && (
+          <div className="flex ml-20">
+            <button
+              className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-62 bg-white`}
+              onClick={() => setShowModalSos(true)}
+            >
+              👋 SOS, j’ai besoin d’aide !
+            </button>
+            <button
+              className={`btn-single-page justify-center ml-5 mt-2 mb-4 p-2 h-10 flex w-62 bg-white`}
+              onClick={() => setShowModalHelp(true)}
+            >
+              J’envoie mes retours !
+            </button>
+          </div>
+        )}
       </div>
-      <div className="flex flex-col w-full h-full">
-        <h2 className="text-xl text-center w-4/5 m-auto mb-2 mt-8">
+      <div className="flex flex-col lg:w-full h-full lg:pl-32">
+        <h2 className="text-xl text-center lg:text-left w-4/5 m-auto lg:w-full mb-2 mt-8">
           Andréa t’accompagne pour tes premiers pas !
         </h2>
-        <h3 className="mb-5 text text-center">
+        <h3 className="mb-5 text text-center lg:text-left">
           Découvre les astuces et les conseils 🙂
         </h3>{" "}
-        <div className="flex flex-col lg:flex-row items-center ml-0 lg:ml-32 mb-10">
+        <div className="flex flex-col lg:flex-row items-center ml-0  mb-10">
           <div className="h-60 lg:h-96 lg:w-2/6 rounded-2xl w-4/5">
             <ReactPlayer
               // @ts-ignore
@@ -169,19 +188,22 @@ const TutoFullXpBeginner = () => {
               }
             )}
           </div>
-
-          <button
-            className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-38 bg-white`}
-            onClick={() => setShowModalSos(true)}
-          >
-            👋 SOS, j’ai besoin d’aide !
-          </button>
-          <button
-            className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-38 bg-white`}
-            onClick={() => setShowModalHelp(true)}
-          >
-            J’envoie mes retours !
-          </button>
+          {isMobile && (
+            <div className="w-4/5">
+              <button
+                className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-full bg-white`}
+                onClick={() => setShowModalSos(true)}
+              >
+                👋 SOS, j’ai besoin d’aide !
+              </button>
+              <button
+                className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-full bg-white`}
+                onClick={() => setShowModalHelp(true)}
+              >
+                J’envoie mes retours !
+              </button>
+            </div>
+          )}
         </div>
         <Modal
           isCenter={true}
@@ -205,8 +227,9 @@ const TutoFullXpBeginner = () => {
             }
           ></ModalHelp>
         </Modal>
-        <Footer />
       </div>
+      <Footer />
+
     </div>
   );
 };
