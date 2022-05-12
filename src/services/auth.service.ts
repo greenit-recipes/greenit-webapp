@@ -264,6 +264,7 @@ class Auth {
     localStorage.removeItem("refreshToken");
   }
 
+  //Todo : Check Auth State securely
   isLoggedIn() {
     return !isEmpty(this.getToken());
   }

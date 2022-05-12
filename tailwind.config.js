@@ -105,7 +105,7 @@ module.exports = {
         yellowL: "#FFEAC1",
         greyL: "#F0F0F0",
         redL: "#ED6D6D",
-        inactive: "#D1D1D1",
+        inactive: "#F2F2F2",
         active: "#1CC466",
       },
       animation: {

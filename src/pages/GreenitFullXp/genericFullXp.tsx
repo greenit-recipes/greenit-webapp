@@ -5,13 +5,15 @@ import {menuFullXp} from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import React, {Suspense, useState} from "react";
 import {Helmet} from "react-helmet";
 import {useHistory} from "react-router-dom";
-import {findIndex} from "lodash";
+import {findIndex, isEmpty} from "lodash";
 import {Loading} from "components";
 import {previousPath} from "helpers/route-helper";
+
 
 //Todo : Integrate the component with UI later
 import CheckoutFullXp from "pages/GreenitFullXp/CheckoutFullXp/CheckoutFullXp";
 import useIsMobile from "../../hooks/isMobile";
+
 
 
 const RecipeFullXp = React.lazy(() => import("./RecipeFullXp/RecipeFullXp"));
@@ -51,13 +53,15 @@ const GenericFullXp = () => {
                 <title></title>
                 <meta name="" content=""/>
             </Helmet>
-            <div className="flex flex-row items-center mt-10 relative">
+            <div className="flex flex-row items-center mt-6 relative">
                 {localStorage.getItem("currentMenuGreenitFullXp") !== 'Confirmation'
                     && <div
                         className="absolute z-20 grid w-8 h-8 rounded-full cursor-pointer md:w-10 md:h-10 lg:p-2 md:ml-16 md:bg-white lg:shadow-md"
                         onClick={() => {
                             const currentIndexNavigation = findIndex(menuFullXp, {name: menu});
-                            if (menuFullXp[0].name === menu || !!currentIndexNavigation) previousPath()
+                            if (menuFullXp[0].name === menu) previousPath()
+                            //Buggy
+                            // if (menuFullXp[0].name === menu || !!currentIndexNavigation) previousPath()
                             setMenuWithCoockie(menuFullXp[currentIndexNavigation - 1]?.name);
                         }}>
                         <img alt="Retour icon" loading="lazy" src={retourIcon}/>
@@ -81,6 +85,7 @@ const GenericFullXp = () => {
                                 <IngredientUsentilFullXp/>
                             </Suspense>
                         );
+                    //Todo (zack): Remove this case on stepper navigation
                     case menuFullXp[2].name:
                         return (
                             <Suspense fallback={<Loading/>}>
