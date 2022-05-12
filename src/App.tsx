@@ -51,7 +51,9 @@ const TutoFullXpBeginner = React.lazy(
 const StartDiyGreenitFullXp = React.lazy(
   () => import("./pages/GreenitFullXp/StartDiy/StartDiyGreenitFullXp")
 );
-
+const FindOutMoreBoxGreentilFullXP = React.lazy(
+  () => import("./pages/GreenitFullXp/FindOutMoreFullXp/FindOutMoreBoxGreentilFullXP")
+);
 
 export const history = createBrowserHistory();
 
@@ -77,6 +79,7 @@ export const RouteName = {
   deleteProfil: "/supprimer-compte", // no index
   tutoFullXpBeginner: "/tuto-box-débutant",
   startDiyGreenitFullXp: "/se-lancer-dans-le-fait-maison",
+  findOUtMoreBoxGreentilFullXP: "/en-savoir-plus-box",
 };
 
 const App: React.FC = () => {
@@ -156,6 +159,11 @@ const App: React.FC = () => {
           <PublicRoute
             path={RouteName.startDiyGreenitFullXp}
             component={StartDiyGreenitFullXp}
+            exact
+          />
+          <PublicRoute
+            path={RouteName.findOUtMoreBoxGreentilFullXP}
+            component={FindOutMoreBoxGreentilFullXP}
             exact
           />
           <Route
