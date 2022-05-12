@@ -147,6 +147,8 @@ export const ME = gql`
       biographie
       isCreatorProfil
       urlsSocialMedia
+      isBeginnerBox
+      isRecipeMadeBeginnerBox
       recipeAuthor {
         id
         urlId

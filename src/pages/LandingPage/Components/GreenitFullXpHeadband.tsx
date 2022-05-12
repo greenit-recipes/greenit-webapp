@@ -1,5 +1,7 @@
 import useIsMobile from "hooks/isMobile";
 import { boxGreenit, boxGreenitMobile } from "icons";
+import { Link } from "react-router-dom";
+import { RouteName } from "App";
 
 interface GreenitFullXpHeadbandProps {
   showModal: any;
@@ -48,17 +50,17 @@ export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
       </div>
 
       <div className="flex bg-greenL lg:pl-20 h-16 items-center">
+      <Link to={RouteName.startDiyGreenitFullXp}>
+
         <button
           id="landing_tenez_moi_au_courant"
           className="p-1 ml-2 mr-4 w-52 text-sm lg:text-base order-2 lg:order-1 text-white rounded-lg bg-green"
-          onClick={() => {
-            showModal(true);
-          }}
         >
-          Tenez-moi au courant !
+          Je commande
         </button>
+        </Link>
         <p className="p-2 mr-1 text-center pl-10 order-1 lg:order-2 text-sm lg:text-left">
-        Bientôt disponible !
+        Offre limitée : 50 box à commander !
         </p>
       </div>
     </div>

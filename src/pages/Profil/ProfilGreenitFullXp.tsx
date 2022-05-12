@@ -6,12 +6,12 @@ import { AiFillCheckSquare } from "react-icons/ai";
 import { FiSquare } from "react-icons/fi";
 import { Link } from "react-router-dom";
 interface IProfilGreenitFullXp {
-  toto?: any;
+  isRecipeMadeBeginnerBox: boolean;
 }
 export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
-  toto,
+  isRecipeMadeBeginnerBox,
 }) => {
-  const [isMade, setMade] = useState(false);
+  const [isMade, setMade] = useState(isRecipeMadeBeginnerBox || false);
   const [showModalHelp, setShowModalHelp] = useState(false);
 
   return (
@@ -50,7 +50,7 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
       <button
         className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-full bg-white`}
         onClick={() => {
-          // @ts-ignore: Object is possibly 'null'.
+          setMade(!showModalHelp)
         }}
       >
         <div className={`flex justify-items-center `}>

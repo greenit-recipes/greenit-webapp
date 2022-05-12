@@ -38,12 +38,14 @@ const StartDiyGreenitFullXp = () => {
               Je commande ma box Premiers Pas
             </button>
           </Link>
-          <button
-            className={`btn-single-page justify-center mb-4 p-2 h-10 flex w-full bg-white text-green`}
-            onClick={() => {}}
-          >
-            En savoir plus
-          </button>
+          <Link to={RouteName.findOUtMoreBoxGreentilFullXP}>
+            <button
+              className={`btn-single-page justify-center mb-4 mt-4 p-2 h-10 flex w-full bg-white text-green`}
+              onClick={() => {}}
+            >
+              En savoir plus
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,14 +1,13 @@
-import { RouteName } from "App";
+import { Loading } from "components";
+import { previousPath } from "helpers/route-helper";
 import { retourIcon } from "icons";
+import { findIndex } from "lodash";
 import HeadBand from "pages/GreenitFullXp/headband";
 import MenuFullXp from "pages/GreenitFullXp/MenuFullXp/MenuFullXp";
 import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import React, { Suspense, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
-import { findIndex } from "lodash";
-import { Loading } from "components";
-import { previousPath } from "helpers/route-helper";
 
 const RecipeFullXp = React.lazy(() => import("./RecipeFullXp/RecipeFullXp"));
 const IngredientUsentilFullXp = React.lazy(
@@ -46,7 +45,8 @@ const GenericFullXp = () => {
         className="absolute left-0 z-20 grid w-8 h-8 ml-3 rounded-full cursor-pointer top-18 lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
         onClick={() => {
           const currentIndexNavigation = findIndex(menuFullXp, { name: menu });
-          if (menuFullXp[0].name === menu) previousPath()
+          console.log(!!currentIndexNavigation)
+          if (menuFullXp[0].name === menu || !!currentIndexNavigation) previousPath()
           setMenuWithCoockie(menuFullXp[currentIndexNavigation - 1]?.name);
         }}
       >
@@ -68,15 +68,13 @@ const GenericFullXp = () => {
               </Suspense>
             );
           case menuFullXp[2].name:
-            return (
-              <Suspense fallback={<Loading />}>
-                <DeliveryGreenitFullXp setNavigation={setMenuWithCoockie} />
-              </Suspense>
-            );
-          case menuFullXp[3].name:
             return <p>Paiement</p>;
           default:
-            return <p>Recettes</p>;
+            return (
+              <Suspense fallback={<Loading />}>
+                <RecipeFullXp />
+              </Suspense>
+            );;
         }
       })()}
       <HeadBand
