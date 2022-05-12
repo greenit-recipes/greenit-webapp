@@ -6,10 +6,10 @@ interface IMenuFullXp {
 }
 const MenuFullXp: React.FC<IMenuFullXp> = ({ setNavigation }) => {
   return (
-    <div className="flex m-4 ml-14 mt-10">
+    <div className="flex flex-wrap space-x-4 rounded-3xl bg-inactive">
       {menuFullXp.map((item, index) => (
         <div
-         className="cursor-pointer m-2"
+         className={`cursor-pointer ${ localStorage.getItem("currentMenuGreenitFullXp") === item.name ? "rounded-3xl font-medium text-white bg-active" : ""} text-sm py-1.5 px-3`}
           key={item.name}
           onClick={() => {
             setNavigation(item.name);
