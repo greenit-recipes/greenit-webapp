@@ -1,20 +1,38 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {useMutation} from "@apollo/client";
 import {RouteName} from "App";
-import useIsMobile from "../../../hooks/isMobile";
+import useIsMobile from "hooks/isMobile";
 
 import {Link} from "react-router-dom";
 import {boxFullXpIngredients} from "utils"
-import {NumberedCircle} from "../../../components/misc/NumberedCircle";
-import Auth from "../../../services/auth.service";
-import {ModalLogGreenit} from "../../../components";
+import {ModalLogGreenit} from "components/layout";
+import {NumberedCircle} from "components/misc/NumberedCircle";
+import Auth from "services/auth.service";
+import {HAS_PURCHASED_BEGINNER_BOX, persistBoxPurchaseOnConfirmation} from "services/boxfullxp.service";
+
 
 //Todo (zack) create UI breakpoint variables for programmatic responsiveness
 /*Todo (zack) Refactor later */
 //Ingredients are hard coded for now since the box we're selling is fixed
+
+
 const ConfirmationFullXp: React.FC = () => {
 
     const isMobile = useIsMobile();
     const isLoggedIn = Auth.isLoggedIn();
+
+    const [hasPurchasedBeginnerBox] = useMutation(
+        HAS_PURCHASED_BEGINNER_BOX,
+        {
+            errorPolicy: "all",
+        }
+    );
+
+    useEffect(() => {
+        persistBoxPurchaseOnConfirmation(isLoggedIn, hasPurchasedBeginnerBox)
+    }, []);
+
+
     //Todo: (zack) create custom themes for fonts (should it be pixel perfect ?)
     return (
         <div className="flex flex-col lg:flex-row items-start justify-around">

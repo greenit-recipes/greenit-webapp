@@ -4,14 +4,20 @@ import { RegisterModal } from "pages/Register/register-modal";
 import React, { useEffect, useState } from "react";
 import "./ModalLogGreenit.css";
 
+
 interface IModalLogGreenit {
   btn: any;
   isModalLogin?: boolean;
+  show?: boolean;
 }
 
-export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({ btn, isModalLogin }) => {
-  const [showModal, setShowModal] = useState(false);
+export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({ btn, isModalLogin,show }) => {
+  const [showModal, setShowModal] = useState(show || false);
   const [isOpenLogin, setIsOpenLogin] = useState(isModalLogin || false);
+
+  console.log("showMod" + showModal);
+  console.log("show" + show);
+
   useEffect(() => {
     if (showModal) {
       // à voir
@@ -21,7 +27,7 @@ export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({ btn, isModalLogin 
         document.body.classList.remove("no-scroll");
       };
     }
-  });
+  }, []);
   return (
     <div>
       <div className="justify-items-center flex flex-col"
@@ -31,7 +37,7 @@ export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({ btn, isModalLogin 
       </div>
       <Modal
         onClose={() => setShowModal(false)}
-        show={showModal && !isOpenLogin}
+        show={showModal}
       >
 
           <RegisterModal loginOpen={setIsOpenLogin}></RegisterModal>

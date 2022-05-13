@@ -95,7 +95,7 @@ module.exports = {
 
       keyframes: {
         rotate: {
-          "50%": { transform: "rotate(90deg)" },
+          "50%": {transform: "rotate(90deg)"},
         }
       },
       colors: {
