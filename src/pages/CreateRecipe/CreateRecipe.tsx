@@ -1,31 +1,26 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { Button, Footer, ModalLogGreenit, Navbar } from "components";
 import { BackgroundImage } from "components/layout/BackgroundImage";
 import { imageValidation } from "helpers/yup-validation.helper";
-import { cloneDeep } from "lodash";
 import CreateRecipeForm from "pages/CreateRecipe/CreateRecipeForm";
 import {
-  CREATE_EMAIL_RECIPE,
-  EMAIL_LINK_SHARED_RECIPE,
-  GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
+  EMAIL_LINK_SHARED_RECIPE
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import Select from "react-select";
 import authService from "services/auth.service";
 import * as yup from "yup";
-import { RecipeDifficulty } from "../../graphql";
 import {
   fblogo,
   instalogo,
   pintlogo,
   tiktoklogo,
   wwwlogo,
-  ytlogo,
+  ytlogo
 } from "../../icons";
 
 const schemaLink = yup.object().shape({

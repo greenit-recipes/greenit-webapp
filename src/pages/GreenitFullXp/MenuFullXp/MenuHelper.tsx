@@ -1,7 +1,6 @@
 export const menuFullXp = [
-  { name: "Mes recettes", needToBeLogged: false },
-  { name: "Ingrédients et ustensiles", needToBeLogged: false },
-  { name: "Livraison", needToBeLogged: true },
-  { name: "Paiement", needToBeLogged: true },
-  { name: "Confirmation", needToBeLogged: true },
+  { name: "Mes recettes", haveAccesOnMenu: true },
+  { name: "Ingrédients et ustensiles", haveAccesOnMenu: true },
+  { name: "Paiement", haveAccesOnMenu: true },
+  { name: "Confirmation", haveAccesOnMenu: false },
 ];

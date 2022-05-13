@@ -50,6 +50,9 @@ export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
       </div>
 
       <div className="flex bg-greenL lg:pl-20 h-16 items-center">
+        <p  onClick={() => {
+            showModal(true)
+          }}>Open modal no stock</p>
       <Link to={RouteName.startDiyGreenitFullXp}>
 
         <button

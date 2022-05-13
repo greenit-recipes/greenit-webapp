@@ -9,7 +9,6 @@ import MenuFullXp from "pages/GreenitFullXp/MenuFullXp/MenuFullXp";
 import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import React, { Suspense, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useHistory } from "react-router-dom";
 import useIsMobile from "../../hooks/isMobile";
 
 
@@ -21,28 +20,23 @@ const IngredientUsentilFullXp = React.lazy(
     )
 );
 
-const DeliveryGreenitFullXp = React.lazy(
-  () => import("pages/GreenitFullXp/Delivery/Delivery")
-);
-
 const ConfirmationFullXp = React.lazy(
   () => import("pages/GreenitFullXp/ConfirmationFullXp/ConfirmationFullXp")
 );
 
 const GenericFullXp = () => {
+  const currentMenuStorage = localStorage.getItem("currentMenuGreenitFullXp");
   const menuStorage =
-    localStorage.getItem("currentMenuGreenitFullXp") !== "undefined"
-      ? localStorage.getItem("currentMenuGreenitFullXp")
+    currentMenuStorage !== "undefined"
+      ? currentMenuStorage
       : null;
   const [menu, setMenu] = useState(menuStorage || menuFullXp[0].name);
-  console.log("menu");
 
   const setMenuWithCoockie = (menu: string) => {
     setMenu(menu);
     localStorage.setItem("currentMenuGreenitFullXp", menu);
   };
 
-  const history = useHistory();
   const isMobile = useIsMobile();
 
   return (
@@ -55,8 +49,7 @@ const GenericFullXp = () => {
         />
       </Helmet>
       <div className="flex flex-row items-center mt-6 relative">
-        {localStorage.getItem("currentMenuGreenitFullXp") !==
-          "Confirmation" && (
+        {menu !== menuFullXp[3].name && (
           <div
             className="absolute z-20 grid w-8 h-8 rounded-full cursor-pointer md:w-10 md:h-10 lg:p-2 md:ml-16 md:bg-white lg:shadow-md"
             onClick={() => {
@@ -92,20 +85,13 @@ const GenericFullXp = () => {
                 <IngredientUsentilFullXp />
               </Suspense>
             );
-          //Todo (zack): Remove this case on stepper navigation
           case menuFullXp[2].name:
-            return (
-              <Suspense fallback={<Loading />}>
-                <DeliveryGreenitFullXp setNavigation={setMenuWithCoockie} />
-              </Suspense>
-            );
-          case menuFullXp[3].name:
             return (
               <Suspense fallback={<Loading />}>
                 <CheckoutFullXp />
               </Suspense>
             );
-          case menuFullXp[4].name:
+          case menuFullXp[3].name:
             return (
               <Suspense fallback={<Loading />}>
                 <ConfirmationFullXp />
@@ -119,7 +105,7 @@ const GenericFullXp = () => {
             );
         }
       })()}
-      {localStorage.getItem("currentMenuGreenitFullXp") !== "Confirmation" && (
+      {menu !== menuFullXp[3].name && (
         <div className="fixed bottom-0 h-10 mb-16 sm:mb-0">
           <HeadBand
             setNavigation={setMenuWithCoockie}
