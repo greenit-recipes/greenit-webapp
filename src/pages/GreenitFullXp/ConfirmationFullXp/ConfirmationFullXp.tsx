@@ -117,7 +117,7 @@ const ConfirmationFullXp: React.FC = () => {
 
                 <div className={`flex flex-wrap justify-center mt-4 md:space-x-8 lg:space-x-4 lg:px-8`}>
                     {boxFullXpIngredients.map((item) => (
-                        <NumberedCircle quantity={item.quantity} name={item.title} icon={item.icon}/>
+                        <NumberedCircle key={Date.now()} quantity={item.quantity} name={item.title} icon={item.icon}/>
                     ))}
                 </div>
             </div>

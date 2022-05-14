@@ -22,13 +22,13 @@ const persistMutation = (mutation: MutationOperation) => {
 }
 
 const persistBoxPurchaseOnRegister = () => {
-    let persist = false;
-    if (localStorage.getItem("isBoxBeginner") === "true") {
-        //Todo (zack) : Address cookie removal bug on Multiple DOM renders
-        // localStorage.removeItem("isBoxBeginner")
-        persist = true;
-    }
-    return persist;
+    //Todo (zack) : Address cookie removal bug on Multiple DOM renders
+    //let persist = false;
+    // if (localStorage.getItem("isBoxBeginner") === "true") {
+    //     localStorage.removeItem("isBoxBeginner")
+    //     persist = true;
+    // }
+    return localStorage.getItem("isBoxBeginner") === "true";
 }
 
 const persistBoxPurchaseOnConfirmation = (isLoggedIn: boolean, mutation: MutationOperation) => {

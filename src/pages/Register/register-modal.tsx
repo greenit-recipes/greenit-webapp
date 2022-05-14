@@ -29,7 +29,9 @@ import authService, {
     LOGIN_ACCOUNT,
 } from "services/auth.service";
 import "./register.css";
-import {persistBoxPurchaseOnRegister} from "../../services/boxfullxp.service";
+import {persistBoxPurchaseOnRegister} from "services/boxfullxp.service";
+import useGraphQlLoading from "../../hooks/useGraphqlLoading";
+import {BiLoaderAlt} from "react-icons/all";
 
 export const RegisterModal: React.FC<{
     loginOpen: any;
@@ -56,7 +58,6 @@ export const RegisterModal: React.FC<{
     });
 
     const [errorLoginFb, setErrorLoginFb] = useState("");
-    const [pendingRequest, setPendingRequest] = useState(false);
 
     const [
         authLogin,
@@ -67,15 +68,8 @@ export const RegisterModal: React.FC<{
     const [createAccount, {data: createAccountData, loading: loadingCreateAccount, error}] =
         useMutation(CREATE_ACCOUNT, {errorPolicy: "all"});
 
-    //Todo: Convert GraphQL loading state to hook
-    useEffect(() => {
-        //Global Loading State for Registration :
-        if (loadingLogin || loadingAuth || loadingCreateAccount) {
-            setPendingRequest(true)
-        } else {
-            setPendingRequest(false)
-        }
-    }, [loadingLogin, loadingAuth, loadingCreateAccount])
+    const isGraphQlLoading = useGraphQlLoading([loadingLogin, loadingAuth, loadingCreateAccount])
+
 
     React.useEffect(() => {
         if (window.pageYOffset > 0) {
@@ -257,8 +251,8 @@ export const RegisterModal: React.FC<{
                         callback={responseFacebook}
                         disableMobileRedirect={true}
                         cssClass="my-facebook-button-class"
-                        textButton="Connexion avec Facebook"
-                        icon={<IoLogoFacebook className="w-6 h-6 mr-4"/>}
+                        textButton={'Connexion avec Facebook'}
+                        icon={!isGraphQlLoading ? <div className="animate-spin mr-4"><BiLoaderAlt/></div> : <IoLogoFacebook className="w-6 h-6 mr-4"/>}
                     />
 
                     {errorLoginFb && (
@@ -405,7 +399,7 @@ export const RegisterModal: React.FC<{
                                 les tendances du secteur du DIY.
                             </label>
                         </div>
-                        <Button type="blue" className="mt-4 font-extrabold" isLoading={pendingRequest}>
+                        <Button type="blue" className="mt-4 font-extrabold" isLoading={isGraphQlLoading}>
                             Créer ton profil
                         </Button>
                     </form>

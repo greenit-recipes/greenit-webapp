@@ -31,6 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       id={id}
+      disabled={isLoading}
       className={`${className} flex justify-center items-center cursor-pointer
       px-3 py-1 bold text-white border-2 border-transparent
       text-sm md:

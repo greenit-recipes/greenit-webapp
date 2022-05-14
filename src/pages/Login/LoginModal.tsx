@@ -16,6 +16,8 @@ import authService, {
 } from "services/auth.service";
 import * as yup from "yup";
 import "./LoginModal.css";
+import useGraphQlLoading from "../../hooks/useGraphqlLoading";
+import {BiLoaderAlt} from "react-icons/all";
 
 const schema = yup.object().shape({
     email: yup.string().email().required("L'email est obligatoire."),
@@ -48,16 +50,6 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
         errorPolicy: "all",
     });
 
-    const [pendingRequest, setPendingRequest] = useState(false);
-    useEffect(() => {
-        //Global Loading State for Registration :
-        if (loading) {
-            setPendingRequest(true)
-        } else {
-            setPendingRequest(false)
-        }
-    }, [loading])
-
     const [errorLoginFb, setErrorLoginFb] = useState("");
 
     const [
@@ -66,6 +58,9 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
     ] = useMutation(CREATE_USER_FROM_AUTH, {
         errorPolicy: "all",
     });
+
+
+    const isGraphQlLoading = useGraphQlLoading([loading, loadingAuth])
 
 
     // Error for graphql call
@@ -217,7 +212,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
                             >
                                 Mot de passe oublié ?
                             </a>
-                            <Button type="blue" className="mt-4 font-extrabold" isLoading={pendingRequest}>
+                            <Button type="blue" className="mt-4 font-extrabold" isLoading={isGraphQlLoading}>
                                 Connexion
                             </Button>
                         </form>
@@ -231,8 +226,8 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
                             callback={responseFacebook}
                             disableMobileRedirect={true}
                             cssClass="my-facebook-button-class"
-                            textButton="Connexion avec Facebook"
-                            icon={<IoLogoFacebook className="w-6 h-6 mr-4"/>}
+                            textButton={'Connexion avec Facebook'}
+                            icon={isGraphQlLoading ? <div className="animate-spin mr-4"><BiLoaderAlt/></div> : <IoLogoFacebook className="w-6 h-6 mr-4"/>}
                         />
 
                         {errorLoginFb && (
