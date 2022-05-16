@@ -24,11 +24,11 @@ const persistMutation = (mutation: MutationOperation) => {
 const persistBoxPurchaseOnRegister = () => {
     //Todo (zack) : Address cookie removal bug on Multiple DOM renders
     //let persist = false;
-    // if (localStorage.getItem("isBoxBeginner") === "true") {
-    //     localStorage.removeItem("isBoxBeginner")
+    // if (localStorage.getItem("isBeginnerBox") === "true") {
+    //     localStorage.removeItem("isBeginnerBox")
     //     persist = true;
     // }
-    return localStorage.getItem("isBoxBeginner") === "true";
+    return localStorage.getItem("isBeginnerBox") === "true";
 }
 
 const persistBoxPurchaseOnConfirmation = (isLoggedIn: boolean, mutation: MutationOperation) => {
@@ -37,7 +37,7 @@ const persistBoxPurchaseOnConfirmation = (isLoggedIn: boolean, mutation: Mutatio
         persistMutation(mutation)
     } else {
         //Store cookie -> we will persist box later
-        (localStorage.getItem("isBoxBeginner") === "true") || localStorage.setItem("isBoxBeginner", "true")
+        (localStorage.getItem("isBeginnerBox") === "true") || localStorage.setItem("isBeginnerBox", "true")
     }
 }
 

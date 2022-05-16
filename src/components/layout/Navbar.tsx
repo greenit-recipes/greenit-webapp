@@ -15,7 +15,7 @@ const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreen
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const [toggle, setToggle] = useState(false);
-  const [hasUrl, setHasUrl] = useState(!!(hasBoxBeginnerUrl() && ((localStorage.getItem("isBoxBeginner") === "true") || localStorage.setItem("isBoxBeginner", "true"))))
+  const [hasUrl, setHasUrl] = useState(!!(hasBoxBeginnerUrl() && ((localStorage.getItem("isBeginnerBox") === "true") || localStorage.setItem("isBeginnerBox", "true"))))
 
   const isLoggedIn = authService.isLoggedIn();
 

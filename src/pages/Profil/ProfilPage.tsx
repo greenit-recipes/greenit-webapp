@@ -1,4 +1,4 @@
-import {useMutation, useQuery} from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { RouteName } from "App";
 import "App.css";
 import { Button, Loading, RecipeCard } from "components";
@@ -20,9 +20,7 @@ import Modal from "components/layout/Modal/Modal";
 import { ModalProfil } from "pages/Profil/ModalProfil";
 import { ProfilGreenitFullXp } from "pages/Profil/ProfilGreenitFullXp";
 
-
 const ProfilPage: React.FC = () => {
-
   useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
@@ -145,10 +143,12 @@ const ProfilPage: React.FC = () => {
               recipeMadeUser={user?.recipeMadeUser}
             ></ExplorateurProfil>
           )}
-          <ProfilGreenitFullXp
-            parentFunction={refetch}
-            isRecipeMadeBeginnerBox={user?.isRecipeMadeBeginnerBox}
-          ></ProfilGreenitFullXp>
+          {user?.isBeginnerBox && (
+            <ProfilGreenitFullXp
+              parentFunction={refetch}
+              isRecipeMadeBeginnerBox={user?.isRecipeMadeBeginnerBox}
+            ></ProfilGreenitFullXp>
+          )}
           <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
             <button
               className={

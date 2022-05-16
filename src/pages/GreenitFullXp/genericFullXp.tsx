@@ -1,16 +1,14 @@
-import {Loading} from "components";
-import {previousPath} from "helpers/route-helper";
-import {retourIcon} from "icons";
-import {findIndex} from "lodash";
-//Todo : Integrate the component with UI later
-import CheckoutFullXp from "pages/GreenitFullXp/CheckoutFullXp/CheckoutFullXp";
+import { Loading } from "components";
+import { previousPath } from "helpers/route-helper";
+import { retourIcon } from "icons";
+import { findIndex } from "lodash";
 import HeadBand from "pages/GreenitFullXp/headband";
 import MenuFullXp from "pages/GreenitFullXp/MenuFullXp/MenuFullXp";
-import {menuFullXp} from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
-import React, {Suspense, useState} from "react";
-import {Helmet} from "react-helmet";
+import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
+import React, { Suspense, useState } from "react";
+import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 import useIsMobile from "../../hooks/isMobile";
-import {useHistory} from "react-router-dom";
 
 
 const RecipeFullXp = React.lazy(() => import("./RecipeFullXp/RecipeFullXp"));
@@ -90,12 +88,6 @@ const GenericFullXp = () => {
                         return (
                             <Suspense fallback={<Loading/>}>
                                 <IngredientUsentilFullXp/>
-                            </Suspense>
-                        );
-                    case menuFullXp[2].name:
-                        return (
-                            <Suspense fallback={<Loading/>}>
-                                <CheckoutFullXp/>
                             </Suspense>
                         );
                     case menuFullXp[3].name:

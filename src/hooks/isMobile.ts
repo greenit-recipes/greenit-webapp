@@ -12,7 +12,7 @@ const useIsMobile = () => {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, []);
-  const isMobile = width <= 640;
+  const isMobile = width <=640;
   return isMobile;
 };
 

@@ -26,9 +26,10 @@ const CheckoutFullXp: React.FC = () => {
     return (
         <div className="flex justify-center">
             <button onClick={createCheckoutSession as any}
-                className="px-6 py-3 text-white duration-100 bg-green rounded-md shadow-md focus:shadow-none ring-offset-2 ring-indigo-600 focus:ring-2"
+                id="etape-suivante-paiement"
+                className="h-10 rounded-lg bg-green w-32 lg:w-72 text-white"
             >
-                Checkout
+                        Étape suivante r
             </button>
         </div>
 

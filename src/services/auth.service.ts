@@ -95,7 +95,7 @@ export const CREATE_USER_FROM_AUTH = gql`
     $username: String!
     $password: String!
     $isFollowNewsletter: String
-    $isBeginnerBox: Boolean!
+    $isBeginnerBox: Boolean
     $idFacebook: String
   ) {
     createUserFromAuth(
