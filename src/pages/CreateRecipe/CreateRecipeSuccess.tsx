@@ -1,12 +1,13 @@
-import { useEffect } from "react";
+import { BackgroundImage } from "components";
+import { Footer } from "components/layout/Footer";
 import { Navbar } from "components/layout/Navbar";
 import { Button } from "components/misc/Button";
-import { Footer } from "components/layout/Footer";
-import { BackgroundImage, ModalLogGreenit } from "components";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import authService from "services/auth.service";
-import { RouteName } from "App";
+
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 const RecipeCreatedPage = () => {
   useEffect(() => {

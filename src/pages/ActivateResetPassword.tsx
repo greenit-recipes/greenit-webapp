@@ -1,7 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BackgroundImage } from "components/layout/BackgroundImage";
-import { ModalLogGreenit }  from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { Navbar } from "components/layout/Navbar";
 import React from "react";
 import { Helmet } from "react-helmet";
@@ -9,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { RESET_PASSWORD } from "services/auth.service";
 import * as yup from "yup";
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 const schema = yup.object().shape({
   password: yup

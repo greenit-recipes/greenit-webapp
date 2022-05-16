@@ -44,19 +44,23 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
               setIngredientSelected(false);
             }}
           >
-            <GiForkKnifeSpoon/>
+            <GiForkKnifeSpoon />
             <div className="text-xl ml-2">Ustensiles</div>
           </div>
         </div>
-        
+
         <div className={`${isIngredientSelected ? "" : "hidden"}`}>
           {recipe.ingredients.map((item: any, index: any) => (
-            <SectionIngredient data={item} key={index} />
+            <div key={index}>
+              <SectionIngredient data={item} />
+            </div>
           ))}
         </div>
         <div className={`${isIngredientSelected ? "hidden" : ""}`}>
           {recipe.utensils.map((item: any, index: any) => (
-            <SectionUstensil data={item} key={index} />
+            <div key={index}>
+              <SectionUstensil data={item} key={index} />
+            </div>
           ))}
         </div>
       </div>

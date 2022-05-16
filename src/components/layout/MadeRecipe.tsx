@@ -1,10 +1,11 @@
 import { useMutation } from "@apollo/client";
-import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { ADD_OR_REMOVE_MADE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useState } from "react";
 import { AiFillCheckSquare } from "react-icons/ai";
 import { FiSquare } from "react-icons/fi";
 import authService from "services/auth.service";
+
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 interface IMadeRecipe {
   customClassName?: string;

@@ -3,7 +3,7 @@ import { RouteName } from "App";
 import { Button, Loading } from "components";
 import { getImagePath } from "helpers/image.helper";
 import useIsMobile from "hooks/isMobile";
-import { map, sum, toNumber, orderBy } from "lodash";
+import { map, orderBy, sum, toNumber } from "lodash";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
 import React, { useState } from "react";
 import { BsWallet2 } from "react-icons/bs";
@@ -12,7 +12,6 @@ import { IoIosRemove } from "react-icons/io";
 import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { PLUS_OR_LESS_RECIPE } from "services/auth.service";
-import { FiSquare } from "react-icons/fi";
 
 interface IUser {
   recipeMadeUser: any;

@@ -117,7 +117,7 @@ const LandingPage = () => {
         onClose={() => setShowModalComingSoon(false)}
         show={showModalComingSoon}
       >
-        <GreenitFullXpModal/>
+        <GreenitFullXpModal isOutOfStock={true}/>
       </Modal>
       <Container className="flex flex-col w-11/12 | lg:w-4/5 px-4 sm:w-2/3 items-start | mt-4 mb-2 md:mt-4">
         <div className="mb-6">

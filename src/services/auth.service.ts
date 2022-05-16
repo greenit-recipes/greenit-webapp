@@ -11,6 +11,7 @@ export const CREATE_ACCOUNT = gql`
     $password1: String!
     $password2: String!
     $isFollowNewsletter: String!
+    $isBeginnerBox: Boolean!
     $userCategoryLvl: String
     $userCategoryAge: String
     $urlsSocialMedia: JSONString
@@ -25,6 +26,7 @@ export const CREATE_ACCOUNT = gql`
       userCategoryLvl: $userCategoryLvl
       userCategoryAge: $userCategoryAge
       isFollowNewsletter: $isFollowNewsletter
+      isBeginnerBox: $isBeginnerBox
       urlsSocialMedia: $urlsSocialMedia
       biographie: $biographie
       isCreatorProfil: $isCreatorProfil
@@ -93,6 +95,7 @@ export const CREATE_USER_FROM_AUTH = gql`
     $username: String!
     $password: String!
     $isFollowNewsletter: String
+    $isBeginnerBox: Boolean!
     $idFacebook: String
   ) {
     createUserFromAuth(
@@ -100,6 +103,7 @@ export const CREATE_USER_FROM_AUTH = gql`
       username: $username
       password: $password
       isFollowNewsletter: $isFollowNewsletter
+      isBeginnerBox: $isBeginnerBox
       idFacebook: $idFacebook
     ) {
       isUserAlreadyCreated
@@ -147,6 +151,8 @@ export const ME = gql`
       biographie
       isCreatorProfil
       urlsSocialMedia
+      isBeginnerBox
+      isRecipeMadeBeginnerBox
       recipeAuthor {
         id
         urlId
@@ -262,6 +268,7 @@ class Auth {
     localStorage.removeItem("refreshToken");
   }
 
+  //Todo : Check Auth State securely
   isLoggedIn() {
     return !isEmpty(this.getToken());
   }

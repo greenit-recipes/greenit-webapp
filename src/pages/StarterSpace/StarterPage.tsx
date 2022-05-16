@@ -1,12 +1,11 @@
 import { RouteName } from "App";
 import { Container, Footer, Navbar } from "components";
-import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import useIsMobile from "hooks/isMobile";
 import { CategoryCircle } from "pages/LandingPage/Components/CategoryCircle";
 import { AskQuestion } from "pages/StarterSpace/component/AskQuestion/AskQuestion";
 import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
 import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { RiShareForwardLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
@@ -21,6 +20,7 @@ import {
   Cooking, CremeCorp, Eau, EcorceArgume, Fouet, HuileRicin, IconAtelier, IconInternet, IconMarche, IconSite, Lessive, Livre, logo, Maryse, Producteur, SavonMarseille, Ustensil
 } from "../../icons";
 import "./StarterPage.css";
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({

@@ -1,5 +1,6 @@
 import React from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
+import {BiLoaderAlt} from "react-icons/all";
 
 interface ButtonProps {
   type: "blue" | "green" | "yellow" | "orange" | "grey" | "red" | "blueL";
@@ -12,6 +13,7 @@ interface ButtonProps {
   href?: string;
   haveArrow?: boolean;
   isArrowDown?: boolean;
+  isLoading?: boolean
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -24,10 +26,12 @@ export const Button: React.FC<ButtonProps> = ({
   onClickArrow,
   haveArrow,
   isArrowDown,
+  isLoading,
 }) => {
   return (
     <button
       id={id}
+      disabled={isLoading}
       className={`${className} flex justify-center items-center cursor-pointer
       px-3 py-1 bold text-white border-2 border-transparent
       text-sm md:
@@ -47,7 +51,7 @@ export const Button: React.FC<ButtonProps> = ({
         }
       }}
     >
-      {children}
+      {isLoading ? <div className="animate-spin"><BiLoaderAlt/></div> : children}
       {haveArrow && (
         <HiOutlineChevronDown
           className={`w-6 h-6 ml-2 cursor-pointer ${

@@ -6,7 +6,6 @@ import { FavouriteField } from "components/layout/FavouriteField";
 import { LikeComment } from "components/layout/LikeComment";
 import { MadeRecipe } from "components/layout/MadeRecipe";
 import Modal from "components/layout/Modal/Modal";
-import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { UserBadge } from "components/layout/UserBadge";
 import { getImagePath } from "helpers/image.helper";
 import { getObjectSession } from "helpers/session-helper";
@@ -41,6 +40,8 @@ import { CircleGreenit } from "./CircleGreenit/CircleGreenit";
 import { HeaderRecipe } from "./HeaderRecipe/HeaderRecipe";
 import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
 import "./SinglePage.css";
+
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 const closest = (needle: number, haystack: any[]) => {
   return haystack.reduce((r: any, b: any) => {

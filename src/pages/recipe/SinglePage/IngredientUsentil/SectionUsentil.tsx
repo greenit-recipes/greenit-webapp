@@ -21,7 +21,7 @@ export const SectionUstensil: React.FC<ISectionUstensil> = ({ data, className })
             loading="lazy"
           ></img>
         </div>
-        <div className="w-4/6 ml-14">{data?.name}</div>
+        <div className="w-4/6 ml-14">{data?.name} { data?.subName && (<span className="text-xs">{data?.subName}</span>) }</div>
         <div className="w-1/6"></div>
       </div>
     </>
