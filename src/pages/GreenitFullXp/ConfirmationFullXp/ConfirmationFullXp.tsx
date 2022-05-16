@@ -40,13 +40,9 @@ const ConfirmationFullXp: React.FC = () => {
                 <div>
                     <h1 className="text-2xl font-semibold mb-3">Confirmation de commande</h1>
 
-                    {isLoggedIn ? (
-                        <h2 className="text-green text-base md:text-xl font-semibold mb-4">Merci</h2>) : (
-                        <h2 className="text-green text-base md:text-xl font-semibold mb-4">N’oublie pas d’activer ton
-                            compte
-                            pour avoir
-                            accès {!isMobile && <br/>}à
-                            l’espace Premiers Pas !</h2>)}
+
+                    <h2 className="text-green text-base md:text-xl font-semibold mb-4">Merci !</h2>
+
 
                     <h3 className="text-base font-medium md:font-normal mb-6">Tu recevras un email de confirmation de ta
                         commande dans les
@@ -117,7 +113,7 @@ const ConfirmationFullXp: React.FC = () => {
 
                 <div className={`flex flex-wrap justify-center mt-4 md:space-x-8 lg:space-x-4 lg:px-8`}>
                     {boxFullXpIngredients.map((item) => (
-                        <NumberedCircle key={Date.now()} quantity={item.quantity} name={item.title} icon={item.icon}/>
+                        <NumberedCircle quantity={item.quantity} name={item.title} icon={item.icon}/>
                     ))}
                 </div>
             </div>
