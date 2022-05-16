@@ -1,12 +1,14 @@
 import Modal from "components/layout/Modal/Modal";
-import { LoginModal } from "pages/Login/LoginModal";
-import { RegisterModal } from "pages/Register/register-modal";
-import React, { useEffect, useState } from "react";
+import {LoginModal} from "pages/Login/LoginModal";
+import {RegisterModal} from "pages/Register/register-modal";
+import React, {useEffect, useState} from "react";
 import "./ModalLogGreenit.css";
 
+
 interface IModalLogGreenit {
-  btn: any;
-  isModalLogin?: boolean;
+    btn: any;
+    isModalLogin?: boolean;
+    show?: boolean;
 }
 
 export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({ btn, isModalLogin }) => {

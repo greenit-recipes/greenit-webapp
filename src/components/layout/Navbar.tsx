@@ -1,6 +1,6 @@
 import { RouteName } from "App";
 import "components/layout/Navbar.css";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import authService from "services/auth.service";
 import { SearchBar } from ".";
@@ -8,14 +8,18 @@ import { Button } from "../";
 import useIsMobile from "../../hooks/isMobile";
 import { logo } from "../../icons";
 import { NavButton } from "../misc/NavButton";
+import {hasBoxBeginnerUrl} from "../../helpers/beginnerbox.helper";
 
 const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const [toggle, setToggle] = useState(false);
+  const [hasUrl, setHasUrl] = useState(!!(hasBoxBeginnerUrl() && ((localStorage.getItem("isBoxBeginner") === "true") || localStorage.setItem("isBoxBeginner", "true"))))
 
   const isLoggedIn = authService.isLoggedIn();
+
+
 
   const resetFilter = () =>window.sessionStorage.setItem(
     "filterListPage",
@@ -80,6 +84,7 @@ export const Navbar: React.FC = () => {
                     </button>
                   </>
                 }
+                show={hasUrl}
               ></ModalLogGreenit>
             </div>
           )}
@@ -134,6 +139,7 @@ export const Navbar: React.FC = () => {
             ) : (
               <ModalLogGreenit
                 isModalLogin={true}
+                show={hasUrl}
                 btn={
                   <div className="p-2">
                     <h2 className="text-white">Se connecter</h2>{" "}
@@ -146,6 +152,8 @@ export const Navbar: React.FC = () => {
       </div>
     );
   }
+
+
   return (
     <div className="flex flex-row h-16 w-full | sticky top-0 bg-white z-50">
       <div className="grid items-center justify-items-center">
@@ -462,6 +470,7 @@ export const Navbar: React.FC = () => {
             </Link>
           ) : (
             <ModalLogGreenit
+              show={hasUrl}
               btn={
                 <div className="flex">
                   <Button

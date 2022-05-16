@@ -1,20 +1,38 @@
-import React from "react";
-import {RouteName} from "App";
-import useIsMobile from "../../../hooks/isMobile";
-
-import {Link} from "react-router-dom";
-import {boxFullXpIngredients} from "utils"
-import {NumberedCircle} from "../../../components/misc/NumberedCircle";
+import { useMutation } from "@apollo/client";
+import { RouteName } from "App";
+import useIsMobile from "hooks/isMobile";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { HAS_PURCHASED_BEGINNER_BOX, persistBoxPurchaseOnConfirmation } from "services/boxfullxp.service";
+import { boxFullXpIngredients } from "utils";
+import { NumberedCircle } from "../../../components/misc/NumberedCircle";
 import Auth from "../../../services/auth.service";
+
 const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+
 
 //Todo (zack) create UI breakpoint variables for programmatic responsiveness
 /*Todo (zack) Refactor later */
 //Ingredients are hard coded for now since the box we're selling is fixed
+
+
 const ConfirmationFullXp: React.FC = () => {
 
     const isMobile = useIsMobile();
     const isLoggedIn = Auth.isLoggedIn();
+
+    const [hasPurchasedBeginnerBox] = useMutation(
+        HAS_PURCHASED_BEGINNER_BOX,
+        {
+            errorPolicy: "all",
+        }
+    );
+
+    useEffect(() => {
+        persistBoxPurchaseOnConfirmation(isLoggedIn, hasPurchasedBeginnerBox)
+    }, []);
+
+
     //Todo: (zack) create custom themes for fonts (should it be pixel perfect ?)
     return (
         <div className="flex flex-col lg:flex-row items-start justify-around">
@@ -22,13 +40,9 @@ const ConfirmationFullXp: React.FC = () => {
                 <div>
                     <h1 className="text-2xl font-semibold mb-3">Confirmation de commande</h1>
 
-                    {isLoggedIn ? (
-                        <h2 className="text-green text-base md:text-xl font-semibold mb-4">Merci</h2>) : (
-                        <h2 className="text-green text-base md:text-xl font-semibold mb-4">N’oublie pas d’activer ton
-                            compte
-                            pour avoir
-                            accès {!isMobile && <br/>}à
-                            l’espace Premiers Pas !</h2>)}
+
+                    <h2 className="text-green text-base md:text-xl font-semibold mb-4">Merci !</h2>
+
 
                     <h3 className="text-base font-medium md:font-normal mb-6">Tu recevras un email de confirmation de ta
                         commande dans les

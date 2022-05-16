@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import {useMutation, useQuery} from "@apollo/client";
 import { RouteName } from "App";
 import "App.css";
 import { Button, Loading, RecipeCard } from "components";
@@ -20,7 +20,9 @@ import Modal from "components/layout/Modal/Modal";
 import { ModalProfil } from "pages/Profil/ModalProfil";
 import { ProfilGreenitFullXp } from "pages/Profil/ProfilGreenitFullXp";
 
+
 const ProfilPage: React.FC = () => {
+
   useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
