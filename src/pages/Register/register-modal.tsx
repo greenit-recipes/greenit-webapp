@@ -218,7 +218,7 @@ export const RegisterModal: React.FC<{
                             <div className="flex flex-col w-2/4 ">
                                 <div
                                     className="flex flex-col items-center transition border-4 shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white border-blue">
-                                    <div className="size-emoji-modal">🧑‍🎨</div>
+                                    <div className="size-emoji-modal">🕵️‍♀️ </div>
                                     <div className="mb-2">Explorateur</div>
                                 </div>
                                 <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
@@ -231,7 +231,7 @@ export const RegisterModal: React.FC<{
                                     to={RouteName.register}
                                     className="flex flex-col items-center transition border shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white"
                                 >
-                                    <div className="size-emoji-modal">🕵️‍♀️</div>
+                                    <div className="size-emoji-modal">🧑‍🎨</div>
                                     <div className="mb-2">Créateur</div>
                                 </Link>
 
@@ -362,7 +362,7 @@ export const RegisterModal: React.FC<{
                                         {...field}
                                         options={optionsUserCategoryLvl}
                                         className={`w-full shadow-lg`}
-                                        placeholder="Qui est-tu ?"
+                                        placeholder="Qui es-tu ?"
                                     />
                                 )}
                             />

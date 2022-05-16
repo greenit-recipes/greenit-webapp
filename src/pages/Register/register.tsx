@@ -140,14 +140,14 @@ const Register: React.FC = () => {
             <ModalLogGreenit
               btn={
                 <div className="flex flex-col items-center justify-center w-32 transition border shadow-lg cursor-pointer rounded-xl lg:w-52 h-28 hover:bg-grey hover:text-white">
-              <div className="size-emoji-modal">🧑‍🎨</div>
+              <div className="size-emoji-modal">🕵️‍♀️</div>
               <div className="mb-2">Explorateur</div>
                 </div>
               }
             ></ModalLogGreenit>
 
             <div className="flex flex-col items-center justify-center w-32 transition border-4 shadow-lg cursor-pointer bg-grey-300 rounded-xl lg:w-52 h-28 hover:bg-grey hover:text-white border-blue">
-            <div className="size-emoji-modal">🕵️‍♀️</div>
+            <div className="size-emoji-modal">🧑‍🎨</div>
               <div className="mb-2">Créateur</div>
             </div>
           </div>
