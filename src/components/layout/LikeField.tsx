@@ -1,9 +1,10 @@
 import { useMutation } from "@apollo/client";
-import { ModalLogGreenit }  from "components/layout/ModalLogGreenit/ModalLogGreenit";
+import { Loading } from "components/layout/Loading";
 import { ADD_OR_REMOVE_LIKE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
-import { useState } from "react";
+import React, { Suspense, useState } from "react";
 import authService from "services/auth.service";
 import { clapIconOff, clapIconOn } from "../../icons";
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 interface ILikeField {
   className?: string;
@@ -67,6 +68,8 @@ export const LikeField: React.FC<ILikeField> = ({
           </h2>
         </button>
       ) : (
+        <Suspense fallback={<Loading />}>
+
         <ModalLogGreenit
           btn={
             <div className="flex self-center w-6 h-6 lg:w-8 lg:h-8 mr-3">
@@ -82,6 +85,7 @@ export const LikeField: React.FC<ILikeField> = ({
             </div>
           }
         ></ModalLogGreenit>
+        </Suspense>
       )}
     </div>
   );

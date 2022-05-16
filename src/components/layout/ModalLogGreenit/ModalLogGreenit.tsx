@@ -12,6 +12,7 @@ interface IModalLogGreenit {
 export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({ btn, isModalLogin }) => {
   const [showModal, setShowModal] = useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(isModalLogin || false);
+  
   useEffect(() => {
     if (showModal) {
       // à voir
@@ -21,7 +22,9 @@ export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({ btn, isModalLogin 
         document.body.classList.remove("no-scroll");
       };
     }
-  });
+  }, []);
+
+
   return (
     <div>
       <div className="justify-items-center flex flex-col"
@@ -48,3 +51,5 @@ export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({ btn, isModalLogin 
     </div>
   );
 };
+
+export default ModalLogGreenit;

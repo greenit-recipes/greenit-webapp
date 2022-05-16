@@ -1,7 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
-import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import {
   confirmpwd,
   creator,
@@ -27,6 +26,7 @@ import authService, { CREATE_ACCOUNT } from "services/auth.service";
 import { Button, EditorGreenit, Footer, Navbar } from "../../components";
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import "./register.css";
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 const Register: React.FC = () => {
   const {

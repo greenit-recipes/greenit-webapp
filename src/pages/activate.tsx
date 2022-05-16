@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client";
-import { ModalLogGreenit }  from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { Button } from "components/misc/Button";
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
@@ -11,6 +10,8 @@ import authService, {
 } from "services/auth.service";
 import "../App.css";
 import { Footer, Loading, Navbar } from "../components";
+
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 const ActivateAccount: React.FC = () => {
   const { tokenActivationAccount } =

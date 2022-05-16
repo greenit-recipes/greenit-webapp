@@ -1,9 +1,10 @@
 import { useMutation } from "@apollo/client";
-import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { ADD_OR_REMOVE_LIKE_COMMENT } from "pages/recipe/SinglePage/SinglePageRequest";
-import { useState } from "react";
+import React, { useState } from "react";
 import authService from "services/auth.service";
 import { LikedIconCommentOff, LikedIconCommentOn } from "../../icons";
+
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 interface ILikeComment {
   comment: any;

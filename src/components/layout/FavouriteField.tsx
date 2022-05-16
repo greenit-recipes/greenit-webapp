@@ -1,9 +1,10 @@
 import { useMutation } from "@apollo/client";
-import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useState } from "react";
 import authService from "services/auth.service";
 import { likedIconOff, likedIconOn } from "../../icons";
+
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 interface IFavouriteField {
   customClassName?: string;

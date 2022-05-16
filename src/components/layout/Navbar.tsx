@@ -1,5 +1,4 @@
 import { RouteName } from "App";
-import { ModalLogGreenit } from "components/layout/ModalLogGreenit/ModalLogGreenit";
 import "components/layout/Navbar.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -9,6 +8,8 @@ import { Button } from "../";
 import useIsMobile from "../../hooks/isMobile";
 import { logo } from "../../icons";
 import { NavButton } from "../misc/NavButton";
+
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();

@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {boxFullXpIngredients} from "utils"
 import {NumberedCircle} from "../../../components/misc/NumberedCircle";
 import Auth from "../../../services/auth.service";
-import {ModalLogGreenit} from "../../../components";
+const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
 //Todo (zack) create UI breakpoint variables for programmatic responsiveness
 /*Todo (zack) Refactor later */
