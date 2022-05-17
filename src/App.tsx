@@ -1,14 +1,12 @@
-import {Loading} from "components";
+import { Loading } from "components";
 import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
-import {createBrowserHistory} from "history";
+import { createBrowserHistory } from "history";
 import LandingPage from "pages/LandingPage/LandingPage";
-import React, {Suspense, useEffect, useState} from "react";
-import {Route, Router, Switch} from "react-router-dom";
+import React, { Suspense } from "react";
+import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import {useQuery} from "@apollo/client";
-import {GET_FEATURE_BY_NAME} from "./services/feature.service";
 
 const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
 const ActivateAccount = React.lazy(() => import("pages/activate"));

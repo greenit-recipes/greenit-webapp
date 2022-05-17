@@ -29,7 +29,7 @@ const CheckoutFullXp: React.FC = () => {
                 id="etape-suivante-paiement"
                 className="h-10 rounded-lg bg-green w-32 lg:w-72 text-white"
             >
-                        Étape suivante r
+                        Étape suivante
             </button>
         </div>
 

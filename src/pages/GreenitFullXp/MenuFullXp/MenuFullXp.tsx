@@ -13,11 +13,7 @@ const MenuFullXp: React.FC<IMenuFullXp> = ({ setNavigation }) => {
           key={item.name}
           onClick={() => {
             if (!item?.haveAccesOnMenu) return;
-            //Todo : Investigate the behaviour
-            //Step over payment phase in the navigation
-            item.name !== menuFullXp[1].name && setNavigation(item.name);
-            //Clear menu cookies on confirmation
-            item.name === menuFullXp[2].name && localStorage.removeItem("currentMenuGreenitFullXp")
+            setNavigation(item.name);
           }}
         >
          {item.name}
