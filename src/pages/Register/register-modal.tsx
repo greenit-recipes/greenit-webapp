@@ -36,6 +36,7 @@ import {
 } from "services/boxfullxp.service";
 import useGraphQlLoading from "../../hooks/useGraphqlLoading";
 import {BiLoaderAlt} from "react-icons/all";
+import {omit} from "lodash";
 
 export const RegisterModal: React.FC<{
     loginOpen: any;
@@ -108,7 +109,6 @@ export const RegisterModal: React.FC<{
     const location = useLocation();
 
     const responseFacebook = (responseFb: any) => {
-        const setValue = (object: any, field: any, value: any) => object[field] = value;
         //Todo (zack): create a custom object augmentation function to add the field optionally
         let variables: any = {
             email: responseFb.email,
@@ -116,10 +116,11 @@ export const RegisterModal: React.FC<{
             password: process.env.REACT_APP_PASSWORD + responseFb.id,
             idFacebook: responseFb.id,
             isFollowNewsletter: "false",
+            isBeginnerBox: true,
         }
         //Add the field optionally to avoid defaults
-        if (persistBoxPurchaseOnRegister()) {
-            setValue(variables, 'isBeginnerBox', true)
+        if (!persistBoxPurchaseOnRegister()) {
+            omit(variables, ['isBeginnerBox'])
         }
         // Error si pas d'email
 

@@ -28,13 +28,14 @@ const ConfirmationFullXp = React.lazy(
 const GenericFullXp = () => {
 
     //Initialize default state of the menu
+    const paymentMenu = menuFullXp[3].name
     const startMenu =
-        (getMenuStep() === menuFullXp[3].name)
-            ? menuFullXp[3].name
+        (getMenuStep() === paymentMenu)
+            ? paymentMenu
             : menuFullXp[0].name
 
     //Delete previous cookie from payment on confirmation
-    if (startMenu === menuFullXp[3].name) {
+    if (startMenu === paymentMenu) {
         localStorage.removeItem("currentMenuGreenitFullXp")
     }
     const currentMenuStorage = localStorage.getItem("currentMenuGreenitFullXp") || localStorage.setItem('currentMenuGreenitFullXp', startMenu)

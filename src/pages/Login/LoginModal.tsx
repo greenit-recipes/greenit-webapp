@@ -5,7 +5,7 @@ import {Button} from "components";
 import useIsMobile from "hooks/isMobile";
 import {mdpNonVisible, mdpVisible, loginMail, loginPassword} from "icons";
 import {IoLogoFacebook} from "react-icons/io5";
-import {includes} from "lodash";
+import {omit} from "lodash";
 import React, {useEffect, useState} from "react";
 import FacebookLogin from "react-facebook-login";
 import {useForm} from "react-hook-form";
@@ -106,18 +106,17 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
     const location = useLocation();
 
     const responseFacebook = (responseFb: any) => {
-        const setValue = (object: any, field: any, value: any) => object[field] = value;
-        //Todo (zack): create a custom object augmentation function to add the field optionally
-        let variables : any = {
+        const variables : any = {
             email: responseFb.email,
             username: responseFb.name,
             password: process.env.REACT_APP_PASSWORD + responseFb.id,
             idFacebook: responseFb.id,
             isFollowNewsletter: "false",
+            isBeginnerBox: true,
         }
         //Add the field optionally to avoid defaults
-        if (persistBoxPurchaseOnRegister()) {
-            setValue(variables, 'isBeginnerBox', true)
+        if (!persistBoxPurchaseOnRegister()) {
+            omit(variables, ['isBeginnerBox'])
         }
         // Error si pas d'email
 
