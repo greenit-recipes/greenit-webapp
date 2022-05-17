@@ -14,11 +14,15 @@ const HAS_PURCHASED_BEGINNER_BOX = gql`
 
 const persistMutation = (mutation: MutationOperation) => {
     mutation().then((data) => {
-        console.log(data);
+        // console.log(data)
     }).catch(e => {
         //Todo : Handle error with a UI toaster or someting of the like
-        console.error(e)
+        // console.error(e)
     })
+}
+
+const beginnerBoxCookieExist = () => {
+    return localStorage.getItem("isBeginnerBox") === "true";
 }
 
 const persistBoxPurchaseOnRegister = () => {
@@ -31,7 +35,14 @@ const persistBoxPurchaseOnRegister = () => {
     return localStorage.getItem("isBeginnerBox") === "true";
 }
 
+//Investigate for bugs
+const persistBoxPurchaseOnFirstLogin = (mutation: MutationOperation) => {
+    persistMutation(mutation);
+    (localStorage.getItem("isBeginnerBox") === "true") && localStorage.removeItem("isBeginnerBox")
+}
+
 const persistBoxPurchaseOnConfirmation = (isLoggedIn: boolean, mutation: MutationOperation) => {
+    //Refactor
     if (isLoggedIn) {
         //Persist to DB
         persistMutation(mutation)
@@ -45,5 +56,5 @@ const persistBoxPurchaseOnConfirmation = (isLoggedIn: boolean, mutation: Mutatio
 export {HAS_PURCHASED_BEGINNER_BOX}
 
 //Utilities
-export {persistBoxPurchaseOnConfirmation, persistBoxPurchaseOnRegister}
+export {persistBoxPurchaseOnConfirmation, persistBoxPurchaseOnRegister, persistBoxPurchaseOnFirstLogin, beginnerBoxCookieExist}
 

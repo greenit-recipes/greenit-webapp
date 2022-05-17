@@ -6,6 +6,7 @@ import React from "react";
 import { BiTimeFive } from "react-icons/bi";
 import { BsWallet2 } from "react-icons/bs";
 import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
+import {menuFullXp} from "../MenuFullXp/MenuHelper";
 
 const list = (
   <div className="ml-10 lg:ml-0 lg:mt-14">
