@@ -29,9 +29,14 @@ import authService, {
     LOGIN_ACCOUNT,
 } from "services/auth.service";
 import "./register.css";
-import {persistBoxPurchaseOnRegister} from "services/boxfullxp.service";
+import {
+    beginnerBoxCookieExist, HAS_PURCHASED_BEGINNER_BOX,
+    persistBoxPurchaseOnFirstLogin,
+    persistBoxPurchaseOnRegister
+} from "services/boxfullxp.service";
 import useGraphQlLoading from "../../hooks/useGraphqlLoading";
 import {BiLoaderAlt} from "react-icons/all";
+import {omit} from "lodash";
 
 export const RegisterModal: React.FC<{
     loginOpen: any;
@@ -49,13 +54,19 @@ export const RegisterModal: React.FC<{
         resolver: yupResolver(schemaRegister),
     });
     const history = useHistory();
-    const isBeginnerBox = persistBoxPurchaseOnRegister();
 
     const [loginAccount,
         {data: dataLogin, loading: loadingLogin, error: errorLogin}]
         = useMutation(LOGIN_ACCOUNT, {
         errorPolicy: "all",
     });
+
+    const [hasPurchasedBeginnerBox] = useMutation(
+        HAS_PURCHASED_BEGINNER_BOX,
+        {
+            errorPolicy: "all",
+        }
+    );
 
     const [errorLoginFb, setErrorLoginFb] = useState("");
 
@@ -98,21 +109,27 @@ export const RegisterModal: React.FC<{
     const location = useLocation();
 
     const responseFacebook = (responseFb: any) => {
+        //Todo (zack): create a custom object augmentation function to add the field optionally
+        let variables: any = {
+            email: responseFb.email,
+            username: responseFb.name,
+            password: process.env.REACT_APP_PASSWORD + responseFb.id,
+            idFacebook: responseFb.id,
+            isFollowNewsletter: "false",
+            isBeginnerBox: true,
+        }
+        //Add the field optionally to avoid defaults
+        if (!persistBoxPurchaseOnRegister()) {
+            omit(variables, ['isBeginnerBox'])
+        }
         // Error si pas d'email
 
         if (responseFb.status === "unknown") {
             return;
         }
 
-        //Todo (zack) : Add Box beginner to auth login
         authLogin({
-            variables: {
-                email: responseFb.email,
-                username: responseFb.name,
-                password: process.env.REACT_APP_PASSWORD + responseFb.id,
-                idFacebook: responseFb.id,
-                isFollowNewsletter: "false",
-            },
+            variables
         }).then((response) => {
             // @ts-ignore
             if (response?.data?.createUserFromAuth?.errors) {
@@ -142,6 +159,9 @@ export const RegisterModal: React.FC<{
                 authService.setStorageLoginRefreshToken(
                     response?.data?.tokenAuth?.refreshToken
                 );
+                if (beginnerBoxCookieExist()) {
+                    persistBoxPurchaseOnFirstLogin(hasPurchasedBeginnerBox)
+                }
                 if (authService.isRedirectToProfil(location?.pathname)) {
                 }
                 history.push("/profil");
@@ -162,20 +182,25 @@ export const RegisterModal: React.FC<{
         isBeginnerBox?: boolean;
     }) => {
         const getValue = (field: any) => field.value;
+        const setValue = (object: any, field: any, value: any) => object[field] = value;
+        let variables = {
+            email: data.email,
+            username: data.utilisateur,
+            password1: data.password,
+            password2: data.passwordConfirmation,
+            userCategoryLvl: getValue(data.userCategoryLvl),
+            userCategoryAge: getValue(data.userCategoryAge),
+            isFollowNewsletter: data.isFollowNewsletter
+        }
+        //Add the field optionally to avoid defaults
+        if (persistBoxPurchaseOnRegister()) {
+            setValue(variables, 'isBeginnerBox', true)
+        }
 
         authService.removeToken();
         authService.setStorageEmail(data.email);
         createAccount({
-            variables: {
-                email: data.email,
-                username: data.utilisateur,
-                password1: data.password,
-                password2: data.passwordConfirmation,
-                userCategoryLvl: getValue(data.userCategoryLvl),
-                userCategoryAge: getValue(data.userCategoryAge),
-                isFollowNewsletter: data.isFollowNewsletter,
-                isBeginnerBox,
-            },
+            variables
         }).then((dataAccount) => {
             if (!dataAccount?.data?.register?.success) return;
             history.push(RouteName.accountCreated);
@@ -252,7 +277,8 @@ export const RegisterModal: React.FC<{
                         disableMobileRedirect={true}
                         cssClass="my-facebook-button-class"
                         textButton={'Connexion avec Facebook'}
-                        icon={!isGraphQlLoading ? <div className="animate-spin mr-4"><BiLoaderAlt/></div> : <IoLogoFacebook className="w-6 h-6 mr-4"/>}
+                        icon={isGraphQlLoading ? <div className="animate-spin mr-4"><BiLoaderAlt/></div> :
+                            <IoLogoFacebook className="w-6 h-6 mr-4"/>}
                     />
 
                     {errorLoginFb && (

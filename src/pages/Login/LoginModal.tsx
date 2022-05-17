@@ -5,7 +5,7 @@ import {Button} from "components";
 import useIsMobile from "hooks/isMobile";
 import {mdpNonVisible, mdpVisible, loginMail, loginPassword} from "icons";
 import {IoLogoFacebook} from "react-icons/io5";
-import {includes} from "lodash";
+import {omit} from "lodash";
 import React, {useEffect, useState} from "react";
 import FacebookLogin from "react-facebook-login";
 import {useForm} from "react-hook-form";
@@ -18,6 +18,12 @@ import * as yup from "yup";
 import "./LoginModal.css";
 import useGraphQlLoading from "../../hooks/useGraphqlLoading";
 import {BiLoaderAlt} from "react-icons/all";
+import {
+    beginnerBoxCookieExist,
+    HAS_PURCHASED_BEGINNER_BOX,
+    persistBoxPurchaseOnFirstLogin,
+    persistBoxPurchaseOnRegister
+} from "../../services/boxfullxp.service";
 
 const schema = yup.object().shape({
     email: yup.string().email().required("L'email est obligatoire."),
@@ -49,6 +55,13 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
     const [loginAccount, {data, loading, error}] = useMutation(LOGIN_ACCOUNT, {
         errorPolicy: "all",
     });
+    const [hasPurchasedBeginnerBox] = useMutation(
+        HAS_PURCHASED_BEGINNER_BOX,
+        {
+            errorPolicy: "all",
+        }
+    );
+
 
     const [errorLoginFb, setErrorLoginFb] = useState("");
 
@@ -93,6 +106,18 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
     const location = useLocation();
 
     const responseFacebook = (responseFb: any) => {
+        const variables : any = {
+            email: responseFb.email,
+            username: responseFb.name,
+            password: process.env.REACT_APP_PASSWORD + responseFb.id,
+            idFacebook: responseFb.id,
+            isFollowNewsletter: "false",
+            isBeginnerBox: true,
+        }
+        //Add the field optionally to avoid defaults
+        if (!persistBoxPurchaseOnRegister()) {
+            omit(variables, ['isBeginnerBox'])
+        }
         // Error si pas d'email
 
         if (responseFb.status === "unknown") {
@@ -100,13 +125,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
         }
 
         authLogin({
-            variables: {
-                email: responseFb.email,
-                username: responseFb.name,
-                password: process.env.REACT_APP_PASSWORD + responseFb.id,
-                idFacebook: responseFb.id,
-                isFollowNewsletter: "false",
-            },
+            variables
         }).then((response) => {
             // @ts-ignore
             if (response?.data?.createUserFromAuth?.errors) {
@@ -130,6 +149,10 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
             },
         }).then((response) => {
             if (response?.data?.tokenAuth?.token) {
+                //Todo : Handle first login case
+                if(beginnerBoxCookieExist()) {
+                    persistBoxPurchaseOnFirstLogin(hasPurchasedBeginnerBox)
+                }
                 authService.setStorageLoginToken(response?.data?.tokenAuth?.token);
                 authService.setStorageLoginRefreshToken(
                     response?.data?.tokenAuth?.refreshToken
@@ -227,7 +250,8 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
                             disableMobileRedirect={true}
                             cssClass="my-facebook-button-class"
                             textButton={'Connexion avec Facebook'}
-                            icon={isGraphQlLoading ? <div className="animate-spin mr-4"><BiLoaderAlt/></div> : <IoLogoFacebook className="w-6 h-6 mr-4"/>}
+                            icon={isGraphQlLoading ? <div className="animate-spin mr-4"><BiLoaderAlt/></div> :
+                                <IoLogoFacebook className="w-6 h-6 mr-4"/>}
                         />
 
                         {errorLoginFb && (

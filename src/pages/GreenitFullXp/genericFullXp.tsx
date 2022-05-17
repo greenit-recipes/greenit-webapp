@@ -4,11 +4,12 @@ import { retourIcon } from "icons";
 import { findIndex } from "lodash";
 import HeadBand from "pages/GreenitFullXp/headband";
 import MenuFullXp from "pages/GreenitFullXp/MenuFullXp/MenuFullXp";
-import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
-import React, { Suspense, useState } from "react";
-import { Helmet } from "react-helmet";
-import { useHistory } from "react-router-dom";
+import {menuFullXp} from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
+import React, {Suspense, useState} from "react";
+import {Helmet} from "react-helmet";
 import useIsMobile from "../../hooks/isMobile";
+import {useHistory} from "react-router-dom";
+import {getMenuStep} from "../../helpers/beginnerbox.helper";
 
 
 const RecipeFullXp = React.lazy(() => import("./RecipeFullXp/RecipeFullXp"));
@@ -23,16 +24,34 @@ const ConfirmationFullXp = React.lazy(
     () => import("pages/GreenitFullXp/ConfirmationFullXp/ConfirmationFullXp")
 );
 
+//Todo : Refactor
 const GenericFullXp = () => {
-    const currentMenuStorage = localStorage.getItem("currentMenuGreenitFullXp");
+
+    //Initialize default state of the menu
+    const paymentMenu = menuFullXp[3].name
+    const startMenu =
+        (getMenuStep() === paymentMenu)
+            ? paymentMenu
+            : menuFullXp[0].name
+
+    //Delete previous cookie from payment on confirmation
+    if (startMenu === paymentMenu) {
+        localStorage.removeItem("currentMenuGreenitFullXp")
+    }
+    const currentMenuStorage = localStorage.getItem("currentMenuGreenitFullXp") || localStorage.setItem('currentMenuGreenitFullXp', startMenu)
+
+    //Bug when the user comes back to the UI after first setup
     const menuStorage =
         currentMenuStorage !== "undefined"
             ? currentMenuStorage
             : null;
-    const [menu, setMenu] = useState(menuStorage || menuFullXp[0].name);
+
+
+    const [menu, setMenu] = useState(menuStorage || startMenu);
 
     const setMenuWithCoockie = (menu: string) => {
         setMenu(menu);
+        // menu !== "undefined" || localStorage.setItem("currentMenuGreenitFullXp", menu);
         localStorage.setItem("currentMenuGreenitFullXp", menu);
     };
 
@@ -52,21 +71,23 @@ const GenericFullXp = () => {
                 <div
                     className="absolute z-20 grid w-10 h-10 p-2 rounded-full cursor-pointer ml-6 md:w-10 md:w-8 md:h-10 md:p-2 mt-10 md:ml-16 bg-white shadow-md"
                     onClick={() => {
-                        if(menu !== menuFullXp[3].name) {
+                        if (menu !== menuFullXp[3].name) {
                             const currentIndexNavigation = findIndex(menuFullXp, {
                                 name: menu,
                             });
-                            if (menuFullXp[0].name === menu || !!!currentIndexNavigation)
+                            //Todo : Investigate the behavior of this logical expression
+                            if (menuFullXp[0].name === menu || !currentIndexNavigation)
                                 previousPath();
                             setMenuWithCoockie(menuFullXp[currentIndexNavigation - 1]?.name);
-                        }else {
+                        } else {
                             //Redirect to landing page after confirmation
                             history.push('/')
                         }
                     }}
                 >
                     <img alt="Retour icon" loading="lazy" src={retourIcon}/>
-                    { menu === menuFullXp[3].name && <span className="absolute z-20 top-2 md:top-2 left-12">Acceuil</span>}
+                    {menu === menuFullXp[3].name &&
+                        <span className="absolute z-20 top-2 md:top-2 left-12">Acceuil</span>}
                 </div>
 
 

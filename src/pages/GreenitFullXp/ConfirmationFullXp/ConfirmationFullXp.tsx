@@ -15,7 +15,7 @@ const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreen
 /*Todo (zack) Refactor later */
 //Ingredients are hard coded for now since the box we're selling is fixed
 
-
+//Todo (zack) bug : confirmation redirects to root when logged in
 const ConfirmationFullXp: React.FC = () => {
 
     const isMobile = useIsMobile();
@@ -30,6 +30,7 @@ const ConfirmationFullXp: React.FC = () => {
 
     useEffect(() => {
         persistBoxPurchaseOnConfirmation(isLoggedIn, hasPurchasedBeginnerBox)
+
     }, []);
 
 
