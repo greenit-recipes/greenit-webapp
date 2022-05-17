@@ -1,6 +1,7 @@
 import { RouteName } from "App";
 import { previousPath } from "helpers/route-helper";
 import { retourIcon } from "icons";
+import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -33,6 +34,12 @@ const StartDiyGreenitFullXp = () => {
         <div className="mt-6">
           <Link to={RouteName.greenitFullXp}>
             <button
+              onClick={() => {
+                localStorage.setItem(
+                  "currentMenuGreenitFullXp",
+                  menuFullXp[0]?.name
+                );
+              }}
               className={`btn-single-page justify-center mt-2 p-2 h-10 flex w-full bg-green text-white`}
             >
               Je commande ma box Premiers Pas

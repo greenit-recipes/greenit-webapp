@@ -2,6 +2,7 @@ import { RouteName } from "App";
 import { Navbar } from "components";
 import { previousPath } from "helpers/route-helper";
 import { retourIcon } from "icons";
+import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -86,6 +87,9 @@ const FindOutMoreBoxGreentilFullXP = () => {
 
       <Link to={RouteName.greenitFullXp}>
             <button
+            onClick={() => {
+              localStorage.setItem('currentMenuGreenitFullXp', menuFullXp[0]?.name)
+            }}
               className={`btn-single-page flex justify-center mt-2 p-2 h-10 w-full lg:w-1/4 bg-green text-white m-auto`}
             >
               Je commande ma box Premiers Pas
