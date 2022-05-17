@@ -57,6 +57,10 @@ const FindOutMoreBoxGreentilFullXP = React.lazy(
     () => import("./pages/GreenitFullXp/FindOutMoreFullXp/FindOutMoreBoxGreentilFullXP")
 );
 
+const QRFullXp = React.lazy((
+    () => import("./pages/GreenitFullXp/QRFullXp/QRFullXp")
+))
+
 export const history = createBrowserHistory();
 
 export const RouteName = {
@@ -82,6 +86,7 @@ export const RouteName = {
     tutoFullXpBeginner: "/tuto-box-débutant",
     startDiyGreenitFullXp: "/se-lancer-dans-le-fait-maison",
     findOUtMoreBoxGreentilFullXP: "/commande-info",
+    qrFullXp: "/qr-fullxp-welcome"
 };
 
 const App: React.FC = () => {
@@ -153,11 +158,17 @@ const App: React.FC = () => {
                         component={RecipeCreatedPage}
                         exact
                     />
-                    {true && <PublicRoute
+                    <PublicRoute
                         path={RouteName.greenitFullXp}
                         component={GreenitFullXp}
                         exact
-                    />}
+                    />
+
+                    <PublicRoute
+                        path={RouteName.qrFullXp}
+                        component={QRFullXp}
+                        exact
+                    />
 
                     <Route exact path={RouteName.register} component={Register}/>
                     <Route exact path={RouteName.recap} component={RecapPage}/>
@@ -172,17 +183,17 @@ const App: React.FC = () => {
                         component={TutoFullXpBeginner}
                         exact
                     />
-                    {/*{feature && <PublicRoute*/}
-                    {/*    path={RouteName.startDiyGreenitFullXp}*/}
-                    {/*    component={StartDiyGreenitFullXp}*/}
-                    {/*    exact*/}
-                    {/*/>}*/}
+                    <PublicRoute
+                        path={RouteName.startDiyGreenitFullXp}
+                        component={StartDiyGreenitFullXp}
+                        exact
+                    />
 
-                    {/*{feature && <PublicRoute*/}
-                    {/*    path={RouteName.findOUtMoreBoxGreentilFullXP}*/}
-                    {/*    component={FindOutMoreBoxGreentilFullXP}*/}
-                    {/*    exact*/}
-                    {/*/>}*/}
+                    <PublicRoute
+                        path={RouteName.findOUtMoreBoxGreentilFullXP}
+                        component={FindOutMoreBoxGreentilFullXP}
+                        exact
+                    />
 
                     <Route
                         exact
