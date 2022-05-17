@@ -63,8 +63,7 @@ export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
                 <button
                     onClick={() => {
                         //Make it more readable
-                        console.log(data)
-                        data.featureFlag.isActive ? showModal(true) : history.push(RouteName.startDiyGreenitFullXp)
+                        data?.featureFlag?.isActive ? showModal(true) : history.push(RouteName.startDiyGreenitFullXp)
                     }}
                     id="landing_tenez_moi_au_courant"
                     className="p-1 ml-2 mr-4 w-52 text-sm lg:text-base order-2 lg:order-1 text-white rounded-lg bg-green"
