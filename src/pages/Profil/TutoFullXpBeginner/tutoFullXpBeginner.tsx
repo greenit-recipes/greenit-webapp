@@ -59,12 +59,14 @@ const TutoFullXpBeginner = () => {
           </div>
           <div className="flex flex-wrap justify-center mt-6">
             {recipesBegginerFullXp.map((recipe, index) => (
+              <div className="m-0 lg:m-2">
               <RecipeCard
                 disabledFavoriteRecipe={true}
                 isLikeDisabled={true}
                 recipe={recipe}
                 key={recipe?.name}
               />
+              </div>
             ))}
           </div>
         </div>
@@ -78,7 +80,7 @@ const TutoFullXpBeginner = () => {
               👋 SOS, j’ai besoin d’aide !
             </button>
             <button
-              className={`btn-single-page justify-center ml-5 mt-2 mb-4 p-2 h-10 flex w-62 bg-white`}
+              className={`btn-single-page justify-center ml-5 mt-2 mb-4 p-2 h-10 flex w-62 bg-white border-green hover:text-white text-green hover:bg-green`}
               onClick={() => setShowModalHelp(true)}
             >
               J’envoie mes retours !
@@ -191,13 +193,13 @@ const TutoFullXpBeginner = () => {
           {isMobile && (
             <div className="w-4/5">
               <button
-                className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-full bg-white`}
+                className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 text-base font-medium md:font-normal  flex w-full bg-white`}
                 onClick={() => setShowModalSos(true)}
               >
                 👋 SOS, j’ai besoin d’aide !
               </button>
               <button
-                className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-full bg-white`}
+                className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 text-base font-medium md:font-normal  flex w-full bg-white`}
                 onClick={() => setShowModalHelp(true)}
               >
                 J’envoie mes retours !
@@ -210,10 +212,8 @@ const TutoFullXpBeginner = () => {
           onClose={() => setShowModalHelp(false)}
           show={showModalHelp}
         >
-          <ModalHelp
-            messageModal={"J’envoie mes retours !"}
-            subMessageModal={"Envoies-nous tes retours !"}
-          ></ModalHelp>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScSzP3hbrujG1qWe6Ly-Bs5H7Q0mrqgBFKNcdt3fp5wGeUFEw/viewform?embedded=true" width="700" height="520">Chargement…</iframe>
+
         </Modal>
         <Modal
           isCenter={true}
@@ -223,8 +223,9 @@ const TutoFullXpBeginner = () => {
           <ModalHelp
             messageModal={"👋 SOS, j’ai besoin d’aide !"}
             subMessageModal={
-              "Un problème avec la réalisation des recettes ? Besoin de conseils pour une étape ou d’informations sur les ingrédients ?"
+              "Un problème avec la réalisation des recettes ? \n Besoin de conseils pour une étape ou d’informations sur les ingrédients ?"
             }
+            otherMesssageModal={"Écris-nous !"}
           ></ModalHelp>
         </Modal>
       </div>

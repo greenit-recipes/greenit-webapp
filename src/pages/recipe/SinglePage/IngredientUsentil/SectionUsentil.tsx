@@ -3,10 +3,11 @@ import { getImagePath } from "helpers/image.helper";
 interface ISectionUstensil {
   className?: string;
   data: any;
+  isEnabledEndMargin?: any;
 }
 
 
-export const SectionUstensil: React.FC<ISectionUstensil> = ({ data, className }) => {
+export const SectionUstensil: React.FC<ISectionUstensil> = ({ data, className, isEnabledEndMargin = true }) => {
   return (
     <>
       <div className="flex items-center btn-single-page ingredient-shadow h-12 mt-4">
@@ -22,7 +23,7 @@ export const SectionUstensil: React.FC<ISectionUstensil> = ({ data, className })
           ></img>
         </div>
         <div className="w-4/6 ml-14">{data?.name} { data?.subName && (<span className="text-xs">{data?.subName}</span>) }</div>
-        <div className="w-1/6"></div>
+        { isEnabledEndMargin && <div className="w-1/6"></div> }
       </div>
     </>
   );

@@ -9,8 +9,9 @@ import * as yup from "yup";
 interface IProfilGreenitFullXp {
     messageModal: string;
     subMessageModal: string;
+    otherMesssageModal?: string;
   }
-const ModalHelp : React.FC<IProfilGreenitFullXp> =  ({messageModal, subMessageModal}) => {
+const ModalHelp : React.FC<IProfilGreenitFullXp> =  ({messageModal, subMessageModal, otherMesssageModal}) => {
 
   const schema = yup.object().shape({
     msg: yup.string().required("Votre message est vide"),
@@ -53,12 +54,15 @@ const ModalHelp : React.FC<IProfilGreenitFullXp> =  ({messageModal, subMessageMo
 
   return (
     <div>
-      <p className="text-xl mt-5 text-center">
+      <p className="text-xl mt-5 text-center font-medium md:font-normal whitespace-pre-wrap">
       {messageModal} 
       </p>
-      <p className="text-center mt-5">
+      <p className="text-center mt-5 text-base font-medium md:font-normal whitespace-pre-wrap">
         {subMessageModal}
       </p>
+      { otherMesssageModal && <p className="text-center mt-5 text-lg font-medium md:font-normal whitespace-pre-wrap">
+        {otherMesssageModal}
+      </p> }
       <div className="">
         <form
           className="p-5 mt-2 bg-white text-center"
@@ -76,8 +80,8 @@ const ModalHelp : React.FC<IProfilGreenitFullXp> =  ({messageModal, subMessageMo
           <p className="text-xs italic text-red">{errors.msg?.message}</p>
           <p className="text-xs italic text-red">{errorEmail}</p>
           <p className="text-green mb-4">{message}</p>
-          <button className="flex items-center justify-center h-10 p-3 mr-5 w-full text-white align-middle border-2 border-transparent rounded-lg cursor-pointer bg-green md:text-lg bold hover:bg-white hover:border-green hover:text-green">
-            Envoyer
+          <button className="flex items-center justify-center h-10 p-3 mr-5 w-full lg:m-auto lg:w-60 align-middle border-2 border-transparent rounded-lg cursor-pointer bg-white border-green hover:text-white text-green hover:bg-green bold">
+            Envoyer ma demande
           </button>
         </form>
       </div>

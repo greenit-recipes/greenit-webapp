@@ -62,7 +62,7 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
         <button
           className={`btn-single-page justify-center mb-2 mt-2 p-2 h-10 flex w-full bg-green text-white`}
         >
-          J'ai reçu max box Premier pas !
+          J'ai reçu max box Premier pas !M
         </button>
       </Link>
       <button
@@ -107,7 +107,7 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
         <ModalHelp
           messageModal={"⚠️ J’ai un problème avec mon colis"}
           subMessageModal={
-            "Nous sommes navrés de l’apprendre, contacte notre service client et nous tenterons de trouver une solution 🙂"
+            "Nous sommes navrés de l’apprendre, contacte notre service client\n et nous tenterons de trouver une solution 🙂"
           }
         ></ModalHelp>
       </Modal>

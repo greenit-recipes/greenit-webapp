@@ -87,7 +87,7 @@ const GenericFullXp = () => {
                 >
                     <img alt="Retour icon" loading="lazy" src={retourIcon}/>
                     {menu === menuFullXp[3].name &&
-                        <span className="absolute z-20 top-2 md:top-2 left-12">Acceuil</span>}
+                        <span className="absolute z-20 top-2 md:top-2 left-12">Accueil</span>}
                 </div>
 
 

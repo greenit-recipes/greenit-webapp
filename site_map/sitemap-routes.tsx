@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
+
 export const RouteName = {
   resetPassword: "/reinitialisation-mot-de-passe", // no index
   tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
@@ -17,6 +18,10 @@ export const RouteName = {
   recipes: "/recettes",
   createRecipe: "/creation-recette",
   profil: "/profil",
+  tutoFullXpBeginner: "/tuto-box-débutant",
+  startDiyGreenitFullXp: "/se-lancer-dans-le-fait-maison",
+  findOUtMoreBoxGreentilFullXP: "/commande-info",
+  qrFullXp: "/bienvenue-box"
 };
 
 export default (
@@ -34,6 +39,11 @@ export default (
       <Route path={RouteName.resetPassword} />
       <Route path={RouteName.profil} />
       <Route path={RouteName.accountCreated} />
+      {/*full xp*/}
+      <Route path={RouteName.tutoFullXpBeginner} />
+      <Route path={RouteName.startDiyGreenitFullXp} />
+      <Route path={RouteName.findOUtMoreBoxGreentilFullXP} />
+      <Route path={RouteName.qrFullXp} />
       <Route />
     </Route>
 );

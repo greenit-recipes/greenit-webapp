@@ -63,13 +63,13 @@ const IngredientUsentilFullXp = () => {
           </div>
           <div className={!isArrowDown ? "fadeIn-arrow" : " fadeOut-arrow"}>
             {ingredientBeginner.map((item: any, index: any) => (
-              <SectionIngredient data={item} />
+              <SectionIngredient data={item} key={index}/>
             ))}
           </div>
 
           <p className="text-xs lg:text-sm mt-4">Ustensiles</p>
           {ustensilsBeginner.map((item: any, index: any) => (
-            <SectionUstensil data={item} />
+            <SectionUstensil data={item} key={index} isEnabledEndMargin={false}/>
           ))}
         </div>
         <div className="flex justify-center flex-col w-full p-5">
@@ -77,7 +77,7 @@ const IngredientUsentilFullXp = () => {
             À trouver chez toi !
           </p>
           {ustensilsAlreadyHaveBeginner.map((item: any, index: any) => (
-            <SectionUstensil data={item} />
+            <SectionUstensil data={item} key={index} isEnabledEndMargin={false}/>
           ))}
         </div>
       </div>

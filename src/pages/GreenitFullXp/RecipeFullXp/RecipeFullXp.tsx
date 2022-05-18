@@ -41,12 +41,14 @@ const RecipeFullXP = () => {
         {isMobile && list}
         <div className="flex flex-wrap justify-center mt-6">
           {recipesBegginerFullXp.map((recipe, index) => (
+            <div className="m-0 lg:m-2">
             <RecipeCard
               disabledFavoriteRecipe={true}
               isLikeDisabled={true}
               recipe={recipe}
               key={recipe?.name}
             />
+            </div>
           ))}
           {isMobile && (
             <div className="w-40 flex flex-col justify-center items-center">
