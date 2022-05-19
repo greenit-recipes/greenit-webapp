@@ -2,7 +2,7 @@ import {RecipeCard} from "components";
 import useIsMobile from "hooks/isMobile";
 import {recipesBegginerFullXp} from "pages/GreenitFullXp/FullXpHelper";
 import {CircleGreenit} from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
-import React from "react";
+import React, {useEffect} from "react";
 import {BiTimeFive} from "react-icons/bi";
 import {BsWallet2} from "react-icons/bs";
 import {IoEarthOutline, IoFlaskOutline} from "react-icons/io5";
@@ -25,6 +25,15 @@ const list = (
 const RecipeFullXP = () => {
     const isMobile = useIsMobile();
     const isLoggedIn = Auth.isLoggedIn();
+
+    useEffect(() => {
+        if (window.pageYOffset > 0) {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        }
+    }, []);
 
     return (
         <div className="flex flex-col lg:flex-row items-center justify-around">

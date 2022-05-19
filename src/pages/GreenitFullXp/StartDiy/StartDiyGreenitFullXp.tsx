@@ -14,7 +14,7 @@ const StartDiyGreenitFullXp = () => {
     const imageWidth = isMobile ? 40 : 48;
 
     return (
-        <div className="relative h-screen flex flex-col md:flex-row md:justify-around items-center relative">
+        <div className="relative h-screen flex flex-col md:flex-row md:justify-around items-center">
             <BackButton styleCSS="mt-14 md:mt-16"/>
             {isMobile && <div className="flex flex-row justify-center mt-24 items-center">
 

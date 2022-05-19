@@ -4,3 +4,4 @@ export const menuFullXp = [
   { name: "Paiement", haveAccesOnMenu: false },
   { name: "Confirmation", haveAccesOnMenu: false },
 ];
+
