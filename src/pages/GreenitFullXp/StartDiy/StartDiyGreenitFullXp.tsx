@@ -2,7 +2,7 @@ import {RouteName} from "App";
 import {menuFullXp} from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import React from "react";
 import {Link} from "react-router-dom";
-import {BackButton} from "components/misc/BackButton";
+import {BackButton} from "../../../components/misc/BackButton";
 import useIsMobile from "../../../hooks/isMobile";
 import {getImagePath} from "../../../helpers/image.helper";
 import {recipesBegginerFullXp} from "pages/GreenitFullXp/FullXpHelper";
@@ -42,7 +42,7 @@ const StartDiyGreenitFullXp = () => {
                     }`}
                     loading="lazy"
                 ></img>
-            </div> }
+            </div>}
 
             <div className="msm:text-center msm:mt-6 p-6">
                 <p className="text-2xl font-semibold">

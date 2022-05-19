@@ -44,13 +44,13 @@ const RecipeFullXP = () => {
                 <div className="flex flex-wrap justify-center mt-6">
 
                     {recipesBegginerFullXp.map((recipe, index) => (
-                        <div className="lg:mr-2">
+                        <div key={recipe?.id} className="lg:mr-2">
                             <RecipeCard
                                 disabledFavoriteRecipe={!isLoggedIn}
                                 isLikeDisabled={true}
                                 recipe={recipe}
                                 key={recipe?.name}
-                                amount={recipe?.numberOfIngredients}
+                                amount={recipe?.quantity}
                             />
                         </div>
                     ))}

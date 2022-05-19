@@ -67,13 +67,15 @@ const TutoFullXpBeginner = () => {
                     </div>
                     <div className="flex flex-wrap justify-center mt-6">
                         {recipesBegginerFullXp.map((recipe, index) => (
-                            <RecipeCard
-                                disabledFavoriteRecipe={!isLoggedIn}
-                                isLikeDisabled={true}
-                                recipe={recipe}
-                                key={recipe?.name}
-                                amount={recipe?.numberOfIngredients}
-                            />
+                            <div key={recipe?.id} className="lg:mr-2">
+                                <RecipeCard
+                                    disabledFavoriteRecipe={!isLoggedIn}
+                                    isLikeDisabled={true}
+                                    recipe={recipe}
+                                    key={recipe?.name}
+                                    amount={recipe?.quantity}
+                                />
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -219,7 +221,10 @@ const TutoFullXpBeginner = () => {
                     onClose={() => setShowModalHelp(false)}
                     show={showModalHelp}
                 >
-                  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScSzP3hbrujG1qWe6Ly-Bs5H7Q0mrqgBFKNcdt3fp5wGeUFEw/viewform?embedded=true" width="700" height="520">Chargement…</iframe>
+                    <iframe
+                        src="https://docs.google.com/forms/d/e/1FAIpQLScSzP3hbrujG1qWe6Ly-Bs5H7Q0mrqgBFKNcdt3fp5wGeUFEw/viewform?embedded=true"
+                        width="700" height="520">Chargement…
+                    </iframe>
                 </Modal>
                 <Modal
                     isCenter={true}
