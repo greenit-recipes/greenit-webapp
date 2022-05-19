@@ -79,7 +79,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
           </Button>
         </div>
         <div className={!isArrowDown ? "fadeIn-arrow" : " fadeOut-arrow"}>
-          <div className="mt-4 rounded-b">
+          <div className="msm:mx-8 mt-4 rounded-b">
             <div className="flex justify-between">
               <div className="text-xs fontQSregular">Recettes faites</div>
               <div className="text-xs fontQSregular">

@@ -12,7 +12,6 @@ import ModalHelp from "components/layout/modalHelp";
 import {BackButton} from "../../../components/misc/BackButton";
 import Auth from "services/auth.service";
 
-const isLoggedIn = Auth.isLoggedIn();
 
 //Refactor
 const closest = (needle: number, haystack: any[]) => {
@@ -81,24 +80,30 @@ const TutoFullXpBeginner = () => {
                 </div>
 
                 {!isMobile && (
-                    <div className="flex ml-20">
+                    <div className="relative flex ml-20">
                         <button
-                            className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-62 bg-white`}
+                            className={`btn-single-page justify-center mt-2 mb-4 p-2 h-12 flex w-60 bg-white`}
                             onClick={() => setShowModalSos(true)}
                         >
                             👋 SOS, j’ai besoin d’aide !
                         </button>
                         <button
-                            className={`btn-single-page justify-center ml-5 mt-2 mb-4 p-2 h-10 flex w-62 bg-white`}
+                            className={`btn-single-page justify-center ml-5 mt-2 mb-4 p-2 h-12 flex w-60 bg-white border-2 text-green`}
                             onClick={() => setShowModalHelp(true)}
                         >
                             J’envoie mes retours !
                         </button>
+                        <div className="transform rotate-180 absolute right-0 top-3/4">
+                            ⤹
+                        </div>
+                        <h3 className="absolute top-full right-0 text-xs w-56 text-center">
+                            Qu’as-tu pensé de tes premiers pas en DIY ? Vote pour la prochaine box !
+                        </h3>
                     </div>
                 )}
             </div>
-            <div className="flex flex-col lg:w-full h-full lg:pl-32">
-                <h2 className="text-xl text-center lg:text-left w-4/5 m-auto lg:w-full mb-2 mt-8">
+            <div className="flex flex-col lg:w-full h-full md:mt-4 lg:pl-32">
+                <h2 className="font-semibold text-xl text-center lg:text-left w-4/5 m-auto lg:w-full mb-2 mt-8">
                     Andréa t’accompagne pour tes premiers pas !
                 </h2>
                 <h3 className="mb-5 text text-center lg:text-left">
@@ -200,7 +205,7 @@ const TutoFullXpBeginner = () => {
                         )}
                     </div>
                     {isMobile && (
-                        <div className="w-4/5">
+                        <div className="relative w-4/5">
                             <button
                                 className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-full bg-white`}
                                 onClick={() => setShowModalSos(true)}
@@ -208,11 +213,17 @@ const TutoFullXpBeginner = () => {
                                 👋 SOS, j’ai besoin d’aide !
                             </button>
                             <button
-                                className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-full bg-white`}
+                                className={`btn-single-page justify-center mt-2 mt-2 mb-4 px-4 py-1.5 h-10 flex w-full bg-white border-2 text-green`}
                                 onClick={() => setShowModalHelp(true)}
                             >
                                 J’envoie mes retours !
                             </button>
+                            <div className="transform rotate-180 absolute mt-2 right-0 top-3/4">
+                                ⤹
+                            </div>
+                            <h3 className="absolute top-3/4 right-0 mt-6 mr-2 text-xs w-56 text-center">
+                                Qu’as-tu pensé de tes premiers pas en DIY ? Vote pour la prochaine box !
+                            </h3>
                         </div>
                     )}
                 </div>
@@ -223,7 +234,7 @@ const TutoFullXpBeginner = () => {
                 >
                     <iframe
                         src="https://docs.google.com/forms/d/e/1FAIpQLScSzP3hbrujG1qWe6Ly-Bs5H7Q0mrqgBFKNcdt3fp5wGeUFEw/viewform?embedded=true"
-                        width="700" height="520">Chargement…
+                        width={isMobile ? '100%': '700'} height="520">Chargement…
                     </iframe>
                 </Modal>
                 <Modal
