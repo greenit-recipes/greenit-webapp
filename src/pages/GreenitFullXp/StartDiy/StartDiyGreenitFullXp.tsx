@@ -6,6 +6,7 @@ import {BackButton} from "../../../components/misc/BackButton";
 import useIsMobile from "../../../hooks/isMobile";
 import {getImagePath} from "../../../helpers/image.helper";
 import {recipesBegginerFullXp} from "pages/GreenitFullXp/FullXpHelper";
+import { Helmet } from "react-helmet";
 
 const StartDiyGreenitFullXp = () => {
     const isMobile = useIsMobile();
@@ -14,7 +15,12 @@ const StartDiyGreenitFullXp = () => {
     const imageWidth = isMobile ? 40 : 48;
 
     return (
-        <div className="relative h-screen flex flex-col md:flex-row md:justify-around items-center relative">
+        <div className="relative h-screen flex flex-col md:flex-row md:justify-around items-center">
+            <Helmet>
+                {/*Todo : Fill titles and SEO attributes*/}
+                <title></title>
+                <meta name="description" content=""/>
+            </Helmet>
             <BackButton styleCSS="mt-14 md:mt-16"/>
             {isMobile && <div className="flex flex-row justify-center mt-24 items-center">
 
