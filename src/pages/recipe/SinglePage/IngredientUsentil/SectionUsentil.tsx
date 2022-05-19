@@ -1,30 +1,27 @@
-import { getImagePath } from "helpers/image.helper";
+import {getImagePath} from "helpers/image.helper";
 
 interface ISectionUstensil {
-  className?: string;
-  data: any;
-  isEnabledEndMargin?: any;
+    className?: string;
+    data: any;
 }
 
 
-export const SectionUstensil: React.FC<ISectionUstensil> = ({ data, className, isEnabledEndMargin = true }) => {
-  return (
-    <>
-      <div className="flex items-center btn-single-page ingredient-shadow h-12 mt-4">
-        <div className="flex justify-between items-center w-1/6">
-          <div className="flex p-5 items-center justify-center rounded-l-md ustensil-section w-full h-12">
-            {data?.amount}
-          </div>
-          <img
-            className="h-12 w-12 rounded"
-            alt={data?.name}
-            src={getImagePath(data?.image)}
-            loading="lazy"
-          ></img>
-        </div>
-        <div className="w-4/6 ml-14">{data?.name} { data?.subName && (<span className="text-xs">{data?.subName}</span>) }</div>
-        { isEnabledEndMargin && <div className="w-1/6"></div> }
-      </div>
-    </>
-  );
+export const SectionUstensil: React.FC<ISectionUstensil> = ({data, className}) => {
+    return (
+        <>
+            <div className="flex flex-start items-center btn-single-page ingredient-shadow h-12 mt-4">
+                <div className="flex justify-between items-center">
+                    <img
+                        className="h-12 w-12 rounded"
+                        alt={data?.name}
+                        src={getImagePath(data?.image)}
+                        loading="lazy"
+                    ></img>
+                </div>
+                <div className="flex-grow ml-4">{data?.amount} &nbsp; {data?.name} {data?.subName && (
+                    <span className="text-xs">{data?.subName}</span>)}</div>
+                <div className=""></div>
+            </div>
+        </>
+    );
 };

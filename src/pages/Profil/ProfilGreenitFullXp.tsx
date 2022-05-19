@@ -33,7 +33,7 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
   const [updateRecipeFullXp] = useMutation(UPDATE_RECIPE_MADE_BEGINNER_BOX);
 
   return (
-    <div className="rounded-2xl bg-blueL p-5 lg:w-3/5 m-auto mb-4">
+    <div className="sm:rounded-2xl bg-blueL p-5 msm:w-full md:w-4/5 lg:w-3/5 m-auto mb-4">
       <p className="text-2xl font-semibold text-center mb-2">
         Ma box Premiers Pas
       </p>
@@ -58,43 +58,52 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
         />
       </div>
       <p className="text-center mt-2 mb-2">Débutons dans le DIY ensemble !</p>
-      <Link to={RouteName.tutoFullXpBeginner}>
-        <button
-          className={`btn-single-page justify-center mb-2 mt-2 p-2 h-10 flex w-full bg-green text-white`}
-        >
-          J'ai reçu max box Premier pas !M
-        </button>
-      </Link>
-      <button
-        className={`btn-single-page justify-center mt-2 mb-4 p-2 h-10 flex w-full bg-white`}
-        onClick={() => {
-          setMadeBeginnerBox(!isMadeBeginnerBox);
-          updateRecipeFullXp({
-            variables: {
-              isRecipeMadeBeginnerBox: !isMadeBeginnerBox,
-            },
-          }).then(() => {
-            return parentFunction()
-          });
-        }}
-      >
-        <div className={`flex justify-items-center `}>
-          {isMadeBeginnerBox ? (
-            <AiFillCheckSquare className="w-6 h-6"></AiFillCheckSquare>
-          ) : (
-            <FiSquare className="w-6 h-6"></FiSquare>
-          )}
-          <div className="flex flex-col justify-center ml-1">
-            J’ai réalisé les recettes !
-          </div>
+        <div className="flex flex-col md:flex-row justify-around">
+            <div className="md:w-1/2">
+                <Link to={RouteName.tutoFullXpBeginner}>
+                    <button
+                        className={`btn-single-page justify-center mb-2 mt-2 p-2 flex w-full bg-green text-white`}
+                    >
+                        J’ai reçu ma box Premiers Pas !
+                    </button>
+                </Link>
+            </div>
+
+            <div className="md:w-5/12 relative">
+                <button
+                    className={`btn-single-page justify-center mt-2 mb-4 p-2 flex w-full bg-white`}
+                    onClick={() => {
+                        setMadeBeginnerBox(!isMadeBeginnerBox);
+                        updateRecipeFullXp({
+                            variables: {
+                                isRecipeMadeBeginnerBox: !isMadeBeginnerBox,
+                            },
+                        }).then(() => {
+                            return parentFunction()
+                        });
+                    }}
+                >
+                    <div className={`flex justify-items-center `}>
+                        {isMadeBeginnerBox ? (
+                            <AiFillCheckSquare className="w-6 h-6"></AiFillCheckSquare>
+                        ) : (
+                            <FiSquare className="w-6 h-6"></FiSquare>
+                        )}
+                        <div className="flex flex-col justify-center ml-1">
+                            J’ai réalisé les recettes !
+                        </div>
+                    </div>
+                </button>
+                <div className="transform rotate-180 absolute right-0 top-3/4">
+                    ⤹
+                </div>
+                <h3 className="absolute right-0 text-xs w-56 text-center">
+                    Clique ici une fois que tu as réalisé les recettes et calcule ton impact DIY !
+                </h3>
+            </div>
         </div>
-      </button>
-      <h3 className="text-xs lg:text-sm text-center">
-        Clique ici une fois que tu as réalisée les recettes et calcule ton
-        impact DIY !
-      </h3>
       <p
-        className="text-center mt-4 underline cursor-pointer"
+        className="text-center mt-10 underline cursor-pointer"
         onClick={() => setShowModalHelp(true)}
       >
         ⚠️ J’ai un problème avec mon colis

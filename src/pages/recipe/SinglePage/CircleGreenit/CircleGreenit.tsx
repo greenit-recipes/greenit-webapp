@@ -1,6 +1,7 @@
 interface ICircleGreenit {
   number?: any;
   text?: string;
+  textWidth?: string;
   symbol?: string;
   icon: any;
   sizeCircle?: string;
@@ -13,6 +14,7 @@ interface ICircleGreenit {
 export const CircleGreenit: React.FC<ICircleGreenit> = ({
   number,
   text,
+  textWidth,
   colorCircle,
   symbol,
   icon,
@@ -43,7 +45,7 @@ export const CircleGreenit: React.FC<ICircleGreenit> = ({
         )}
       </div>
       {!isOnlyIcon && (
-        <div className="fontQSmedium text-center text-sm mt-1">{text}</div>
+        <div className={`${textWidth ? textWidth : ""} fontQSmedium text-center text-sm mt-1`}>{text}</div>
       )}
     </div>
   );

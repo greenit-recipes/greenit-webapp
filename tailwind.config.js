@@ -42,9 +42,9 @@ module.exports = {
       green: "#4BCB6A",
     },
     extend: {
-      // fontSize: {
-      //   xl: ['20px', '24px'],
-      // },
+      fontSize: {
+        '3.5xl': '2rem'
+      },
       borderWidth: {
         '1': '1px'
       },

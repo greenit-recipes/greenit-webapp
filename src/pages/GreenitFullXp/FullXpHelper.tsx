@@ -27,7 +27,7 @@ export const recipesBegginerFullXp = [
     urlId: "baume-a-levres",
     image: "user/Andrrbr/recipe/Baume_a_levres.jpeg",
     name: "Savon solide",
-    numberOfIngredients: 4,
+    numberOfIngredients: 1,
     difficulty: RecipeDifficulty.Beginner,
   },
   {
@@ -52,6 +52,7 @@ export const ustensilsAlreadyHaveBeginner = [
     image: "user/Andrrbr/recipe/Baume_a_levres.jpeg",
   },
   {
+    // amount: "2",
     amount: "2",
     name: "Bouteilles de 1,5 L",
     image: "user/Andrrbr/recipe/Baume_a_levres.jpeg",
@@ -60,7 +61,7 @@ export const ustensilsAlreadyHaveBeginner = [
 
 export const ingredientBeginner = [
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "Bicarbonate de soude",
     description:
       "Pour une maison écologique, rien de mieux que le bicarbonate de soude ! Il est multi-usage : il nettoie, dégraisse et entretient les machines/robinetterie. Il fait briller toutes les surfaces. Il est aussi apprécié en tant que désodorisant dans les lessives, il vient d’ailleurs booster son efficacité ! C’est un très bon détachant. Le plus, le bicarbonate de soude se conserve très longtemps. Il existe deux types de bicarbonate de soude : celui utilisé pour la maison (plus détergent) et l’alimentaire (plus doux pour un usage cosmétique ou soin buccal).",
@@ -69,7 +70,7 @@ export const ingredientBeginner = [
     image: "ingredient/bicarbonate_de_soude.jpeg",
   },
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "Savon de Marseille",
     description:
       "Il est multi-usage ! Aussi bien utilisée pour les lessives, les nettoyants pour une maison plus écologique. Il est dégraissant et nettoyant, il est très efficace poour tout type de lavage : vaisselle, linge et surface. Il est biodégrable et non-polluant. Et avec ça, on lui reconnaît de nombreuses propriétés pour le soin du corps. Hypoallergénique, le savon de Marseille est très doux pour se laver. Il est efficace en cas d’eczéma et irritations de la peau.",
@@ -78,7 +79,7 @@ export const ingredientBeginner = [
     image: "ingredient/savon_de_marseille__en_copeaux_.jpeg",
   },
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "Hydrolat de Lavande de fine",
     description:
       "L’hydrolat de Lavande Aspic calme et apaise. Il permet de rafraîchir les peaux irritées suite à un coup de soleil ou piqûres d’insectes. Il est également utilisé pour les soins de peaux acnéiques.",
@@ -87,14 +88,14 @@ export const ingredientBeginner = [
     image: "ingredient/hydrolat_de_lavande.jpeg",
   },
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "Tensioactifs Coco Sulfate -- pas bon",
     description: "c'est de la coco",
     alternative: "wsh alors",
     image: "user/Andrrbr/recipe/Baume_a_levres.jpeg",
   },
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "Beurre de karité",
     description:
       "L’incontournable du DIY ! Le beurre de karité protège et cicatrise : il combat les agressions extérieures et réduit les sensibilités. Des études prouvent même que le beurre de karité protège de certains rayons UV. Il est nourrissant et hydratant : il renforce notre barrière cutanée et limite les pertes naturelles en eau. Il est beaucoup utilisé pour les lèvres gercées et les crevasses. Bourré en vitamines E, le beurre de karité est un excellent antioxydant ! Enfin, il pénètre rapidement dans l’épiderme pour action rapide et durable.",
@@ -103,7 +104,7 @@ export const ingredientBeginner = [
     image: "ingredient/beurre_de_karite.jpeg",
   },
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "Argile Blanche",
     description:
       "L’argile blanche est multi-tâche ! Elle est utilisée pour tous les types de peau. D’un côté, elle est absorbante, apaisante et nettoyante, de l’autre, elle régule le sébum et réduit les imperfections. On l’utilise aussi pour en cas de gencives enflammées. Elle fait également un bon anti-transpirant.",
@@ -112,7 +113,7 @@ export const ingredientBeginner = [
     image: "ingredient/argile_blanche.jpeg",
   },
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "Cire émulsifiante végétale",
     description:
       "Les cires émulsifiantes permettent de mélanger les phases aqueuses et huileuses. On privilégiera les cires d’origines végétales.",
@@ -120,7 +121,7 @@ export const ingredientBeginner = [
     image: "ingredient/cire_emulsifiante_vegetale.jpeg",
   },
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "Conservateur végétal",
     description:
       "À chaque émulsion (mélange eau et huile), il est vivement recommandé d’utiliser un conservateur ! Un conservateur d’origine végétale est préférable. Le conservateur Cosgard ou Geogard : il est composé d’acide benzylique, acide déhydroacétique et eau. C’est le conservateur de référence en DIY.",
@@ -129,28 +130,28 @@ export const ingredientBeginner = [
     image: "ingredient/conservateur_vegetal.jpeg",
   },
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "coco",
     description: "c'est de la coco",
     alternative: "wsh alors",
     image: "user/Andrrbr/recipe/Baume_a_levres.jpeg",
   },
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "coco",
     description: "c'est de la coco",
     alternative: "wsh alors",
     image: "user/Andrrbr/recipe/Baume_a_levres.jpeg",
   },
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "coco",
     description: "c'est de la coco",
     alternative: "wsh alors",
     image: "user/Andrrbr/recipe/Baume_a_levres.jpeg",
   },
   {
-    amount: "3 gouttes",
+    amount: "3 ml",
     name: "coco",
     description: "c'est de la coco",
     alternative: "wsh alors",

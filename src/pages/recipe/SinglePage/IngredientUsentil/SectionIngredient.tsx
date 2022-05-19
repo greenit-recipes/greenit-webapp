@@ -28,8 +28,8 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
           if (!isMobile) setArrowDown(!isArrowDown);
         }}
       >
-        <div className="flex items-center justify-between w-1/6">
-          <div className="flex items-center justify-center w-full h-12 p-5 text-center lg:p-0 rounded-l-md ingredient-section">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center h-12 py-2 px-4 text-center rounded-l-md ingredient-section">
             {data?.amount}
           </div>
           <img
@@ -39,7 +39,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
             src={getImagePath(data?.image)}
           ></img>
         </div>
-        <div className="w-4/6 ml-14"> {data?.name} </div>
+        <div className="flex-grow w-1/6 ml-4"> {data?.name} </div>
         <div className="w-1/6">
           <div className="flex items-center justify-end w-full">
             <HiOutlineChevronDown
