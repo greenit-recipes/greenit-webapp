@@ -1,7 +1,7 @@
-import { Loading } from "components";
-import { previousPath } from "helpers/route-helper";
-import { retourIcon } from "icons";
-import { findIndex } from "lodash";
+import {Loading} from "components";
+import {previousPath} from "helpers/route-helper";
+import {retourIcon} from "icons";
+import {findIndex} from "lodash";
 import HeadBand from "pages/GreenitFullXp/headband";
 import MenuFullXp from "pages/GreenitFullXp/MenuFullXp/MenuFullXp";
 import {menuFullXp} from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
@@ -28,19 +28,21 @@ const ConfirmationFullXp = React.lazy(
 const GenericFullXp = () => {
 
     //Initialize default state of the menu
-    const paymentMenu = menuFullXp[3].name
+    const confirmationMenu = menuFullXp[3].name
     const startMenu =
-        (getMenuStep() === paymentMenu)
-            ? paymentMenu
+        (getMenuStep() === confirmationMenu)
+            ? confirmationMenu
             : menuFullXp[0].name
 
     //Delete previous cookie from payment on confirmation
-    if (startMenu === paymentMenu) {
+    if (startMenu === confirmationMenu) {
         localStorage.removeItem("currentMenuGreenitFullXp")
     }
-    const currentMenuStorage = localStorage.getItem("currentMenuGreenitFullXp") || localStorage.setItem('currentMenuGreenitFullXp', startMenu)
 
-    //Bug when the user comes back to the UI after first setup
+    const currentMenuStorage = localStorage.getItem("currentMenuGreenitFullXp")
+    if (!currentMenuStorage || currentMenuStorage === 'undefined') {
+        localStorage.setItem('currentMenuGreenitFullXp', startMenu)
+    }
     const menuStorage =
         currentMenuStorage !== "undefined"
             ? currentMenuStorage
@@ -67,9 +69,9 @@ const GenericFullXp = () => {
                     content="Coffret pour les débutants en fait-maison. Une box spécialement conçue pour les premiers pas en DIY. Réalisez tous vos produits hygiènes, cosmétiques et ménagers. Greenit vous livre des ingrédients et vous réalisez !"
                 />
             </Helmet>
-            <div className="flex flex-row items-center mt-6 relative">
+            <div className="flex flex-row relative">
                 <div
-                    className="absolute z-20 grid w-10 h-10 p-2 rounded-full cursor-pointer ml-6 md:w-10 md:w-8 md:h-10 md:p-2 mt-10 md:ml-16 bg-white shadow-md"
+                    className="absolute z-20 w-10 h-10 p-2 rounded-full cursor-pointer ml-6 md:w-10 md:w-8 md:h-10 md:p-2 mt-10 md:ml-16 bg-white shadow-md"
                     onClick={() => {
                         if (menu !== menuFullXp[3].name) {
                             const currentIndexNavigation = findIndex(menuFullXp, {
@@ -86,17 +88,14 @@ const GenericFullXp = () => {
                     }}
                 >
                     <img alt="Retour icon" loading="lazy" src={retourIcon}/>
-                    {menu === menuFullXp[3].name &&
+                    {menu === menuFullXp[3].name && !isMobile &&
                         <span className="absolute z-20 top-2 md:top-2 left-12">Accueil</span>}
                 </div>
-
-
-                {!isMobile && (
-                    <div className="flex grow justify-center mt-10 w-full">
-                        <MenuFullXp setNavigation={setMenuWithCoockie}/>
-                    </div>
-                )}
             </div>
+            <div className="flex flex-col justify-items-center items-center">
+                <MenuFullXp setNavigation={setMenuWithCoockie}/>
+            </div>
+
             {(() => {
                 switch (menu) {
                     case menuFullXp[0].name:

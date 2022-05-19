@@ -132,7 +132,7 @@ const ProfilPage: React.FC = () => {
         </Modal>
       </div>
       <div className="w-full flex flex-col | items-center  z-20 rounded-profil mt-56 pt-10 bg-white">
-        <div className="w-5/6 mb-10 lg:w-4/6">
+        <div className="w-full mb-10 sm:w-5/6 lg:w-4/6">
           {user?.isCreatorProfil && (
             <CreatorProfil parentFunction={refetch} user={user}></CreatorProfil>
           )}

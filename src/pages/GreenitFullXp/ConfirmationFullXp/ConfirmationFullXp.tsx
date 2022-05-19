@@ -37,7 +37,7 @@ const ConfirmationFullXp: React.FC = () => {
     //Todo: (zack) create custom themes for fonts (should it be pixel perfect ?)
     return (
         <div className="flex flex-col lg:flex-row items-start justify-around">
-            <div className="flex flex-col mlg:self-center mlg:text-center mx-9 mt-11 md:mt-16 lg:ml-32">
+            <div className="flex flex-col mlg:self-center mlg:text-center mx-9 mt-2 md:mt-16 lg:ml-32">
                 <div>
                     <h1 className="text-2xl font-semibold mb-3">Confirmation de commande</h1>
 
@@ -56,8 +56,8 @@ const ConfirmationFullXp: React.FC = () => {
                 {isLoggedIn ? (!isMobile && <>
                         <h3 className="text-base font-medium md:font-normal mb-6">
                             Une fois que tu as reçu ta box, rendez-vous sur ton profil pour avoir
-                            {!isMobile && <br/>}
-                            accès aux recettes et aux vidéos d’accompagnement !
+                            {!isMobile ? <br/> : <span className="mx-0.5"></span>}
+                             accès aux recettes et aux vidéos d’accompagnement !
                         </h3>
                         <Link to={RouteName.profil}>
                             <button id="" className="h-10 rounded-md bg-green md:w-72 drop-shadow-lg">
@@ -70,8 +70,8 @@ const ConfirmationFullXp: React.FC = () => {
                     <div className="flex flex-col">
                         <h2 className="text-blue text-base md:text-xl font-semibold mb-4">
                             Crée-toi un compte pour avoir accès aux recettes
-                            {!isMobile && <br/>}
-                            et aux vidéos d’accompagnement !
+                            {!isMobile ? <br/> : <span className="mx-0.5"></span>}
+                             et aux vidéos d’accompagnement !
                         </h2>
                         <ModalLogGreenit
                             btn={

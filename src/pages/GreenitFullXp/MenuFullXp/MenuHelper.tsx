@@ -1,6 +1,6 @@
 export const menuFullXp = [
-  { name: "Mes recettes", haveAccesOnMenu: true },
-  { name: "Ingrédients et ustensiles", haveAccesOnMenu: true },
+  { name: "Recettes", haveAccesOnMenu: true },
+  { name: "Ingrédients", haveAccesOnMenu: true },
   { name: "Paiement", haveAccesOnMenu: false },
   { name: "Confirmation", haveAccesOnMenu: false },
 ];
