@@ -1,5 +1,4 @@
 import React from "react";
-import { Helmet } from "react-helmet";
 import {Link} from "react-router-dom";
 import {RouteName} from "../../../App";
 import {logo} from "../../../icons";
@@ -8,11 +7,6 @@ import {logo} from "../../../icons";
 const QRFullXp = () => {
     return (
         <div className="flex flex-col items-center text-center">
-            <Helmet>
-                {/*Todo : Fill titles and SEO attributes*/}
-                <title></title>
-                <meta name="description" content=""/>
-            </Helmet>
             <div className="flex flex-row items-center justify-items-center mt-2">
                 <Link to={RouteName.accueil}>
                     <img
