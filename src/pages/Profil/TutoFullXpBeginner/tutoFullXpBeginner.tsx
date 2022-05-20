@@ -50,7 +50,7 @@ const TutoFullXpBeginner = () => {
             <Helmet>
                 {/*Todo : Fill titles and SEO attributes*/}
                 <title>Accompagnement de ta box Premiers Pas : vidéos et recettes DIY | Greenit Community</title>
-                <meta name="description" content=""/>
+                <meta name="robots" content="noindex" />
             </Helmet>
             <Navbar/>
             <div className="flex flex-col lg:flex-row items-center justify-around lg:justify-start lg:pl-32">

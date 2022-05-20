@@ -65,10 +65,10 @@ const QRFullXp = React.lazy(
 export const history = createBrowserHistory();
 
 const greenitFullXpRoute = {
-  tutoFullXpBeginner: "/tuto-box-débutant",
+  tutoFullXpBeginner: "/tuto-box-débutant", // no index
   startDiyGreenitFullXp: "/se-lancer-dans-le-fait-maison",
   findOUtMoreBoxGreentilFullXP: "/commande-info",
-  qrFullXp: "/bienvenue-box",
+  qrFullXp: "/bienvenue-box", //no index
 };
 
 export const RouteName = {
