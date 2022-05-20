@@ -40,10 +40,8 @@ export default (
       <Route path={RouteName.profil} />
       <Route path={RouteName.accountCreated} />
       {/*full xp*/}
-      <Route path={RouteName.tutoFullXpBeginner} />
       <Route path={RouteName.startDiyGreenitFullXp} />
       <Route path={RouteName.findOUtMoreBoxGreentilFullXP} />
-      <Route path={RouteName.qrFullXp} />
       <Route />
     </Route>
 );

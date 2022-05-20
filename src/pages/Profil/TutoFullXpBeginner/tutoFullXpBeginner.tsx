@@ -1,16 +1,16 @@
-import {Footer, Navbar, RecipeCard} from "components";
-import useIsMobile from "hooks/isMobile";
-import {recipesBegginerFullXp} from "pages/GreenitFullXp/FullXpHelper";
-import {getSecondsFromDuration} from "utils";
-import {tutoFullXpBeginner} from "pages/Profil/TutoFullXpBeginner/tutoFullXpBeginnerHelper";
-import {Instruction} from "pages/recipe/SinglePage/Instructions/Instructions";
-import React, {createRef, useEffect, useState} from "react";
-import ReactPlayer from "react-player";
-import {Helmet} from "react-helmet";
+import { Footer, Navbar, RecipeCard } from "components";
 import Modal from "components/layout/Modal/Modal";
 import ModalHelp from "components/layout/modalHelp";
-import {BackButton} from "../../../components/misc/BackButton";
+import useIsMobile from "hooks/isMobile";
+import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
+import { tutoFullXpBeginner } from "pages/Profil/TutoFullXpBeginner/tutoFullXpBeginnerHelper";
+import { Instruction } from "pages/recipe/SinglePage/Instructions/Instructions";
+import React, { createRef, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import ReactPlayer from "react-player";
 import Auth from "services/auth.service";
+import { getSecondsFromDuration } from "utils";
+import { BackButton } from "../../../components/misc/BackButton";
 
 
 //Refactor
@@ -49,7 +49,7 @@ const TutoFullXpBeginner = () => {
         <div>
             <Helmet>
                 {/*Todo : Fill titles and SEO attributes*/}
-                <title></title>
+                <title>Accompagnement de ta box Premiers Pas : vidéos et recettes DIY | Greenit Community</title>
                 <meta name="description" content=""/>
             </Helmet>
             <Navbar/>

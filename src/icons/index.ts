@@ -256,6 +256,6 @@ export {
   boxIngredientLessive,
   boxIngredientSavon,
   boxStepsCreme,
-boxStepsLessive,
-boxStepsSavon,
+  boxStepsLessive,
+  boxStepsSavon,
 };

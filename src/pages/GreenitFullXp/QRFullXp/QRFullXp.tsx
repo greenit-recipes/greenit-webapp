@@ -13,7 +13,7 @@ const QRFullXp = () => {
         <>
             <Helmet>
                 {/*Todo : Fill titles and SEO attributes*/}
-                <title></title>
+                <title>Connecte-toi pour débuter en DIY | Box Premiers Pas | Greenit Community</title>
                 <meta name="description" content=""/>
             </Helmet>
 

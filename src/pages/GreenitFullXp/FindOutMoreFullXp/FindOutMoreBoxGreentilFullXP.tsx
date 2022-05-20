@@ -1,12 +1,9 @@
-import {RouteName} from "App";
-import {Navbar} from "components";
-import {previousPath} from "helpers/route-helper";
-import {retourIcon} from "icons";
-import {menuFullXp} from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
+import { RouteName } from "App";
+import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import React from "react";
-import {Helmet} from "react-helmet";
-import {Link, useHistory} from "react-router-dom";
-import {BackButton} from "../../../components/misc/BackButton";
+import { Helmet } from "react-helmet";
+import { Link, useHistory } from "react-router-dom";
+import { BackButton } from "../../../components/misc/BackButton";
 import useIsMobile from "../../../hooks/isMobile";
 
 const steps = [

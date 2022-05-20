@@ -19,11 +19,11 @@ const StartDiyGreenitFullXp = () => {
     <div className="relative h-screen flex flex-col md:flex-row md:justify-around items-center">
       <Helmet>
         <title>
-          
+        Coffret DIY débutants - Réalisez vos produits maison
         </title>
         <meta
           name="description"
-          content=""
+          content="Coffret pour les débutants en fait-maison. Une box spécialement conçue pour les premiers pas en DIY. Réalisez tous vos produits hygiènes, cosmétiques et ménagers. Greenit vous livre des ingrédients et vous réalisez !"
         />
       </Helmet>
       <BackButton styleCSS="mt-14 md:mt-16" />
