@@ -62,7 +62,7 @@ const IngredientUsentilFullXp = () => {
                             loading="lazy"
                             src={getImagePath(ingredientBeginner[1].image)}
                         ></img>
-                        <div className="w-4/6 ml-4"> 12 ingrédients dans la box</div>
+                        <div className="w-4/6 ml-4"> 7 ingrédients dans la box</div>
                         <div className="w-1/6 absolute right-0">
                             <div className="flex items-center justify-end w-full">
                                 <HiOutlineChevronDown
