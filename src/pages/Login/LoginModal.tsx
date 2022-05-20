@@ -250,7 +250,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
                             disableMobileRedirect={true}
                             cssClass="my-facebook-button-class"
                             textButton={'Connexion avec Facebook'}
-                            icon={isGraphQlLoading ? <div className="animate-spin mr-4"><BiLoaderAlt/></div> :
+                            icon={false ? <div className="animate-spin mr-4"><BiLoaderAlt/></div> :
                                 <IoLogoFacebook className="w-6 h-6 mr-4"/>}
                         />
 

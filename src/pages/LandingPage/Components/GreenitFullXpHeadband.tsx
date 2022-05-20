@@ -7,20 +7,16 @@ import {GET_FEATURE_BY_NAME} from "../../../services/feature.service";
 
 interface GreenitFullXpHeadbandProps {
     showModal: any;
+    isOutOfStock: boolean;
 }
 
 export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
+                                                                                isOutOfStock,
                                                                                 showModal,
                                                                             }) => {
     const isMobile = useIsMobile();
     const history = useHistory();
-    //Create an easier API for feature flags
-    const {loading, data, refetch} = useQuery(GET_FEATURE_BY_NAME, {
-        variables: {
-            name: 'is_out_of_stock'
-        },
-        errorPolicy: "all"
-    });
+
 
     return (
         <div className="flex flex-col w-full ">
@@ -62,8 +58,7 @@ export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
             <div className="flex bg-greenL lg:pl-20 h-16 items-center">
                 <button
                     onClick={() => {
-                        //Make it more readable
-                        data?.featureFlag?.isActive ? showModal(true) : history.push(RouteName.startDiyGreenitFullXp)
+                        isOutOfStock ? showModal(true) : history.push(RouteName.startDiyGreenitFullXp)
                     }}
                     id="landing_tenez_moi_au_courant"
                     className="p-1 ml-2 mr-4 w-52 text-sm lg:text-base order-2 lg:order-1 text-white rounded-lg bg-green"
