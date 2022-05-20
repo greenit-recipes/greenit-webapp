@@ -1,4 +1,4 @@
-import { Icon } from "./../components/misc/Icon";
+import {Icon} from "./../components/misc/Icon";
 // CATEGORIES
 import wellbeing from "./bien-être_icon.png";
 import corps from "./corps_recette.png";
@@ -143,6 +143,11 @@ import boxIngredientSavon from "./image_savon.png";
 import boxStepsCreme from "./image_box_DIY_1.jpeg";
 import boxStepsLessive from "./image_box_DIY_2.jpeg";
 import boxStepsSavon from "./image_box_DIY_3.jpeg";
+import arrowFullXpMobile from "./arrow-mobile-fullxp.png";
+import arrowFullXp from "./arrow-desktop-fullxp.png";
+import boxConfirmation from "./confirmation-fullxp.png";
+import boxFullXp from "./image_box_DIY_5.png";
+import cremeFullXp from "./image_box_DIY_6.jpeg";
 
 export {
   wellbeing,
@@ -258,4 +263,9 @@ export {
   boxStepsCreme,
   boxStepsLessive,
   boxStepsSavon,
+  boxConfirmation,
+  arrowFullXp,
+  arrowFullXpMobile,
+  cremeFullXp,
+  boxFullXp,
 };

@@ -1,12 +1,14 @@
-import { useMutation } from "@apollo/client";
-import { RouteName } from "App";
+import {useMutation} from "@apollo/client";
+import {RouteName} from "App";
 import useIsMobile from "hooks/isMobile";
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { HAS_PURCHASED_BEGINNER_BOX, persistBoxPurchaseOnConfirmation } from "services/boxfullxp.service";
-import { boxFullXpIngredients } from "utils";
-import { NumberedCircle } from "../../../components/misc/NumberedCircle";
-import Auth from "../../../services/auth.service";
+import React, {useEffect} from "react";
+import {Link} from "react-router-dom";
+import {HAS_PURCHASED_BEGINNER_BOX, persistBoxPurchaseOnConfirmation} from "services/boxfullxp.service";
+import {boxFullXpIngredients} from "utils";
+import {NumberedCircle} from "components/misc/NumberedCircle";
+import Auth from "services/auth.service";
+import {boxConfirmation, arrowFullXp, arrowFullXpMobile} from "icons";
+import "../fullXp.css";
 
 const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
@@ -57,7 +59,7 @@ const ConfirmationFullXp: React.FC = () => {
                         <h3 className="text-base font-medium md:font-normal mb-6">
                             Une fois que tu as reçu ta box, rendez-vous sur ton profil pour avoir
                             {!isMobile ? <br/> : <span className="mx-0.5"></span>}
-                             accès aux recettes et aux vidéos d’accompagnement !
+                            accès aux recettes et aux vidéos d’accompagnement !
                         </h3>
                         <Link to={RouteName.profil}>
                             <button id="commande-box-confirmation-mon-espace-diy" className="h-10 rounded-md bg-green md:w-72 drop-shadow-lg">
@@ -71,22 +73,36 @@ const ConfirmationFullXp: React.FC = () => {
                         <h2 className="text-blue text-base md:text-xl font-semibold mb-4">
                             Crée-toi un compte pour avoir accès aux recettes
                             {!isMobile ? <br/> : <span className="mx-0.5"></span>}
-                             et aux vidéos d’accompagnement !
+                            et aux vidéos d’accompagnement !
                         </h2>
-                        <ModalLogGreenit
-                            btn={
-                                <>
-                                    <button id="commande-box-confirmation-creer-un-compte"
-                                            className="self-center md:self-start h-10 rounded-md bg-blue w-72 md:w-44 drop-shadow-lg mb-6">
-                                        <h2 className="text-white">
-                                            Créer un compte
-                                        </h2>
-                                    </button>
-                                </>
-                            }
-                        ></ModalLogGreenit>
+                        <div className="relative">
+                            <ModalLogGreenit
+                                btn={
+                                    <>
+                                        <button id="commande-box-confirmation-creer-un-compte"
+                                                className="self-center md:self-start h-10 rounded-md bg-blue w-72 md:w-52 drop-shadow-lg mb-6">
+                                            <h2 className="text-white">
+                                                Créer un compte
+                                            </h2>
+                                        </button>
+                                    </>
+                                }
+                            ></ModalLogGreenit>
+                            {isMobile && <img src={arrowFullXpMobile}
+                                              alt="flèche mobile"
+                                              className="absolute right-0 top-12"
+                            />}
+                        </div>
                         {/* Image placeholder */}
-                        <div className="w-52 h-36 self-center md:self-start rounded-lg bg-blueL mb-7 md:mb-6">
+                        <div className="relative self-center md:self-start rounded-lg bg-blueL mb-7 md:mb-6">
+                            <img src={boxConfirmation}
+                                 alt="Confirmation Box Full Xp"
+                                 className="object-cover w-52 h-36 rounded-lg"
+                            />
+                            {!isMobile && <img src={arrowFullXp}
+                                               alt="flèche"
+                                               className="absolute arrow-desktop"
+                            />}
                         </div>
                     </div>}
 

@@ -7,6 +7,7 @@ import React, { Suspense } from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
+import FullXPRoute from "./components/route/FullXPRoute";
 
 const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
 const ActivateAccount = React.lazy(() => import("pages/activate"));
@@ -99,16 +100,7 @@ const App: React.FC = () => {
     window.sessionStorage.setItem("pathname", JSON.stringify(x?.pathname))
   );
   //Todo (zack): Implement custom routes for the full xp
-  // const [feature, setFeature] = useState(false);
-  // const {loading, data, refetch} = useQuery(GET_FEATURE_BY_NAME, {
-  //     variables: {
-  //         name: 'is_greenit_full_xp'
-  //     },
-  //     errorPolicy: "all"
-  // });
-  // useEffect(() => {
-  //         data?.featureFlag.isActive && setFeature(true)
-  // }, [data])
+
 
   return (
     <Suspense fallback={<Loading />}>
@@ -128,25 +120,25 @@ const App: React.FC = () => {
             exact
           />
           {/* START FULL XP */}
-          <PublicRoute
+          <FullXPRoute
             path={RouteName.greenitFullXp}
             component={GreenitFullXp}
             exact
           />
 
-          <PublicRoute path={RouteName.qrFullXp} component={QRFullXp} exact />
-          <PublicRoute // faire un composant qui filtre sur si le mec est isBox ou non
+          <FullXPRoute path={RouteName.qrFullXp} component={QRFullXp} exact />
+          <FullXPRoute // faire un composant qui filtre sur si le mec est isBox ou non
             path={RouteName.tutoFullXpBeginner}
             component={TutoFullXpBeginner}
             exact
           />
-          <PublicRoute
+          <FullXPRoute
             path={RouteName.startDiyGreenitFullXp}
             component={StartDiyGreenitFullXp}
             exact
           />
 
-          <PublicRoute
+          <FullXPRoute
             path={RouteName.findOUtMoreBoxGreentilFullXP}
             component={FindOutMoreBoxGreentilFullXP}
             exact
