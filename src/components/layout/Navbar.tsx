@@ -109,6 +109,11 @@ export const Navbar: React.FC = () => {
                 </h2>
               </div>
             </Link>
+            <Link className="p-2" to={RouteName.startDiyGreenitFullXp}>
+              <h2 id="nav-box-mobile" className="text-white">
+                Box
+              </h2>
+            </Link>
             <Link className="p-2" to={RouteName.workshops}>
               <h2 id="workshops" className="text-white">
                 Se former
@@ -352,6 +357,11 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
         </div>
+        <Link to={RouteName.startDiyGreenitFullXp}>
+          <NavButton id="box-nav" type="black">
+            Box
+          </NavButton>
+        </Link>
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.workshops}>
             <NavButton id="workshops" type="yellow">
