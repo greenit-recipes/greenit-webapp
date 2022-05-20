@@ -36,7 +36,7 @@ const ModalHelp : React.FC<IProfilGreenitFullXp> =  ({messageModal, subMessageMo
   });
 
   const onSubmitHandler = (data: any) => {
-    console.log("data", data);
+    //console.log("data", data);
     emailGreenitFullXp({
         variables: {
           question: data?.msg,

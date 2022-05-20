@@ -1,7 +1,7 @@
-import {useMutation} from "@apollo/client";
-import {yupResolver} from "@hookform/resolvers/yup";
-import {RouteName} from "App";
-import {Button} from "components";
+import { useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RouteName } from "App";
+import { Button } from "components";
 import useIsMobile from "hooks/isMobile";
 import {
     confirmpwd,
@@ -10,33 +10,33 @@ import {
     loginPassword,
     mdpNonVisible,
     mdpVisible,
-    userlogo,
+    userlogo
 } from "icons";
+import { omit } from "lodash";
 import {
     optionsUserCategoryAge,
     optionsUserCategoryLvl,
-    schemaRegister,
+    schemaRegister
 } from "pages/Register/registerHelper";
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import FacebookLogin from "react-facebook-login";
-import {Controller, useForm} from "react-hook-form";
-import {IoLogoFacebook} from "react-icons/io5";
-import {Link, useHistory, useLocation} from "react-router-dom";
+import { Controller, useForm } from "react-hook-form";
+import { BiLoaderAlt } from "react-icons/all";
+import { IoLogoFacebook } from "react-icons/io5";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import Select from "react-select";
 import authService, {
     CREATE_ACCOUNT,
     CREATE_USER_FROM_AUTH,
-    LOGIN_ACCOUNT,
+    LOGIN_ACCOUNT
 } from "services/auth.service";
-import "./register.css";
 import {
     beginnerBoxCookieExist, HAS_PURCHASED_BEGINNER_BOX,
     persistBoxPurchaseOnFirstLogin,
     persistBoxPurchaseOnRegister
 } from "services/boxfullxp.service";
 import useGraphQlLoading from "../../hooks/useGraphqlLoading";
-import {BiLoaderAlt} from "react-icons/all";
-import {omit} from "lodash";
+import "./register.css";
 
 export const RegisterModal: React.FC<{
     loginOpen: any;

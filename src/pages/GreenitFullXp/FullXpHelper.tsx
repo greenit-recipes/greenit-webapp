@@ -18,11 +18,11 @@ const userGreenit = {
 
 export const recipesBegginerFullXp = [
     {
-        id: "57d20e4b-72e7-48ce-99e1-839c75cb1566",
+        id: "3b349672-a3b4-4eb5-a063-41eb79e5b542",
         urlId: "lessive-liquide-maison",
         image: "user/anais/recipe/lessive_maison_liquide.jpg",
         name: "Lessive maison",
-        numberOfIngredients: 2,
+        numberOfIngredients: 4,
         quantity: 2,
         difficulty: RecipeDifficulty.Beginner,
     },
@@ -31,16 +31,16 @@ export const recipesBegginerFullXp = [
         urlId: "savon-solide-tout-en-un",
         image: "user/Greenit/recipe/savon_tout_en_un.jpeg",
         name: "Savon solide",
-        numberOfIngredients: 1,
+        numberOfIngredients: 3,
         quantity: 1,
         difficulty: RecipeDifficulty.Beginner,
     },
     {
-        id: "3b349672-a3b4-4eb5-a063-41eb79e5b542",
+        id: "57d20e4b-72e7-48ce-99e1-839c75cb1566",
         urlId: "creme-de-jour-debutant",
         image: "user/Greenit/recipe/creme_jour_debutant.jpeg",
         name: "Crème de jour",
-        numberOfIngredients: 4,
+        numberOfIngredients: 5,
         quantity: 1,
         difficulty: RecipeDifficulty.Beginner,
     },
@@ -115,7 +115,7 @@ export const ingredientBeginner = [
 export const ustensilsBeginner = [
     {
         amount: "1",
-        name: "Moules",
+        name: "Moule",
         image: "utensil/moule_s_.jpeg",
     },
     {

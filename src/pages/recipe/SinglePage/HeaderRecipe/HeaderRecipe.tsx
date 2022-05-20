@@ -18,7 +18,6 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
   parentFcn,
 }) => {
   const [isDisplay, setIsDisplay] = useState(false);
-  console.log('recipe -->', recipe)
   return (
     <div
       ref={(divElement) => {

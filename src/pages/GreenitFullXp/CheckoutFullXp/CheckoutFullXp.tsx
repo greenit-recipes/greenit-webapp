@@ -14,7 +14,6 @@ const CheckoutFullXp: React.FC = () => {
     const [createCheckoutSession, { data, loading, error }] = useMutation(CREATE_CHECKOUT_SESSION, {
         onCompleted(data) {
             const redirectUrl = data.createCheckoutSession.redirectUrl;
-            console.log(redirectUrl);
             window.location.replace(redirectUrl)
         }
     });

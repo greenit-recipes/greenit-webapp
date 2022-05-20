@@ -11,7 +11,7 @@ export const CREATE_ACCOUNT = gql`
     $password1: String!
     $password2: String!
     $isFollowNewsletter: String!
-    $isBeginnerBox: Boolean!
+    $isBeginnerBox: Boolean
     $userCategoryLvl: String
     $userCategoryAge: String
     $urlsSocialMedia: JSONString
