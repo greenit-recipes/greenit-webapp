@@ -54,7 +54,7 @@ const QRFullXp = () => {
                         <ModalLogGreenit
                             btn={
                                 <>
-                                    <button id="" className="h-10 rounded-md bg-green w-72 md:w-60 drop-shadow-lg">
+                                    <button id="bienvenue-box-creer-un-compte" className="h-10 rounded-md bg-green w-72 md:w-60 drop-shadow-lg">
                                         <h2 id="" className="text-white">
                                             Créer un compte
                                         </h2>
@@ -69,7 +69,7 @@ const QRFullXp = () => {
                         <ModalLogGreenit
                             btn={
                                 <>
-                                    <button id="" className="h-10 rounded-md bg-blue w-72 md:w-60 drop-shadow-lg">
+                                    <button id="bienvenue-box-se-connecter" className="h-10 rounded-md bg-blue w-72 md:w-60 drop-shadow-lg">
                                         <h2 id="" className="text-white">
                                             Se connecter
                                         </h2>

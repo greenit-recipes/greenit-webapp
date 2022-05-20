@@ -146,6 +146,8 @@ import boxStepsSavon from "./image_box_DIY_3.jpeg";
 import arrowFullXpMobile from "./arrow-mobile-fullxp.png";
 import arrowFullXp from "./arrow-desktop-fullxp.png";
 import boxConfirmation from "./confirmation-fullxp.png";
+import boxFullXp from "./image_box_DIY_5.png";
+import cremeFullXp from "./image_box_DIY_6.jpeg";
 
 export {
   wellbeing,
@@ -264,4 +266,6 @@ export {
   boxConfirmation,
   arrowFullXp,
   arrowFullXpMobile,
+  cremeFullXp,
+  boxFullXp,
 };

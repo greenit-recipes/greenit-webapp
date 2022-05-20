@@ -1,17 +1,21 @@
-import { RouteName } from "App";
-import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
+import {RouteName} from "App";
+import {menuFullXp} from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import React from "react";
-import { Helmet } from "react-helmet";
-import { Link, useHistory } from "react-router-dom";
-import { BackButton } from "../../../components/misc/BackButton";
+import {Helmet} from "react-helmet";
+import {Link, useHistory} from "react-router-dom";
+import {BackButton} from "../../../components/misc/BackButton";
 import useIsMobile from "../../../hooks/isMobile";
+import {boxIngredientCreme, boxIngredientLessive, boxIngredientSavon, boxFullXp, cremeFullXp} from "icons";
 
 const steps = [
     {
         section1: "🎁 Commande ta box en 2 minutes !",
         section2: "🧼 Recettes naturelles et 100% Made in home",
+        alt: 'Ingrédients de la box',
         imgSrc:
-            "https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg",
+            [boxIngredientCreme,
+                boxIngredientLessive,
+                boxIngredientSavon],
         complementText:
             "3 recettes simples, rapides et validées par notre communauté. 🙂",
     },
@@ -19,15 +23,19 @@ const steps = [
         section1: "🚴‍♀️ Reçois tes ingrédients en une semaine ",
         section2: "🌿 Garantie sans gâchis et stock d’ingrédients",
         section3: "🤭 Des contenants en verre réutilisables",
+        alt: 'Box Greenit',
         imgSrc:
-            "https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg",
+            [boxFullXp],
+        style: 'h-64 w-64 ',
     },
     {
         section1: "😇 Réalise tes produits en étant accompagné.e",
         section2: "🎥 Accompagnement vidéos ",
         section3: "🆘 On répond à vos questions !",
+        alt: 'crème',
         imgSrc:
-            "https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg",
+            [cremeFullXp],
+        style: 'rounded-lg shadow-lg h-48 w-64'
     },
 ];
 const FindOutMoreBoxGreentilFullXP = () => {
@@ -54,7 +62,7 @@ const FindOutMoreBoxGreentilFullXP = () => {
                         en <span className="text-blue">3 </span>étapes
                     </p>
                 </div>
-                <div className="flex flex-col lg:flex-row items-center m-auto lg:mt-2">
+                <div className="flex flex-col flex-start lg:flex-row items-start m-auto lg:mt-2">
                     {steps.map((item, index) => (
                         <div key={index} className="text-center mx-8 lg:ml-10 lg:mr-10 lg:mt-5">
                             <div
@@ -64,23 +72,33 @@ const FindOutMoreBoxGreentilFullXP = () => {
                                 <b>{index + 1}</b>
                             </div>
                             <p className="mt-2">{item?.section1}</p>
-                            <p>{item?.section2}</p>
-                            <p>{item?.section3}</p>
-                            <img
-                                className={`w-16 h-16 m-auto mt-4 ${
-                                    item?.complementText ? "mb-2" : "mb-14"
-                                } `}
-                                alt="lessive"
-                                src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"
+                            <p className="mt-2">{item?.section2}</p>
+                            <p className="mt-2">{item?.section3}</p>
+
+                            {item.imgSrc.length > 1 ? <div className="flex flex-row my-4">
+                                {item.imgSrc.map((it) => (
+                                    <img
+                                        loading="lazy"
+                                        className="h-20 w-20 | ml-auto mr-auto | flex place-self-center rounded-full"
+                                        src={it}
+                                        alt={item.alt}
+                                    ></img>
+                                ))}
+                            </div> : <img
                                 loading="lazy"
-                            />
+                                className={`${item.style} mt-4 | ml-auto mr-auto | flex place-self-center`}
+                                alt={item.alt}
+                                src={item.imgSrc[0]}
+                            ></img>}
+
+
                             <p className="mb-10">{item?.complementText}</p>
                         </div>
                     ))}
                 </div>
 
 
-                <div className="mt-0 md:mt-16 md:ml-40 md:self-start msm:text-center">
+                <div className="mt-0 md:mt-10 md:ml-40 md:self-start msm:text-center">
                     <p>Alors, tenté.e ?</p>
                     {!isMobile && <Link to={RouteName.greenitFullXp}>
                         <button
