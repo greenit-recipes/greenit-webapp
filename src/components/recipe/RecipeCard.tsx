@@ -25,6 +25,7 @@ interface RecipeCardProps {
     isLikeDisabled?: boolean;
     index?: number;
     amount?: number
+    id?: string;
 }
 
 export const RecipeCard: React.FC<RecipeCardProps> = ({
@@ -38,6 +39,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
                                                           isLikeDisabled = false,
                                                           isDisplayUserBadge = true,
                                                           index,
+                                                          id,
                                                           amount,
                                                       }) => {
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -49,6 +51,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
     return (
         <div
+            id={`${id}-recipe-card`}
+
             className="transform sm:hover:scale-105 ease-linear relative transition-all duration-150 px-1 mb-14 md:mb-16 lg:mb-10">
             {amount && <div
                 className={`flex flex-col items-center pb-2 absolute right-0 mt-2 mr-3 w-8 h-${amount > 1 ? "14" : "8"} rounded-2xl bg-white`}>

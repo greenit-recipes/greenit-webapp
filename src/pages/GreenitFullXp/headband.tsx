@@ -6,11 +6,13 @@ import CheckoutFullXp from "pages/GreenitFullXp/CheckoutFullXp/CheckoutFullXp";
 interface IHeadBand {
   setNavigation: any;
   currentPositionMenu: number;
+  idButton?: string;
 }
 
 const HeadBand: React.FC<IHeadBand> = ({
   setNavigation,
   currentPositionMenu,
+  idButton
 }) => {
   return (
     <div className="headband h-16 pb-2 bg-white">
@@ -23,13 +25,13 @@ const HeadBand: React.FC<IHeadBand> = ({
         <CheckoutFullXp />
       ) : (
         <button
-          id="etape-suivante"
-          className="h-10 rounded-lg bg-green w-32 lg:w-72"
+        id={`${idButton}-etape-suivante`}
+        className="h-10 rounded-lg bg-green w-32 lg:w-72"
           onClick={() => {
             setNavigation(menuFullXp[currentPositionMenu + 1].name);
           }}
         >
-          <h2 id="" className="text-white">
+          <h2 className="text-white">
             Étape suivante
           </h2>
         </button>

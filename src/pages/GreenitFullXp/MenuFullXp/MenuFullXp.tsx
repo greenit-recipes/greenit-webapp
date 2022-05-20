@@ -11,6 +11,7 @@ const MenuFullXp: React.FC<IMenuFullXp> = ({ setNavigation }) => {
         <div
          className={` ${ !(localStorage.getItem("currentMenuGreenitFullXp") === menuFullXp[3]?.name) && item?.haveAccesOnMenu ? 'cursor-pointer ' : ''} ${ localStorage.getItem("currentMenuGreenitFullXp") === item.name ? "rounded-3xl font-medium text-white bg-active" : ""} text-xs md:text-sm px-1.5 py-1.5 md:px-3`}
           key={item.name}
+          id={`commande-box-menu-${item.name}`}
           onClick={() => {
             if (!item?.haveAccesOnMenu) return;
             if (localStorage.getItem("currentMenuGreenitFullXp") === menuFullXp[3]?.name) return

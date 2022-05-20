@@ -72,6 +72,7 @@ const GenericFullXp = () => {
             <div className="flex flex-row relative">
                 <div
                     className="absolute z-20 w-10 h-10 p-2 rounded-full cursor-pointer ml-6 md:w-10 md:w-8 md:h-10 md:p-2 mt-10 md:ml-16 bg-white shadow-md"
+                    id={`${menu}-fleche-retour`}
                     onClick={() => {
                         if (menu !== menuFullXp[3].name) {
                             const currentIndexNavigation = findIndex(menuFullXp, {
@@ -127,6 +128,7 @@ const GenericFullXp = () => {
             {menu !== menuFullXp[3].name && (
                 <div className="fixed bottom-0 h-10 mb-16 sm:mb-0">
                     <HeadBand
+                        idButton={menu}
                         setNavigation={setMenuWithCoockie}
                         currentPositionMenu={findIndex(menuFullXp, {name: menu})}
                     />

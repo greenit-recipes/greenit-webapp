@@ -1,13 +1,12 @@
 import { RouteName } from "App";
+import { boxStepsCreme, boxStepsLessive, boxStepsSavon } from "icons";
+import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
 import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import React from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { BackButton } from "../../../components/misc/BackButton";
 import useIsMobile from "../../../hooks/isMobile";
-import { getImagePath } from "../../../helpers/image.helper";
-import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
-import { boxStepsCreme, boxStepsLessive, boxStepsSavon } from "icons";
-import { Helmet } from "react-helmet";
 
 const StartDiyGreenitFullXp = () => {
   const isMobile = useIsMobile();
@@ -24,7 +23,7 @@ const StartDiyGreenitFullXp = () => {
           content="Coffret pour les débutants en fait-maison. Une box spécialement conçue pour les premiers pas en DIY. Réalisez tous vos produits hygiènes, cosmétiques et ménagers. Greenit vous livre des ingrédients et vous réalisez !"
         />
       </Helmet>
-      <BackButton styleCSS="mt-14 md:mt-16" />
+      <BackButton idButton="se-lancer-dans-le-fait-maison" styleCSS="mt-14 md:mt-16" />
       {isMobile && (
         <div className="flex flex-row justify-center mt-24 items-center">
           <img
@@ -74,6 +73,7 @@ const StartDiyGreenitFullXp = () => {
                 );
               }}
               className={`btn-single-page justify-center mt-2 p-2 h-10 flex w-full bg-green text-white`}
+              id='se-lancer-dans-le-fait-maison-je-commande'
             >
               Je commande
             </button>
@@ -81,6 +81,7 @@ const StartDiyGreenitFullXp = () => {
           <Link to={RouteName.findOUtMoreBoxGreentilFullXP}>
             <button
               className={`btn-single-page justify-center mb-4 mt-4 p-2 h-10 flex w-full bg-white text-green`}
+              id='se-lancer-dans-le-fait-maison-en-savoir-plus'
             >
               En savoir plus
             </button>

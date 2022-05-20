@@ -1,13 +1,12 @@
-import {RecipeCard} from "components";
+import { RecipeCard } from "components";
 import useIsMobile from "hooks/isMobile";
-import {recipesBegginerFullXp} from "pages/GreenitFullXp/FullXpHelper";
-import {CircleGreenit} from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
-import React, {useEffect} from "react";
-import {BiTimeFive} from "react-icons/bi";
-import {BsWallet2} from "react-icons/bs";
-import {IoEarthOutline, IoFlaskOutline} from "react-icons/io5";
+import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
+import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
+import React, { useEffect } from "react";
+import { BiTimeFive } from "react-icons/bi";
+import { BsWallet2 } from "react-icons/bs";
+import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
 import Auth from "../../../services/auth.service";
-import {menuFullXp} from "../MenuFullXp/MenuHelper";
 
 const list = (
     <div className="ml-10 lg:ml-0 lg:mt-14">
@@ -55,6 +54,7 @@ const RecipeFullXP = () => {
                     {recipesBegginerFullXp.map((recipe, index) => (
                         <div key={recipe?.id} className="lg:mr-2">
                             <RecipeCard
+                                id="commande-box"
                                 disabledFavoriteRecipe={!isLoggedIn}
                                 isLikeDisabled={true}
                                 recipe={recipe}

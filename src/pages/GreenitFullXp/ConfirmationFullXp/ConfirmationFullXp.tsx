@@ -60,8 +60,8 @@ const ConfirmationFullXp: React.FC = () => {
                              accès aux recettes et aux vidéos d’accompagnement !
                         </h3>
                         <Link to={RouteName.profil}>
-                            <button id="" className="h-10 rounded-md bg-green md:w-72 drop-shadow-lg">
-                                <h2 id="" className="text-white">
+                            <button id="commande-box-confirmation-mon-espace-diy" className="h-10 rounded-md bg-green md:w-72 drop-shadow-lg">
+                                <h2 className="text-white">
                                     Mon espace DIY
                                 </h2>
                             </button>
@@ -76,9 +76,9 @@ const ConfirmationFullXp: React.FC = () => {
                         <ModalLogGreenit
                             btn={
                                 <>
-                                    <button id=""
+                                    <button id="commande-box-confirmation-creer-un-compte"
                                             className="self-center md:self-start h-10 rounded-md bg-blue w-72 md:w-44 drop-shadow-lg mb-6">
-                                        <h2 id="" className="text-white">
+                                        <h2 className="text-white">
                                             Créer un compte
                                         </h2>
                                     </button>

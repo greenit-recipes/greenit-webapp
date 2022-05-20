@@ -66,6 +66,7 @@ const IngredientUsentilFullXp = () => {
                         <div className="w-1/6 absolute right-0">
                             <div className="flex items-center justify-end w-full">
                                 <HiOutlineChevronDown
+                                    id={`commande-box-ingredient-voir-plus-ingredient`}
                                     className={`w-6 h-6  mr-6 cursor-pointer ${
                                         isArrowDown ? "section-arrow-up" : "section-arrow-down"
                                     }`}
