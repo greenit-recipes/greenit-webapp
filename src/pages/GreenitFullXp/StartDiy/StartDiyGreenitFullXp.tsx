@@ -18,9 +18,7 @@ const StartDiyGreenitFullXp = () => {
   return (
     <div className="relative h-screen flex flex-col md:flex-row md:justify-around items-center">
       <Helmet>
-        <title>
-        Coffret DIY débutants - Réalisez vos produits maison
-        </title>
+        <title>Coffret DIY débutants - Réalisez vos produits maison</title>
         <meta
           name="description"
           content="Coffret pour les débutants en fait-maison. Une box spécialement conçue pour les premiers pas en DIY. Réalisez tous vos produits hygiènes, cosmétiques et ménagers. Greenit vous livre des ingrédients et vous réalisez !"
@@ -30,15 +28,15 @@ const StartDiyGreenitFullXp = () => {
       {isMobile && (
         <div className="flex flex-row justify-center mt-24 items-center">
           <img
-            src={getImagePath(recipesBegginerFullXp[0]?.image)}
-            alt={recipesBegginerFullXp[0]?.name}
+            src={boxStepsCreme}
+            alt={recipesBegginerFullXp[2]?.name}
             className={`z-10 flex flex-col object-cover ${`h-72 w-52`}
             rounded-2xl | justify-self-center smooth-image
                     }`}
             loading="lazy"
           ></img>
           <img
-            src={getImagePath(recipesBegginerFullXp[0]?.image)}
+            src={boxStepsLessive}
             alt={recipesBegginerFullXp[0]?.name}
             className={`absolute right-0 top-16 flex flex-col object-cover ${`h-72 w-40`}
             rounded-l-2xl | justify-self-center smooth-image
@@ -46,8 +44,8 @@ const StartDiyGreenitFullXp = () => {
             loading="lazy"
           ></img>
           <img
-            src={getImagePath(recipesBegginerFullXp[0]?.image)}
-            alt={recipesBegginerFullXp[0]?.name}
+            src={boxStepsSavon}
+            alt={recipesBegginerFullXp[1]?.name}
             className={`absolute left-0 top-32 flex flex-col object-cover ${`h-72 w-40`}
             rounded-r-2xl | justify-self-center smooth-image
                     }`}
@@ -94,8 +92,8 @@ const StartDiyGreenitFullXp = () => {
         <div className="flex flex-row justify-center items-center space-x-8">
           <div>
             <img
-              src={boxStepsLessive}
-              alt={recipesBegginerFullXp[0]?.name}
+              src={boxStepsCreme}
+              alt={recipesBegginerFullXp[2]?.name}
               className={`flex flex-col object-cover ${`h-80 w-52`}
             rounded-2xl | justify-self-center smooth-image
                     }`}
@@ -104,16 +102,16 @@ const StartDiyGreenitFullXp = () => {
           </div>
           <div className="space-y-4">
             <img
-              src={boxStepsSavon}
-              alt={recipesBegginerFullXp[1]?.name}
+              src={boxStepsLessive}
+              alt={recipesBegginerFullXp[0]?.name}
               className={`flex flex-col object-cover ${`h-${imageHeight} w-${imageWidth}`}
             rounded-2xl | justify-self-center smooth-image
                     }`}
               loading="lazy"
             ></img>
             <img
-              src={boxStepsCreme}
-              alt={recipesBegginerFullXp[2]?.name}
+              src={boxStepsSavon}
+              alt={recipesBegginerFullXp[1]?.name}
               className={`flex flex-col object-cover ${`h-${imageHeight} w-${imageWidth}`}
             rounded-2xl | justify-self-center smooth-image
                     }`}
