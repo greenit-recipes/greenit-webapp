@@ -1,8 +1,7 @@
-import React from "react";
 import { BackgroundImage, Button, Container, Footer, Navbar } from "components";
-import { Helmet } from "react-helmet";
-import { RouteName } from "App";
 import { MailIcon } from "icons";
+import React from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 const DeleteProfil: React.FC = () => {

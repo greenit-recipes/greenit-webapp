@@ -1,117 +1,129 @@
-import {RouteName} from "App";
-import {menuFullXp} from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
+import { RouteName } from "App";
+import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import React from "react";
-import {Link} from "react-router-dom";
-import {BackButton} from "../../../components/misc/BackButton";
+import { Link } from "react-router-dom";
+import { BackButton } from "../../../components/misc/BackButton";
 import useIsMobile from "../../../hooks/isMobile";
-import {getImagePath} from "../../../helpers/image.helper";
-import {recipesBegginerFullXp} from "pages/GreenitFullXp/FullXpHelper";
+import { getImagePath } from "../../../helpers/image.helper";
+import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
+import { boxStepsCreme, boxStepsLessive, boxStepsSavon } from "icons";
+import { Helmet } from "react-helmet";
 
 const StartDiyGreenitFullXp = () => {
-    const isMobile = useIsMobile();
+  const isMobile = useIsMobile();
 
-    const imageHeight = isMobile ? 56 : 72;
-    const imageWidth = isMobile ? 40 : 48;
+  const imageHeight = isMobile ? 56 : 72;
+  const imageWidth = isMobile ? 40 : 48;
 
-    return (
-        <div className="relative h-screen flex flex-col md:flex-row md:justify-around items-center">
-            <BackButton styleCSS="mt-14 md:mt-16"/>
-            {isMobile && <div className="flex flex-row justify-center mt-24 items-center">
-
-                <img
-                    src={getImagePath(recipesBegginerFullXp[0]?.image)}
-                    alt={recipesBegginerFullXp[0]?.name}
-                    className={`z-10 flex flex-col object-cover ${`h-72 w-52`}
+  return (
+    <div className="relative h-screen flex flex-col md:flex-row md:justify-around items-center">
+      <Helmet>
+        <title>
+          
+        </title>
+        <meta
+          name="description"
+          content=""
+        />
+      </Helmet>
+      <BackButton styleCSS="mt-14 md:mt-16" />
+      {isMobile && (
+        <div className="flex flex-row justify-center mt-24 items-center">
+          <img
+            src={getImagePath(recipesBegginerFullXp[0]?.image)}
+            alt={recipesBegginerFullXp[0]?.name}
+            className={`z-10 flex flex-col object-cover ${`h-72 w-52`}
             rounded-2xl | justify-self-center smooth-image
                     }`}
-                    loading="lazy"
-                ></img>
-                <img
-                    src={getImagePath(recipesBegginerFullXp[0]?.image)}
-                    alt={recipesBegginerFullXp[0]?.name}
-                    className={`absolute right-0 top-16 flex flex-col object-cover ${`h-72 w-40`}
+            loading="lazy"
+          ></img>
+          <img
+            src={getImagePath(recipesBegginerFullXp[0]?.image)}
+            alt={recipesBegginerFullXp[0]?.name}
+            className={`absolute right-0 top-16 flex flex-col object-cover ${`h-72 w-40`}
             rounded-l-2xl | justify-self-center smooth-image
                     }`}
-                    loading="lazy"
-                ></img>
-                <img
-                    src={getImagePath(recipesBegginerFullXp[0]?.image)}
-                    alt={recipesBegginerFullXp[0]?.name}
-                    className={`absolute left-0 top-32 flex flex-col object-cover ${`h-72 w-40`}
+            loading="lazy"
+          ></img>
+          <img
+            src={getImagePath(recipesBegginerFullXp[0]?.image)}
+            alt={recipesBegginerFullXp[0]?.name}
+            className={`absolute left-0 top-32 flex flex-col object-cover ${`h-72 w-40`}
             rounded-r-2xl | justify-self-center smooth-image
                     }`}
-                    loading="lazy"
-                ></img>
-            </div>}
-
-            <div className="msm:text-center msm:mt-6 p-6">
-                <p className="text-2xl font-semibold">
-                    Se lancer dans le fait-maison avec{" "}
-                    {!isMobile && <br/>}
-                    <span className="text-green">3</span> recettes simples
-                </p>
-                <p className="text-base font-normal mt-6">
-                    Avec la box <b>Premiers pas</b>, débute en achetant uniquement les{" "}
-                    {!isMobile && <br/>}
-                    ingrédients dont tu as besoin !
-                </p>
-                <div className="md:w-3/4 mt-6">
-                    <Link to={RouteName.greenitFullXp}>
-                        <button
-                            onClick={() => {
-                                localStorage.setItem(
-                                    "currentMenuGreenitFullXp",
-                                    menuFullXp[0]?.name
-                                );
-                            }}
-                            className={`btn-single-page justify-center mt-2 p-2 h-10 flex w-full bg-green text-white`}
-                        >
-                            Je commande
-                        </button>
-                    </Link>
-                    <Link to={RouteName.findOUtMoreBoxGreentilFullXP}>
-                        <button
-                            className={`btn-single-page justify-center mb-4 mt-4 p-2 h-10 flex w-full bg-white text-green`}
-                        >
-                            En savoir plus
-                        </button>
-                    </Link>
-                </div>
-            </div>
-            {/* Todo : Refactor into cards */}
-            {!isMobile && <div className="flex flex-row justify-center items-center space-x-8">
-                <div>
-                    <img
-                        src={getImagePath(recipesBegginerFullXp[0]?.image)}
-                        alt={recipesBegginerFullXp[0]?.name}
-                        className={`flex flex-col object-cover ${`h-80 w-52`}
-            rounded-2xl | justify-self-center smooth-image
-                    }`}
-                        loading="lazy"
-                    ></img>
-                </div>
-                <div className="space-y-4">
-                    <img
-                        src={getImagePath(recipesBegginerFullXp[0]?.image)}
-                        alt={recipesBegginerFullXp[0]?.name}
-                        className={`flex flex-col object-cover ${`h-${imageHeight} w-${imageWidth}`}
-            rounded-2xl | justify-self-center smooth-image
-                    }`}
-                        loading="lazy"
-                    ></img>
-                    <img
-                        src={getImagePath(recipesBegginerFullXp[0]?.image)}
-                        alt={recipesBegginerFullXp[0]?.name}
-                        className={`flex flex-col object-cover ${`h-${imageHeight} w-${imageWidth}`}
-            rounded-2xl | justify-self-center smooth-image
-                    }`}
-                        loading="lazy"
-                    ></img>
-                </div>
-            </div>}
-
+            loading="lazy"
+          ></img>
         </div>
-    );
+      )}
+
+      <div className="msm:text-center msm:mt-6 p-6">
+        <p className="text-2xl font-semibold">
+          Se lancer dans le fait-maison avec {!isMobile && <br />}
+          <span className="text-green">3</span> recettes simples
+        </p>
+        <p className="text-base font-normal mt-6">
+          Avec la box <b>Premiers pas</b>, débute en achetant uniquement les{" "}
+          {!isMobile && <br />}
+          ingrédients dont tu as besoin !
+        </p>
+        <div className="md:w-3/4 mt-6">
+          <Link to={RouteName.greenitFullXp}>
+            <button
+              onClick={() => {
+                localStorage.setItem(
+                  "currentMenuGreenitFullXp",
+                  menuFullXp[0]?.name
+                );
+              }}
+              className={`btn-single-page justify-center mt-2 p-2 h-10 flex w-full bg-green text-white`}
+            >
+              Je commande
+            </button>
+          </Link>
+          <Link to={RouteName.findOUtMoreBoxGreentilFullXP}>
+            <button
+              className={`btn-single-page justify-center mb-4 mt-4 p-2 h-10 flex w-full bg-white text-green`}
+            >
+              En savoir plus
+            </button>
+          </Link>
+        </div>
+      </div>
+      {/* Todo : Refactor into cards */}
+      {!isMobile && (
+        <div className="flex flex-row justify-center items-center space-x-8">
+          <div>
+            <img
+              src={boxStepsLessive}
+              alt={recipesBegginerFullXp[0]?.name}
+              className={`flex flex-col object-cover ${`h-80 w-52`}
+            rounded-2xl | justify-self-center smooth-image
+                    }`}
+              loading="lazy"
+            ></img>
+          </div>
+          <div className="space-y-4">
+            <img
+              src={boxStepsSavon}
+              alt={recipesBegginerFullXp[1]?.name}
+              className={`flex flex-col object-cover ${`h-${imageHeight} w-${imageWidth}`}
+            rounded-2xl | justify-self-center smooth-image
+                    }`}
+              loading="lazy"
+            ></img>
+            <img
+              src={boxStepsCreme}
+              alt={recipesBegginerFullXp[2]?.name}
+              className={`flex flex-col object-cover ${`h-${imageHeight} w-${imageWidth}`}
+            rounded-2xl | justify-self-center smooth-image
+                    }`}
+              loading="lazy"
+            ></img>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default StartDiyGreenitFullXp;

@@ -134,9 +134,15 @@ import explorer from "./explorer.svg";
 import creator from "./influencer.svg";
 
 // FUll XP GREENIT
-import boxGreenit from './box_greenit.gif';
-import boxGreenitMobile from './GreenitFullXpGIFMobile.gif';
-import boxIngredient from "./visage_recette.jpeg";
+import boxGreenit from "./GIFDesktop_Box_GIY.gif";
+import boxGreenitMobile from "./GIFMobile_Box_DIY.gif";
+import boxIngredientCreme from "./image_creme.png";
+import boxIngredientLessive from "./image_lessive.png";
+import boxIngredientSavon from "./image_savon.png";
+
+import boxStepsCreme from "./image_box_DIY_1.jpeg";
+import boxStepsLessive from "./image_box_DIY_2.jpeg";
+import boxStepsSavon from "./image_box_DIY_3.jpeg";
 
 export {
   wellbeing,
@@ -246,5 +252,10 @@ export {
   gifModalProfil,
   boxGreenit,
   boxGreenitMobile,
-  boxIngredient
+  boxIngredientCreme,
+  boxIngredientLessive,
+  boxIngredientSavon,
+  boxStepsCreme,
+boxStepsLessive,
+boxStepsSavon,
 };

@@ -15,29 +15,30 @@ const userGreenit = {
     },
 };
 
+
 export const recipesBegginerFullXp = [
     {
-        id: "0abe3c2c-1883-46db-a2c6-81ee46f7475d",
-        urlId: "baume-a-levres",
-        image: "user/Andrrbr/recipe/Baume_a_levres.jpeg",
+        id: "57d20e4b-72e7-48ce-99e1-839c75cb1566",
+        urlId: "lessive-liquide-maison",
+        image: "user/anais/recipe/lessive_maison_liquide.jpg",
         name: "Lessive maison",
         numberOfIngredients: 2,
         quantity: 2,
         difficulty: RecipeDifficulty.Beginner,
     },
     {
-        id: "e322ed9a-5568-4261-84a2-f2f837361368",
-        urlId: "baume-a-levres",
-        image: "user/Andrrbr/recipe/Baume_a_levres.jpeg",
+        id: "d9c8be17-1997-48de-adac-433121693b40",
+        urlId: "savon-solide-tout-en-un",
+        image: "user/Greenit/recipe/savon_tout_en_un.jpeg",
         name: "Savon solide",
         numberOfIngredients: 1,
         quantity: 1,
         difficulty: RecipeDifficulty.Beginner,
     },
     {
-        id: "bf8c72c9-f642-488d-9e41-f1cab802a142",
-        urlId: "baume-a-levres",
-        image: "user/Andrrbr/recipe/Baume_a_levres.jpeg",
+        id: "3b349672-a3b4-4eb5-a063-41eb79e5b542",
+        urlId: "creme-de-jour-debutant",
+        image: "user/Greenit/recipe/creme_jour_debutant.jpeg",
         name: "Crème de jour",
         numberOfIngredients: 4,
         quantity: 1,

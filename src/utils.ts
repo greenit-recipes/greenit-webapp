@@ -1,6 +1,6 @@
 // SOURCE = https://ohdoylerules.com/snippets/tailwind-screens-in-js/
 
-import {boxIngredient, corps, fridge, maison, premierspas, visage, zeroWaste} from "icons";
+import { boxIngredientCreme, boxIngredientLessive, boxIngredientSavon, corps, fridge, maison, premierspas, visage, zeroWaste } from "icons";
 
 export const getBreakpoint = (screen = "") => {
     // "Theme" is an alias to where you keep your tailwind.config.js - most likely your project root
@@ -90,19 +90,19 @@ export const landingPageCategories = [
 export const boxFullXpIngredients = [
     {
         id:1,
-        icon: boxIngredient,
+        icon: boxIngredientCreme,
         title: "Savon solide pour le corps",
         quantity: 1,
     },
     {
         id:2,
-        icon: boxIngredient,
+        icon: boxIngredientLessive,
         title: "Crème de jour",
         quantity: 1,
     },
     {
         id:3,
-        icon: boxIngredient,
+        icon: boxIngredientSavon,
         title: "Lessives liquides",
         quantity: 2,
     }
