@@ -1,6 +1,6 @@
 import { RouteName } from "App";
 import "components/layout/Navbar.css";
-import React, {useEffect, useState} from "react";
+import React, {Suspense, useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import authService from "services/auth.service";
 import { SearchBar } from ".";
@@ -9,6 +9,7 @@ import useIsMobile from "../../hooks/isMobile";
 import { logo } from "../../icons";
 import { NavButton } from "../misc/NavButton";
 import {hasBoxBeginnerUrl} from "../../helpers/beginnerbox.helper";
+import { Loading } from "components/layout/Loading";
 
 const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
 
@@ -71,6 +72,7 @@ export const Navbar: React.FC = () => {
             </div>
           ) : (
             <div className="grid w-full justify-items-end">
+                  <Suspense fallback={<Loading />}>
               <ModalLogGreenit
                 btn={
                   <>
@@ -86,6 +88,7 @@ export const Navbar: React.FC = () => {
                 }
                 show={hasUrl}
               ></ModalLogGreenit>
+              </Suspense>
             </div>
           )}
         </div>
@@ -141,7 +144,9 @@ export const Navbar: React.FC = () => {
                   Mon profil
                 </h2>
               </Link>
-            ) : (
+            ) : (                  <Suspense fallback={<Loading />}>
+
+
               <ModalLogGreenit
                 isModalLogin={true}
                 show={hasUrl}
@@ -151,6 +156,7 @@ export const Navbar: React.FC = () => {
                   </div>
                 }
               ></ModalLogGreenit>
+              </Suspense>
             )}
           </div>
         </div>
@@ -479,6 +485,8 @@ export const Navbar: React.FC = () => {
               </div>
             </Link>
           ) : (
+            <Suspense fallback={<Loading />}>
+
             <ModalLogGreenit
               show={hasUrl}
               btn={
@@ -494,6 +502,7 @@ export const Navbar: React.FC = () => {
                 </div>
               }
             ></ModalLogGreenit>
+            </Suspense>
           )}
         </div>
       </div>
