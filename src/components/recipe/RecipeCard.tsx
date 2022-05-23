@@ -121,7 +121,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
                         nbOfIngredient={recipe?.numberOfIngredients}
                         difficulty={
                             recipe?.difficulty === RecipeDifficulty.Beginner
-                                ? "Facile"
+                                 ? "Facile"
                                 : recipe?.difficulty === RecipeDifficulty.Intermediate
                                     ? "Moyen"
                                     : "Expert"

@@ -7,7 +7,7 @@ import React, { Suspense } from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import FullXPRoute from "./components/route/FullXPRoute";
+import FullXPRoute from "components/route/FullXPRoute";
 
 const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
 const ActivateAccount = React.lazy(() => import("pages/activate"));

@@ -35,7 +35,7 @@ const steps = [
         alt: 'crème',
         imgSrc:
             [cremeFullXp],
-        style: 'rounded-lg shadow-lg h-48 w-64'
+        style: 'object-cover rounded-lg shadow-lg h-44 w-80 mt-10'
     },
 ];
 const FindOutMoreBoxGreentilFullXP = () => {
@@ -53,7 +53,7 @@ const FindOutMoreBoxGreentilFullXP = () => {
                 />
             </Helmet>
 
-            <div className="relative flex flex-col md:justify-around items-center">
+            <div className="md:h-screen relative flex flex-col md:justify-around items-center">
                 <BackButton styleCSS="mt-6 md:mt-16"/>
                 <div className="flex flex-col mb-6 mt-20 md:mt-32 md:ml-40 msm:text-center md:self-start">
                     {" "}
@@ -86,7 +86,7 @@ const FindOutMoreBoxGreentilFullXP = () => {
                                 ))}
                             </div> : <img
                                 loading="lazy"
-                                className={`${item.style} mt-4 | ml-auto mr-auto | flex place-self-center`}
+                                className={`${item.style} | ml-auto mr-auto | flex place-self-center`}
                                 alt={item.alt}
                                 src={item.imgSrc[0]}
                             ></img>}
@@ -98,7 +98,7 @@ const FindOutMoreBoxGreentilFullXP = () => {
                 </div>
 
 
-                <div className="mt-0 md:mt-10 md:ml-40 md:self-start msm:text-center">
+                <div className="mt-0 md:ml-40 md:self-start msm:text-center md:mb-12">
                     <p>Alors, tenté.e ?</p>
                     {!isMobile && <Link to={RouteName.greenitFullXp}>
                         <button
