@@ -1,9 +1,7 @@
+import { RouteName } from "App";
 import useIsMobile from "hooks/isMobile";
-import {boxGreenit, boxGreenitMobile} from "icons";
-import {Link, useHistory} from "react-router-dom";
-import {RouteName} from "App";
-import {useQuery} from "@apollo/client";
-import {GET_FEATURE_BY_NAME} from "../../../services/feature.service";
+import { boxGreenit, boxGreenitMobile } from "icons";
+import { useHistory } from "react-router-dom";
 
 interface GreenitFullXpHeadbandProps {
     showModal: any;

@@ -3,7 +3,7 @@ import { getLogoAndNameByUrl } from "helpers/social-media.helper";
 import HTMLReactParser from "html-react-parser";
 import "./HeaderRecipe.css";
 import { CgProfile } from "react-icons/cg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isEmpty } from "lodash";
 
 interface IHeaderRecipe {
@@ -18,10 +18,15 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
   parentFcn,
 }) => {
   const [isDisplay, setIsDisplay] = useState(false);
+  const [height, setHeight] = useState(0);
+  useEffect(() => {
+    parentFcn(height);
+  });
   return (
     <div
       ref={(divElement) => {
-        if (parentFcn) parentFcn(divElement?.clientHeight);
+        if (divElement && divElement.clientHeight !== 0)
+          setHeight(divElement.clientHeight);
       }}
       className="fixed z-0 grid w-full pb-20 justify-items-center bgColorHeaderRecipe"
     >

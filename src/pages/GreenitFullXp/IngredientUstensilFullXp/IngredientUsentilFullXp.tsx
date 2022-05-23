@@ -60,7 +60,7 @@ const IngredientUsentilFullXp = () => {
                             className="w-12 h-12 rounded"
                             alt="ingrédients"
                             loading="lazy"
-                            src={getImagePath(ingredientBeginner[1].image)}
+                            src={getImagePath("ingredient/vitamine_e.jpeg")}
                         ></img>
                         <div className="w-4/6 ml-4"> 7 ingrédients dans la box</div>
                         <div className="w-1/6 absolute right-0">

@@ -19,7 +19,7 @@ const userGreenit = {
 export const recipesBegginerFullXp = [
     {
         id: "3b349672-a3b4-4eb5-a063-41eb79e5b542",
-        urlId: "lessive-liquide-maison",
+        urlId: "lessive-au-geranium",
         image: "user/anais/recipe/lessive_maison_liquide.jpg",
         name: "Lessive maison",
         numberOfIngredients: 4,

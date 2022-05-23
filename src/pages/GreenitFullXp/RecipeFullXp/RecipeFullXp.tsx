@@ -95,7 +95,7 @@ const RecipeFullXP = () => {
                             />
                         }
                         symbol=""
-                        number={10}
+                        number={11}
                         text="Total des substances épargnées"
                     />
                     <CircleGreenit
@@ -113,7 +113,7 @@ const RecipeFullXP = () => {
                         }
                         customClassName="ml-4"
                         symbol="€"
-                        number={12}
+                        number={8}
                         text="Total argent économisé"
                     />
                     <CircleGreenit
@@ -131,7 +131,7 @@ const RecipeFullXP = () => {
                         }
                         customClassName="ml-4"
                         symbol="g"
-                        number={214}
+                        number={158}
                         text="Total de plastiques évités"
                     />
                 </div>
