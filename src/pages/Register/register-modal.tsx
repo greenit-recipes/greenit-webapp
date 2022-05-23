@@ -183,18 +183,19 @@ export const RegisterModal: React.FC<{
     }) => {
         const getValue = (field: any) => field.value;
         const setValue = (object: any, field: any, value: any) => object[field] = value;
-        let variables = {
+        const variables = {
             email: data.email,
             username: data.utilisateur,
             password1: data.password,
             password2: data.passwordConfirmation,
             userCategoryLvl: getValue(data.userCategoryLvl),
             userCategoryAge: getValue(data.userCategoryAge),
-            isFollowNewsletter: data.isFollowNewsletter
+            isFollowNewsletter: data.isFollowNewsletter,
+            isBeginnerBox: true,
         }
         //Add the field optionally to avoid defaults
         if (persistBoxPurchaseOnRegister()) {
-            setValue(variables, 'isBeginnerBox', true)
+            omit(variables, ['isBeginnerbox'])
         }
 
         authService.removeToken();
@@ -243,7 +244,7 @@ export const RegisterModal: React.FC<{
                             <div className="flex flex-col w-2/4 ">
                                 <div
                                     className="flex flex-col items-center transition border-4 shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white border-blue">
-                                    <div className="size-emoji-modal">🕵️‍♀️ </div>
+                                    <div className="size-emoji-modal">🕵️‍♀️</div>
                                     <div className="mb-2">Explorateur</div>
                                 </div>
                                 <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
@@ -280,7 +281,6 @@ export const RegisterModal: React.FC<{
                         icon={false ? <div className="animate-spin mr-4"><BiLoaderAlt/></div> :
                             <IoLogoFacebook className="w-6 h-6 mr-4"/>}
                     />
-:
                     {errorLoginFb && (
                         <div className="mt-6 text-xs italic text-red">{errorLoginFb}</div>
                     )}

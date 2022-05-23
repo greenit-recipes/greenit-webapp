@@ -8,6 +8,7 @@ import {boxFullXpIngredients} from "utils";
 import {NumberedCircle} from "components/misc/NumberedCircle";
 import Auth from "services/auth.service";
 import {boxConfirmation, arrowFullXp, arrowFullXpMobile} from "icons";
+import {FaPlay} from "react-icons/fa"
 import "../fullXp.css";
 
 const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
@@ -62,7 +63,8 @@ const ConfirmationFullXp: React.FC = () => {
                             accès aux recettes et aux vidéos d’accompagnement !
                         </h3>
                         <Link to={RouteName.profil}>
-                            <button id="commande-box-confirmation-mon-espace-diy" className="h-10 rounded-md bg-green md:w-72 drop-shadow-lg">
+                            <button id="commande-box-confirmation-mon-espace-diy"
+                                    className="h-10 rounded-md bg-green md:w-72 drop-shadow-lg">
                                 <h2 className="text-white">
                                     Mon espace DIY
                                 </h2>
@@ -91,6 +93,7 @@ const ConfirmationFullXp: React.FC = () => {
                             {isMobile && <img src={arrowFullXpMobile}
                                               alt="flèche mobile"
                                               className="absolute right-0 top-12"
+
                             />}
                         </div>
                         {/* Image placeholder */}
@@ -99,6 +102,7 @@ const ConfirmationFullXp: React.FC = () => {
                                  alt="Confirmation Box Full Xp"
                                  className="object-cover w-52 h-36 rounded-lg"
                             />
+                            <FaPlay className="absolute text-white text-2xl top-14 play-button"/>
                             {!isMobile && <img src={arrowFullXp}
                                                alt="flèche"
                                                className="absolute arrow-desktop"
