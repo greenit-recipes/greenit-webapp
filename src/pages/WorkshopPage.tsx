@@ -218,12 +218,12 @@ const WorkshopPage = () => {
                   <h2>Prochain ateliers :</h2>
                 </div>
                 <div className="p-4 inline-block shadow-lg rounded-2xl">
-                  <h5 className="">Mercredi 20 Avril</h5>
-                  <h5 className="text-sm">18h30 - 20h00</h5>
+                  <h5 className="">Mardi 28 Juin</h5>
+                  <h5 className="text-sm">19-20h</h5>
                   <h5 className="text-sm">Prix : 5€</h5>
                   <div className="flex justify-center items-center align-middle">
                     <a
-                      href="https://www.eventbrite.fr/e/billets-premiers-pas-en-diy-et-recette-de-lessive-greenit-community-314434089827"
+                      href="https://www.eventbrite.fr/e/billets-premiers-pas-en-diy-et-recette-de-lessive-greenit-community-347098720617"
                       target="_blank"
                     >
                       <button id="book1" className="button_reserver">

@@ -20,7 +20,7 @@ export const recipesBegginerFullXp = [
     {
         id: "3b349672-a3b4-4eb5-a063-41eb79e5b542",
         urlId: "lessive-au-geranium",
-        image: "user/anais/recipe/lessive_maison_liquide.jpg",
+        image: "user/Greenit/recipe/lessive_geranium.jpeg",
         name: "Lessive maison",
         numberOfIngredients: 4,
         quantity: 2,
