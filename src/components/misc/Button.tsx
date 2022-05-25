@@ -1,6 +1,6 @@
 import React from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
-import {BiLoaderAlt} from "react-icons/all";
+import {BiLoaderAlt} from "react-icons/bi";
 
 interface ButtonProps {
   type: "blue" | "green" | "yellow" | "orange" | "grey" | "red" | "blueL";

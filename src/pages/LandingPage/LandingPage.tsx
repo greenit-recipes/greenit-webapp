@@ -237,6 +237,7 @@ const LandingPage = () => {
                     </div>
                 </div>
             ) : (
+                //@ts-ignore
                 <Carousel
                     swipeable={true}
                     showDots={true}
@@ -334,6 +335,7 @@ const LandingPage = () => {
                     </div>
                 </div>
             ) : (
+                //@ts-ignore
                 <Carousel
                     swipeable={true}
                     showDots={true}
@@ -402,6 +404,7 @@ const LandingPage = () => {
                 <div
                     className="grid w-4/5 grid-cols-1 grid-rows-2 gap-2 pt-4 sm:grid-cols-2 sm:grid-rows-1 md:gap-8 lg:w-3/5">
                     <div className="relative h-64 md:h-80">
+                        {/*@ts-ignore*/}
                         <ReactPlayer
                             url="https://youtu.be/ZeNRzJg0CKo"
                             className="absolute top-0 left-0 react-player"
@@ -417,6 +420,7 @@ const LandingPage = () => {
                     </div>
 
                     <div className="relative h-64 md:h-80">
+                        {/*@ts-ignore*/}
                         <ReactPlayer
                             url="https://youtu.be/tHAWH6fUqEo"
                             className="absolute top-0 left-0 react-player"

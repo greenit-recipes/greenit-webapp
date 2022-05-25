@@ -231,6 +231,7 @@ const RecipeListPage = () => {
                   after: data?.allRecipes?.pageInfo?.endCursor,
                   first: 10,
                 },
+                //@ts-ignore
                 updateQuery: (prev, next) => {
                   const fetchMoreResult = next.fetchMoreResult as
                     | RecipesQuery

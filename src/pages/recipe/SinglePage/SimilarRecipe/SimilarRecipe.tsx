@@ -61,6 +61,7 @@ export const SimilarRecipe: React.FC<ISimilarRecipe> = (data) => {
           </div>
         </div>
       ) : (
+          //@ts-ignore
         <Carousel
           swipeable={true}
           showDots={true}

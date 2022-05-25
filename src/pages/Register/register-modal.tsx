@@ -21,7 +21,7 @@ import {
 import React, { useState } from "react";
 import FacebookLogin from "react-facebook-login";
 import { Controller, useForm } from "react-hook-form";
-import { BiLoaderAlt } from "react-icons/all";
+import { BiLoaderAlt } from "react-icons/bi";
 import { IoLogoFacebook } from "react-icons/io5";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import Select from "react-select";

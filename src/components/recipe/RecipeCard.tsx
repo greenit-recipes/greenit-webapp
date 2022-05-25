@@ -7,7 +7,7 @@ import {RecipeDifficulty} from "../../graphql";
 import useIsMobile from "../../hooks/isMobile";
 import {FavouriteField} from "../layout/FavouriteField";
 import {Icon} from "../misc";
-import {BsFillCheckCircleFill} from "react-icons/all";
+import {BsFillCheckCircleFill} from "react-icons/bs";
 import {IconContext} from "react-icons";
 import "./RecipeCard.css";
 

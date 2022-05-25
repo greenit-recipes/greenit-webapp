@@ -111,6 +111,7 @@ const TutoFullXpBeginner = () => {
                 </h3>{" "}
                 <div className="flex flex-col lg:flex-row items-center ml-0  mb-10">
                     <div className="h-60 lg:h-96 lg:w-2/6 rounded-2xl w-4/5">
+                        {/*@ts-ignore*/}
                         <ReactPlayer
                             // @ts-ignore
                             url={tutoFullXpBeginner?.videoUrl}

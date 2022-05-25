@@ -17,7 +17,7 @@ import authService, {
 import * as yup from "yup";
 import "./LoginModal.css";
 import useGraphQlLoading from "../../hooks/useGraphqlLoading";
-import {BiLoaderAlt} from "react-icons/all";
+import {BiLoaderAlt} from "react-icons/bi";
 import {
     beginnerBoxCookieExist,
     HAS_PURCHASED_BEGINNER_BOX,

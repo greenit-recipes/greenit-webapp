@@ -417,6 +417,7 @@ const RecipeSinglePage = () => {
                     ></img>
                   </div>
                 ) : (
+                    //@ts-ignore
                   <ReactPlayer
                     // @ts-ignore
                     url={
