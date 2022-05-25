@@ -196,7 +196,7 @@ const RecipeSinglePage = () => {
                     customClassName="ml-3 lg:ml-10"
                     recipe={data?.recipe}
                   />
-                  <div className="flex w-10 h-10 ml-3 lg:ml-10 w-28 btn-single-page">
+                  <div className="flex h-10 ml-3 lg:ml-10 w-28 btn-single-page">
                     <RWebShare
                       data={{
                         text: recipe?.titleSeo,

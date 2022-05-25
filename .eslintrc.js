@@ -1,3 +1,4 @@
+//Todo : Setup a proper linting configuration
 module.exports = {
   "env": {
     "browser": true,
