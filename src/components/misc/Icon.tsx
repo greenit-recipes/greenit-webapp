@@ -1,10 +1,5 @@
-import React from "react";
-import {
-  logo,
-  ingredients1,
-  ingredients2,
-  ingredients3,
-} from "../../icons";
+import React from 'react';
+import { logo, ingredients1, ingredients2, ingredients3 } from '../../icons';
 
 interface IconProps {
   text?: string;
@@ -22,7 +17,6 @@ export const Icon: React.FC<IconProps> = ({
   difficulty,
 }) => {
   const types = {
-
     //NbIngredients avec icons asssociés, à refacto
 
     1: ingredients1,
@@ -59,7 +53,9 @@ export const Icon: React.FC<IconProps> = ({
           <img
             alt="greenit logo"
             src={itemNbOfIngredients}
-            className={`h-${height ?? 7} w-${width ?? 6} lg:h-${height ?? 9} lg:w-${width ?? 8} self-center pb-1`}
+            className={`h-${height ?? 7} w-${width ?? 6} lg:h-${
+              height ?? 9
+            } lg:w-${width ?? 8} self-center pb-1`}
           />
         </div>
       </div>

@@ -1,5 +1,5 @@
-import React from "react";
-import { Button } from "components/misc/Button";
+import React from 'react';
+import { Button } from 'components/misc/Button';
 
 interface IModalListPage {
   isShowModal: boolean;
@@ -7,7 +7,7 @@ interface IModalListPage {
   nbrFilter: any;
 }
 
-export const ModalListPage: React.FC<IModalListPage> = (props) => {
+export const ModalListPage: React.FC<IModalListPage> = props => {
   return (
     <>
       <Button
@@ -15,7 +15,14 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
         type="grey"
         onClick={() => props.parentFunction(true)}
       >
-        { props.nbrFilter === 0 ? (<span>Ajouter un filtre</span>) : (<span> Filtre{ props.nbrFilter > 1 ? "s" :""}  ({props.nbrFilter}) </span>)} 
+        {props.nbrFilter === 0 ? (
+          <span>Ajouter un filtre</span>
+        ) : (
+          <span>
+            {' '}
+            Filtre{props.nbrFilter > 1 ? 's' : ''} ({props.nbrFilter}){' '}
+          </span>
+        )}
       </Button>
       {props.isShowModal ? (
         <>
@@ -31,7 +38,9 @@ export const ModalListPage: React.FC<IModalListPage> = (props) => {
             className="bg-white overflow-x-hidden 
             overflow-y-auto fixed inset-0 overscroll-contain z-30 outline-none focus:outline-none"
           >
-            <div className="absolute w-full top-10 mt-4 pb-20">{props.children}</div>
+            <div className="absolute w-full top-10 mt-4 pb-20">
+              {props.children}
+            </div>
           </div>
           <div className="grid justify-items-center fixed bottom-0 h-20 z-40 bg-white w-full">
             <Button

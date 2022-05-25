@@ -1,13 +1,13 @@
-import { RouteName } from "App";
+import { RouteName } from 'App';
 import { Navbar } from "components";
-import { boxStepsCreme, boxStepsLessive, boxStepsSavon } from "icons";
-import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
-import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
-import React from "react";
-import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
-import { BackButton } from "../../../components/misc/BackButton";
-import useIsMobile from "../../../hooks/isMobile";
+import { boxStepsCreme, boxStepsLessive, boxStepsSavon } from 'icons';
+import { recipesBegginerFullXp } from 'pages/GreenitFullXp/FullXpHelper';
+import { menuFullXp } from 'pages/GreenitFullXp/MenuFullXp/MenuHelper';
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
+import { BackButton } from '../../../components/misc/BackButton';
+import useIsMobile from '../../../hooks/isMobile';
 
 const StartDiyGreenitFullXp = () => {
   const isMobile = useIsMobile();
@@ -20,23 +20,23 @@ const StartDiyGreenitFullXp = () => {
       {" "}
       <Navbar />
       <div className="relative h-screen flex flex-col md:flex-row md:justify-around items-center">
-        <Helmet>
-          <title>Coffret DIY débutants - Réalisez vos produits maison</title>
-          <meta
-            name="description"
-            content="Coffret pour les débutants en fait-maison. Une box spécialement conçue pour les premiers pas en DIY. Réalisez tous vos produits hygiènes, cosmétiques et ménagers. Greenit vous livre des ingrédients et vous réalisez !"
-          />
-        </Helmet>
-        <BackButton
-          idButton="se-lancer-dans-le-fait-maison"
-          styleCSS="mt-14 md:mt-16"
+      <Helmet>
+        <title>Coffret DIY débutants - Réalisez vos produits maison</title>
+        <meta
+          name="description"
+          content="Coffret pour les débutants en fait-maison. Une box spécialement conçue pour les premiers pas en DIY. Réalisez tous vos produits hygiènes, cosmétiques et ménagers. Greenit vous livre des ingrédients et vous réalisez !"
         />
-        {isMobile && (
-          <div className="flex flex-row justify-center mt-24 items-center">
-            <img
-              src={boxStepsCreme}
-              alt={recipesBegginerFullXp[2]?.name}
-              className={`z-10 flex flex-col object-cover ${`h-72 w-52`}
+      </Helmet>
+      <BackButton
+        idButton="se-lancer-dans-le-fait-maison"
+        styleCSS="mt-14 md:mt-16"
+      />
+      {isMobile && (
+        <div className="flex flex-row justify-center mt-24 items-center">
+          <img
+            src={boxStepsCreme}
+            alt={recipesBegginerFullXp[2]?.name}
+            className={`z-10 flex flex-col object-cover ${`h-72 w-52`}
             rounded-2xl | justify-self-center smooth-image
                     }`}
               loading="lazy"
@@ -66,7 +66,7 @@ const StartDiyGreenitFullXp = () => {
             <span className="text-green">3</span> recettes simples
           </p>
           <p className="text-base font-normal mt-6">
-            Avec la box <b>Premiers pas</b>, débute en achetant uniquement les{" "}
+            Avec la box <b>Premiers pas</b>, débute en achetant uniquement les{' '}
             {!isMobile && <br />}
             ingrédients dont tu as besoin !
           </p>
@@ -75,8 +75,8 @@ const StartDiyGreenitFullXp = () => {
               <button
                 onClick={() => {
                   localStorage.setItem(
-                    "currentMenuGreenitFullXp",
-                    menuFullXp[0]?.name
+                    'currentMenuGreenitFullXp',
+                    menuFullXp[0]?.name,
                   );
                 }}
                 className={`btn-single-page justify-center mt-2 p-2 h-10 flex w-full bg-green text-white`}

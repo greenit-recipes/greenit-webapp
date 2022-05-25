@@ -1,4 +1,4 @@
-import { commentaireIcon } from "icons";
+import { commentaireIcon } from 'icons';
 
 interface ICommentField {
   className?: string;

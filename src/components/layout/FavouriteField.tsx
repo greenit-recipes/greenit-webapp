@@ -1,12 +1,12 @@
-import { useMutation } from "@apollo/client";
-import { Loading } from "components/layout/Loading";
-import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
-import React, { Suspense, useState } from "react";
-import authService from "services/auth.service";
-import { likedIconOff, likedIconOn } from "../../icons";
+import { useMutation } from '@apollo/client';
+import { Loading } from 'components/layout/Loading';
+import { ADD_OR_REMOVE_FAVORITE_RECIPE } from 'pages/CreateRecipe/CreateRecipeRequest';
+import React, { Suspense, useState } from 'react';
+import authService from 'services/auth.service';
+import { likedIconOff, likedIconOn } from '../../icons';
 
 const ModalLogGreenit = React.lazy(
-  () => import("components/layout/ModalLogGreenit/ModalLogGreenit")
+  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
 );
 
 interface IFavouriteField {
@@ -30,18 +30,18 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
 }) => {
   const isLoggedIn = authService.isLoggedIn();
   const [isFavorite, setFavorite] = useState(
-    recipe?.isAddToFavoriteByCurrentUser
+    recipe?.isAddToFavoriteByCurrentUser,
   );
 
   const [addOrRemoveFavoriteRecipe] = useMutation(
-    ADD_OR_REMOVE_FAVORITE_RECIPE
+    ADD_OR_REMOVE_FAVORITE_RECIPE,
   );
 
   return (
     <div className="grid justify-items-center">
       {isLoggedIn ? (
         <button
-          className={isBtnDesing ? "btn-single-page" : ""}
+          className={isBtnDesing ? 'btn-single-page' : ''}
           onClick={() => {
             if (!isRefetchData) setFavorite(!isFavorite);
             // @ts-ignore: Object is possibly 'null'.
@@ -57,7 +57,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
           {isFavorite ? (
             <div
               className={`tooltip justify-items-center ${
-                customClassName ? customClassName : "grid"
+                customClassName ? customClassName : 'grid'
               }`}
             >
               <img
@@ -75,7 +75,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
           ) : (
             <div
               className={`tooltip justify-items-center ${
-                customClassName ? customClassName : "grid"
+                customClassName ? customClassName : 'grid'
               }`}
             >
               <img
@@ -94,15 +94,15 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
         </button>
       ) : (
         <div>
-          {" "}
+          {' '}
           {isRecipePage ? (
             <Suspense fallback={<Loading />}>
               <ModalLogGreenit
                 btn={
-                  <button className={isBtnDesing ? "btn-single-page" : ""}>
+                  <button className={isBtnDesing ? 'btn-single-page' : ''}>
                     <div
                       className={`tooltip justify-items-center ${
-                        customClassName ? customClassName : "grid"
+                        customClassName ? customClassName : 'grid'
                       }`}
                     >
                       <img
@@ -123,10 +123,10 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
             <Suspense fallback={<Loading />}>
               <ModalLogGreenit
                 btn={
-                  <button className={isBtnDesing ? "btn-single-page" : ""}>
+                  <button className={isBtnDesing ? 'btn-single-page' : ''}>
                     <div
                       className={`tooltip justify-items-center ${
-                        customClassName ? customClassName : "grid"
+                        customClassName ? customClassName : 'grid'
                       }`}
                     >
                       <img
@@ -135,7 +135,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                         src={likedIconOff}
                         loading="lazy"
                       />
-                      <span className="tooltiptext">Ajouter aux favoris</span>{" "}
+                      <span className="tooltiptext">Ajouter aux favoris</span>{' '}
                     </div>
                   </button>
                 }

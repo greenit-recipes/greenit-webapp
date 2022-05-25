@@ -1,9 +1,9 @@
-import { Container, Button } from "../../../components";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { ADD_USER_TO_NEWSLETTER } from "pages/LandingPage/Components/NewsletterRequest";
-import { useMutation } from "@apollo/client";
+import { Container, Button } from '../../../components';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { ADD_USER_TO_NEWSLETTER } from 'pages/LandingPage/Components/NewsletterRequest';
+import { useMutation } from '@apollo/client';
 
 export const Newsletter: React.FC = () => {
   const schema = yup.object().shape({
@@ -11,7 +11,7 @@ export const Newsletter: React.FC = () => {
   });
 
   const [addUserToNewsletter, { data, loading, error }] = useMutation(
-    ADD_USER_TO_NEWSLETTER
+    ADD_USER_TO_NEWSLETTER,
   );
 
   const {
@@ -34,7 +34,7 @@ export const Newsletter: React.FC = () => {
     <Container className="w-full h-full md:w-3/5" margin={10} itemsCenter>
       <h2 className="text-xl md:text-2xl sm:w-3/4 | px-5 text-center">
         Inscris toi à la newsletter pour découvrir des astuces DIY
-        {"\n"} et être au courant des nouvelles recettes !
+        {'\n'} et être au courant des nouvelles recettes !
       </h2>
 
       <form
@@ -47,7 +47,7 @@ export const Newsletter: React.FC = () => {
           id="email"
           placeholder="Ton email"
           type="email"
-          {...register("email")}
+          {...register('email')}
         ></input>
 
         <div className="grid w-full mt-4 justify-items-center md:mt-0 md:ml-4">

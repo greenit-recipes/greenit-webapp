@@ -1,9 +1,9 @@
-import React from "react";
-import { HiOutlineChevronDown } from "react-icons/hi";
-import {BiLoaderAlt} from "react-icons/bi";
+import React from 'react';
+import { HiOutlineChevronDown } from 'react-icons/hi';
+import { BiLoaderAlt } from 'react-icons/bi';
 
 interface ButtonProps {
-  type: "blue" | "green" | "yellow" | "orange" | "grey" | "red" | "blueL";
+  type: 'blue' | 'green' | 'yellow' | 'orange' | 'grey' | 'red' | 'blueL';
   id?: string;
   rounded?: string;
   className?: string;
@@ -13,7 +13,7 @@ interface ButtonProps {
   href?: string;
   haveArrow?: boolean;
   isArrowDown?: boolean;
-  isLoading?: boolean
+  isLoading?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -36,11 +36,11 @@ export const Button: React.FC<ButtonProps> = ({
       px-3 py-1 bold text-white border-2 border-transparent
       text-sm md:
       ease-linear transition-all duration-150
-      bg-${type ? type : "blue"} 
+      bg-${type ? type : 'blue'} 
       hover:shadow-lg hover:bg-white active:bg-white hover:border-${
-        type ? type : "blue"
-      } hover:text-${type ? type : "blue"} rounded-${
-        rounded ? rounded : "md"
+        type ? type : 'blue'
+      } hover:text-${type ? type : 'blue'} rounded-${
+        rounded ? rounded : 'md'
       } `}
       onClick={() => {
         if (onClick) {
@@ -51,13 +51,17 @@ export const Button: React.FC<ButtonProps> = ({
         }
       }}
     >
-      {isLoading ? <div className="animate-spin"><BiLoaderAlt/></div> : children}
+      {isLoading ? (
+        <div className="animate-spin">
+          <BiLoaderAlt />
+        </div>
+      ) : (
+        children
+      )}
       {haveArrow && (
         <HiOutlineChevronDown
           className={`w-6 h-6 ml-2 cursor-pointer ${
-            isArrowDown
-              ? "section-arrow-up"
-              : "section-arrow-down"
+            isArrowDown ? 'section-arrow-up' : 'section-arrow-down'
           }`}
         />
       )}

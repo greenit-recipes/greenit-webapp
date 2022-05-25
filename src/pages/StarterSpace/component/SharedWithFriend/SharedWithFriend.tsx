@@ -1,17 +1,20 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useMutation } from "@apollo/client";
-import { Button } from "components";
-import { SHARED_WITH_FRIENDS_STARTER_PAGE } from "pages/StarterSpace/component/SharedWithFriend/SharedWIthFriendRequest";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useMutation } from '@apollo/client';
+import { Button } from 'components';
+import { SHARED_WITH_FRIENDS_STARTER_PAGE } from 'pages/StarterSpace/component/SharedWithFriend/SharedWIthFriendRequest';
 
 export const SharedWithFriend: React.FC = () => {
   const schema = yup.object().shape({
-    email: yup.string().email("L'email n'est pas valide.").required("L'email est obligatoire."),
+    email: yup
+      .string()
+      .email("L'email n'est pas valide.")
+      .required("L'email est obligatoire."),
   });
 
   const [addUserToSharedWithFriend, { data, loading, error }] = useMutation(
-    SHARED_WITH_FRIENDS_STARTER_PAGE
+    SHARED_WITH_FRIENDS_STARTER_PAGE,
   );
 
   const {
@@ -37,7 +40,7 @@ export const SharedWithFriend: React.FC = () => {
       </h2>
       <form
         className="flex flex-col gap-4"
-                    // @ts-ignore
+        // @ts-ignore
         onSubmit={handleSubmit(onSubmitHandler)}
       >
         <input
@@ -45,7 +48,7 @@ export const SharedWithFriend: React.FC = () => {
           id="email"
           placeholder="son email"
           type="email"
-          {...register("email")}
+          {...register('email')}
         ></input>
 
         <div className="grid w-full justify-items-center">
@@ -54,20 +57,14 @@ export const SharedWithFriend: React.FC = () => {
           </Button>
         </div>
         <div>
-          <p className="text-xs italic text-red-500">
-            {
-              errors.email?.message
-            }
-          </p>
+          <p className="text-xs italic text-red-500">{errors.email?.message}</p>
         </div>
       </form>
-      {
-        data?.emailSharedWithFriend?.success && (
+      {data?.emailSharedWithFriend?.success && (
         <div className="text-green  md: mb-2 | text-center whitespace-pre-line">
-        L'e-mail a bien été envoyé ! 
+          L'e-mail a bien été envoyé !
         </div>
-        )
-      }
+      )}
     </div>
   );
 };

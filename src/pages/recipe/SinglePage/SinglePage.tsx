@@ -1,47 +1,49 @@
-import { useMutation } from "@apollo/client";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { RouteName } from "App";
-import { Button, Footer, Loading, Navbar } from "components";
-import { FavouriteField } from "components/layout/FavouriteField";
-import { LikeComment } from "components/layout/LikeComment";
-import { MadeRecipe } from "components/layout/MadeRecipe";
-import Modal from "components/layout/Modal/Modal";
-import { UserBadge } from "components/layout/UserBadge";
-import { getImagePath } from "helpers/image.helper";
-import { getObjectSession } from "helpers/session-helper";
-import { momentGreenit } from "helpers/time.helper";
-import { getUuidFromId } from "helpers/user.helper";
-import useIsMobile from "hooks/isMobile";
-import HTMLReactParser from "html-react-parser";
-import { isEmpty } from "lodash";
-import moment from "moment";
-import { IngredientUsentil } from "pages/recipe/SinglePage/IngredientUsentil/IngredientUsentil";
-import { Instruction } from "pages/recipe/SinglePage/Instructions/Instructions";
-import { ModalKpi } from "pages/recipe/SinglePage/modalKpi/modalKpi";
-import { checkUserAlreadyViewRecipe } from "pages/recipe/SinglePage/SinglePage-helper";
-import { HelmetRecipe } from "pages/recipe/SinglePage/SinglePageHelmet";
-import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest";
-import React, { createRef, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { BiTimeFive } from "react-icons/bi";
-import { BsWallet2 } from "react-icons/bs";
-import { GrMoney } from "react-icons/gr";
-import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
-import { RiShareForwardLine } from "react-icons/ri";
-import ReactPlayer from "react-player/lazy";
-import { useHistory, useParams } from "react-router-dom";
-import { RWebShare } from "react-web-share";
-import authService from "services/auth.service";
-import * as yup from "yup";
-import { useRecipeQuery } from "../../../graphql";
-import { noVideo, retourIcon } from "../../../icons";
-import { getSecondsFromDuration } from "../../../utils";
-import { CircleGreenit } from "./CircleGreenit/CircleGreenit";
-import { HeaderRecipe } from "./HeaderRecipe/HeaderRecipe";
-import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
-import "./SinglePage.css";
+import { useMutation } from '@apollo/client';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { RouteName } from 'App';
+import { Button, Footer, Loading, Navbar } from 'components';
+import { FavouriteField } from 'components/layout/FavouriteField';
+import { LikeComment } from 'components/layout/LikeComment';
+import { MadeRecipe } from 'components/layout/MadeRecipe';
+import Modal from 'components/layout/Modal/Modal';
+import { UserBadge } from 'components/layout/UserBadge';
+import { getImagePath } from 'helpers/image.helper';
+import { getObjectSession } from 'helpers/session-helper';
+import { momentGreenit } from 'helpers/time.helper';
+import { getUuidFromId } from 'helpers/user.helper';
+import useIsMobile from 'hooks/isMobile';
+import HTMLReactParser from 'html-react-parser';
+import { isEmpty } from 'lodash';
+import moment from 'moment';
+import { IngredientUsentil } from 'pages/recipe/SinglePage/IngredientUsentil/IngredientUsentil';
+import { Instruction } from 'pages/recipe/SinglePage/Instructions/Instructions';
+import { ModalKpi } from 'pages/recipe/SinglePage/modalKpi/modalKpi';
+import { checkUserAlreadyViewRecipe } from 'pages/recipe/SinglePage/SinglePage-helper';
+import { HelmetRecipe } from 'pages/recipe/SinglePage/SinglePageHelmet';
+import { ADD_COMMENT_TO_RECIPE } from 'pages/recipe/SinglePage/SinglePageRequest';
+import React, { createRef, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { BiTimeFive } from 'react-icons/bi';
+import { BsWallet2 } from 'react-icons/bs';
+import { GrMoney } from 'react-icons/gr';
+import { IoEarthOutline, IoFlaskOutline } from 'react-icons/io5';
+import { RiShareForwardLine } from 'react-icons/ri';
+import ReactPlayer from 'react-player/lazy';
+import { useHistory, useParams } from 'react-router-dom';
+import { RWebShare } from 'react-web-share';
+import authService from 'services/auth.service';
+import * as yup from 'yup';
+import { useRecipeQuery } from '../../../graphql';
+import { noVideo, retourIcon } from '../../../icons';
+import { getSecondsFromDuration } from '../../../utils';
+import { CircleGreenit } from './CircleGreenit/CircleGreenit';
+import { HeaderRecipe } from './HeaderRecipe/HeaderRecipe';
+import { SimilarRecipe } from './SimilarRecipe/SimilarRecipe';
+import './SinglePage.css';
 
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+);
 
 const closest = (needle: number, haystack: any[]) => {
   return haystack.reduce((r: any, b: any) => {
@@ -56,7 +58,7 @@ const closest = (needle: number, haystack: any[]) => {
 };
 
 const schema = yup.object().shape({
-  comment: yup.string().min(2, "Commentaire trop court."),
+  comment: yup.string().min(2, 'Commentaire trop court.'),
 });
 
 const RecipeSinglePage = () => {
@@ -76,7 +78,7 @@ const RecipeSinglePage = () => {
   const { name } = useParams<{ name: string }>();
 
   const { error, loading, data } = useRecipeQuery({
-    fetchPolicy: "no-cache",
+    fetchPolicy: 'no-cache',
     variables: {
       urlId: name,
     },
@@ -84,7 +86,10 @@ const RecipeSinglePage = () => {
 
   const [showModal, setShowModal] = useState(false);
   // @ts-ignore
-  const [typeModal, setTypeModal] = useState<"plastic" | "money" | "substance">(null);
+  const [typeModal, setTypeModal] = useState<'plastic' | 'money' | 'substance'>(
+    /* @ts-ignore */
+    null,
+  );
   const [numberModal, setNumberModal] = useState(0);
 
   // Comments
@@ -109,7 +114,7 @@ const RecipeSinglePage = () => {
     if (!fieldRef) return;
     // @ts-ignore
     fieldRef?.current.scrollIntoView({
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -126,7 +131,7 @@ const RecipeSinglePage = () => {
     const newCommentAddedByCurrentUser = {
       comment: dataForm?.comment,
       numberOfLikes: 0,
-      createdAt: moment().locale("fr"),
+      createdAt: moment().locale('fr'),
       isNewComment: true,
       author: {
         // @ts-ignore
@@ -163,7 +168,8 @@ const RecipeSinglePage = () => {
         <div
           className="absolute left-0 z-20 grid w-8 h-8 ml-3 rounded-full cursor-pointer top-14 lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
           onClick={() => {
-            if (getObjectSession("pathname")) history.goBack(); // need to have previous path
+            if (getObjectSession('pathname'))
+              history.goBack(); // need to have previous path
             else history.push(RouteName.recipes);
           }}
         >
@@ -176,7 +182,7 @@ const RecipeSinglePage = () => {
         />
         <div
           className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage"
-          style={{ marginTop: sizeCretorHeader / 16 - 9 + "rem" }}
+          style={{ marginTop: sizeCretorHeader / 16 - 9 + 'rem' }}
         >
           <div className="w-5/6 mb-10 lg:w-4/6">
             <div className="w-full h-auto">
@@ -213,26 +219,27 @@ const RecipeSinglePage = () => {
                           className="ml-1 justify-self-center w-7 h-7"
                         />
                         <h2 id="shared-recipe" className="ml-2 text-center">
-                          {" "}
-                          partage{" "}
+                          {' '}
+                          partage{' '}
                         </h2>
                       </button>
                     </RWebShare>
                   </div>
                 </div>
               </div>
-              <Modal
-                onClose={() => setShowModal(false)}
-                show={showModal}
-              >
-                <ModalKpi substances={recipe?.substances} nameKpi={typeModal} number={numberModal}></ModalKpi>
+              <Modal onClose={() => setShowModal(false)} show={showModal}>
+                <ModalKpi
+                  substances={recipe?.substances}
+                  nameKpi={typeModal}
+                  number={numberModal}
+                ></ModalKpi>
               </Modal>
               {!isMobile && (
                 <div className="flex items-center justify-center mt-10">
                   <div
                     className="cursor-pointer"
                     onClick={() => {
-                      setTypeModal("substance");
+                      setTypeModal('substance');
                       setNumberModal(recipe?.substances?.length || 0);
                       setShowModal(true);
                     }}
@@ -250,7 +257,7 @@ const RecipeSinglePage = () => {
                   <div
                     className="cursor-pointer"
                     onClick={() => {
-                      setTypeModal("money");
+                      setTypeModal('money');
                       setNumberModal(recipe?.moneySaved || 0);
                       setShowModal(true);
                     }}
@@ -269,7 +276,7 @@ const RecipeSinglePage = () => {
                   <div
                     className="cursor-pointer"
                     onClick={() => {
-                      setTypeModal("plastic");
+                      setTypeModal('plastic');
                       setNumberModal(recipe?.plasticSaved || 0);
                       setShowModal(true);
                     }}
@@ -301,7 +308,7 @@ const RecipeSinglePage = () => {
                     <div
                       className="cursor-pointer"
                       onClick={() => {
-                        setTypeModal("substance");
+                        setTypeModal('substance');
                         setNumberModal(recipe?.substances?.length || 0);
                         setShowModal(true);
                       }}
@@ -319,7 +326,7 @@ const RecipeSinglePage = () => {
                     <div
                       className="cursor-pointer"
                       onClick={() => {
-                        setTypeModal("money");
+                        setTypeModal('money');
                         setNumberModal(recipe?.moneySaved || 0);
                         setShowModal(true);
                       }}
@@ -334,11 +341,11 @@ const RecipeSinglePage = () => {
                         number={recipe?.moneySaved}
                         text="Argent économisé"
                       />
-                    </div>{" "}
+                    </div>{' '}
                     <div
                       className="cursor-pointer"
                       onClick={() => {
-                        setTypeModal("plastic");
+                        setTypeModal('plastic');
                         setNumberModal(recipe?.plasticSaved || 0);
                         setShowModal(true);
                       }}
@@ -367,7 +374,7 @@ const RecipeSinglePage = () => {
                       }
                     </div>
                   ) : (
-                    ""
+                    ''
                   )}
                   <div className="pt-5 pb-2 fontQSemibold ">Conservation</div>
                   <p>{recipe?.expiry}</p>
@@ -403,7 +410,7 @@ const RecipeSinglePage = () => {
                   <h2 className="text-xl">Instructions</h2>
                   <h3 className="mb-5 text-xs">
                     ⤹ Clique sur les numéros pour faire avancer la vidéo
-                  </h3>{" "}
+                  </h3>{' '}
                 </>
               )}
               <div className="h-60 lg:h-96 lg:w-2/6 rounded-2xl">
@@ -412,12 +419,12 @@ const RecipeSinglePage = () => {
                     <img
                       src={noVideo}
                       loading="lazy"
-                      alt={"Pas de vidéo"}
+                      alt={'Pas de vidéo'}
                       className="object-cover rounded-lg h-60 lg:h-80"
                     ></img>
                   </div>
                 ) : (
-                    //@ts-ignore
+                  //@ts-ignore
                   <ReactPlayer
                     // @ts-ignore
                     url={
@@ -446,13 +453,13 @@ const RecipeSinglePage = () => {
                       videoDuration,
                       recipe.instructions.map((item: any) => {
                         return getSecondsFromDuration(item.timestamp);
-                      })
+                      }),
                     );
                     return (
                       <div
                         key={index}
                         className={`flex cursor-pointer mt-5 ${
-                          time > timestamp ? "opacity-in" : "opacity-out"
+                          time > timestamp ? 'opacity-in' : 'opacity-out'
                         }`}
                         onClick={() => {
                           setVideoDuration(timestamp);
@@ -462,7 +469,7 @@ const RecipeSinglePage = () => {
                       >
                         <div
                           className={`h-10 text-xl mr-5 w-10 rounded-full inline-flex items-center justify-center bg-greyL`}
-                          style={{ minWidth: "2.5rem" }}
+                          style={{ minWidth: '2.5rem' }}
                         >
                           {index + 1}
                         </div>
@@ -477,7 +484,7 @@ const RecipeSinglePage = () => {
                     <h2 className="text-xl lg:text-2xl">Instructions</h2>
                     <h3 className="text-xs lg:text-sm">
                       ⤹ Clique sur les numéros pour faire avancer la vidéo
-                    </h3>{" "}
+                    </h3>{' '}
                   </>
                 )}
                 {recipe?.instructions.map((item: any, index: number) => {
@@ -486,13 +493,13 @@ const RecipeSinglePage = () => {
                     videoDuration,
                     recipe.instructions.map((item: any) => {
                       return getSecondsFromDuration(item.timestamp);
-                    })
+                    }),
                   );
                   return (
                     <div
                       key={index}
                       className={`flex cursor-pointer ${
-                        isMobile && time > timestamp ? "hidden" : ""
+                        isMobile && time > timestamp ? 'hidden' : ''
                       }`}
                       onClick={() => {
                         setVideoDuration(timestamp);
@@ -589,7 +596,7 @@ const RecipeSinglePage = () => {
                       className="w-full p-4 mb-4 leading-tight text-gray-700 rounded appearance-none sm:w-3/4 focus:outline-none focus:shadow-outline"
                       id="comment"
                       placeholder="Commentaire"
-                      {...register("comment")}
+                      {...register('comment')}
                     ></textarea>
                     <p className="text-xs italic text-red-500">
                       {errors.comment?.message}

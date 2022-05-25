@@ -1,9 +1,9 @@
-import { Button } from "components/misc/Button";
-import { getObjectSession } from "helpers/session-helper";
-import { find, flattenDeep, map, omit } from "lodash";
-import { FilterBarItem } from "pages/recipe/ListPage/Components/FilterBarItem";
-import { FilterBarSearch } from "pages/recipe/ListPage/Components/FilterBarSearch";
-import React, { useState } from "react";
+import { Button } from 'components/misc/Button';
+import { getObjectSession } from 'helpers/session-helper';
+import { find, flattenDeep, map, omit } from 'lodash';
+import { FilterBarItem } from 'pages/recipe/ListPage/Components/FilterBarItem';
+import { FilterBarSearch } from 'pages/recipe/ListPage/Components/FilterBarSearch';
+import React, { useState } from 'react';
 
 interface FilterBarProps {
   filter: Record<string, any>;
@@ -33,19 +33,19 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   const removeFilter = (valuex: any, key: any) => {
     let currentState = { ...currentFilters };
     currentState[key] = currentState[key].filter(
-      (value: { value: string; title: string }) => value.value !== valuex
+      (value: { value: string; title: string }) => value.value !== valuex,
     );
 
     setCurrentFilters(currentState);
   };
   const isCurrentFilterEmpty =
-    flattenDeep(map(omit(currentFilters, "search"), (x) => x))?.length > 0;
+    flattenDeep(map(omit(currentFilters, 'search'), x => x))?.length > 0;
 
-  const searchText = getObjectSession("filterListPage")?.search
+  const searchText = getObjectSession('filterListPage')?.search;
 
   const removeFilters = () => {
     setCurrentFilters({
-      search: "",
+      search: '',
       // @ts-ignore
       tags: [],
       // @ts-ignore
@@ -58,7 +58,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   const handleFilter = (
     isSelected: boolean,
     option: { title: string; value: string },
-    item: Record<string, any>
+    item: Record<string, any>,
   ) => {
     const state = { ...currentFilters };
     if (state[item.name]) {
@@ -67,7 +67,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       ) {
         state[item.name] = state[item.name].filter(
           (value: { value: string; title: string }) =>
-            value.value !== option.value
+            value.value !== option.value,
         );
       } else {
         state[item.name].push({ value: option.value, title: option.title });
@@ -96,8 +96,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           <div
             className={
               isMobile
-                ? "w-full grid px-4 mt-10 mb-6"
-                : "grid justify-items-center w-full max-w-6xl p-4 rounded-lg"
+                ? 'w-full grid px-4 mt-10 mb-6'
+                : 'grid justify-items-center w-full max-w-6xl p-4 rounded-lg'
             }
           >
             {!isMobile && (
@@ -110,16 +110,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                   setSearch={setSearch}
                   setCurrentFilters={setCurrentFilters}
                 />
-                {searchText &&  searchText.length && (
-                    <div className="mt-4 border-b-1 pb-2 mb-2">
-                      <p className="mb-1">
-                        <span className="text-sm mr-2">Résultats pour </span>{" "}
-                        <span className="font-bold text-lg">
-                          "{searchText}"
-                        </span>
-                      </p>
-                    </div>
-                  )}
+                {searchText && searchText.length && (
+                  <div className="mt-4 border-b-1 pb-2 mb-2">
+                    <p className="mb-1">
+                      <span className="text-sm mr-2">Résultats pour </span>{' '}
+                      <span className="font-bold text-lg">"{searchText}"</span>
+                    </p>
+                  </div>
+                )}
               </div>
             )}
             {isMobile && (
@@ -131,7 +129,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 <h3 className="text-sm text-end">Supprimer les filtres X</h3>
               </Button>
             )}
-            <div className={isMobile ? "" : "grid grid-cols-5 mt-4 w-10/12"}>
+            <div className={isMobile ? '' : 'grid grid-cols-5 mt-4 w-10/12'}>
               {filter.slice(0, 4).map((item: any, index: any) => (
                 <div key={index}>
                   <FilterBarItem
@@ -164,7 +162,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                       </div>
                       <div className="flex flex-wrap">
                         {map(
-                          omit(currentFilters, "search"),
+                          omit(currentFilters, 'search'),
                           (item: any, key: any) =>
                             map(item, (value, index) => (
                               <div
@@ -179,7 +177,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                                   x
                                 </button>
                               </div>
-                            ))
+                            )),
                         )}
                       </div>
                     </div>

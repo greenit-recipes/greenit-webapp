@@ -1,5 +1,5 @@
-import React from "react";
-import useIsMobile from "../../hooks/isMobile";
+import React from 'react';
+import useIsMobile from '../../hooks/isMobile';
 
 interface ContainerProps {
   title?: string;
@@ -17,17 +17,17 @@ export const Container: React.FC<ContainerProps> = ({
   padding,
   itemsCenter,
 }) => {
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
   return (
     <div
       className={`${className} mt-${margin} mb-${margin} ${
-        itemsCenter ? "flex flex-col items-center" : ""
+        itemsCenter ? 'flex flex-col items-center' : ''
       }`}
       style={{
         ...(padding
           ? {
-              paddingLeft: isMobile ? "2%" : "10%",
-              paddingRight: isMobile ? "2%" : "10%",
+              paddingLeft: isMobile ? '2%' : '10%',
+              paddingRight: isMobile ? '2%' : '10%',
             }
           : {}),
       }}

@@ -1,22 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { RouteName } from "../../../App";
-import { logo } from "../../../icons";
-import { boxFullXpIngredients } from "../../../utils";
-import { NumberedCircle } from "../../../components/misc/NumberedCircle";
-import { Helmet } from "react-helmet";
-import ModalLogGreenit from "../../../components/layout/ModalLogGreenit/ModalLogGreenit";
-import useIsMobile from "../../../hooks/isMobile";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { RouteName } from '../../../App';
+import { logo } from '../../../icons';
+import { boxFullXpIngredients } from '../../../utils';
+import { NumberedCircle } from '../../../components/misc/NumberedCircle';
+import { Helmet } from 'react-helmet';
+import ModalLogGreenit from '../../../components/layout/ModalLogGreenit/ModalLogGreenit';
+import useIsMobile from '../../../hooks/isMobile';
 import { Navbar } from "components";
 
 const QRFullXp = () => {
-
-    const isMobile = useIsMobile()
-    return (
-        <>
-            <Helmet>
-                {/*Todo : Fill titles and SEO attributes*/}
-                <title>Connecte-toi pour débuter en DIY | Box Premiers Pas | Greenit
+  const isMobile = useIsMobile();
+  return (
+    <>
+      <Helmet>
+        {/*Todo : Fill titles and SEO attributes*/}
+        <title>
+          Connecte-toi pour débuter en DIY | Box Premiers Pas | Greenit
           Community
         </title>
         <meta name="robots" content="noindex" />
@@ -52,41 +52,53 @@ const QRFullXp = () => {
 
         <div className="self-center flex flex-col md:flex-row md:mt-6 md:space-x-8">
           <div className="flex flex-col mb-5">
-            {isMobile && <span className="mb-1">tu n’as pas encore de compte</span>}
-                        <ModalLogGreenit
-                            btn={
-                                <>
-                                    <button id="bienvenue-box-creer-un-compte" className="h-10 rounded-md bg-green w-72 md:w-60 drop-shadow-lg">
-                                        <h2 id="" className="text-white">
-                                            Créer un compte
-                                        </h2>
-                                    </button>
-                                </>
-                            }
-                        ></ModalLogGreenit>
-                        {!isMobile && <span className="mb-1 md:mt-3">tu n’as pas encore de compte</span>}
-                    </div>
-                    <div className="flex flex-col">
-                        {isMobile && <span className="mb-1">tu as déjà un compte</span>}
-                        <ModalLogGreenit
-                            btn={
-                                <>
-                                    <button id="bienvenue-box-se-connecter" className="h-10 rounded-md bg-blue w-72 md:w-60 drop-shadow-lg">
-                                        <h2 id="" className="text-white">
-                                            Se connecter
-                                        </h2>
-                                    </button>
-                                </>
-                            }
-                            isModalLogin={true}
-                        ></ModalLogGreenit>
-                        {!isMobile && <span className="mb-1 md:mt-3">tu as déjà un compte</span>}
+            {isMobile && (
+              <span className="mb-1">tu n’as pas encore de compte</span>
+            )}
+            <ModalLogGreenit
+              btn={
+                <>
+                  <button
+                    id="bienvenue-box-creer-un-compte"
+                    className="h-10 rounded-md bg-green w-72 md:w-60 drop-shadow-lg"
+                  >
+                    <h2 id="" className="text-white">
+                      Créer un compte
+                    </h2>
+                  </button>
+                </>
+              }
+            ></ModalLogGreenit>
+            {!isMobile && (
+              <span className="mb-1 md:mt-3">tu n’as pas encore de compte</span>
+            )}
+          </div>
+          <div className="flex flex-col">
+            {isMobile && <span className="mb-1">tu as déjà un compte</span>}
+            <ModalLogGreenit
+              btn={
+                <>
+                  <button
+                    id="bienvenue-box-se-connecter"
+                    className="h-10 rounded-md bg-blue w-72 md:w-60 drop-shadow-lg"
+                  >
+                    <h2 id="" className="text-white">
+                      Se connecter
+                    </h2>
+                  </button>
+                </>
+              }
+              isModalLogin={true}
+            ></ModalLogGreenit>
+            {!isMobile && (
+              <span className="mb-1 md:mt-3">tu as déjà un compte</span>
+            )}
           </div>
         </div>
         <div
           className={`flex flex-wrap justify-center mt-8 md:mt-14 md:space-x-8 lg:space-x-4 lg:px-8`}
         >
-          {boxFullXpIngredients.map((item) => (
+          {boxFullXpIngredients.map(item => (
             <NumberedCircle
               quantity={1}
               name={item.title}

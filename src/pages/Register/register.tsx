@@ -1,6 +1,6 @@
-import { useMutation } from "@apollo/client";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { RouteName } from "App";
+import { useMutation } from '@apollo/client';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { RouteName } from 'App';
 import {
   confirmpwd,
   creator,
@@ -16,17 +16,19 @@ import {
   userlogo,
   wwwlogo,
   ytlogo,
-} from "icons";
-import { schemaRegisterCreatorProfil } from "pages/Register/registerHelper";
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import authService, { CREATE_ACCOUNT } from "services/auth.service";
-import { Button, EditorGreenit, Footer, Navbar } from "../../components";
-import { BackgroundImage } from "../../components/layout/BackgroundImage";
-import "./register.css";
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+} from 'icons';
+import { schemaRegisterCreatorProfil } from 'pages/Register/registerHelper';
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { Controller, useFieldArray, useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import authService, { CREATE_ACCOUNT } from 'services/auth.service';
+import { Button, EditorGreenit, Footer, Navbar } from '../../components';
+import { BackgroundImage } from '../../components/layout/BackgroundImage';
+import './register.css';
+const ModalLogGreenit = React.lazy(
+  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+);
 
 const Register: React.FC = () => {
   const {
@@ -46,11 +48,11 @@ const Register: React.FC = () => {
     remove: urlsSocialMediaRemove,
   } = useFieldArray({
     control,
-    name: "urlsSocialMedia",
+    name: 'urlsSocialMedia',
   });
   const history = useHistory();
   const [createAccount, { data: createAccountData, loading, error }] =
-    useMutation(CREATE_ACCOUNT, { errorPolicy: "all" });
+    useMutation(CREATE_ACCOUNT, { errorPolicy: 'all' });
 
   useEffect(() => {
     urlsSocialMediaAppend({}, { shouldFocus: false });
@@ -60,21 +62,21 @@ const Register: React.FC = () => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
 
     if (createAccountData?.register?.success === false || error) {
-      if (createAccountData?.register?.errors?.email?.[0]?.code === "unique") {
-        setError("email", {
-          message: "Cet email existe déjà.",
+      if (createAccountData?.register?.errors?.email?.[0]?.code === 'unique') {
+        setError('email', {
+          message: 'Cet email existe déjà.',
         });
       }
       if (
-        createAccountData?.register?.errors?.username?.[0]?.code === "unique"
+        createAccountData?.register?.errors?.username?.[0]?.code === 'unique'
       ) {
-        setError("utilisateur", {
-          message: "Ce nom existe déjà.",
+        setError('utilisateur', {
+          message: 'Ce nom existe déjà.',
         });
       }
     }
@@ -101,7 +103,7 @@ const Register: React.FC = () => {
         biographie: data.biographie,
         isCreatorProfil: true,
       },
-    }).then((dataAccount) => {
+    }).then(dataAccount => {
       if (!dataAccount?.data?.register?.success) return;
       history.push(RouteName.accountCreated);
     });
@@ -128,9 +130,7 @@ const Register: React.FC = () => {
             <ModalLogGreenit
               isModalLogin={true}
               btn={
-                <button
-                  className="flex items-center h-8 p-2 text-xl text-white align-middle border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green"
-                >
+                <button className="flex items-center h-8 p-2 text-xl text-white align-middle border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green">
                   <h3 className="text-sm align-middle">Se connecter</h3>
                 </button>
               }
@@ -140,21 +140,21 @@ const Register: React.FC = () => {
             <ModalLogGreenit
               btn={
                 <div className="flex flex-col items-center justify-center w-32 transition border shadow-lg cursor-pointer rounded-xl lg:w-52 h-28 hover:bg-grey hover:text-white">
-              <div className="size-emoji-modal">🕵️‍♀️</div>
-              <div className="mb-2">Explorateur</div>
+                  <div className="size-emoji-modal">🕵️‍♀️</div>
+                  <div className="mb-2">Explorateur</div>
                 </div>
               }
             ></ModalLogGreenit>
 
             <div className="flex flex-col items-center justify-center w-32 transition border-4 shadow-lg cursor-pointer bg-grey-300 rounded-xl lg:w-52 h-28 hover:bg-grey hover:text-white border-blue">
-            <div className="size-emoji-modal">🧑‍🎨</div>
+              <div className="size-emoji-modal">🧑‍🎨</div>
               <div className="mb-2">Créateur</div>
             </div>
           </div>
         </div>
         <form
           className="flex flex-col w-10/12 my-6 lg:w-4/12"
-                      // @ts-ignore
+          // @ts-ignore
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="flex flex-row items-center w-full mt-6 ">
@@ -168,7 +168,7 @@ const Register: React.FC = () => {
               id="email"
               placeholder="Email"
               type="email"
-              {...register("email")}
+              {...register('email')}
             ></input>
           </div>
           <p className="mt-2 text-xs italic text-red">
@@ -186,7 +186,7 @@ const Register: React.FC = () => {
               id="utilisateur"
               placeholder="Nom d'utilisateur"
               type="text"
-              {...register("utilisateur")}
+              {...register('utilisateur')}
             ></input>
           </div>
           <p className="mt-2 text-xs italic text-red">
@@ -203,15 +203,15 @@ const Register: React.FC = () => {
               <input
                 className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                 id="password"
-                type={isRevealPwd ? "text" : "password"}
+                type={isRevealPwd ? 'text' : 'password'}
                 placeholder="Mot de passe"
-                {...register("password")}
+                {...register('password')}
               />
               <img
                 className="mr-2"
                 src={isRevealPwd ? mdpVisible : mdpNonVisible}
                 alt="voir le mot de passe"
-                onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                onClick={() => setIsRevealPwd(prevState => !prevState)}
               />
             </div>
           </div>
@@ -229,15 +229,15 @@ const Register: React.FC = () => {
               <input
                 className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                 id="passwordConfirmation"
-                type={isRevealPwd ? "text" : "password"}
+                type={isRevealPwd ? 'text' : 'password'}
                 placeholder="Confirmer le mot de passe"
-                {...register("passwordConfirmation")}
+                {...register('passwordConfirmation')}
               />
               <img
                 className="mr-2"
                 src={isRevealPwd ? mdpVisible : mdpNonVisible}
                 alt="voir le mot de passe"
-                onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                onClick={() => setIsRevealPwd(prevState => !prevState)}
               />
             </div>
           </div>
@@ -321,7 +321,7 @@ const Register: React.FC = () => {
             <input
               type="checkbox"
               className="w-6 h-6 cursor-pointer"
-              {...register("isFollowNewsletter")}
+              {...register('isFollowNewsletter')}
               id="isFollowNewsletter"
             />
             <label className="self-center ml-2 text-sm text-gray-700">

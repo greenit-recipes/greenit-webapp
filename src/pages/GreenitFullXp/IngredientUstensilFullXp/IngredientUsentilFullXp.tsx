@@ -1,15 +1,15 @@
 import useImportScript from "hooks/importScript";
-import useIsMobile from "hooks/isMobile";
+import useIsMobile from 'hooks/isMobile';
 import {
   ingredientBeginner,
   ustensilsAlreadyHaveBeginner,
   ustensilsBeginner
-} from "pages/GreenitFullXp/FullXpHelper";
-import { SectionIngredient } from "pages/recipe/SinglePage/IngredientUsentil/SectionIngredient";
-import { SectionUstensil } from "pages/recipe/SinglePage/IngredientUsentil/SectionUsentil";
-import React, { useEffect, useState } from "react";
-import { HiOutlineChevronDown } from "react-icons/hi";
-import { getImagePath } from "../../../helpers/image.helper";
+} from 'pages/GreenitFullXp/FullXpHelper';
+import { SectionIngredient } from 'pages/recipe/SinglePage/IngredientUsentil/SectionIngredient';
+import { SectionUstensil } from 'pages/recipe/SinglePage/IngredientUsentil/SectionUsentil';
+import React, { useEffect, useState } from 'react';
+import { HiOutlineChevronDown } from 'react-icons/hi';
+import { getImagePath } from '../../../helpers/image.helper';
 
 const list = (
   <div className="text-base text-sm ml-10 mr-6 lg:ml-0 lg:mt-36">
@@ -25,13 +25,11 @@ const list = (
 const IngredientUsentilFullXp = () => {
   const isMobile = useIsMobile();
   const [isArrowDown, setArrowDown] = useState(true);
-
-  useImportScript("/assets/vendors/facebook-script.js");
-  useEffect(() => {
+useImportScript("/assets/vendors/facebook-script.js");  useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   }, []);
@@ -41,7 +39,7 @@ const IngredientUsentilFullXp = () => {
       <div className="w-full lg:w-2/5">
         <div className="flex flex-col mb-6">
           <div className="ml-10 lg:ml-0">
-            {" "}
+            {' '}
             <h1 className="text-2xl font-medium">Ingrédients et ustensiles</h1>
           </div>
           {isMobile && list}
@@ -53,7 +51,7 @@ const IngredientUsentilFullXp = () => {
           <p className="text-xs lg:text-sm mt-4">Tous les ingrédients</p>
           <div
             className={`relative flex items-center btn-single-page ingredient-shadow h-11 mt-4 ${
-              !isMobile ? "cursor-pointer" : ""
+              !isMobile ? 'cursor-pointer' : ''
             }`}
             onClick={() => {
               if (!isMobile) setArrowDown(!isArrowDown);
@@ -63,7 +61,7 @@ const IngredientUsentilFullXp = () => {
               className="w-12 h-12 rounded"
               alt="ingrédients"
               loading="lazy"
-              src={getImagePath("ingredient/vitamine_e.jpeg")}
+              src={getImagePath('ingredient/vitamine_e.jpeg')}
             ></img>
             <div className="w-4/6 ml-4"> 7 ingrédients dans la box</div>
             <div className="w-1/6 absolute right-0">
@@ -71,7 +69,7 @@ const IngredientUsentilFullXp = () => {
                 <HiOutlineChevronDown
                   id={`commande-box-ingredient-voir-plus-ingredient`}
                   className={`w-6 h-6  mr-6 cursor-pointer ${
-                    isArrowDown ? "section-arrow-up" : "section-arrow-down"
+                    isArrowDown ? 'section-arrow-up' : 'section-arrow-down'
                   }`}
                   onClick={() => {
                     setArrowDown(!isArrowDown);
@@ -80,7 +78,7 @@ const IngredientUsentilFullXp = () => {
               </div>
             </div>
           </div>
-          <div className={!isArrowDown ? "fadeIn-arrow" : " fadeOut-arrow"}>
+          <div className={!isArrowDown ? 'fadeIn-arrow' : ' fadeOut-arrow'}>
             {ingredientBeginner.map((item: any, index: any) => (
               <SectionIngredient data={item} key={index} />
             ))}

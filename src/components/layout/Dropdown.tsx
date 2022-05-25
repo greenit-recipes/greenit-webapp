@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 interface IDropdown {
   className?: string;
@@ -9,10 +9,10 @@ interface IDropdown {
 export const Dropdown: React.FC<IDropdown> = ({
   className,
   id,
-  sizeList = "20px",
+  sizeList = '20px',
 }) => {
   const [isTrigerButton, setTrigerButton] = useState(false);
-  const isDisplay = isTrigerButton ? "absolute" : "hidden";
+  const isDisplay = isTrigerButton ? 'absolute' : 'hidden';
   const checkShouldBeChecked = (isChecked: boolean, value: string) => {};
   return (
     <div className="relative">
@@ -27,14 +27,14 @@ export const Dropdown: React.FC<IDropdown> = ({
         {isTrigerButton && <p>--</p>}
         {!isTrigerButton && <p>!!</p>}
       </button>
-      <ul className={" list-none w-24 bg-blue " + sizeList + " " + isDisplay}>
+      <ul className={' list-none w-24 bg-blue ' + sizeList + ' ' + isDisplay}>
         <li>
           <input
             type="checkbox"
             name="test1"
             value="test1"
             id="test1"
-            ref={"ref_" + "tes1"}
+            ref={'ref_' + 'tes1'}
             className="w-6 h-6"
             onChange={(value: React.ChangeEvent<HTMLInputElement>) => {
               checkShouldBeChecked(value.target.checked, value.target.value);
@@ -47,10 +47,9 @@ export const Dropdown: React.FC<IDropdown> = ({
             name="test2"
             value="test2"
             id="test2"
-            ref={"ref_" + "tes2"}
+            ref={'ref_' + 'tes2'}
             className="w-6 h-6"
-            onChange={(value: React.ChangeEvent<HTMLInputElement>) => {
-            }}
+            onChange={(value: React.ChangeEvent<HTMLInputElement>) => {}}
           />
         </li>
       </ul>

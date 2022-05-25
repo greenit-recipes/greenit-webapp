@@ -1,26 +1,26 @@
-import { useMutation } from "@apollo/client";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { CREATE_ORDER } from "pages/GreenitFullXp/GreenitFullXpRequest";
-import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import { useMutation } from '@apollo/client';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { CREATE_ORDER } from 'pages/GreenitFullXp/GreenitFullXpRequest';
+import { menuFullXp } from 'pages/GreenitFullXp/MenuFullXp/MenuHelper';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const schema = yup.object().shape({
-  firstName: yup.string().required("Le prénom est obligatoire."),
-  lastName: yup.string().required("Le nom est obligatoire."),
+  firstName: yup.string().required('Le prénom est obligatoire.'),
+  lastName: yup.string().required('Le nom est obligatoire.'),
   email: yup.string().email().required("L'email est obligatoire."),
   adressse: yup.string().required("L'adresse est obligatoire."),
-  postalCode: yup.string().required("Le code postal est obligatoire."),
-  city: yup.string().required("La ville est obligatoire."),
+  postalCode: yup.string().required('Le code postal est obligatoire.'),
+  city: yup.string().required('La ville est obligatoire.'),
   complementAdresse: yup.string().required("L'adresse obligatoire."),
   phone: yup
     .string()
     .matches(phoneRegExp, "Le téléphone n'est pas valide")
-    .required("Le téléphone est obligatoire."),
+    .required('Le téléphone est obligatoire.'),
 }); // _ - .
 
 interface IHeadBand {
@@ -39,7 +39,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
     resolver: yupResolver(schema),
   });
 
-  const [errorRequest, setErrorRequest] = useState("");
+  const [errorRequest, setErrorRequest] = useState('');
 
   const [createOrder, { data, loading, error }] = useMutation(CREATE_ORDER);
 
@@ -48,9 +48,9 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
       variables: {
         ...data,
       },
-    }).then((res) => {
+    }).then(res => {
       if (!res?.data?.createOrder?.success) {
-        setErrorRequest("error");
+        setErrorRequest('error');
       }
       setNavigation(menuFullXp[3]?.name);
     });
@@ -59,7 +59,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
     <div className="flex flex-col lg:items-center justify-center mt-0 lg:mt-20">
       <div className="flex flex-col">
         <div className="ml-10 lg:ml-0">
-          {" "}
+          {' '}
           <h1 className="text-2xl font-medium">Livraison sur ton paillasson</h1>
         </div>
       </div>
@@ -88,7 +88,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
             id="firstName"
             placeholder="Prénom"
             type="firstName"
-            {...register("firstName")}
+            {...register('firstName')}
           ></input>
           <p className="text-xs italic text-red">{errors.firstName?.message}</p>
         </div>
@@ -101,7 +101,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
             id="lastName"
             placeholder="Nom"
             type="lastName"
-            {...register("lastName")}
+            {...register('lastName')}
           ></input>
           <p className="text-xs italic text-red">{errors.lastName?.message}</p>
         </div>
@@ -114,7 +114,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
             id="email"
             placeholder="Email"
             type="email"
-            {...register("email")}
+            {...register('email')}
           ></input>
           <p className="text-xs italic text-red">{errors.email?.message}</p>
         </div>
@@ -127,7 +127,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
             id="adressse"
             placeholder="Adresse"
             type="adressse"
-            {...register("adressse")}
+            {...register('adressse')}
           ></input>
           <p className="text-xs italic text-red">{errors.adressse?.message}</p>
         </div>
@@ -140,7 +140,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
             id="postalCode"
             placeholder="Code postal"
             type="postalCode"
-            {...register("postalCode")}
+            {...register('postalCode')}
           ></input>
           <p className="text-xs italic text-red">
             {errors.postalCode?.message}
@@ -155,7 +155,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
             id="city"
             placeholder="Ville"
             type="city"
-            {...register("city")}
+            {...register('city')}
           ></input>
           <p className="text-xs italic text-red">{errors.city?.message}</p>
         </div>
@@ -178,7 +178,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
             placeholder="complementAdresse"
             rows={6}
             cols={24}
-            {...register("complementAdresse")}
+            {...register('complementAdresse')}
           ></textarea>
           <p className="text-xs italic text-red">
             {errors.complementAdresse?.message}
@@ -194,7 +194,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
             id="phone"
             placeholder=" Numéro de téléphone"
             type="phone"
-            {...register("phone")}
+            {...register('phone')}
           ></input>
           <p className="text-xs italic text-red">{errors.phone?.message}</p>
         </div>

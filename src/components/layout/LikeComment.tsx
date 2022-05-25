@@ -1,10 +1,12 @@
-import { useMutation } from "@apollo/client";
-import { ADD_OR_REMOVE_LIKE_COMMENT } from "pages/recipe/SinglePage/SinglePageRequest";
-import React, { useState } from "react";
-import authService from "services/auth.service";
-import { LikedIconCommentOff, LikedIconCommentOn } from "../../icons";
+import { useMutation } from '@apollo/client';
+import { ADD_OR_REMOVE_LIKE_COMMENT } from 'pages/recipe/SinglePage/SinglePageRequest';
+import React, { useState } from 'react';
+import authService from 'services/auth.service';
+import { LikedIconCommentOff, LikedIconCommentOn } from '../../icons';
 
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+);
 
 interface ILikeComment {
   comment: any;
@@ -25,7 +27,7 @@ export const LikeComment: React.FC<ILikeComment> = ({
         // @ts-ignore
         <div
           className={`flex bg-white w-14 h-8 lg:w-16 lg:h-10 rounded-tl-2xl p-2 justify-center ${
-            isMyComment ? "" : "cursor-pointer"
+            isMyComment ? '' : 'cursor-pointer'
           }`}
           onClick={() => {
             if (isMyComment) return;

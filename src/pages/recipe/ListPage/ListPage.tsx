@@ -1,108 +1,120 @@
-import { useQuery } from "@apollo/client";
-import { getObjectSession } from "helpers/session-helper";
-import { map, mapValues, omit, sum } from "lodash";
-import debounce from "lodash/debounce";
-import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
-import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useHistory } from "react-router-dom";
+import { useQuery } from '@apollo/client';
+import { getObjectSession } from 'helpers/session-helper';
+import { map, mapValues, omit, sum } from 'lodash';
+import debounce from 'lodash/debounce';
+import { SEARCH_AUTO_COMPLETE_RECIPE } from 'pages/AutocompleteRequest';
+import { ModalListPage } from 'pages/recipe/ListPage/Components/ModalListPage';
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useHistory } from 'react-router-dom';
 import {
   BackgroundImage,
   Empty,
   Footer,
   Loading,
   Navbar,
-  RecipeCard
-} from "../../../components";
-import { RecipesQuery, useRecipesQuery } from "../../../graphql";
-import useIsMobile from "../../../hooks/isMobile";
-import { scrollToTop } from "../../../icons";
-import { filterData } from "../../../utils";
-import { FilterBar } from "./Components/FilterBar";
+  RecipeCard,
+} from '../../../components';
+import { RecipesQuery, useRecipesQuery } from '../../../graphql';
+import useIsMobile from '../../../hooks/isMobile';
+import { scrollToTop } from '../../../icons';
+import { filterData } from '../../../utils';
+import { FilterBar } from './Components/FilterBar';
 
 const RecipeListPage = () => {
   const cleanDataPlayload = (filter: any) =>
     mapValues(filter, function (value, key) {
-      if (key === "search") return value;
-      return map(value, (x) => x.value);
+      if (key === 'search') return value;
+      return map(value, x => x.value);
     });
   const params = new URLSearchParams(window.location.search);
-  const history = useHistory()
+  const history = useHistory();
 
-  const sessionFilter = getObjectSession("filterListPage");
-  const searchSession = sessionFilter?.search ? sessionFilter?.search : ""
-  const tagsSession =  sessionFilter?.tags || []
-  const categorySession = sessionFilter?.category || []
+  const sessionFilter = getObjectSession('filterListPage');
+  const searchSession = sessionFilter?.search ? sessionFilter?.search : '';
+  const tagsSession = sessionFilter?.tags || [];
+  const categorySession = sessionFilter?.category || [];
 
   const getAndDeleteParamsUrl = (urlParams: string) => {
     // For SEO url (delete url after search google)
-    if (!params.get(urlParams)) return
+    if (!params.get(urlParams)) return;
     const currentParams = params.get(urlParams);
-    params.delete(urlParams)
+    params.delete(urlParams);
     history.replace({
       search: params.toString(),
-    })
+    });
 
-    if (urlParams === "search") {
+    if (urlParams === 'search') {
       window.sessionStorage.setItem(
-        "filterListPage",
-        JSON.stringify({ [urlParams] : currentParams})
+        'filterListPage',
+        JSON.stringify({ [urlParams]: currentParams }),
       );
-      return currentParams
+      return currentParams;
     }
     window.sessionStorage.setItem(
-      "filterListPage",
-      JSON.stringify({ [urlParams] : [{ title: currentParams, value: currentParams }]})
+      'filterListPage',
+      JSON.stringify({
+        [urlParams]: [{ title: currentParams, value: currentParams }],
+      }),
     );
-    return ([{ title: currentParams, value: currentParams }]);
-  }
+    return [{ title: currentParams, value: currentParams }];
+  };
 
-
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const setSearchTermDebounced = debounce(setSearchTerm, 250);
 
   // Ne par run au premier lancement
-  const { data: autoCompleteData, loading : autoCompleteLoading, } = useQuery(SEARCH_AUTO_COMPLETE_RECIPE, {
-    fetchPolicy: "network-only",
-    variables: { search: searchTerm },
-    skip: searchTerm ? false :true,
-  });
-  const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {recipes: [], ingredients: [], totalRecipes: 0};
+  const { data: autoCompleteData, loading: autoCompleteLoading } = useQuery(
+    SEARCH_AUTO_COMPLETE_RECIPE,
+    {
+      fetchPolicy: 'network-only',
+      variables: { search: searchTerm },
+      skip: searchTerm ? false : true,
+    },
+  );
+  const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {
+    recipes: [],
+    ingredients: [],
+    totalRecipes: 0,
+  };
 
   // params trigger 2 requests before param and after getting param need to be fixed
   // @ts-ignore
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [currentFilters, setCurrentFilters] = useState<any>({
-    search: params.get("search") ? getAndDeleteParamsUrl("search") : searchSession,
-    tags: params.get("tags") ? getAndDeleteParamsUrl("tags") : tagsSession,
-    category: params.get("category") ? getAndDeleteParamsUrl("category") : categorySession,
+    search: params.get('search')
+      ? getAndDeleteParamsUrl('search')
+      : searchSession,
+    tags: params.get('tags') ? getAndDeleteParamsUrl('tags') : tagsSession,
+    category: params.get('category')
+      ? getAndDeleteParamsUrl('category')
+      : categorySession,
     difficulty: sessionFilter?.difficulty || [],
     duration: sessionFilter?.duration || [],
     numberOfIngredients: sessionFilter?.numberOfIngredients || [],
   });
-  
+
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
-    fetchPolicy: "cache-first",
+    fetchPolicy: 'cache-first',
     variables: {
       first: 15,
       filter: {
-        search: sessionFilter?.search ? sessionFilter?.search : "",
+        search: sessionFilter?.search ? sessionFilter?.search : '',
         // @ts-ignore
-        tags: sessionFilter?.tags ? map(sessionFilter?.tags, "value") : [],
+        tags: sessionFilter?.tags ? map(sessionFilter?.tags, 'value') : [],
         // @ts-ignore
         category: sessionFilter?.category
-          ? map(sessionFilter?.category, "value")
+          ? map(sessionFilter?.category, 'value')
           : [],
         difficulty: sessionFilter?.difficulty
-          ? map(sessionFilter?.difficulty, "value")
+          ? map(sessionFilter?.difficulty, 'value')
           : [],
         duration: sessionFilter?.duration
-          ? map(sessionFilter?.duration, "value")
+          ? map(sessionFilter?.duration, 'value')
           : [],
         numberOfIngredients: sessionFilter?.numberOfIngredients
-          ? map(sessionFilter?.numberOfIngredients, "value")
+          ? map(sessionFilter?.numberOfIngredients, 'value')
           : [],
       },
     },
@@ -122,8 +134,8 @@ const RecipeListPage = () => {
       // to avoid a second request with state of filter
       const filterValue = cleanDataPlayload(currentFilters);
       window.sessionStorage.setItem(
-        "filterListPage",
-        JSON.stringify(currentFilters)
+        'filterListPage',
+        JSON.stringify(currentFilters),
       );
       refetch({ filter: filterValue });
       return;
@@ -131,7 +143,7 @@ const RecipeListPage = () => {
     if (!loading) setIsFirstLoading(false);
   }, [currentFilters, loading]);
 
-  const searchText = getObjectSession("filterListPage")?.search
+  const searchText = getObjectSession('filterListPage')?.search;
 
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -141,9 +153,9 @@ const RecipeListPage = () => {
 
   const recipes = data?.allRecipes?.edges || [];
   const hasMore = data?.allRecipes?.pageInfo.hasNextPage || false;
-  const nbrFilter = sum(map(omit(currentFilters, "search"), (x) => x?.length));
+  const nbrFilter = sum(map(omit(currentFilters, 'search'), x => x?.length));
   return (
-    <div className={""}>
+    <div className={''}>
       <Navbar />
       <BackgroundImage />
       <Helmet>
@@ -155,17 +167,17 @@ const RecipeListPage = () => {
       </Helmet>
       {!isMobile && (
         <>
-        <FilterBar
-          recipesAutoComplete={recipesAutoComplete}
-          setSearch={setSearchTermDebounced}
-          search={searchTerm}
-          filter={filterData}
-          currentFilters={currentFilters}
-          setCurrentFilters={setCurrentFilters}
-          isMobile={isMobile}
-          toggle={toggle}
-          setScrollOffset={setScrollOffset}
-        />
+          <FilterBar
+            recipesAutoComplete={recipesAutoComplete}
+            setSearch={setSearchTermDebounced}
+            search={searchTerm}
+            filter={filterData}
+            currentFilters={currentFilters}
+            setCurrentFilters={setCurrentFilters}
+            isMobile={isMobile}
+            toggle={toggle}
+            setScrollOffset={setScrollOffset}
+          />
         </>
       )}
 
@@ -185,10 +197,12 @@ const RecipeListPage = () => {
               setScrollOffset={setScrollOffset}
             />
           </div>
-          { searchText && searchText.length && (
+          {searchText && searchText.length && (
             <div className="w-4/5 mt-4 border-b-1 pb-2">
-            <p className="text-sm font-bold mb-1">Résultat pour "{searchText}"</p>
-          </div>
+              <p className="text-sm font-bold mb-1">
+                Résultat pour "{searchText}"
+              </p>
+            </div>
           )}
           <ModalListPage
             nbrFilter={nbrFilter}
@@ -257,7 +271,7 @@ const RecipeListPage = () => {
           >
             {isMobile ? (
               <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
-                {recipes?.map((recipe) => {
+                {recipes?.map(recipe => {
                   return (
                     <div key={recipe?.node?.id}>
                       <RecipeCard recipe={recipe?.node} />
@@ -268,7 +282,7 @@ const RecipeListPage = () => {
             ) : (
               <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
                 <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
-                  {recipes?.map((recipe) => (
+                  {recipes?.map(recipe => (
                     <div key={recipe?.node?.id}>
                       <RecipeCard recipe={recipe?.node} />
                     </div>
@@ -288,7 +302,7 @@ const RecipeListPage = () => {
         onClick={() => {
           window.scrollTo({
             top: scrollOffset,
-            behavior: "smooth",
+            behavior: 'smooth',
           });
         }}
       />

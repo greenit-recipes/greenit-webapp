@@ -1,17 +1,17 @@
-import { useMutation } from "@apollo/client";
-import { RouteName } from "App";
-import { Button, Loading } from "components";
-import { getImagePath } from "helpers/image.helper";
-import useIsMobile from "hooks/isMobile";
-import { map, orderBy, sum, toNumber } from "lodash";
-import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
-import React, { useState } from "react";
-import { BsWallet2 } from "react-icons/bs";
-import { HiOutlinePlus } from "react-icons/hi";
-import { IoIosRemove } from "react-icons/io";
-import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
-import { PLUS_OR_LESS_RECIPE } from "services/auth.service";
+import { useMutation } from '@apollo/client';
+import { RouteName } from 'App';
+import { Button, Loading } from 'components';
+import { getImagePath } from 'helpers/image.helper';
+import useIsMobile from 'hooks/isMobile';
+import { map, orderBy, sum, toNumber } from 'lodash';
+import { CircleGreenit } from 'pages/recipe/SinglePage/CircleGreenit/CircleGreenit';
+import React, { useState } from 'react';
+import { BsWallet2 } from 'react-icons/bs';
+import { HiOutlinePlus } from 'react-icons/hi';
+import { IoIosRemove } from 'react-icons/io';
+import { IoEarthOutline, IoFlaskOutline } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
+import { PLUS_OR_LESS_RECIPE } from 'services/auth.service';
 
 interface IUser {
   recipeMadeUser: any;
@@ -25,26 +25,26 @@ export const ExplorateurProfil: React.FC<IUser> = ({
   isLoad,
 }) => {
   const substancesRecipes = sum(
-    map(recipeMadeUser, (x) => x.recipe.numberOfSubstances)
+    map(recipeMadeUser, x => x.recipe.numberOfSubstances),
   );
   const moneySavedRecipes = sum(
     map(
       recipeMadeUser,
-      (x) => toNumber(x.amount) * toNumber(x.recipe.moneySaved)
-    )
+      x => toNumber(x.amount) * toNumber(x.recipe.moneySaved),
+    ),
   );
   const plasticSavedRecipes = sum(
     map(
       recipeMadeUser,
-      (x) => toNumber(x.amount) * toNumber(x.recipe.plasticSaved)
-    )
+      x => toNumber(x.amount) * toNumber(x.recipe.plasticSaved),
+    ),
   );
 
-  const amountTotal = sum(map(recipeMadeUser, (x) => toNumber(x.amount)));
+  const amountTotal = sum(map(recipeMadeUser, x => toNumber(x.amount)));
 
   const [plusOrLessRecipe, { loading, error }] = useMutation(
     PLUS_OR_LESS_RECIPE,
-    { errorPolicy: "all" }
+    { errorPolicy: 'all' },
   );
 
   const isMobile = useIsMobile();
@@ -64,7 +64,9 @@ export const ExplorateurProfil: React.FC<IUser> = ({
   return (
     <div className="flex flex-col items-center mb-14">
       <div className="w-full lg:w-4/6">
-        <div className="text-2xl font-semibold text-center">Tes recettes réalisées</div>
+        <div className="text-2xl font-semibold text-center">
+          Tes recettes réalisées
+        </div>
         <div className="flex items-center justify-center">
           <Button
             id="Share_a_recipe"
@@ -78,7 +80,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
             {amountTotal} produits fabriqués
           </Button>
         </div>
-        <div className={!isArrowDown ? "fadeIn-arrow" : " fadeOut-arrow"}>
+        <div className={!isArrowDown ? 'fadeIn-arrow' : ' fadeOut-arrow'}>
           <div className="msm:mx-8 mt-4 rounded-b">
             <div className="flex justify-between">
               <div className="text-xs fontQSregular">Recettes faites</div>
@@ -87,12 +89,12 @@ export const ExplorateurProfil: React.FC<IUser> = ({
               </div>
             </div>
             <div className={``}>
-              {orderBy(recipeMadeUser, "recipe.name").map(
+              {orderBy(recipeMadeUser, 'recipe.name').map(
                 (item: any, index: any) => (
                   <div
                     key={item?.recipe?.id}
                     className={`flex items-center btnProfilPage ingredient-shadow max-h-32 mt-4 ${
-                      !isMobile ? "" : ""
+                      !isMobile ? '' : ''
                     }`}
                   >
                     <Link to={`${RouteName.recipes}/${item?.recipe?.urlId}`}>
@@ -106,7 +108,10 @@ export const ExplorateurProfil: React.FC<IUser> = ({
                       </div>
                     </Link>
 
-                    <div className="w-5/6 ml-4 lg:ml-14 text-sm" > {item?.recipe?.name}</div>
+                    <div className="w-5/6 ml-4 lg:ml-14 text-sm">
+                      {' '}
+                      {item?.recipe?.name}
+                    </div>
                     <div className="w-2/5 lg:w-1/6">
                       <div className="flex items-center justify-end p-4 w-full h-16 lg:h-14 rounded bg-greenL">
                         <IoIosRemove
@@ -129,9 +134,13 @@ export const ExplorateurProfil: React.FC<IUser> = ({
                       </div>
                     </div>
                   </div>
-                )
+                ),
               )}
-             { !recipeMadeUser.length && (<div className="text-center mt-4 text-sm" >Ajoute les recettes déjà réalisées pour mesurer ton impact !</div>)}
+              {!recipeMadeUser.length && (
+                <div className="text-center mt-4 text-sm">
+                  Ajoute les recettes déjà réalisées pour mesurer ton impact !
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -140,7 +149,13 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-orange"
           icon={
-            <IoFlaskOutline className= { isMobile ? "absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-chimie" :`absolute w-8 h-8 icon-position-circle rotate-singlePage-chimie`}/>
+            <IoFlaskOutline
+              className={
+                isMobile
+                  ? 'absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-chimie'
+                  : `absolute w-8 h-8 icon-position-circle rotate-singlePage-chimie`
+              }
+            />
           }
           symbol=""
           number={substancesRecipes}
@@ -149,7 +164,13 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-yellow"
           icon={
-            <BsWallet2 className= {  isMobile ? "absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-wallet" : `absolute h-7 w-7 icon-position-circle rotate-singlePage-wallet`}/>
+            <BsWallet2
+              className={
+                isMobile
+                  ? 'absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-wallet'
+                  : `absolute h-7 w-7 icon-position-circle rotate-singlePage-wallet`
+              }
+            />
           }
           customClassName="ml-16"
           symbol="€"
@@ -159,7 +180,13 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-green"
           icon={
-            <IoEarthOutline className= { isMobile ? "absolute w-6 h-6 icon-position-circle-mobile" : "absolute w-8 h-8 icon-position-circle"}/>
+            <IoEarthOutline
+              className={
+                isMobile
+                  ? 'absolute w-6 h-6 icon-position-circle-mobile'
+                  : 'absolute w-8 h-8 icon-position-circle'
+              }
+            />
           }
           customClassName="ml-16"
           symbol="g"

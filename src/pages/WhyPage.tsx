@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { Footer, Navbar } from "../components";
-import useIsMobile from "../hooks/isMobile";
+import React, { useEffect } from 'react';
+import { Footer, Navbar } from '../components';
+import useIsMobile from '../hooks/isMobile';
 import {
   corpsWhy,
   logo,
@@ -8,10 +8,10 @@ import {
   planet,
   wellbeing,
   GreenitTeam,
-} from "../icons";
-import communityDesktop from "../icons/community_desktop.png";
-import communityMobile from "../icons/community_mobile.png";
-import { Helmet } from "react-helmet";
+} from '../icons';
+import communityDesktop from '../icons/community_desktop.png';
+import communityMobile from '../icons/community_mobile.png';
+import { Helmet } from 'react-helmet';
 
 const Block: React.FC<{
   id: string;
@@ -23,13 +23,13 @@ const Block: React.FC<{
   const isMobile = useIsMobile();
   return (
     <div
-      className={`text-center ${className ?? ""}`}
+      className={`text-center ${className ?? ''}`}
       style={Object.assign(
         {
-          paddingRight: isMobile ? "2.5rem" : `${padding ?? "20%"}`,
-          paddingLeft: isMobile ? "2.5rem" : `${padding ?? "20%"}`,
+          paddingRight: isMobile ? '2.5rem' : `${padding ?? '20%'}`,
+          paddingLeft: isMobile ? '2.5rem' : `${padding ?? '20%'}`,
         },
-        style ?? {}
+        style ?? {},
       )}
     >
       <h2 className="mt-20 text-3xl lg:text-3xl">{title}</h2>
@@ -65,7 +65,7 @@ const WhyPage: React.FC = () => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   }, []);
@@ -82,7 +82,7 @@ const WhyPage: React.FC = () => {
       <div className="h-auto w-full flex flex-col items-center mb-12 leading-loose">
         <Block
           style={{
-            backgroundColor: "#8fb5e7",
+            backgroundColor: '#8fb5e7',
           }}
           id="1"
           className="grid justify-items-center text-white w-full pb-20"
@@ -142,7 +142,7 @@ const WhyPage: React.FC = () => {
         </div>
 
         <h2 className=" text-center text-2xl md:text-3xl mt-20 w-3/4">
-          Pourquoi faire ses produits maison ?{" "}
+          Pourquoi faire ses produits maison ?{' '}
         </h2>
 
         <div className="grid grid-cols-1 grid-rows-8 md:grid-cols-2 md:grid-rows-4 items-center w-4/5 md:w-2/3 md:gap-6 mt-10">
@@ -176,7 +176,7 @@ const WhyPage: React.FC = () => {
               vulnérabilisent ta peau et tes cheveux. Hélas, même dans les
               produits les plus biologiques : les perturbateurs endocriniens,
               alcool et aluminium attaquent nos corps. La production maison est
-              aussi personnalisée et respecte les différences de chacun.{" "}
+              aussi personnalisée et respecte les différences de chacun.{' '}
             </h3>
           </div>
           <img
@@ -225,8 +225,8 @@ const WhyPage: React.FC = () => {
       </div>
       <Block id="4" className="grid w-full p-2 justify-items-center mb-20">
         <h2 className="text-xl md:text-2xl">
-          {" "}
-          Merci à toutes celles et ceux qui nous aident{" "}
+          {' '}
+          Merci à toutes celles et ceux qui nous aident{' '}
         </h2>
         <div className="w-full mt-12">
           <img

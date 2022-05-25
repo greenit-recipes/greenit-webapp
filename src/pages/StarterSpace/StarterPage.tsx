@@ -1,35 +1,61 @@
-import { RouteName } from "App";
-import { Container, Footer, Navbar } from "components";
-import useIsMobile from "hooks/isMobile";
-import { CategoryCircle } from "pages/LandingPage/Components/CategoryCircle";
-import { AskQuestion } from "pages/StarterSpace/component/AskQuestion/AskQuestion";
-import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
-import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
-import React, { useEffect, useRef, useState } from "react";
-import { Helmet } from "react-helmet";
-import { RiShareForwardLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
-import { RWebShare } from "react-web-share";
-import authService from "services/auth.service";
-import { landingPageCategories } from "utils";
-import { Button, RecipeCard } from "../../components";
-import { useRecipesQuery } from "../../graphql";
+import { RouteName } from 'App';
+import { Container, Footer, Navbar } from 'components';
+import useIsMobile from 'hooks/isMobile';
+import { CategoryCircle } from 'pages/LandingPage/Components/CategoryCircle';
+import { AskQuestion } from 'pages/StarterSpace/component/AskQuestion/AskQuestion';
+import { FirstStep } from 'pages/StarterSpace/component/FirstStep/FirstStep';
+import { SectionStarterPage } from 'pages/StarterSpace/SectionStarterPage';
+import React, { useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { RiShareForwardLine } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
+import { RWebShare } from 'react-web-share';
+import authService from 'services/auth.service';
+import { landingPageCategories } from 'utils';
+import { Button, RecipeCard } from '../../components';
+import { useRecipesQuery } from '../../graphql';
 import {
-  Balance, BeurreKarite,
-  BicarSoude, Bocal, Bol, Bouteille, Catherine, Christelle, CireAbeille, Conseil,
-  Cooking, CremeCorp, Eau, EcorceArgume, Fouet, HuileRicin, IconAtelier, IconInternet, IconMarche, IconSite, Lessive, Livre, logo, Maryse, Producteur, SavonMarseille, Ustensil
-} from "../../icons";
-import "./StarterPage.css";
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+  Balance,
+  BeurreKarite,
+  BicarSoude,
+  Bocal,
+  Bol,
+  Bouteille,
+  Catherine,
+  Christelle,
+  CireAbeille,
+  Conseil,
+  Cooking,
+  CremeCorp,
+  Eau,
+  EcorceArgume,
+  Fouet,
+  HuileRicin,
+  IconAtelier,
+  IconInternet,
+  IconMarche,
+  IconSite,
+  Lessive,
+  Livre,
+  logo,
+  Maryse,
+  Producteur,
+  SavonMarseille,
+  Ustensil,
+} from '../../icons';
+import './StarterPage.css';
+const ModalLogGreenit = React.lazy(
+  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+);
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({
-    fetchPolicy: "no-cache",
+    fetchPolicy: 'no-cache',
     variables: {
       filter: {
         id: [
-          "8485c5ae-4175-474b-9107-9aa306874c5f",
-          "e0ef40bb-70e1-4127-80b6-4c106f268b03",
+          '8485c5ae-4175-474b-9107-9aa306874c5f',
+          'e0ef40bb-70e1-4127-80b6-4c106f268b03',
         ],
       },
     },
@@ -39,7 +65,7 @@ const StarterPage = () => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   }, []);
@@ -56,7 +82,7 @@ const StarterPage = () => {
     if (!fieldRefEtape1) return;
     // @ts-ignore
     fieldRefEtape1?.current.scrollIntoView({
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -64,7 +90,7 @@ const StarterPage = () => {
     if (!fieldRefEtape2) return;
     // @ts-ignore
     fieldRefEtape2?.current.scrollIntoView({
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -72,7 +98,7 @@ const StarterPage = () => {
     if (!fieldRefEtape3) return;
     // @ts-ignore
     fieldRefEtape3?.current.scrollIntoView({
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -114,22 +140,22 @@ const StarterPage = () => {
             {
               icon: Conseil,
               fonction: scrollIntoFieldRefEtape1,
-              title: "3 meilleurs conseils pour débuter",
-              number: "1",
+              title: '3 meilleurs conseils pour débuter',
+              number: '1',
             },
             {
               icon: Ustensil,
               fonction: scrollIntoFieldRefEtape2,
-              title: "Les ingrédients & ustensiles",
-              number: "2",
+              title: 'Les ingrédients & ustensiles',
+              number: '2',
             },
             {
               icon: Cooking,
               fonction: scrollIntoFieldRefEtape3,
-              title: "2 Recettes simples",
-              number: "3",
+              title: '2 Recettes simples',
+              number: '3',
             },
-          ].map((item) => (
+          ].map(item => (
             <div
               className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
               onClick={() => item.fonction()}
@@ -145,7 +171,7 @@ const StarterPage = () => {
                   className="w-14 lg:w-16 self-center items-center"
                   alt="conseils_diy"
                   loading="lazy"
-                />{" "}
+                />{' '}
               </div>
               <h3 className="text-sm  text-center font-light">{item.title}</h3>
             </div>
@@ -164,8 +190,8 @@ const StarterPage = () => {
               >
                 <RiShareForwardLine className="justify-self-center ml-1 w-6 h-6" />
                 <h2 className="text-center ml-2">
-                  {" "}
-                  partager le lien du guide{" "}
+                  {' '}
+                  partager le lien du guide{' '}
                 </h2>
               </button>
             </RWebShare>
@@ -187,39 +213,39 @@ const StarterPage = () => {
         {[
           {
             imgProfil: Catherine,
-            altImgProfil: "Photo Catherine",
-            userPresentationTitle: "Le conseil de Catherine",
+            altImgProfil: 'Photo Catherine',
+            userPresentationTitle: 'Le conseil de Catherine',
             userPresentationTitleSubtitle:
-              "Ingénieure et ambassadrice contre le changement climatique",
+              'Ingénieure et ambassadrice contre le changement climatique',
             citation:
-              "Remplacer vos produits petit à petit et commencer par des recettes simples !",
+              'Remplacer vos produits petit à petit et commencer par des recettes simples !',
             shortDescription:
-              "Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.",
+              'Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.',
             longDescription:
               "<br/>La plus grosse erreur que je vois quand on veut se lancer en cosmétique maison, c'est de vouloir essayer plein de choses en même temps avec plein d'ingrédients. On dépense beaucoup, on s'éparpille, cela prend du temps et on s'arrête rapidement parce qu'on est perdu. 😱<br> <br> Mon conseil est donc : <br/> Remplacer vos produits petit à petit et de commencer par trouver l’huile végétale qui vous convient.<br/>  La question à vous poser est : quelle est ma problématique principale ? La peau qui tire ? Des boutons ? Des zones de brillance ? <br/> <br/> Ensuite, trouver l’huile végétale qui répond à cette problématique.  Cette huile végétale peut s’utiliser seule à la place de votre crème de jour ou crème de nuit. C’est la solution la plus naturelle et la plus économique ! Testez avant de réaliser une crème compliquée 😉",
           },
           {
             imgProfil: Christelle,
-            altImgProfil: "Photo Christelle",
-            userPresentationTitle: "Le conseil de Christelle",
+            altImgProfil: 'Photo Christelle',
+            userPresentationTitle: 'Le conseil de Christelle',
             userPresentationTitleSubtitle:
-              "Naturopathe et animatrice d’atelier",
+              'Naturopathe et animatrice d’atelier',
             citation:
-              "Sélectionner ses ingrédients en fonction de votre type de peau. ",
-            shortDescription: "",
+              'Sélectionner ses ingrédients en fonction de votre type de peau. ',
+            shortDescription: '',
             longDescription:
-              "Il est important de déterminer les ingrédients qui vont vous faire du bien en fonction des besoins de votre peau et d’en maîtriser les propriétés.<br> Pour les peaux grasses à imperfections, on va préférer une huile sèche de noisette ou de jojoba pour se démaquiller, un hydrolat d’hamamélis ou de lavande pour purifier la peau et de l’huile de nigelle avec de l’aloe vera pour l’hydrater.<br> Pour une peau normale à mixte, on opte pour une huile végétale de noyaux d’abricot ou de macadamia, et un hydrolat de rose ou fleur d’oranger.<br> En cas de peau sèche, on se démaquille à l’huile de coco, avocat ou carthame, on tonifie avec un hydrolat de camomille ou bleuet et on hydrate avec une huile d’amande douce avec du gel d’aloe vera.<br> <br> Il me parait aussi intéressant de suivre un atelier découverte ou d’investir dans un bon livre pour intégrer les principes de base.Une bonne recette de cosmétique maison ne doit pas contenir trop d’ingrédients. Il vaut mieux faire moins d’ingrédients mais bien sélectionnés et plus efficaces ! Commencez par une recette simple, avec seulement quelques étapes. Vous serez satisfaite du résultat et cela vous donnera envie d’en faire plein d’autres ! <br> <br> À vous de jouer !",
+              'Il est important de déterminer les ingrédients qui vont vous faire du bien en fonction des besoins de votre peau et d’en maîtriser les propriétés.<br> Pour les peaux grasses à imperfections, on va préférer une huile sèche de noisette ou de jojoba pour se démaquiller, un hydrolat d’hamamélis ou de lavande pour purifier la peau et de l’huile de nigelle avec de l’aloe vera pour l’hydrater.<br> Pour une peau normale à mixte, on opte pour une huile végétale de noyaux d’abricot ou de macadamia, et un hydrolat de rose ou fleur d’oranger.<br> En cas de peau sèche, on se démaquille à l’huile de coco, avocat ou carthame, on tonifie avec un hydrolat de camomille ou bleuet et on hydrate avec une huile d’amande douce avec du gel d’aloe vera.<br> <br> Il me parait aussi intéressant de suivre un atelier découverte ou d’investir dans un bon livre pour intégrer les principes de base.Une bonne recette de cosmétique maison ne doit pas contenir trop d’ingrédients. Il vaut mieux faire moins d’ingrédients mais bien sélectionnés et plus efficaces ! Commencez par une recette simple, avec seulement quelques étapes. Vous serez satisfaite du résultat et cela vous donnera envie d’en faire plein d’autres ! <br> <br> À vous de jouer !',
           },
           {
             imgProfil: logo,
-            altImgProfil: "Greenit Logo",
-            userPresentationTitle: "Nos conseils",
-            userPresentationTitleSubtitle: "Greenit Community",
-            citation: "Respectons les règles de base : ",
+            altImgProfil: 'Greenit Logo',
+            userPresentationTitle: 'Nos conseils',
+            userPresentationTitleSubtitle: 'Greenit Community',
+            citation: 'Respectons les règles de base : ',
             shortDescription:
-              "Comme pour la cuisine, vous devez respecter quelques règles :",
+              'Comme pour la cuisine, vous devez respecter quelques règles :',
             longDescription:
-              "<br/> • L’utilisation des huiles essentielles <br/> Certaines d’entre elles sont très irritantes et allergènes. Optez pour 3 huiles essentielles, selon vos problématiques, et apprenez leurs propriétés, posologie et risques. <br/> <br/> • La conservation des produits <br/> Les produits maisons n’étant pas boostés aux conservateurs chimiques, ils se gardent moins longtemps. Lorsque vous réalisez une émulsion eau/huile, il est vivement recommandé d’utiliser un conservateur naturel. Pour une phase huileuse uniquement, de la vitamine E suffit. En règle générale, dès que votre préparation change d’aspect, de couleurs, d’odeur, il est préférable de la jeter, de la même façon que vos ingrédients du frigo. <br/> <br/> •  Respecter les règles d’hygiène <br/> Enfin, toujours respecter les règles d’hygiène lors de la préparation de vos produits : un plan de travail et des ustensiles nettoyés ainsi que des mains propres.",
+              '<br/> • L’utilisation des huiles essentielles <br/> Certaines d’entre elles sont très irritantes et allergènes. Optez pour 3 huiles essentielles, selon vos problématiques, et apprenez leurs propriétés, posologie et risques. <br/> <br/> • La conservation des produits <br/> Les produits maisons n’étant pas boostés aux conservateurs chimiques, ils se gardent moins longtemps. Lorsque vous réalisez une émulsion eau/huile, il est vivement recommandé d’utiliser un conservateur naturel. Pour une phase huileuse uniquement, de la vitamine E suffit. En règle générale, dès que votre préparation change d’aspect, de couleurs, d’odeur, il est préférable de la jeter, de la même façon que vos ingrédients du frigo. <br/> <br/> •  Respecter les règles d’hygiène <br/> Enfin, toujours respecter les règles d’hygiène lors de la préparation de vos produits : un plan de travail et des ustensiles nettoyés ainsi que des mains propres.',
           },
         ].map((item, index) => (
           <FirstStep item={item} key={index}></FirstStep>
@@ -242,31 +268,31 @@ const StarterPage = () => {
             {[
               {
                 icon: Bol,
-                maintitle: "Bol en inox",
-                title: "Pour la cuisson au bain-marie",
+                maintitle: 'Bol en inox',
+                title: 'Pour la cuisson au bain-marie',
                 subtitle:
-                  "Le bol permet de faire vos préparations avant de les verser dans les contenants. Certaines préparations nécessitent une chauffe au bain-marie, l’inox est donc idéal. Il permet une cuisson uniforme tout en étant facilement lavables.",
+                  'Le bol permet de faire vos préparations avant de les verser dans les contenants. Certaines préparations nécessitent une chauffe au bain-marie, l’inox est donc idéal. Il permet une cuisson uniforme tout en étant facilement lavables.',
               },
               {
                 icon: Fouet,
-                maintitle: "Fouet",
-                title: "Pour les émulsions",
+                maintitle: 'Fouet',
+                title: 'Pour les émulsions',
                 subtitle:
-                  "Idéal pour mélanger uniformément les préparations. L’homogénéité de vos produits leur permet de se conserver plus longtemps grâce une meilleure stabilité.",
+                  'Idéal pour mélanger uniformément les préparations. L’homogénéité de vos produits leur permet de se conserver plus longtemps grâce une meilleure stabilité.',
               },
               {
                 icon: Balance,
-                maintitle: "Balance",
-                title: "Pour être précis",
+                maintitle: 'Balance',
+                title: 'Pour être précis',
                 subtitle:
-                  "De la même façon qu’en pâtisserie, pour une bonne texture et des effets maîtrisés, il faut être précis ! Une balance aux grammes près est donc recommandé.",
+                  'De la même façon qu’en pâtisserie, pour une bonne texture et des effets maîtrisés, il faut être précis ! Une balance aux grammes près est donc recommandé.',
               },
               {
                 icon: Maryse,
-                maintitle: "Maryse",
-                title: "Pour éviter le gaspillage",
+                maintitle: 'Maryse',
+                title: 'Pour éviter le gaspillage',
                 subtitle:
-                  "Pour racler les fonds de bol et contenant, une maryse peut être utile. Plus de préparations pour vous et moins au fond de la poubelle.",
+                  'Pour racler les fonds de bol et contenant, une maryse peut être utile. Plus de préparations pour vous et moins au fond de la poubelle.',
               },
             ].map((item, index) => (
               <div
@@ -279,7 +305,7 @@ const StarterPage = () => {
                     className="w-16 lg:w-18 self-center items-center"
                     alt={item.maintitle}
                     loading="lazy"
-                  />{" "}
+                  />{' '}
                 </div>
                 <h3 className="text-xl text-center font-semibold h-8">
                   {item.maintitle}
@@ -314,7 +340,7 @@ const StarterPage = () => {
             <div className="place-self-center lg:place-self-start">
               <img
                 src={CremeCorp}
-                className={`${isMobile ? "rounded-xl w-36 h-45" : "img-dim"}`}
+                className={`${isMobile ? 'rounded-xl w-36 h-45' : 'img-dim'}`}
                 loading="lazy"
                 alt="creme corps"
               />
@@ -342,7 +368,7 @@ const StarterPage = () => {
                     className="w-24 h-24 max-w-none"
                     alt="Beurre de Karité"
                     loading="lazy"
-                  />{" "}
+                  />{' '}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
@@ -355,7 +381,7 @@ const StarterPage = () => {
                   </p>
                 </div>
                 <h4 className="text-xs lg:text-sm font-light text-center mt-8">
-                  3,90 € / 100 g{" "}
+                  3,90 € / 100 g{' '}
                 </h4>
               </div>
 
@@ -370,20 +396,20 @@ const StarterPage = () => {
                     className="w-24 h-24 max-w-none"
                     alt="Huile de Ricin"
                     loading="lazy"
-                  />{" "}
+                  />{' '}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
-                    20 g{" "}
+                    20 g{' '}
                   </p>
                 </div>
                 <div className="h-18 pt-2">
                   <p className="text-sm lg:text-lg font-regular text-center">
-                    Huile végétale de ricin{" "}
+                    Huile végétale de ricin{' '}
                   </p>
                 </div>
                 <h4 className="text-xs lg:text-sm font-light text-center mt-8">
-                  2,60 € / 100 g{" "}
+                  2,60 € / 100 g{' '}
                 </h4>
               </div>
 
@@ -398,20 +424,20 @@ const StarterPage = () => {
                     className="w-24 h-24 max-w-none"
                     alt="Cire d'Abeille"
                     loading="lazy"
-                  />{" "}
+                  />{' '}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
-                    2 g{" "}
+                    2 g{' '}
                   </p>
                 </div>
                 <div className="h-18 pt-2">
                   <p className="text-sm lg:text-lg font-regular text-center">
-                    Cire d’abeille{" "}
+                    Cire d’abeille{' '}
                   </p>
                 </div>
                 <h4 className="text-xs lg:text-sm font-light text-center  mt-8">
-                  2,90 € / 30 g{" "}
+                  2,90 € / 30 g{' '}
                 </h4>
               </div>
 
@@ -426,16 +452,16 @@ const StarterPage = () => {
                     className="w-24 h-24 max-w-none"
                     alt="Bocal_icon"
                     loading="lazy"
-                  />{" "}
+                  />{' '}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-grey rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-white text-xs self-center font-medium">
-                    ≈ 100ml{" "}
+                    ≈ 100ml{' '}
                   </p>
                 </div>
                 <div className="h-18 pt-2">
                   <p className="text-sm lg:text-lg font-regular text-center">
-                    Pot en verre{" "}
+                    Pot en verre{' '}
                   </p>
                 </div>
               </div>
@@ -452,13 +478,13 @@ const StarterPage = () => {
                   <p className="self-center text-white font-bold">𝓲</p>
                 </div>
                 <p id="info_ingredients" className="self-center ml-3">
-                  {" "}
+                  {' '}
                   Pourquoi ces ingrédients ?
                 </p>
               </button>
               <div
                 className={
-                  isActive ? "ingredient_fadeIn" : "ingredient_fadeOut"
+                  isActive ? 'ingredient_fadeIn' : 'ingredient_fadeOut'
                 }
               >
                 <div className="flex justify-self-center ml-6 p-2 mt-4 bg-grey rounded-lg">
@@ -476,12 +502,12 @@ const StarterPage = () => {
 
           <div className="flex flex-col lg:w-1/5 mt-4 lg:mt-0">
             <h2 className="text-lg text-center lg:text-xl lg:mb-5 font-medium">
-              Où acheter ?{" "}
+              Où acheter ?{' '}
             </h2>
             <div className="flex flex-col m-4 w-60 items-center self-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
               <p className="text-center text-sm font-light  mb-2">
-                Nous conseillons Mycosmetik 🇫🇷 pour l'acessibilité et la
-                qualité des produits. 👇
+                Nous conseillons Mycosmetik 🇫🇷 pour l'acessibilité et la qualité
+                des produits. 👇
               </p>
               <div>
                 <p className="text-center mb-4">9,40 €</p>
@@ -490,19 +516,19 @@ const StarterPage = () => {
                   href="#"
                   onClick={() => {
                     window.open(
-                      "https://www.mycosmetik.fr/#ae411                      "
-                    )
+                      'https://www.mycosmetik.fr/#ae411                      ',
+                    );
                   }}
                   type="orange"
                   className="w-32 h-10"
                 >
-                  {" "}
+                  {' '}
                   Commander
                 </Button>
               </div>
             </div>
             <p className="lg:text-center text-sm text-sm font-light lg:mt-6">
-              En achetant ces ingrédients, vous pouvez faire{" "}
+              En achetant ces ingrédients, vous pouvez faire{' '}
               <span className="bold">2</span> crèmes. La cire d’abeille pour
               tous type de baumes.
             </p>
@@ -518,7 +544,7 @@ const StarterPage = () => {
             <div className="place-self-center lg:place-self-start">
               <img
                 src={Lessive}
-                className={`${isMobile ? "rounded-xl w-36 h-45" : "img-dim"}`}
+                className={`${isMobile ? 'rounded-xl w-36 h-45' : 'img-dim'}`}
                 loading="lazy"
                 alt="lessive"
               />
@@ -546,7 +572,7 @@ const StarterPage = () => {
                     className="w-24 h-24 max-w-none"
                     alt="Bicarbonate de Soude"
                     loading="lazy"
-                  />{" "}
+                  />{' '}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
@@ -559,7 +585,7 @@ const StarterPage = () => {
                   </p>
                 </div>
                 <h4 className="text-xs lg:text-sm font-light text-center mt-8">
-                  4,30 € / 1 kg{" "}
+                  4,30 € / 1 kg{' '}
                 </h4>
               </div>
 
@@ -574,11 +600,11 @@ const StarterPage = () => {
                     className="w-24 h-24 max-w-none"
                     alt="Huile de Ricin"
                     loading="lazy"
-                  />{" "}
+                  />{' '}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
-                    30 g{" "}
+                    30 g{' '}
                   </p>
                 </div>
                 <div className="h-18 pt-2">
@@ -587,7 +613,7 @@ const StarterPage = () => {
                   </p>
                 </div>
                 <h4 className="text-xs lg:text-sm font-light text-center mt-8">
-                  2,30 € / 100 g{" "}
+                  2,30 € / 100 g{' '}
                 </h4>
               </div>
 
@@ -602,16 +628,16 @@ const StarterPage = () => {
                     className="w-24 h-24 max-w-none"
                     alt="Eau"
                     loading="lazy"
-                  />{" "}
+                  />{' '}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
-                    1 L{" "}
+                    1 L{' '}
                   </p>
                 </div>
                 <div className="h-18 pt-2">
                   <p className="text-sm lg:text-lg font-regular text-center">
-                    Eau{" "}
+                    Eau{' '}
                   </p>
                 </div>
               </div>
@@ -627,11 +653,11 @@ const StarterPage = () => {
                     className="w-24 h-24 max-w-none"
                     alt="Ecorce Agrumes"
                     loading="lazy"
-                  />{" "}
+                  />{' '}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
-                    2 à 3{" "}
+                    2 à 3{' '}
                   </p>
                 </div>
                 <div className="h-18 pt-2">
@@ -652,16 +678,16 @@ const StarterPage = () => {
                     className="w-24 h-24 max-w-none"
                     alt="Bouteille en verre"
                     loading="lazy"
-                  />{" "}
+                  />{' '}
                 </div>
                 <div className="flex justify-center w-12 h-12 bg-grey rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-white text-xs self-center font-medium">
-                    ≈ 1 L{" "}
+                    ≈ 1 L{' '}
                   </p>
                 </div>
                 <div className="h-18 pt-2">
                   <p className="text-sm lg:text-lg font-regular text-center">
-                    Bouteille en verre{" "}
+                    Bouteille en verre{' '}
                   </p>
                 </div>
               </div>
@@ -678,12 +704,12 @@ const StarterPage = () => {
                   <p className="self-center text-white font-bold">𝓲</p>
                 </div>
                 <p id="info_ingredients" className="self-center ml-3">
-                  {" "}
+                  {' '}
                   Pourquoi ces ingrédients ?
                 </p>
               </button>
               <div
-                className={toggle ? "ingredient_fadeIn" : "ingredient_fadeOut"}
+                className={toggle ? 'ingredient_fadeIn' : 'ingredient_fadeOut'}
               >
                 <div className="flex justify-self-center ml-6 p-2 mt-4 bg-grey rounded-lg">
                   <h4 className="text-white text-sm">
@@ -713,7 +739,7 @@ const StarterPage = () => {
                   href="#"
                   onClick={() => {
                     window.open(
-                      "https://www.biocoop.fr/magasins-bio/Trouver-mon-magasin-Biocoop"
+                      'https://www.biocoop.fr/magasins-bio/Trouver-mon-magasin-Biocoop',
                     );
                   }}
                   type="orange"
@@ -760,7 +786,7 @@ const StarterPage = () => {
       )}
 
       <div className="grid grid-cols-2 gap-x-2 | mt-10 mb-20">
-        {recipes.map((recipe) => (
+        {recipes.map(recipe => (
           <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
         ))}
       </div>
@@ -804,10 +830,10 @@ const StarterPage = () => {
                   className="w-16 lg:w-20 self-center items-center"
                   alt="Marché_icon"
                   loading="lazy"
-                />{" "}
+                />{' '}
               </div>
               <h2 className="text-lg text-center mb-2">
-                Biocoop ou grande surface{" "}
+                Biocoop ou grande surface{' '}
               </h2>
               <p className="text-sm text-center font-light">
                 La grande majorité des produits utilisée en fait-maison est
@@ -825,16 +851,16 @@ const StarterPage = () => {
                   className="w-12 lg:w-16 self-center items-center"
                   alt="Internet_icon"
                   loading="lazy"
-                />{" "}
+                />{' '}
               </div>
               <h2 className="text-lg text-center mb-2">
-                Sur les sites marchands{" "}
+                Sur les sites marchands{' '}
               </h2>
               <p className="text-sm text-center font-light">
                 En ligne, l’offre est bien plus grande, mais attention à la
                 qualité ! Nous recommandons certaines marques françaises comme :
-                Vos huiles, La compagnie des sens ou MyCosmetik. Sur ces
-                sites, vous trouverez absolument tout ce dont vous avez besoin :
+                Vos huiles, La compagnie des sens ou MyCosmetik. Sur ces sites,
+                vous trouverez absolument tout ce dont vous avez besoin :
                 ingrédients cosmétiques, huiles essentielles, poudres végétales
                 et ingrédients pour le ménage.
               </p>
@@ -865,7 +891,7 @@ const StarterPage = () => {
                   className="w-16 lg:w-18 self-center items-center"
                   alt="Atelier_icon"
                   loading="lazy"
-                />{" "}
+                />{' '}
               </div>
               <h2 className="text-lg text-center">Ateliers </h2>
               <p className="text-sm text-center font-light">
@@ -903,7 +929,7 @@ const StarterPage = () => {
                   className="w-16 lg:w-18 self-center items-center"
                   alt="Livre_icon"
                   loading="lazy"
-                />{" "}
+                />{' '}
               </div>
               <h2 className="text-lg text-center mb-2">Livres recommandés </h2>
               <p className="text-sm text-center font-light">
@@ -974,7 +1000,7 @@ const StarterPage = () => {
           </p>
         </h3>
         <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150">
-          {landingPageCategories.slice(2, 3).map((item) => (
+          {landingPageCategories.slice(2, 3).map(item => (
             <CategoryCircle
               name={item.title}
               icon={item.icon}
@@ -983,7 +1009,7 @@ const StarterPage = () => {
           ))}
         </div>
         <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150">
-          {landingPageCategories.slice(0, 1).map((item) => (
+          {landingPageCategories.slice(0, 1).map(item => (
             <CategoryCircle
               name={item.title}
               icon={item.icon}

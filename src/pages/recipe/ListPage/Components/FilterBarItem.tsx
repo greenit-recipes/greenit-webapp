@@ -1,13 +1,13 @@
-import { Checkbox } from "components/layout/Checkbox";
-import { find } from "lodash";
-import "pages/recipe/ListPage/Components/FilterBar.css";
+import { Checkbox } from 'components/layout/Checkbox';
+import { find } from 'lodash';
+import 'pages/recipe/ListPage/Components/FilterBar.css';
 
 interface IFilterBarItem {
   item: Record<string, any>;
   handleFilter: (
     isSelected: boolean,
     option: { title: string; value: string },
-    item: Record<string, any>
+    item: Record<string, any>,
   ) => void;
   currentFilters: Record<string, any>;
   isMobile?: boolean;
@@ -33,16 +33,12 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
               )}
             </div>
           </button>
-          <ul
-            id="list"
-            className={"list-none bg-white text-lg rounded-lg"}
-          >
+          <ul id="list" className={'list-none bg-white text-lg rounded-lg'}>
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {
-                const isSelected = !!find(
-                  currentFilters?.[item.name],
-                  { value: option.value },
-                );
+                const isSelected = !!find(currentFilters?.[item.name], {
+                  value: option.value,
+                });
                 return (
                   <li key={index} className="ml-2 py-1 ">
                     <Checkbox
@@ -54,7 +50,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
                     ></Checkbox>
                   </li>
                 );
-              }
+              },
             )}
           </ul>
         </div>
@@ -70,13 +66,12 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
               <></>
             )}
           </div>
-          <ul className={"w-auto"}>
+          <ul className={'w-auto'}>
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {
-                const isSelected = !!find(
-                  currentFilters?.[item.name],
-                  { value: option.value },
-                );
+                const isSelected = !!find(currentFilters?.[item.name], {
+                  value: option.value,
+                });
                 return (
                   <li key={index} className="p-1 text-lg">
                     <Checkbox
@@ -88,7 +83,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
                     ></Checkbox>
                   </li>
                 );
-              }
+              },
             )}
           </ul>
           <div className="border-b-2 border-grey w-2/3 mt-4"></div>

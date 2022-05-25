@@ -1,26 +1,26 @@
-import { Loading, Navbar } from "components";
-import { previousPath } from "helpers/route-helper";
-import { retourIcon } from "icons";
-import { findIndex } from "lodash";
-import HeadBand from "pages/GreenitFullXp/headband";
-import MenuFullXp from "pages/GreenitFullXp/MenuFullXp/MenuFullXp";
-import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
-import React, { Suspense, useState } from "react";
-import { Helmet } from "react-helmet";
-import useIsMobile from "../../hooks/isMobile";
-import { useHistory } from "react-router-dom";
-import { getMenuStep } from "../../helpers/beginnerbox.helper";
+import { Loading, Navbar } from 'components';
+import { previousPath } from 'helpers/route-helper';
+import { retourIcon } from 'icons';
+import { findIndex } from 'lodash';
+import HeadBand from 'pages/GreenitFullXp/headband';
+import MenuFullXp from 'pages/GreenitFullXp/MenuFullXp/MenuFullXp';
+import { menuFullXp } from 'pages/GreenitFullXp/MenuFullXp/MenuHelper';
+import React, { Suspense, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import useIsMobile from '../../hooks/isMobile';
+import { useHistory } from 'react-router-dom';
+import { getMenuStep } from '../../helpers/beginnerbox.helper';
 
-const RecipeFullXp = React.lazy(() => import("./RecipeFullXp/RecipeFullXp"));
+const RecipeFullXp = React.lazy(() => import('./RecipeFullXp/RecipeFullXp'));
 const IngredientUsentilFullXp = React.lazy(
   () =>
     import(
-      "pages/GreenitFullXp/IngredientUstensilFullXp/IngredientUsentilFullXp"
-    )
+      'pages/GreenitFullXp/IngredientUstensilFullXp/IngredientUsentilFullXp'
+    ),
 );
 
 const ConfirmationFullXp = React.lazy(
-  () => import("pages/GreenitFullXp/ConfirmationFullXp/ConfirmationFullXp")
+  () => import('pages/GreenitFullXp/ConfirmationFullXp/ConfirmationFullXp'),
 );
 
 //Todo : Refactor
@@ -32,22 +32,22 @@ const GenericFullXp = () => {
 
   //Delete previous cookie from payment on confirmation
   if (startMenu === confirmationMenu) {
-    localStorage.removeItem("currentMenuGreenitFullXp");
+    localStorage.removeItem('currentMenuGreenitFullXp');
   }
 
-  const currentMenuStorage = localStorage.getItem("currentMenuGreenitFullXp");
-  if (!currentMenuStorage || currentMenuStorage === "undefined") {
-    localStorage.setItem("currentMenuGreenitFullXp", startMenu);
+  const currentMenuStorage = localStorage.getItem('currentMenuGreenitFullXp');
+  if (!currentMenuStorage || currentMenuStorage === 'undefined') {
+    localStorage.setItem('currentMenuGreenitFullXp', startMenu);
   }
   const menuStorage =
-    currentMenuStorage !== "undefined" ? currentMenuStorage : null;
+    currentMenuStorage !== 'undefined' ? currentMenuStorage : null;
 
   const [menu, setMenu] = useState(menuStorage || startMenu);
 
   const setMenuWithCoockie = (menu: string) => {
     setMenu(menu);
     // menu !== "undefined" || localStorage.setItem("currentMenuGreenitFullXp", menu);
-    localStorage.setItem("currentMenuGreenitFullXp", menu);
+    localStorage.setItem('currentMenuGreenitFullXp', menu);
   };
 
   const isMobile = useIsMobile();
@@ -78,7 +78,7 @@ const GenericFullXp = () => {
               setMenuWithCoockie(menuFullXp[currentIndexNavigation - 1]?.name);
             } else {
               //Redirect to landing page after confirmation
-              history.push("/");
+              history.push('/');
             }
           }}
         >

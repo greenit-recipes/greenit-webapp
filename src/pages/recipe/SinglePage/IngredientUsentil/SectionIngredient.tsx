@@ -1,10 +1,10 @@
-import { getImagePath } from "helpers/image.helper";
-import useIsMobile from "hooks/isMobile";
-import HTMLReactParser from "html-react-parser";
-import { useState } from "react";
-import { HiOutlineChevronDown } from "react-icons/hi";
-import { RiComputerLine } from "react-icons/ri";
-import { BsShop } from "react-icons/bs";
+import { getImagePath } from 'helpers/image.helper';
+import useIsMobile from 'hooks/isMobile';
+import HTMLReactParser from 'html-react-parser';
+import { useState } from 'react';
+import { HiOutlineChevronDown } from 'react-icons/hi';
+import { RiComputerLine } from 'react-icons/ri';
+import { BsShop } from 'react-icons/bs';
 
 interface ISectionIngredient {
   className?: string;
@@ -22,7 +22,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
     <>
       <div
         className={`flex items-center btn-single-page ingredient-shadow max-h-32 mt-4 ${
-          !isMobile ? "cursor-pointer" : ""
+          !isMobile ? 'cursor-pointer' : ''
         }`}
         onClick={() => {
           if (!isMobile) setArrowDown(!isArrowDown);
@@ -44,9 +44,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
           <div className="flex items-center justify-end w-full">
             <HiOutlineChevronDown
               className={`w-6 h-6  mr-6 cursor-pointer ${
-                isArrowDown
-                  ? "section-arrow-up"
-                  : "section-arrow-down"
+                isArrowDown ? 'section-arrow-up' : 'section-arrow-down'
               }`}
               onClick={() => {
                 setArrowDown(!isArrowDown);
@@ -55,14 +53,12 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
           </div>
         </div>
       </div>
-      <div
-        className={
-          !isArrowDown ? "fadeIn-arrow" : " fadeOut-arrow"
-        }
-      >
+      <div className={!isArrowDown ? 'fadeIn-arrow' : ' fadeOut-arrow'}>
         <div className="rounded-b bg-greyL">
           <div className="w-5/6 ml-6 lg:w-4/6">
-            <div className="pt-4">{data?.description && HTMLReactParser(data?.description)}</div>
+            <div className="pt-4">
+              {data?.description && HTMLReactParser(data?.description)}
+            </div>
             <h2 className="pt-4 fontQSemibold">Alternatives</h2>
             <div>{data?.alternative && HTMLReactParser(data?.alternative)}</div>
             <div className="flex-col items-center pt-4 pb-6 lg:flex-row">

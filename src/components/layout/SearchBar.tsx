@@ -1,16 +1,16 @@
 import {
   getObjectSession,
   setObjectFilterSession,
-} from "helpers/session-helper";
-import { Link, useHistory } from "react-router-dom";
-import { RouteName } from "App";
-import { useEffect, useState } from "react";
-import "./SearchBar.css";
-import { isEmpty } from "lodash";
-import { GoSearch } from "react-icons/go";
+} from 'helpers/session-helper';
+import { Link, useHistory } from 'react-router-dom';
+import { RouteName } from 'App';
+import { useEffect, useState } from 'react';
+import './SearchBar.css';
+import { isEmpty } from 'lodash';
+import { GoSearch } from 'react-icons/go';
 
 export const SearchBar: React.FC<{
-  size?: "small" | "large";
+  size?: 'small' | 'large';
   setValue?: (val: string) => void;
   value?: string;
   onSubmit?: () => void;
@@ -25,8 +25,8 @@ export const SearchBar: React.FC<{
   isLoading?: boolean;
   hideSearchIcon?: boolean;
 }> = ({
-  size = "large",
-  value = "",
+  size = 'large',
+  value = '',
   suggestions = { recipes: [], ingredients: [], totalRecipes: 0 },
   suggestionIsActive = false,
   setValue,
@@ -34,13 +34,13 @@ export const SearchBar: React.FC<{
   isLoading = false,
   onSubmit,
   hideSearchIcon,
-  keyId = "search",
+  keyId = 'search',
 }) => {
-  const isLarge = size === "large";
+  const isLarge = size === 'large';
   const history = useHistory();
-  const totalSize = `w-full h-10 md:h-${isLarge ? "12" : "10"}`;
-  const iconSize = `w-10 md:w-${isLarge ? "16" : "10"} h-10 md:h-${
-    isLarge ? "12" : "10"
+  const totalSize = `w-full h-10 md:h-${isLarge ? '12' : '10'}`;
+  const iconSize = `w-10 md:w-${isLarge ? '16' : '10'} h-10 md:h-${
+    isLarge ? '12' : '10'
   }`;
   const handleSubmit = () => {
     if (!onSubmit) {
@@ -48,8 +48,8 @@ export const SearchBar: React.FC<{
         search: (document.getElementById(keyId) as HTMLInputElement)?.value,
       };
       window.sessionStorage.setItem(
-        "filterListPage",
-        JSON.stringify(currentSearchValue )
+        'filterListPage',
+        JSON.stringify(currentSearchValue),
       );
       history.push(RouteName.recipes);
     } else {
@@ -60,7 +60,7 @@ export const SearchBar: React.FC<{
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [input, setInput] = useState(value || "");
+  const [input, setInput] = useState(value || '');
 
   useEffect(() => {
     // Filter our suggestions that don't contain the user's input
@@ -92,8 +92,8 @@ export const SearchBar: React.FC<{
       search: e.target.innerText,
     };
     window.sessionStorage.setItem(
-      "filterListPage",
-      JSON.stringify(currentSearchValue)
+      'filterListPage',
+      JSON.stringify(currentSearchValue),
     );
     history.push(RouteName.recipes);
   };
@@ -101,7 +101,7 @@ export const SearchBar: React.FC<{
   const onClickRecipes = (e: any) => {};
 
   const onKeyDown = (e: any) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       handleSubmit();
     }
     /*
@@ -129,12 +129,20 @@ export const SearchBar: React.FC<{
   };
 
   const SuggestionsListComponent = () => {
-        /* @ts-ignore */
-    return filteredSuggestions?.recipes.length || filteredSuggestions?.ingredients.length ? (
-      <div className={"suggestions-content suggestions-box z-50 " + customClassList}>
+    /* @ts-ignore */
+    return filteredSuggestions?.recipes.length ||
+      /* @ts-ignore */
+      filteredSuggestions?.ingredients.length ? (
+      <div
+        className={
+          'suggestions-content suggestions-box z-50 ' + customClassList
+        }
+      >
         <ul className="suggestions">
           {/* @ts-ignore */}
-          {!isEmpty(filteredSuggestions?.recipes) && <li className="text-sm text-blue mt-2 search-recipe">Recettes</li>}
+          {!isEmpty(filteredSuggestions?.recipes) && (
+            <li className="text-sm text-blue mt-2 search-recipe">Recettes</li>
+          )}
           {/* @ts-ignore */}
           {filteredSuggestions?.recipes.map((suggestion, index) => {
             return (
@@ -150,25 +158,35 @@ export const SearchBar: React.FC<{
             );
           })}
           {/* @ts-ignore */}
-          {  !isEmpty(filteredSuggestions?.ingredients) && <li className="text-sm text-blue mt-2 search-ingredient">Ingrédients</li>}
+          {!isEmpty(filteredSuggestions?.ingredients) && (
+            <li className="text-sm text-blue mt-2 search-ingredient">
+              Ingrédients
+            </li>
+          )}
           {/* @ts-ignore */}
           {filteredSuggestions?.ingredients.map((suggestion, index) => {
             return (
-              <li  key={index} onClick={onClick}>
+              <li key={index} onClick={onClick}>
                 {suggestion?.name}
               </li>
             );
           })}
-          <li className="cursor-pointer text-sm mt-3 mb-5" onClick={() => {
+          <li
+            className="cursor-pointer text-sm mt-3 mb-5"
+            onClick={() => {
               handleSubmit();
-            }}> Tous les résultats ({suggestions?.totalRecipes})</li>
+            }}
+          >
+            {' '}
+            Tous les résultats ({suggestions?.totalRecipes})
+          </li>
         </ul>
       </div>
     ) : (
       <div className="suggestions-content no-suggestions mr-8">
         <span role="img" aria-label="tear emoji">
           😪
-        </span>{" "}
+        </span>{' '}
         <em>Aucun Résultat ...</em>
       </div>
     );
@@ -182,10 +200,13 @@ export const SearchBar: React.FC<{
         <div
           className={`${iconSize} | flex | self-center rounded-full cursor-pointer`}
         >
-          <GoSearch className={`w-6 h-6
-              } | self-center | ml-auto mr-auto`} onClick={() => {
+          <GoSearch
+            className={`w-6 h-6
+              } | self-center | ml-auto mr-auto`}
+            onClick={() => {
               handleSubmit();
-            }}></GoSearch>
+            }}
+          ></GoSearch>
         </div>
       )}
       <input
@@ -193,8 +214,8 @@ export const SearchBar: React.FC<{
         className={`text-base bg-transparent
           } | w-full | focus:outline-none search-bar`}
         onKeyDown={onKeyDown}
-        onFocus={(event) => {
-          event.target.setAttribute("autocomplete", "off");
+        onFocus={event => {
+          event.target.setAttribute('autocomplete', 'off');
         }}
         placeholder="Je cherche une recette, un ingrédient..."
         id={keyId}
