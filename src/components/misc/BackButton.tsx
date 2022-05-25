@@ -14,7 +14,7 @@ export const BackButton: React.FC<BackButtonProps> = ({
                                                       }) => {
     return (
         <div
-            className={`absolute left-0 z-20 grid w-10 h-10 ${styleCSS} top-0 p-2 rounded-full cursor-pointer ml-6 md:w-10 md:w-8 md:h-10 md:p-2 md:ml-14 bg-white shadow-md`}
+            className={`absolute left-0 z-20 grid w-10 h-10 ${styleCSS} top-0 p-2 rounded-full cursor-pointer ml-6 md:w-10 md:h-10 md:p-2 md:ml-14 bg-white shadow-md`}
             id={`${idButton}-fleche-retour`}
             onClick={() => {
                 previousPath();

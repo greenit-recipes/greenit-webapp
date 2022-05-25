@@ -67,11 +67,11 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "concurrently \"yarn generate --watch\" \"react-scripts start --host 0.0.0.0\"",
-    "build": "yarn generate && craco build",
-    "build:beta": "DOTENV_CONFIG_PATH=.env.beta yarn generate -r dotenv/config && DOTENV_CONFIG_PATH=.env.beta craco -r dotenv/config build",
-    "build:prod": "DOTENV_CONFIG_PATH=.env.prod yarn generate -r dotenv/config && DOTENV_CONFIG_PATH=.env.prod craco -r dotenv/config build",
-    "test": "craco test",
+    "start": "concurrently \"yarn generate --watch\" \"react-app-rewired start --host 0.0.0.0\"",
+    "build": "yarn generate && react-app-rewired build",
+    "build:beta": "DOTENV_CONFIG_PATH=.env.beta yarn generate -r dotenv/config && DOTENV_CONFIG_PATH=.env.beta react-app-rewired -r dotenv/config build",
+    "build:prod": "DOTENV_CONFIG_PATH=.env.prod yarn generate -r dotenv/config && DOTENV_CONFIG_PATH=.env.prod react-app-rewired -r dotenv/config build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "generate": "graphql-codegen codegen.yml",
     "generate:watch": "yarn generate --watch"
@@ -100,8 +100,10 @@
     "babel-register": "^6.26.0",
     "concurrently": "^6.0.1",
     "cssnano": "^5.1.5",
+    "customize-cra": "^1.0.0",
     "install": "^0.13.0",
     "postcss": "^8.4.14",
+    "react-app-rewired": "^2.2.1",
     "tailwindcss": "^3.0.24",
     "webpack-bundle-analyzer": "^4.5.0"
   }
