@@ -100,7 +100,7 @@ const FindOutMoreBoxGreentilFullXP = () => {
                 </div>
 
 
-                <div className="mt-0 md:ml-40 md:self-start msm:text-center md:mb-12">
+                <div className="mt-0 md:ml-40 md:self-start msm:text-center mb-20 md:mb-12">
                     <p>Alors, tenté.e ?</p>
                     {!isMobile && <Link to={RouteName.greenitFullXp}>
                         <button
