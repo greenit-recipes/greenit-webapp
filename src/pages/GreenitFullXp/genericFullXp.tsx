@@ -1,4 +1,4 @@
-import { Loading } from "components";
+import { Loading, Navbar } from "components";
 import { previousPath } from "helpers/route-helper";
 import { retourIcon } from "icons";
 import { findIndex } from "lodash";
@@ -62,6 +62,7 @@ const GenericFullXp = () => {
           content="Coffret pour les débutants en fait-maison. Une box spécialement conçue pour les premiers pas en DIY. Réalisez tous vos produits hygiènes, cosmétiques et ménagers. Greenit vous livre des ingrédients et vous réalisez !"
         />
       </Helmet>
+      <Navbar />
       <div className="flex flex-row relative">
         <div
           className="absolute z-20 w-10 h-10 p-2 rounded-full cursor-pointer ml-6 md:w-10 md:w-8 md:h-10 md:p-2 mt-10 md:ml-16 bg-white shadow-md"

@@ -6,6 +6,7 @@ import {Link, useHistory} from "react-router-dom";
 import {BackButton} from "../../../components/misc/BackButton";
 import useIsMobile from "../../../hooks/isMobile";
 import {boxIngredientCreme, boxIngredientLessive, boxIngredientSavon, boxFullXp, cremeFullXp} from "icons";
+import { Navbar } from "components";
 
 const steps = [
     {
@@ -52,6 +53,7 @@ const FindOutMoreBoxGreentilFullXP = () => {
                     content="Envie de réaliser vos produits DIY mais vous ne savez pas par où commencer ? Greenit a conçu une box Premiers Pas, avec 3 recettes simplissimes pour débuter dans le fait-maison. Au menu, une recette de produits ménagers, cosmétiques et hygiènes."
                 />
             </Helmet>
+            <Navbar />
 
             <div className="md:h-screen relative flex flex-col md:justify-around items-center">
                 <BackButton styleCSS="mt-6 md:mt-16"/>

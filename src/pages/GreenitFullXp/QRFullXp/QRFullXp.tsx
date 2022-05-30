@@ -7,6 +7,7 @@ import { NumberedCircle } from "../../../components/misc/NumberedCircle";
 import { Helmet } from "react-helmet";
 import ModalLogGreenit from "../../../components/layout/ModalLogGreenit/ModalLogGreenit";
 import useIsMobile from "../../../hooks/isMobile";
+import { Navbar } from "components";
 
 const QRFullXp = () => {
 
@@ -21,6 +22,7 @@ const QRFullXp = () => {
         <meta name="robots" content="noindex" />
       </Helmet>
 
+      <Navbar />
       <div className="h-screen flex flex-col text-center">
         <div className="flex flex-row align-start mt-2 md:ml-6 md:mt-6">
           <Link to={RouteName.accueil}>

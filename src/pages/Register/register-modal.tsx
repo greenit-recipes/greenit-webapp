@@ -223,6 +223,7 @@ export const RegisterModal: React.FC<{
                 <div>
                     <p
                         onClick={() => loginOpen(true)}
+                        id="modal-register-deja-un-compte"
                         className="mb-4 text-sm text-center text-blue underline cursor-pointer md:text-base"
                     >
                         Déjà un compte ? Se connecter ici !
@@ -255,6 +256,7 @@ export const RegisterModal: React.FC<{
                             <div className="flex flex-col w-2/4 ">
                                 <Link
                                     to={RouteName.register}
+                                    id="modal-register-createur"
                                     className="flex flex-col items-center transition border shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white"
                                 >
                                     <div className="size-emoji-modal">🧑‍🎨</div>
@@ -277,6 +279,7 @@ export const RegisterModal: React.FC<{
                         callback={responseFacebook}
                         disableMobileRedirect={true}
                         cssClass="my-facebook-button-class"
+                        id="modal-register-facebook"
                         textButton={'Connexion avec Facebook'}
                         icon={false ? <div className="animate-spin mr-4"><BiLoaderAlt/></div> :
                             <IoLogoFacebook className="w-6 h-6 mr-4"/>}
@@ -418,14 +421,14 @@ export const RegisterModal: React.FC<{
                                 type="checkbox"
                                 className="w-6 h-6"
                                 {...register("isFollowNewsletter")}
-                                id="isFollowNewsletter"
+                                id="Modal-Register-is-Follow-Newsletter"
                             />
                             <label className="self-center ml-2 text-sm text-gray-700">
                                 Coche la case si tu veux recevoir nos dernières actualités et
                                 les tendances du secteur du DIY.
                             </label>
                         </div>
-                        <Button type="blue" className="mt-4 font-extrabold" isLoading={isGraphQlLoading}>
+                        <Button type="blue" id="modal-register-button-cree-profil" className="mt-4 font-extrabold" isLoading={isGraphQlLoading}>
                             Créer ton profil
                         </Button>
                     </form>

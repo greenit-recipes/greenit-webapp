@@ -231,11 +231,12 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
                             </p>
                             <a
                                 className="self-end px-4 mt-2 mb-6 text-sm font-bold lg:text-base text-blue"
+                                id="modal-login-mot-de-passe-oublie"
                                 href={RouteName.resetPassword}
                             >
                                 Mot de passe oublié ?
                             </a>
-                            <Button type="blue" className="mt-4 font-extrabold" isLoading={isGraphQlLoading}>
+                            <Button type="blue" id="modal-button-connexion" className="mt-4 font-extrabold" isLoading={isGraphQlLoading}>
                                 Connexion
                             </Button>
                         </form>
@@ -250,6 +251,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
                             disableMobileRedirect={true}
                             cssClass="my-facebook-button-class"
                             textButton={'Connexion avec Facebook'}
+                            id="connexion-facebook"
                             icon={false ? (<div className="animate-spin mr-4"><BiLoaderAlt/></div>) :
                                 (<IoLogoFacebook className="w-6 h-6 mr-4"/>)}
                         />
@@ -261,6 +263,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({loginOpen}) => {
                         <div>
                             <p
                                 onClick={() => loginOpen(false)}
+                                id="modal-connexion-pas-encore-de-compte"
                                 className="m-4 text-sm text-center text-gray-700 underline cursor-pointer md:m-10"
                             >
                                 Pas encore de compte ? - Créer son compte
