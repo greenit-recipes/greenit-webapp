@@ -211,7 +211,11 @@ export const Navbar: React.FC = () => {
           />
         </Link>
       </div>
-      <div className="flex flex-row items-center w-3/5 h-full ml-4 justify-items-start">
+      <div
+        className={`flex flex-row items-center w-${
+          showSearchBar ? '[45%]' : '3/5'
+        } h-full ml-4 justify-items-start`}
+      >
         <Link to={RouteName.accueil}>
           <NavButton id="home" type="black">
             Accueil
@@ -473,10 +477,12 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
       </div>
+      {/*Todo : Update width dynamically with custom breakpoints on smaller screens*/}
       {showSearchBar && (
-        <div className="flex flex-row w-1/5 lg:w-2/5 h-full items-center mr-12">
+        <div className="flex flex-row w-1/4 h-full items-center">
           <SearchBar
             keyId="searchBarNav"
+            size="small"
             suggestionIsActive={true}
             setValue={setSearchTermDebounced}
             isLoading={autoCompleteLoading}
