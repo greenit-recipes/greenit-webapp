@@ -1,30 +1,30 @@
-import { useHistory } from 'react-router-dom';
-import { RouteName } from 'App';
+import { useHistory } from "react-router-dom";
+import { RouteName } from "App";
 import {
   getObjectSession,
   setObjectFilterSession,
-} from 'helpers/session-helper';
-import { useState } from 'react';
-import { GoSearch } from 'react-icons/go';
+} from "helpers/session-helper";
+import { useState } from "react";
+import { GoSearch } from "react-icons/go";
 
 export const SearchBarNav: React.FC<{
-  size?: 'small' | 'large';
+  size?: "small" | "large";
   setValue?: (val: string) => void;
   value?: string;
   onSubmit?: () => void;
   keyId?: string;
   hideSearchIcon?: boolean;
 }> = ({
-  size = 'large',
+  size = "large",
   value,
   setValue,
   onSubmit,
   hideSearchIcon,
-  keyId = 'search',
+  keyId = "search",
 }) => {
-  const isLarge = size === 'large';
+  const isLarge = size === "large";
   const history = useHistory();
-  const [currentValue, setCurrentValue] = useState(value || '');
+  const [currentValue, setCurrentValue] = useState(value || "");
 
   const handleSubmit = () => {
     if (!onSubmit) {
@@ -32,7 +32,7 @@ export const SearchBarNav: React.FC<{
         search: (document.getElementById(keyId) as HTMLInputElement)?.value,
       };
       setObjectFilterSession(
-        getObjectSession('filterListPage'),
+        getObjectSession("filterListPage"),
         currentSearchValue,
       );
       history.push(RouteName.recipes);
@@ -47,7 +47,7 @@ export const SearchBarNav: React.FC<{
         className={`w-full h-full bg-transparent ml-2 | text-sm md:
           } focus:outline-none`}
         onKeyDown={e => {
-          if (e.key === 'Enter') {
+          if (e.key === "Enter") {
             handleSubmit();
           }
         }}

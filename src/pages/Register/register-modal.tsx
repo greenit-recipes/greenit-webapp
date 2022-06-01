@@ -1,8 +1,8 @@
-import { useMutation } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { RouteName } from 'App';
-import { Button } from 'components';
-import useIsMobile from 'hooks/isMobile';
+import { useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RouteName } from "App";
+import { Button } from "components";
+import useIsMobile from "hooks/isMobile";
 import {
   confirmpwd,
   gifModalProfil,
@@ -11,33 +11,33 @@ import {
   mdpNonVisible,
   mdpVisible,
   userlogo,
-} from 'icons';
-import { omit } from 'lodash';
+} from "icons";
+import { omit } from "lodash";
 import {
   optionsUserCategoryAge,
   optionsUserCategoryLvl,
   schemaRegister,
-} from 'pages/Register/registerHelper';
-import React, { useState } from 'react';
-import FacebookLogin from 'react-facebook-login';
-import { Controller, useForm } from 'react-hook-form';
-import { BiLoaderAlt } from 'react-icons/bi';
-import { IoLogoFacebook } from 'react-icons/io5';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import Select from 'react-select';
+} from "pages/Register/registerHelper";
+import React, { useState } from "react";
+import FacebookLogin from "react-facebook-login";
+import { Controller, useForm } from "react-hook-form";
+import { BiLoaderAlt } from "react-icons/bi";
+import { IoLogoFacebook } from "react-icons/io5";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import Select from "react-select";
 import authService, {
   CREATE_ACCOUNT,
   CREATE_USER_FROM_AUTH,
   LOGIN_ACCOUNT,
-} from 'services/auth.service';
+} from "services/auth.service";
 import {
   beginnerBoxCookieExist,
   HAS_PURCHASED_BEGINNER_BOX,
   persistBoxPurchaseOnFirstLogin,
   persistBoxPurchaseOnRegister,
-} from 'services/boxfullxp.service';
-import useGraphQlLoading from '../../hooks/useGraphqlLoading';
-import './register.css';
+} from "services/boxfullxp.service";
+
+import "./register.css";
 
 export const RegisterModal: React.FC<{
   loginOpen: any;
@@ -60,51 +60,45 @@ export const RegisterModal: React.FC<{
     loginAccount,
     { data: dataLogin, loading: loadingLogin, error: errorLogin },
   ] = useMutation(LOGIN_ACCOUNT, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
 
   const [hasPurchasedBeginnerBox] = useMutation(HAS_PURCHASED_BEGINNER_BOX, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
 
-  const [errorLoginFb, setErrorLoginFb] = useState('');
+  const [errorLoginFb, setErrorLoginFb] = useState("");
 
   const [
     authLogin,
     { data: dataAuth, loading: loadingAuth, error: errorAuth },
   ] = useMutation(CREATE_USER_FROM_AUTH, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
   const [
     createAccount,
     { data: createAccountData, loading: loadingCreateAccount, error },
-  ] = useMutation(CREATE_ACCOUNT, { errorPolicy: 'all' });
-
-  const isGraphQlLoading = useGraphQlLoading([
-    loadingLogin,
-    loadingAuth,
-    loadingCreateAccount,
-  ]);
+  ] = useMutation(CREATE_ACCOUNT, { errorPolicy: "all" });
 
   React.useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
 
     if (createAccountData?.register?.success === false || error) {
-      if (createAccountData?.register?.errors?.email?.[0]?.code === 'unique') {
-        setError('email', {
-          message: 'Cet email existe déjà.',
+      if (createAccountData?.register?.errors?.email?.[0]?.code === "unique") {
+        setError("email", {
+          message: "Cet email existe déjà.",
         });
       }
       if (
-        createAccountData?.register?.errors?.username?.[0]?.code === 'unique'
+        createAccountData?.register?.errors?.username?.[0]?.code === "unique"
       ) {
-        setError('utilisateur', {
-          message: 'Ce nom existe déjà.',
+        setError("utilisateur", {
+          message: "Ce nom existe déjà.",
         });
       }
     }
@@ -118,16 +112,16 @@ export const RegisterModal: React.FC<{
       username: responseFb.name,
       password: process.env.REACT_APP_PASSWORD + responseFb.id,
       idFacebook: responseFb.id,
-      isFollowNewsletter: 'false',
+      isFollowNewsletter: "false",
       isBeginnerBox: true,
     };
     //Add the field optionally to avoid defaults
     if (!persistBoxPurchaseOnRegister()) {
-      omit(variables, ['isBeginnerBox']);
+      omit(variables, ["isBeginnerBox"]);
     }
     // Error si pas d'email
 
-    if (responseFb.status === 'unknown') {
+    if (responseFb.status === "unknown") {
       return;
     }
 
@@ -167,7 +161,7 @@ export const RegisterModal: React.FC<{
         }
         if (authService.isRedirectToProfil(location?.pathname)) {
         }
-        history.push('/profil');
+        history.push("/profil");
         //history.goBack()
       }
     });
@@ -199,7 +193,7 @@ export const RegisterModal: React.FC<{
     };
     //Add the field optionally to avoid defaults
     if (persistBoxPurchaseOnRegister()) {
-      omit(variables, ['isBeginnerbox']);
+      omit(variables, ["isBeginnerbox"]);
     }
 
     authService.removeToken();
@@ -216,7 +210,7 @@ export const RegisterModal: React.FC<{
   return (
     <div
       className={`flex justify-center   ${
-        !isMobile ? 'register-modal-size' : ''
+        !isMobile ? "register-modal-size" : ""
       } items-center`}
     >
       <div className="flex flex-col items-center bg-white rounded-3xl">
@@ -227,7 +221,8 @@ export const RegisterModal: React.FC<{
         <div>
           <p
             onClick={() => loginOpen(true)}
-            id="modal-register-deja-un-compte"className="mb-4 text-sm text-center text-blue underline cursor-pointer md:text-base"
+            id="modal-register-deja-un-compte"
+            className="mb-4 text-sm text-center text-blue underline cursor-pointer md:text-base"
           >
             Déjà un compte ? Se connecter ici !
           </p>
@@ -257,7 +252,8 @@ export const RegisterModal: React.FC<{
               </div>
               <div className="flex flex-col w-2/4 ">
                 <Link
-                  to={RouteName.register}id="modal-register-createur"
+                  to={RouteName.register}
+                  id="modal-register-createur"
                   className="flex flex-col items-center transition border shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white"
                 >
                   <div className="size-emoji-modal">🧑‍🎨</div>
@@ -280,9 +276,10 @@ export const RegisterModal: React.FC<{
             callback={responseFacebook}
             disableMobileRedirect={true}
             cssClass="my-facebook-button-class"
-            id="modal-register-facebook"textButton={'Connexion avec Facebook'}
+            id="modal-register-facebook"
+            textButton={"Connexion avec Facebook"}
             icon={
-              false ? (
+              loadingAuth ? (
                 <div className="animate-spin mr-4">
                   <BiLoaderAlt />
                 </div>
@@ -313,7 +310,7 @@ export const RegisterModal: React.FC<{
                 id="email"
                 placeholder="Email"
                 type="email"
-                {...register('email')}
+                {...register("email")}
               ></input>
             </div>
             <p className="text-xs italic text-red">{errors.email?.message}</p>
@@ -329,7 +326,7 @@ export const RegisterModal: React.FC<{
                 id="utilisateur"
                 placeholder="Nom d'utilisateur"
                 type="text"
-                {...register('utilisateur')}
+                {...register("utilisateur")}
               ></input>
             </div>
             <p className="text-xs italic text-red">
@@ -346,9 +343,9 @@ export const RegisterModal: React.FC<{
                 <input
                   className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                   id="password"
-                  type={isRevealPwd ? 'text' : 'password'}
+                  type={isRevealPwd ? "text" : "password"}
                   placeholder="Mot de passe"
-                  {...register('password')}
+                  {...register("password")}
                 />
                 <img
                   className="mr-2"
@@ -372,9 +369,9 @@ export const RegisterModal: React.FC<{
                 <input
                   className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                   id="passwordConfirmation"
-                  type={isRevealPwd ? 'text' : 'password'}
+                  type={isRevealPwd ? "text" : "password"}
                   placeholder="Confirmer le mot de passe"
-                  {...register('passwordConfirmation')}
+                  {...register("passwordConfirmation")}
                 />
                 <img
                   className="mr-2"
@@ -425,7 +422,7 @@ export const RegisterModal: React.FC<{
               <input
                 type="checkbox"
                 className="w-6 h-6"
-                {...register('isFollowNewsletter')}
+                {...register("isFollowNewsletter")}
                 id="Modal-Register-is-Follow-Newsletter"
               />
               <label className="self-center ml-2 text-sm text-gray-700">
@@ -435,8 +432,9 @@ export const RegisterModal: React.FC<{
             </div>
             <Button
               type="blue"
-             id="modal-register-button-cree-profil" className="mt-4 font-extrabold"
-              isLoading={isGraphQlLoading}
+              id="modal-register-button-cree-profil"
+              className="mt-4 font-extrabold"
+              isLoading={loadingCreateAccount}
             >
               Créer ton profil
             </Button>

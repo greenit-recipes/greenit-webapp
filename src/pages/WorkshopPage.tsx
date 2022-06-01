@@ -1,12 +1,12 @@
-import { RouteName } from 'App';
-import { Button } from 'components/misc/Button';
-import { includes } from 'lodash';
-import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import { Link, useHistory } from 'react-router-dom';
-import { logo, PhotoAtelier, Webcam } from '../../src/icons';
-import { Container, Footer, Navbar } from '../components';
-import useIsMobile from '../hooks/isMobile';
+import { RouteName } from "App";
+import { Button } from "components/misc/Button";
+import { includes } from "lodash";
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { Link, useHistory } from "react-router-dom";
+import { logo, PhotoAtelier, Webcam } from "../../src/icons";
+import { Container, Footer, Navbar } from "../components";
+import useIsMobile from "../hooks/isMobile";
 
 const WorkshopPage = () => {
   const [isIncoming, setIsIncoming] = useState(false);
@@ -25,7 +25,7 @@ const WorkshopPage = () => {
     if (!fieldRef) return;
     // @ts-ignore
     fieldRef?.current.scrollIntoView({
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -41,7 +41,7 @@ const WorkshopPage = () => {
     if (!fieldRefSuggestWorkshop) return;
     // @ts-ignore
     fieldRefSuggestWorkshop?.current.scrollIntoView({
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -49,7 +49,7 @@ const WorkshopPage = () => {
     if (!fieldRefOnlineWorkshop) return;
     // @ts-ignore
     fieldRefOnlineWorkshop?.current.scrollIntoView({
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -57,18 +57,18 @@ const WorkshopPage = () => {
     if (!fieldRefPhysiqueWorkshop) return;
     // @ts-ignore
     fieldRefPhysiqueWorkshop?.current.scrollIntoView({
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
   useEffect(() => {
-    const sectionPageAutoScrool = params.get('scroolTo');
+    const sectionPageAutoScrool = params.get("scroolTo");
     if (sectionPageAutoScrool) {
-      if (sectionPageAutoScrool === 'suggestWorkshop') {
+      if (sectionPageAutoScrool === "suggestWorkshop") {
         setTimeout(() => scrollIntoSuggestWorkshop(), 300);
-      } else if (sectionPageAutoScrool === 'onlineWorkshop') {
+      } else if (sectionPageAutoScrool === "onlineWorkshop") {
         setTimeout(() => scrollIntoFieldRefOnlineWorkshop(), 300);
-      } else if (sectionPageAutoScrool === 'physiqueWorkshop') {
+      } else if (sectionPageAutoScrool === "physiqueWorkshop") {
         setTimeout(() => scrollIntoFieldRefPhysiqueWorkshop(), 300);
       }
       return;
@@ -76,7 +76,7 @@ const WorkshopPage = () => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   }, []);
@@ -92,39 +92,39 @@ const WorkshopPage = () => {
         />
         <script type="application/ld+json">
           {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Event',
-            name: 'Les Ateliers de Greenit',
-            startDate: '2022-02-26T11:00-00:00',
-            endDate: '2022-02-26T12:00-00:00',
-            eventStatus: 'https://schema.org/EventScheduled',
-            eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+            "@context": "https://schema.org",
+            "@type": "Event",
+            name: "Les Ateliers de Greenit",
+            startDate: "2022-02-26T11:00-00:00",
+            endDate: "2022-02-26T12:00-00:00",
+            eventStatus: "https://schema.org/EventScheduled",
+            eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
             location: {
-              '@type': 'VirtualLocation',
-              url: 'https://www.google.com/url?q=https://codeuniversity.zoom.us/j/96947694632&sa=D&source=calendar&ust=1644223969305824&usg=AOvVaw2NOCSfCKKGfqgnbi2iRQVl',
+              "@type": "VirtualLocation",
+              url: "https://www.google.com/url?q=https://codeuniversity.zoom.us/j/96947694632&sa=D&source=calendar&ust=1644223969305824&usg=AOvVaw2NOCSfCKKGfqgnbi2iRQVl",
             },
 
             image: [
-              'https://greenitcommunity.com/static/media/PhotoAtelier.86d8bb41.jpg',
+              "https://greenitcommunity.com/static/media/PhotoAtelier.86d8bb41.jpg",
             ],
             description:
-              'Cet atelier est destiné aux débutants ! Quelles sont les premières étapes ? Quelles huiles choisir ? Quelles compositions ? Où acheter ? Nous parlerons de l’expansion du fait-maison, nous répondrons à vos questions !',
+              "Cet atelier est destiné aux débutants ! Quelles sont les premières étapes ? Quelles huiles choisir ? Quelles compositions ? Où acheter ? Nous parlerons de l’expansion du fait-maison, nous répondrons à vos questions !",
             offers: {
-              '@type': 'Offer',
-              url: 'https://www.eventbrite.fr/e/221952414647',
-              price: '0',
-              priceCurrency: 'EUR',
-              availability: 'https://schema.org/InStock',
-              validFrom: '2022-01-01T12:00-00:00',
+              "@type": "Offer",
+              url: "https://www.eventbrite.fr/e/221952414647",
+              price: "0",
+              priceCurrency: "EUR",
+              availability: "https://schema.org/InStock",
+              validFrom: "2022-01-01T12:00-00:00",
             },
             performer: {
-              '@type': 'PerformingGroup',
-              name: 'Andréa & Adrien',
+              "@type": "PerformingGroup",
+              name: "Andréa & Adrien",
             },
             organizer: {
-              '@type': 'Organization',
-              name: 'Greenit',
-              url: 'https://greenitcommunity.com/',
+              "@type": "Organization",
+              name: "Greenit",
+              url: "https://greenitcommunity.com/",
             },
           })}
         </script>
@@ -206,7 +206,7 @@ const WorkshopPage = () => {
                 <img
                   src={PhotoAtelier}
                   className="rounded-2xl"
-                  style={{ width: '100%', maxWidth: '200px' }}
+                  style={{ width: "100%", maxWidth: "200px" }}
                 />
               </div>
             </div>
@@ -252,7 +252,7 @@ const WorkshopPage = () => {
                 <div className="p-4 inline-block shadow-lg rounded-2xl w-48">
                   <div className="flex justify-center items-center align-middle">
                     <a
-                      href={'https://www.instagram.com/eclatdessences/'}
+                      href={"https://www.instagram.com/eclatdessences/"}
                       target="_blank"
                     >
                       <button id="book4-1" className="button_reserver">

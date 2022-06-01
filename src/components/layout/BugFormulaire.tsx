@@ -1,5 +1,5 @@
-import { PopupButton } from '@typeform/embed-react';
-import { bugIcon } from '../../icons';
+import { PopupButton } from "@typeform/embed-react";
+import { bugIcon } from "../../icons";
 
 interface IBugFormulaire {
   className?: string;

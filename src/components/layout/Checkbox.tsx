@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   animated,
   useSpring,
   config,
   useSpringRef,
   useChain,
-} from 'react-spring';
-import 'pages/recipe/ListPage/Components/FilterBar.css';
+} from "react-spring";
+import "pages/recipe/ListPage/Components/FilterBar.css";
 
 interface ICheckbox {
   className?: string;
@@ -26,8 +26,8 @@ export const Checkbox: React.FC<ICheckbox> = ({
 }) => {
   const checkboxAnimationRef = useSpringRef();
   const checkboxAnimationStyle = useSpring({
-    backgroundColor: isChecked ? '#8FB5E8' : '#ffff',
-    borderColor: isChecked ? '#8FB5E8' : '#707070',
+    backgroundColor: isChecked ? "#8FB5E8" : "#ffff",
+    borderColor: isChecked ? "#8FB5E8" : "#707070",
     config: config.gentle,
     ref: checkboxAnimationRef,
   });
@@ -57,9 +57,9 @@ export const Checkbox: React.FC<ICheckbox> = ({
         <div>
           <input className="checkbox-filter" type="checkbox" />
           <animated.svg
-            id={'filter-' + option.title}
+            id={"filter-" + option.title}
             style={checkboxAnimationStyle}
-            className={`checkbox ${isChecked ? 'checkbox--active' : ''}`}
+            className={`checkbox ${isChecked ? "checkbox--active" : ""}`}
             aria-hidden="true"
             viewBox="0 0 15 11"
             fill="none"
@@ -81,7 +81,7 @@ export const Checkbox: React.FC<ICheckbox> = ({
             />
           </animated.svg>
         </div>
-        <div className={'text-left'} id={'filter-' + option.title}>
+        <div className={"text-left"} id={"filter-" + option.title}>
           {option.title}
         </div>
       </label>

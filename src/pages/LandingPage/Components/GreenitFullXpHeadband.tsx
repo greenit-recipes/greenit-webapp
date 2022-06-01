@@ -1,7 +1,7 @@
-import { RouteName } from 'App';
-import useIsMobile from 'hooks/isMobile';
-import { boxGreenit, boxGreenitMobile } from 'icons';
-import { useHistory } from 'react-router-dom';
+import { RouteName } from "App";
+import useIsMobile from "hooks/isMobile";
+import { boxGreenit, boxGreenitMobile } from "icons";
+import { useHistory } from "react-router-dom";
 
 interface GreenitFullXpHeadbandProps {
   showModal: any;
@@ -21,11 +21,10 @@ export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
         <div className="">
           <p className="text-xl mt-4 text-center lg:text-left">
             Notre box <span className="text-green">Premiers Pas</span> pour se
-            lancer <br></br> dans le fait maison !{' '}
+            lancer <br></br> dans le fait maison !{" "}
           </p>
           {isMobile && (
             <img
-
               className="h-full w-full lg:w-2/5 | flex place-self-center"
               src={boxGreenitMobile}
               alt="box"
@@ -44,8 +43,7 @@ export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
         </div>
         {!isMobile && (
           <img
-            style={{ width: '40rem' }}
-
+            style={{ width: "40rem" }}
             className="h-full lg:h-60  | flex place-self-center"
             src={boxGreenit}
             alt="box"

@@ -1,10 +1,10 @@
-import { UserBadge } from 'components/layout/UserBadge';
-import { getLogoAndNameByUrl } from 'helpers/social-media.helper';
-import HTMLReactParser from 'html-react-parser';
-import './HeaderRecipe.css';
-import { CgProfile } from 'react-icons/cg';
-import { useEffect, useState } from 'react';
-import { isEmpty } from 'lodash';
+import { UserBadge } from "components/layout/UserBadge";
+import { getLogoAndNameByUrl } from "helpers/social-media.helper";
+import HTMLReactParser from "html-react-parser";
+import "./HeaderRecipe.css";
+import { CgProfile } from "react-icons/cg";
+import { useEffect, useState } from "react";
+import { isEmpty } from "lodash";
 
 interface IHeaderRecipe {
   className?: string;

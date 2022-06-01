@@ -1,19 +1,19 @@
-import { useQuery } from '@apollo/client';
-import { RouteName } from 'App';
-import { BugFormulaire } from 'components/layout/BugFormulaire';
-import Modal from 'components/layout/Modal/Modal';
-import debounce from 'lodash/debounce';
-import { SEARCH_AUTO_COMPLETE_RECIPE } from 'pages/AutocompleteRequest';
-import { GreenitFullXpHeadband } from 'pages/LandingPage/Components/GreenitFullXpHeadband';
-import GreenitFullXpModal from 'pages/LandingPage/Components/GreenitFullXpModal';
-import 'pages/LandingPage/LandingPage.css';
-import { useState } from 'react';
-import { Helmet } from 'react-helmet';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import ReactPlayer from 'react-player/lazy';
-import { Link } from 'react-router-dom';
-import { landingPageCategories } from 'utils';
+import { useQuery } from "@apollo/client";
+import { RouteName } from "App";
+import { BugFormulaire } from "components/layout/BugFormulaire";
+import Modal from "components/layout/Modal/Modal";
+import debounce from "lodash/debounce";
+import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
+import { GreenitFullXpHeadband } from "pages/LandingPage/Components/GreenitFullXpHeadband";
+import GreenitFullXpModal from "pages/LandingPage/Components/GreenitFullXpModal";
+import "pages/LandingPage/LandingPage.css";
+import { useState } from "react";
+import { Helmet } from "react-helmet";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import ReactPlayer from "react-player/lazy";
+import { Link } from "react-router-dom";
+import { landingPageCategories } from "utils";
 import {
   BackgroundImage,
   Button,
@@ -23,10 +23,10 @@ import {
   Navbar,
   RecipeCard,
   SearchBar,
-} from '../../components';
-import { Press } from '../../components/layout/TheyTalkAboutUs';
-import { useRecipesQuery } from '../../graphql';
-import useIsMobile from '../../hooks/isMobile';
+} from "../../components";
+import { Press } from "../../components/layout/TheyTalkAboutUs";
+import { useRecipesQuery } from "../../graphql";
+import useIsMobile from "../../hooks/isMobile";
 import {
   atelier,
   Conseil,
@@ -39,11 +39,11 @@ import {
   sixHTN,
   Ustensil,
   wellbeing,
-} from '../../icons';
-import '../../pages/recipe/SinglePage/SinglePage.css';
-import { CategoryCircle } from './Components/CategoryCircle';
-import { Newsletter } from './Components/Newsletter';
-import { GET_FEATURE_BY_NAME } from '../../services/feature.service';
+} from "../../icons";
+import "../../pages/recipe/SinglePage/SinglePage.css";
+import { CategoryCircle } from "./Components/CategoryCircle";
+import { Newsletter } from "./Components/Newsletter";
+import { GET_FEATURE_BY_NAME } from "../../services/feature.service";
 
 const responsiveCarouselLanding = {
   desktop: {
@@ -72,10 +72,10 @@ const LandingPage = () => {
     GET_FEATURE_BY_NAME,
     {
       variables: {
-        name: 'is_out_of_stock',
+        name: "is_out_of_stock",
       },
-      errorPolicy: 'all',
-      nextFetchPolicy: 'cache-first',
+      errorPolicy: "all",
+      nextFetchPolicy: "cache-first",
     },
   );
 
@@ -84,10 +84,10 @@ const LandingPage = () => {
     GET_FEATURE_BY_NAME,
     {
       variables: {
-        name: 'is_greenit_full_xp',
+        name: "is_greenit_full_xp",
       },
-      errorPolicy: 'all',
-      nextFetchPolicy: 'cache-first',
+      errorPolicy: "all",
+      nextFetchPolicy: "cache-first",
     },
   );
   const loadingFeature = loadingFullXP || loadingOutOfStock;
@@ -103,7 +103,7 @@ const LandingPage = () => {
   });
 
   const { data: dataBegginer } = useRecipesQuery({
-    variables: { first: 8, filter: { tags: ['Premiers pas'] } },
+    variables: { first: 8, filter: { tags: ["Premiers pas"] } },
   });
 
   const { data: dataNbrLikes } = useRecipesQuery({
@@ -112,14 +112,14 @@ const LandingPage = () => {
 
   const [showModalComingSoon, setShowModalComingSoon] = useState(false);
 
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const setSearchTermDebounced = debounce(setSearchTerm, 250);
 
   // Ne par run au premier lancement
   const { data: autoCompleteData, loading: autoCompleteLoading } = useQuery(
     SEARCH_AUTO_COMPLETE_RECIPE,
     {
-      fetchPolicy: 'network-only',
+      fetchPolicy: "network-only",
       variables: { search: searchTerm },
       skip: searchTerm ? false : true,
     },
@@ -277,13 +277,13 @@ const LandingPage = () => {
           keyBoardControl={true}
           transitionDuration={500}
           containerClass={
-            isMobile ? 'carousel-container-mobile' : 'carousel-container'
+            isMobile ? "carousel-container-mobile" : "carousel-container"
           }
           customTransition="transform 300ms ease-in-out"
           dotListClass={
-            isMobile ? 'custom-dot-list-style-mobile' : 'custom-dot-list-style'
+            isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
           }
-          itemClass={isMobile ? 'carousel-item-mobile' : 'carousel-item'}
+          itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
         >
           {recipesBegginer?.map(recipe => (
             <RecipeCard
@@ -309,18 +309,18 @@ const LandingPage = () => {
           {[
             {
               icon: Conseil,
-              title: '3 meilleurs conseils pour débuter',
-              number: '1',
+              title: "3 meilleurs conseils pour débuter",
+              number: "1",
             },
             {
               icon: Ustensil,
-              title: 'Les ingrédients & ustensiles',
-              number: '2',
+              title: "Les ingrédients & ustensiles",
+              number: "2",
             },
             {
               icon: Cooking,
-              title: '2 Recettes simples',
-              number: '3',
+              title: "2 Recettes simples",
+              number: "3",
             },
           ].map((item, index) => (
             <Link to={RouteName.starterPage} key={index}>
@@ -336,7 +336,7 @@ const LandingPage = () => {
                     className="items-center self-center w-8 md:w-16"
                     alt="conseils_diy"
                     loading="lazy"
-                  />{' '}
+                  />{" "}
                 </div>
                 <h3 className="text-xs font-light text-center lg:text-sm">
                   {item.title}
@@ -373,13 +373,13 @@ const LandingPage = () => {
           keyBoardControl={true}
           transitionDuration={500}
           containerClass={
-            isMobile ? 'carousel-container-mobile' : 'carousel-container'
+            isMobile ? "carousel-container-mobile" : "carousel-container"
           }
           customTransition="transform 300ms ease-in-out"
           dotListClass={
-            isMobile ? 'custom-dot-list-style-mobile' : 'custom-dot-list-style'
+            isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
           }
-          itemClass={isMobile ? 'carousel-item-mobile' : 'carousel-item'}
+          itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
         >
           {recipesOrderByLikes?.map(recipe => (
             <RecipeCard
@@ -467,7 +467,7 @@ const LandingPage = () => {
       <div className="grid w-full px-6 py-12 mt-10 bg-orange justify-items-center">
         <div className="grid mb-8 text-center">
           <h2 className="mb-2 text-xl text-white md:text-2xl">
-            Tous les ateliers DIY proches de chez toi !{' '}
+            Tous les ateliers DIY proches de chez toi !{" "}
           </h2>
           <h3 className="text-white text-lg md:text-xl | text-center whitespace-pre-line">
             Fais-toi aider et rencontre d’autres passionnés
@@ -495,17 +495,16 @@ const LandingPage = () => {
         </h2>
         <div className="grid grid-cols-2 gap-8 mt-8 md:gap-12 justify-items-center">
           {[
-            { text: 'Pour la planète', color: '#8AD554', icon: planet },
-            { text: 'Pour ton corps', color: '#7EAADD', icon: corpsWhy },
-            { text: 'Pour tes économies', color: '#ffd460', icon: money },
-            { text: 'Pour ton esprit', color: '#EA9875', icon: wellbeing },
+            { text: "Pour la planète", color: "#8AD554", icon: planet },
+            { text: "Pour ton corps", color: "#7EAADD", icon: corpsWhy },
+            { text: "Pour tes économies", color: "#ffd460", icon: money },
+            { text: "Pour ton esprit", color: "#EA9875", icon: wellbeing },
           ].map((item, index) => (
             <div className="grid col-span-1 justify-items-center" key={index}>
               <img
                 src={item.icon}
                 alt={item.text}
                 className="pb-2 w-28 h-28 md:w-32 md:h-32"
-
               ></img>
               <h2 className="text-md md:text-xl" style={{ color: item.color }}>
                 {item.text}

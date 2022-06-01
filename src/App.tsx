@@ -1,103 +1,103 @@
-import { Loading } from 'components';
-import PrivateRoute from 'components/route/PrivateRoute';
-import PublicRoute from 'components/route/PublicRoute';
-import { createBrowserHistory } from 'history';
-import LandingPage from 'pages/LandingPage/LandingPage';
-import React, { Suspense } from 'react';
-import { Route, Router, Switch } from 'react-router-dom';
-import './App.css';
-import './index.css';
-import FullXPRoute from 'components/route/FullXPRoute';
+import { Loading } from "components";
+import PrivateRoute from "components/route/PrivateRoute";
+import PublicRoute from "components/route/PublicRoute";
+import { createBrowserHistory } from "history";
+import LandingPage from "pages/LandingPage/LandingPage";
+import React, { Suspense } from "react";
+import { Route, Router, Switch } from "react-router-dom";
+import "./App.css";
+import "./index.css";
+import FullXPRoute from "components/route/FullXPRoute";
 
-const AccountCreated = React.lazy(() => import('pages/AccountCreated'));
-const ActivateAccount = React.lazy(() => import('pages/activate'));
+const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
+const ActivateAccount = React.lazy(() => import("pages/activate"));
 const ActivateResetPassword = React.lazy(
-  () => import('pages/ActivateResetPassword'),
+  () => import("pages/ActivateResetPassword"),
 );
 const CreateRecipe = React.lazy(
-  () => import('pages/CreateRecipe/CreateRecipe'),
+  () => import("pages/CreateRecipe/CreateRecipe"),
 );
 const RecipeCreatedPage = React.lazy(
-  () => import('pages/CreateRecipe/CreateRecipeSuccess'),
+  () => import("pages/CreateRecipe/CreateRecipeSuccess"),
 );
 const IngredientPage = React.lazy(
-  () => import('pages/IngredientSpace/IngredientPage'),
+  () => import("pages/IngredientSpace/IngredientPage"),
 );
-const ForgetPassword = React.lazy(() => import('pages/Login/ForgetPassword'));
-const DeleteProfil = React.lazy(() => import('pages/Profil/DeleteProfil'));
-const RecapPage = React.lazy(() => import('pages/RecapPage'));
+const ForgetPassword = React.lazy(() => import("pages/Login/ForgetPassword"));
+const DeleteProfil = React.lazy(() => import("pages/Profil/DeleteProfil"));
+const RecapPage = React.lazy(() => import("pages/RecapPage"));
 const RecipeSinglePage = React.lazy(
-  () => import('pages/recipe/SinglePage/SinglePage'),
+  () => import("pages/recipe/SinglePage/SinglePage"),
 );
-const StarterPage = React.lazy(() => import('pages/StarterSpace/StarterPage'));
-const ContactPage = React.lazy(() => import('./pages/ContactPage'));
-const NotFoundPage = React.lazy(() => import('./pages/misc/NotFoundPage'));
+const StarterPage = React.lazy(() => import("pages/StarterSpace/StarterPage"));
+const ContactPage = React.lazy(() => import("./pages/ContactPage"));
+const NotFoundPage = React.lazy(() => import("./pages/misc/NotFoundPage"));
 const PersonalizedSearch = React.lazy(
-  () => import('./pages/PersonalizedSearch'),
+  () => import("./pages/PersonalizedSearch"),
 );
-const ProfilPage = React.lazy(() => import('./pages/Profil/ProfilPage'));
+const ProfilPage = React.lazy(() => import("./pages/Profil/ProfilPage"));
 const RecipeListPage = React.lazy(
-  () => import('./pages/recipe/ListPage/ListPage'),
+  () => import("./pages/recipe/ListPage/ListPage"),
 );
-const Register = React.lazy(() => import('./pages/Register/register'));
-const WhyPage = React.lazy(() => import('./pages/WhyPage'));
-const WorkshopPage = React.lazy(() => import('./pages/WorkshopPage'));
+const Register = React.lazy(() => import("./pages/Register/register"));
+const WhyPage = React.lazy(() => import("./pages/WhyPage"));
+const WorkshopPage = React.lazy(() => import("./pages/WorkshopPage"));
 const GreenitFullXp = React.lazy(
-  () => import('./pages/GreenitFullXp/genericFullXp'),
+  () => import("./pages/GreenitFullXp/genericFullXp"),
 );
 const TutoFullXpBeginner = React.lazy(
-  () => import('./pages/Profil/TutoFullXpBeginner/tutoFullXpBeginner'),
+  () => import("./pages/Profil/TutoFullXpBeginner/tutoFullXpBeginner"),
 );
 
 const StartDiyGreenitFullXp = React.lazy(
-  () => import('./pages/GreenitFullXp/StartDiy/StartDiyGreenitFullXp'),
+  () => import("./pages/GreenitFullXp/StartDiy/StartDiyGreenitFullXp"),
 );
 const FindOutMoreBoxGreentilFullXP = React.lazy(
   () =>
     import(
-      './pages/GreenitFullXp/FindOutMoreFullXp/FindOutMoreBoxGreentilFullXP'
+      "./pages/GreenitFullXp/FindOutMoreFullXp/FindOutMoreBoxGreentilFullXP"
     ),
 );
 
 const QRFullXp = React.lazy(
-  () => import('./pages/GreenitFullXp/QRFullXp/QRFullXp'),
+  () => import("./pages/GreenitFullXp/QRFullXp/QRFullXp"),
 );
 
 export const history = createBrowserHistory();
 
 const greenitFullXpRoute = {
-  tutoFullXpBeginner: '/tuto-box-débutant', // no index
-  startDiyGreenitFullXp: '/se-lancer-dans-le-fait-maison',
-  findOUtMoreBoxGreentilFullXP: '/commande-info',
-  qrFullXp: '/bienvenue-box', //no index
+  tutoFullXpBeginner: "/tuto-box-débutant", // no index
+  startDiyGreenitFullXp: "/se-lancer-dans-le-fait-maison",
+  findOUtMoreBoxGreentilFullXP: "/commande-info",
+  qrFullXp: "/bienvenue-box", //no index
 };
 
 export const RouteName = {
-  accueil: '/',
-  resetPassword: '/reinitialisation-mot-de-passe', // no index
-  tokenActivationAccount: '/activate/:tokenActivationAccount', // no index
-  accountCreated: '/compte-crée', // no index
+  accueil: "/",
+  resetPassword: "/reinitialisation-mot-de-passe", // no index
+  tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
+  accountCreated: "/compte-crée", // no index
   activateResetPassword:
-    '/activate/mot-de-passe-oublié/:tokenActivationAccount', // no index
-  register: '/creation-compte',
-  recipeCreated: '/ajout-recette', // no index
-  greenitFullXp: '/commande-box',
-  workshops: '/ateliers',
-  ingredientPage: '/ingredients', // no index ( a activer quand on sort la page)
-  starterPage: '/page-debutant-diy',
-  why: '/projet',
-  contact: '/contact',
-  recipes: '/recettes',
-  createRecipe: '/creation-recette',
-  profil: '/profil',
-  recap: '/recap',
-  deleteProfil: '/supprimer-compte', // no index
+    "/activate/mot-de-passe-oublié/:tokenActivationAccount", // no index
+  register: "/creation-compte",
+  recipeCreated: "/ajout-recette", // no index
+  greenitFullXp: "/commande-box",
+  workshops: "/ateliers",
+  ingredientPage: "/ingredients", // no index ( a activer quand on sort la page)
+  starterPage: "/page-debutant-diy",
+  why: "/projet",
+  contact: "/contact",
+  recipes: "/recettes",
+  createRecipe: "/creation-recette",
+  profil: "/profil",
+  recap: "/recap",
+  deleteProfil: "/supprimer-compte", // no index
   ...greenitFullXpRoute,
 };
 
 const App: React.FC = () => {
   history.listen(x =>
-    window.sessionStorage.setItem('pathname', JSON.stringify(x?.pathname)),
+    window.sessionStorage.setItem("pathname", JSON.stringify(x?.pathname)),
   );
   //Todo (zack): Implement custom routes for the full xp
 

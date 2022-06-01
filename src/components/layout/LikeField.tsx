@@ -1,11 +1,11 @@
-import { useMutation } from '@apollo/client';
-import { Loading } from 'components/layout/Loading';
-import { ADD_OR_REMOVE_LIKE_RECIPE } from 'pages/CreateRecipe/CreateRecipeRequest';
-import React, { Suspense, useState } from 'react';
-import authService from 'services/auth.service';
-import { clapIconOff, clapIconOn } from '../../icons';
+import { useMutation } from "@apollo/client";
+import { Loading } from "components/layout/Loading";
+import { ADD_OR_REMOVE_LIKE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
+import React, { Suspense, useState } from "react";
+import authService from "services/auth.service";
+import { clapIconOff, clapIconOn } from "../../icons";
 const ModalLogGreenit = React.lazy(
-  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
 
 interface ILikeField {
@@ -32,7 +32,7 @@ export const LikeField: React.FC<ILikeField> = ({
       className={
         isRecipeCard
           ? `absolute h-6 lg:h-8 w-12 lg:w-14 z-0 ${
-              isCarrousel ? 'like-greenit top-1' : 'top-1 right-2'
+              isCarrousel ? "like-greenit top-1" : "top-1 right-2"
             } | grid justify-items-center | bg-white rounded-xl ${className}`
           : `flex ${className}`
       }

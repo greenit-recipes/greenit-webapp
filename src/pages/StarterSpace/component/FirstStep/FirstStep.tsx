@@ -1,7 +1,7 @@
-import { Button } from '../../../../components';
-import HTMLReactParser from 'html-react-parser';
-import { useState } from 'react';
-import './FirstStep.css';
+import { Button } from "../../../../components";
+import HTMLReactParser from "html-react-parser";
+import { useState } from "react";
+import "./FirstStep.css";
 
 interface IFirstStep {
   item: {
@@ -44,8 +44,8 @@ export const FirstStep: React.FC<IFirstStep> = ({ item }) => {
       <h3 className="text-sm lg:text-lg font-light">
         {HTMLReactParser(item.shortDescription)}
       </h3>
-      <div className={isActive ? 'container_fadeIn' : 'container_fadeOut'}>
-        {' '}
+      <div className={isActive ? "container_fadeIn" : "container_fadeOut"}>
+        {" "}
         <h3 className="text-sm lg:text-lg font-light">
           {HTMLReactParser(item.longDescription)}
         </h3>
@@ -54,7 +54,7 @@ export const FirstStep: React.FC<IFirstStep> = ({ item }) => {
         id="read_more"
         type="grey"
         onClick={() => setIsActive(!isActive)}
-        className={'w-24 self-center mt-2 mb-6'}
+        className={"w-24 self-center mt-2 mb-6"}
       >
         {isActive ? <p>Moins</p> : <p id="read_more">Lire plus</p>}
       </Button>

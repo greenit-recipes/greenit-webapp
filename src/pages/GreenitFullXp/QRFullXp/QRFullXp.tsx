@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { RouteName } from '../../../App';
-import { logo } from '../../../icons';
-import { boxFullXpIngredients } from '../../../utils';
-import { NumberedCircle } from '../../../components/misc/NumberedCircle';
-import { Helmet } from 'react-helmet';
-import ModalLogGreenit from '../../../components/layout/ModalLogGreenit/ModalLogGreenit';
-import useIsMobile from '../../../hooks/isMobile';
+import React from "react";
+import { Link } from "react-router-dom";
+import { RouteName } from "../../../App";
+import { logo } from "../../../icons";
+import { boxFullXpIngredients } from "../../../utils";
+import { NumberedCircle } from "../../../components/misc/NumberedCircle";
+import { Helmet } from "react-helmet";
+import ModalLogGreenit from "../../../components/layout/ModalLogGreenit/ModalLogGreenit";
+import useIsMobile from "../../../hooks/isMobile";
 import { Navbar } from "components";
 
 const QRFullXp = () => {

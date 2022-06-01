@@ -1,13 +1,13 @@
-import { useQuery } from '@apollo/client';
-import { getObjectSession } from 'helpers/session-helper';
-import { map, mapValues, omit, sum } from 'lodash';
-import debounce from 'lodash/debounce';
-import { SEARCH_AUTO_COMPLETE_RECIPE } from 'pages/AutocompleteRequest';
-import { ModalListPage } from 'pages/recipe/ListPage/Components/ModalListPage';
-import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { useHistory } from 'react-router-dom';
+import { useQuery } from "@apollo/client";
+import { getObjectSession } from "helpers/session-helper";
+import { map, mapValues, omit, sum } from "lodash";
+import debounce from "lodash/debounce";
+import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
+import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useHistory } from "react-router-dom";
 import {
   BackgroundImage,
   Empty,
@@ -15,24 +15,24 @@ import {
   Loading,
   Navbar,
   RecipeCard,
-} from '../../../components';
-import { RecipesQuery, useRecipesQuery } from '../../../graphql';
-import useIsMobile from '../../../hooks/isMobile';
-import { scrollToTop } from '../../../icons';
-import { filterData } from '../../../utils';
-import { FilterBar } from './Components/FilterBar';
+} from "../../../components";
+import { RecipesQuery, useRecipesQuery } from "../../../graphql";
+import useIsMobile from "../../../hooks/isMobile";
+import { scrollToTop } from "../../../icons";
+import { filterData } from "../../../utils";
+import { FilterBar } from "./Components/FilterBar";
 
 const RecipeListPage = () => {
   const cleanDataPlayload = (filter: any) =>
     mapValues(filter, function (value, key) {
-      if (key === 'search') return value;
+      if (key === "search") return value;
       return map(value, x => x.value);
     });
   const params = new URLSearchParams(window.location.search);
   const history = useHistory();
 
-  const sessionFilter = getObjectSession('filterListPage');
-  const searchSession = sessionFilter?.search ? sessionFilter?.search : '';
+  const sessionFilter = getObjectSession("filterListPage");
+  const searchSession = sessionFilter?.search ? sessionFilter?.search : "";
   const tagsSession = sessionFilter?.tags || [];
   const categorySession = sessionFilter?.category || [];
 
@@ -45,15 +45,15 @@ const RecipeListPage = () => {
       search: params.toString(),
     });
 
-    if (urlParams === 'search') {
+    if (urlParams === "search") {
       window.sessionStorage.setItem(
-        'filterListPage',
+        "filterListPage",
         JSON.stringify({ [urlParams]: currentParams }),
       );
       return currentParams;
     }
     window.sessionStorage.setItem(
-      'filterListPage',
+      "filterListPage",
       JSON.stringify({
         [urlParams]: [{ title: currentParams, value: currentParams }],
       }),
@@ -61,14 +61,14 @@ const RecipeListPage = () => {
     return [{ title: currentParams, value: currentParams }];
   };
 
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const setSearchTermDebounced = debounce(setSearchTerm, 250);
 
   // Ne par run au premier lancement
   const { data: autoCompleteData, loading: autoCompleteLoading } = useQuery(
     SEARCH_AUTO_COMPLETE_RECIPE,
     {
-      fetchPolicy: 'network-only',
+      fetchPolicy: "network-only",
       variables: { search: searchTerm },
       skip: searchTerm ? false : true,
     },
@@ -83,12 +83,12 @@ const RecipeListPage = () => {
   // @ts-ignore
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [currentFilters, setCurrentFilters] = useState<any>({
-    search: params.get('search')
-      ? getAndDeleteParamsUrl('search')
+    search: params.get("search")
+      ? getAndDeleteParamsUrl("search")
       : searchSession,
-    tags: params.get('tags') ? getAndDeleteParamsUrl('tags') : tagsSession,
-    category: params.get('category')
-      ? getAndDeleteParamsUrl('category')
+    tags: params.get("tags") ? getAndDeleteParamsUrl("tags") : tagsSession,
+    category: params.get("category")
+      ? getAndDeleteParamsUrl("category")
       : categorySession,
     difficulty: sessionFilter?.difficulty || [],
     duration: sessionFilter?.duration || [],
@@ -96,25 +96,25 @@ const RecipeListPage = () => {
   });
 
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
-    fetchPolicy: 'cache-first',
+    fetchPolicy: "cache-first",
     variables: {
       first: 15,
       filter: {
-        search: sessionFilter?.search ? sessionFilter?.search : '',
+        search: sessionFilter?.search ? sessionFilter?.search : "",
         // @ts-ignore
-        tags: sessionFilter?.tags ? map(sessionFilter?.tags, 'value') : [],
+        tags: sessionFilter?.tags ? map(sessionFilter?.tags, "value") : [],
         // @ts-ignore
         category: sessionFilter?.category
-          ? map(sessionFilter?.category, 'value')
+          ? map(sessionFilter?.category, "value")
           : [],
         difficulty: sessionFilter?.difficulty
-          ? map(sessionFilter?.difficulty, 'value')
+          ? map(sessionFilter?.difficulty, "value")
           : [],
         duration: sessionFilter?.duration
-          ? map(sessionFilter?.duration, 'value')
+          ? map(sessionFilter?.duration, "value")
           : [],
         numberOfIngredients: sessionFilter?.numberOfIngredients
-          ? map(sessionFilter?.numberOfIngredients, 'value')
+          ? map(sessionFilter?.numberOfIngredients, "value")
           : [],
       },
     },
@@ -134,7 +134,7 @@ const RecipeListPage = () => {
       // to avoid a second request with state of filter
       const filterValue = cleanDataPlayload(currentFilters);
       window.sessionStorage.setItem(
-        'filterListPage',
+        "filterListPage",
         JSON.stringify(currentFilters),
       );
       refetch({ filter: filterValue });
@@ -143,7 +143,7 @@ const RecipeListPage = () => {
     if (!loading) setIsFirstLoading(false);
   }, [currentFilters, loading]);
 
-  const searchText = getObjectSession('filterListPage')?.search;
+  const searchText = getObjectSession("filterListPage")?.search;
 
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -153,9 +153,9 @@ const RecipeListPage = () => {
 
   const recipes = data?.allRecipes?.edges || [];
   const hasMore = data?.allRecipes?.pageInfo.hasNextPage || false;
-  const nbrFilter = sum(map(omit(currentFilters, 'search'), x => x?.length));
+  const nbrFilter = sum(map(omit(currentFilters, "search"), x => x?.length));
   return (
-    <div className={''}>
+    <div className={""}>
       <Navbar />
       <BackgroundImage />
       <Helmet>
@@ -302,7 +302,7 @@ const RecipeListPage = () => {
         onClick={() => {
           window.scrollTo({
             top: scrollOffset,
-            behavior: 'smooth',
+            behavior: "smooth",
           });
         }}
       />

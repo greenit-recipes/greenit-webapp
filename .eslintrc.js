@@ -13,6 +13,7 @@ module.exports = {
     "no-case-declarations": "off",
     "no-constant-condition": "off",
     "no-empty": "off",
+    "no-extra-boolean-cast": "off"
   },
   "plugins": [
     "react-hooks"

@@ -1,12 +1,12 @@
-import { RecipeCard } from 'components';
-import useIsMobile from 'hooks/isMobile';
-import { recipesBegginerFullXp } from 'pages/GreenitFullXp/FullXpHelper';
-import { CircleGreenit } from 'pages/recipe/SinglePage/CircleGreenit/CircleGreenit';
-import React, { useEffect } from 'react';
-import { BiTimeFive } from 'react-icons/bi';
-import { BsWallet2 } from 'react-icons/bs';
-import { IoEarthOutline, IoFlaskOutline } from 'react-icons/io5';
-import Auth from '../../../services/auth.service';
+import { RecipeCard } from "components";
+import useIsMobile from "hooks/isMobile";
+import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
+import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
+import React, { useEffect } from "react";
+import { BiTimeFive } from "react-icons/bi";
+import { BsWallet2 } from "react-icons/bs";
+import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
+import Auth from "../../../services/auth.service";
 
 const list = (
   <div className="ml-10 lg:ml-0 lg:mt-14">
@@ -28,7 +28,7 @@ const RecipeFullXP = () => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   }, []);
@@ -38,7 +38,7 @@ const RecipeFullXP = () => {
       <div className="flex flex-col">
         <div className="flex justify-between ml-10 lg:ml-0">
           <h1 className="text-2xl font-semibold">
-            Coup d’oeil sur les recettes{' '}
+            Coup d’oeil sur les recettes{" "}
           </h1>
           {!isMobile && (
             <div className="flex justify-center items-center">
@@ -87,7 +87,7 @@ const RecipeFullXP = () => {
               <IoFlaskOutline
                 className={
                   isMobile
-                    ? 'absolute w-8 h-8 icon-position-circle-mobile rotate-singlePage-chimie'
+                    ? "absolute w-8 h-8 icon-position-circle-mobile rotate-singlePage-chimie"
                     : `absolute w-10 h-10 icon-position-circle rotate-singlePage-chimie`
                 }
               />
@@ -104,7 +104,7 @@ const RecipeFullXP = () => {
               <BsWallet2
                 className={
                   isMobile
-                    ? 'absolute w-8 h-8 icon-position-circle-mobile rotate-singlePage-wallet'
+                    ? "absolute w-8 h-8 icon-position-circle-mobile rotate-singlePage-wallet"
                     : `absolute h-7 w-7 icon-position-circle rotate-singlePage-wallet`
                 }
               />
@@ -122,8 +122,8 @@ const RecipeFullXP = () => {
               <IoEarthOutline
                 className={
                   isMobile
-                    ? 'absolute w-8 h-8 icon-position-circle-mobile'
-                    : 'absolute w-8 h-8 icon-position-circle'
+                    ? "absolute w-8 h-8 icon-position-circle-mobile"
+                    : "absolute w-8 h-8 icon-position-circle"
                 }
               />
             }

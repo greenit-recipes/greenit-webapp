@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client';
-import { history, RouteName } from 'App';
-import { client } from 'index';
-import { isEmpty } from 'lodash';
-import { includes } from 'lodash';
+import { gql } from "@apollo/client";
+import { history, RouteName } from "App";
+import { client } from "index";
+import { isEmpty } from "lodash";
+import { includes } from "lodash";
 
 export const CREATE_ACCOUNT = gql`
   mutation CreateAccount(
@@ -233,38 +233,38 @@ export const WELCOME_NEW_USER = gql`
 
 class Auth {
   setStorageLoginToken(token: string) {
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
   }
 
   setStorageLoginRefreshToken(token: string) {
-    localStorage.setItem('refreshToken', token);
+    localStorage.setItem("refreshToken", token);
   }
 
   setStorageEmail(email: string) {
-    localStorage.setItem('email', email);
+    localStorage.setItem("email", email);
   }
 
   getEmail(): string | null {
-    return localStorage.getItem('email');
+    return localStorage.getItem("email");
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem("token");
   }
 
   getRefreshToken(): string | null {
-    return localStorage.getItem('refreshToken');
+    return localStorage.getItem("refreshToken");
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
-    history.push('/');
+    localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
+    history.push("/");
   }
 
   removeToken() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
+    localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
   }
 
   //Todo : Check Auth State securely
@@ -276,7 +276,7 @@ class Auth {
     return (
       pathname === RouteName.activateResetPassword ||
       includes(pathname, RouteName.resetPassword) ||
-      includes(pathname, 'activate') ||
+      includes(pathname, "activate") ||
       includes(pathname, RouteName.tokenActivationAccount) ||
       pathname === RouteName.register ||
       //Full Xp Params

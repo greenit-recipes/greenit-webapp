@@ -1,4 +1,4 @@
-import { Widget } from '@typeform/embed-react';
+import { Widget } from "@typeform/embed-react";
 
 interface UXFormulaire {
   className?: string;

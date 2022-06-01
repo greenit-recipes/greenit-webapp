@@ -1,15 +1,15 @@
-import { useMutation } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { BackgroundImage } from 'components/layout/BackgroundImage';
-import { Navbar } from 'components/layout/Navbar';
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
-import { RESET_PASSWORD } from 'services/auth.service';
-import * as yup from 'yup';
+import { useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { BackgroundImage } from "components/layout/BackgroundImage";
+import { Navbar } from "components/layout/Navbar";
+import React from "react";
+import { Helmet } from "react-helmet";
+import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+import { RESET_PASSWORD } from "services/auth.service";
+import * as yup from "yup";
 const ModalLogGreenit = React.lazy(
-  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
 
 const schema = yup.object().shape({
@@ -17,18 +17,18 @@ const schema = yup.object().shape({
     .string()
     .max(
       32,
-      'Mot de passe trop long, il doit être moins de 32 caractères maximum.',
+      "Mot de passe trop long, il doit être moins de 32 caractères maximum.",
     )
-    .required('Le mot de passe est obligatoire.')
+    .required("Le mot de passe est obligatoire.")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/,
-      'Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule.',
+      "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule.",
     ),
   passwordConfirmation: yup
     .string()
     .oneOf(
-      [yup.ref('password'), null],
-      'Les mots de passe ne correspondent pas.',
+      [yup.ref("password"), null],
+      "Les mots de passe ne correspondent pas.",
     ),
 }); // _ - .
 
@@ -49,7 +49,7 @@ const ActivateResetPassword: React.FC = () => {
   const [resetPassword, { data: dataResetPassword }] = useMutation(
     RESET_PASSWORD,
     {
-      errorPolicy: 'all',
+      errorPolicy: "all",
     },
   );
 
@@ -101,7 +101,7 @@ const ActivateResetPassword: React.FC = () => {
               id="password"
               type="password"
               placeholder="******************"
-              {...register('password')}
+              {...register("password")}
             />
             <p className="text-xs italic text-red-500">
               {errors.password?.message}
@@ -120,7 +120,7 @@ const ActivateResetPassword: React.FC = () => {
               id="passwordConfirmation"
               type="password"
               placeholder="******************"
-              {...register('passwordConfirmation')}
+              {...register("passwordConfirmation")}
             />
             <p className="text-xs italic text-red-500">
               {errors.passwordConfirmation?.message}

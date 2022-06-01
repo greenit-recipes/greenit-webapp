@@ -1,8 +1,8 @@
-import React from 'react';
-import './fullXp.css';
-import 'App.css';
-import { menuFullXp } from 'pages/GreenitFullXp/MenuFullXp/MenuHelper';
-import CheckoutFullXp from 'pages/GreenitFullXp/CheckoutFullXp/CheckoutFullXp';
+import React from "react";
+import "./fullXp.css";
+import "App.css";
+import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
+import CheckoutFullXp from "pages/GreenitFullXp/CheckoutFullXp/CheckoutFullXp";
 interface IHeadBand {
   setNavigation: any;
   currentPositionMenu: number;

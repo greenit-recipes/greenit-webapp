@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Route } from "react-router-dom";
 
 const PublicRoute = ({ component: Component, restricted, ...rest }: any) => {
   return (

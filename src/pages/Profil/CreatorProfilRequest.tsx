@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const EMAIL_PROFIL_PAGE_CREATOR = gql`
   mutation emailProfilPage($question: String!) {

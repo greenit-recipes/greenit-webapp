@@ -1,43 +1,43 @@
-import { RouteName } from 'App';
-import { menuFullXp } from 'pages/GreenitFullXp/MenuFullXp/MenuHelper';
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { Link, useHistory } from 'react-router-dom';
-import { BackButton } from '../../../components/misc/BackButton';
-import useIsMobile from '../../../hooks/isMobile';
+import { RouteName } from "App";
+import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
+import React from "react";
+import { Helmet } from "react-helmet";
+import { Link, useHistory } from "react-router-dom";
+import { BackButton } from "../../../components/misc/BackButton";
+import useIsMobile from "../../../hooks/isMobile";
 import {
   boxIngredientCreme,
   boxIngredientLessive,
   boxIngredientSavon,
   boxFullXp,
   cremeFullXp,
-} from 'icons';
+} from "icons";
 import { Navbar } from "components";
 
 const steps = [
   {
-    section1: '🎁 Commande ta box en 2 minutes !',
-    section2: '🧼 Recettes naturelles et 100% Made in home',
-    alt: 'Ingrédients de la box',
+    section1: "🎁 Commande ta box en 2 minutes !",
+    section2: "🧼 Recettes naturelles et 100% Made in home",
+    alt: "Ingrédients de la box",
     imgSrc: [boxIngredientCreme, boxIngredientLessive, boxIngredientSavon],
     complementText:
-      '3 recettes simples, rapides et validées par notre communauté. 🙂',
+      "3 recettes simples, rapides et validées par notre communauté. 🙂",
   },
   {
-    section1: '🚴‍♀️ Reçois tes ingrédients en une semaine ',
-    section2: '🌿 Garantie sans gâchis et stock d’ingrédients',
-    section3: '🤭 Des contenants en verre réutilisables',
-    alt: 'Box Greenit',
+    section1: "🚴‍♀️ Reçois tes ingrédients en une semaine ",
+    section2: "🌿 Garantie sans gâchis et stock d’ingrédients",
+    section3: "🤭 Des contenants en verre réutilisables",
+    alt: "Box Greenit",
     imgSrc: [boxFullXp],
-    style: 'h-64 w-64 ',
+    style: "h-64 w-64 ",
   },
   {
-    section1: '😇 Réalise tes produits en étant accompagné.e',
-    section2: '🎥 Accompagnement vidéos ',
-    section3: '🆘 On répond à vos questions !',
-    alt: 'crème',
+    section1: "😇 Réalise tes produits en étant accompagné.e",
+    section2: "🎥 Accompagnement vidéos ",
+    section3: "🆘 On répond à vos questions !",
+    alt: "crème",
     imgSrc: [cremeFullXp],
-    style: 'object-cover rounded-lg shadow-lg h-44 w-80 mt-10',
+    style: "object-cover rounded-lg shadow-lg h-44 w-80 mt-10",
   },
 ];
 const FindOutMoreBoxGreentilFullXP = () => {
@@ -54,12 +54,12 @@ const FindOutMoreBoxGreentilFullXP = () => {
           content="Envie de réaliser vos produits DIY mais vous ne savez pas par où commencer ? Greenit a conçu une box Premiers Pas, avec 3 recettes simplissimes pour débuter dans le fait-maison. Au menu, une recette de produits ménagers, cosmétiques et hygiènes."
         />
       </Helmet>
-            <Navbar />
+      <Navbar />
 
       <div className="md:h-screen relative flex flex-col md:justify-around items-center">
         <BackButton styleCSS="mt-6 md:mt-16" />
         <div className="flex flex-col mb-6 mt-20 md:mt-32 md:ml-40 msm:text-center md:self-start">
-          {' '}
+          {" "}
           <h1 className="text-2xl font-semibold ">La formule Premiers Pas</h1>
           <p className="">
             en <span className="text-blue">3 </span>étapes
@@ -73,7 +73,7 @@ const FindOutMoreBoxGreentilFullXP = () => {
             >
               <div
                 className={`h-10 lg:h-16 text-xl mr-5 w-10 lg:w-16 rounded-full inline-flex items-center justify-center bg-blueL`}
-                style={{ minWidth: '2.5rem' }}
+                style={{ minWidth: "2.5rem" }}
               >
                 <b>{index + 1}</b>
               </div>
@@ -113,7 +113,7 @@ const FindOutMoreBoxGreentilFullXP = () => {
               <button
                 onClick={() => {
                   localStorage.setItem(
-                    'currentMenuGreenitFullXp',
+                    "currentMenuGreenitFullXp",
                     menuFullXp[0]?.name,
                   );
                 }}
@@ -130,7 +130,7 @@ const FindOutMoreBoxGreentilFullXP = () => {
           <button
             onClick={() => {
               localStorage.setItem(
-                'currentMenuGreenitFullXp',
+                "currentMenuGreenitFullXp",
                 menuFullXp[0]?.name,
               );
               history.push(RouteName.greenitFullXp);

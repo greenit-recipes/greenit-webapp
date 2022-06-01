@@ -1,11 +1,11 @@
-import { useMutation } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Button } from 'components/misc/Button';
-import { imageValidation } from 'helpers/yup-validation.helper';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { UPDATE_IMAGE_ACCOUNT } from 'services/auth.service';
-import * as yup from 'yup';
+import { useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button } from "components/misc/Button";
+import { imageValidation } from "helpers/yup-validation.helper";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { UPDATE_IMAGE_ACCOUNT } from "services/auth.service";
+import * as yup from "yup";
 
 interface IModalImageProfil {
   parentFunction?: any;
@@ -32,7 +32,7 @@ export const ModalImageProfil: React.FC<IModalImageProfil> = ({
   const [updatePhoto, { data: dataImageUpdate }] = useMutation(
     UPDATE_IMAGE_ACCOUNT,
     {
-      errorPolicy: 'all',
+      errorPolicy: "all",
     },
   );
   const onSubmitHandler = (dataForm: { image: string[] }) => {
@@ -62,7 +62,7 @@ export const ModalImageProfil: React.FC<IModalImageProfil> = ({
             <input
               className="w-full px-2 py-1-4 my-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               type="file"
-              {...register('image')}
+              {...register("image")}
             ></input>
           </div>
           <p className="text-xs italic text-red-500">

@@ -1,13 +1,13 @@
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useMutation } from '@apollo/client';
-import { Button } from 'components';
-import { EMAIL_PROFIL_PAGE_CREATOR } from 'pages/Profil/CreatorProfilRequest';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useMutation } from "@apollo/client";
+import { Button } from "components";
+import { EMAIL_PROFIL_PAGE_CREATOR } from "pages/Profil/CreatorProfilRequest";
 
 export const StatProfilForm: React.FC = () => {
   const schema = yup.object().shape({
-    question: yup.string().required('Le champ ne doit pas être vide.'),
+    question: yup.string().required("Le champ ne doit pas être vide."),
   });
 
   const [emailProfilPage, { data, loading, error }] = useMutation(
@@ -44,7 +44,7 @@ export const StatProfilForm: React.FC = () => {
           rows={5}
           cols={55}
           placeholder="Message..."
-          {...register('question')}
+          {...register("question")}
         ></textarea>
 
         <div className="grid w-full justify-items-center">

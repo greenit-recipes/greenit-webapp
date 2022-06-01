@@ -1,12 +1,12 @@
-import { useMutation } from '@apollo/client';
-import { ADD_OR_REMOVE_MADE_RECIPE } from 'pages/CreateRecipe/CreateRecipeRequest';
-import React, { useState } from 'react';
-import { AiFillCheckSquare } from 'react-icons/ai';
-import { FiSquare } from 'react-icons/fi';
-import authService from 'services/auth.service';
+import { useMutation } from "@apollo/client";
+import { ADD_OR_REMOVE_MADE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
+import React, { useState } from "react";
+import { AiFillCheckSquare } from "react-icons/ai";
+import { FiSquare } from "react-icons/fi";
+import authService from "services/auth.service";
 
 const ModalLogGreenit = React.lazy(
-  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
 
 interface IMadeRecipe {
@@ -33,7 +33,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
       {isLoggedIn ? (
         <button
           className={`btn-single-page p-2 flex ${
-            customClassName ? customClassName : ''
+            customClassName ? customClassName : ""
           }`}
           onClick={() => {
             if (!isRefetchData) setMade(!isMade);
@@ -62,7 +62,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
             btn={
               <button
                 className={`btn-single-page p-2 flex ${
-                  customClassName ? customClassName : ''
+                  customClassName ? customClassName : ""
                 }`}
               >
                 <div className={` flex justify-items-center `}>

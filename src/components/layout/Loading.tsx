@@ -1,5 +1,5 @@
-import React from 'react';
-import { logoBig, logo } from '../../icons';
+import React from "react";
+import { logoBig, logo } from "../../icons";
 
 export const Loading: React.FC<{ isForLoadingPage?: boolean }> = ({
   isForLoadingPage = true,

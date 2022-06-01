@@ -1,20 +1,20 @@
-import { useMutation } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { RouteName } from 'App';
-import { includes } from 'lodash';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Link, useHistory } from 'react-router-dom';
+import { useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RouteName } from "App";
+import { includes } from "lodash";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link, useHistory } from "react-router-dom";
 import authServiceService, {
   LOGIN_ACCOUNT,
   CREATE_USER_FROM_AUTH,
-} from 'services/auth.service';
-import * as yup from 'yup';
-import { Footer, Navbar } from 'components';
-import { BackgroundImage } from 'components/layout/BackgroundImage';
-import { Helmet } from 'react-helmet';
-import FacebookLogin from 'react-facebook-login';
-import { mdpNonVisible, mdpVisible } from 'icons';
+} from "services/auth.service";
+import * as yup from "yup";
+import { Footer, Navbar } from "components";
+import { BackgroundImage } from "components/layout/BackgroundImage";
+import { Helmet } from "react-helmet";
+import FacebookLogin from "react-facebook-login";
+import { mdpNonVisible, mdpVisible } from "icons";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -22,12 +22,12 @@ const schema = yup.object().shape({
     .string()
     .max(
       32,
-      'Mot de passe trop long, il doit être moins de 32 caractères maximum.',
+      "Mot de passe trop long, il doit être moins de 32 caractères maximum.",
     )
-    .required('Le mot de passe est obligatoire.')
+    .required("Le mot de passe est obligatoire.")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/,
-      'Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule.',
+      "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule.",
     ),
 }); // _ - .
 
@@ -35,7 +35,7 @@ const Login: React.FC = () => {
   if (window.pageYOffset > 0) {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   }
   const {
@@ -50,28 +50,28 @@ const Login: React.FC = () => {
   });
   const history = useHistory();
   const [loginAccount, { data, loading, error }] = useMutation(LOGIN_ACCOUNT, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
 
-  const [errorLoginFb, setErrorLoginFb] = useState('');
+  const [errorLoginFb, setErrorLoginFb] = useState("");
 
   const [
     authLogin,
     { data: dataAuth, loading: loadingAuth, error: errorAuth },
   ] = useMutation(CREATE_USER_FROM_AUTH, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
   // Error for graphql call
   React.useEffect(() => {
     if (data?.tokenAuth?.success === false || error) {
       if (
         data?.tokenAuth?.errors?.nonFieldErrors?.[0]?.code ===
-        'invalid_credentials'
+        "invalid_credentials"
       ) {
-        setError('email', {
+        setError("email", {
           message: "L'email ou le mot de passe est invalide.",
         });
-        setError('password', {
+        setError("password", {
           message: "L'email ou le mot de passe est invalide.",
         });
       }
@@ -81,7 +81,7 @@ const Login: React.FC = () => {
   const responseFacebook = (responseFb: any) => {
     // Error si pas d'email
 
-    if (responseFb.status === 'unknown') {
+    if (responseFb.status === "unknown") {
       return;
     }
 
@@ -91,7 +91,7 @@ const Login: React.FC = () => {
         username: responseFb.name,
         password: process.env.REACT_APP_PASSWORD + responseFb.id,
         idFacebook: responseFb.id,
-        isFollowNewsletter: 'false',
+        isFollowNewsletter: "false",
       },
     }).then(response => {
       // @ts-ignore
@@ -126,18 +126,18 @@ const Login: React.FC = () => {
           if (
             prev?.pathname === RouteName.activateResetPassword ||
             includes(prev?.pathname, RouteName.resetPassword) ||
-            includes(prev?.pathname, 'activate') ||
+            includes(prev?.pathname, "activate") ||
             includes(prev?.pathname, RouteName.tokenActivationAccount) ||
             prev?.pathname === RouteName.register
           ) {
-            history.push('/');
+            history.push("/");
           }
         });
-        history.push('/');
+        history.push("/");
         //history.goBack();
       }
     });
-    reset({ ...getValues(), password: '' });
+    reset({ ...getValues(), password: "" });
   };
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
@@ -191,7 +191,7 @@ const Login: React.FC = () => {
               id="email"
               placeholder="email"
               type="email"
-              {...register('email')}
+              {...register("email")}
             ></input>
             <p className="text-xs italic text-red">{errors.email?.message}</p>
           </div>
@@ -203,9 +203,9 @@ const Login: React.FC = () => {
               <input
                 className="appearance-none focus:outline-none"
                 id="password"
-                type={isRevealPwd ? 'text' : 'password'}
+                type={isRevealPwd ? "text" : "password"}
                 placeholder="******************"
-                {...register('password')}
+                {...register("password")}
               />
 
               <img

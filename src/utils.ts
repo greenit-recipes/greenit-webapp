@@ -10,20 +10,20 @@ import {
   premierspas,
   visage,
   zeroWaste,
-} from 'icons';
+} from "icons";
 
-export const getBreakpoint = (screen = '') => {
+export const getBreakpoint = (screen = "") => {
   // "Theme" is an alias to where you keep your tailwind.config.js - most likely your project root
   const screens = {
-    xs: '375px',
-    sm: '640px',
-    md: '768px',
-    lg: '1024px',
+    xs: "375px",
+    sm: "640px",
+    md: "768px",
+    lg: "1024px",
   };
   // create a keyed object of screens that match
   const matches = Object.entries(screens).reduce((results, [name, size]) => {
     const mediaQuery =
-      typeof size === 'string'
+      typeof size === "string"
         ? `(min-width: ${size})`
         : /*@ts-ignore*/
           `(max-width: ${size.max})`;
@@ -32,7 +32,7 @@ export const getBreakpoint = (screen = '') => {
     return results;
   }, {});
   // show all matches when there is no screen choice
-  if (screen === '') {
+  if (screen === "") {
     return matches;
   }
   // invalid screen choice
@@ -72,27 +72,27 @@ export const getSecondsFromDuration = (duration: string) => {
 export const landingPageCategories = [
   {
     icon: premierspas,
-    title: 'Premiers pas',
+    title: "Premiers pas",
   },
   {
     icon: zeroWaste,
-    title: 'Zéro-déchet',
+    title: "Zéro-déchet",
   },
   {
     icon: fridge,
-    title: 'Avec les ingrédients de la cuisine',
+    title: "Avec les ingrédients de la cuisine",
   },
   {
     icon: maison,
-    title: 'Maison',
+    title: "Maison",
   },
   {
     icon: visage,
-    title: 'Visage',
+    title: "Visage",
   },
   {
     icon: corps,
-    title: 'Corps',
+    title: "Corps",
   },
 ];
 
@@ -100,80 +100,80 @@ export const boxFullXpIngredients = [
   {
     id: 1,
     icon: boxIngredientCreme,
-    title: 'Savon solide pour le corps',
+    title: "Savon solide pour le corps",
     quantity: 1,
   },
   {
     id: 2,
     icon: boxIngredientLessive,
-    title: 'Crème de jour',
+    title: "Crème de jour",
     quantity: 1,
   },
   {
     id: 3,
     icon: boxIngredientSavon,
-    title: 'Lessives liquides',
+    title: "Lessives liquides",
     quantity: 2,
   },
 ];
 
 export const filterData = [
   {
-    title: 'Catégories',
-    name: 'category',
+    title: "Catégories",
+    name: "category",
     options: [
-      { title: 'Maison', value: 'Maison' },
-      { title: 'Corps', value: 'Corps' },
-      { title: 'Visage', value: 'Visage' },
-      { title: 'Cheveux', value: 'Cheveux' },
-      { title: 'Bien-être', value: 'Bien-être' },
-      { title: 'Santé', value: 'Santé' },
-      { title: 'Maquillage', value: 'Maquillage' },
+      { title: "Maison", value: "Maison" },
+      { title: "Corps", value: "Corps" },
+      { title: "Visage", value: "Visage" },
+      { title: "Cheveux", value: "Cheveux" },
+      { title: "Bien-être", value: "Bien-être" },
+      { title: "Santé", value: "Santé" },
+      { title: "Maquillage", value: "Maquillage" },
     ],
   },
   {
-    title: 'Filtres',
-    name: 'tags',
+    title: "Filtres",
+    name: "tags",
     options: [
-      { title: 'Premiers pas', value: 'Premiers pas' },
-      { title: 'Zéro-déchet', value: 'Zéro-déchet' },
-      { title: 'Sans cuisson', value: 'Sans cuisson' },
+      { title: "Premiers pas", value: "Premiers pas" },
+      { title: "Zéro-déchet", value: "Zéro-déchet" },
+      { title: "Sans cuisson", value: "Sans cuisson" },
       {
-        title: 'Avec les ingrédients de la cuisine',
-        value: 'Avec les ingrédients de la cuisine',
+        title: "Avec les ingrédients de la cuisine",
+        value: "Avec les ingrédients de la cuisine",
       },
     ],
   },
   {
-    title: 'Temps',
-    name: 'duration',
+    title: "Temps",
+    name: "duration",
     options: [
-      { title: 'Moins de 5 min', value: 5 },
-      { title: 'Moins de 15 min', value: 15 },
-      { title: 'Moins de 30 min', value: 30 },
-      { title: 'Moins de 1 heure', value: 60 },
+      { title: "Moins de 5 min", value: 5 },
+      { title: "Moins de 15 min", value: 15 },
+      { title: "Moins de 30 min", value: 30 },
+      { title: "Moins de 1 heure", value: 60 },
     ],
   },
   {
-    title: 'Difficulté',
-    name: 'difficulty',
+    title: "Difficulté",
+    name: "difficulty",
     options: [
-      { title: 'Facile', value: 'BEGINNER' },
-      { title: 'Moyen', value: 'INTERMEDIATE' },
-      { title: 'Expert', value: 'ADVANCED' },
+      { title: "Facile", value: "BEGINNER" },
+      { title: "Moyen", value: "INTERMEDIATE" },
+      { title: "Expert", value: "ADVANCED" },
     ],
   },
   {
     title: "Nombre d'ingrédients",
-    name: 'numberOfIngredients',
+    name: "numberOfIngredients",
     options: [
-      { title: '1 ingrédient', value: 1 },
-      { title: '2 ingrédients', value: 2 },
-      { title: '3 ingrédients', value: 3 },
-      { title: '4 ingrédients', value: 4 },
-      { title: '5 ingrédients', value: 5 },
-      { title: '6 ingrédients', value: 6 },
-      { title: '7 ingrédients', value: 7 },
+      { title: "1 ingrédient", value: 1 },
+      { title: "2 ingrédients", value: 2 },
+      { title: "3 ingrédients", value: 3 },
+      { title: "4 ingrédients", value: 4 },
+      { title: "5 ingrédients", value: 5 },
+      { title: "6 ingrédients", value: 6 },
+      { title: "7 ingrédients", value: 7 },
     ],
   },
 ];

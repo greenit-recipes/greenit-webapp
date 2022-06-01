@@ -1,29 +1,28 @@
-import { useMutation } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { RouteName } from 'App';
-import { Button } from 'components';
-import useIsMobile from 'hooks/isMobile';
-import { mdpNonVisible, mdpVisible, loginMail, loginPassword } from 'icons';
-import { IoLogoFacebook } from 'react-icons/io5';
-import { omit } from 'lodash';
-import React, { useEffect, useState } from 'react';
-import FacebookLogin from 'react-facebook-login';
-import { useForm } from 'react-hook-form';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RouteName } from "App";
+import { Button } from "components";
+import useIsMobile from "hooks/isMobile";
+import { mdpNonVisible, mdpVisible, loginMail, loginPassword } from "icons";
+import { IoLogoFacebook } from "react-icons/io5";
+import { omit } from "lodash";
+import React, { useState } from "react";
+import FacebookLogin from "react-facebook-login";
+import { useForm } from "react-hook-form";
+import { useHistory, useLocation } from "react-router-dom";
 import authService, {
   CREATE_USER_FROM_AUTH,
   LOGIN_ACCOUNT,
-} from 'services/auth.service';
-import * as yup from 'yup';
-import './LoginModal.css';
-import useGraphQlLoading from '../../hooks/useGraphqlLoading';
-import { BiLoaderAlt } from 'react-icons/bi';
+} from "services/auth.service";
+import * as yup from "yup";
+import "./LoginModal.css";
+import { BiLoaderAlt } from "react-icons/bi";
 import {
   beginnerBoxCookieExist,
   HAS_PURCHASED_BEGINNER_BOX,
   persistBoxPurchaseOnFirstLogin,
   persistBoxPurchaseOnRegister,
-} from '../../services/boxfullxp.service';
+} from "../../services/boxfullxp.service";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -31,12 +30,12 @@ const schema = yup.object().shape({
     .string()
     .max(
       32,
-      'Mot de passe trop long, il doit être moins de 32 caractères maximum.',
+      "Mot de passe trop long, il doit être moins de 32 caractères maximum.",
     )
-    .required('Le mot de passe est obligatoire.')
+    .required("Le mot de passe est obligatoire.")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/,
-      'Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule.',
+      "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule.",
     ),
 }); // _ - .
 
@@ -53,43 +52,41 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   });
   const history = useHistory();
   const [loginAccount, { data, loading, error }] = useMutation(LOGIN_ACCOUNT, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
   const [hasPurchasedBeginnerBox] = useMutation(HAS_PURCHASED_BEGINNER_BOX, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
 
-  const [errorLoginFb, setErrorLoginFb] = useState('');
+  const [errorLoginFb, setErrorLoginFb] = useState("");
 
   const [
     authLogin,
     { data: dataAuth, loading: loadingAuth, error: errorAuth },
   ] = useMutation(CREATE_USER_FROM_AUTH, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
-
-  const isGraphQlLoading = useGraphQlLoading([loading, loadingAuth]);
 
   // Error for graphql call
   React.useEffect(() => {
     if (data?.tokenAuth?.success === false || error) {
       if (
         data?.tokenAuth?.errors?.nonFieldErrors?.[0]?.code ===
-        'invalid_credentials'
+        "invalid_credentials"
       ) {
-        setError('email', {
+        setError("email", {
           message: "L'email ou le mot de passe est invalide.",
         });
-        setError('password', {
+        setError("password", {
           message: "L'email ou le mot de passe est invalide.",
         });
       }
 
       if (
-        data?.tokenAuth?.errors?.nonFieldErrors?.[0]?.code === 'not_verified'
+        data?.tokenAuth?.errors?.nonFieldErrors?.[0]?.code === "not_verified"
       ) {
-        setError('password', {
-          message: 'Activer votre compte dans les mails.',
+        setError("password", {
+          message: "Activer votre compte dans les mails.",
         });
       }
     }
@@ -104,16 +101,16 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
       username: responseFb.name,
       password: process.env.REACT_APP_PASSWORD + responseFb.id,
       idFacebook: responseFb.id,
-      isFollowNewsletter: 'false',
+      isFollowNewsletter: "false",
       isBeginnerBox: true,
     };
     //Add the field optionally to avoid defaults
     if (!persistBoxPurchaseOnRegister()) {
-      omit(variables, ['isBeginnerBox']);
+      omit(variables, ["isBeginnerBox"]);
     }
     // Error si pas d'email
 
-    if (responseFb.status === 'unknown') {
+    if (responseFb.status === "unknown") {
       return;
     }
 
@@ -151,12 +148,12 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
           response?.data?.tokenAuth?.refreshToken,
         );
         if (authService.isRedirectToProfil(location?.pathname)) {
-          history.push('/profil');
+          history.push("/profil");
         }
         window.location.reload();
       }
     });
-    reset({ ...getValues(), password: '' });
+    reset({ ...getValues(), password: "" });
   };
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
@@ -164,7 +161,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     <>
       <div
         className={`flex ${
-          isMobile ? '' : 'login-modal-size'
+          isMobile ? "" : "login-modal-size"
         } flex-col items-center justify-items-center`}
       >
         <div className="flex-row w-full lg:flex">
@@ -189,7 +186,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                   id="email"
                   placeholder="Email"
                   type="email"
-                  {...register('email')}
+                  {...register("email")}
                 ></input>
               </div>
               <p className="text-xs italic text-red">
@@ -206,9 +203,9 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                   <input
                     className="w-full h-full px-3 appearance-none rounded-xl py-1 focus:outline-none"
                     id="password"
-                    type={isRevealPwd ? 'text' : 'password'}
+                    type={isRevealPwd ? "text" : "password"}
                     placeholder="Mot de passe"
-                    {...register('password')}
+                    {...register("password")}
                   />
                   <img
                     className="mr-2"
@@ -223,14 +220,16 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               </p>
               <a
                 className="self-end px-4 mt-2 mb-6 text-sm font-bold lg:text-base text-blue"
-                id="modal-login-mot-de-passe-oublie"href={RouteName.resetPassword}
+                id="modal-login-mot-de-passe-oublie"
+                href={RouteName.resetPassword}
               >
                 Mot de passe oublié ?
               </a>
               <Button
                 type="blue"
-               id="modal-button-connexion" className="mt-4 font-extrabold"
-                isLoading={isGraphQlLoading}
+                id="modal-button-connexion"
+                className="mt-4 font-extrabold"
+                isLoading={loading}
               >
                 Connexion
               </Button>
@@ -245,9 +244,10 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               callback={responseFacebook}
               disableMobileRedirect={true}
               cssClass="my-facebook-button-class"
-              textButton={'Connexion avec Facebook'}
-              id="connexion-facebook"icon={
-                false ? (
+              textButton={"Connexion avec Facebook"}
+              id="connexion-facebook"
+              icon={
+                loadingAuth ? (
                   <div className="animate-spin mr-4">
                     <BiLoaderAlt />
                   </div>
@@ -264,7 +264,8 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
             <div>
               <p
                 onClick={() => loginOpen(false)}
-                id="modal-connexion-pas-encore-de-compte"className="m-4 text-sm text-center text-gray-700 underline cursor-pointer md:m-10"
+                id="modal-connexion-pas-encore-de-compte"
+                className="m-4 text-sm text-center text-gray-700 underline cursor-pointer md:m-10"
               >
                 Pas encore de compte ? - Créer son compte
               </p>

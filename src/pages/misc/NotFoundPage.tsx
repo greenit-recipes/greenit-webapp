@@ -1,8 +1,8 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
-import { Button, Navbar } from '../../components';
-import useIsMobile from '../../hooks/isMobile';
+import React from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import { Button, Navbar } from "../../components";
+import useIsMobile from "../../hooks/isMobile";
 
 const NotFoundPage = () => {
   const isMobile = useIsMobile();
@@ -15,7 +15,7 @@ const NotFoundPage = () => {
       <div
         className="h-auto w-auto flex items-center flex-col text-gray-600"
         style={{
-          marginTop: isMobile ? '50%' : '15%',
+          marginTop: isMobile ? "50%" : "15%",
         }}
       >
         <h2 className="text-3xl lg:text-8xl mb-2">404</h2>

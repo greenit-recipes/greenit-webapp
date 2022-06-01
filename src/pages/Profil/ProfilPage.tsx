@@ -1,37 +1,37 @@
-import { useMutation, useQuery } from '@apollo/client';
-import { RouteName } from 'App';
-import 'App.css';
-import { Button, Loading, RecipeCard } from 'components';
-import { getImagePath } from 'helpers/image.helper';
-import { Cooking, defaultImageProfil, likedIconOff, likedIconOn } from 'icons';
-import { isEmpty } from 'lodash';
-import { ExplorateurProfil } from 'pages/Profil/ExplorateurProfil';
-import { ModalImageProfil } from 'pages/Profil/ModalImageProfil';
-import { CTACard } from 'pages/recipe/ListPage/Components/CTACard';
-import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import { Link, useHistory } from 'react-router-dom';
-import 'reactjs-popup/dist/index.css';
-import { ME } from 'services/auth.service';
-import { Footer, Navbar } from '../../components';
-import { CreatorProfil } from './CreatorProfil';
-import './Profil.css';
-import Modal from 'components/layout/Modal/Modal';
-import { ModalProfil } from 'pages/Profil/ModalProfil';
-import { ProfilGreenitFullXp } from 'pages/Profil/ProfilGreenitFullXp';
+import { useMutation, useQuery } from "@apollo/client";
+import { RouteName } from "App";
+import "App.css";
+import { Button, Loading, RecipeCard } from "components";
+import { getImagePath } from "helpers/image.helper";
+import { Cooking, defaultImageProfil, likedIconOff, likedIconOn } from "icons";
+import { isEmpty } from "lodash";
+import { ExplorateurProfil } from "pages/Profil/ExplorateurProfil";
+import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
+import { CTACard } from "pages/recipe/ListPage/Components/CTACard";
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { Link, useHistory } from "react-router-dom";
+import "reactjs-popup/dist/index.css";
+import { ME } from "services/auth.service";
+import { Footer, Navbar } from "../../components";
+import { CreatorProfil } from "./CreatorProfil";
+import "./Profil.css";
+import Modal from "components/layout/Modal/Modal";
+import { ModalProfil } from "pages/Profil/ModalProfil";
+import { ProfilGreenitFullXp } from "pages/Profil/ProfilGreenitFullXp";
 
 const ProfilPage: React.FC = () => {
   useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   }, []);
 
   const { loading, data, refetch } = useQuery(ME, {
-    fetchPolicy: 'network-only',
+    fetchPolicy: "network-only",
   });
 
   const [showModal, setShowModal] = useState(false);
@@ -41,7 +41,7 @@ const ProfilPage: React.FC = () => {
 
   if (!loading && isEmpty(data?.me)) {
     history.push({
-      pathname: '/',
+      pathname: "/",
     });
   }
   const user = data?.me;
@@ -52,7 +52,7 @@ const ProfilPage: React.FC = () => {
     setImage(
       user?.imageProfile
         ? getImagePath(user?.imageProfile)
-        : user?.photoUrl + '?type=large',
+        : user?.photoUrl + "?type=large",
     );
   }, [user]);
 
@@ -89,7 +89,7 @@ const ProfilPage: React.FC = () => {
           )}
         </div>
         <Modal
-          title={'Change ta photo'}
+          title={"Change ta photo"}
           isCenter={true}
           onClose={() => setShowModalImage(false)}
           show={showModalImage}
@@ -123,7 +123,7 @@ const ProfilPage: React.FC = () => {
           Paramètres
         </Button>
         <Modal
-          title={'Paramètres'}
+          title={"Paramètres"}
           isCenter={true}
           onClose={() => setShowModal(false)}
           show={showModal}
@@ -152,8 +152,8 @@ const ProfilPage: React.FC = () => {
           <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
             <button
               className={
-                'py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-green |' +
-                (visible ? 'outline-none border-green' : '')
+                "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-green |" +
+                (visible ? "outline-none border-green" : "")
               }
               onClick={() => setVisible(true)}
             >
@@ -164,8 +164,8 @@ const ProfilPage: React.FC = () => {
             </button>
             <button
               className={
-                'py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue' +
-                (!visible ? 'outline-none border-blue' : '')
+                "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue" +
+                (!visible ? "outline-none border-blue" : "")
               }
               onClick={() => setVisible(false)}
             >
@@ -183,14 +183,14 @@ const ProfilPage: React.FC = () => {
           </div>
 
           <div className="flex flex-col mb-20 | items-center">
-            <div className={'text-center' + (visible ? ' hidden' : '')}>
+            <div className={"text-center" + (visible ? " hidden" : "")}>
               {!visible && (
                 <div className="grid grid-cols-2 gap-2 mt-5 md:grid-cols-3 auto-rows-auto justify-items-center">
                   {isEmpty(user?.recipeFavorite) && (
                     <div
                       className={
-                        'grid text-center col-span-3 w-full mb-56 mt-8 justify-items-center' +
-                        (visible ? ' hidden' : '')
+                        "grid text-center col-span-3 w-full mb-56 mt-8 justify-items-center" +
+                        (visible ? " hidden" : "")
                       }
                     >
                       <h2 className=" md:text-xl">

@@ -1,54 +1,54 @@
-import { useMutation, useQuery } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { RouteName } from 'App';
-import { Button } from 'components';
-import { imageValidation } from 'helpers/yup-validation.helper';
-import { cloneDeep } from 'lodash';
+import { useMutation, useQuery } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RouteName } from "App";
+import { Button } from "components";
+import { imageValidation } from "helpers/yup-validation.helper";
+import { cloneDeep } from "lodash";
 import {
   CREATE_EMAIL_RECIPE,
   GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
-} from 'pages/CreateRecipe/CreateRecipeRequest';
-import React, { useEffect } from 'react';
-import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
-import Select from 'react-select';
-import * as yup from 'yup';
-import { RecipeDifficulty } from '../../graphql';
+} from "pages/CreateRecipe/CreateRecipeRequest";
+import React, { useEffect } from "react";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import Select from "react-select";
+import * as yup from "yup";
+import { RecipeDifficulty } from "../../graphql";
 
 const schema = yup.object().shape({
   image: imageValidation(),
   videoUrl: yup.string(),
-  name: yup.string().required('Ce champ est obligatoire.'),
-  duration: yup.string().required('Ce champ est obligatoire.'),
-  description: yup.string().required('Ce champ est obligatoire.'),
-  difficulty: yup.object().required('Ce champ est obligatoire.'),
-  category: yup.object().required('Ce champ est obligatoire.'),
-  expiry: yup.string().required('Ce champ est obligatoire.'),
+  name: yup.string().required("Ce champ est obligatoire."),
+  duration: yup.string().required("Ce champ est obligatoire."),
+  description: yup.string().required("Ce champ est obligatoire."),
+  difficulty: yup.object().required("Ce champ est obligatoire."),
+  category: yup.object().required("Ce champ est obligatoire."),
+  expiry: yup.string().required("Ce champ est obligatoire."),
   ingredients: yup // Ne marche pas
     .array(
       yup.object({
-        quantity: yup.string().required('Ce champ est obligatoire.'),
-        name: yup.object().required('Ce champ est obligatoire.'),
+        quantity: yup.string().required("Ce champ est obligatoire."),
+        name: yup.object().required("Ce champ est obligatoire."),
       }),
     )
-    .min(1, 'Ce champ est obligatoire'),
+    .min(1, "Ce champ est obligatoire"),
   instructions: yup
     .array(
       yup.object({
-        instruction: yup.string().required('Ce champ est obligatoire.'),
+        instruction: yup.string().required("Ce champ est obligatoire."),
       }),
     )
-    .min(1, 'Ce champ est obligatoire'),
+    .min(1, "Ce champ est obligatoire"),
   utensils: yup
     .array(
       yup.object({
-        quantity: yup.string().required('Ce champ est obligatoire.'),
-        name: yup.object().required('Ce champ est obligatoire.'),
+        quantity: yup.string().required("Ce champ est obligatoire."),
+        name: yup.object().required("Ce champ est obligatoire."),
       }),
     )
-    .min(1, 'Ce champ est obligatoire'),
+    .min(1, "Ce champ est obligatoire"),
 
-  tags: yup.array().required('Ce champ est obligatoire.'),
+  tags: yup.array().required("Ce champ est obligatoire."),
   notes_from_author: yup.string(),
   text_associate: yup.string(),
 });
@@ -71,7 +71,7 @@ const CreateRecipeForm: React.FC = () => {
     remove: ingredientsRemove,
   } = useFieldArray({
     control,
-    name: 'ingredients',
+    name: "ingredients",
   });
 
   const {
@@ -80,7 +80,7 @@ const CreateRecipeForm: React.FC = () => {
     remove: instructionsRemove,
   } = useFieldArray({
     control,
-    name: 'instructions',
+    name: "instructions",
   });
 
   const {
@@ -89,7 +89,7 @@ const CreateRecipeForm: React.FC = () => {
     remove: utensilsRemove,
   } = useFieldArray({
     control,
-    name: 'utensils',
+    name: "utensils",
   });
   const history = useHistory();
 
@@ -101,21 +101,21 @@ const CreateRecipeForm: React.FC = () => {
     useMutation(CREATE_EMAIL_RECIPE);
 
   const optionsDifficulty = [
-    { value: RecipeDifficulty.Beginner, label: 'Facile' },
-    { value: RecipeDifficulty.Intermediate, label: 'Moyen' },
-    { value: RecipeDifficulty.Advanced, label: 'Difficile' },
+    { value: RecipeDifficulty.Beginner, label: "Facile" },
+    { value: RecipeDifficulty.Intermediate, label: "Moyen" },
+    { value: RecipeDifficulty.Advanced, label: "Difficile" },
   ];
 
   useEffect(() => {
     if (data?.register?.success === false || error) {
-      if (data?.register?.errors?.email[0]?.code === 'unique') {
-        setError('email', {
-          message: 'Cet email existe déjà.',
+      if (data?.register?.errors?.email[0]?.code === "unique") {
+        setError("email", {
+          message: "Cet email existe déjà.",
         });
       }
-      if (data?.register?.errors?.username[0]?.code === 'unique') {
-        setError('utilisateur', {
-          message: 'Ce nom existe déjà.',
+      if (data?.register?.errors?.username[0]?.code === "unique") {
+        setError("utilisateur", {
+          message: "Ce nom existe déjà.",
         });
       }
     }
@@ -208,7 +208,7 @@ const CreateRecipeForm: React.FC = () => {
           className="w-2/3 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
           id="name"
           placeholder="nom de la recette"
-          {...register('name')}
+          {...register("name")}
         ></textarea>
         <p className="text-xs italic text-red">{errors.name?.message}</p>
       </div>
@@ -225,7 +225,7 @@ const CreateRecipeForm: React.FC = () => {
           placeholder="description"
           rows={12}
           cols={34}
-          {...register('description')}
+          {...register("description")}
         ></textarea>
         <p className="text-xs italic text-red">{errors.description?.message}</p>
       </div>
@@ -238,7 +238,7 @@ const CreateRecipeForm: React.FC = () => {
         <input
           className="p-4 border-2"
           type="file"
-          {...register('image')}
+          {...register("image")}
         ></input>
         <p className="text-xs italic text-red">{errors.image?.message}</p>
       </div>
@@ -296,7 +296,7 @@ const CreateRecipeForm: React.FC = () => {
           className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
           placeholder="durée en minutes"
           type="number"
-          {...register('duration')}
+          {...register("duration")}
         ></input>
         <p className="text-xs italic text-red">{errors.duration?.message}</p>
       </div>
@@ -415,7 +415,7 @@ const CreateRecipeForm: React.FC = () => {
           Lien de ton post ou de ta vidéo
         </label>
         <input
-          {...register('videoUrl')}
+          {...register("videoUrl")}
           className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
           placeholder="Lien de ton post ou de ta vidéo"
           type="text"
@@ -556,7 +556,7 @@ const CreateRecipeForm: React.FC = () => {
           id="expiry"
           placeholder="temps de conservation"
           type="text"
-          {...register('expiry')}
+          {...register("expiry")}
         ></input>
         <p className="text-xs italic text-red">{errors.expiry?.message}</p>
       </div>
@@ -574,7 +574,7 @@ const CreateRecipeForm: React.FC = () => {
           id="notes_from_author"
           placeholder="tes conseils et astuces"
           type="text"
-          {...register('notes_from_author')}
+          {...register("notes_from_author")}
         ></input>
         <p className="text-xs italic text-red">
           {errors.notes_from_author?.message}
@@ -590,7 +590,7 @@ const CreateRecipeForm: React.FC = () => {
           id="text_associate"
           placeholder="ton lien vers ton site :) "
           type="text"
-          {...register('text_associate')}
+          {...register("text_associate")}
         ></input>
         <p className="text-xs italic text-red">
           {errors.text_associate?.message}

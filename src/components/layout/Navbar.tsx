@@ -1,21 +1,21 @@
-import { RouteName } from 'App';
-import 'components/layout/Navbar.css';
-import React, { Suspense, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import authService from 'services/auth.service';
-import { SearchBar } from '.';
-import { Button } from '../';
-import useIsMobile from '../../hooks/isMobile';
-import { logo } from '../../icons';
-import { NavButton } from '../misc/NavButton';
-import { hasBoxBeginnerUrl } from '../../helpers/beginnerbox.helper';
-import { Loading } from 'components/layout/Loading';
-import debounce from 'lodash/debounce';
-import { useQuery } from '@apollo/client';
-import { SEARCH_AUTO_COMPLETE_RECIPE } from '../../pages/AutocompleteRequest';
+import { RouteName } from "App";
+import "components/layout/Navbar.css";
+import React, { Suspense, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import authService from "services/auth.service";
+import { SearchBar } from ".";
+import { Button } from "../";
+import useIsMobile from "../../hooks/isMobile";
+import { logo } from "../../icons";
+import { NavButton } from "../misc/NavButton";
+import { hasBoxBeginnerUrl } from "../../helpers/beginnerbox.helper";
+import { Loading } from "components/layout/Loading";
+import debounce from "lodash/debounce";
+import { useQuery } from "@apollo/client";
+import { SEARCH_AUTO_COMPLETE_RECIPE } from "../../pages/AutocompleteRequest";
 
 const ModalLogGreenit = React.lazy(
-  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
 
 export const Navbar: React.FC = () => {
@@ -29,21 +29,21 @@ export const Navbar: React.FC = () => {
   const [hasUrl, setHasUrl] = useState(
     !!(
       hasBoxBeginnerUrl() &&
-      (localStorage.getItem('isBeginnerBox') === 'true' ||
-        localStorage.setItem('isBeginnerBox', 'true'))
+      (localStorage.getItem("isBeginnerBox") === "true" ||
+        localStorage.setItem("isBeginnerBox", "true"))
     ),
   );
 
   const isLoggedIn = authService.isLoggedIn();
 
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const setSearchTermDebounced = debounce(setSearchTerm, 250);
 
   // Ne par run au premier lancement
   const { data: autoCompleteData, loading: autoCompleteLoading } = useQuery(
     SEARCH_AUTO_COMPLETE_RECIPE,
     {
-      fetchPolicy: 'network-only',
+      fetchPolicy: "network-only",
       variables: { search: searchTerm },
       skip: !searchTerm,
     },
@@ -56,7 +56,7 @@ export const Navbar: React.FC = () => {
   };
 
   const resetFilter = () =>
-    window.sessionStorage.setItem('filterListPage', JSON.stringify({}));
+    window.sessionStorage.setItem("filterListPage", JSON.stringify({}));
 
   if (isMobile) {
     return (
@@ -72,8 +72,8 @@ export const Navbar: React.FC = () => {
               <div
                 className={
                   toggle
-                    ? 'hamburger_fadeIn w-10 h-10 border-4'
-                    : 'hamburger_fadeOut w-8 h-4 border-t-4 border-b-4 border-black border-opacity-75'
+                    ? "hamburger_fadeIn w-10 h-10 border-4"
+                    : "hamburger_fadeOut w-8 h-4 border-t-4 border-b-4 border-black border-opacity-75"
                 }
               ></div>
             </div>
@@ -126,7 +126,7 @@ export const Navbar: React.FC = () => {
 
         <div
           className={
-            toggle ? 'navBar_fadeIn h-screen' : 'navBar_fadeOut h-screen'
+            toggle ? "navBar_fadeIn h-screen" : "navBar_fadeOut h-screen"
           }
         >
           <div className="flex flex-col">
@@ -186,7 +186,7 @@ export const Navbar: React.FC = () => {
                   show={hasUrl}
                   btn={
                     <div className="p-2">
-                      <h2 className="text-white">Se connecter</h2>{' '}
+                      <h2 className="text-white">Se connecter</h2>{" "}
                     </div>
                   }
                 ></ModalLogGreenit>
@@ -213,7 +213,7 @@ export const Navbar: React.FC = () => {
       </div>
       <div
         className={`flex flex-row items-center w-${
-          showSearchBar ? '[45%]' : '3/5'
+          showSearchBar ? "[45%]" : "3/5"
         } h-full ml-4 justify-items-start`}
       >
         <Link to={RouteName.accueil}>
@@ -292,7 +292,7 @@ export const Navbar: React.FC = () => {
                 </Link>
               </div>
               <div className="flex flex-col pt-4 text-lg">
-                <h2 className="mb-2 cursor-default">Catégories</h2>{' '}
+                <h2 className="mb-2 cursor-default">Catégories</h2>{" "}
                 <Link id="house" to={`${RouteName.recipes}?category=Maison`}>
                   <h3
                     id="house"
@@ -493,7 +493,7 @@ export const Navbar: React.FC = () => {
       )}
       <div
         className={`grid items-center w-${
-          showSearchBar ? '1/4' : '3/5'
+          showSearchBar ? "1/4" : "3/5"
         } justify-self-end`}
       >
         <div className="flex space-between items-center justify-self-end">

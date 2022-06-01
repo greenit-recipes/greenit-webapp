@@ -1,6 +1,6 @@
-import { previousPath } from '../../helpers/route-helper';
-import { retourIcon } from '../../icons';
-import React from 'react';
+import { previousPath } from "../../helpers/route-helper";
+import { retourIcon } from "../../icons";
+import React from "react";
 
 interface BackButtonProps {
   styleCSS?: string;

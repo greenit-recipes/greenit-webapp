@@ -1,4 +1,4 @@
-import { SearchBar } from '../../../../components';
+import { SearchBar } from "../../../../components";
 
 export const FilterBarSearch: React.FC<{
   setCurrentFilters: (data: Record<string, any>) => void;
@@ -19,7 +19,7 @@ export const FilterBarSearch: React.FC<{
     <div className={customClass}>
       <SearchBar
         keyId={keyId}
-        customClassList={'z-40'}
+        customClassList={"z-40"}
         size="small"
         suggestionIsActive={true}
         suggestions={recipesAutoComplete}

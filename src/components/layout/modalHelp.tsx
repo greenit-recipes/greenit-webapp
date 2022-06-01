@@ -1,9 +1,9 @@
-import { useMutation } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { EMAIL_GREENIT_FULL_XP } from 'pages/GreenitFullXp/GreenitFullXpRequest';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import { useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { EMAIL_GREENIT_FULL_XP } from "pages/GreenitFullXp/GreenitFullXpRequest";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
 
 interface IProfilGreenitFullXp {
   messageModal: string;
@@ -16,11 +16,11 @@ const ModalHelp: React.FC<IProfilGreenitFullXp> = ({
   otherMesssageModal,
 }) => {
   const schema = yup.object().shape({
-    msg: yup.string().required('Votre message est vide'),
+    msg: yup.string().required("Votre message est vide"),
   }); // _ - .
 
-  const [message, setMessage] = useState('');
-  const [errorEmail, setErrorEmail] = useState('');
+  const [message, setMessage] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
 
   const [emailGreenitFullXp, { data, loading, error }] = useMutation(
     EMAIL_GREENIT_FULL_XP,
@@ -48,10 +48,10 @@ const ModalHelp: React.FC<IProfilGreenitFullXp> = ({
       reset();
       if (dataReponse?.data?.emailGreenitFullXp?.success) {
         setMessage(
-          'C’est envoyé👌 On reviendra vers toi le plus vite possible !',
+          "C’est envoyé👌 On reviendra vers toi le plus vite possible !",
         );
       } else {
-        setErrorEmail('Un problème est survenu');
+        setErrorEmail("Un problème est survenu");
       }
     });
   };
@@ -81,7 +81,7 @@ const ModalHelp: React.FC<IProfilGreenitFullXp> = ({
             placeholder="Ton message"
             rows={10}
             cols={24}
-            {...register('msg')}
+            {...register("msg")}
           ></textarea>
           <p className="text-xs italic text-red">{errors.msg?.message}</p>
           <p className="text-xs italic text-red">{errorEmail}</p>

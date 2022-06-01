@@ -1,5 +1,5 @@
-import { CircleProps } from './Circle';
-import React from 'react';
+import { CircleProps } from "./Circle";
+import React from "react";
 
 export interface NumberedCircleProps extends CircleProps {
   quantity: number;

@@ -1,16 +1,16 @@
 import {
   getObjectSession,
   setObjectFilterSession,
-} from 'helpers/session-helper';
-import { Link, useHistory } from 'react-router-dom';
-import { RouteName } from 'App';
-import { useEffect, useState } from 'react';
-import './SearchBar.css';
-import { isEmpty } from 'lodash';
-import { GoSearch } from 'react-icons/go';
+} from "helpers/session-helper";
+import { Link, useHistory } from "react-router-dom";
+import { RouteName } from "App";
+import { useEffect, useState } from "react";
+import "./SearchBar.css";
+import { isEmpty } from "lodash";
+import { GoSearch } from "react-icons/go";
 
 export const SearchBar: React.FC<{
-  size?: 'small' | 'large';
+  size?: "small" | "large";
   setValue?: (val: string) => void;
   value?: string;
   onSubmit?: () => void;
@@ -25,8 +25,8 @@ export const SearchBar: React.FC<{
   isLoading?: boolean;
   hideSearchIcon?: boolean;
 }> = ({
-  size = 'large',
-  value = '',
+  size = "large",
+  value = "",
   suggestions = { recipes: [], ingredients: [], totalRecipes: 0 },
   suggestionIsActive = false,
   setValue,
@@ -34,13 +34,13 @@ export const SearchBar: React.FC<{
   isLoading = false,
   onSubmit,
   hideSearchIcon,
-  keyId = 'search',
+  keyId = "search",
 }) => {
-  const isLarge = size === 'large';
+  const isLarge = size === "large";
   const history = useHistory();
-  const totalSize = `w-full h-10 md:h-${isLarge ? '12' : '10'}`;
-  const iconSize = `w-10 md:w-${isLarge ? '16' : '10'} h-10 md:h-${
-    isLarge ? '12' : '10'
+  const totalSize = `w-full h-10 md:h-${isLarge ? "12" : "10"}`;
+  const iconSize = `w-10 md:w-${isLarge ? "16" : "10"} h-10 md:h-${
+    isLarge ? "12" : "10"
   }`;
   const handleSubmit = () => {
     if (!onSubmit) {
@@ -48,7 +48,7 @@ export const SearchBar: React.FC<{
         search: (document.getElementById(keyId) as HTMLInputElement)?.value,
       };
       window.sessionStorage.setItem(
-        'filterListPage',
+        "filterListPage",
         JSON.stringify(currentSearchValue),
       );
       history.push(RouteName.recipes);
@@ -60,7 +60,7 @@ export const SearchBar: React.FC<{
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [input, setInput] = useState(value || '');
+  const [input, setInput] = useState(value || "");
 
   useEffect(() => {
     // Filter our suggestions that don't contain the user's input
@@ -92,7 +92,7 @@ export const SearchBar: React.FC<{
       search: e.target.innerText,
     };
     window.sessionStorage.setItem(
-      'filterListPage',
+      "filterListPage",
       JSON.stringify(currentSearchValue),
     );
     history.push(RouteName.recipes);
@@ -101,7 +101,7 @@ export const SearchBar: React.FC<{
   const onClickRecipes = (e: any) => {};
 
   const onKeyDown = (e: any) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSubmit();
     }
     /*
@@ -135,7 +135,7 @@ export const SearchBar: React.FC<{
       filteredSuggestions?.ingredients.length ? (
       <div
         className={
-          'suggestions-content suggestions-box z-50 ' + customClassList
+          "suggestions-content suggestions-box z-50 " + customClassList
         }
       >
         <ul className="suggestions">
@@ -177,7 +177,7 @@ export const SearchBar: React.FC<{
               handleSubmit();
             }}
           >
-            {' '}
+            {" "}
             Tous les résultats ({suggestions?.totalRecipes})
           </li>
         </ul>
@@ -186,7 +186,7 @@ export const SearchBar: React.FC<{
       <div className="suggestions-content no-suggestions mr-8">
         <span role="img" aria-label="tear emoji">
           😪
-        </span>{' '}
+        </span>{" "}
         <em>Aucun Résultat ...</em>
       </div>
     );
@@ -215,7 +215,7 @@ export const SearchBar: React.FC<{
           } | w-full | focus:outline-none search-bar`}
         onKeyDown={onKeyDown}
         onFocus={event => {
-          event.target.setAttribute('autocomplete', 'off');
+          event.target.setAttribute("autocomplete", "off");
         }}
         placeholder="Je cherche une recette, un ingrédient..."
         id={keyId}

@@ -1,18 +1,18 @@
-import { useMutation } from '@apollo/client';
-import { Button } from 'components/misc/Button';
-import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import { useParams } from 'react-router';
+import { useMutation } from "@apollo/client";
+import { Button } from "components/misc/Button";
+import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
+import { useParams } from "react-router";
 import authService, {
   RESEND_ACTIVATION_EMAIL,
   VERIFY_ACCOUNT,
   WELCOME_NEW_USER,
-} from 'services/auth.service';
-import '../App.css';
-import { Footer, Loading, Navbar } from '../components';
+} from "services/auth.service";
+import "../App.css";
+import { Footer, Loading, Navbar } from "../components";
 
 const ModalLogGreenit = React.lazy(
-  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
 
 const ActivateAccount: React.FC = () => {
@@ -32,7 +32,7 @@ const ActivateAccount: React.FC = () => {
   );
 
   const [resendActivationEMail] = useMutation(RESEND_ACTIVATION_EMAIL, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
 
   useEffect(() => {

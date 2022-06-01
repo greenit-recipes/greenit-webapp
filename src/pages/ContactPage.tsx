@@ -1,16 +1,16 @@
-import { useEffect } from 'react';
-import { Navbar } from '../components/layout/Navbar';
-import { UXFormulaire } from 'components/layout/UXFormulaire';
-import { Footer } from 'components/layout/Footer';
+import { useEffect } from "react";
+import { Navbar } from "../components/layout/Navbar";
+import { UXFormulaire } from "components/layout/UXFormulaire";
+import { Footer } from "components/layout/Footer";
 import {
   pinterestIcon,
   tiktokIcon,
   InstagramIcon,
   MailIcon,
   FBIcon,
-} from '../icons';
-import { BackgroundImage } from '../components/layout/BackgroundImage';
-import { Helmet } from 'react-helmet';
+} from "../icons";
+import { BackgroundImage } from "../components/layout/BackgroundImage";
+import { Helmet } from "react-helmet";
 
 const ContactPage = () => {
   const params = new URLSearchParams(window.location.search);
@@ -18,7 +18,7 @@ const ContactPage = () => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   }, []);
@@ -61,7 +61,7 @@ const ContactPage = () => {
           <div className="flex flex-row gap-x-4 justify-center mt-3">
             {[
               {
-                href: 'https://www.instagram.com/greenitcommunity/',
+                href: "https://www.instagram.com/greenitcommunity/",
                 children: (
                   <img
                     src={InstagramIcon}
@@ -71,7 +71,7 @@ const ContactPage = () => {
                 ),
               },
               {
-                href: 'https://www.facebook.com/greenitcommunity/',
+                href: "https://www.facebook.com/greenitcommunity/",
                 children: (
                   <img
                     src={FBIcon}
@@ -81,7 +81,7 @@ const ContactPage = () => {
                 ),
               },
               {
-                href: 'https://www.pinterest.fr/greenitcommunity/',
+                href: "https://www.pinterest.fr/greenitcommunity/",
                 children: (
                   <img
                     src={pinterestIcon}
@@ -91,7 +91,7 @@ const ContactPage = () => {
                 ),
               },
               {
-                href: 'https://www.tiktok.com/@greenitcommunity',
+                href: "https://www.tiktok.com/@greenitcommunity",
                 children: (
                   <img
                     src={tiktokIcon}

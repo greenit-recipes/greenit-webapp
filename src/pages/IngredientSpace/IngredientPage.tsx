@@ -1,5 +1,5 @@
-import { Navbar, Container, BackgroundImage, Button } from 'components';
-import { Helmet } from 'react-helmet';
+import { Navbar, Container, BackgroundImage, Button } from "components";
+import { Helmet } from "react-helmet";
 
 const ingredientPage = () => {
   return (

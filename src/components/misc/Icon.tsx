@@ -1,5 +1,5 @@
-import React from 'react';
-import { logo, ingredients1, ingredients2, ingredients3 } from '../../icons';
+import React from "react";
+import { logo, ingredients1, ingredients2, ingredients3 } from "../../icons";
 
 interface IconProps {
   text?: string;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { ingredients1, ingredients2, ingredients3 } from '../../icons';
+import React from "react";
+import { ingredients1, ingredients2, ingredients3 } from "../../icons";
 
 interface IIconNbrIngredient {
   nbOfIngredient: number;
@@ -10,7 +10,7 @@ export const IconNbrIngredient: React.FC<IIconNbrIngredient> = ({
   nbOfIngredient,
   customClass,
 }) => {
-  let itemNbOfIngredients = '';
+  let itemNbOfIngredients = "";
 
   if (nbOfIngredient > 0 && nbOfIngredient <= 2) {
     itemNbOfIngredients = ingredients1;

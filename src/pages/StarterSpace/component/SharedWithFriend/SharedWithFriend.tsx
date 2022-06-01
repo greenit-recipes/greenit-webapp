@@ -1,9 +1,9 @@
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useMutation } from '@apollo/client';
-import { Button } from 'components';
-import { SHARED_WITH_FRIENDS_STARTER_PAGE } from 'pages/StarterSpace/component/SharedWithFriend/SharedWIthFriendRequest';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useMutation } from "@apollo/client";
+import { Button } from "components";
+import { SHARED_WITH_FRIENDS_STARTER_PAGE } from "pages/StarterSpace/component/SharedWithFriend/SharedWIthFriendRequest";
 
 export const SharedWithFriend: React.FC = () => {
   const schema = yup.object().shape({
@@ -48,7 +48,7 @@ export const SharedWithFriend: React.FC = () => {
           id="email"
           placeholder="son email"
           type="email"
-          {...register('email')}
+          {...register("email")}
         ></input>
 
         <div className="grid w-full justify-items-center">

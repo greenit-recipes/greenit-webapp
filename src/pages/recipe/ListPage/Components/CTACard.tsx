@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 interface ICTACard {
-  type: 'blue' | 'green' | 'yellow' | 'orange';
+  type: "blue" | "green" | "yellow" | "orange";
   className?: string;
   link: string;
 }
@@ -23,7 +23,7 @@ export const CTACard: React.FC<ICTACard> = ({
       >
         <div
           className={`transform shadow-lg h-72 md:h-84 w-40 md:w-52 bg-${
-            type ? type : 'blue'
+            type ? type : "blue"
           }  hover:scale-105
           ease-linear transition-all duration-150 
           rounded-3xl cursor-pointer hover:shadow-xl ${className}`}

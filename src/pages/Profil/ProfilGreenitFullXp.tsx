@@ -1,11 +1,11 @@
-import { gql, useMutation } from '@apollo/client';
-import { RouteName } from 'App';
-import Modal from 'components/layout/Modal/Modal';
-import ModalHelp from 'components/layout/modalHelp';
-import { useState } from 'react';
-import { AiFillCheckSquare } from 'react-icons/ai';
-import { FiSquare } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { gql, useMutation } from "@apollo/client";
+import { RouteName } from "App";
+import Modal from "components/layout/Modal/Modal";
+import ModalHelp from "components/layout/modalHelp";
+import { useState } from "react";
+import { AiFillCheckSquare } from "react-icons/ai";
+import { FiSquare } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 interface IProfilGreenitFullXp {
   isRecipeMadeBeginnerBox: boolean;
@@ -113,9 +113,9 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
         show={showModalHelp}
       >
         <ModalHelp
-          messageModal={'⚠️ J’ai un problème avec mon colis'}
+          messageModal={"⚠️ J’ai un problème avec mon colis"}
           subMessageModal={
-            'Nous sommes navrés de l’apprendre, contacte notre service client\n et nous tenterons de trouver une solution 🙂'
+            "Nous sommes navrés de l’apprendre, contacte notre service client\n et nous tenterons de trouver une solution 🙂"
           }
         ></ModalHelp>
       </Modal>

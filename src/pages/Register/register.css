@@ -7,20 +7,20 @@
   background-color: tomato;
 }
 
-input[type='radio']:checked + label > img {
+input[type="radio"]:checked + label > img {
   position: relative;
   border: 1px solid #fff;
   box-shadow: 0 0 3px 3px blue;
 }
 
 /* Stuff after this is only to make things more pretty */
-input[type='radio'] + label > img {
+input[type="radio"] + label > img {
   width: 120px;
   height: 120px;
   transition: 500ms all;
 }
 
-input[type='radio']:checked + label > img {
+input[type="radio"]:checked + label > img {
   transform: scale(1.02);
 }
 
@@ -36,7 +36,7 @@ input[type='radio']:checked + label > img {
 
 .separator::before,
 .separator::after {
-  content: '';
+  content: "";
   height: 1px;
   background-color: #374151;
   flex-grow: 1;

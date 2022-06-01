@@ -1,14 +1,14 @@
-import { BackgroundImage } from 'components';
-import { Footer } from 'components/layout/Footer';
-import { Navbar } from 'components/layout/Navbar';
-import { Button } from 'components/misc/Button';
-import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
-import authService from 'services/auth.service';
+import { BackgroundImage } from "components";
+import { Footer } from "components/layout/Footer";
+import { Navbar } from "components/layout/Navbar";
+import { Button } from "components/misc/Button";
+import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import authService from "services/auth.service";
 
 const ModalLogGreenit = React.lazy(
-  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
 
 const RecipeCreatedPage = () => {
@@ -16,7 +16,7 @@ const RecipeCreatedPage = () => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   }, []);
@@ -46,7 +46,7 @@ const RecipeCreatedPage = () => {
               </h3>
               <h3 className="text-center text-sm md: mt-10">
                 Si tu souhaites la modifier, envoie-nous un email au plus vite à
-                hello@greenitcommunity.com.{' '}
+                hello@greenitcommunity.com.{" "}
               </h3>
             </>
           ) : (

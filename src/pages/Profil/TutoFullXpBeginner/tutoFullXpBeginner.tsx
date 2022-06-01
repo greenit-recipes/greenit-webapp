@@ -1,16 +1,16 @@
-import { Footer, Navbar, RecipeCard } from 'components';
-import Modal from 'components/layout/Modal/Modal';
-import ModalHelp from 'components/layout/modalHelp';
-import useIsMobile from 'hooks/isMobile';
-import { recipesBegginerFullXp } from 'pages/GreenitFullXp/FullXpHelper';
-import { tutoFullXpBeginner } from 'pages/Profil/TutoFullXpBeginner/tutoFullXpBeginnerHelper';
-import { Instruction } from 'pages/recipe/SinglePage/Instructions/Instructions';
-import React, { createRef, useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import ReactPlayer from 'react-player';
-import Auth from 'services/auth.service';
-import { getSecondsFromDuration } from 'utils';
-import { BackButton } from '../../../components/misc/BackButton';
+import { Footer, Navbar, RecipeCard } from "components";
+import Modal from "components/layout/Modal/Modal";
+import ModalHelp from "components/layout/modalHelp";
+import useIsMobile from "hooks/isMobile";
+import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
+import { tutoFullXpBeginner } from "pages/Profil/TutoFullXpBeginner/tutoFullXpBeginnerHelper";
+import { Instruction } from "pages/recipe/SinglePage/Instructions/Instructions";
+import React, { createRef, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import ReactPlayer from "react-player";
+import Auth from "services/auth.service";
+import { getSecondsFromDuration } from "utils";
+import { BackButton } from "../../../components/misc/BackButton";
 
 //Refactor
 const closest = (needle: number, haystack: any[]) => {
@@ -111,7 +111,7 @@ const TutoFullXpBeginner = () => {
         </h2>
         <h3 className="mb-5 text text-center lg:text-left">
           Découvre les astuces et les conseils 🙂
-        </h3>{' '}
+        </h3>{" "}
         <div className="flex flex-col lg:flex-row items-center ml-0  mb-10">
           <div className="h-60 lg:h-96 lg:w-2/6 rounded-2xl w-4/5">
             {/*@ts-ignore*/}
@@ -145,7 +145,7 @@ const TutoFullXpBeginner = () => {
                     <div
                       key={index}
                       className={`flex cursor-pointer mt-5 ${
-                        time > timestamp ? 'opacity-in' : 'opacity-out'
+                        time > timestamp ? "opacity-in" : "opacity-out"
                       }`}
                       onClick={() => {
                         setVideoDuration(timestamp);
@@ -155,7 +155,7 @@ const TutoFullXpBeginner = () => {
                     >
                       <div
                         className={`h-10 text-xl mr-5 w-10 rounded-full inline-flex items-center justify-center bg-greyL`}
-                        style={{ minWidth: '2.5rem' }}
+                        style={{ minWidth: "2.5rem" }}
                       >
                         {index + 1}
                       </div>
@@ -171,7 +171,7 @@ const TutoFullXpBeginner = () => {
                 <h2 className="text-xl lg:text-2xl">Instructions</h2>
                 <h3 className="text-xs lg:text-sm">
                   ⤹ Clique sur les numéros pour faire avancer la vidéo
-                </h3>{' '}
+                </h3>{" "}
               </>
             )}
             {tutoFullXpBeginner?.instructions.map(
@@ -187,7 +187,7 @@ const TutoFullXpBeginner = () => {
                   <div
                     key={index}
                     className={`flex cursor-pointer ${
-                      isMobile && time > timestamp ? 'hidden' : ''
+                      isMobile && time > timestamp ? "hidden" : ""
                     }`}
                     onClick={() => {
                       setVideoDuration(timestamp);
@@ -239,7 +239,7 @@ const TutoFullXpBeginner = () => {
         >
           <iframe
             src="https://docs.google.com/forms/d/e/1FAIpQLScSzP3hbrujG1qWe6Ly-Bs5H7Q0mrqgBFKNcdt3fp5wGeUFEw/viewform?embedded=true"
-            width={isMobile ? '100%' : '700'}
+            width={isMobile ? "100%" : "700"}
             height="520"
           >
             Chargement…
@@ -251,11 +251,11 @@ const TutoFullXpBeginner = () => {
           show={showModalSos}
         >
           <ModalHelp
-            messageModal={'👋 SOS, j’ai besoin d’aide !'}
+            messageModal={"👋 SOS, j’ai besoin d’aide !"}
             subMessageModal={
-              'Un problème avec la réalisation des recettes ? \n Besoin de conseils pour une étape ou d’informations sur les ingrédients ?'
+              "Un problème avec la réalisation des recettes ? \n Besoin de conseils pour une étape ou d’informations sur les ingrédients ?"
             }
-            otherMesssageModal={'Écris-nous !'}
+            otherMesssageModal={"Écris-nous !"}
           ></ModalHelp>
         </Modal>
       </div>

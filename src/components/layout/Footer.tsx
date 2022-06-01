@@ -1,6 +1,6 @@
-import { RouteName } from 'App';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { RouteName } from "App";
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   FBIcon,
   footerChat,
@@ -10,8 +10,8 @@ import {
   MailIcon,
   pinterestIcon,
   tiktokIcon,
-} from '../../icons';
-import privacyPdf from '../../privacy.pdf';
+} from "../../icons";
+import privacyPdf from "../../privacy.pdf";
 
 export const Footer: React.FC = () => {
   return (
@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
           <h2 className="text-white md:text-xl self-center ml-6 mr-6"> | </h2>
           <Link to={RouteName.contact}>
             <h2 className="text-white md:text-xl self-center underline drop-shadow-lg hover:text-grey">
-              Contacte-nous !{' '}
+              Contacte-nous !{" "}
             </h2>
           </Link>
         </div>
@@ -35,18 +35,18 @@ export const Footer: React.FC = () => {
         {[
           {
             icon: footerWorld,
-            title: 'Ecolo(mique)',
-            text: 'Greenit est une solution sociale, économique et écologique aux problèmes environnementaux auxquels nous sommes confrontés. Notre mission ? Répandre un mode de consommation plus responsable et durable en remplaçant la production industrielle par une production plus locale et artisanale.',
+            title: "Ecolo(mique)",
+            text: "Greenit est une solution sociale, économique et écologique aux problèmes environnementaux auxquels nous sommes confrontés. Notre mission ? Répandre un mode de consommation plus responsable et durable en remplaçant la production industrielle par une production plus locale et artisanale.",
           },
           {
             icon: footerChat,
-            title: 'Collectif',
-            text: 'Notre première mission, ensemble, est de développer une communauté qui soutient le partage des connaissances pour une consommation et une production saines.',
+            title: "Collectif",
+            text: "Notre première mission, ensemble, est de développer une communauté qui soutient le partage des connaissances pour une consommation et une production saines.",
           },
           {
             icon: footerValues,
-            title: 'Transparent',
-            text: 'Ici, il n’y a pas de collecte de tes données personnelles. Nous utilisons un analytics qui anonymise tes actions pour un plus grand respect de ta vie privée. N’hésite pas à poser tes questions et à voter pour les prochaines fonctionnalités Greenit.',
+            title: "Transparent",
+            text: "Ici, il n’y a pas de collecte de tes données personnelles. Nous utilisons un analytics qui anonymise tes actions pour un plus grand respect de ta vie privée. N’hésite pas à poser tes questions et à voter pour les prochaines fonctionnalités Greenit.",
           },
         ].map((item, index) => (
           <div className="flex flex-col" key={index}>
@@ -81,8 +81,8 @@ export const Footer: React.FC = () => {
         <div className="flex flex-row gap-x-4 justify-center mt-3">
           {[
             {
-              href: 'https://www.instagram.com/greenitcommunity/',
-              rel: 'noopener',
+              href: "https://www.instagram.com/greenitcommunity/",
+              rel: "noopener",
               children: (
                 <img
                   src={InstagramIcon}
@@ -93,8 +93,8 @@ export const Footer: React.FC = () => {
               ),
             },
             {
-              href: 'https://www.facebook.com/greenitcommunity/',
-              rel: 'noopener',
+              href: "https://www.facebook.com/greenitcommunity/",
+              rel: "noopener",
               children: (
                 <img
                   src={FBIcon}
@@ -105,8 +105,8 @@ export const Footer: React.FC = () => {
               ),
             },
             {
-              href: 'https://www.pinterest.fr/greenitcommunity/',
-              rel: 'noopener',
+              href: "https://www.pinterest.fr/greenitcommunity/",
+              rel: "noopener",
               children: (
                 <img
                   src={pinterestIcon}
@@ -117,8 +117,8 @@ export const Footer: React.FC = () => {
               ),
             },
             {
-              href: 'https://www.tiktok.com/@greenitcommunity',
-              rel: 'noopener',
+              href: "https://www.tiktok.com/@greenitcommunity",
+              rel: "noopener",
               children: (
                 <img
                   src={tiktokIcon}
@@ -158,7 +158,7 @@ export const Footer: React.FC = () => {
         </a>
         <div className="w-44 sm:w-auto">
           <p className="text-xs md:text-sm text-white text-left relative inline">
-            All content is licensed under a{' '}
+            All content is licensed under a{" "}
           </p>
           <a
             rel="license"

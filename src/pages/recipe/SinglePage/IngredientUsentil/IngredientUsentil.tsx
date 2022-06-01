@@ -1,8 +1,8 @@
-import { IconNbrIngredient } from 'components/misc/IconNbrIngredient';
-import { useState } from 'react';
-import { SectionIngredient } from './SectionIngredient';
-import { SectionUstensil } from './SectionUsentil';
-import { GiForkKnifeSpoon } from 'react-icons/gi';
+import { IconNbrIngredient } from "components/misc/IconNbrIngredient";
+import { useState } from "react";
+import { SectionIngredient } from "./SectionIngredient";
+import { SectionUstensil } from "./SectionUsentil";
+import { GiForkKnifeSpoon } from "react-icons/gi";
 
 interface IIngredientUsentil {
   recipe: any;
@@ -17,15 +17,15 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
         <div
           className={`flex ${
             isIngredientSelected
-              ? 'ingredient-border'
-              : 'ingredient-border-ustensil'
+              ? "ingredient-border"
+              : "ingredient-border-ustensil"
           }`}
         >
           <div
             className={`flex pb-1 cursor-pointer justify-center h-14 w-44 items-center ingredient-base ${
               isIngredientSelected
-                ? 'ingredient-shadow-btn is-selected-single-page'
-                : ''
+                ? "ingredient-shadow-btn is-selected-single-page"
+                : ""
             } `}
             onClick={() => {
               setIngredientSelected(true);
@@ -37,8 +37,8 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
           <div
             className={`flex pb-1 cursor-pointer justify-center h-14 w-44 items-center ingredient-base-ustensil ${
               !isIngredientSelected
-                ? 'ingredient-shadow-btn is-selected-single-page-ustensil'
-                : ''
+                ? "ingredient-shadow-btn is-selected-single-page-ustensil"
+                : ""
             }`}
             onClick={() => {
               setIngredientSelected(false);
@@ -49,14 +49,14 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
           </div>
         </div>
 
-        <div className={`${isIngredientSelected ? '' : 'hidden'}`}>
+        <div className={`${isIngredientSelected ? "" : "hidden"}`}>
           {recipe.ingredients.map((item: any, index: any) => (
             <div key={index}>
               <SectionIngredient data={item} />
             </div>
           ))}
         </div>
-        <div className={`${isIngredientSelected ? 'hidden' : ''}`}>
+        <div className={`${isIngredientSelected ? "hidden" : ""}`}>
           {recipe.utensils.map((item: any, index: any) => (
             <div key={index}>
               <SectionUstensil data={item} key={index} />

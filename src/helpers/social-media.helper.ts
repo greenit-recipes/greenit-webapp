@@ -6,46 +6,46 @@ import {
   pinterestIcon,
   twitterIcon,
   youtubeIcon,
-} from 'icons';
-import { includes, forEach } from 'lodash';
+} from "icons";
+import { includes, forEach } from "lodash";
 
 const socialMedia = {
   instagram: {
-    name: 'Instagram',
+    name: "Instagram",
     icon: InstagramIcon,
   },
   facebook: {
-    name: 'Facebook',
+    name: "Facebook",
     icon: FBIcon,
   },
   tiktok: {
-    name: 'tiktok',
+    name: "tiktok",
     icon: tiktokIcon,
   },
   pinterest: {
-    name: 'Pinterest',
+    name: "Pinterest",
     icon: pinterestIcon,
   },
   twitter: {
-    name: 'Twitter',
+    name: "Twitter",
     icon: twitterIcon,
   },
   youtube: {
-    name: 'Youtube',
+    name: "Youtube",
     icon: youtubeIcon,
   },
 };
 
 export const getLogoAndNameByUrl = (url: string) => {
-  let logo = { name: '', icon: '' };
+  let logo = { name: "", icon: "" };
   forEach(socialMedia, function (value, key) {
     if (includes(url, key)) {
       logo = value;
     }
   });
-  if (logo?.name === '')
+  if (logo?.name === "")
     return {
-      name: 'Autres',
+      name: "Autres",
       icon: wwwlogo,
     };
   return logo;

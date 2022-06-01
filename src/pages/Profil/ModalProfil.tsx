@@ -1,8 +1,8 @@
-import { RouteName } from 'App';
-import useIsMobile from 'hooks/isMobile';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import authService from 'services/auth.service';
+import { RouteName } from "App";
+import useIsMobile from "hooks/isMobile";
+import React from "react";
+import { Link } from "react-router-dom";
+import authService from "services/auth.service";
 
 export const ModalProfil: React.FC = () => {
   const isMobile = useIsMobile();
@@ -10,13 +10,13 @@ export const ModalProfil: React.FC = () => {
     <>
       <div
         className={`flex ${
-          isMobile ? '' : 'login-modal-size'
+          isMobile ? "" : "login-modal-size"
         } justify-items-center flex flex-col`}
       >
         <div className="relative p-6 flex-auto text-center">
           <button
             className={
-              'py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue'
+              "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue"
             }
             onClick={() => authService.logout()}
           >

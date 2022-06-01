@@ -1,6 +1,6 @@
-import { useMutation } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { RouteName } from 'App';
+import { useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RouteName } from "App";
 import {
   confirmpwd,
   creator,
@@ -16,18 +16,18 @@ import {
   userlogo,
   wwwlogo,
   ytlogo,
-} from 'icons';
-import { schemaRegisterCreatorProfil } from 'pages/Register/registerHelper';
-import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
-import authService, { CREATE_ACCOUNT } from 'services/auth.service';
-import { Button, EditorGreenit, Footer, Navbar } from '../../components';
-import { BackgroundImage } from '../../components/layout/BackgroundImage';
-import './register.css';
+} from "icons";
+import { schemaRegisterCreatorProfil } from "pages/Register/registerHelper";
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import authService, { CREATE_ACCOUNT } from "services/auth.service";
+import { Button, EditorGreenit, Footer, Navbar } from "../../components";
+import { BackgroundImage } from "../../components/layout/BackgroundImage";
+import "./register.css";
 const ModalLogGreenit = React.lazy(
-  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
 
 const Register: React.FC = () => {
@@ -48,11 +48,11 @@ const Register: React.FC = () => {
     remove: urlsSocialMediaRemove,
   } = useFieldArray({
     control,
-    name: 'urlsSocialMedia',
+    name: "urlsSocialMedia",
   });
   const history = useHistory();
   const [createAccount, { data: createAccountData, loading, error }] =
-    useMutation(CREATE_ACCOUNT, { errorPolicy: 'all' });
+    useMutation(CREATE_ACCOUNT, { errorPolicy: "all" });
 
   useEffect(() => {
     urlsSocialMediaAppend({}, { shouldFocus: false });
@@ -62,21 +62,21 @@ const Register: React.FC = () => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
 
     if (createAccountData?.register?.success === false || error) {
-      if (createAccountData?.register?.errors?.email?.[0]?.code === 'unique') {
-        setError('email', {
-          message: 'Cet email existe déjà.',
+      if (createAccountData?.register?.errors?.email?.[0]?.code === "unique") {
+        setError("email", {
+          message: "Cet email existe déjà.",
         });
       }
       if (
-        createAccountData?.register?.errors?.username?.[0]?.code === 'unique'
+        createAccountData?.register?.errors?.username?.[0]?.code === "unique"
       ) {
-        setError('utilisateur', {
-          message: 'Ce nom existe déjà.',
+        setError("utilisateur", {
+          message: "Ce nom existe déjà.",
         });
       }
     }
@@ -168,7 +168,7 @@ const Register: React.FC = () => {
               id="email"
               placeholder="Email"
               type="email"
-              {...register('email')}
+              {...register("email")}
             ></input>
           </div>
           <p className="mt-2 text-xs italic text-red">
@@ -186,7 +186,7 @@ const Register: React.FC = () => {
               id="utilisateur"
               placeholder="Nom d'utilisateur"
               type="text"
-              {...register('utilisateur')}
+              {...register("utilisateur")}
             ></input>
           </div>
           <p className="mt-2 text-xs italic text-red">
@@ -203,9 +203,9 @@ const Register: React.FC = () => {
               <input
                 className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                 id="password"
-                type={isRevealPwd ? 'text' : 'password'}
+                type={isRevealPwd ? "text" : "password"}
                 placeholder="Mot de passe"
-                {...register('password')}
+                {...register("password")}
               />
               <img
                 className="mr-2"
@@ -229,9 +229,9 @@ const Register: React.FC = () => {
               <input
                 className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                 id="passwordConfirmation"
-                type={isRevealPwd ? 'text' : 'password'}
+                type={isRevealPwd ? "text" : "password"}
                 placeholder="Confirmer le mot de passe"
-                {...register('passwordConfirmation')}
+                {...register("passwordConfirmation")}
               />
               <img
                 className="mr-2"
@@ -321,7 +321,7 @@ const Register: React.FC = () => {
             <input
               type="checkbox"
               className="w-6 h-6 cursor-pointer"
-              {...register('isFollowNewsletter')}
+              {...register("isFollowNewsletter")}
               id="isFollowNewsletter"
             />
             <label className="self-center ml-2 text-sm text-gray-700">

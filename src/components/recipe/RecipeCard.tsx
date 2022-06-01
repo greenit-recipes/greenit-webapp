@@ -1,15 +1,15 @@
-import { RouteName } from 'App';
-import { LikeField } from 'components/layout/LikeField';
-import { getImagePath } from 'helpers/image.helper';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { RecipeDifficulty } from '../../graphql';
-import useIsMobile from '../../hooks/isMobile';
-import { FavouriteField } from '../layout/FavouriteField';
-import { Icon } from '../misc';
-import { BsFillCheckCircleFill } from 'react-icons/bs';
-import { IconContext } from 'react-icons';
-import './RecipeCard.css';
+import { RouteName } from "App";
+import { LikeField } from "components/layout/LikeField";
+import { getImagePath } from "helpers/image.helper";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { RecipeDifficulty } from "../../graphql";
+import useIsMobile from "../../hooks/isMobile";
+import { FavouriteField } from "../layout/FavouriteField";
+import { Icon } from "../misc";
+import { BsFillCheckCircleFill } from "react-icons/bs";
+import { IconContext } from "react-icons";
+import "./RecipeCard.css";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
@@ -56,11 +56,11 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       {amount && (
         <div
           className={`flex flex-col items-center pb-2 absolute right-0 mt-2 mr-3 w-8 h-${
-            amount > 1 ? '14' : '8'
+            amount > 1 ? "14" : "8"
           } rounded-2xl bg-white`}
         >
           <div className="absolute top-0">
-            <IconContext.Provider value={{ className: 'text-3.5xl text-blue' }}>
+            <IconContext.Provider value={{ className: "text-3.5xl text-blue" }}>
               <BsFillCheckCircleFill />
             </IconContext.Provider>
           </div>
@@ -87,10 +87,10 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             src={getImagePath(recipe?.image)}
             alt={recipe?.name}
             className={`flex flex-col object-cover | ${
-              enableShadow && 'shadow-lg'
+              enableShadow && "shadow-lg"
             } ${`h-${imageHeight} w-${imageWidth}`}
             rounded-2xl | justify-self-center smooth-image image-${
-              imageLoaded ? 'visible' : 'hidden'
+              imageLoaded ? "visible" : "hidden"
             }`}
             // @ts-ignore
             onLoad={() => setImageLoaded(true)}
@@ -135,10 +135,10 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             nbOfIngredient={recipe?.numberOfIngredients}
             difficulty={
               recipe?.difficulty === RecipeDifficulty.Beginner
-                ? 'Facile'
+                ? "Facile"
                 : recipe?.difficulty === RecipeDifficulty.Intermediate
-                ? 'Moyen'
-                : 'Expert'
+                ? "Moyen"
+                : "Expert"
             }
           />
         </Link>

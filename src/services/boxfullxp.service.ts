@@ -1,5 +1,5 @@
 //Note : This service is temporary, it will contain all the utilities that will enable the Box Full Xp feature
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 //Todo (zack) : Refactor later
 type MutationOperation = () => Promise<any>;
@@ -24,7 +24,7 @@ const persistMutation = (mutation: MutationOperation) => {
 };
 
 const beginnerBoxCookieExist = () => {
-  return localStorage.getItem('isBeginnerBox') === 'true';
+  return localStorage.getItem("isBeginnerBox") === "true";
 };
 
 const persistBoxPurchaseOnRegister = () => {
@@ -34,14 +34,14 @@ const persistBoxPurchaseOnRegister = () => {
   //     localStorage.removeItem("isBeginnerBox")
   //     persist = true;
   // }
-  return localStorage.getItem('isBeginnerBox') === 'true';
+  return localStorage.getItem("isBeginnerBox") === "true";
 };
 
 //Investigate for bugs
 const persistBoxPurchaseOnFirstLogin = (mutation: MutationOperation) => {
   persistMutation(mutation);
-  localStorage.getItem('isBeginnerBox') === 'true' &&
-    localStorage.removeItem('isBeginnerBox');
+  localStorage.getItem("isBeginnerBox") === "true" &&
+    localStorage.removeItem("isBeginnerBox");
 };
 
 const persistBoxPurchaseOnConfirmation = (
@@ -54,8 +54,8 @@ const persistBoxPurchaseOnConfirmation = (
     persistMutation(mutation);
   } else {
     //Store cookie -> we will persist box later
-    localStorage.getItem('isBeginnerBox') === 'true' ||
-      localStorage.setItem('isBeginnerBox', 'true');
+    localStorage.getItem("isBeginnerBox") === "true" ||
+      localStorage.setItem("isBeginnerBox", "true");
   }
 };
 

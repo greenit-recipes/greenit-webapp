@@ -6,16 +6,16 @@ import {
   DefaultOptions,
   fromPromise,
   InMemoryCache,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import { onError } from '@apollo/client/link/error';
-import { createUploadLink } from 'apollo-upload-client';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import authService from 'services/auth.service';
-import App from './App';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { onError } from "@apollo/client/link/error";
+import { createUploadLink } from "apollo-upload-client";
+import React from "react";
+import ReactDOM from "react-dom";
+import authService from "services/auth.service";
+import App from "./App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 
 let isRefreshing = false;
 let pendingRequests: any = [];
@@ -29,9 +29,9 @@ const errorLink = onError(
   ({ graphQLErrors, networkError, operation, forward }) => {
     if (graphQLErrors) {
       for (let err of graphQLErrors) {
-        console.log('err -->', err);
+        console.log("err -->", err);
         switch (err.message) {
-          case 'Signature has expired':
+          case "Signature has expired":
             let forward$;
             if (!isRefreshing) {
               isRefreshing = true;
@@ -41,7 +41,7 @@ const errorLink = onError(
                   .then((accessToken: any) => {
                     // Store the new tokens for your auth link
                     console.log(
-                      'accessToken -->',
+                      "accessToken -->",
                       accessToken.data.refreshToken.token,
                     );
                     const newToken = accessToken.data.refreshToken.token;
@@ -88,7 +88,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `JWT ${token}` : '',
+      authorization: token ? `JWT ${token}` : "",
     },
   };
 });
@@ -97,10 +97,10 @@ const uploadLink = createUploadLink({ uri: process.env.REACT_APP_API_URL });
 
 const defaultOptions: DefaultOptions = {
   watchQuery: {
-    errorPolicy: 'ignore',
+    errorPolicy: "ignore",
   },
   query: {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   },
 };
 
@@ -128,7 +128,7 @@ ReactDOM.render(
       <App />
     </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById('root'),
+  document.getElementById("root"),
 );
 
 // If you want to start measuring performance in your app, pass a function

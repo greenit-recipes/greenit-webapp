@@ -1,4 +1,4 @@
-import { getImagePath } from 'helpers/image.helper';
+import { getImagePath } from "helpers/image.helper";
 
 interface ISectionUstensil {
   className?: string;
@@ -21,7 +21,7 @@ export const SectionUstensil: React.FC<ISectionUstensil> = ({
           ></img>
         </div>
         <div className="flex-grow ml-4">
-          {data?.amount} &nbsp; {data?.name}{' '}
+          {data?.amount} &nbsp; {data?.name}{" "}
           {data?.subName && <span className="text-xs">{data?.subName}</span>}
         </div>
         <div className=""></div>

@@ -1,21 +1,21 @@
-import { useMutation } from '@apollo/client';
-import { RouteName } from 'App';
-import useIsMobile from 'hooks/isMobile';
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useMutation } from "@apollo/client";
+import { RouteName } from "App";
+import useIsMobile from "hooks/isMobile";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   HAS_PURCHASED_BEGINNER_BOX,
   persistBoxPurchaseOnConfirmation,
-} from 'services/boxfullxp.service';
-import { boxFullXpIngredients } from 'utils';
-import { NumberedCircle } from 'components/misc/NumberedCircle';
-import Auth from 'services/auth.service';
-import { boxConfirmation, arrowFullXp, arrowFullXpMobile } from 'icons';
-import { FaPlay } from 'react-icons/fa';
-import '../fullXp.css';
+} from "services/boxfullxp.service";
+import { boxFullXpIngredients } from "utils";
+import { NumberedCircle } from "components/misc/NumberedCircle";
+import Auth from "services/auth.service";
+import { boxConfirmation, arrowFullXp, arrowFullXpMobile } from "icons";
+import { FaPlay } from "react-icons/fa";
+import "../fullXp.css";
 
 const ModalLogGreenit = React.lazy(
-  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
 
 //Todo (zack) create UI breakpoint variables for programmatic responsiveness
@@ -28,7 +28,7 @@ const ConfirmationFullXp: React.FC = () => {
   const isLoggedIn = Auth.isLoggedIn();
 
   const [hasPurchasedBeginnerBox] = useMutation(HAS_PURCHASED_BEGINNER_BOX, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
 
   useEffect(() => {

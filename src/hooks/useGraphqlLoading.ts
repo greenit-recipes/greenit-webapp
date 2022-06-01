@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 //Checks loading states of multiple mutations on the same component
 const useGraphQlLoading = (dependencies: boolean[]) => {

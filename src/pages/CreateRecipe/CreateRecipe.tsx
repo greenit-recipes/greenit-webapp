@@ -1,17 +1,17 @@
-import { useMutation } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { RouteName } from 'App';
-import { Button, Footer, Navbar } from 'components';
-import { BackgroundImage } from 'components/layout/BackgroundImage';
-import { imageValidation } from 'helpers/yup-validation.helper';
-import CreateRecipeForm from 'pages/CreateRecipe/CreateRecipeForm';
-import { EMAIL_LINK_SHARED_RECIPE } from 'pages/CreateRecipe/CreateRecipeRequest';
-import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
-import authService from 'services/auth.service';
-import * as yup from 'yup';
+import { useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RouteName } from "App";
+import { Button, Footer, Navbar } from "components";
+import { BackgroundImage } from "components/layout/BackgroundImage";
+import { imageValidation } from "helpers/yup-validation.helper";
+import CreateRecipeForm from "pages/CreateRecipe/CreateRecipeForm";
+import { EMAIL_LINK_SHARED_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
+import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import authService from "services/auth.service";
+import * as yup from "yup";
 import {
   fblogo,
   instalogo,
@@ -19,50 +19,50 @@ import {
   tiktoklogo,
   wwwlogo,
   ytlogo,
-} from '../../icons';
+} from "../../icons";
 
 const ModalLogGreenit = React.lazy(
-  () => import('components/layout/ModalLogGreenit/ModalLogGreenit'),
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
 
 const schemaLink = yup.object().shape({
-  link: yup.string().required('Ce champ est obligatoire.'),
+  link: yup.string().required("Ce champ est obligatoire."),
 });
 
 const schema = yup.object().shape({
   image: imageValidation(),
   videoUrl: yup.string(),
-  name: yup.string().required('Ce champ est obligatoire.'),
-  duration: yup.string().required('Ce champ est obligatoire.'),
-  description: yup.string().required('Ce champ est obligatoire.'),
-  difficulty: yup.object().required('Ce champ est obligatoire.'),
-  category: yup.object().required('Ce champ est obligatoire.'),
-  expiry: yup.string().required('Ce champ est obligatoire.'),
+  name: yup.string().required("Ce champ est obligatoire."),
+  duration: yup.string().required("Ce champ est obligatoire."),
+  description: yup.string().required("Ce champ est obligatoire."),
+  difficulty: yup.object().required("Ce champ est obligatoire."),
+  category: yup.object().required("Ce champ est obligatoire."),
+  expiry: yup.string().required("Ce champ est obligatoire."),
   ingredients: yup // Ne marche pas
     .array(
       yup.object({
-        quantity: yup.string().required('Ce champ est obligatoire.'),
-        name: yup.object().required('Ce champ est obligatoire.'),
+        quantity: yup.string().required("Ce champ est obligatoire."),
+        name: yup.object().required("Ce champ est obligatoire."),
       }),
     )
-    .min(1, 'Ce champ est obligatoire'),
+    .min(1, "Ce champ est obligatoire"),
   instructions: yup
     .array(
       yup.object({
-        instruction: yup.string().required('Ce champ est obligatoire.'),
+        instruction: yup.string().required("Ce champ est obligatoire."),
       }),
     )
-    .min(1, 'Ce champ est obligatoire'),
+    .min(1, "Ce champ est obligatoire"),
   utensils: yup
     .array(
       yup.object({
-        quantity: yup.string().required('Ce champ est obligatoire.'),
-        name: yup.object().required('Ce champ est obligatoire.'),
+        quantity: yup.string().required("Ce champ est obligatoire."),
+        name: yup.object().required("Ce champ est obligatoire."),
       }),
     )
-    .min(1, 'Ce champ est obligatoire'),
+    .min(1, "Ce champ est obligatoire"),
 
-  tags: yup.array().required('Ce champ est obligatoire.'),
+  tags: yup.array().required("Ce champ est obligatoire."),
   notes_from_author: yup.string(),
   text_associate: yup.string(),
 });
@@ -96,7 +96,7 @@ const CreateRecipe: React.FC = () => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   }, []);
@@ -144,7 +144,7 @@ const CreateRecipe: React.FC = () => {
             <h3 className="block mt-2 text-sm font-semibold">
               Tu souhaites partager une recette de ton blog, ton Instagram ou
               une publication Facebook ? Ajoute le lien de ta recette et nous la
-              partagerons avec la communauté !{' '}
+              partagerons avec la communauté !{" "}
             </h3>
           </div>
           <div className="flex flex-col items-center lg:flex-row">
@@ -152,7 +152,7 @@ const CreateRecipe: React.FC = () => {
               className="w-5/6 px-3 pl-3 leading-tight text-gray-700 border rounded shadow width: lg:w-4/6 focus:outline-none py-1 focus:shadow-outline "
               placeholder="Lien de la recette"
               type="text"
-              {...registerLink('link')}
+              {...registerLink("link")}
             ></input>
             <div className="w-8 h-3"></div>
             <Button className="px-0 py-1-0" type="green">

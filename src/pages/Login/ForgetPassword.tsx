@@ -1,12 +1,12 @@
-import { useMutation } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { SEND_EMAIL_RESET_PASSWORD } from 'services/auth.service';
-import * as yup from 'yup';
-import { Navbar } from 'components/layout/Navbar';
-import { BackgroundImage } from '../../components/layout/BackgroundImage';
-import { Helmet } from 'react-helmet';
+import { useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { SEND_EMAIL_RESET_PASSWORD } from "services/auth.service";
+import * as yup from "yup";
+import { Navbar } from "components/layout/Navbar";
+import { BackgroundImage } from "../../components/layout/BackgroundImage";
+import { Helmet } from "react-helmet";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -23,11 +23,11 @@ const ForgetPassword: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [sendEmailResetPassword, { data, loading, error }] = useMutation(
     SEND_EMAIL_RESET_PASSWORD,
     {
-      errorPolicy: 'all',
+      errorPolicy: "all",
     },
   );
 
@@ -37,7 +37,7 @@ const ForgetPassword: React.FC = () => {
         email: data.email,
       },
     });
-    setMessage('Tu as reçu un email si tu as déjà un compte chez Greenit');
+    setMessage("Tu as reçu un email si tu as déjà un compte chez Greenit");
     reset();
   };
 
@@ -67,7 +67,7 @@ const ForgetPassword: React.FC = () => {
               id="email"
               placeholder="email"
               type="email"
-              {...register('email')}
+              {...register("email")}
             ></input>
           </div>
           <div className="flex items-center justify-between">

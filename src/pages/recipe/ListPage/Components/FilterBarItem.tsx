@@ -1,6 +1,6 @@
-import { Checkbox } from 'components/layout/Checkbox';
-import { find } from 'lodash';
-import 'pages/recipe/ListPage/Components/FilterBar.css';
+import { Checkbox } from "components/layout/Checkbox";
+import { find } from "lodash";
+import "pages/recipe/ListPage/Components/FilterBar.css";
 
 interface IFilterBarItem {
   item: Record<string, any>;
@@ -33,7 +33,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
               )}
             </div>
           </button>
-          <ul id="list" className={'list-none bg-white text-lg rounded-lg'}>
+          <ul id="list" className={"list-none bg-white text-lg rounded-lg"}>
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {
                 const isSelected = !!find(currentFilters?.[item.name], {
@@ -66,7 +66,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
               <></>
             )}
           </div>
-          <ul className={'w-auto'}>
+          <ul className={"w-auto"}>
             {item.options.map(
               (option: { title: string; value: string }, index: any) => {
                 const isSelected = !!find(currentFilters?.[item.name], {

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button } from 'components/misc/Button';
+import React from "react";
+import { Button } from "components/misc/Button";
 
 interface IModalListPage {
   isShowModal: boolean;
@@ -19,8 +19,8 @@ export const ModalListPage: React.FC<IModalListPage> = props => {
           <span>Ajouter un filtre</span>
         ) : (
           <span>
-            {' '}
-            Filtre{props.nbrFilter > 1 ? 's' : ''} ({props.nbrFilter}){' '}
+            {" "}
+            Filtre{props.nbrFilter > 1 ? "s" : ""} ({props.nbrFilter}){" "}
           </span>
         )}
       </Button>

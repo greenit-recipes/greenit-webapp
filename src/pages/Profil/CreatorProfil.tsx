@@ -1,20 +1,20 @@
-import { useMutation } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { EditorGreenit, Button } from 'components';
-import { getLogoAndNameByUrl } from 'helpers/social-media.helper';
-import { filter, map, sum } from 'lodash';
-import { StatProfilForm } from 'pages/Profil/Stat';
-import React, { useEffect, useState } from 'react';
-import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import { UPDATE_ACCOUNT } from 'services/auth.service';
-import * as yup from 'yup';
-import HTMLReactParser from 'html-react-parser';
-import { Cooking, clapIconOff } from '../../icons';
-import { RouteName } from 'App';
-import { Link } from 'react-router-dom';
-import { FiEdit } from 'react-icons/fi';
-import { FaRegEye } from 'react-icons/fa';
-import { isEmpty } from 'lodash';
+import { useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { EditorGreenit, Button } from "components";
+import { getLogoAndNameByUrl } from "helpers/social-media.helper";
+import { filter, map, sum } from "lodash";
+import { StatProfilForm } from "pages/Profil/Stat";
+import React, { useEffect, useState } from "react";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { UPDATE_ACCOUNT } from "services/auth.service";
+import * as yup from "yup";
+import HTMLReactParser from "html-react-parser";
+import { Cooking, clapIconOff } from "../../icons";
+import { RouteName } from "App";
+import { Link } from "react-router-dom";
+import { FiEdit } from "react-icons/fi";
+import { FaRegEye } from "react-icons/fa";
+import { isEmpty } from "lodash";
 
 interface IUser {
   user: {
@@ -29,11 +29,11 @@ interface IUser {
 }
 
 export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
-  const nbrLikes = map(user?.recipeAuthor, 'numberOfLikes');
-  const nbrView = map(user?.recipeAuthor, 'nbrView');
+  const nbrLikes = map(user?.recipeAuthor, "numberOfLikes");
+  const nbrView = map(user?.recipeAuthor, "nbrView");
 
   const [updateAccount, { data: updateAccountData, loading, error }] =
-    useMutation(UPDATE_ACCOUNT, { errorPolicy: 'all' });
+    useMutation(UPDATE_ACCOUNT, { errorPolicy: "all" });
 
   const { register, handleSubmit, setError, reset, control } = useForm({
     resolver: yupResolver(
@@ -41,10 +41,10 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
         urlSocialMedia: yup
           .array(
             yup.object({
-              url: yup.string().required('Ce champ est obligatoire.'),
+              url: yup.string().required("Ce champ est obligatoire."),
             }),
           )
-          .min(1, 'Ce champ est obligatoire'),
+          .min(1, "Ce champ est obligatoire"),
       }),
     ),
   });
@@ -84,12 +84,12 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
     remove: urlsSocialMediaRemove,
   } = useFieldArray({
     control,
-    name: 'urlsSocialMedia',
+    name: "urlsSocialMedia",
   });
 
   const socialMedias =
     /* @ts-ignore */
-    user?.urlsSocialMedia === '{}' ? null : user?.urlsSocialMedia;
+    user?.urlsSocialMedia === "{}" ? null : user?.urlsSocialMedia;
 
   useEffect(() => {
     // @ts-ignore
@@ -148,8 +148,8 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
           setDisplayStat(!isDisplayStat);
         }}
       >
-        {' '}
-        {!isDisplayStat ? '+ Plus ' : '- Moins'} de statistiques
+        {" "}
+        {!isDisplayStat ? "+ Plus " : "- Moins"} de statistiques
       </div>
       {isDisplayStat && <StatProfilForm></StatProfilForm>}
       <div className="flex items-center w-11/12 h-px mb-5 bg-grey grow lg:w-5/12 "></div>
@@ -250,7 +250,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
                 // @ts-ignore
                 onSubmit={handleSubmit(onSubmitHandler)}
               >
-                {' '}
+                {" "}
                 <div className="mb-10">
                   <ul>
                     {urlsSocialMediaFields.map((item, index) => (
@@ -260,7 +260,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
                           className={`flex justify-between items-center shadow-lg appearance-none border lg:text-lg rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline mb-2`}
                         >
                           <p className="text-sm lg:text-base whitespace-nowrap">
-                            {index + 1}{' '}
+                            {index + 1}{" "}
                           </p>
                           <div className="h-full border align-self-start"></div>
                           <input

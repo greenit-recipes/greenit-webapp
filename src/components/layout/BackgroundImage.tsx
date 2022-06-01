@@ -1,5 +1,5 @@
-import useIsMobile from 'hooks/isMobile';
-import { BackgroundImageMobile, BackgroundImageDesktop } from 'icons';
+import useIsMobile from "hooks/isMobile";
+import { BackgroundImageMobile, BackgroundImageDesktop } from "icons";
 
 interface IBackgroundImage {
   className?: string;

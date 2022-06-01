@@ -1,6 +1,6 @@
-import { RouteName } from 'App';
-import useIsMobile from 'hooks/isMobile';
-import { Link } from 'react-router-dom';
+import { RouteName } from "App";
+import useIsMobile from "hooks/isMobile";
+import { Link } from "react-router-dom";
 
 interface CommentField {
   className?: string;

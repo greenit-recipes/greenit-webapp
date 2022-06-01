@@ -1,8 +1,8 @@
-import Modal from 'components/layout/Modal/Modal';
-import { LoginModal } from 'pages/Login/LoginModal';
-import { RegisterModal } from 'pages/Register/register-modal';
-import React, { useEffect, useState } from 'react';
-import './ModalLogGreenit.css';
+import Modal from "components/layout/Modal/Modal";
+import { LoginModal } from "pages/Login/LoginModal";
+import { RegisterModal } from "pages/Register/register-modal";
+import React, { useEffect, useState } from "react";
+import "./ModalLogGreenit.css";
 
 interface IModalLogGreenit {
   btn: any;
@@ -20,10 +20,10 @@ export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({
   useEffect(() => {
     if (showModal) {
       // à voir
-      document.body.classList.add('no-scroll');
+      document.body.classList.add("no-scroll");
 
       return () => {
-        document.body.classList.remove('no-scroll');
+        document.body.classList.remove("no-scroll");
       };
     }
   }, []);

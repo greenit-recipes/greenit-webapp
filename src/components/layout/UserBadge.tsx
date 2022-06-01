@@ -1,5 +1,5 @@
-import { getImagePath } from 'helpers/image.helper';
-import { defaultImageProfil } from '../../icons';
+import { getImagePath } from "helpers/image.helper";
+import { defaultImageProfil } from "../../icons";
 
 interface IUserBadge {
   image: any;

@@ -3,7 +3,7 @@ export const setObjectFilterSession = (
   currentSearchValue: any,
 ) => {
   window.sessionStorage.setItem(
-    'filterListPage',
+    "filterListPage",
     JSON.stringify(
       sessionFilter
         ? currentSearchValue
@@ -13,7 +13,7 @@ export const setObjectFilterSession = (
 };
 
 export const getObjectSession = (sessionName: any) => {
-  const session = window.sessionStorage.getItem(sessionName) || '';
+  const session = window.sessionStorage.getItem(sessionName) || "";
   const sessionParse = session ? JSON.parse(session) : null;
   return sessionParse;
 };

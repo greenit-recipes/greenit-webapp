@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const ADD_COMMENT_TO_RECIPE = gql`
   mutation addCommentToRecipe($comment: String!, $recipeId: String!) {

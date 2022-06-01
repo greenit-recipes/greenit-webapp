@@ -19,13 +19,13 @@ export const CircleGreenit: React.FC<ICircleGreenit> = ({
   symbol,
   icon,
   sizeCircle = null,
-  customClassName = '',
+  customClassName = "",
   isSymbolAtEndOfLine = true,
   isOnlyIcon = false,
 }) => {
   const sizeCircleDefault = sizeCircle
     ? sizeCircle
-    : 'w-16 h-16 lg:w-20 lg:h-20';
+    : "w-16 h-16 lg:w-20 lg:h-20";
   return (
     <div className={`${customClassName} flex flex-col | items-center`}>
       <div
@@ -47,7 +47,7 @@ export const CircleGreenit: React.FC<ICircleGreenit> = ({
       {!isOnlyIcon && (
         <div
           className={`${
-            textWidth ? textWidth : ''
+            textWidth ? textWidth : ""
           } fontQSmedium text-center text-sm mt-1`}
         >
           {text}

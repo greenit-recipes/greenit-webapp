@@ -1,14 +1,14 @@
-import { useMutation } from '@apollo/client';
-import { Button } from 'components/misc/Button';
-import React from 'react';
-import authService, { RESEND_ACTIVATION_EMAIL } from 'services/auth.service';
-import '../App.css';
-import { Footer, Navbar } from '../components';
-import { Helmet } from 'react-helmet';
+import { useMutation } from "@apollo/client";
+import { Button } from "components/misc/Button";
+import React from "react";
+import authService, { RESEND_ACTIVATION_EMAIL } from "services/auth.service";
+import "../App.css";
+import { Footer, Navbar } from "../components";
+import { Helmet } from "react-helmet";
 
 const AccountCreated: React.FC = () => {
   const [resendActivationEMail] = useMutation(RESEND_ACTIVATION_EMAIL, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
 
   return (

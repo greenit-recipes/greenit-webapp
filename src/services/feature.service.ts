@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const GET_FEATURE_BY_NAME = gql`
   query featureFlag($name: String!) {

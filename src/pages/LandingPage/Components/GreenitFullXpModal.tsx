@@ -1,10 +1,10 @@
-import { gql, useMutation } from '@apollo/client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { boxGreenit, boxGreenitMobile } from 'icons';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import useIsMobile from 'hooks/isMobile';
+import { gql, useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { boxGreenit, boxGreenitMobile } from "icons";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import useIsMobile from "hooks/isMobile";
 
 const EMAIL_HEADBAND = gql`
   mutation EmailHeadband($email: String!) {
@@ -30,8 +30,8 @@ const GreenitFullXpModal: React.FC<IGreenitFullXpModal> = ({
 
   const isMobile = useIsMobile();
 
-  const [message, setMessage] = useState('');
-  const [errorEmail, setErrorEmail] = useState('');
+  const [message, setMessage] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
 
   const [emailHeadband, { data, loading, error }] = useMutation(EMAIL_HEADBAND);
 
@@ -56,11 +56,11 @@ const GreenitFullXpModal: React.FC<IGreenitFullXpModal> = ({
       if (dataReponse?.data?.emailHeadband?.success) {
         setMessage(
           isOutOfStock
-            ? 'Message reçu 😉 Merci pour ton intérêt ! Tu seras notifié dès son retour en stock !'
-            : 'C’est envoyé 👌 On reviendra vers toi le plus vite possible !',
+            ? "Message reçu 😉 Merci pour ton intérêt ! Tu seras notifié dès son retour en stock !"
+            : "C’est envoyé 👌 On reviendra vers toi le plus vite possible !",
         );
       } else {
-        setErrorEmail('Un problème est survenu');
+        setErrorEmail("Un problème est survenu");
       }
     });
   };
@@ -68,10 +68,10 @@ const GreenitFullXpModal: React.FC<IGreenitFullXpModal> = ({
   return (
     <div>
       <p className="text-2xl mt-5 text-center text-green">
-        {isOutOfStock ? 'Rupture de stock ! 😬 ' : 'Bientôt disponible !'}
+        {isOutOfStock ? "Rupture de stock ! 😬 " : "Bientôt disponible !"}
       </p>
       <p className="text-lg text-center mt-5">
-        Envie de découvrir notre box <br />{' '}
+        Envie de découvrir notre box <br />{" "}
         <span className="text-green">Premiers Pas ?</span>
       </p>
       {isOutOfStock && (
@@ -79,7 +79,7 @@ const GreenitFullXpModal: React.FC<IGreenitFullXpModal> = ({
           Ajoute ton adresse email pour être informé de son <br></br>
           <b>
             retour en stock et de l’arrivée des nouvelles box.s ! Ajoute ton
-            adresse email pour être informé{' '}
+            adresse email pour être informé{" "}
           </b>
         </p>
       )}
@@ -93,7 +93,7 @@ const GreenitFullXpModal: React.FC<IGreenitFullXpModal> = ({
         className="mt-4 lg:mt-0 lg:h-60 m-auto w-full| flex place-self-center"
         src={isMobile ? boxGreenitMobile : boxGreenit}
         alt="box"
-      ></img>{' '}
+      ></img>{" "}
       <div className="flex justify-center">
         <form
           className="p-5 mt-2 bg-white text-center"
@@ -109,14 +109,14 @@ const GreenitFullXpModal: React.FC<IGreenitFullXpModal> = ({
               <input
                 className="w-full px-3 py-2 mb-6 leading-tight text-gray-700 border rounded shadow-lg appearance-none sm:w-80 focus:outline-none focus:shadow-outline"
                 placeholder="Email"
-                {...register('email')}
+                {...register("email")}
               ></input>
             </div>
           </div>
           <button className="flex items-center justify-center h-10 p-3 w-full m-auto bg-white border-green text-green hover:text-white align-middle border-2 border-transparent rounded-lg cursor-pointer hover:bg-green bold ">
             {isOutOfStock
-              ? 'Tenez-moi au courant !'
-              : 'Rejoindre la liste d’attente'}
+              ? "Tenez-moi au courant !"
+              : "Rejoindre la liste d’attente"}
           </button>
           <p className="text-xs italic text-red">{errors.email?.message}</p>
           <p className="text-xs italic text-red">{errorEmail}</p>

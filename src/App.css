@@ -160,7 +160,7 @@ h4 {
   background: rgb(255, 255, 255);
   position: absolute;
   display: block;
-  content: '';
+  content: "";
   width: 70%;
   height: 6%;
   top: 47%;
@@ -174,7 +174,7 @@ h4 {
   background: rgb(255, 255, 255);
   position: absolute;
   display: block;
-  content: '';
+  content: "";
   width: 6%;
   height: 70%;
   left: 47%;

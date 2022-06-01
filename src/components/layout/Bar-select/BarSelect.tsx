@@ -1,6 +1,6 @@
-import useIsMobile from 'hooks/isMobile';
-import { useState } from 'react';
-import { HiOutlineChevronDown } from 'react-icons/hi';
+import useIsMobile from "hooks/isMobile";
+import { useState } from "react";
+import { HiOutlineChevronDown } from "react-icons/hi";
 
 interface IBarSelect {
   className?: string;
@@ -22,7 +22,7 @@ export const BarSelect: React.FC<IBarSelect> = ({
     <>
       <div
         className={`flex items-center btn-single-page ingredient-shadow max-h-32 mt-4 ${
-          !isMobile ? 'cursor-pointer' : ''
+          !isMobile ? "cursor-pointer" : ""
         }`}
         onClick={() => {
           if (!isMobile) setArrowDown(!isArrowDown);
@@ -38,7 +38,7 @@ export const BarSelect: React.FC<IBarSelect> = ({
           <div className="flex items-center justify-end w-full">
             <HiOutlineChevronDown
               className={`w-6 h-6  mr-6 cursor-pointer ${
-                isArrowDown ? 'section-arrow-up' : 'section-arrow-down'
+                isArrowDown ? "section-arrow-up" : "section-arrow-down"
               }`}
               onClick={() => {
                 setArrowDown(!isArrowDown);
@@ -47,7 +47,7 @@ export const BarSelect: React.FC<IBarSelect> = ({
           </div>
         </div>
       </div>
-      <div className={!isArrowDown ? 'fadeIn-arrow' : ' fadeOut-arrow'}>
+      <div className={!isArrowDown ? "fadeIn-arrow" : " fadeOut-arrow"}>
         <div className="rounded-b bg-greyL">{componentParent}</div>
       </div>
     </>
