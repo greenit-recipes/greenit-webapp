@@ -12,7 +12,6 @@
   box-shadow: 0px 0px 12px #00000029;
 }
 
-
 .btn-single-page {
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 4px;
@@ -33,48 +32,46 @@
 
 .ingredient-base {
   border-radius: 15px 15px 0px 0px;
-  border-top: 2px solid #DEEDFF;
-  border-left: 2px solid #DEEDFF;
-  border-right: 2px solid #DEEDFF;
+  border-top: 2px solid #deedff;
+  border-left: 2px solid #deedff;
+  border-right: 2px solid #deedff;
 }
 
 .ingredient-base-ustensil {
   border-radius: 15px 15px 0px 0px;
-  border-top: 2px solid #FBDBCC;
-  border-left: 2px solid #FBDBCC;
-  border-right: 2px solid #FBDBCC;
+  border-top: 2px solid #fbdbcc;
+  border-left: 2px solid #fbdbcc;
+  border-right: 2px solid #fbdbcc;
 }
 
-
-
 .ingredient-border {
-  border-bottom: 5px solid #DEEDFF;
+  border-bottom: 5px solid #deedff;
 }
 
 .ingredient-border-ustensil {
-  border-bottom: 5px solid #FBDBCC;
+  border-bottom: 5px solid #fbdbcc;
 }
 
 .opacity-out {
-  visibility:hidden;
+  visibility: hidden;
   height: 0px;
   opacity: 0;
-  transition:visibility 0.3s linear,opacity 0.3s linear;
+  transition: visibility 0.3s linear, opacity 0.3s linear;
 }
 
 .opacity-in {
   height: auto;
   opacity: 1;
-  visibility:visible;
+  visibility: visible;
   transition: opacity 0.5s ease-in-out;
 }
 
 .ingredient-section {
-  background-color: #DEEDFF;
+  background-color: #deedff;
 }
 
 .ustensil-section {
-  background-color: #FBDBCC;
+  background-color: #fbdbcc;
 }
 
 .rotate-singlePage-wallet {
@@ -86,30 +83,30 @@
 }
 
 .background-color-single-page {
-    background: #DEEDFF 0% 0% no-repeat padding-box;
+  background: #deedff 0% 0% no-repeat padding-box;
 }
 
 .is-selected-single-page {
-  background: #DEEDFF 0% 0% no-repeat padding-box;
-  border-bottom: 5px solid #DEEDFF;
+  background: #deedff 0% 0% no-repeat padding-box;
+  border-bottom: 5px solid #deedff;
 }
 
 .is-selected-single-page-ustensil {
-  background: #FBDBCC 0% 0% no-repeat padding-box;
-  border-bottom: 5px solid #FBDBCC;
+  background: #fbdbcc 0% 0% no-repeat padding-box;
+  border-bottom: 5px solid #fbdbcc;
 }
 
 .ingredient-section-arrow-down {
   transform: rotate(-180deg);
-  transition: transform 0.50s;
+  transition: transform 0.5s;
 }
 
 .ingredient-section-arrow-up {
   transform: rotate(0deg);
-  transition: transform 0.40s ease-in;
+  transition: transform 0.4s ease-in;
 }
 
-.ingredient-fadeIn-arrow { 
+.ingredient-fadeIn-arrow {
   max-height: 1500px;
   transition: max-height 0.75s ease-in;
   overflow: hidden;

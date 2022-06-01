@@ -49,7 +49,7 @@ export const SearchBar: React.FC<{
       };
       window.sessionStorage.setItem(
         "filterListPage",
-        JSON.stringify(currentSearchValue )
+        JSON.stringify(currentSearchValue),
       );
       history.push(RouteName.recipes);
     } else {
@@ -93,7 +93,7 @@ export const SearchBar: React.FC<{
     };
     window.sessionStorage.setItem(
       "filterListPage",
-      JSON.stringify(currentSearchValue)
+      JSON.stringify(currentSearchValue),
     );
     history.push(RouteName.recipes);
   };
@@ -129,12 +129,20 @@ export const SearchBar: React.FC<{
   };
 
   const SuggestionsListComponent = () => {
-        /* @ts-ignore */
-    return filteredSuggestions?.recipes.length || filteredSuggestions?.ingredients.length ? (
-      <div className={"suggestions-content suggestions-box z-50 " + customClassList}>
+    /* @ts-ignore */
+    return filteredSuggestions?.recipes.length ||
+      /* @ts-ignore */
+      filteredSuggestions?.ingredients.length ? (
+      <div
+        className={
+          "suggestions-content suggestions-box z-50 " + customClassList
+        }
+      >
         <ul className="suggestions">
           {/* @ts-ignore */}
-          {!isEmpty(filteredSuggestions?.recipes) && <li className="text-sm text-blue mt-2 search-recipe">Recettes</li>}
+          {!isEmpty(filteredSuggestions?.recipes) && (
+            <li className="text-sm text-blue mt-2 search-recipe">Recettes</li>
+          )}
           {/* @ts-ignore */}
           {filteredSuggestions?.recipes.map((suggestion, index) => {
             return (
@@ -150,18 +158,28 @@ export const SearchBar: React.FC<{
             );
           })}
           {/* @ts-ignore */}
-          {  !isEmpty(filteredSuggestions?.ingredients) && <li className="text-sm text-blue mt-2 search-ingredient">Ingrédients</li>}
+          {!isEmpty(filteredSuggestions?.ingredients) && (
+            <li className="text-sm text-blue mt-2 search-ingredient">
+              Ingrédients
+            </li>
+          )}
           {/* @ts-ignore */}
           {filteredSuggestions?.ingredients.map((suggestion, index) => {
             return (
-              <li  key={index} onClick={onClick}>
+              <li key={index} onClick={onClick}>
                 {suggestion?.name}
               </li>
             );
           })}
-          <li className="cursor-pointer text-sm mt-3 mb-5" onClick={() => {
+          <li
+            className="cursor-pointer text-sm mt-3 mb-5"
+            onClick={() => {
               handleSubmit();
-            }}> Tous les résultats ({suggestions?.totalRecipes})</li>
+            }}
+          >
+            {" "}
+            Tous les résultats ({suggestions?.totalRecipes})
+          </li>
         </ul>
       </div>
     ) : (
@@ -182,10 +200,13 @@ export const SearchBar: React.FC<{
         <div
           className={`${iconSize} | flex | self-center rounded-full cursor-pointer`}
         >
-          <GoSearch className={`w-6 h-6
-              } | self-center | ml-auto mr-auto`} onClick={() => {
+          <GoSearch
+            className={`w-6 h-6
+              } | self-center | ml-auto mr-auto`}
+            onClick={() => {
               handleSubmit();
-            }}></GoSearch>
+            }}
+          ></GoSearch>
         </div>
       )}
       <input
@@ -193,7 +214,7 @@ export const SearchBar: React.FC<{
         className={`text-base bg-transparent
           } | w-full | focus:outline-none search-bar`}
         onKeyDown={onKeyDown}
-        onFocus={(event) => {
+        onFocus={event => {
           event.target.setAttribute("autocomplete", "off");
         }}
         placeholder="Je cherche une recette, un ingrédient..."

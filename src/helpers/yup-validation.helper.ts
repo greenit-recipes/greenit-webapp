@@ -23,18 +23,18 @@ export const imageValidation = () => {
     .test(
       "fileSize",
       "10 mo maximum. Le fichier est trop volumineux.",
-      (value) => {
+      value => {
         if (!value.length) return true; // attachment is optional
         return value[0].size <= 10000000;
-      }
+      },
     )
     .test(
       "fileType",
       "Le fichier doit être au format jpg, jpeg ou png.",
-      (value) => {
+      value => {
         if (!value.length) return true; // attachment is optional
         return includes(SUPPORTED_FORMATS_IMAGE, value[0]?.type);
-      }
+      },
     );
 };
 
@@ -44,17 +44,17 @@ export const videoValidation = () => {
     .test(
       "fileSize",
       "800 mo maximum. Le fichier est trop volumineux.",
-      (value) => {
+      value => {
         if (!value.length) return true; // attachment is optional
         return value[0].size <= 800000000;
-      }
+      },
     )
     .test(
       "fileType",
       "Le fichier doit être au format mp4, move, avi, flv, aaf, mkv, wmv ou mpeg",
-      (value) => {
+      value => {
         if (!value.length) return true; // attachment is optional
         return includes(SUPPORTED_FORMATS_VIDEO, value[0]?.type);
-      }
+      },
     );
 };

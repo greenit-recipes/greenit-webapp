@@ -8,7 +8,7 @@ interface IIconNbrIngredient {
 
 export const IconNbrIngredient: React.FC<IIconNbrIngredient> = ({
   nbOfIngredient,
-  customClass
+  customClass,
 }) => {
   let itemNbOfIngredients = "";
 

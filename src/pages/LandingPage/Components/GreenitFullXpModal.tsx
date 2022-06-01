@@ -51,13 +51,13 @@ const GreenitFullXpModal: React.FC<IGreenitFullXpModal> = ({
       variables: {
         email: data?.email,
       },
-    }).then((dataReponse) => {
+    }).then(dataReponse => {
       reset();
       if (dataReponse?.data?.emailHeadband?.success) {
         setMessage(
           isOutOfStock
             ? "Message reçu 😉 Merci pour ton intérêt ! Tu seras notifié dès son retour en stock !"
-            : "C’est envoyé 👌 On reviendra vers toi le plus vite possible !"
+            : "C’est envoyé 👌 On reviendra vers toi le plus vite possible !",
         );
       } else {
         setErrorEmail("Un problème est survenu");
@@ -76,8 +76,7 @@ const GreenitFullXpModal: React.FC<IGreenitFullXpModal> = ({
       </p>
       {isOutOfStock && (
         <p className="text-center mt-5 mb-5">
-          Ajoute ton adresse email pour être informé de son{" "}
-          <br></br>
+          Ajoute ton adresse email pour être informé de son <br></br>
           <b>
             retour en stock et de l’arrivée des nouvelles box.s ! Ajoute ton
             adresse email pour être informé{" "}
@@ -85,11 +84,10 @@ const GreenitFullXpModal: React.FC<IGreenitFullXpModal> = ({
         </p>
       )}
       {!isOutOfStock && (
-      <p className="text-center">
-      Ajoute ton adresse email pour être informé <b>de sa sortie !</b>
-    </p>
+        <p className="text-center">
+          Ajoute ton adresse email pour être informé <b>de sa sortie !</b>
+        </p>
       )}
-
       <img
         loading="lazy"
         className="mt-4 lg:mt-0 lg:h-60 m-auto w-full| flex place-self-center"

@@ -5,9 +5,7 @@ import { Button, Footer, Navbar } from "components";
 import { BackgroundImage } from "components/layout/BackgroundImage";
 import { imageValidation } from "helpers/yup-validation.helper";
 import CreateRecipeForm from "pages/CreateRecipe/CreateRecipeForm";
-import {
-  EMAIL_LINK_SHARED_RECIPE
-} from "pages/CreateRecipe/CreateRecipeRequest";
+import { EMAIL_LINK_SHARED_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
@@ -20,10 +18,12 @@ import {
   pintlogo,
   tiktoklogo,
   wwwlogo,
-  ytlogo
+  ytlogo,
 } from "../../icons";
 
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
+);
 
 const schemaLink = yup.object().shape({
   link: yup.string().required("Ce champ est obligatoire."),
@@ -43,14 +43,14 @@ const schema = yup.object().shape({
       yup.object({
         quantity: yup.string().required("Ce champ est obligatoire."),
         name: yup.object().required("Ce champ est obligatoire."),
-      })
+      }),
     )
     .min(1, "Ce champ est obligatoire"),
   instructions: yup
     .array(
       yup.object({
         instruction: yup.string().required("Ce champ est obligatoire."),
-      })
+      }),
     )
     .min(1, "Ce champ est obligatoire"),
   utensils: yup
@@ -58,7 +58,7 @@ const schema = yup.object().shape({
       yup.object({
         quantity: yup.string().required("Ce champ est obligatoire."),
         name: yup.object().required("Ce champ est obligatoire."),
-      })
+      }),
     )
     .min(1, "Ce champ est obligatoire"),
 
@@ -79,7 +79,7 @@ const CreateRecipe: React.FC = () => {
   const history = useHistory();
 
   const [emailLinkSharedRecipe, { loading: loadingLink }] = useMutation(
-    EMAIL_LINK_SHARED_RECIPE
+    EMAIL_LINK_SHARED_RECIPE,
   );
 
   const isLoggedIn = authService.isLoggedIn();

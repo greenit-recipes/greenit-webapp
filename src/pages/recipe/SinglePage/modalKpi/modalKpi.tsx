@@ -62,7 +62,11 @@ const kpiContent: {
   },
 };
 
-export const ModalKpi: React.FC<IModalKpi> = ({ nameKpi, number, substances = null }) => {
+export const ModalKpi: React.FC<IModalKpi> = ({
+  nameKpi,
+  number,
+  substances = null,
+}) => {
   const isMobile = useIsMobile();
 
   const iconKpi = (sizeBig: boolean = false) => {
@@ -113,26 +117,27 @@ export const ModalKpi: React.FC<IModalKpi> = ({ nameKpi, number, substances = nu
           text={kpiContent[nameKpi]?.title}
         />
         <div className="mt-2">
-          {nameKpi === "substance" && substances.map((item: any, index: any) => (
-            <div key={index}>
-              <BarSelect
-                title={item?.name}
-                amount="1"
-                componentParent={
-                  <div className="rounded-b bg-greyL">
-                    <div className="w-5/6 ml-6 lg:w-4/6">
-                      <h2 className="pt-4 fontQSemibold">Caractéristiques</h2>
-                      <div>{item?.groupSubs}</div>
-                      <h2 className="pt-4 fontQSemibold">
-                        Effets indésirables
-                      </h2>
-                      <div className="pb-2">{item?.effect}</div>
+          {nameKpi === "substance" &&
+            substances.map((item: any, index: any) => (
+              <div key={index}>
+                <BarSelect
+                  title={item?.name}
+                  amount="1"
+                  componentParent={
+                    <div className="rounded-b bg-greyL">
+                      <div className="w-5/6 ml-6 lg:w-4/6">
+                        <h2 className="pt-4 fontQSemibold">Caractéristiques</h2>
+                        <div>{item?.groupSubs}</div>
+                        <h2 className="pt-4 fontQSemibold">
+                          Effets indésirables
+                        </h2>
+                        <div className="pb-2">{item?.effect}</div>
+                      </div>
                     </div>
-                  </div>
-                }
-              ></BarSelect>
-            </div>
-          ))}
+                  }
+                ></BarSelect>
+              </div>
+            ))}
         </div>
         <div className="border-kpi"></div>
         <div className="text-lg fontQSmedium text-center mb-4 mt-4">

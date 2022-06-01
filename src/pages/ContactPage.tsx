@@ -28,7 +28,10 @@ const ContactPage = () => {
       <Navbar />
       <Helmet>
         <title>Contactez-nous | Greenit Community</title>
-        <meta name="description" content="Besoin d’aide ? Une question ? Un partenariat ? Un conseil ? Une critique ? Écrivez-nous à notre adresse ou remplissez le formulaire de contact. Nous vous répondrons !" />
+        <meta
+          name="description"
+          content="Besoin d’aide ? Une question ? Un partenariat ? Un conseil ? Une critique ? Écrivez-nous à notre adresse ou remplissez le formulaire de contact. Nous vous répondrons !"
+        />
       </Helmet>
       <div className="grid justify-items-center auto-rows-max h-screen">
         <div className="w-4/5">
@@ -46,7 +49,11 @@ const ContactPage = () => {
             href="mailto:hello@greenitcommunity.com"
             className="inline-flex gap-x-4"
           >
-            <img src={MailIcon} alt="icon mail" className="w-7 h-7 self-center" />
+            <img
+              src={MailIcon}
+              alt="icon mail"
+              className="w-7 h-7 self-center"
+            />
             <h1 className="text-xs md:text-lg self-center pt-1">
               hello@greenitcommunity.com
             </h1>
@@ -66,7 +73,11 @@ const ContactPage = () => {
               {
                 href: "https://www.facebook.com/greenitcommunity/",
                 children: (
-                  <img src={FBIcon} alt="facebook icon" className="w-6 h-6 mt-2 self-start mt-3" />
+                  <img
+                    src={FBIcon}
+                    alt="facebook icon"
+                    className="w-6 h-6 mt-2 self-start mt-3"
+                  />
                 ),
               },
               {
@@ -82,10 +93,14 @@ const ContactPage = () => {
               {
                 href: "https://www.tiktok.com/@greenitcommunity",
                 children: (
-                  <img src={tiktokIcon} alt="tiktok icon" className="w-8 h-8 mt-2 self-start" />
+                  <img
+                    src={tiktokIcon}
+                    alt="tiktok icon"
+                    className="w-8 h-8 mt-2 self-start"
+                  />
                 ),
               },
-            ].map((item) => (
+            ].map(item => (
               <a href={item.href} target="_blank" rel="norefferer">
                 {item.children}
               </a>

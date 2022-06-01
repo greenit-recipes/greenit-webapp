@@ -20,8 +20,9 @@
   src: url(./fonts/Quicksand-Bold.ttf);
 }
 
-* { -webkit-tap-highlight-color: rgba(0,0,0,0); }
-
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 
 body {
   font-family: QuickSand_Medium !important;
@@ -64,10 +65,10 @@ h4 {
 }
 
 .button-with-border-radius {
-background: #FFFFFF 0% 0% no-repeat padding-box;
-box-shadow: 0px 0px 10px #69696929;
-border-radius: 4px;
-} 
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 10px #69696929;
+  border-radius: 4px;
+}
 
 .alice-carousel__next-btn {
   right: 0;
@@ -153,33 +154,33 @@ border-radius: 4px;
   transform: scale(1.3);
 }
 
-.hamburger_fadeIn::before{
+.hamburger_fadeIn::before {
   border-color: #383838;
   transition: 0.5s;
   background: rgb(255, 255, 255);
   position: absolute;
-  display:block;
-  content:'';
+  display: block;
+  content: "";
   width: 70%;
   height: 6%;
   top: 47%;
   left: 15%;
   transform: rotate(45deg);
-} 
+}
 
-.hamburger_fadeIn::after{
+.hamburger_fadeIn::after {
   border-color: #383838;
   transition: 0.5s;
   background: rgb(255, 255, 255);
   position: absolute;
-  display:block;
-  content:'';
+  display: block;
+  content: "";
   width: 6%;
   height: 70%;
   left: 47%;
   top: 15%;
   transform: rotate(45deg);
-} 
+}
 
 .button_contact {
   background-color: #83d489;
@@ -252,7 +253,7 @@ border-radius: 4px;
   text-align: center;
   font-size: 10px;
   /* Position the tooltip */
-  position:static;
+  position: static;
   z-index: 1;
   margin-top: -11px;
 }
@@ -262,27 +263,26 @@ border-radius: 4px;
 }
 
 .like-greenit {
- left: 8rem;
+  left: 8rem;
 }
 
-.selectStyle {  
+.selectStyle {
   height: 100px;
 }
-
 
 /* ARROW */
 
 .section-arrow-down {
   transform: rotate(-180deg);
-  transition: transform 0.50s;
+  transition: transform 0.5s;
 }
 
 .section-arrow-up {
   transform: rotate(0deg);
-  transition: transform 0.40s ease-in;
+  transition: transform 0.4s ease-in;
 }
 
-.fadeIn-arrow { 
+.fadeIn-arrow {
   max-height: 1500px;
   transition: max-height 0.75s ease-in;
   overflow: hidden;
@@ -294,8 +294,7 @@ border-radius: 4px;
   transition: max-height 0.5s ease-out;
 }
 
-
-/* Modal size */ 
+/* Modal size */
 
 .small-modal {
   width: 20rem !important;
@@ -312,5 +311,5 @@ border-radius: 4px;
 /* Emoji */
 
 .size-emoji-modal {
-  font-size:3em;
+  font-size: 3em;
 }

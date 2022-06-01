@@ -5,7 +5,8 @@ import { Button } from "components";
 import { imageValidation } from "helpers/yup-validation.helper";
 import { cloneDeep } from "lodash";
 import {
-  CREATE_EMAIL_RECIPE, GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
+  CREATE_EMAIL_RECIPE,
+  GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
 } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useEffect } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
@@ -28,14 +29,14 @@ const schema = yup.object().shape({
       yup.object({
         quantity: yup.string().required("Ce champ est obligatoire."),
         name: yup.object().required("Ce champ est obligatoire."),
-      })
+      }),
     )
     .min(1, "Ce champ est obligatoire"),
   instructions: yup
     .array(
       yup.object({
         instruction: yup.string().required("Ce champ est obligatoire."),
-      })
+      }),
     )
     .min(1, "Ce champ est obligatoire"),
   utensils: yup
@@ -43,7 +44,7 @@ const schema = yup.object().shape({
       yup.object({
         quantity: yup.string().required("Ce champ est obligatoire."),
         name: yup.object().required("Ce champ est obligatoire."),
-      })
+      }),
     )
     .min(1, "Ce champ est obligatoire"),
 
@@ -93,12 +94,12 @@ const CreateRecipeForm: React.FC = () => {
   const history = useHistory();
 
   const { loading, error, data } = useQuery(
-    GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS
+    GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
   );
 
   const [createEmailRecipe, { loading: loadingCreateRecipe }] =
     useMutation(CREATE_EMAIL_RECIPE);
-    
+
   const optionsDifficulty = [
     { value: RecipeDifficulty.Beginner, label: "Facile" },
     { value: RecipeDifficulty.Intermediate, label: "Moyen" },
@@ -119,7 +120,6 @@ const CreateRecipeForm: React.FC = () => {
       }
     }
   }, [setError, error, data]);
-
 
   const onSubmitHandler = (dataForm: {
     name: string;
@@ -142,7 +142,7 @@ const CreateRecipeForm: React.FC = () => {
   }) => {
     if (loadingCreateRecipe) return;
     const getValue = (field: any) => field.value;
-    const getValues = (field: any[]) => field.map((x) => x?.value);
+    const getValues = (field: any[]) => field.map(x => x?.value);
     createEmailRecipe({
       variables: {
         name: dataForm.name,
@@ -163,7 +163,7 @@ const CreateRecipeForm: React.FC = () => {
         notesFromAuthor: dataForm.notes_from_author,
         textAssociate: dataForm.text_associate,
       },
-    }).then((res) => {
+    }).then(res => {
       if (res?.data?.sendEmailRecipe?.success)
         history.push(RouteName.recipeCreated);
     });
@@ -190,457 +190,425 @@ const CreateRecipeForm: React.FC = () => {
   }
 
   return (
-        <form
-          className="p-4 my-10 bg-white rounded-lg shadow-lg md:p-10 md:w-1/2"
-           // @ts-ignore
-          onSubmit={handleSubmit(onSubmitHandler)}
-        >
-          {/* Input */}
-          <div className="mb-10">
-            <h2 className="mt-2 text-lg font-bold md:text-2xl">
-              Utilise le formulaire pour partager ta recette
-            </h2>
-            <label className="block text-xl text-gray-700">
-              Nom de la recette
-            </label>
-            <h3 className="block mb-2 text-sm text-gray-700">
-              Par exemple : Masque à la coco
-            </h3>
-            <textarea
-              className="w-2/3 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-              id="name"
-              placeholder="nom de la recette"
-              {...register("name")}
-            ></textarea>
-            <p className="text-xs italic text-red">{errors.name?.message}</p>
-          </div>
+    <form
+      className="p-4 my-10 bg-white rounded-lg shadow-lg md:p-10 md:w-1/2"
+      // @ts-ignore
+      onSubmit={handleSubmit(onSubmitHandler)}
+    >
+      {/* Input */}
+      <div className="mb-10">
+        <h2 className="mt-2 text-lg font-bold md:text-2xl">
+          Utilise le formulaire pour partager ta recette
+        </h2>
+        <label className="block text-xl text-gray-700">Nom de la recette</label>
+        <h3 className="block mb-2 text-sm text-gray-700">
+          Par exemple : Masque à la coco
+        </h3>
+        <textarea
+          className="w-2/3 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+          id="name"
+          placeholder="nom de la recette"
+          {...register("name")}
+        ></textarea>
+        <p className="text-xs italic text-red">{errors.name?.message}</p>
+      </div>
 
-          <div className="mb-10">
-            <label className="block mb-2 text-xl text-gray-700">
-              Description
-            </label>
-            <h3 className="block mb-2 text-sm text-gray-700">
-              Pourquoi tu utilises ces ingrédients ?
-              <br /> Comment tu utilises le produit ?
-            </h3>
-            <textarea
-              className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-              id="description"
-              placeholder="description"
-              rows={12}
-              cols={34}
-              {...register("description")}
-            ></textarea>
-            <p className="text-xs italic text-red">
-              {errors.description?.message}
-            </p>
-          </div>
+      <div className="mb-10">
+        <label className="block mb-2 text-xl text-gray-700">Description</label>
+        <h3 className="block mb-2 text-sm text-gray-700">
+          Pourquoi tu utilises ces ingrédients ?
+          <br /> Comment tu utilises le produit ?
+        </h3>
+        <textarea
+          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+          id="description"
+          placeholder="description"
+          rows={12}
+          cols={34}
+          {...register("description")}
+        ></textarea>
+        <p className="text-xs italic text-red">{errors.description?.message}</p>
+      </div>
 
-          <div className="mb-10">
-            <label className="block mb-2 text-xl text-gray-700">Photos</label>
-            <h3 className="block mb-2 text-sm text-gray-700">
-              Upload une jolie photo du résultat !
-            </h3>
-            <input
-              className="p-4 border-2"
-              type="file"
-              {...register("image")}
-            ></input>
-            <p className="text-xs italic text-red">{errors.image?.message}</p>
-          </div>
+      <div className="mb-10">
+        <label className="block mb-2 text-xl text-gray-700">Photos</label>
+        <h3 className="block mb-2 text-sm text-gray-700">
+          Upload une jolie photo du résultat !
+        </h3>
+        <input
+          className="p-4 border-2"
+          type="file"
+          {...register("image")}
+        ></input>
+        <p className="text-xs italic text-red">{errors.image?.message}</p>
+      </div>
 
-          {/* Select */}
-          <div className="mb-10">
-            <label className="block mb-2 text-xl text-gray-700">
-              Difficulté
-            </label>
-            <Controller
-              name="difficulty"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  placeholder={`sélectionne...`}
-                  options={optionsDifficulty}
-                  className={`w-2/3 md:w-1/2`}
-                />
-              )}
+      {/* Select */}
+      <div className="mb-10">
+        <label className="block mb-2 text-xl text-gray-700">Difficulté</label>
+        <Controller
+          name="difficulty"
+          control={control}
+          render={({ field }) => (
+            <Select
+              {...field}
+              placeholder={`sélectionne...`}
+              options={optionsDifficulty}
+              className={`w-2/3 md:w-1/2`}
             />
-            <p className="text-xs italic text-red">
-              {errors.difficulty?.message}
-            </p>
-          </div>
+          )}
+        />
+        <p className="text-xs italic text-red">{errors.difficulty?.message}</p>
+      </div>
 
-          <div className="mb-10">
-            <label className="block mb-2 text-xl text-gray-700">
-              Catégorie
-            </label>
-            <Controller
-              name="category"
-              control={control}
-              render={({ field }) => {
-                const optionsCategory = data?.allCategories?.map(
-                  (category: any) => ({
-                    value: category?.name,
-                    label: category?.name,
-                  })
-                );
-                return (
-                  <Select
-                    {...field}
-                    placeholder={`sélectionne...`}
-                    className={`w-2/3 md:w-1/2`}
-                    options={optionsCategory}
-                  />
-                );
-              }}
-            />
-            <p className="text-xs italic text-red">
-              {errors.category?.message}
-            </p>
-          </div>
+      <div className="mb-10">
+        <label className="block mb-2 text-xl text-gray-700">Catégorie</label>
+        <Controller
+          name="category"
+          control={control}
+          render={({ field }) => {
+            const optionsCategory = data?.allCategories?.map(
+              (category: any) => ({
+                value: category?.name,
+                label: category?.name,
+              }),
+            );
+            return (
+              <Select
+                {...field}
+                placeholder={`sélectionne...`}
+                className={`w-2/3 md:w-1/2`}
+                options={optionsCategory}
+              />
+            );
+          }}
+        />
+        <p className="text-xs italic text-red">{errors.category?.message}</p>
+      </div>
 
-          {/* Time */}
+      {/* Time */}
 
-          <div className="w-2/3 mb-10">
-            <label className="block mb-2 text-xl text-gray-700">Durée</label>
-            <h3 className="block mb-2 text-sm text-gray-700">
-              10m, 15m, 30m ...
-            </h3>
+      <div className="w-2/3 mb-10">
+        <label className="block mb-2 text-xl text-gray-700">Durée</label>
+        <h3 className="block mb-2 text-sm text-gray-700">10m, 15m, 30m ...</h3>
 
-            <input
-              className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
-              placeholder="durée en minutes"
-              type="number"
-              {...register("duration")}
-            ></input>
-            <p className="text-xs italic text-red">
-              {errors.duration?.message}
-            </p>
-          </div>
+        <input
+          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
+          placeholder="durée en minutes"
+          type="number"
+          {...register("duration")}
+        ></input>
+        <p className="text-xs italic text-red">{errors.duration?.message}</p>
+      </div>
 
-          {/* Select multiple */}
+      {/* Select multiple */}
 
-          <div className="mb-10">
-            <label className="block mb-2 text-xl text-gray-700">Tags</label>
-            <h3 className="block mb-2 text-sm text-gray-700">
-              Ces tags faciliteront le référencement de ta recette.
-            </h3>
+      <div className="mb-10">
+        <label className="block mb-2 text-xl text-gray-700">Tags</label>
+        <h3 className="block mb-2 text-sm text-gray-700">
+          Ces tags faciliteront le référencement de ta recette.
+        </h3>
 
-            <Controller
-              name="tags"
-              control={control}
-              render={({ field }) => {
-                const optionsTags = data?.allTags?.map((tags: any) => ({
-                  value: tags?.name,
-                  label: tags?.name,
-                }));
-                const tagWithUserValue = cloneDeep(optionsTags);
-                const handleChange = (textType: string) => {
-                  tagWithUserValue.push({
-                    value: textType,
-                    label: textType,
-                  });
-                };
-                return (
-                  <Select
-                    {...field}
-                    onInputChange={handleChange}
-                    placeholder={`sélectionne...`}
-                    isMulti={true}
-                    options={tagWithUserValue}
-                    className={`w-2/3 md:w-1/2`}
-                  />
-                );
-              }}
-            />
-            <p className="text-xs italic text-red">{errors.tags?.message}</p>
-          </div>
-          {/* dynamic */}
+        <Controller
+          name="tags"
+          control={control}
+          render={({ field }) => {
+            const optionsTags = data?.allTags?.map((tags: any) => ({
+              value: tags?.name,
+              label: tags?.name,
+            }));
+            const tagWithUserValue = cloneDeep(optionsTags);
+            const handleChange = (textType: string) => {
+              tagWithUserValue.push({
+                value: textType,
+                label: textType,
+              });
+            };
+            return (
+              <Select
+                {...field}
+                onInputChange={handleChange}
+                placeholder={`sélectionne...`}
+                isMulti={true}
+                options={tagWithUserValue}
+                className={`w-2/3 md:w-1/2`}
+              />
+            );
+          }}
+        />
+        <p className="text-xs italic text-red">{errors.tags?.message}</p>
+      </div>
+      {/* dynamic */}
 
-          <div className="mb-10">
-            <label className="block mb-2 text-xl text-gray-700">
-              Ingrédients et quantité
-            </label>
-            <h3 className="block mb-2 text-sm text-gray-700">
-              Ajoute les ingrédients ainsi que la quantité.
-            </h3>
-            <h3 className="block mb-4 text-sm text-gray-700">
-              Exemple : 2 cuillères à café | beurre de karité
-            </h3>
-            <ul>
-              {ingredientsFields.map((item, index) => (
-                <li className="grid grid-cols-3 gap-2">
-                  <input
-                    className="col-span-1 | p-2 text-sm border-2 border-gray-300 rounded"
-                    placeholder=" 10g 0.5l..."
-                    {...register(`ingredients.${index}.quantity`)}
-                  />
-                  <p className="text-xs italic text-red">
-                    {errors?.ingredients?.[index]?.quantity?.message}
-                  </p>
-                  <Controller
-                    name={`ingredients.${index}.name`}
-                    control={control}
-                    render={({ field }) => {
-                      const optionsIngredients = data?.allIngredients?.map(
-                        (ingredient: any) => ({
-                          value: ingredient?.name,
-                          label: ingredient?.name,
-                        })
-                      );
-                      const ingredientsUserValue =
-                        cloneDeep(optionsIngredients);
-                      const handleChange = (textType: string) => {
-                        ingredientsUserValue.push({
-                          value: textType,
-                          label: textType,
-                        });
-                      };
-                      return (
-                        <Select
-                          {...field}
-                          onInputChange={handleChange}
-                          placeholder={`sélectionne...`}
-                          options={ingredientsUserValue}
-                          className={`col-span-2`}
-                        />
-                      );
-                    }}
-                  />
-                  <p className="text-xs italic text-red">
-                    {errors?.ingredients?.[index]?.name?.message}
-                  </p>
-                  <div
-                    className="col-span-3 | cursor-pointer flex justify-self-end mb-2 bg-red text-white rounded-lg py-1 px-2"
-                    onClick={() => ingredientsRemove(index)}
-                  >
-                    Supprimer
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <div
-              onClick={() => ingredientsAppend({}, { shouldFocus: true })}
-              className="px-2 text-center text-white rounded-lg cursor-pointer bg-blue py-1 w-44"
-            >
-              Ajouter un ingrédient
-            </div>
-            <p className="text-xs italic text-red">
-              {errors.ingredients?.message}
-            </p>
-          </div>
-
-          <div className="mb-10">
-            <label className="block mb-2 text-xl text-gray-700">
-              Lien de ton post ou de ta vidéo
-            </label>
-            <input
-              {...register("videoUrl")}
-              className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
-              placeholder="Lien de ton post ou de ta vidéo"
-              type="text"
-            ></input>
-            <p className="text-xs italic text-red">
-              {errors.videoUrl?.message}
-            </p>
-          </div>
-
-          <div className="mb-10">
-            <label className="block mb-2 text-xl text-gray-700">
-              Liste d'instructions
-            </label>
-            <h3 className="block mb-2 text-sm text-gray-700">
-              Comment réalises-tu ta recette ?
-            </h3>
-            <h3 className="block mb-4 text-sm text-gray-700">
-              Par exemple : <br />
-              1 Ajouter l'huile de noisette dans le chauffe-tout <br />2 Remuer
-              rapidement jusqu'à ce que la préparation devienne liquide <br />3
-              ...
-            </h3>
-
-            <div className="mb-10">
-              <ul>
-                {instructionsFields.map((item, index) => (
-                  <>
-                    <li
-                      key={item.id}
-                      className={`grid grid-rows-2 grid-cols-1`}
-                    >
-                      <input
-                        className={`border-2 mb-2`}
-                        {...register(`instructions.${index}.instruction`)}
-                      />
-
-                      <p className="text-xs italic text-red">
-                        {errors?.instructions?.[index]?.instruction?.message}
-                      </p>
-
-                      <div
-                        className="px-2 mb-2 text-white rounded-lg cursor-pointer justify-self-end bg-red py-1"
-                        onClick={() => instructionsRemove(index)}
-                      >
-                        Supprimer
-                      </div>
-                    </li>
-                  </>
-                ))}
-              </ul>
+      <div className="mb-10">
+        <label className="block mb-2 text-xl text-gray-700">
+          Ingrédients et quantité
+        </label>
+        <h3 className="block mb-2 text-sm text-gray-700">
+          Ajoute les ingrédients ainsi que la quantité.
+        </h3>
+        <h3 className="block mb-4 text-sm text-gray-700">
+          Exemple : 2 cuillères à café | beurre de karité
+        </h3>
+        <ul>
+          {ingredientsFields.map((item, index) => (
+            <li className="grid grid-cols-3 gap-2">
+              <input
+                className="col-span-1 | p-2 text-sm border-2 border-gray-300 rounded"
+                placeholder=" 10g 0.5l..."
+                {...register(`ingredients.${index}.quantity`)}
+              />
+              <p className="text-xs italic text-red">
+                {errors?.ingredients?.[index]?.quantity?.message}
+              </p>
+              <Controller
+                name={`ingredients.${index}.name`}
+                control={control}
+                render={({ field }) => {
+                  const optionsIngredients = data?.allIngredients?.map(
+                    (ingredient: any) => ({
+                      value: ingredient?.name,
+                      label: ingredient?.name,
+                    }),
+                  );
+                  const ingredientsUserValue = cloneDeep(optionsIngredients);
+                  const handleChange = (textType: string) => {
+                    ingredientsUserValue.push({
+                      value: textType,
+                      label: textType,
+                    });
+                  };
+                  return (
+                    <Select
+                      {...field}
+                      onInputChange={handleChange}
+                      placeholder={`sélectionne...`}
+                      options={ingredientsUserValue}
+                      className={`col-span-2`}
+                    />
+                  );
+                }}
+              />
+              <p className="text-xs italic text-red">
+                {errors?.ingredients?.[index]?.name?.message}
+              </p>
               <div
-                onClick={() => instructionsAppend({}, { shouldFocus: true })}
-                className="w-40 px-2 text-center text-white rounded-lg cursor-pointer bg-blue py-1"
+                className="col-span-3 | cursor-pointer flex justify-self-end mb-2 bg-red text-white rounded-lg py-1 px-2"
+                onClick={() => ingredientsRemove(index)}
               >
-                Ajouter une étape
+                Supprimer
               </div>
-            </div>
-            <p className="text-xs italic text-red">
-              {errors.instructions?.message}
-            </p>
-          </div>
+            </li>
+          ))}
+        </ul>
+        <div
+          onClick={() => ingredientsAppend({}, { shouldFocus: true })}
+          className="px-2 text-center text-white rounded-lg cursor-pointer bg-blue py-1 w-44"
+        >
+          Ajouter un ingrédient
+        </div>
+        <p className="text-xs italic text-red">{errors.ingredients?.message}</p>
+      </div>
 
-          <div className="mb-10">
-            <label className="block mb-2 text-xl text-gray-700">
-              Ustensiles et quantité
-            </label>
-            <h3 className="block mb-2 text-sm text-gray-700">
-              Indique les ustensiles et leurs quantités.
-            </h3>
-            <h3 className="block mb-4 text-sm text-gray-700">
-              Exemple: 2 fouets | 1 balance...
-            </h3>
-            <ul>
-              {utensilsFields.map((item, index) => (
-                <li className="grid grid-cols-3 gap-2">
+      <div className="mb-10">
+        <label className="block mb-2 text-xl text-gray-700">
+          Lien de ton post ou de ta vidéo
+        </label>
+        <input
+          {...register("videoUrl")}
+          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
+          placeholder="Lien de ton post ou de ta vidéo"
+          type="text"
+        ></input>
+        <p className="text-xs italic text-red">{errors.videoUrl?.message}</p>
+      </div>
+
+      <div className="mb-10">
+        <label className="block mb-2 text-xl text-gray-700">
+          Liste d'instructions
+        </label>
+        <h3 className="block mb-2 text-sm text-gray-700">
+          Comment réalises-tu ta recette ?
+        </h3>
+        <h3 className="block mb-4 text-sm text-gray-700">
+          Par exemple : <br />
+          1 Ajouter l'huile de noisette dans le chauffe-tout <br />2 Remuer
+          rapidement jusqu'à ce que la préparation devienne liquide <br />3 ...
+        </h3>
+
+        <div className="mb-10">
+          <ul>
+            {instructionsFields.map((item, index) => (
+              <>
+                <li key={item.id} className={`grid grid-rows-2 grid-cols-1`}>
                   <input
-                    className="col-span-1 | text-sm border-2 border-gray-300 rounded p-1"
-                    placeholder="nombre"
-                    {...register(`utensils.${index}.quantity`)}
+                    className={`border-2 mb-2`}
+                    {...register(`instructions.${index}.instruction`)}
                   />
+
                   <p className="text-xs italic text-red">
-                    {errors?.utensils?.[index]?.quantity?.message}
+                    {errors?.instructions?.[index]?.instruction?.message}
                   </p>
-                  <Controller
-                    name={`utensils.${index}.name`}
-                    control={control}
-                    render={({ field }) => {
-                      const optionsUtensilss = data?.allUtensils?.map(
-                        (ustenil: any) => ({
-                          value: ustenil?.name,
-                          label: ustenil?.name,
-                        })
-                      );
-                      const optionsUtensilssUserValue =
-                        cloneDeep(optionsUtensilss);
-                      const handleChange = (textType: string) => {
-                        optionsUtensilssUserValue.push({
-                          value: textType,
-                          label: textType,
-                        });
-                      };
-                      return (
-                        <Select
-                          {...field}
-                          onInputChange={handleChange}
-                          placeholder={`sélectionne...`}
-                          options={optionsUtensilss}
-                          className={`col-span-2`}
-                        />
-                      );
-                    }}
-                  />
-                  <p className="text-xs italic text-red">
-                    {errors?.utensils?.[index]?.name?.message}
-                  </p>
+
                   <div
-                    onClick={() => utensilsRemove(index)}
-                    className="col-span-3 | flex cursor-pointer justify-self-end mb-2 bg-red text-white rounded-lg py-1 px-2"
+                    className="px-2 mb-2 text-white rounded-lg cursor-pointer justify-self-end bg-red py-1"
+                    onClick={() => instructionsRemove(index)}
                   >
                     Supprimer
                   </div>
                 </li>
-              ))}
-            </ul>
-            <div
-              onClick={() => utensilsAppend({}, { shouldFocus: true })}
-              className="px-2 text-center text-white rounded-lg cursor-pointer bg-blue py-1 w-44"
-            >
-              Ajouter un ustensile
-            </div>
-            <p className="text-xs italic text-red">
-              {errors.utensils?.message}
-            </p>
+              </>
+            ))}
+          </ul>
+          <div
+            onClick={() => instructionsAppend({}, { shouldFocus: true })}
+            className="w-40 px-2 text-center text-white rounded-lg cursor-pointer bg-blue py-1"
+          >
+            Ajouter une étape
           </div>
+        </div>
+        <p className="text-xs italic text-red">
+          {errors.instructions?.message}
+        </p>
+      </div>
 
-          <div className="mb-10">
-            <label className="block mb-2 text-xl text-gray-700">
-              Conservation
-            </label>
-            <h3 className="block text-sm text-gray-700">
-              Comment et combien de temps conserves-tu ton produit ?
-            </h3>
-            <h3 className="block mb-4 text-sm text-gray-700">
-              Exemple : 4 mois à température ambiante
-            </h3>
+      <div className="mb-10">
+        <label className="block mb-2 text-xl text-gray-700">
+          Ustensiles et quantité
+        </label>
+        <h3 className="block mb-2 text-sm text-gray-700">
+          Indique les ustensiles et leurs quantités.
+        </h3>
+        <h3 className="block mb-4 text-sm text-gray-700">
+          Exemple: 2 fouets | 1 balance...
+        </h3>
+        <ul>
+          {utensilsFields.map((item, index) => (
+            <li className="grid grid-cols-3 gap-2">
+              <input
+                className="col-span-1 | text-sm border-2 border-gray-300 rounded p-1"
+                placeholder="nombre"
+                {...register(`utensils.${index}.quantity`)}
+              />
+              <p className="text-xs italic text-red">
+                {errors?.utensils?.[index]?.quantity?.message}
+              </p>
+              <Controller
+                name={`utensils.${index}.name`}
+                control={control}
+                render={({ field }) => {
+                  const optionsUtensilss = data?.allUtensils?.map(
+                    (ustenil: any) => ({
+                      value: ustenil?.name,
+                      label: ustenil?.name,
+                    }),
+                  );
+                  const optionsUtensilssUserValue = cloneDeep(optionsUtensilss);
+                  const handleChange = (textType: string) => {
+                    optionsUtensilssUserValue.push({
+                      value: textType,
+                      label: textType,
+                    });
+                  };
+                  return (
+                    <Select
+                      {...field}
+                      onInputChange={handleChange}
+                      placeholder={`sélectionne...`}
+                      options={optionsUtensilss}
+                      className={`col-span-2`}
+                    />
+                  );
+                }}
+              />
+              <p className="text-xs italic text-red">
+                {errors?.utensils?.[index]?.name?.message}
+              </p>
+              <div
+                onClick={() => utensilsRemove(index)}
+                className="col-span-3 | flex cursor-pointer justify-self-end mb-2 bg-red text-white rounded-lg py-1 px-2"
+              >
+                Supprimer
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div
+          onClick={() => utensilsAppend({}, { shouldFocus: true })}
+          className="px-2 text-center text-white rounded-lg cursor-pointer bg-blue py-1 w-44"
+        >
+          Ajouter un ustensile
+        </div>
+        <p className="text-xs italic text-red">{errors.utensils?.message}</p>
+      </div>
 
-            <input
-              className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
-              id="expiry"
-              placeholder="temps de conservation"
-              type="text"
-              {...register("expiry")}
-            ></input>
-            <p className="text-xs italic text-red">{errors.expiry?.message}</p>
-          </div>
+      <div className="mb-10">
+        <label className="block mb-2 text-xl text-gray-700">Conservation</label>
+        <h3 className="block text-sm text-gray-700">
+          Comment et combien de temps conserves-tu ton produit ?
+        </h3>
+        <h3 className="block mb-4 text-sm text-gray-700">
+          Exemple : 4 mois à température ambiante
+        </h3>
 
-          <div className="mb-12">
-            <label className="block mb-2 text-xl text-gray-700">
-              Note de l'auteur.e
-            </label>
-            <h3 className="block w-11/12 mb-4 text-sm text-gray-700">
-              Par exemple : Vous pouvez ajouter une huile de Jojoba si vous avez
-              la peau grasse.
-            </h3>
-            <input
-              className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
-              id="notes_from_author"
-              placeholder="tes conseils et astuces"
-              type="text"
-              {...register("notes_from_author")}
-            ></input>
-            <p className="text-xs italic text-red">
-              {errors.notes_from_author?.message}
-            </p>
-          </div>
+        <input
+          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
+          id="expiry"
+          placeholder="temps de conservation"
+          type="text"
+          {...register("expiry")}
+        ></input>
+        <p className="text-xs italic text-red">{errors.expiry?.message}</p>
+      </div>
 
-          <div className="mb-12">
-            <label className="block mb-2 text-xl text-gray-700">
-              Rajoute le lien de ton site (si tu en as un)
-            </label>
-            <input
-              className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
-              id="text_associate"
-              placeholder="ton lien vers ton site :) "
-              type="text"
-              {...register("text_associate")}
-            ></input>
-            <p className="text-xs italic text-red">
-              {errors.text_associate?.message}
-            </p>
-          </div>
+      <div className="mb-12">
+        <label className="block mb-2 text-xl text-gray-700">
+          Note de l'auteur.e
+        </label>
+        <h3 className="block w-11/12 mb-4 text-sm text-gray-700">
+          Par exemple : Vous pouvez ajouter une huile de Jojoba si vous avez la
+          peau grasse.
+        </h3>
+        <input
+          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
+          id="notes_from_author"
+          placeholder="tes conseils et astuces"
+          type="text"
+          {...register("notes_from_author")}
+        ></input>
+        <p className="text-xs italic text-red">
+          {errors.notes_from_author?.message}
+        </p>
+      </div>
 
-          {/* Submit */}
+      <div className="mb-12">
+        <label className="block mb-2 text-xl text-gray-700">
+          Rajoute le lien de ton site (si tu en as un)
+        </label>
+        <input
+          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
+          id="text_associate"
+          placeholder="ton lien vers ton site :) "
+          type="text"
+          {...register("text_associate")}
+        ></input>
+        <p className="text-xs italic text-red">
+          {errors.text_associate?.message}
+        </p>
+      </div>
 
-          <div className="grid w-full justify-items-center">
-            <Button
-              className="px-2 py-3 text-lg"
-              type="green"
-              disabled={loadingCreateRecipe}
-            >
-              Envoyer ma recette
-            </Button>
-          </div>
-        </form>
+      {/* Submit */}
+
+      <div className="grid w-full justify-items-center">
+        <Button
+          className="px-2 py-3 text-lg"
+          type="green"
+          disabled={loadingCreateRecipe}
+        >
+          Envoyer ma recette
+        </Button>
+      </div>
+    </form>
   );
 };
 

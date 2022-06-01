@@ -33,7 +33,7 @@ export const SearchBarNav: React.FC<{
       };
       setObjectFilterSession(
         getObjectSession("filterListPage"),
-        currentSearchValue
+        currentSearchValue,
       );
       history.push(RouteName.recipes);
     } else {
@@ -46,14 +46,14 @@ export const SearchBarNav: React.FC<{
         type="text"
         className={`w-full h-full bg-transparent ml-2 | text-sm md:
           } focus:outline-none`}
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           if (e.key === "Enter") {
             handleSubmit();
           }
         }}
         placeholder="Une recette, un ingredient..."
         id={keyId}
-        onChange={(e) => {
+        onChange={e => {
           if (setValue) {
             setValue(e.target.value);
           }

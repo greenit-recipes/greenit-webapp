@@ -4,7 +4,9 @@ import { ADD_OR_REMOVE_LIKE_RECIPE } from "pages/CreateRecipe/CreateRecipeReques
 import React, { Suspense, useState } from "react";
 import authService from "services/auth.service";
 import { clapIconOff, clapIconOn } from "../../icons";
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
+);
 
 interface ILikeField {
   className?: string;
@@ -29,7 +31,9 @@ export const LikeField: React.FC<ILikeField> = ({
     <div
       className={
         isRecipeCard
-          ? `absolute h-6 lg:h-8 w-12 lg:w-14 z-0 ${isCarrousel ? "like-greenit top-1": "top-1 right-2"} | grid justify-items-center | bg-white rounded-xl ${className}`
+          ? `absolute h-6 lg:h-8 w-12 lg:w-14 z-0 ${
+              isCarrousel ? "like-greenit top-1" : "top-1 right-2"
+            } | grid justify-items-center | bg-white rounded-xl ${className}`
           : `flex ${className}`
       }
     >
@@ -63,28 +67,25 @@ export const LikeField: React.FC<ILikeField> = ({
               loading="lazy"
             />
           )}
-          <h2 className="flex self-center text-base lg:text-lg">
-            {nbrLiked}
-          </h2>
+          <h2 className="flex self-center text-base lg:text-lg">{nbrLiked}</h2>
         </button>
       ) : (
         <Suspense fallback={<Loading />}>
-
-        <ModalLogGreenit
-          btn={
-            <div className="flex self-center w-6 h-6 lg:w-8 lg:h-8 mr-3">
-              <img
-                src={clapIconOff}
-                className="flex self-center w-6 h-6 lg:w-8 lg:h-8"
-                alt="likes"
-                loading="lazy"
-              />
-              <h2 className="flex self-center text-lg lg:text-lg">
-                {nbrLiked}
-              </h2>
-            </div>
-          }
-        ></ModalLogGreenit>
+          <ModalLogGreenit
+            btn={
+              <div className="flex self-center w-6 h-6 lg:w-8 lg:h-8 mr-3">
+                <img
+                  src={clapIconOff}
+                  className="flex self-center w-6 h-6 lg:w-8 lg:h-8"
+                  alt="likes"
+                  loading="lazy"
+                />
+                <h2 className="flex self-center text-lg lg:text-lg">
+                  {nbrLiked}
+                </h2>
+              </div>
+            }
+          ></ModalLogGreenit>
         </Suspense>
       )}
     </div>

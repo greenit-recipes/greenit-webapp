@@ -48,7 +48,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
       variables: {
         ...data,
       },
-    }).then((res) => {
+    }).then(res => {
       if (!res?.data?.createOrder?.success) {
         setErrorRequest("error");
       }

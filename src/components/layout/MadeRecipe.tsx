@@ -5,7 +5,9 @@ import { AiFillCheckSquare } from "react-icons/ai";
 import { FiSquare } from "react-icons/fi";
 import authService from "services/auth.service";
 
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
+);
 
 interface IMadeRecipe {
   customClassName?: string;

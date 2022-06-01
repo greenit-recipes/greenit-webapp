@@ -21,8 +21,8 @@ export const Grid: React.FC<GridProps> = ({
   className,
 }) => {
   const sizes = Object.keys(size)
-    .filter((item) => item !== "default")
-    .map((item) => `${item}:grid-${type}s-${size[item]}`);
+    .filter(item => item !== "default")
+    .map(item => `${item}:grid-${type}s-${size[item]}`);
   return (
     <div
       className={`${className ?? ""} grid ${sizes.join(" ")} grid-${type}s-${

@@ -15,12 +15,38 @@ import { landingPageCategories } from "utils";
 import { Button, RecipeCard } from "../../components";
 import { useRecipesQuery } from "../../graphql";
 import {
-  Balance, BeurreKarite,
-  BicarSoude, Bocal, Bol, Bouteille, Catherine, Christelle, CireAbeille, Conseil,
-  Cooking, CremeCorp, Eau, EcorceArgume, Fouet, HuileRicin, IconAtelier, IconInternet, IconMarche, IconSite, Lessive, Livre, logo, Maryse, Producteur, SavonMarseille, Ustensil
+  Balance,
+  BeurreKarite,
+  BicarSoude,
+  Bocal,
+  Bol,
+  Bouteille,
+  Catherine,
+  Christelle,
+  CireAbeille,
+  Conseil,
+  Cooking,
+  CremeCorp,
+  Eau,
+  EcorceArgume,
+  Fouet,
+  HuileRicin,
+  IconAtelier,
+  IconInternet,
+  IconMarche,
+  IconSite,
+  Lessive,
+  Livre,
+  logo,
+  Maryse,
+  Producteur,
+  SavonMarseille,
+  Ustensil,
 } from "../../icons";
 import "./StarterPage.css";
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
+);
 
 const StarterPage = () => {
   const { data } = useRecipesQuery({
@@ -129,7 +155,7 @@ const StarterPage = () => {
               title: "2 Recettes simples",
               number: "3",
             },
-          ].map((item) => (
+          ].map(item => (
             <div
               className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
               onClick={() => item.fonction()}
@@ -480,8 +506,8 @@ const StarterPage = () => {
             </h2>
             <div className="flex flex-col m-4 w-60 items-center self-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
               <p className="text-center text-sm font-light  mb-2">
-                Nous conseillons Mycosmetik 🇫🇷 pour l'acessibilité et la
-                qualité des produits. 👇
+                Nous conseillons Mycosmetik 🇫🇷 pour l'acessibilité et la qualité
+                des produits. 👇
               </p>
               <div>
                 <p className="text-center mb-4">9,40 €</p>
@@ -490,8 +516,8 @@ const StarterPage = () => {
                   href="#"
                   onClick={() => {
                     window.open(
-                      "https://www.mycosmetik.fr/#ae411                      "
-                    )
+                      "https://www.mycosmetik.fr/#ae411                      ",
+                    );
                   }}
                   type="orange"
                   className="w-32 h-10"
@@ -713,7 +739,7 @@ const StarterPage = () => {
                   href="#"
                   onClick={() => {
                     window.open(
-                      "https://www.biocoop.fr/magasins-bio/Trouver-mon-magasin-Biocoop"
+                      "https://www.biocoop.fr/magasins-bio/Trouver-mon-magasin-Biocoop",
                     );
                   }}
                   type="orange"
@@ -760,7 +786,7 @@ const StarterPage = () => {
       )}
 
       <div className="grid grid-cols-2 gap-x-2 | mt-10 mb-20">
-        {recipes.map((recipe) => (
+        {recipes.map(recipe => (
           <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
         ))}
       </div>
@@ -833,8 +859,8 @@ const StarterPage = () => {
               <p className="text-sm text-center font-light">
                 En ligne, l’offre est bien plus grande, mais attention à la
                 qualité ! Nous recommandons certaines marques françaises comme :
-                Vos huiles, La compagnie des sens ou MyCosmetik. Sur ces
-                sites, vous trouverez absolument tout ce dont vous avez besoin :
+                Vos huiles, La compagnie des sens ou MyCosmetik. Sur ces sites,
+                vous trouverez absolument tout ce dont vous avez besoin :
                 ingrédients cosmétiques, huiles essentielles, poudres végétales
                 et ingrédients pour le ménage.
               </p>
@@ -974,7 +1000,7 @@ const StarterPage = () => {
           </p>
         </h3>
         <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150">
-          {landingPageCategories.slice(2, 3).map((item) => (
+          {landingPageCategories.slice(2, 3).map(item => (
             <CategoryCircle
               name={item.title}
               icon={item.icon}
@@ -983,7 +1009,7 @@ const StarterPage = () => {
           ))}
         </div>
         <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150">
-          {landingPageCategories.slice(0, 1).map((item) => (
+          {landingPageCategories.slice(0, 1).map(item => (
             <CategoryCircle
               name={item.title}
               icon={item.icon}

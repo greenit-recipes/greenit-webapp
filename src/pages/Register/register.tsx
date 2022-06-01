@@ -26,7 +26,9 @@ import authService, { CREATE_ACCOUNT } from "services/auth.service";
 import { Button, EditorGreenit, Footer, Navbar } from "../../components";
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import "./register.css";
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
+);
 
 const Register: React.FC = () => {
   const {
@@ -101,7 +103,7 @@ const Register: React.FC = () => {
         biographie: data.biographie,
         isCreatorProfil: true,
       },
-    }).then((dataAccount) => {
+    }).then(dataAccount => {
       if (!dataAccount?.data?.register?.success) return;
       history.push(RouteName.accountCreated);
     });
@@ -128,9 +130,7 @@ const Register: React.FC = () => {
             <ModalLogGreenit
               isModalLogin={true}
               btn={
-                <button
-                  className="flex items-center h-8 p-2 text-xl text-white align-middle border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green"
-                >
+                <button className="flex items-center h-8 p-2 text-xl text-white align-middle border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green">
                   <h3 className="text-sm align-middle">Se connecter</h3>
                 </button>
               }
@@ -140,21 +140,21 @@ const Register: React.FC = () => {
             <ModalLogGreenit
               btn={
                 <div className="flex flex-col items-center justify-center w-32 transition border shadow-lg cursor-pointer rounded-xl lg:w-52 h-28 hover:bg-grey hover:text-white">
-              <div className="size-emoji-modal">🕵️‍♀️</div>
-              <div className="mb-2">Explorateur</div>
+                  <div className="size-emoji-modal">🕵️‍♀️</div>
+                  <div className="mb-2">Explorateur</div>
                 </div>
               }
             ></ModalLogGreenit>
 
             <div className="flex flex-col items-center justify-center w-32 transition border-4 shadow-lg cursor-pointer bg-grey-300 rounded-xl lg:w-52 h-28 hover:bg-grey hover:text-white border-blue">
-            <div className="size-emoji-modal">🧑‍🎨</div>
+              <div className="size-emoji-modal">🧑‍🎨</div>
               <div className="mb-2">Créateur</div>
             </div>
           </div>
         </div>
         <form
           className="flex flex-col w-10/12 my-6 lg:w-4/12"
-                      // @ts-ignore
+          // @ts-ignore
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="flex flex-row items-center w-full mt-6 ">
@@ -211,7 +211,7 @@ const Register: React.FC = () => {
                 className="mr-2"
                 src={isRevealPwd ? mdpVisible : mdpNonVisible}
                 alt="voir le mot de passe"
-                onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                onClick={() => setIsRevealPwd(prevState => !prevState)}
               />
             </div>
           </div>
@@ -237,7 +237,7 @@ const Register: React.FC = () => {
                 className="mr-2"
                 src={isRevealPwd ? mdpVisible : mdpNonVisible}
                 alt="voir le mot de passe"
-                onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                onClick={() => setIsRevealPwd(prevState => !prevState)}
               />
             </div>
           </div>

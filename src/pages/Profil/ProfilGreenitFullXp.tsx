@@ -27,7 +27,7 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
   parentFunction,
 }) => {
   const [isMadeBeginnerBox, setMadeBeginnerBox] = useState(
-    isRecipeMadeBeginnerBox || false
+    isRecipeMadeBeginnerBox || false,
   );
   const [showModalHelp, setShowModalHelp] = useState(false);
   const [updateRecipeFullXp] = useMutation(UPDATE_RECIPE_MADE_BEGINNER_BOX);
@@ -58,50 +58,49 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
         />
       </div>
       <p className="text-center mt-2 mb-2">Débutons dans le DIY ensemble !</p>
-        <div className="flex flex-col md:flex-row justify-around">
-            <div className="md:w-1/2">
-                <Link to={RouteName.tutoFullXpBeginner}>
-                    <button
-                        className={`btn-single-page justify-center mb-2 mt-2 p-2 flex w-full bg-green text-white`}
-                    >
-                        J’ai reçu ma box Premiers Pas !
-                    </button>
-                </Link>
-            </div>
-
-            <div className="md:w-5/12 relative">
-                <button
-                    className={`btn-single-page justify-center mt-2 mb-4 p-2 flex w-full bg-white`}
-                    onClick={() => {
-                        setMadeBeginnerBox(!isMadeBeginnerBox);
-                        updateRecipeFullXp({
-                            variables: {
-                                isRecipeMadeBeginnerBox: !isMadeBeginnerBox,
-                            },
-                        }).then(() => {
-                            return parentFunction()
-                        });
-                    }}
-                >
-                    <div className={`flex justify-items-center `}>
-                        {isMadeBeginnerBox ? (
-                            <AiFillCheckSquare className="w-6 h-6"></AiFillCheckSquare>
-                        ) : (
-                            <FiSquare className="w-6 h-6"></FiSquare>
-                        )}
-                        <div className="flex flex-col justify-center ml-1">
-                            J’ai réalisé les recettes !
-                        </div>
-                    </div>
-                </button>
-                <div className="transform rotate-180 absolute right-0 top-3/4">
-                    ⤹
-                </div>
-                <h3 className="absolute right-0 text-xs w-56 text-center">
-                    Clique ici une fois que tu as réalisé les recettes et calcule ton impact DIY !
-                </h3>
-            </div>
+      <div className="flex flex-col md:flex-row justify-around">
+        <div className="md:w-1/2">
+          <Link to={RouteName.tutoFullXpBeginner}>
+            <button
+              className={`btn-single-page justify-center mb-2 mt-2 p-2 flex w-full bg-green text-white`}
+            >
+              J’ai reçu ma box Premiers Pas !
+            </button>
+          </Link>
         </div>
+
+        <div className="md:w-5/12 relative">
+          <button
+            className={`btn-single-page justify-center mt-2 mb-4 p-2 flex w-full bg-white`}
+            onClick={() => {
+              setMadeBeginnerBox(!isMadeBeginnerBox);
+              updateRecipeFullXp({
+                variables: {
+                  isRecipeMadeBeginnerBox: !isMadeBeginnerBox,
+                },
+              }).then(() => {
+                return parentFunction();
+              });
+            }}
+          >
+            <div className={`flex justify-items-center `}>
+              {isMadeBeginnerBox ? (
+                <AiFillCheckSquare className="w-6 h-6"></AiFillCheckSquare>
+              ) : (
+                <FiSquare className="w-6 h-6"></FiSquare>
+              )}
+              <div className="flex flex-col justify-center ml-1">
+                J’ai réalisé les recettes !
+              </div>
+            </div>
+          </button>
+          <div className="transform rotate-180 absolute right-0 top-3/4">⤹</div>
+          <h3 className="absolute right-0 text-xs w-56 text-center">
+            Clique ici une fois que tu as réalisé les recettes et calcule ton
+            impact DIY !
+          </h3>
+        </div>
+      </div>
       <p
         className="text-center mt-10 underline cursor-pointer"
         onClick={() => setShowModalHelp(true)}

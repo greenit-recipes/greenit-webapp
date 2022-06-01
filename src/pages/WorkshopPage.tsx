@@ -4,9 +4,7 @@ import { includes } from "lodash";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, useHistory } from "react-router-dom";
-import {
-  logo, PhotoAtelier, Webcam
-} from "../../src/icons";
+import { logo, PhotoAtelier, Webcam } from "../../src/icons";
 import { Container, Footer, Navbar } from "../components";
 import useIsMobile from "../hooks/isMobile";
 

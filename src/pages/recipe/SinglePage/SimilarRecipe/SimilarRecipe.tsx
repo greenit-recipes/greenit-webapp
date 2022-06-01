@@ -8,7 +8,7 @@ interface ISimilarRecipe {
   data: any;
 }
 
-export const SimilarRecipe: React.FC<ISimilarRecipe> = (data) => {
+export const SimilarRecipe: React.FC<ISimilarRecipe> = data => {
   const isMobile = useIsMobile();
 
   const { data: dataSimilarRecipe } = useRecipesQuery({
@@ -54,13 +54,14 @@ export const SimilarRecipe: React.FC<ISimilarRecipe> = (data) => {
           <div className="w-max flex">
             {
               // @ts-ignore
-              recipes?.map((recipe) => (
+              recipes?.map(recipe => (
                 <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
               ))
             }
           </div>
         </div>
       ) : (
+        //@ts-ignore
         <Carousel
           swipeable={true}
           showDots={true}
@@ -82,8 +83,12 @@ export const SimilarRecipe: React.FC<ISimilarRecipe> = (data) => {
         >
           {
             // @ts-ignore
-            recipes?.map((recipe) => (
-              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} isCarrousel={true}/>
+            recipes?.map(recipe => (
+              <RecipeCard
+                recipe={recipe?.node}
+                key={recipe?.node?.id}
+                isCarrousel={true}
+              />
             ))
           }
         </Carousel>

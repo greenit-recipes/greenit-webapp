@@ -3,10 +3,11 @@
 @tailwind utilities;
 @font-face {
   font-family: "Quicksand";
-  src: local("Quicksand-Regular"), url(./fonts/Quicksand-Regular.ttf) format("truetype");
+  src: local("Quicksand-Regular"),
+    url(./fonts/Quicksand-Regular.ttf) format("truetype");
 }
 
 html {
   font-family: Quicksand;
-  background-color: #FDFDFD;
+  background-color: #fdfdfd;
 }

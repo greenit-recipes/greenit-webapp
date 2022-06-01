@@ -52,7 +52,7 @@ const ProfilPage: React.FC = () => {
     setImage(
       user?.imageProfile
         ? getImagePath(user?.imageProfile)
-        : user?.photoUrl + "?type=large"
+        : user?.photoUrl + "?type=large",
     );
   }, [user]);
 
@@ -80,7 +80,7 @@ const ProfilPage: React.FC = () => {
           className="absolute w-32 h-32 transition-all duration-150 ease-linear rounded-full cursor-pointer md:h-40 md:w-40"
           onClick={() => setShowModalImage(true)}
         >
-          {!!!userImage && (
+          {!userImage && (
             <div className="grid items-center w-full h-full rounded-full justify-items-center">
               <h2 className="p-2 text-xs bg-white opacity-75 text-grey-700 rounded-3xl">
                 Ajoute ta photo

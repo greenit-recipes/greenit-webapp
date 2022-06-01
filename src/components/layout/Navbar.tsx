@@ -1,31 +1,62 @@
 import { RouteName } from "App";
 import "components/layout/Navbar.css";
-import React, {Suspense, useEffect, useState} from "react";
-import { Link } from "react-router-dom";
+import React, { Suspense, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import authService from "services/auth.service";
 import { SearchBar } from ".";
 import { Button } from "../";
 import useIsMobile from "../../hooks/isMobile";
 import { logo } from "../../icons";
 import { NavButton } from "../misc/NavButton";
-import {hasBoxBeginnerUrl} from "../../helpers/beginnerbox.helper";
+import { hasBoxBeginnerUrl } from "../../helpers/beginnerbox.helper";
 import { Loading } from "components/layout/Loading";
+import debounce from "lodash/debounce";
+import { useQuery } from "@apollo/client";
+import { SEARCH_AUTO_COMPLETE_RECIPE } from "../../pages/AutocompleteRequest";
 
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
+);
 
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
+  const location = useLocation();
+  const [showSearchBar, setShowSearchBar] = useState<boolean>(
+    location.pathname !== RouteName.accueil &&
+      location.pathname !== RouteName.recipes,
+  );
   const [toggle, setToggle] = useState(false);
-  const [hasUrl, setHasUrl] = useState(!!(hasBoxBeginnerUrl() && ((localStorage.getItem("isBeginnerBox") === "true") || localStorage.setItem("isBeginnerBox", "true"))))
+  const [hasUrl, setHasUrl] = useState(
+    !!(
+      hasBoxBeginnerUrl() &&
+      (localStorage.getItem("isBeginnerBox") === "true" ||
+        localStorage.setItem("isBeginnerBox", "true"))
+    ),
+  );
 
   const isLoggedIn = authService.isLoggedIn();
 
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const setSearchTermDebounced = debounce(setSearchTerm, 250);
 
-
-  const resetFilter = () =>window.sessionStorage.setItem(
-    "filterListPage",
-    JSON.stringify({})
+  // Ne par run au premier lancement
+  const { data: autoCompleteData, loading: autoCompleteLoading } = useQuery(
+    SEARCH_AUTO_COMPLETE_RECIPE,
+    {
+      fetchPolicy: "network-only",
+      variables: { search: searchTerm },
+      skip: !searchTerm,
+    },
   );
+
+  const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {
+    recipes: [],
+    ingredients: [],
+    totalRecipes: 0,
+  };
+
+  const resetFilter = () =>
+    window.sessionStorage.setItem("filterListPage", JSON.stringify({}));
 
   if (isMobile) {
     return (
@@ -34,7 +65,7 @@ export const Navbar: React.FC = () => {
           <div
             className="z-50 items-center w-full ml-2"
             onClick={() => {
-              setToggle((prevState) => !prevState);
+              setToggle(prevState => !prevState);
             }}
           >
             <div className="grid gap-2">
@@ -72,22 +103,22 @@ export const Navbar: React.FC = () => {
             </div>
           ) : (
             <div className="grid w-full justify-items-end">
-                  <Suspense fallback={<Loading />}>
-              <ModalLogGreenit
-                btn={
-                  <>
-                    <button
-                      id="Create_Profil"
-                      className="p-2 mr-1 rounded-lg bg-blue"
-                    >
-                      <h2 id="Create_Profil" className="text-xs text-white">
-                        Créer un profil
-                      </h2>
-                    </button>
-                  </>
-                }
-                show={hasUrl}
-              ></ModalLogGreenit>
+              <Suspense fallback={<Loading />}>
+                <ModalLogGreenit
+                  btn={
+                    <>
+                      <button
+                        id="Create_Profil"
+                        className="p-2 mr-1 rounded-lg bg-blue"
+                      >
+                        <h2 id="Create_Profil" className="text-xs text-white">
+                          Créer un profil
+                        </h2>
+                      </button>
+                    </>
+                  }
+                  show={hasUrl}
+                ></ModalLogGreenit>
               </Suspense>
             </div>
           )}
@@ -105,7 +136,11 @@ export const Navbar: React.FC = () => {
                 Accueil
               </h2>
             </Link>
-            <Link className="p-2" to={RouteName.recipes} onClick={() => resetFilter()}>
+            <Link
+              className="p-2"
+              to={RouteName.recipes}
+              onClick={() => resetFilter()}
+            >
               <div className="border-b-2 border-transparent">
                 <h2 id="recipes" className="text-white focus:text-green">
                   Recettes
@@ -144,18 +179,17 @@ export const Navbar: React.FC = () => {
                   Mon profil
                 </h2>
               </Link>
-            ) : (                  <Suspense fallback={<Loading />}>
-
-
-              <ModalLogGreenit
-                isModalLogin={true}
-                show={hasUrl}
-                btn={
-                  <div className="p-2">
-                    <h2 className="text-white">Se connecter</h2>{" "}
-                  </div>
-                }
-              ></ModalLogGreenit>
+            ) : (
+              <Suspense fallback={<Loading />}>
+                <ModalLogGreenit
+                  isModalLogin={true}
+                  show={hasUrl}
+                  btn={
+                    <div className="p-2">
+                      <h2 className="text-white">Se connecter</h2>{" "}
+                    </div>
+                  }
+                ></ModalLogGreenit>
               </Suspense>
             )}
           </div>
@@ -163,7 +197,6 @@ export const Navbar: React.FC = () => {
       </div>
     );
   }
-
 
   return (
     <div className="flex flex-row h-16 w-full | sticky top-0 bg-white z-50">
@@ -178,7 +211,11 @@ export const Navbar: React.FC = () => {
           />
         </Link>
       </div>
-      <div className="flex flex-row items-center w-2/3 h-full ml-4 justify-items-start">
+      <div
+        className={`flex flex-row items-center w-${
+          showSearchBar ? "[45%]" : "3/5"
+        } h-full ml-4 justify-items-start`}
+      >
         <Link to={RouteName.accueil}>
           <NavButton id="home" type="black">
             Accueil
@@ -195,7 +232,11 @@ export const Navbar: React.FC = () => {
               <div className="flex flex-col pt-4 text-lg">
                 <h2 className="mb-2 cursor-default">Raccourcis</h2>
 
-                <Link id="allRecipes" to={RouteName.recipes} onClick={() => resetFilter()}>
+                <Link
+                  id="allRecipes"
+                  to={RouteName.recipes}
+                  onClick={() => resetFilter()}
+                >
                   <h3
                     id="allRecipes"
                     className="mb-2 cursor-pointer hover:text-green"
@@ -436,8 +477,26 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="grid items-center w-3/5 justify-self-end">
-        <div className="flex items-center justify-self-end">
+      {/*Todo : Update width dynamically with custom breakpoints on smaller screens*/}
+      {showSearchBar && (
+        <div className="flex flex-row w-1/4 h-full items-center">
+          <SearchBar
+            keyId="searchBarNav"
+            size="small"
+            suggestionIsActive={true}
+            setValue={setSearchTermDebounced}
+            isLoading={autoCompleteLoading}
+            // @ts-ignore
+            suggestions={recipesAutoComplete}
+          />
+        </div>
+      )}
+      <div
+        className={`grid items-center w-${
+          showSearchBar ? "1/4" : "3/5"
+        } justify-self-end`}
+      >
+        <div className="flex space-between items-center justify-self-end">
           {isLoggedIn ? (
             <Link to={RouteName.createRecipe} className="flex">
               <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
@@ -455,19 +514,19 @@ export const Navbar: React.FC = () => {
             </Link>
           ) : (
             <Link to={RouteName.createRecipe} className="flex">
-            <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
-              <div className="flex">
-                <Button
-                  id="Share_a_recipe"
-                  type="grey"
-                  rounded="lg"
-                  className="inline justify-end self-center | mr-2 cursor-pointer"
-                >
-                  Partager une recette
-                </Button>
+              <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
+                <div className="flex">
+                  <Button
+                    id="Share_a_recipe"
+                    type="grey"
+                    rounded="lg"
+                    className="inline justify-end self-center | mr-2 cursor-pointer"
+                  >
+                    Partager une recette
+                  </Button>
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
           )}
           {isLoggedIn ? (
             <Link to={RouteName.profil}>
@@ -486,22 +545,21 @@ export const Navbar: React.FC = () => {
             </Link>
           ) : (
             <Suspense fallback={<Loading />}>
-
-            <ModalLogGreenit
-              show={hasUrl}
-              btn={
-                <div className="flex">
-                  <Button
-                    id="Create_Profil"
-                    type="blue"
-                    rounded="lg"
-                    className="inline justify-end self-center | cursor-pointer mr-2"
-                  >
-                    Accéder au profil
-                  </Button>
-                </div>
-              }
-            ></ModalLogGreenit>
+              <ModalLogGreenit
+                show={hasUrl}
+                btn={
+                  <div className="flex">
+                    <Button
+                      id="Create_Profil"
+                      type="blue"
+                      rounded="lg"
+                      className="inline justify-end self-center | cursor-pointer mr-2"
+                    >
+                      Accéder au profil
+                    </Button>
+                  </div>
+                }
+              ></ModalLogGreenit>
             </Suspense>
           )}
         </div>

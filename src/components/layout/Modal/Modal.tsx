@@ -6,8 +6,7 @@ import useIsMobile from "hooks/isMobile";
 import { IoClose } from "react-icons/io5";
 
 const Modal = (props: any) => {
-
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
 
   const closeOnEscapeKeyDown = (e: any) => {
     if ((e.charCode || e.keyCode) === 27) {
@@ -28,17 +27,33 @@ const Modal = (props: any) => {
       unmountOnExit
       timeout={{ enter: 0, exit: 300 }}
     >
-      <div className={`modal ${props.isCenter ? "modal-is-center" : ""} `} onClick={props.onClose}>
-        <div className={`modal-content ${isMobile ? "w-11/12 my-5 mx-5": "mt-5 mb-5"}`} onClick={e => e.stopPropagation()}>
+      <div
+        className={`modal ${props.isCenter ? "modal-is-center" : ""} `}
+        onClick={props.onClose}
+      >
+        <div
+          className={`modal-content ${
+            isMobile ? "w-11/12 my-5 mx-5" : "mt-5 mb-5"
+          }`}
+          onClick={e => e.stopPropagation()}
+        >
           <div className="modal-header">
             <h2 className="modal-title">{props.title}</h2>
-            <button onClick={props.onClose} id="croix-icon-fermer" className="button absolute right-2">
-              <IoClose className="h-10 w-7"/>
+            <button
+              onClick={props.onClose}
+              id="croix-icon-fermer"
+              className="button absolute right-2"
+            >
+              <IoClose className="h-10 w-7" />
             </button>
           </div>
           <div className="modal-body">{props.children}</div>
           <div className="modal-footer">
-            <button onClick={props.onClose} id="modal-fermer-login-register" className="button">
+            <button
+              onClick={props.onClose}
+              id="modal-fermer-login-register"
+              className="button"
+            >
               Fermer
             </button>
           </div>
@@ -46,8 +61,8 @@ const Modal = (props: any) => {
       </div>
     </CSSTransition>,
     // @ts-ignore
-    document.getElementById("root")
+    document.getElementById("root"),
   );
 };
 
-export default Modal
+export default Modal;

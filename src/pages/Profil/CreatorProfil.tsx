@@ -42,10 +42,10 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
           .array(
             yup.object({
               url: yup.string().required("Ce champ est obligatoire."),
-            })
+            }),
           )
           .min(1, "Ce champ est obligatoire"),
-      })
+      }),
     ),
   });
 
@@ -56,7 +56,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
   } = useForm();
 
   const onSubmitHandler = (data: { urlsSocialMedia: [{ url: string }] }) => {
-    const socialsMedia = filter(data?.urlsSocialMedia, (x) => !!x?.url);
+    const socialsMedia = filter(data?.urlsSocialMedia, x => !!x?.url);
     updateAccount({
       variables: {
         urlsSocialMedia: JSON.stringify(socialsMedia),
@@ -87,13 +87,14 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
     name: "urlsSocialMedia",
   });
 
-  // @ts-ignore
-  const socialMedias = user?.urlsSocialMedia === "{}" ? null : user?.urlsSocialMedia;
+  const socialMedias =
+    /* @ts-ignore */
+    user?.urlsSocialMedia === "{}" ? null : user?.urlsSocialMedia;
 
   useEffect(() => {
     // @ts-ignore
     JSON.parse(socialMedias)?.map((data: any, index: any) =>
-      urlsSocialMediaAppend({ url: data?.url }, { shouldFocus: false })
+      urlsSocialMediaAppend({ url: data?.url }, { shouldFocus: false }),
     );
     urlsSocialMediaAppend({}, { shouldFocus: true });
   }, []);
@@ -177,9 +178,10 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
           </div>
           {!isEditor ? (
             <div>
-              <form 
-                                            // @ts-ignore
-              onSubmit={handleSubmitBio(onSubmitHandlerBio)}>
+              <form
+                // @ts-ignore
+                onSubmit={handleSubmitBio(onSubmitHandlerBio)}
+              >
                 <Controller
                   name="bio"
                   render={({ field }) => {
@@ -217,7 +219,9 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
               <div className="flex flex-row flex-wrap gap-2 md:justify-center">
                 {
                   // @ts-ignore
-                  !isEmpty(JSON.parse(socialMedias)) && JSON.parse(socialMedias)?.map((data: any, index: any) => (
+                  !isEmpty(JSON.parse(socialMedias)) &&
+                    /* @ts-ignore */
+                    JSON.parse(socialMedias)?.map((data: any, index: any) => (
                       <a href={data?.url} key={index}>
                         <div className="flex flex-row items-center justify-center gap-2 p-1 border rounded-lg shadow-lg lg:p-2">
                           <img

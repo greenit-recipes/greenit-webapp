@@ -24,34 +24,38 @@ const ForgetPassword: React.FC = () => {
   });
 
   const [message, setMessage] = useState("");
-  const [sendEmailResetPassword, { data, loading, error }] = useMutation(SEND_EMAIL_RESET_PASSWORD, {
-    errorPolicy: "all",
-  });
+  const [sendEmailResetPassword, { data, loading, error }] = useMutation(
+    SEND_EMAIL_RESET_PASSWORD,
+    {
+      errorPolicy: "all",
+    },
+  );
 
-  const onSubmitHandler = (data: { email: string; }) => {
+  const onSubmitHandler = (data: { email: string }) => {
     sendEmailResetPassword({
       variables: {
         email: data.email,
       },
-    })
-    setMessage("Tu as reçu un email si tu as déjà un compte chez Greenit")
+    });
+    setMessage("Tu as reçu un email si tu as déjà un compte chez Greenit");
     reset();
   };
-  
+
   return (
     <div className="grid w-full justify-items-center">
       <Navbar />
       <Helmet>
-        <meta name="robots" content="noindex"/>
+        <meta name="robots" content="noindex" />
       </Helmet>
       <BackgroundImage className="overflow-hidden" />
       <h3 className="text-2xl w-2/3 md:text-3xl | mt-16 text-center">
-      Réinitialise ton mot de passe depuis ta boîte mail.<br />
+        Réinitialise ton mot de passe depuis ta boîte mail.
+        <br />
       </h3>
       <div className="w-full max-w-xs mt-10 md:max-w-lg">
         <form
           className="p-10 mt-5 mb-4 bg-white shadow-lg rounded-xl"
-                      // @ts-ignore
+          // @ts-ignore
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
@@ -67,15 +71,15 @@ const ForgetPassword: React.FC = () => {
             ></input>
           </div>
           <div className="flex items-center justify-between">
-            <button
-              className="flex items-center justify-center h-10 p-3 mr-5 text-lg text-white border-2 border-transparent rounded-lg cursor-pointer bg-blue bold hover:bg-white hover:border-blue hover:text-blue"
-            >
+            <button className="flex items-center justify-center h-10 p-3 mr-5 text-lg text-white border-2 border-transparent rounded-lg cursor-pointer bg-blue bold hover:bg-white hover:border-blue hover:text-blue">
               Envoyer
             </button>
           </div>
-         {message && <div className="flex items-center justify-between">
-          Mail de réinitialisation de mot de passe envoyé
-          </div> }
+          {message && (
+            <div className="flex items-center justify-between">
+              Mail de réinitialisation de mot de passe envoyé
+            </div>
+          )}
         </form>
       </div>
     </div>

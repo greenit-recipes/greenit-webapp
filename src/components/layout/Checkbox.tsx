@@ -43,7 +43,7 @@ export const Checkbox: React.FC<ICheckbox> = ({
     isChecked
       ? [checkboxAnimationRef, checkmarkAnimationRef]
       : [checkmarkAnimationRef, checkboxAnimationRef],
-    [0, 0.1]
+    [0, 0.1],
   );
 
   return (
@@ -68,7 +68,7 @@ export const Checkbox: React.FC<ICheckbox> = ({
               d="M1 4.5L5 9L14 1"
               strokeWidth="2"
               stroke="#fff"
-              ref={(ref) => {
+              ref={ref => {
                 if (ref) {
                   // @ts-ignore
                   setCheckmarkLength(ref.getTotalLength());
@@ -81,7 +81,9 @@ export const Checkbox: React.FC<ICheckbox> = ({
             />
           </animated.svg>
         </div>
-        <div className={"text-left"} id={"filter-" + option.title}>{option.title}</div>
+        <div className={"text-left"} id={"filter-" + option.title}>
+          {option.title}
+        </div>
       </label>
     </button>
   );

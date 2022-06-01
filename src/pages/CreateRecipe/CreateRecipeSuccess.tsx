@@ -7,7 +7,9 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import authService from "services/auth.service";
 
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
+);
 
 const RecipeCreatedPage = () => {
   useEffect(() => {

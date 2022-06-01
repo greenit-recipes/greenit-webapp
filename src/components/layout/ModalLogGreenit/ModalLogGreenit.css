@@ -6,11 +6,11 @@
   top: 0px;
   right: 0px;
   left: 0px;
-  bottom: 0px
+  bottom: 0px;
 }
 
 .no-scroll {
-  margin: 0; 
-  height: 100%; 
-  overflow: hidden
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
 }

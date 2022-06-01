@@ -29,7 +29,7 @@ const Block: React.FC<{
           paddingRight: isMobile ? "2.5rem" : `${padding ?? "20%"}`,
           paddingLeft: isMobile ? "2.5rem" : `${padding ?? "20%"}`,
         },
-        style ?? {}
+        style ?? {},
       )}
     >
       <h2 className="mt-20 text-3xl lg:text-3xl">{title}</h2>

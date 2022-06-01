@@ -3,7 +3,7 @@ import useIsMobile from "hooks/isMobile";
 import {
   ingredientBeginner,
   ustensilsAlreadyHaveBeginner,
-  ustensilsBeginner
+  ustensilsBeginner,
 } from "pages/GreenitFullXp/FullXpHelper";
 import { SectionIngredient } from "pages/recipe/SinglePage/IngredientUsentil/SectionIngredient";
 import { SectionUstensil } from "pages/recipe/SinglePage/IngredientUsentil/SectionUsentil";
@@ -25,7 +25,6 @@ const list = (
 const IngredientUsentilFullXp = () => {
   const isMobile = useIsMobile();
   const [isArrowDown, setArrowDown] = useState(true);
-
   useImportScript("/assets/vendors/facebook-script.js");
   useEffect(() => {
     if (window.pageYOffset > 0) {

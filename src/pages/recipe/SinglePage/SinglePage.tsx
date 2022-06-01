@@ -41,7 +41,9 @@ import { HeaderRecipe } from "./HeaderRecipe/HeaderRecipe";
 import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
 import "./SinglePage.css";
 
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
+);
 
 const closest = (needle: number, haystack: any[]) => {
   return haystack.reduce((r: any, b: any) => {
@@ -84,7 +86,10 @@ const RecipeSinglePage = () => {
 
   const [showModal, setShowModal] = useState(false);
   // @ts-ignore
-  const [typeModal, setTypeModal] = useState<"plastic" | "money" | "substance">(null);
+  const [typeModal, setTypeModal] = useState<"plastic" | "money" | "substance">(
+    /* @ts-ignore */
+    null,
+  );
   const [numberModal, setNumberModal] = useState(0);
 
   // Comments
@@ -163,7 +168,8 @@ const RecipeSinglePage = () => {
         <div
           className="absolute left-0 z-20 grid w-8 h-8 ml-3 rounded-full cursor-pointer top-14 lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
           onClick={() => {
-            if (getObjectSession("pathname")) history.goBack(); // need to have previous path
+            if (getObjectSession("pathname"))
+              history.goBack(); // need to have previous path
             else history.push(RouteName.recipes);
           }}
         >
@@ -196,7 +202,7 @@ const RecipeSinglePage = () => {
                     customClassName="ml-3 lg:ml-10"
                     recipe={data?.recipe}
                   />
-                  <div className="flex w-10 h-10 ml-3 lg:ml-10 w-28 btn-single-page">
+                  <div className="flex h-10 ml-3 lg:ml-10 w-28 btn-single-page">
                     <RWebShare
                       data={{
                         text: recipe?.titleSeo,
@@ -221,11 +227,12 @@ const RecipeSinglePage = () => {
                   </div>
                 </div>
               </div>
-              <Modal
-                onClose={() => setShowModal(false)}
-                show={showModal}
-              >
-                <ModalKpi substances={recipe?.substances} nameKpi={typeModal} number={numberModal}></ModalKpi>
+              <Modal onClose={() => setShowModal(false)} show={showModal}>
+                <ModalKpi
+                  substances={recipe?.substances}
+                  nameKpi={typeModal}
+                  number={numberModal}
+                ></ModalKpi>
               </Modal>
               {!isMobile && (
                 <div className="flex items-center justify-center mt-10">
@@ -417,6 +424,7 @@ const RecipeSinglePage = () => {
                     ></img>
                   </div>
                 ) : (
+                  //@ts-ignore
                   <ReactPlayer
                     // @ts-ignore
                     url={
@@ -445,7 +453,7 @@ const RecipeSinglePage = () => {
                       videoDuration,
                       recipe.instructions.map((item: any) => {
                         return getSecondsFromDuration(item.timestamp);
-                      })
+                      }),
                     );
                     return (
                       <div
@@ -485,7 +493,7 @@ const RecipeSinglePage = () => {
                     videoDuration,
                     recipe.instructions.map((item: any) => {
                       return getSecondsFromDuration(item.timestamp);
-                    })
+                    }),
                   );
                   return (
                     <div

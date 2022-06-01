@@ -5,14 +5,16 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
-
 interface IProfilGreenitFullXp {
-    messageModal: string;
-    subMessageModal: string;
-    otherMesssageModal?: string;
-  }
-const ModalHelp : React.FC<IProfilGreenitFullXp> =  ({messageModal, subMessageModal, otherMesssageModal}) => {
-
+  messageModal: string;
+  subMessageModal: string;
+  otherMesssageModal?: string;
+}
+const ModalHelp: React.FC<IProfilGreenitFullXp> = ({
+  messageModal,
+  subMessageModal,
+  otherMesssageModal,
+}) => {
   const schema = yup.object().shape({
     msg: yup.string().required("Votre message est vide"),
   }); // _ - .
@@ -21,7 +23,7 @@ const ModalHelp : React.FC<IProfilGreenitFullXp> =  ({messageModal, subMessageMo
   const [errorEmail, setErrorEmail] = useState("");
 
   const [emailGreenitFullXp, { data, loading, error }] = useMutation(
-    EMAIL_GREENIT_FULL_XP
+    EMAIL_GREENIT_FULL_XP,
   );
 
   const {
@@ -38,31 +40,35 @@ const ModalHelp : React.FC<IProfilGreenitFullXp> =  ({messageModal, subMessageMo
   const onSubmitHandler = (data: any) => {
     //console.log("data", data);
     emailGreenitFullXp({
-        variables: {
-          question: data?.msg,
-          typeEmail: messageModal,
-        },
-      }).then((dataReponse) => {
-        reset()
-        if (dataReponse?.data?.emailGreenitFullXp?.success) { 
-            setMessage("C’est envoyé👌 On reviendra vers toi le plus vite possible !")
-        } else {
-            setErrorEmail("Un problème est survenu")
-        }
-      });
+      variables: {
+        question: data?.msg,
+        typeEmail: messageModal,
+      },
+    }).then(dataReponse => {
+      reset();
+      if (dataReponse?.data?.emailGreenitFullXp?.success) {
+        setMessage(
+          "C’est envoyé👌 On reviendra vers toi le plus vite possible !",
+        );
+      } else {
+        setErrorEmail("Un problème est survenu");
+      }
+    });
   };
 
   return (
     <div>
       <p className="text-xl mt-5 text-center font-medium md:font-normal whitespace-pre-wrap">
-      {messageModal} 
+        {messageModal}
       </p>
       <p className="text-center mt-5 text-base font-medium md:font-normal whitespace-pre-wrap">
         {subMessageModal}
       </p>
-      { otherMesssageModal && <p className="text-center mt-5 text-lg font-medium md:font-normal whitespace-pre-wrap">
-        {otherMesssageModal}
-      </p> }
+      {otherMesssageModal && (
+        <p className="text-center mt-5 text-lg font-medium md:font-normal whitespace-pre-wrap">
+          {otherMesssageModal}
+        </p>
+      )}
       <div className="">
         <form
           className="p-5 mt-2 bg-white text-center"

@@ -12,7 +12,7 @@ interface IHeadBand {
 const HeadBand: React.FC<IHeadBand> = ({
   setNavigation,
   currentPositionMenu,
-  idButton
+  idButton,
 }) => {
   return (
     <div className="headband h-16 pb-2 bg-white">
@@ -25,15 +25,13 @@ const HeadBand: React.FC<IHeadBand> = ({
         <CheckoutFullXp />
       ) : (
         <button
-        id={`${idButton}-etape-suivante`}
-        className="h-10 rounded-lg bg-green w-32 lg:w-72"
+          id={`${idButton}-etape-suivante`}
+          className="h-10 rounded-lg bg-green w-32 lg:w-72"
           onClick={() => {
             setNavigation(menuFullXp[currentPositionMenu + 1].name);
           }}
         >
-          <h2 className="text-white">
-            Étape suivante
-          </h2>
+          <h2 className="text-white">Étape suivante</h2>
         </button>
       )}
     </div>

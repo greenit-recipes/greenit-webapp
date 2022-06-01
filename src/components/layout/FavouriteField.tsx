@@ -6,7 +6,7 @@ import authService from "services/auth.service";
 import { likedIconOff, likedIconOn } from "../../icons";
 
 const ModalLogGreenit = React.lazy(
-  () => import("components/layout/ModalLogGreenit/ModalLogGreenit")
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
 
 interface IFavouriteField {
@@ -30,11 +30,11 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
 }) => {
   const isLoggedIn = authService.isLoggedIn();
   const [isFavorite, setFavorite] = useState(
-    recipe?.isAddToFavoriteByCurrentUser
+    recipe?.isAddToFavoriteByCurrentUser,
   );
 
   const [addOrRemoveFavoriteRecipe] = useMutation(
-    ADD_OR_REMOVE_FAVORITE_RECIPE
+    ADD_OR_REMOVE_FAVORITE_RECIPE,
   );
 
   return (

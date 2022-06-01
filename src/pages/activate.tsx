@@ -11,11 +11,14 @@ import authService, {
 import "../App.css";
 import { Footer, Loading, Navbar } from "../components";
 
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
+);
 
 const ActivateAccount: React.FC = () => {
-  const { tokenActivationAccount } =
-    useParams<{ tokenActivationAccount: string }>();
+  const { tokenActivationAccount } = useParams<{
+    tokenActivationAccount: string;
+  }>();
 
   const [welcomeNewUser] = useMutation(WELCOME_NEW_USER);
 
@@ -25,7 +28,7 @@ const ActivateAccount: React.FC = () => {
       variables: {
         token: tokenActivationAccount,
       },
-    }
+    },
   );
 
   const [resendActivationEMail] = useMutation(RESEND_ACTIVATION_EMAIL, {
@@ -33,7 +36,7 @@ const ActivateAccount: React.FC = () => {
   });
 
   useEffect(() => {
-    verifyAccount().then((dataReponse) => {
+    verifyAccount().then(dataReponse => {
       if (!authService.getEmail()) return;
       if (dataReponse?.data?.verifyAccount?.success) {
         welcomeNewUser({
@@ -56,7 +59,8 @@ const ActivateAccount: React.FC = () => {
         <meta name="robots" content="noindex" />
       </Helmet>
       <Navbar />
-      {(data?.verifyAccount?.success || data?.verifyAccount?.errors?.nonFieldErrors) ? (
+      {data?.verifyAccount?.success ||
+      data?.verifyAccount?.errors?.nonFieldErrors ? (
         <div className="grid justify-items-center auto-rows-max h-screen mt-28">
           <div className="w-3/4">
             <h1 className="text-center text-2xl md:text-3xl">

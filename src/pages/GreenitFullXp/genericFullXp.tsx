@@ -16,11 +16,11 @@ const IngredientUsentilFullXp = React.lazy(
   () =>
     import(
       "pages/GreenitFullXp/IngredientUstensilFullXp/IngredientUsentilFullXp"
-    )
+    ),
 );
 
 const ConfirmationFullXp = React.lazy(
-  () => import("pages/GreenitFullXp/ConfirmationFullXp/ConfirmationFullXp")
+  () => import("pages/GreenitFullXp/ConfirmationFullXp/ConfirmationFullXp"),
 );
 
 //Todo : Refactor
@@ -65,7 +65,7 @@ const GenericFullXp = () => {
       <Navbar />
       <div className="flex flex-row relative">
         <div
-          className="absolute z-20 w-10 h-10 p-2 rounded-full cursor-pointer ml-6 md:w-10 md:w-8 md:h-10 md:p-2 mt-10 md:ml-16 bg-white shadow-md"
+          className="absolute z-20 w-10 h-10 p-2 rounded-full cursor-pointer ml-6 md:w-10 md:h-10 md:p-2 mt-10 md:ml-16 bg-white shadow-md"
           id={`${menu}-fleche-retour`}
           onClick={() => {
             if (menu !== menuFullXp[3].name) {

@@ -23,13 +23,13 @@ export const CircleGreenit: React.FC<ICircleGreenit> = ({
   isSymbolAtEndOfLine = true,
   isOnlyIcon = false,
 }) => {
-  const sizeCircleDefault = sizeCircle ? sizeCircle :  "w-16 h-16 lg:w-20 lg:h-20"
+  const sizeCircleDefault = sizeCircle
+    ? sizeCircle
+    : "w-16 h-16 lg:w-20 lg:h-20";
   return (
     <div className={`${customClassName} flex flex-col | items-center`}>
       <div
-        className={
-         `${sizeCircleDefault} rounded-full flex items-center justify-center relative ${colorCircle}`
-        }
+        className={`${sizeCircleDefault} rounded-full flex items-center justify-center relative ${colorCircle}`}
       >
         {icon}
         {!isOnlyIcon && (
@@ -45,7 +45,13 @@ export const CircleGreenit: React.FC<ICircleGreenit> = ({
         )}
       </div>
       {!isOnlyIcon && (
-        <div className={`${textWidth ? textWidth : ""} fontQSmedium text-center text-sm mt-1`}>{text}</div>
+        <div
+          className={`${
+            textWidth ? textWidth : ""
+          } fontQSmedium text-center text-sm mt-1`}
+        >
+          {text}
+        </div>
       )}
     </div>
   );

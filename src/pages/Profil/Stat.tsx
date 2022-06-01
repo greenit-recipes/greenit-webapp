@@ -11,7 +11,7 @@ export const StatProfilForm: React.FC = () => {
   });
 
   const [emailProfilPage, { data, loading, error }] = useMutation(
-    EMAIL_PROFIL_PAGE_CREATOR
+    EMAIL_PROFIL_PAGE_CREATOR,
   );
 
   const {

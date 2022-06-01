@@ -16,12 +16,12 @@ const RecapPage = () => {
     fetchPolicy: "no-cache",
   });
   const itemList = map(data?.allRecipesSeo, (x, index) => {
-    return (            {
+    return {
       "@type": "ListItem",
       position: index + 1,
       url: "https://greenitcommunity.com" + RouteName.recipes + "/" + x?.urlId,
-    })
-  })
+    };
+  });
   return (
     <Helmet>
       <script type="application/ld+json">

@@ -24,7 +24,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
   });
   return (
     <div
-      ref={(divElement) => {
+      ref={divElement => {
         if (divElement && divElement.clientHeight !== 0)
           setHeight(divElement.clientHeight);
       }}
@@ -79,7 +79,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
                       />
                     </div>
                   </a>
-                )
+                ),
               )
           }
         </div>

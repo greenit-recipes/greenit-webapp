@@ -49,12 +49,12 @@ export const UserBadge: React.FC<IUserBadge> = ({
         </div>
       ) : (
         <img
-              // @ts-ignore
-              src={normalImage ? normalImage : defaultImageProfil}
-              alt="badge"
-              loading="lazy"
-              className="rounded-full h-28 md:w-28 object-cover"
-            />
+          // @ts-ignore
+          src={normalImage ? normalImage : defaultImageProfil}
+          alt="badge"
+          loading="lazy"
+          className="rounded-full h-28 md:w-28 object-cover"
+        />
       )}
     </>
   );

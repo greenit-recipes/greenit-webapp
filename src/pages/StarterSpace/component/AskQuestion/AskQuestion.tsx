@@ -15,7 +15,7 @@ export const AskQuestion: React.FC = () => {
   });
 
   const [addUserToAskQuestion, { data, loading, error }] = useMutation(
-    EMAIL_ASK_QUESTION_STARTER_PAGE
+    EMAIL_ASK_QUESTION_STARTER_PAGE,
   );
 
   const {
@@ -39,7 +39,7 @@ export const AskQuestion: React.FC = () => {
     <div className="flex flex-col self-center mb-20 justify-items-center lg:w-1/3">
       <form
         className="flex flex-col w-full gap-2"
-                    // @ts-ignore
+        // @ts-ignore
         onSubmit={handleSubmit(onSubmitHandler)}
       >
         <textarea

@@ -49,8 +49,7 @@ export const Dropdown: React.FC<IDropdown> = ({
             id="test2"
             ref={"ref_" + "tes2"}
             className="w-6 h-6"
-            onChange={(value: React.ChangeEvent<HTMLInputElement>) => {
-            }}
+            onChange={(value: React.ChangeEvent<HTMLInputElement>) => {}}
           />
         </li>
       </ul>

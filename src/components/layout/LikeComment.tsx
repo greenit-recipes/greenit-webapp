@@ -4,7 +4,9 @@ import React, { useState } from "react";
 import authService from "services/auth.service";
 import { LikedIconCommentOff, LikedIconCommentOn } from "../../icons";
 
-const ModalLogGreenit = React.lazy(() => import("components/layout/ModalLogGreenit/ModalLogGreenit"));
+const ModalLogGreenit = React.lazy(
+  () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
+);
 
 interface ILikeComment {
   comment: any;

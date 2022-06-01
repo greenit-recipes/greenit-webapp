@@ -1,4 +1,4 @@
-import {Icon} from "./../components/misc/Icon";
+import { Icon } from "./../components/misc/Icon";
 // CATEGORIES
 import wellbeing from "./bien-être_icon.png";
 import corps from "./corps_recette.png";

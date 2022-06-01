@@ -12,55 +12,55 @@ import FullXPRoute from "components/route/FullXPRoute";
 const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
 const ActivateAccount = React.lazy(() => import("pages/activate"));
 const ActivateResetPassword = React.lazy(
-  () => import("pages/ActivateResetPassword")
+  () => import("pages/ActivateResetPassword"),
 );
 const CreateRecipe = React.lazy(
-  () => import("pages/CreateRecipe/CreateRecipe")
+  () => import("pages/CreateRecipe/CreateRecipe"),
 );
 const RecipeCreatedPage = React.lazy(
-  () => import("pages/CreateRecipe/CreateRecipeSuccess")
+  () => import("pages/CreateRecipe/CreateRecipeSuccess"),
 );
 const IngredientPage = React.lazy(
-  () => import("pages/IngredientSpace/IngredientPage")
+  () => import("pages/IngredientSpace/IngredientPage"),
 );
 const ForgetPassword = React.lazy(() => import("pages/Login/ForgetPassword"));
 const DeleteProfil = React.lazy(() => import("pages/Profil/DeleteProfil"));
 const RecapPage = React.lazy(() => import("pages/RecapPage"));
 const RecipeSinglePage = React.lazy(
-  () => import("pages/recipe/SinglePage/SinglePage")
+  () => import("pages/recipe/SinglePage/SinglePage"),
 );
 const StarterPage = React.lazy(() => import("pages/StarterSpace/StarterPage"));
 const ContactPage = React.lazy(() => import("./pages/ContactPage"));
 const NotFoundPage = React.lazy(() => import("./pages/misc/NotFoundPage"));
 const PersonalizedSearch = React.lazy(
-  () => import("./pages/PersonalizedSearch")
+  () => import("./pages/PersonalizedSearch"),
 );
 const ProfilPage = React.lazy(() => import("./pages/Profil/ProfilPage"));
 const RecipeListPage = React.lazy(
-  () => import("./pages/recipe/ListPage/ListPage")
+  () => import("./pages/recipe/ListPage/ListPage"),
 );
 const Register = React.lazy(() => import("./pages/Register/register"));
 const WhyPage = React.lazy(() => import("./pages/WhyPage"));
 const WorkshopPage = React.lazy(() => import("./pages/WorkshopPage"));
 const GreenitFullXp = React.lazy(
-  () => import("./pages/GreenitFullXp/genericFullXp")
+  () => import("./pages/GreenitFullXp/genericFullXp"),
 );
 const TutoFullXpBeginner = React.lazy(
-  () => import("./pages/Profil/TutoFullXpBeginner/tutoFullXpBeginner")
+  () => import("./pages/Profil/TutoFullXpBeginner/tutoFullXpBeginner"),
 );
 
 const StartDiyGreenitFullXp = React.lazy(
-  () => import("./pages/GreenitFullXp/StartDiy/StartDiyGreenitFullXp")
+  () => import("./pages/GreenitFullXp/StartDiy/StartDiyGreenitFullXp"),
 );
 const FindOutMoreBoxGreentilFullXP = React.lazy(
   () =>
     import(
       "./pages/GreenitFullXp/FindOutMoreFullXp/FindOutMoreBoxGreentilFullXP"
-    )
+    ),
 );
 
 const QRFullXp = React.lazy(
-  () => import("./pages/GreenitFullXp/QRFullXp/QRFullXp")
+  () => import("./pages/GreenitFullXp/QRFullXp/QRFullXp"),
 );
 
 export const history = createBrowserHistory();
@@ -96,11 +96,10 @@ export const RouteName = {
 };
 
 const App: React.FC = () => {
-  history.listen((x) =>
-    window.sessionStorage.setItem("pathname", JSON.stringify(x?.pathname))
+  history.listen(x =>
+    window.sessionStorage.setItem("pathname", JSON.stringify(x?.pathname)),
   );
   //Todo (zack): Implement custom routes for the full xp
-
 
   return (
     <Suspense fallback={<Loading />}>

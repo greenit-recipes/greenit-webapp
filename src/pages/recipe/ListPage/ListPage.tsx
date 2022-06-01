@@ -14,7 +14,7 @@ import {
   Footer,
   Loading,
   Navbar,
-  RecipeCard
+  RecipeCard,
 } from "../../../components";
 import { RecipesQuery, useRecipesQuery } from "../../../graphql";
 import useIsMobile from "../../../hooks/isMobile";
@@ -26,63 +26,75 @@ const RecipeListPage = () => {
   const cleanDataPlayload = (filter: any) =>
     mapValues(filter, function (value, key) {
       if (key === "search") return value;
-      return map(value, (x) => x.value);
+      return map(value, x => x.value);
     });
   const params = new URLSearchParams(window.location.search);
-  const history = useHistory()
+  const history = useHistory();
 
   const sessionFilter = getObjectSession("filterListPage");
-  const searchSession = sessionFilter?.search ? sessionFilter?.search : ""
-  const tagsSession =  sessionFilter?.tags || []
-  const categorySession = sessionFilter?.category || []
+  const searchSession = sessionFilter?.search ? sessionFilter?.search : "";
+  const tagsSession = sessionFilter?.tags || [];
+  const categorySession = sessionFilter?.category || [];
 
   const getAndDeleteParamsUrl = (urlParams: string) => {
     // For SEO url (delete url after search google)
-    if (!params.get(urlParams)) return
+    if (!params.get(urlParams)) return;
     const currentParams = params.get(urlParams);
-    params.delete(urlParams)
+    params.delete(urlParams);
     history.replace({
       search: params.toString(),
-    })
+    });
 
     if (urlParams === "search") {
       window.sessionStorage.setItem(
         "filterListPage",
-        JSON.stringify({ [urlParams] : currentParams})
+        JSON.stringify({ [urlParams]: currentParams }),
       );
-      return currentParams
+      return currentParams;
     }
     window.sessionStorage.setItem(
       "filterListPage",
-      JSON.stringify({ [urlParams] : [{ title: currentParams, value: currentParams }]})
+      JSON.stringify({
+        [urlParams]: [{ title: currentParams, value: currentParams }],
+      }),
     );
-    return ([{ title: currentParams, value: currentParams }]);
-  }
-
+    return [{ title: currentParams, value: currentParams }];
+  };
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const setSearchTermDebounced = debounce(setSearchTerm, 250);
 
   // Ne par run au premier lancement
-  const { data: autoCompleteData, loading : autoCompleteLoading, } = useQuery(SEARCH_AUTO_COMPLETE_RECIPE, {
-    fetchPolicy: "network-only",
-    variables: { search: searchTerm },
-    skip: searchTerm ? false :true,
-  });
-  const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {recipes: [], ingredients: [], totalRecipes: 0};
+  const { data: autoCompleteData, loading: autoCompleteLoading } = useQuery(
+    SEARCH_AUTO_COMPLETE_RECIPE,
+    {
+      fetchPolicy: "network-only",
+      variables: { search: searchTerm },
+      skip: searchTerm ? false : true,
+    },
+  );
+  const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {
+    recipes: [],
+    ingredients: [],
+    totalRecipes: 0,
+  };
 
   // params trigger 2 requests before param and after getting param need to be fixed
   // @ts-ignore
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [currentFilters, setCurrentFilters] = useState<any>({
-    search: params.get("search") ? getAndDeleteParamsUrl("search") : searchSession,
+    search: params.get("search")
+      ? getAndDeleteParamsUrl("search")
+      : searchSession,
     tags: params.get("tags") ? getAndDeleteParamsUrl("tags") : tagsSession,
-    category: params.get("category") ? getAndDeleteParamsUrl("category") : categorySession,
+    category: params.get("category")
+      ? getAndDeleteParamsUrl("category")
+      : categorySession,
     difficulty: sessionFilter?.difficulty || [],
     duration: sessionFilter?.duration || [],
     numberOfIngredients: sessionFilter?.numberOfIngredients || [],
   });
-  
+
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
     fetchPolicy: "cache-first",
     variables: {
@@ -123,7 +135,7 @@ const RecipeListPage = () => {
       const filterValue = cleanDataPlayload(currentFilters);
       window.sessionStorage.setItem(
         "filterListPage",
-        JSON.stringify(currentFilters)
+        JSON.stringify(currentFilters),
       );
       refetch({ filter: filterValue });
       return;
@@ -131,7 +143,7 @@ const RecipeListPage = () => {
     if (!loading) setIsFirstLoading(false);
   }, [currentFilters, loading]);
 
-  const searchText = getObjectSession("filterListPage")?.search
+  const searchText = getObjectSession("filterListPage")?.search;
 
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -141,7 +153,7 @@ const RecipeListPage = () => {
 
   const recipes = data?.allRecipes?.edges || [];
   const hasMore = data?.allRecipes?.pageInfo.hasNextPage || false;
-  const nbrFilter = sum(map(omit(currentFilters, "search"), (x) => x?.length));
+  const nbrFilter = sum(map(omit(currentFilters, "search"), x => x?.length));
   return (
     <div className={""}>
       <Navbar />
@@ -155,17 +167,17 @@ const RecipeListPage = () => {
       </Helmet>
       {!isMobile && (
         <>
-        <FilterBar
-          recipesAutoComplete={recipesAutoComplete}
-          setSearch={setSearchTermDebounced}
-          search={searchTerm}
-          filter={filterData}
-          currentFilters={currentFilters}
-          setCurrentFilters={setCurrentFilters}
-          isMobile={isMobile}
-          toggle={toggle}
-          setScrollOffset={setScrollOffset}
-        />
+          <FilterBar
+            recipesAutoComplete={recipesAutoComplete}
+            setSearch={setSearchTermDebounced}
+            search={searchTerm}
+            filter={filterData}
+            currentFilters={currentFilters}
+            setCurrentFilters={setCurrentFilters}
+            isMobile={isMobile}
+            toggle={toggle}
+            setScrollOffset={setScrollOffset}
+          />
         </>
       )}
 
@@ -185,10 +197,12 @@ const RecipeListPage = () => {
               setScrollOffset={setScrollOffset}
             />
           </div>
-          { searchText && searchText.length && (
+          {searchText && searchText.length && (
             <div className="w-4/5 mt-4 border-b-1 pb-2">
-            <p className="text-sm font-bold mb-1">Résultat pour "{searchText}"</p>
-          </div>
+              <p className="text-sm font-bold mb-1">
+                Résultat pour "{searchText}"
+              </p>
+            </div>
           )}
           <ModalListPage
             nbrFilter={nbrFilter}
@@ -231,6 +245,7 @@ const RecipeListPage = () => {
                   after: data?.allRecipes?.pageInfo?.endCursor,
                   first: 10,
                 },
+                //@ts-ignore
                 updateQuery: (prev, next) => {
                   const fetchMoreResult = next.fetchMoreResult as
                     | RecipesQuery
@@ -256,7 +271,7 @@ const RecipeListPage = () => {
           >
             {isMobile ? (
               <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
-                {recipes?.map((recipe) => {
+                {recipes?.map(recipe => {
                   return (
                     <div key={recipe?.node?.id}>
                       <RecipeCard recipe={recipe?.node} />
@@ -267,7 +282,7 @@ const RecipeListPage = () => {
             ) : (
               <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
                 <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
-                  {recipes?.map((recipe) => (
+                  {recipes?.map(recipe => (
                     <div key={recipe?.node?.id}>
                       <RecipeCard recipe={recipe?.node} />
                     </div>

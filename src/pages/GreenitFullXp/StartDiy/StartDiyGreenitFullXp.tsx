@@ -76,7 +76,7 @@ const StartDiyGreenitFullXp = () => {
                 onClick={() => {
                   localStorage.setItem(
                     "currentMenuGreenitFullXp",
-                    menuFullXp[0]?.name
+                    menuFullXp[0]?.name,
                   );
                 }}
                 className={`btn-single-page justify-center mt-2 p-2 h-10 flex w-full bg-green text-white`}

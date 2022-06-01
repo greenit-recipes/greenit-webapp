@@ -22,12 +22,12 @@ const schema = yup.object().shape({
     .string()
     .max(
       32,
-      "Mot de passe trop long, il doit être moins de 32 caractères maximum."
+      "Mot de passe trop long, il doit être moins de 32 caractères maximum.",
     )
     .required("Le mot de passe est obligatoire.")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/,
-      "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule."
+      "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule.",
     ),
 }); // _ - .
 
@@ -93,10 +93,10 @@ const Login: React.FC = () => {
         idFacebook: responseFb.id,
         isFollowNewsletter: "false",
       },
-    }).then((response) => {
+    }).then(response => {
       // @ts-ignore
       if (response?.data?.createUserFromAuth?.errors) {
-        setErrorLoginFb(response?.data?.createUserFromAuth?.errors)
+        setErrorLoginFb(response?.data?.createUserFromAuth?.errors);
         return;
       }
       const data = {
@@ -114,15 +114,15 @@ const Login: React.FC = () => {
         email: data.email,
         password: data.password,
       },
-    }).then((response) => {
+    }).then(response => {
       if (response?.data?.tokenAuth?.token) {
         authServiceService.setStorageLoginToken(
-          response?.data?.tokenAuth?.token
+          response?.data?.tokenAuth?.token,
         );
         authServiceService.setStorageLoginRefreshToken(
-          response?.data?.tokenAuth?.refreshToken
+          response?.data?.tokenAuth?.refreshToken,
         );
-        history.listen((prev) => {
+        history.listen(prev => {
           if (
             prev?.pathname === RouteName.activateResetPassword ||
             includes(prev?.pathname, RouteName.resetPassword) ||
@@ -137,7 +137,7 @@ const Login: React.FC = () => {
         //history.goBack();
       }
     });
-    reset({...getValues(), password: ""});
+    reset({ ...getValues(), password: "" });
   };
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
@@ -145,14 +145,16 @@ const Login: React.FC = () => {
     <div className="grid w-full justify-items-center">
       <Navbar />
       <div className="hidden">
-     <FacebookLogin
-        // @ts-ignore
-        appId={process.env.REACT_APP_FACEBOOK_ID}
-        fields="name,email,picture"
-        callback={responseFacebook}
-      />
+        <FacebookLogin
+          // @ts-ignore
+          appId={process.env.REACT_APP_FACEBOOK_ID}
+          fields="name,email,picture"
+          callback={responseFacebook}
+        />
       </div>
-     { errorLoginFb && (<div className="mt-4 text-xs italic text-red">{errorLoginFb}</div>)}
+      {errorLoginFb && (
+        <div className="mt-4 text-xs italic text-red">{errorLoginFb}</div>
+      )}
       <Helmet>
         <title>Connexion - Espace DIY | Greenit Community</title>
         <meta
@@ -170,16 +172,14 @@ const Login: React.FC = () => {
             Si tu veux créer un compte :
           </h3>
           <Link to={RouteName.register}>
-            <button
-              className="flex items-center h-8 p-2 ml-2 text-xl text-white border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green"
-            >
+            <button className="flex items-center h-8 p-2 ml-2 text-xl text-white border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green">
               <h3 className="text-sm align-middle">Créer un compte</h3>
             </button>
           </Link>
         </div>
         <form
           className="p-10 mt-5 mb-4 bg-white shadow-lg rounded-xl"
-                      // @ts-ignore
+          // @ts-ignore
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
@@ -200,16 +200,19 @@ const Login: React.FC = () => {
               Mot de passe
             </label>
             <div className="flex flex-row items-center justify-between w-full h-12 px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow-lg sm:w-80 focus:shadow-outline">
-            <input
-              className="appearance-none focus:outline-none"
-              id="password"
-              type={isRevealPwd ? "text" : "password"}
-              placeholder="******************"
-              {...register("password")}
-            />
-            
-            <img src={isRevealPwd ? mdpVisible : mdpNonVisible} alt="voir le mot de passe"            
-            onClick={() => setIsRevealPwd(prevState => !prevState)}/>
+              <input
+                className="appearance-none focus:outline-none"
+                id="password"
+                type={isRevealPwd ? "text" : "password"}
+                placeholder="******************"
+                {...register("password")}
+              />
+
+              <img
+                src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                alt="voir le mot de passe"
+                onClick={() => setIsRevealPwd(prevState => !prevState)}
+              />
             </div>
             <p className="text-xs italic text-red">
               {errors.password?.message}
@@ -220,9 +223,7 @@ const Login: React.FC = () => {
             </label>
           </div>
           <div className="flex items-center justify-between">
-            <button
-              className="flex items-center justify-center h-10 p-3 mr-5 text-white align-middle border-2 border-transparent rounded-lg cursor-pointer bg-blue md:text-lg bold hover:bg-white hover:border-blue hover:text-blue"
-            >
+            <button className="flex items-center justify-center h-10 p-3 mr-5 text-white align-middle border-2 border-transparent rounded-lg cursor-pointer bg-blue md:text-lg bold hover:bg-white hover:border-blue hover:text-blue">
               Connexion
             </button>
             <a

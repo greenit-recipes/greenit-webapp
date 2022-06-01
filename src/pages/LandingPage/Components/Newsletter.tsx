@@ -11,7 +11,7 @@ export const Newsletter: React.FC = () => {
   });
 
   const [addUserToNewsletter, { data, loading, error }] = useMutation(
-    ADD_USER_TO_NEWSLETTER
+    ADD_USER_TO_NEWSLETTER,
   );
 
   const {

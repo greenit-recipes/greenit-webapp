@@ -17,7 +17,7 @@ export const Container: React.FC<ContainerProps> = ({
   padding,
   itemsCenter,
 }) => {
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
   return (
     <div
       className={`${className} mt-${margin} mb-${margin} ${

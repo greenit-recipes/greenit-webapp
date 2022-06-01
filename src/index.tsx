@@ -42,7 +42,7 @@ const errorLink = onError(
                     // Store the new tokens for your auth link
                     console.log(
                       "accessToken -->",
-                      accessToken.data.refreshToken.token
+                      accessToken.data.refreshToken.token,
                     );
                     const newToken = accessToken.data.refreshToken.token;
                     const newrefreshToken =
@@ -52,20 +52,20 @@ const errorLink = onError(
                     resolvePendingRequests();
                     return accessToken.data.refreshToken.token;
                   })
-                  .catch((error) => {
+                  .catch(error => {
                     pendingRequests = [];
                     authService.logout();
                     return;
                   })
                   .finally(() => {
                     isRefreshing = false;
-                  })
-              ).filter((value) => Boolean(value));
+                  }),
+              ).filter(value => Boolean(value));
             } else {
               forward$ = fromPromise(
-                new Promise<void>((resolve) => {
+                new Promise<void>(resolve => {
                   pendingRequests.push(() => resolve());
-                })
+                }),
               );
             }
             return forward$.flatMap(() => {
@@ -77,7 +77,7 @@ const errorLink = onError(
         }
       }
     }
-  }
+  },
 );
 
 const authLink = setContext((_, { headers }) => {
@@ -128,7 +128,7 @@ ReactDOM.render(
       <App />
     </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );
 
 // If you want to start measuring performance in your app, pass a function

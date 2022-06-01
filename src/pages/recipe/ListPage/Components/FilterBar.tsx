@@ -33,15 +33,15 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   const removeFilter = (valuex: any, key: any) => {
     let currentState = { ...currentFilters };
     currentState[key] = currentState[key].filter(
-      (value: { value: string; title: string }) => value.value !== valuex
+      (value: { value: string; title: string }) => value.value !== valuex,
     );
 
     setCurrentFilters(currentState);
   };
   const isCurrentFilterEmpty =
-    flattenDeep(map(omit(currentFilters, "search"), (x) => x))?.length > 0;
+    flattenDeep(map(omit(currentFilters, "search"), x => x))?.length > 0;
 
-  const searchText = getObjectSession("filterListPage")?.search
+  const searchText = getObjectSession("filterListPage")?.search;
 
   const removeFilters = () => {
     setCurrentFilters({
@@ -58,7 +58,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   const handleFilter = (
     isSelected: boolean,
     option: { title: string; value: string },
-    item: Record<string, any>
+    item: Record<string, any>,
   ) => {
     const state = { ...currentFilters };
     if (state[item.name]) {
@@ -67,7 +67,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       ) {
         state[item.name] = state[item.name].filter(
           (value: { value: string; title: string }) =>
-            value.value !== option.value
+            value.value !== option.value,
         );
       } else {
         state[item.name].push({ value: option.value, title: option.title });
@@ -110,16 +110,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                   setSearch={setSearch}
                   setCurrentFilters={setCurrentFilters}
                 />
-                {searchText &&  searchText.length && (
-                    <div className="mt-4 border-b-1 pb-2 mb-2">
-                      <p className="mb-1">
-                        <span className="text-sm mr-2">Résultats pour </span>{" "}
-                        <span className="font-bold text-lg">
-                          "{searchText}"
-                        </span>
-                      </p>
-                    </div>
-                  )}
+                {searchText && searchText.length && (
+                  <div className="mt-4 border-b-1 pb-2 mb-2">
+                    <p className="mb-1">
+                      <span className="text-sm mr-2">Résultats pour </span>{" "}
+                      <span className="font-bold text-lg">"{searchText}"</span>
+                    </p>
+                  </div>
+                )}
               </div>
             )}
             {isMobile && (
@@ -179,7 +177,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                                   x
                                 </button>
                               </div>
-                            ))
+                            )),
                         )}
                       </div>
                     </div>
