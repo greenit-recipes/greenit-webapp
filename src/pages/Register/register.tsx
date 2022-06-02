@@ -23,9 +23,10 @@ import { Helmet } from "react-helmet";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import authService, { CREATE_ACCOUNT } from "services/auth.service";
-import { Button, EditorGreenit, Footer, Navbar } from "../../components";
+import { Button, Footer, Navbar } from "../../components";
 import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import "./register.css";
+import { PellGreenit } from "../../components/layout/Editor/PellEditor";
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
@@ -251,7 +252,7 @@ const Register: React.FC = () => {
             </label>
             <Controller
               name="biographie"
-              render={({ field }) => <EditorGreenit {...field} />}
+              render={({ field }) => <PellGreenit {...field} />}
               control={control}
             />
           </div>

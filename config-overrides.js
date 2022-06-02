@@ -1,9 +1,9 @@
 const {override, addBabelPlugin, disableEsLint, addWebpackPlugin} = require("customize-cra");
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = override(
   disableEsLint(),
-  addWebpackPlugin(new BundleAnalyzerPlugin()),
+  // addWebpackPlugin(new BundleAnalyzerPlugin()),
   //Babel Plugins
   addBabelPlugin([
     "transform-imports", {
@@ -11,11 +11,5 @@ module.exports = override(
       "transform": "lodash/${member}",
       "preventFullImport": true
     }
-  }]),
-  addBabelPlugin([
-    "transform-react-remove-prop-types",
-    {
-      "removeImport": true
-    }
-  ]),
+  }])
 )
