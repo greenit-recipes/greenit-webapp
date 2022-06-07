@@ -1,14 +1,17 @@
-import moment from "moment";
-import "moment/locale/fr";
+import dayjs from "dayjs";
+const localizedFormat = require("dayjs/plugin/localizedFormat");
+import "dayjs/locale/fr";
+
+dayjs.extend(localizedFormat);
 
 export const momentGreenit = (date: string) => {
-  return moment(date).locale("fr").format("l");
+  return dayjs(date).locale("fr").format("l").toString();
 };
 
 export const momentGreenitUs = (date: string) => {
-  return moment(date).locale("fr").format("YYYY-MM-DD");
+  return dayjs(date).locale("fr").format("YYYY-MM-DD").toString();
 };
 
-export const momentGreenitNow = (date: string) => {
-  return moment().locale("fr").format("llll");
+export const momentGreenitNow = () => {
+  return dayjs(new Date()).locale("fr").format("l").toString();
 };

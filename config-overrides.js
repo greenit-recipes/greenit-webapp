@@ -11,5 +11,11 @@ module.exports = override(
       "transform": "lodash/${member}",
       "preventFullImport": true
     }
-  }])
+  }]),
+  addBabelPlugin([
+    "transform-react-remove-prop-types",
+    {
+      "removeImport": true
+    }
+  ]),
 )
