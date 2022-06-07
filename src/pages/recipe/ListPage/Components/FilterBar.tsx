@@ -182,7 +182,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                       </div>
                     </div>
                     <div>
-                      <Button type="grey" onClick={() => removeFilters()}>
+                      <Button type="darkBlue" onClick={() => removeFilters()}>
                         <h3 className="text-sm">
                           Supprimer tous les filtres X
                         </h3>

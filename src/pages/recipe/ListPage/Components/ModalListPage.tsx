@@ -12,7 +12,7 @@ export const ModalListPage: React.FC<IModalListPage> = props => {
     <>
       <Button
         className="ease-linear transition-all duration-150 mt-2 w-4/5 h-8 rounded"
-        type="grey"
+        type="darkBlue"
         onClick={() => props.parentFunction(true)}
       >
         {props.nbrFilter === 0 ? (
@@ -35,7 +35,7 @@ export const ModalListPage: React.FC<IModalListPage> = props => {
           </Button>
 
           <div
-            className="bg-white overflow-x-hidden 
+            className="bg-white overflow-x-hidden
             overflow-y-auto fixed inset-0 overscroll-contain z-30 outline-none focus:outline-none"
           >
             <div className="absolute w-full top-10 mt-4 pb-20">

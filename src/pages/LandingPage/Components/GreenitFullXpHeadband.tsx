@@ -1,4 +1,5 @@
 import { RouteName } from "App";
+import { Button } from "components";
 import useIsMobile from "hooks/isMobile";
 import { boxGreenit, boxGreenitMobile } from "icons";
 import { useHistory } from "react-router-dom";
@@ -51,18 +52,13 @@ export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
         )}
       </div>
 
-      <div className="flex bg-greenL lg:pl-20 h-16 items-center">
-        <button
-          onClick={() => {
-            isOutOfStock
-              ? showModal(true)
-              : history.push(RouteName.startDiyGreenitFullXp);
-          }}
-          id="landing_tenez_moi_au_courant"
-          className="p-1 ml-2 mr-4 w-52 text-sm lg:text-base order-2 lg:order-1 text-white rounded-lg bg-green"
-        >
-          Je commande
-        </button>
+      <div className="flex bg-greenL lg:pl-20 h-16 items-center justify-center lg:justify-start">
+        <Button id="landing_tenez_moi_au_courant" type="green"
+        onClick={() => isOutOfStock
+          ? showModal(true)
+          : history.push(RouteName.startDiyGreenitFullXp)}
+        >Je commande</Button>
+
 
         <p className="p-2 mr-1 text-center pl-10 order-1 lg:order-2 text-sm lg:text-left">
           Offre limitée : 50 box à commander !

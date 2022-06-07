@@ -1,13 +1,55 @@
 @tailwind base;
+
+h1 {
+  @apply font-bold;
+  @apply text-3xl; /* 30px */
+}
+
+h2 {
+  @apply font-medium;
+  @apply text-2xl; /* 24px */
+}
+
+h3 {
+  @apply font-medium;
+  @apply text-xl; /* 20px */
+}
+
+h4 {
+  @apply font-medium;
+  @apply text-base; /* 16px */
+}
+
 @tailwind components;
 @tailwind utilities;
 @font-face {
-  font-family: "Quicksand";
-  src: local("Quicksand-Regular"),
-    url(./fonts/Quicksand-Regular.ttf) format("truetype");
+  font-family: "ZenMaruGothic-Regular";
+  src: local("ZenMaruGothic-Regular"),
+    url(./fonts/ZenMaruGothic-Regular.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: ZenMaruGothic-Regular;
+  src: url(./fonts/ZenMaruGothic-Regular.ttf);
+}
+@font-face {
+  font-family: ZenMaruGothic_Medium;
+  src: url(./fonts/ZenMaruGothic-Medium.ttf);
+}
+@font-face {
+  font-family: ZenMaruGothic_Light;
+  src: url(./fonts/ZenMaruGothic-Light.ttf);
+}
+
+@font-face {
+  font-family: ZenMaruGothic_Bold;
+  src: url(./fonts/ZenMaruGothic-Bold.ttf);
+}
+
+
 html {
-  font-family: Quicksand;
-  background-color: #fdfdfd;
+  font-family: ZenMaruGothic-Regular !important;
+  background-color: #FFFFFF !important;
+  font-size: 1rem !important; /* 16px */
+  line-height: 1.5rem !important; /* 24px */
 }

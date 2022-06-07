@@ -194,7 +194,7 @@ export const SearchBar: React.FC<{
 
   return (
     <div
-      className={`${totalSize} | flex | relative bg-white rounded-md border-1 border-grey`}
+      className={`${totalSize} | flex | relative bg-white rounded-md border-1 border-darkBlue`}
     >
       {!hideSearchIcon && (
         <div

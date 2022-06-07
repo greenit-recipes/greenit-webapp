@@ -106,16 +106,14 @@ export const Navbar: React.FC = () => {
               <Suspense fallback={<Loading />}>
                 <ModalLogGreenit
                   btn={
-                    <>
-                      <button
-                        id="Create_Profil"
-                        className="p-2 mr-1 rounded-lg bg-blue"
-                      >
-                        <h2 id="Create_Profil" className="text-xs text-white">
-                          Créer un profil
-                        </h2>
-                      </button>
-                    </>
+                    <Button
+                      id="Create_Profil"
+                      type="blue"
+                      rounded="lg"
+                      className="mr-1"
+                    >
+                      Créer un profil
+                    </Button>
                   }
                   show={hasUrl}
                 ></ModalLogGreenit>
@@ -126,7 +124,7 @@ export const Navbar: React.FC = () => {
 
         <div
           className={
-            toggle ? "navBar_fadeIn h-screen" : "navBar_fadeOut h-screen"
+             toggle ? "navBar_fadeIn h-screen bg-darkBlue" : "navBar_fadeOut h-screen "
           }
         >
           <div className="flex flex-col">
@@ -451,7 +449,7 @@ export const Navbar: React.FC = () => {
         </div>
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.why}>
-            <NavButton id="project" type="grey">
+            <NavButton id="project" type="darkBlue">
               Le projet
             </NavButton>
           </Link>
@@ -460,7 +458,7 @@ export const Navbar: React.FC = () => {
               <Link to={RouteName.why}>
                 <h3
                   id="whyGreenit"
-                  className="mb-2 cursor-pointer hover:text-grey"
+                  className="mb-2 cursor-pointer hover:text-darkBlue"
                 >
                   Pourquoi Greenit ?
                 </h3>
@@ -468,7 +466,7 @@ export const Navbar: React.FC = () => {
               <Link to={RouteName.contact}>
                 <h3
                   id="contactUs"
-                  className="mb-2 cursor-pointer hover:text-grey"
+                  className="mb-2 cursor-pointer hover:text-darkBlue"
                 >
                   Contacte-nous
                 </h3>
@@ -503,7 +501,7 @@ export const Navbar: React.FC = () => {
                 <div className="flex">
                   <Button
                     id="Share_a_recipe"
-                    type="grey"
+                    type="darkBlue"
                     rounded="lg"
                     className="inline justify-end self-center | mr-2 cursor-pointer"
                   >
@@ -518,7 +516,7 @@ export const Navbar: React.FC = () => {
                 <div className="flex">
                   <Button
                     id="Share_a_recipe"
-                    type="grey"
+                    type="darkBlue"
                     rounded="lg"
                     className="inline justify-end self-center | mr-2 cursor-pointer"
                   >

@@ -11,8 +11,8 @@ import ingredients2 from "./ingredients_2.png";
 import ingredients3 from "./ingredients_3.png";
 
 // LOGO
-import logo from "./logo.png";
-import logoBig from "./logoBig.png";
+import logo from "./NewLogo_Small.svg";
+import logoBig from "./NewLogo_Big.svg";
 
 // LANDING PAGE BUTTON ICONS
 import premierspas from "./premiers_pas_recette.png";

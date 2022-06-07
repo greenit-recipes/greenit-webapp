@@ -1,62 +1,33 @@
-@font-face {
-  font-family: QuickSand_SemiBold;
-  src: url(./fonts/Quicksand-SemiBold.ttf);
-}
-@font-face {
-  font-family: QuickSand_Regular;
-  src: url(./fonts/Quicksand-Regular.ttf);
-}
-@font-face {
-  font-family: QuickSand_Medium;
-  src: url(./fonts/Quicksand-Medium.ttf);
-}
-@font-face {
-  font-family: QuickSand_Light;
-  src: url(./fonts/Quicksand-Light.ttf);
-}
-
-@font-face {
-  font-family: QuickSand_Bold;
-  src: url(./fonts/Quicksand-Bold.ttf);
-}
 
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-body {
-  font-family: QuickSand_Medium !important;
-  font-size: 1rem;
-}
-
-h2 {
-  font-family: QuickSand_Medium;
-}
-
-h3 {
-  font-family: QuickSand_Regular;
-}
-
-h4 {
-  font-family: QuickSand_Light;
-}
-
 /* UI-KIT SIZE */
 
 .fontQSmedium {
-  font-family: QuickSand_Medium;
+  font-family: ZenMaruGothic_Medium !important;
 }
 
 .fontQSbold {
-  font-family: QuickSand_Bold;
+  font-family: ZenMaruGothic_Bold !important;
 }
 
 .fontQSemibold {
-  font-family: QuickSand_SemiBold;
+  font-family: ZenMaruGothic_Bold !important;
 }
 
 .fontQSregular {
-  font-family: QuickSand_Regular;
+  font-family: ZenMaruGothic-Regular !important;
+}
+
+.g-text-details {
+
+}
+
+.g-text-details {
+  font-size: 0.75rem; /* 12px */
+line-height: 1rem; /* 16px */
 }
 
 .text_logo {
@@ -122,8 +93,6 @@ h4 {
   left: 0;
   padding: 80px 20px;
   text-decoration: none;
-  font-size: 25px;
-  background-color: #383838;
   transition: 0.4s;
   overscroll-behavior: contain;
 }
@@ -135,7 +104,6 @@ h4 {
   top: 0;
   left: -70%;
   padding: 80px 20px;
-  background-color: #383838;
   overflow-x: hidden;
   transition: 0.3s;
   overscroll-behavior: contain;

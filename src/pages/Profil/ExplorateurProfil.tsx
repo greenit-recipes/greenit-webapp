@@ -70,11 +70,11 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <div className="flex items-center justify-center">
           <Button
             id="Share_a_recipe"
-            type="grey"
+            type="darkBlue"
             rounded="lg"
             haveArrow={true}
             isArrowDown={isArrowDown}
-            onClickArrow={setArrowDown}
+            onClick={() => setArrowDown(true)}
             className="mt-4 inline justify-end self-center | mr-2 cursor-pointer"
           >
             {amountTotal} produits fabriqués

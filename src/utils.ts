@@ -99,19 +99,19 @@ export const landingPageCategories = [
 export const boxFullXpIngredients = [
   {
     id: 1,
-    icon: boxIngredientCreme,
+    icon: boxIngredientSavon,
     title: "Savon solide pour le corps",
     quantity: 1,
   },
   {
     id: 2,
-    icon: boxIngredientLessive,
+    icon: boxIngredientCreme,
     title: "Crème de jour",
     quantity: 1,
   },
   {
     id: 3,
-    icon: boxIngredientSavon,
+    icon: boxIngredientLessive,
     title: "Lessives liquides",
     quantity: 2,
   },
