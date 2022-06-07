@@ -52,18 +52,6 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
         </div>
       )}
       <div className="flex flex-row lg:flex justify-center items-center mb-5 mt-2">
-        <div>
-          <div
-            className="flex pt-1 pb-1 pl-2 pr-4 mr-6 bg-white rounded cursor-pointer fontQSmedium"
-            id="see-profil-createur"
-            onClick={() => {
-              setIsDisplay(!isDisplay);
-            }}
-          >
-            <CgProfile className="h-6 mr-3 w-7" />
-            <div>Voir le profil</div>
-          </div>
-        </div>
         <div className="flex flex-row flex-wrap mb-3 mt-3">
           {
             // @ts-ignore
