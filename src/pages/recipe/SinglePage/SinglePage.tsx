@@ -214,13 +214,12 @@ const RecipeSinglePage = () => {
                         id="shared-recipe"
                       >
                         <RiShareForwardLine
-                          id="shared-recipe"
                           className="ml-1 justify-self-center w-7 h-7"
                         />
-                        <h2 id="shared-recipe" className="ml-2 text-center">
+                        <p className="ml-2 text-center">
                           {" "}
                           partage{" "}
-                        </h2>
+                        </p>
                       </button>
                     </RWebShare>
                   </div>

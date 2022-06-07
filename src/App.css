@@ -118,12 +118,12 @@ line-height: 1rem; /* 16px */
   border-radius: 100%;
   transition: 0.5s;
   position: relative;
-  border-color: #383838;
+  border-color: #192A51;
   transform: scale(1.3);
 }
 
 .hamburger_fadeIn::before {
-  border-color: #383838;
+  border-color: #192A51;
   transition: 0.5s;
   background: rgb(255, 255, 255);
   position: absolute;
@@ -137,7 +137,7 @@ line-height: 1rem; /* 16px */
 }
 
 .hamburger_fadeIn::after {
-  border-color: #383838;
+  border-color: #192A51;
   transition: 0.5s;
   background: rgb(255, 255, 255);
   position: absolute;
