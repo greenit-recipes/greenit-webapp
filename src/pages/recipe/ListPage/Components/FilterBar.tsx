@@ -192,7 +192,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 )}
                 {!isCurrentFilterEmpty && (
                   <div className="grid | h-18">
-                    <h3 className="self-center">Pas de filtre sélectionné</h3>
+                    <h4 className="self-center">Pas de filtre sélectionné</h4>
                   </div>
                 )}
               </div>

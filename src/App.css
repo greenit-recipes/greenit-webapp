@@ -66,6 +66,17 @@ line-height: 1rem; /* 16px */
   }
 }
 
+.arrow-img:hover::after {
+  background-image: url(./icons/double-trait.svg);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  width: 54px;
+  height: 54px;
+}
+
 .filterBar_fadeOut {
   visibility: hidden;
   opacity: 0;
