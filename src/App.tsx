@@ -8,6 +8,8 @@ import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
 import FullXPRoute from "components/route/FullXPRoute";
+import ReactDOM from "react-dom";
+import { CookieBanner } from "./components/misc/CookieBanner";
 
 const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
 const ActivateAccount = React.lazy(() => import("pages/activate"));

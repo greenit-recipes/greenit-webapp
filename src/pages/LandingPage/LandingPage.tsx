@@ -548,7 +548,6 @@ const LandingPage = () => {
           ></Press>
         </div>
       </Container>
-      <CookieBanner />
       <Footer />
     </div>
   );
