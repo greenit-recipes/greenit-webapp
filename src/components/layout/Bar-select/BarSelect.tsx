@@ -29,7 +29,7 @@ export const BarSelect: React.FC<IBarSelect> = ({
         }}
       >
         <div className="flex items-center justify-between w-1/6">
-          <div className="flex items-center justify-center w-full h-12 p-5 text-center lg:p-0 rounded-l-md ingredient-section">
+          <div className="flex items-center justify-center w-full h-12 p-5 text-center lg:p-0 rounded-l-md bg-blueL">
             {amount}
           </div>
         </div>

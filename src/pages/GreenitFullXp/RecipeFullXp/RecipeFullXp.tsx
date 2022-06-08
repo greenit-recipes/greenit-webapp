@@ -80,7 +80,7 @@ const RecipeFullXP = () => {
         </p>
         <div className={`flex justify-around mt-8 mx-5 md:w-4/5 md:space-x-20`}>
           <CircleGreenit
-            colorCircle="bg-orange"
+            colorCircle="bg-blue"
             sizeCircle="w-20 h-20"
             textWidth="w-24"
             icon={

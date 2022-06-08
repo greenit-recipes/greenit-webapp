@@ -8,6 +8,7 @@ interface ButtonProps {
   rounded?: string;
   className?: string;
   onClick?: () => void;
+  haveIcon?: boolean,
   disabled?: boolean;
   href?: string;
   haveArrow?: boolean;
@@ -27,6 +28,7 @@ export const Button: React.FC<ButtonProps> = ({
   rounded,
   className,
   children,
+  haveIcon = false,
   id,
   onClick,
   haveArrow,
@@ -102,7 +104,7 @@ export const Button: React.FC<ButtonProps> = ({
       id={id}
       disabled={isLoading}
       className={`${className} flex justify-center items-center cursor-pointer
-      text-sm px-3 py-2 bold  border-2 border-transparent
+      text-sm ${haveIcon ? 'px-2 py-1': 'px-3 py-2 '} bold  border-2 border-transparent
       fontQSbold md:ease-linear transition-all duration-150
       ${style.hoverBgColor}
       hover:shadow-lg bg-white hover:text-white active:bg-white

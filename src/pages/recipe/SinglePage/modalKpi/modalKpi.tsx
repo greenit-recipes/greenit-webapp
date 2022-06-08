@@ -28,8 +28,8 @@ const kpiContent: {
   substance: kpi;
 } = {
   substance: {
-    colorCircle: "bg-orange",
-    colorContent: "bg-orangeL",
+    colorCircle: "bg-blue",
+    colorContent: "bg-blueL",
     classNameIcon: "rotate-singlePage-chimie",
     title: "Substances épargnées",
     symbol: "",

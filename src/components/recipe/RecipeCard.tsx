@@ -128,9 +128,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             pathname: `${RouteName.recipes}/${recipe?.urlId}`,
           }}
         >
-          <div className="fontQSmedium text-center mt-4 p-1">
+          <h4 className="text-center mt-4 p-1">
             {recipe?.name}
-          </div>
+          </h4>
           <Icon
             nbOfIngredient={recipe?.numberOfIngredients}
             difficulty={

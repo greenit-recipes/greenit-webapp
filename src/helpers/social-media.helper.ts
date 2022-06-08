@@ -12,30 +12,29 @@ import { includes, forEach } from "lodash";
 const socialMedia = {
   instagram: {
     name: "Instagram",
-    icon: InstagramIcon,
+    icon: "bxl-instagram text-darkBlue",
   },
   facebook: {
     name: "Facebook",
-    icon: FBIcon,
+    icon: "bxl-facebook text-darkBlue",
   },
   tiktok: {
     name: "tiktok",
-    icon: tiktokIcon,
+    icon: "bxl-tiktok text-darkBlue",
   },
   pinterest: {
     name: "Pinterest",
-    icon: pinterestIcon,
+    icon: "bxl-pinterest text-darkBlue",
   },
   twitter: {
     name: "Twitter",
-    icon: twitterIcon,
+    icon: "bxl-twitter text-darkBlue",
   },
   youtube: {
     name: "Youtube",
-    icon: youtubeIcon,
+    icon: "bxl-youtube text-darkBlue",
   },
 };
-
 export const getLogoAndNameByUrl = (url: string) => {
   let logo = { name: "", icon: "" };
   forEach(socialMedia, function (value, key) {

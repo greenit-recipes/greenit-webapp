@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { Loading } from "components/layout/Loading";
+import { Button } from "components/misc";
 import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { Suspense, useState } from "react";
 import authService from "services/auth.service";
@@ -99,23 +100,16 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
             <Suspense fallback={<Loading />}>
               <ModalLogGreenit
                 btn={
-                  <button className={isBtnDesing ? "btn-single-page" : ""}>
-                    <div
-                      className={`tooltip justify-items-center ${
-                        customClassName ? customClassName : "grid"
-                      }`}
-                    >
-                      <img
-                        className="w-10 h-10"
-                        alt="dislike button"
-                        src={likedIconOff}
-                        loading="lazy"
-                      />
-                      <div className="flex flex-col justify-center">
-                        favoris
-                      </div>
-                    </div>
-                  </button>
+                  <Button
+                  id="favorite"
+                  type="darkBlue"
+                  rounded="lg"
+                  haveIcon={true}
+                  className="mr-1"
+                >
+                  <i className='bx bx-bookmark-heart bx-sm mr-2'></i>
+                  favoris
+                </Button>
                 }
               ></ModalLogGreenit>
             </Suspense>
