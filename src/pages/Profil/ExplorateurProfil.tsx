@@ -6,10 +6,8 @@ import useIsMobile from "hooks/isMobile";
 import { map, orderBy, sum, toNumber } from "lodash";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
 import React, { useState } from "react";
-import { BsWallet2 } from "react-icons/bs";
 import { HiOutlinePlus } from "react-icons/hi";
 import { IoIosRemove } from "react-icons/io";
-import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { PLUS_OR_LESS_RECIPE } from "services/auth.service";
 
@@ -149,13 +147,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-orange"
           icon={
-            <IoFlaskOutline
-              className={
-                isMobile
-                  ? "absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-chimie"
-                  : `absolute w-8 h-8 icon-position-circle rotate-singlePage-chimie`
-              }
-            />
+           <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
           }
           symbol=""
           number={substancesRecipes}
@@ -164,13 +156,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-yellow"
           icon={
-            <BsWallet2
-              className={
-                isMobile
-                  ? "absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-wallet"
-                  : `absolute h-7 w-7 icon-position-circle rotate-singlePage-wallet`
-              }
-            />
+            <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
           }
           customClassName="ml-16"
           symbol="€"
@@ -180,13 +166,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-green"
           icon={
-            <IoEarthOutline
-              className={
-                isMobile
-                  ? "absolute w-6 h-6 icon-position-circle-mobile"
-                  : "absolute w-8 h-8 icon-position-circle"
-              }
-            />
+            <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
           }
           customClassName="ml-16"
           symbol="g"

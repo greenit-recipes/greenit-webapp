@@ -4,8 +4,6 @@ import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
 import React, { useEffect } from "react";
 import { BiTimeFive } from "react-icons/bi";
-import { BsWallet2 } from "react-icons/bs";
-import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
 import Auth from "../../../services/auth.service";
 
 const list = (
@@ -84,13 +82,7 @@ const RecipeFullXP = () => {
             sizeCircle="w-20 h-20"
             textWidth="w-24"
             icon={
-              <IoFlaskOutline
-                className={
-                  isMobile
-                    ? "absolute w-8 h-8 icon-position-circle-mobile rotate-singlePage-chimie"
-                    : `absolute w-10 h-10 icon-position-circle rotate-singlePage-chimie`
-                }
-              />
+              <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
             }
             symbol=""
             number={11}
@@ -101,13 +93,7 @@ const RecipeFullXP = () => {
             sizeCircle="w-20 h-20"
             textWidth="w-24"
             icon={
-              <BsWallet2
-                className={
-                  isMobile
-                    ? "absolute w-8 h-8 icon-position-circle-mobile rotate-singlePage-wallet"
-                    : `absolute h-7 w-7 icon-position-circle rotate-singlePage-wallet`
-                }
-              />
+              <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
             }
             customClassName="ml-4"
             symbol="€"
@@ -119,13 +105,7 @@ const RecipeFullXP = () => {
             sizeCircle="w-20 h-20"
             textWidth="w-24"
             icon={
-              <IoEarthOutline
-                className={
-                  isMobile
-                    ? "absolute w-8 h-8 icon-position-circle-mobile"
-                    : "absolute w-8 h-8 icon-position-circle"
-                }
-              />
+              <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
             }
             customClassName="ml-4"
             symbol="g"

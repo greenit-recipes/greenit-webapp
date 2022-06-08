@@ -72,33 +72,15 @@ export const ModalKpi: React.FC<IModalKpi> = ({
   const iconKpi = (sizeBig: boolean = false) => {
     if (nameKpi === "substance")
       return (
-        <IoFlaskOutline
-          className={`${!sizeBig ? "absolute" : ""} ${
-            isMobile
-              ? "w-6 h-6 icon-position-circle-mobile"
-              : " w-8 h-8 icon-position-circle"
-          } ${kpiContent[nameKpi]?.classNameIcon}`}
-        />
+       <i className={`${!sizeBig ? "absolute" : ""} bx bxs-vial -rotate-12 w-8 h-8 icon-position-circle bx-md`}></i>
       );
     else if (nameKpi === "money")
       return (
-        <BsWallet2
-          className={`${!sizeBig ? "absolute" : ""} ${
-            isMobile
-              ? "w-6 h-6 icon-position-circle-mobile"
-              : " w-7 h-7 icon-position-circle"
-          } ${kpiContent[nameKpi]?.classNameIcon}`}
-        />
+        <i className={`${!sizeBig ? "absolute" : ""} bx bx-euro w-8 h-8 icon-position-circle bx-md`}></i>
       );
     else if (nameKpi === "plastic")
       return (
-        <IoEarthOutline
-          className={`${!sizeBig ? "absolute" : ""} ${
-            isMobile
-              ? "w-6 h-6 icon-position-circle-mobile"
-              : " w-8 h-8 icon-position-circle"
-          } ${kpiContent[nameKpi]?.classNameIcon}`}
-        />
+        <i className={`${!sizeBig ? "absolute" : ""} bx bx-leaf w-8 h-8 icon-position-circle bx-md`}></i>
       );
   };
 

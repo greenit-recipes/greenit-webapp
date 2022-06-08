@@ -19,7 +19,7 @@ export const Instruction: React.FC<IInstruction> = ({
     <div className={`flex items-center justify-center`}>
       <div
         className={`h-10 mr-5 rounded-full flex items-center justify-center instruction-video-down ${
-          isHighlighted ? "text-white bg-black" : "text-black bg-greyL"
+          isHighlighted ? "text-white bg-darkBlue" : "text-black bg-greyL"
         }`}
         style={{ minWidth: "2.5rem" }}
       >
@@ -38,7 +38,7 @@ export const Instruction: React.FC<IInstruction> = ({
       <div
         className={`h-10 mr-5 rounded-full flex items-center justify-center ${
           isHighlighted
-            ? "text-white bg-black instruction-video-up"
+            ? "text-white bg-darkBlue instruction-video-up"
             : "text-black bg-greyL instruction-video-down"
         }`}
         style={{ minWidth: "2.5rem" }}

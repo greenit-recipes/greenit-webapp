@@ -1,6 +1,7 @@
 import { UserBadge } from "components/layout/UserBadge";
 import { getLogoAndNameByUrl } from "helpers/social-media.helper";
 import HTMLReactParser from "html-react-parser";
+import { rondIcon } from "icons";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import "./HeaderRecipe.css";
@@ -47,13 +48,21 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
                 !isEmpty(JSON.parse(recipe?.author?.urlsSocialMedia)) &&
                   JSON.parse(recipe?.author?.urlsSocialMedia)?.map(
                     (data: any, index: any) => (
-                      <a href={data?.url} key={index} className="mr-2">
-                        <i
-                          className={`bx ${
-                            getLogoAndNameByUrl(data?.url)?.icon
-                          } bx-sm`}
-                        ></i>
-                      </a>
+                      <div className="relative mr-2 w-9 h-9 justify-center flex items-center " key={index}>
+                        <a href={data?.url}>
+                          <img
+                            src={rondIcon}
+                            className="absolute hover:fill-yellow top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                            alt="icon rond"
+                          ></img>
+
+                          <i
+                            className={`bx  mt-1 ${
+                              getLogoAndNameByUrl(data?.url)?.icon
+                            } bx-sm`}
+                          ></i>
+                        </a>
+                      </div>
                     ),
                   )
               }

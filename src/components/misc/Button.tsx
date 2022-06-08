@@ -21,6 +21,7 @@ interface ButtonStyle {
   borderColor: string;
   borderRadius: string;
   textColor: string;
+  hoverTextColor: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -40,56 +41,57 @@ export const Button: React.FC<ButtonProps> = ({
     borderColor: "",
     textColor: "",
     borderRadius: "",
+    hoverTextColor: "",
   };
 
   switch (type) {
     case "green":
-      style.hoverBgColor = "hover:bg-green";
+      style.hoverBgColor = "bg-green";
       style.textColor = "text-white"
       style.borderColor = "border-green";
-      style.textColor = "text-green";
+      style.hoverTextColor = "hover:text-green";
       break;
     case "yellow":
       style.hoverBgColor = "hover:bg-yellow";
       style.textColor = "text-white";
       style.borderColor = "border-yellow";
-      style.textColor = "text-yellow";
+      style.hoverTextColor = "text-yellow";
       break;
     case "orange":
       style.hoverBgColor = "hover:bg-orange";
       style.textColor = "text-white";
       style.borderColor = "border-orange";
-      style.textColor = "text-orange";
+      style.hoverTextColor = "text-orange";
       break;
     case "darkBlue":
       style.hoverBgColor = "hover:bg-darkBlue";
       style.textColor = "text-white";
       style.borderColor = "border-darkBlue";
-      style.textColor = "text-darkBlue";
+      style.hoverTextColor = "text-darkBlue";
       break;
     case "grey":
         style.hoverBgColor = "hover:bg-grey";
         style.textColor = "text-white";
         style.borderColor = "border-grey";
-        style.textColor = "text-grey";
+        style.hoverTextColor = "text-grey";
         break;
     case "red":
       style.hoverBgColor = "hover:bg-red";
       style.textColor = "text-white";
       style.borderColor = "border-red";
-      style.textColor = "text-red";
+      style.hoverTextColor = "text-red";
       break;
     case "blueL":
       style.hoverBgColor = "hover:bg-blueL";
       style.textColor = "text-white";
       style.borderColor = "border-blueL";
-      style.textColor = "text-blueL";
+      style.hoverTextColor = "text-blueL";
       break;
     default:
       style.hoverBgColor = "hover:bg-blue";
       style.textColor = "text-white";
       style.borderColor = "border-blue";
-      style.textColor = "text-blue";
+      style.hoverTextColor = "text-blue";
   }
   switch (rounded) {
     case "lg":
@@ -106,11 +108,12 @@ export const Button: React.FC<ButtonProps> = ({
       className={`${className} flex justify-center items-center cursor-pointer
       text-sm ${haveIcon ? 'px-2 py-1': 'px-3 py-2 '} bold  border-2 border-transparent
       fontQSbold md:ease-linear transition-all duration-150
-      ${style.hoverBgColor}
-      hover:shadow-lg bg-white hover:text-white active:bg-white
+      ${style.hoverTextColor}
+      hover:shadow-lg  ${type === "green" ? "hover:bg-white": "bg-white hover:text-white active:bg-white" }
       ${style.borderColor}
       ${style.textColor}
       ${style.borderRadius}
+      ${style.hoverBgColor}
         `}
       onClick={onClick}
     >

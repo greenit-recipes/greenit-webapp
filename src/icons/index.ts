@@ -149,6 +149,8 @@ import boxConfirmation from "./confirmation-fullxp.png";
 import boxFullXp from "./image_box_DIY_5.png";
 import cremeFullXp from "./image_box_DIY_6.jpeg";
 
+import rondIcon from "./rond-icon.svg"
+
 export {
   wellbeing,
   corps,
@@ -268,4 +270,5 @@ export {
   arrowFullXpMobile,
   cremeFullXp,
   boxFullXp,
+  rondIcon,
 };

@@ -24,7 +24,6 @@ import React, { createRef, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BsWallet2 } from "react-icons/bs";
 import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
-import { RiShareForwardLine } from "react-icons/ri";
 import ReactPlayer from "react-player/lazy";
 import { useHistory, useParams } from "react-router-dom";
 import { RWebShare } from "react-web-share";
@@ -195,28 +194,25 @@ const RecipeSinglePage = () => {
                     customClassName="flex w-28"
                     recipe={data?.recipe}
                   ></FavouriteField>
-                  <MadeRecipe
-                    customClassName="ml-3"
-                    recipe={data?.recipe}
-                  />
-                    <RWebShare
-                      data={{
-                        text: recipe?.titleSeo,
-                        url: window.location.href,
-                        title: recipe?.name,
-                      }}
+                  <MadeRecipe customClassName="ml-3" recipe={data?.recipe} />
+                  <RWebShare
+                    data={{
+                      text: recipe?.titleSeo,
+                      url: window.location.href,
+                      title: recipe?.name,
+                    }}
+                  >
+                    <Button
+                      id="recette-partager"
+                      type="darkBlue"
+                      rounded="lg"
+                      haveIcon={true}
+                      className="ml-2"
                     >
-                      <Button
-                        id="recette-partager"
-                        type="darkBlue"
-                        rounded="lg"
-                        haveIcon={true}
-                        className="ml-2"
-                      >
-                        <i className="bx  bx-share bx-flip-horizontal bx-sm mr-2"></i>
-                        partage
-                      </Button>
-                    </RWebShare>
+                      <i className="bx  bx-share bx-flip-horizontal bx-sm mr-2"></i>
+                      partage
+                    </Button>
+                  </RWebShare>
                 </div>
               </div>
               <Modal onClose={() => setShowModal(false)} show={showModal}>
@@ -239,7 +235,7 @@ const RecipeSinglePage = () => {
                     <CircleGreenit
                       colorCircle="bg-blue"
                       icon={
-                        <IoFlaskOutline className="absolute w-8 h-8 icon-position-circle rotate-singlePage-chimie" />
+                        <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
                       }
                       symbol=""
                       number={recipe?.substances?.length}
@@ -257,7 +253,7 @@ const RecipeSinglePage = () => {
                     <CircleGreenit
                       colorCircle="bg-yellow"
                       icon={
-                        <BsWallet2 className="absolute h-7 w-7 icon-position-circle rotate-singlePage-wallet" />
+                        <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
                       }
                       customClassName="ml-16"
                       symbol="€"
@@ -276,7 +272,7 @@ const RecipeSinglePage = () => {
                     <CircleGreenit
                       colorCircle="bg-green"
                       icon={
-                        <IoEarthOutline className="absolute w-8 h-8 icon-position-circle" />
+                        <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
                       }
                       customClassName="ml-16"
                       symbol="g"
@@ -306,9 +302,9 @@ const RecipeSinglePage = () => {
                       }}
                     >
                       <CircleGreenit
-                        colorCircle="bg-orange"
+                        colorCircle="bg-blue"
                         icon={
-                          <IoFlaskOutline className="absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-chimie" />
+                          <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
                         }
                         symbol=""
                         number={recipe?.substances?.length}
@@ -326,7 +322,7 @@ const RecipeSinglePage = () => {
                       <CircleGreenit
                         colorCircle="bg-yellow"
                         icon={
-                          <BsWallet2 className="absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-wallet" />
+                          <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
                         }
                         customClassName="ml-16"
                         symbol="€"
@@ -345,7 +341,7 @@ const RecipeSinglePage = () => {
                       <CircleGreenit
                         colorCircle="bg-green"
                         icon={
-                          <IoEarthOutline className="absolute w-6 h-6 icon-position-circle-mobile" />
+                          <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
                         }
                         customClassName="ml-16"
                         symbol="g"
@@ -378,8 +374,7 @@ const RecipeSinglePage = () => {
                         <div>{recipe?.duration} m</div>
                       </div>
                     </div>
-                    <div
-                      className="px-1.5 h-16 ml-6">
+                    <div className="px-1.5 h-16 ml-6">
                       <div className="mt-1 mb-1 text-center">Prix</div>
                       <div className="flex items-center justify-center">
                         <i className="bx bx-coin bx-sm mr-2"></i>
@@ -548,7 +543,7 @@ const RecipeSinglePage = () => {
                       {comment?.author?.id === recipe?.author?.id && (
                         <div> (créateur de la recette) </div>
                       )}
-                        <p className=""> {comment?.comment} </p>
+                      <p className=""> {comment?.comment} </p>
                       <p className="absolute top-0 right-0 m-6 | ">
                         {momentGreenit(comment?.createdAt)}
                       </p>
