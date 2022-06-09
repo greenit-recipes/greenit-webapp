@@ -6,10 +6,11 @@ import useIsMobile from "hooks/isMobile";
 import { mdpNonVisible, mdpVisible, loginMail, loginPassword } from "icons";
 import { IoLogoFacebook } from "react-icons/io5";
 import { omit } from "lodash";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FacebookLogin from "react-facebook-login";
 import { useForm } from "react-hook-form";
 import { useHistory, useLocation } from "react-router-dom";
+import { GoogleLogin } from 'react-google-login';
 import authService, {
   CREATE_USER_FROM_AUTH,
   LOGIN_ACCOUNT,
@@ -23,6 +24,7 @@ import {
   persistBoxPurchaseOnFirstLogin,
   persistBoxPurchaseOnRegister,
 } from "../../services/boxfullxp.service";
+import { gapi } from 'gapi-script';
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -67,6 +69,20 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     errorPolicy: "all",
   });
 
+  const responseGoogle = (response:any) => {
+    console.log(response);
+  }
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: process.env.REACT_APP_GOOGLE_ID,
+        scope: 'email',
+      });
+    }
+
+    gapi.load('client:auth2', start);
+  }, []);
   // Error for graphql call
   React.useEffect(() => {
     if (data?.tokenAuth?.success === false || error) {
@@ -236,7 +252,13 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
             </form>
 
             <div className="m-4 text-gray-700 separator md:m-10">Ou</div>
-
+  <GoogleLogin
+    // @ts-ignore
+    clientId={process.env.REACT_APP_GOOGLE_ID}
+    buttonText="Login"
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+  />,
             <FacebookLogin
               // @ts-ignore
               appId={process.env.REACT_APP_FACEBOOK_ID}
