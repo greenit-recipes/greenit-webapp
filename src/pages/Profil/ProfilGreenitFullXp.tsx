@@ -2,6 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 import { RouteName } from "App";
 import Modal from "components/layout/Modal/Modal";
 import ModalHelp from "components/layout/modalHelp";
+import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
 import { useState } from "react";
 import { AiFillCheckSquare } from "react-icons/ai";
 import { FiSquare } from "react-icons/fi";
@@ -37,23 +38,24 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
       <p className="text-2xl font-semibold text-center mb-2">
         Ma box Premiers Pas
       </p>
+
       <div className="flex justify-evenly">
         <img
           className="w-16 h-16 rounded-full"
-          alt="lessive"
-          src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"
+          alt={recipesBegginerFullXp[0]?.name}
+          src={recipesBegginerFullXp[0]?.image}
           loading="lazy"
         />
         <img
           className="w-16 h-16 rounded-full"
-          alt="savon solide"
-          src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"
+          alt={recipesBegginerFullXp[1]?.name}
+          src={recipesBegginerFullXp[1]?.image}
           loading="lazy"
         />
         <img
           className="w-16 h-16 rounded-full"
-          alt="crème de jour"
-          src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"
+          alt={recipesBegginerFullXp[2]?.name}
+          src={recipesBegginerFullXp[2]?.image}
           loading="lazy"
         />
       </div>

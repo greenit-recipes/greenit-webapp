@@ -30,13 +30,13 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
       }}
       className="fixed z-0 grid w-full pb-20 justify-items-center bg-yellowL lg:mt-2"
     >
-      <div className="flex lg:mt-20 items-center justify-center mb-10">
+      <div className="flex mt-20 items-center justify-center mb-10">
         <UserBadge
           image={recipe?.author?.imageProfile}
           // @ts-ignore
           facebookImg={recipe?.author?.photoUrl}
         ></UserBadge>
-        <div className="flex flex-col w-1/3 ml-8">
+        <div className="flex flex-col w-2/3 lg:w-1/3 ml-4 lg:ml-8">
           <div className="flex mb-3">
             <div className="flex flex-col mr-10">
               <h3 className="">{recipe?.author?.username}</h3>
@@ -48,7 +48,10 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
                 !isEmpty(JSON.parse(recipe?.author?.urlsSocialMedia)) &&
                   JSON.parse(recipe?.author?.urlsSocialMedia)?.map(
                     (data: any, index: any) => (
-                      <div className="relative mr-2 w-9 h-9 justify-center flex items-center " key={index}>
+                      <div
+                        className="relative mr-2 w-9 h-9 justify-center flex items-center "
+                        key={index}
+                      >
                         <a href={data?.url}>
                           <img
                             src={rondIcon}
@@ -68,7 +71,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
               }
             </div>
           </div>
-          <div className="flex flex-col w-full pl-4 pr-4  lg:pl-0 lg:pr-0 lg:flex-row">
+          <div className="flex flex-col w-full pr-4  lg:pl-0 lg:pr-0 lg:flex-row">
             <div className="flex items-center text-sm lg:text-base">
               {recipe?.author?.biographie &&
                 HTMLReactParser(recipe?.author?.biographie)}

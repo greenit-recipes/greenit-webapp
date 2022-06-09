@@ -45,8 +45,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
   const isMobile = useIsMobile();
   const imageHeight = isMobile ? 56 : 72;
-  const imageWidth = isMobile ? 40 : 48;
-  const bandeauWidth = isMobile ? 40 : 48;
+  const imageWidth = isMobile ? 44 : 48;
+  const bandeauWidth = isMobile ? 44 : 48;
 
   return (
     <div
@@ -128,9 +128,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             pathname: `${RouteName.recipes}/${recipe?.urlId}`,
           }}
         >
-          <h4 className="text-center mt-4 p-1">
-            {recipe?.name}
-          </h4>
+          <h4 className="text-center mt-4 p-1">{recipe?.name}</h4>
           <Icon
             nbOfIngredient={recipe?.numberOfIngredients}
             difficulty={
