@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import FacebookLogin from "react-facebook-login";
 import { useForm } from "react-hook-form";
 import { useHistory, useLocation } from "react-router-dom";
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from "react-google-login";
 import authService, {
   CREATE_USER_FROM_AUTH,
   LOGIN_ACCOUNT,
@@ -24,7 +24,7 @@ import {
   persistBoxPurchaseOnFirstLogin,
   persistBoxPurchaseOnRegister,
 } from "../../services/boxfullxp.service";
-import { gapi } from 'gapi-script';
+import { gapi } from "gapi-script";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -61,6 +61,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   });
 
   const [errorLoginFb, setErrorLoginFb] = useState("");
+  const [errorLoginGoogle, setErrorLoginGoogle] = useState("");
 
   const [
     authLogin,
@@ -69,19 +70,57 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     errorPolicy: "all",
   });
 
-  const responseGoogle = (response:any) => {
-    console.log(response);
-  }
+  const responseGoogle = (responseGoogle: any) => {
+
+    const variables: any = {
+      email: responseGoogle?.profileObj.email,
+      username: responseGoogle?.profileObj.name,
+      password: process.env.REACT_APP_PASSWORD + responseGoogle?.profileObj.id,
+      idGoogle: responseGoogle?.profileObj.googleId,
+      isFollowNewsletter: "false",
+      imageUrl: responseGoogle?.profileObj.imageUrl,
+      isBeginnerBox: true,
+    };
+    //Add the field optionally to avoid defaults
+    if (!persistBoxPurchaseOnRegister()) {
+      omit(variables, ["isBeginnerBox"]);
+    }
+    // Error si pas d'email
+
+    if (responseGoogle?.profileObj.status === "unknown") {
+      return;
+    }
+
+    authLogin({
+      variables,
+    }).then(response => {
+      // @ts-ignore
+      if (response?.data?.createUserFromAuth?.errors) {
+        setErrorLoginFb(response?.data?.createUserFromAuth?.errors);
+        return;
+      }
+      const data = {
+        email: responseGoogle?.profileObj.email,
+        password: process.env.REACT_APP_PASSWORD + responseGoogle?.profileObj.id,
+      };
+      onSubmitHandler(data);
+    });
+
+  };
+
+  const errorGoogle = (response: any) => {
+    setErrorLoginGoogle("Une erreur est survenue");
+  };
 
   useEffect(() => {
     function start() {
       gapi.client.init({
         clientId: process.env.REACT_APP_GOOGLE_ID,
-        scope: 'email',
+        scope: "email",
       });
     }
 
-    gapi.load('client:auth2', start);
+    gapi.load("client:auth2", start);
   }, []);
   // Error for graphql call
   React.useEffect(() => {
@@ -250,15 +289,23 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                 Connexion
               </Button>
             </form>
-
             <div className="m-4 text-gray-700 separator md:m-10">Ou</div>
-  <GoogleLogin
-    // @ts-ignore
-    clientId={process.env.REACT_APP_GOOGLE_ID}
-    buttonText="Login"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
-  />,
+            <GoogleLogin
+              // @ts-ignore
+              clientId={process.env.REACT_APP_GOOGLE_ID}
+              buttonText="Login"
+              className="my-google-button-class mb-4"
+              onSuccess={responseGoogle}
+              onFailure={errorGoogle}
+                            // @ts-ignore
+              buttonText={'Connexion avec Google'}
+              id="connexion-google-login"
+            />
+            {errorLoginGoogle && (
+              <div className="mt-4 text-xs italic text-red">
+                {errorLoginGoogle}
+              </div>
+            )}
             <FacebookLogin
               // @ts-ignore
               appId={process.env.REACT_APP_FACEBOOK_ID}
@@ -267,7 +314,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               disableMobileRedirect={true}
               cssClass="my-facebook-button-class"
               textButton={"Connexion avec Facebook"}
-              id="connexion-facebook"
+              id="connexion-facebook-login"
               icon={
                 loadingAuth ? (
                   <div className="animate-spin mr-4">
@@ -278,11 +325,9 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                 )
               }
             />
-
             {errorLoginFb && (
               <div className="mt-4 text-xs italic text-red">{errorLoginFb}</div>
             )}
-
             <div>
               <p
                 onClick={() => loginOpen(false)}

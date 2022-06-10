@@ -18,7 +18,7 @@ import {
   optionsUserCategoryLvl,
   schemaRegister,
 } from "pages/Register/registerHelper";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FacebookLogin from "react-facebook-login";
 import { Controller, useForm } from "react-hook-form";
 import { BiLoaderAlt } from "react-icons/bi";
@@ -36,8 +36,9 @@ import {
   persistBoxPurchaseOnFirstLogin,
   persistBoxPurchaseOnRegister,
 } from "services/boxfullxp.service";
-
+import { gapi } from "gapi-script";
 import "./register.css";
+import GoogleLogin from "react-google-login";
 
 export const RegisterModal: React.FC<{
   loginOpen: any;
@@ -68,6 +69,7 @@ export const RegisterModal: React.FC<{
   });
 
   const [errorLoginFb, setErrorLoginFb] = useState("");
+  const [errorLoginGoogle, setErrorLoginGoogle] = useState("");
 
   const [
     authLogin,
@@ -103,7 +105,60 @@ export const RegisterModal: React.FC<{
       }
     }
   }, [setError, error, createAccountData]);
+
   const location = useLocation();
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: process.env.REACT_APP_GOOGLE_ID,
+        scope: "email",
+      });
+    }
+
+    gapi.load("client:auth2", start);
+  }, []);
+
+  const responseGoogle = (responseGoogle: any) => {
+    const variables: any = {
+      email: responseGoogle?.profileObj.email,
+      username: responseGoogle?.profileObj.name,
+      password: process.env.REACT_APP_PASSWORD + responseGoogle?.profileObj.id,
+      idGoogle: responseGoogle?.profileObj.googleId,
+      isFollowNewsletter: "false",
+      imageUrl: responseGoogle?.profileObj.imageUrl,
+      isBeginnerBox: true,
+    };
+    //Add the field optionally to avoid defaults
+    if (!persistBoxPurchaseOnRegister()) {
+      omit(variables, ["isBeginnerBox"]);
+    }
+    // Error si pas d'email
+
+    if (responseGoogle?.profileObj.status === "unknown") {
+      return;
+    }
+
+    authLogin({
+      variables,
+    }).then(response => {
+      // @ts-ignore
+      if (response?.data?.createUserFromAuth?.errors) {
+        setErrorLoginFb(response?.data?.createUserFromAuth?.errors);
+        return;
+      }
+      const data = {
+        email: responseGoogle?.profileObj.email,
+        password:
+          process.env.REACT_APP_PASSWORD + responseGoogle?.profileObj.id,
+      };
+      onSubmitHandlerConnect(data);
+    });
+  };
+
+  const errorGoogle = (response: any) => {
+    setErrorLoginGoogle("Une erreur est survenue");
+  };
 
   const responseFacebook = (responseFb: any) => {
     //Todo (zack): create a custom object augmentation function to add the field optionally
@@ -268,6 +323,24 @@ export const RegisterModal: React.FC<{
           </>
         )}
 
+        <div className="mb-4 lg:mb-1 mt-2">
+          <GoogleLogin
+            // @ts-ignore
+            clientId={process.env.REACT_APP_GOOGLE_ID}
+            buttonText="Login"
+            className="w-full"
+            onSuccess={responseGoogle}
+            onFailure={errorGoogle}
+            // @ts-ignore
+            buttonText={"Connexion avec Google"}
+            id="connexion-google-login"
+          />
+          {errorLoginGoogle && (
+            <div className="mt-6 text-xs italic text-red">
+              {errorLoginGoogle}
+            </div>
+          )}
+        </div>
         <div className="mb-4 lg:mb-1 mt-2">
           <FacebookLogin
             // @ts-ignore
