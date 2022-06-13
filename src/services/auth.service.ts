@@ -97,6 +97,8 @@ export const CREATE_USER_FROM_AUTH = gql`
     $isFollowNewsletter: String
     $isBeginnerBox: Boolean
     $idFacebook: String
+    $idGoogle: String
+    $imageUrl: String
   ) {
     createUserFromAuth(
       email: $email
@@ -105,6 +107,8 @@ export const CREATE_USER_FROM_AUTH = gql`
       isFollowNewsletter: $isFollowNewsletter
       isBeginnerBox: $isBeginnerBox
       idFacebook: $idFacebook
+      idGoogle: $idGoogle
+      imageUrl: $imageUrl
     ) {
       isUserAlreadyCreated
       errors
@@ -278,6 +282,7 @@ class Auth {
       includes(pathname, RouteName.resetPassword) ||
       includes(pathname, "activate") ||
       includes(pathname, RouteName.tokenActivationAccount) ||
+      includes(pathname, RouteName.accueil) ||
       pathname === RouteName.register ||
       //Full Xp Params
       pathname === RouteName.qrFullXp
