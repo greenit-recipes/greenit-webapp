@@ -1,8 +1,8 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { EditorGreenit, Button } from "components";
+import { Button } from "components";
 import { getLogoAndNameByUrl } from "helpers/social-media.helper";
-import { filter, map, sum } from "lodash";
+import { filter, map, sum, isEmpty } from "lodash";
 import { StatProfilForm } from "pages/Profil/Stat";
 import React, { useEffect, useState } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
@@ -14,7 +14,7 @@ import { RouteName } from "App";
 import { Link } from "react-router-dom";
 import { FiEdit } from "react-icons/fi";
 import { FaRegEye } from "react-icons/fa";
-import { isEmpty } from "lodash";
+import { PellGreenit } from "../../components/layout/Editor/PellEditor";
 
 interface IUser {
   user: {
@@ -185,7 +185,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
                 <Controller
                   name="bio"
                   render={({ field }) => {
-                    return <EditorGreenit {...field} />;
+                    return <PellGreenit {...field} />;
                   }}
                   control={controlBio}
                   defaultValue={user?.biographie}

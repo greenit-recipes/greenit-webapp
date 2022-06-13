@@ -6,5 +6,4 @@ export * from "./Loading";
 export * from "./Empty";
 export * from "./SearchBar";
 export * from "./BackgroundImage";
-export * from "./EditorGreenit";
 export * from "./ModalLogGreenit/ModalLogGreenit";

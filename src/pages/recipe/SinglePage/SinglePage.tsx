@@ -9,12 +9,11 @@ import Modal from "components/layout/Modal/Modal";
 import { UserBadge } from "components/layout/UserBadge";
 import { getImagePath } from "helpers/image.helper";
 import { getObjectSession } from "helpers/session-helper";
-import { momentGreenit } from "helpers/time.helper";
+import { momentGreenit, momentGreenitNow } from "helpers/time.helper";
 import { getUuidFromId } from "helpers/user.helper";
 import useIsMobile from "hooks/isMobile";
 import HTMLReactParser from "html-react-parser";
 import { isEmpty } from "lodash";
-import moment from "moment";
 import { IngredientUsentil } from "pages/recipe/SinglePage/IngredientUsentil/IngredientUsentil";
 import { Instruction } from "pages/recipe/SinglePage/Instructions/Instructions";
 import { ModalKpi } from "pages/recipe/SinglePage/modalKpi/modalKpi";
@@ -131,7 +130,7 @@ const RecipeSinglePage = () => {
     const newCommentAddedByCurrentUser = {
       comment: dataForm?.comment,
       numberOfLikes: 0,
-      createdAt: moment().locale("fr"),
+      createdAt: momentGreenitNow(),
       isNewComment: true,
       author: {
         // @ts-ignore
