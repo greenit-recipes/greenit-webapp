@@ -2,20 +2,13 @@ const {override, addBabelPlugin, disableEsLint, addWebpackPlugin} = require("cus
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = override(
-  disableEsLint(),
-  // addWebpackPlugin(new BundleAnalyzerPlugin()),
-  //Babel Plugins
-  addBabelPlugin([
-    "transform-imports", {
-    "lodash": {
-      "transform": "lodash/${member}",
-      "preventFullImport": true
-    }
-  }]),
-  addBabelPlugin([
-    "transform-react-remove-prop-types",
-    {
-      "removeImport": true
-    }
-  ]),
+    disableEsLint(),
+    // addWebpackPlugin(new BundleAnalyzerPlugin()),
+    //Babel Plugins
+    addBabelPlugin(["transform-imports", {
+        "lodash": {
+            "transform": "lodash/${member}",
+            "preventFullImport": true
+        }
+    }])
 )
