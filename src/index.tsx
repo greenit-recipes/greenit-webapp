@@ -16,6 +16,7 @@ import authService from "services/auth.service";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { CookieBanner } from "./components/misc/CookieBanner";
 
 let isRefreshing = false;
 let pendingRequests: any = [];
@@ -129,6 +130,11 @@ ReactDOM.render(
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root"),
+);
+
+ReactDOM.render(
+  <CookieBanner />,
+  document.body.appendChild(document.createElement("div")),
 );
 
 // If you want to start measuring performance in your app, pass a function

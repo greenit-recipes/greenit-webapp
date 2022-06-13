@@ -44,6 +44,7 @@ import "../../pages/recipe/SinglePage/SinglePage.css";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
 import { GET_FEATURE_BY_NAME } from "../../services/feature.service";
+import { CookieBanner } from "../../components/misc/CookieBanner";
 
 const responsiveCarouselLanding = {
   desktop: {
@@ -158,7 +159,7 @@ const LandingPage = () => {
           content="Votre espace de partage de recette DIY, des astuces écologiques pour la maison, des ateliers pour débuter dans le fait-maison et des pages sur les bienfaits des ingrédients."
         />
       </Helmet>
-      <BugFormulaire />
+      {/*<BugFormulaire />*/}
       <BackgroundImage className="overflow-hidden" />
       {dataFullXP?.featureFlag?.isActive && (
         <>
