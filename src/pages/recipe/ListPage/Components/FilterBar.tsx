@@ -182,7 +182,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                       </div>
                     </div>
                     <div>
-                      <Button type="grey" onClick={() => removeFilters()}>
+                      <Button type="darkBlue" onClick={() => removeFilters()}>
                         <h3 className="text-sm">
                           Supprimer tous les filtres X
                         </h3>
@@ -192,7 +192,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 )}
                 {!isCurrentFilterEmpty && (
                   <div className="grid | h-18">
-                    <h3 className="self-center">Pas de filtre sélectionné</h3>
+                    <h4 className="self-center">Pas de filtre sélectionné</h4>
                   </div>
                 )}
               </div>

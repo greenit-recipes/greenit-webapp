@@ -22,11 +22,8 @@ import { HelmetRecipe } from "pages/recipe/SinglePage/SinglePageHelmet";
 import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest";
 import React, { createRef, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { BiTimeFive } from "react-icons/bi";
 import { BsWallet2 } from "react-icons/bs";
-import { GrMoney } from "react-icons/gr";
 import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
-import { RiShareForwardLine } from "react-icons/ri";
 import ReactPlayer from "react-player/lazy";
 import { useHistory, useParams } from "react-router-dom";
 import { RWebShare } from "react-web-share";
@@ -186,7 +183,7 @@ const RecipeSinglePage = () => {
           <div className="w-5/6 mb-10 lg:w-4/6">
             <div className="w-full h-auto">
               <div className="justify-center">
-                <h1 className="mb-5 text-xl text-center lg:text-2xl fontQSsemibold">
+                <h1 className="mb-5 text-xl text-center lg:text-2xl font-medium">
                   {recipe?.name}
                 </h1>
                 <div className="flex items-center justify-center mb-10">
@@ -197,33 +194,25 @@ const RecipeSinglePage = () => {
                     customClassName="flex w-28"
                     recipe={data?.recipe}
                   ></FavouriteField>
-                  <MadeRecipe
-                    customClassName="ml-3 lg:ml-10"
-                    recipe={data?.recipe}
-                  />
-                  <div className="flex h-10 ml-3 lg:ml-10 w-28 btn-single-page">
-                    <RWebShare
-                      data={{
-                        text: recipe?.titleSeo,
-                        url: window.location.href,
-                        title: recipe?.name,
-                      }}
+                  <MadeRecipe customClassName="ml-3" recipe={data?.recipe} />
+                  <RWebShare
+                    data={{
+                      text: recipe?.titleSeo,
+                      url: window.location.href,
+                      title: recipe?.name,
+                    }}
+                  >
+                    <Button
+                      id="recette-partager"
+                      type="darkBlue"
+                      rounded="lg"
+                      haveIcon={true}
+                      className="ml-2"
                     >
-                      <button
-                        className="flex items-center justify-center"
-                        id="shared-recipe"
-                      >
-                        <RiShareForwardLine
-                          id="shared-recipe"
-                          className="ml-1 justify-self-center w-7 h-7"
-                        />
-                        <h2 id="shared-recipe" className="ml-2 text-center">
-                          {" "}
-                          partage{" "}
-                        </h2>
-                      </button>
-                    </RWebShare>
-                  </div>
+                      <i className="bx  bx-share bx-flip-horizontal bx-sm mr-2"></i>
+                      partage
+                    </Button>
+                  </RWebShare>
                 </div>
               </div>
               <Modal onClose={() => setShowModal(false)} show={showModal}>
@@ -244,9 +233,9 @@ const RecipeSinglePage = () => {
                     }}
                   >
                     <CircleGreenit
-                      colorCircle="bg-orange"
+                      colorCircle="bg-blue"
                       icon={
-                        <IoFlaskOutline className="absolute w-8 h-8 icon-position-circle rotate-singlePage-chimie" />
+                        <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
                       }
                       symbol=""
                       number={recipe?.substances?.length}
@@ -264,7 +253,7 @@ const RecipeSinglePage = () => {
                     <CircleGreenit
                       colorCircle="bg-yellow"
                       icon={
-                        <BsWallet2 className="absolute h-7 w-7 icon-position-circle rotate-singlePage-wallet" />
+                        <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
                       }
                       customClassName="ml-16"
                       symbol="€"
@@ -283,7 +272,7 @@ const RecipeSinglePage = () => {
                     <CircleGreenit
                       colorCircle="bg-green"
                       icon={
-                        <IoEarthOutline className="absolute w-8 h-8 icon-position-circle" />
+                        <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
                       }
                       customClassName="ml-16"
                       symbol="g"
@@ -313,9 +302,9 @@ const RecipeSinglePage = () => {
                       }}
                     >
                       <CircleGreenit
-                        colorCircle="bg-orange"
+                        colorCircle="bg-blue"
                         icon={
-                          <IoFlaskOutline className="absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-chimie" />
+                          <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
                         }
                         symbol=""
                         number={recipe?.substances?.length}
@@ -333,7 +322,7 @@ const RecipeSinglePage = () => {
                       <CircleGreenit
                         colorCircle="bg-yellow"
                         icon={
-                          <BsWallet2 className="absolute w-6 h-6 icon-position-circle-mobile rotate-singlePage-wallet" />
+                          <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
                         }
                         customClassName="ml-16"
                         symbol="€"
@@ -352,7 +341,7 @@ const RecipeSinglePage = () => {
                       <CircleGreenit
                         colorCircle="bg-green"
                         icon={
-                          <IoEarthOutline className="absolute w-6 h-6 icon-position-circle-mobile" />
+                          <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
                         }
                         customClassName="ml-16"
                         symbol="g"
@@ -379,19 +368,16 @@ const RecipeSinglePage = () => {
                   <p>{recipe?.expiry}</p>
                   <div className="flex mt-6 black">
                     <div className="h-16">
-                      <div className="mt-1 mb-1 text-center"> Temps</div>
+                      <div className="mt-1 mb-1 text-center">Temps</div>
                       <div className="flex items-center justify-center">
-                        <BiTimeFive className="w-6 h-6 mr-2" />
+                        <i className="bx bxs-hourglass bx-sm  mr-2"></i>
                         <div>{recipe?.duration} m</div>
                       </div>
                     </div>
-                    <div
-                      className="
-                  px-1.5 h-16 ml-6"
-                    >
-                      <div className="mt-1 mb-1 text-center"> Prix</div>
+                    <div className="px-1.5 h-16 ml-6">
+                      <div className="mt-1 mb-1 text-center">Prix</div>
                       <div className="flex items-center justify-center">
-                        <GrMoney className="w-6 h-6 mr-2" />
+                        <i className="bx bx-coin bx-sm mr-2"></i>
                         <div>
                           {recipe?.priceMin} € - {recipe?.priceMax} €
                         </div>
@@ -480,7 +466,7 @@ const RecipeSinglePage = () => {
               <div className="lg:ml-10 lg:w-4/6">
                 {!isMobile && (
                   <>
-                    <h2 className="text-xl lg:text-2xl">Instructions</h2>
+                    <h3 className="">Instructions</h3>
                     <h3 className="text-xs lg:text-sm">
                       ⤹ Clique sur les numéros pour faire avancer la vidéo
                     </h3>{" "}
@@ -506,7 +492,7 @@ const RecipeSinglePage = () => {
                         player.current?.getInternalPlayer().playVideo();
                       }}
                     >
-                      <div className={`mt-5 flex inline-flex `}>
+                      <div className={`mt-5 flex `}>
                         <Instruction
                           index={index + 1}
                           text={`${item.content}`}
@@ -520,7 +506,7 @@ const RecipeSinglePage = () => {
               </div>
             </div>
             <div className="flex flex-col mt-8">
-              <h2 className="pb-2 text-xl lg:text-2xl">Conseils de l'auteur</h2>
+              <h3 className="pb-2">Conseils de l'auteur</h3>
               <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
             </div>
             <div className="flex flex-col mt-8">
@@ -536,12 +522,12 @@ const RecipeSinglePage = () => {
             </div>
             {recipe && (
               <div className="flex flex-col mt-6 mb-5">
-                <h2 className="text-xl lg:text-2xl">Recettes similaires</h2>
+                <h3 className="">Recettes similaires</h3>
                 <SimilarRecipe data={recipe}></SimilarRecipe>
               </div>
             )}
             <div className="flex flex-col mt-6" ref={fieldRef}>
-              <h2 className="text-xl lg:text-2xl">Discussion</h2>
+              <h3 className="">Discussion</h3>
               {recipe?.comments?.map((comment: any, index: number) => {
                 // @ts-ignore
                 return (
@@ -557,12 +543,10 @@ const RecipeSinglePage = () => {
                       {comment?.author?.id === recipe?.author?.id && (
                         <div> (créateur de la recette) </div>
                       )}
-                      <div className="text-md">
-                        <h3 className=""> {comment?.comment} </h3>
-                      </div>
-                      <h3 className="absolute top-0 right-0 m-6 | ">
+                      <p className=""> {comment?.comment} </p>
+                      <p className="absolute top-0 right-0 m-6 | ">
                         {momentGreenit(comment?.createdAt)}
-                      </h3>
+                      </p>
                       <div className="absolute -bottom-1 -right-1">
                         {/* @ts-ignore */}
                         <LikeComment
@@ -584,7 +568,7 @@ const RecipeSinglePage = () => {
               onSubmit={handleSubmit(onSubmitHandler)}
             >
               <div className="mb-4">
-                <label className="block mb-2 text-gray-700 lg:text-lg">
+                <label className="block mb-2 text-gray-700">
                   Partage tes retours et tes astuces !
                 </label>
               </div>

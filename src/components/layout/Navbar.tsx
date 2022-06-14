@@ -106,16 +106,14 @@ export const Navbar: React.FC = () => {
               <Suspense fallback={<Loading />}>
                 <ModalLogGreenit
                   btn={
-                    <>
-                      <button
-                        id="Create_Profil"
-                        className="p-2 mr-1 rounded-lg bg-blue"
-                      >
-                        <h2 id="Create_Profil" className="text-xs text-white">
-                          Créer un profil
-                        </h2>
-                      </button>
-                    </>
+                    <Button
+                      id="Create_Profil"
+                      type="blue"
+                      rounded="lg"
+                      className="mr-1"
+                    >
+                      Créer un profil
+                    </Button>
                   }
                   show={hasUrl}
                 ></ModalLogGreenit>
@@ -126,7 +124,9 @@ export const Navbar: React.FC = () => {
 
         <div
           className={
-            toggle ? "navBar_fadeIn h-screen" : "navBar_fadeOut h-screen"
+            toggle
+              ? "navBar_fadeIn h-screen bg-darkBlue"
+              : "navBar_fadeOut h-screen "
           }
         >
           <div className="flex flex-col">
@@ -149,7 +149,7 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link className="p-2" to={RouteName.startDiyGreenitFullXp}>
               <h2 id="nav-box-mobile" className="text-white">
-                Box
+                Kit fait-maison
               </h2>
             </Link>
             <Link className="p-2" to={RouteName.workshops}>
@@ -162,17 +162,17 @@ export const Navbar: React.FC = () => {
                 Se lancer
               </h2>
             </Link>
-            <Link className="p-2" to={RouteName.createRecipe}>
-              <h2 id="sharedRecipeNavMobile" className="text-white">
-                Partager une recette
-              </h2>
-            </Link>
             <Link className="p-2" to={RouteName.why}>
               <h2 id="project" className="text-white">
                 Le projet
               </h2>
             </Link>
-            <hr className="mt-6" />
+            <hr className="mt-5 mb-2 border-white border" />
+            <Link className="p-2" to={RouteName.createRecipe}>
+              <h2 id="sharedRecipeNavMobile" className="text-white">
+                Partager une recette
+              </h2>
+            </Link>
             {isLoggedIn ? (
               <Link id="Access_Profil" className="p-2" to={RouteName.profil}>
                 <h2 id="Access_Profil" className="text-white">
@@ -230,175 +230,175 @@ export const Navbar: React.FC = () => {
           <div id="navlist_big">
             <div className="grid w-2/5 grid-cols-3 pt-2 ml-20 justify-items-center">
               <div className="flex flex-col pt-4 text-lg">
-                <h2 className="mb-2 cursor-default">Raccourcis</h2>
+                <h4 className="mb-2 cursor-default">Raccourcis</h4>
 
                 <Link
                   id="allRecipes"
                   to={RouteName.recipes}
                   onClick={() => resetFilter()}
                 >
-                  <h3
+                  <div
                     id="allRecipes"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Toutes les recettes
-                  </h3>
+                  </div>
                 </Link>
                 {isLoggedIn ? (
                   <Link to={RouteName.createRecipe} className="flex">
-                    <h3
+                    <div
                       id="shareRecipe"
                       className="mb-2 cursor-pointer hover:text-green"
                     >
                       Partager une recette
-                    </h3>
+                    </div>
                   </Link>
                 ) : (
                   <Link to={RouteName.createRecipe} className="flex">
-                    <h3
+                    <div
                       id="shareRecipe"
                       className="mb-2 cursor-pointer hover:text-green"
                     >
                       Partager une recette
-                    </h3>
+                    </div>
                   </Link>
                 )}
 
                 <Link to={`${RouteName.recipes}?tags=Premiers pas`}>
-                  <h3
+                  <div
                     id="firstSteps"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Premiers pas
-                  </h3>
+                  </div>
                 </Link>
                 <Link
                   to={`${RouteName.recipes}?tags=Avec les ingrédients de la cuisine`}
                 >
-                  <h3
+                  <div
                     id="withKitchenIngredients"
                     className="mb-2 text-left cursor-pointer hover:text-green"
                   >
                     Avec les ingrédients de la cuisine
-                  </h3>
+                  </div>
                 </Link>
                 <Link to={`${RouteName.recipes}?tags=Sans cuisson`}>
-                  <h3
+                  <div
                     id="withoutCooking"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Sans cuisson
-                  </h3>
+                  </div>
                 </Link>
               </div>
               <div className="flex flex-col pt-4 text-lg">
-                <h2 className="mb-2 cursor-default">Catégories</h2>{" "}
+                <h4 className="mb-2 cursor-default">Catégories</h4>{" "}
                 <Link id="house" to={`${RouteName.recipes}?category=Maison`}>
-                  <h3
+                  <div
                     id="house"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Maison
-                  </h3>
+                  </div>
                 </Link>
                 <Link id="body" to={`${RouteName.recipes}?category=Corps`}>
-                  <h3
+                  <div
                     id="body"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Corps
-                  </h3>
+                  </div>
                 </Link>
                 <Link id="face" to={`${RouteName.recipes}?category=Visage`}>
                   <button id="face">
-                    <h3
+                    <div
                       id="face"
                       className="mb-2 cursor-pointer hover:text-green"
                     >
                       Visage
-                    </h3>
+                    </div>
                   </button>
                 </Link>
                 <Link to={`${RouteName.recipes}?category=Cheveux`}>
-                  <h3
+                  <div
                     id="hair"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Cheveux
-                  </h3>
+                  </div>
                 </Link>
                 <Link
                   id="wellBeing"
                   to={`${RouteName.recipes}?category=Bien-être`}
                 >
-                  <h3
+                  <div
                     id="wellBeing"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Bien-être
-                  </h3>
+                  </div>
                 </Link>
                 <Link id="health" to={`${RouteName.recipes}?category=Santé`}>
-                  <h3
+                  <div
                     id="health"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Santé
-                  </h3>
+                  </div>
                 </Link>
                 <Link
                   id="makeUp"
                   to={`${RouteName.recipes}?category=Maquillage`}
                 >
-                  <h3
+                  <div
                     id="makeUp"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Maquillage
-                  </h3>
+                  </div>
                 </Link>
               </div>
               <div className="flex flex-col pt-4 text-lg">
-                <h2 className="mb-2 cursor-default">Type de produit</h2>
+                <h4 className="mb-2 cursor-default">Type de produit</h4>
                 <Link to={`${RouteName.recipes}?search=Savon`}>
-                  <h3
+                  <div
                     id="soap"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Savon
-                  </h3>
+                  </div>
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Shampooing`}>
-                  <h3
+                  <div
                     id="shampoo"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Shampooing
-                  </h3>
+                  </div>
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Baume`}>
-                  <h3
+                  <div
                     id="balm"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Baume
-                  </h3>
+                  </div>
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Solide`}>
-                  <h3
+                  <div
                     id="solid"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Solide
-                  </h3>
+                  </div>
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Crème`}>
-                  <h3
+                  <div
                     id="cream"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Crème
-                  </h3>
+                  </div>
                 </Link>
               </div>
             </div>
@@ -406,7 +406,7 @@ export const Navbar: React.FC = () => {
         </div>
         <Link to={RouteName.startDiyGreenitFullXp}>
           <NavButton id="box-nav" type="black">
-            Box
+            Kit fait-maison
           </NavButton>
         </Link>
         <div className="w-auto" id="navmenu">
@@ -418,12 +418,12 @@ export const Navbar: React.FC = () => {
           <div id="navlist" className="grid pt-2 justify-items-start">
             <div className="flex flex-col pt-4 ml-40 text-lg">
               <Link to={RouteName.workshops}>
-                <h3
+                <div
                   id="allWorkshops"
                   className="mb-2 cursor-pointer hover:text-yellow"
                 >
                   Tous les ateliers
-                </h3>
+                </div>
               </Link>
             </div>
           </div>
@@ -437,41 +437,41 @@ export const Navbar: React.FC = () => {
           <div id="navlist" className="grid pt-2 justify-items-start">
             <div className="flex flex-col pt-4 text-lg w-96 ml-99">
               <Link to={RouteName.starterPage}>
-                <h3
+                <div
                   id="fiveStepGuide"
                   className="mb-2 text-left cursor-pointer hover:text-blue"
                 >
                   Le guide en 5 étapes pour se lancer dans le fait-maison avec 3
                   recettes faciles pour débuter, les ustensiles et ingrédients
                   nécéssaires ainsi que des conseils indispensables.
-                </h3>
+                </div>
               </Link>
             </div>
           </div>
         </div>
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.why}>
-            <NavButton id="project" type="grey">
+            <NavButton id="project" type="darkBlue">
               Le projet
             </NavButton>
           </Link>
           <div id="navlist" className="grid pt-2 justify-items-start">
             <div className="flex flex-col pt-4 text-lg ml-100">
               <Link to={RouteName.why}>
-                <h3
+                <div
                   id="whyGreenit"
-                  className="mb-2 cursor-pointer hover:text-grey"
+                  className="mb-2 cursor-pointer hover:text-darkBlue"
                 >
                   Pourquoi Greenit ?
-                </h3>
+                </div>
               </Link>
               <Link to={RouteName.contact}>
-                <h3
+                <div
                   id="contactUs"
-                  className="mb-2 cursor-pointer hover:text-grey"
+                  className="mb-2 cursor-pointer hover:text-darkBlue"
                 >
                   Contacte-nous
-                </h3>
+                </div>
               </Link>
             </div>
           </div>
@@ -503,7 +503,7 @@ export const Navbar: React.FC = () => {
                 <div className="flex">
                   <Button
                     id="Share_a_recipe"
-                    type="grey"
+                    type="darkBlue"
                     rounded="lg"
                     className="inline justify-end self-center | mr-2 cursor-pointer"
                   >
@@ -518,7 +518,7 @@ export const Navbar: React.FC = () => {
                 <div className="flex">
                   <Button
                     id="Share_a_recipe"
-                    type="grey"
+                    type="darkBlue"
                     rounded="lg"
                     className="inline justify-end self-center | mr-2 cursor-pointer"
                   >

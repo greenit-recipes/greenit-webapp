@@ -29,7 +29,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
         }}
       >
         <div className="flex items-center justify-between">
-          <div className="flex items-center justify-center h-12 py-2 px-4 text-center rounded-l-md ingredient-section">
+          <div className="flex items-center justify-center h-12 py-2 px-4 text-center rounded-l-md bg-blueL">
             {data?.amount}
           </div>
           <img
@@ -42,8 +42,8 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
         <div className="flex-grow w-1/6 ml-4"> {data?.name} </div>
         <div className="w-1/6">
           <div className="flex items-center justify-end w-full">
-            <HiOutlineChevronDown
-              className={`w-6 h-6  mr-6 cursor-pointer ${
+             <i
+              className={`bx bx-chevron-down bx-md mr-6 cursor-pointer ${
                 isArrowDown ? "section-arrow-up" : "section-arrow-down"
               }`}
               onClick={() => {
@@ -54,15 +54,15 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
         </div>
       </div>
       <div className={!isArrowDown ? "fadeIn-arrow" : " fadeOut-arrow"}>
-        <div className="rounded-b bg-greyL">
+        <div className="rounded-b bg-blueL">
           <div className="w-5/6 ml-6 lg:w-4/6">
             <div className="pt-4">
               {data?.description && HTMLReactParser(data?.description)}
             </div>
-            <h2 className="pt-4 fontQSemibold">Alternatives</h2>
+            <h4 className="pt-4 fontQSemibold">Alternatives</h4>
             <div>{data?.alternative && HTMLReactParser(data?.alternative)}</div>
             <div className="flex-col items-center pt-4 pb-6 lg:flex-row">
-              <div className="fontQSemibold">Où acheter ?</div>
+              <h4 className="fontQSemibold">Où acheter ?</h4>
               {data?.isSupermarket && (
                 <div className="flex items-center ml-6">
                   <BsShop className="w-8 h-8 mr-2" />

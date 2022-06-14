@@ -3,12 +3,12 @@ import { HiOutlineChevronDown } from "react-icons/hi";
 import { BiLoaderAlt } from "react-icons/bi";
 
 interface ButtonProps {
-  type: "blue" | "green" | "yellow" | "orange" | "grey" | "red" | "blueL";
+  type: "blue" | "green" | "yellow" | "orange" | "grey" | "red" | "blueL" | "darkBlue";
   id?: string;
   rounded?: string;
   className?: string;
   onClick?: () => void;
-  onClickArrow?: (isArrowDown: boolean) => void;
+  haveIcon?: boolean,
   disabled?: boolean;
   href?: string;
   haveArrow?: boolean;
@@ -17,10 +17,11 @@ interface ButtonProps {
 }
 
 interface ButtonStyle {
-  bgColor: string;
-  hoverBorderColor: string;
-  hoverTextColor: string;
+  hoverBgColor: string;
+  borderColor: string;
   borderRadius: string;
+  textColor: string;
+  hoverTextColor: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -28,55 +29,69 @@ export const Button: React.FC<ButtonProps> = ({
   rounded,
   className,
   children,
+  haveIcon = false,
   id,
   onClick,
-  onClickArrow,
   haveArrow,
   isArrowDown,
   isLoading,
 }) => {
   const style: ButtonStyle = {
-    bgColor: "",
-    hoverBorderColor: "",
-    hoverTextColor: "",
+    hoverBgColor: "",
+    borderColor: "",
+    textColor: "",
     borderRadius: "",
+    hoverTextColor: "",
   };
 
   switch (type) {
     case "green":
-      style.bgColor = "bg-green";
-      style.hoverBorderColor = "hover:border-green";
+      style.hoverBgColor = "bg-green";
+      style.textColor = "text-white"
+      style.borderColor = "border-green";
       style.hoverTextColor = "hover:text-green";
       break;
     case "yellow":
-      style.bgColor = "bg-yellow";
-      style.hoverBorderColor = "hover:border-yellow";
-      style.hoverTextColor = "hover:text-yellow";
+      style.hoverBgColor = "hover:bg-yellow";
+      style.textColor = "text-white";
+      style.borderColor = "border-yellow";
+      style.hoverTextColor = "text-yellow";
       break;
     case "orange":
-      style.bgColor = "bg-orange";
-      style.hoverBorderColor = "hover:border-orange";
-      style.hoverTextColor = "hover:text-orange";
+      style.hoverBgColor = "hover:bg-orange";
+      style.textColor = "text-white";
+      style.borderColor = "border-orange";
+      style.hoverTextColor = "text-orange";
+      break;
+    case "darkBlue":
+      style.hoverBgColor = "hover:bg-darkBlue";
+      style.textColor = "text-white";
+      style.borderColor = "border-darkBlue";
+      style.hoverTextColor = "text-darkBlue";
       break;
     case "grey":
-      style.bgColor = "bg-grey";
-      style.hoverBorderColor = "hover:border-grey";
-      style.hoverTextColor = "hover:text-grey";
-      break;
+        style.hoverBgColor = "hover:bg-grey";
+        style.textColor = "text-white";
+        style.borderColor = "border-grey";
+        style.hoverTextColor = "text-grey";
+        break;
     case "red":
-      style.bgColor = "bg-red";
-      style.hoverBorderColor = "hover:border-red";
-      style.hoverTextColor = "hover:text-red";
+      style.hoverBgColor = "hover:bg-red";
+      style.textColor = "text-white";
+      style.borderColor = "border-red";
+      style.hoverTextColor = "text-red";
       break;
     case "blueL":
-      style.bgColor = "bg-blueL";
-      style.hoverBorderColor = "hover:border-blueL";
-      style.hoverTextColor = "hover:text-blueL";
+      style.hoverBgColor = "hover:bg-blueL";
+      style.textColor = "text-white";
+      style.borderColor = "border-blueL";
+      style.hoverTextColor = "text-blueL";
       break;
     default:
-      style.bgColor = "bg-blue";
-      style.hoverBorderColor = "hover:border-blue";
-      style.hoverTextColor = "hover:text-blue";
+      style.hoverBgColor = "hover:bg-blue";
+      style.textColor = "text-white";
+      style.borderColor = "border-blue";
+      style.hoverTextColor = "text-blue";
   }
   switch (rounded) {
     case "lg":
@@ -91,23 +106,16 @@ export const Button: React.FC<ButtonProps> = ({
       id={id}
       disabled={isLoading}
       className={`${className} flex justify-center items-center cursor-pointer
-      px-3 py-1 bold text-white border-2 border-transparent
-      text-sm md:
-      ease-linear transition-all duration-150
-      ${style.bgColor}
-      hover:shadow-lg hover:bg-white active:bg-white
-      ${style.hoverBorderColor}
+      text-sm ${haveIcon ? 'px-2 py-1': 'px-3 py-2 '} bold  border-2 border-transparent
+      fontQSbold md:ease-linear transition-all duration-150
       ${style.hoverTextColor}
+      hover:shadow-lg  ${type === "green" ? "hover:bg-white": "bg-white hover:text-white active:bg-white" }
+      ${style.borderColor}
+      ${style.textColor}
       ${style.borderRadius}
+      ${style.hoverBgColor}
         `}
-      onClick={() => {
-        if (onClick) {
-          onClick();
-        } else if (onClickArrow) {
-          // @ts-ignore
-          onClickArrow(!isArrowDown);
-        }
-      }}
+      onClick={onClick}
     >
       {isLoading ? (
         <div className="animate-spin">

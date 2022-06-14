@@ -26,12 +26,12 @@ const HeadBand: React.FC<IHeadBand> = ({
       ) : (
         <button
           id={`${idButton}-etape-suivante`}
-          className="h-10 rounded-lg bg-green w-32 lg:w-72"
+          className="h-10 rounded-lg bg-green w-32 lg:w-72 text-white"
           onClick={() => {
             setNavigation(menuFullXp[currentPositionMenu + 1].name);
           }}
         >
-          <h2 className="text-white">Étape suivante</h2>
+         Étape suivante
         </button>
       )}
     </div>

@@ -52,7 +52,7 @@ export const FirstStep: React.FC<IFirstStep> = ({ item }) => {
       </div>
       <Button
         id="read_more"
-        type="grey"
+        type="darkBlue"
         onClick={() => setIsActive(!isActive)}
         className={"w-24 self-center mt-2 mb-6"}
       >

@@ -11,8 +11,8 @@ import ingredients2 from "./ingredients_2.png";
 import ingredients3 from "./ingredients_3.png";
 
 // LOGO
-import logo from "./logo.png";
-import logoBig from "./logoBig.png";
+import logo from "./NewLogo_Small.svg";
+import logoBig from "./NewLogo_Big.svg";
 
 // LANDING PAGE BUTTON ICONS
 import premierspas from "./premiers_pas_recette.png";
@@ -149,6 +149,8 @@ import boxConfirmation from "./confirmation-fullxp.png";
 import boxFullXp from "./image_box_DIY_5.png";
 import cremeFullXp from "./image_box_DIY_6.jpeg";
 
+import rondIcon from "./rond-icon.svg"
+
 export {
   wellbeing,
   corps,
@@ -268,4 +270,5 @@ export {
   arrowFullXpMobile,
   cremeFullXp,
   boxFullXp,
+  rondIcon,
 };

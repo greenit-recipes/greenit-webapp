@@ -1,62 +1,33 @@
-@font-face {
-  font-family: QuickSand_SemiBold;
-  src: url(./fonts/Quicksand-SemiBold.ttf);
-}
-@font-face {
-  font-family: QuickSand_Regular;
-  src: url(./fonts/Quicksand-Regular.ttf);
-}
-@font-face {
-  font-family: QuickSand_Medium;
-  src: url(./fonts/Quicksand-Medium.ttf);
-}
-@font-face {
-  font-family: QuickSand_Light;
-  src: url(./fonts/Quicksand-Light.ttf);
-}
-
-@font-face {
-  font-family: QuickSand_Bold;
-  src: url(./fonts/Quicksand-Bold.ttf);
-}
 
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-body {
-  font-family: QuickSand_Medium !important;
-  font-size: 1rem;
-}
-
-h2 {
-  font-family: QuickSand_Medium;
-}
-
-h3 {
-  font-family: QuickSand_Regular;
-}
-
-h4 {
-  font-family: QuickSand_Light;
-}
-
 /* UI-KIT SIZE */
 
 .fontQSmedium {
-  font-family: QuickSand_Medium;
+  font-family: ZenMaruGothic_Medium !important;
 }
 
 .fontQSbold {
-  font-family: QuickSand_Bold;
+  font-family: ZenMaruGothic_Bold !important;
 }
 
 .fontQSemibold {
-  font-family: QuickSand_SemiBold;
+  font-family: ZenMaruGothic_Bold !important;
 }
 
 .fontQSregular {
-  font-family: QuickSand_Regular;
+  font-family: ZenMaruGothic-Regular !important;
+}
+
+.g-text-details {
+
+}
+
+.g-text-details {
+  font-size: 0.75rem; /* 12px */
+line-height: 1rem; /* 16px */
 }
 
 .text_logo {
@@ -95,6 +66,17 @@ h4 {
   }
 }
 
+.arrow-img:hover::after {
+  background-image: url(./icons/double-trait.svg);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  width: 54px;
+  height: 54px;
+}
+
 .filterBar_fadeOut {
   visibility: hidden;
   opacity: 0;
@@ -115,6 +97,27 @@ h4 {
   transition: visibility 0s linear 0s, opacity 300ms;
 }
 
+.shadow-btn {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 0px 10px #48484829;
+border-radius: 5px;
+opacity: 1;
+}
+
+.shadow-btn-section {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 0px 10px #53535329;
+border-radius: 10px 10px 0px 0px;
+opacity: 1;
+}
+
+.shadow-btn-sectionL {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 0px 1px #53535329;
+border-radius: 10px 10px 0px 0px;
+opacity: 1;
+}
+
 .navBar_fadeIn {
   width: 67%;
   position: absolute;
@@ -122,8 +125,6 @@ h4 {
   left: 0;
   padding: 80px 20px;
   text-decoration: none;
-  font-size: 25px;
-  background-color: #383838;
   transition: 0.4s;
   overscroll-behavior: contain;
 }
@@ -135,7 +136,6 @@ h4 {
   top: 0;
   left: -70%;
   padding: 80px 20px;
-  background-color: #383838;
   overflow-x: hidden;
   transition: 0.3s;
   overscroll-behavior: contain;
@@ -150,12 +150,12 @@ h4 {
   border-radius: 100%;
   transition: 0.5s;
   position: relative;
-  border-color: #383838;
+  border-color: #192A51;
   transform: scale(1.3);
 }
 
 .hamburger_fadeIn::before {
-  border-color: #383838;
+  border-color: #192A51;
   transition: 0.5s;
   background: rgb(255, 255, 255);
   position: absolute;
@@ -169,7 +169,7 @@ h4 {
 }
 
 .hamburger_fadeIn::after {
-  border-color: #383838;
+  border-color: #192A51;
   transition: 0.5s;
   background: rgb(255, 255, 255);
   position: absolute;

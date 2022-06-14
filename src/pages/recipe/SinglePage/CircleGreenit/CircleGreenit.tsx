@@ -48,7 +48,7 @@ export const CircleGreenit: React.FC<ICircleGreenit> = ({
         <div
           className={`${
             textWidth ? textWidth : ""
-          } fontQSmedium text-center text-sm mt-1`}
+          } text-center mt-1`}
         >
           {text}
         </div>

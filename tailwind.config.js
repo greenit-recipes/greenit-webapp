@@ -18,14 +18,15 @@ module.exports = {
             // Base COLOR
             transparent: 'transparent',
             current: 'currentColor',
-            blue: "#609DED",
-            yellow: "#FCCB6C",
+            blue: "#5A99ED",
+            darkBlue: "#192A51",
+            yellow: "#FBC14B",
             orange: "#FFA781",
-            grey: "#707070",
             black: "#1C1C1C",
-            red: "#E24E51",
-            white: '#ffffff',
-            green: "#4BCB6A",
+            grey: "#707070",
+            red: "#DE563F",
+            white: '#FFFFFF',
+            green: "#41C863",
         },
         extend: {
             fontSize: {
@@ -85,10 +86,10 @@ module.exports = {
                 }
             },
             colors: {
-                greenL: "#DEF7E4",
-                blueL: "#D6E6FA",
-                orangeL: "#FCDED1",
-                yellowL: "#FFEAC1",
+                greenL: "#E9FAEC",
+                blueL: "#F0F5FD",
+                orangeL: "#FFF3EF",
+                yellowL: "#FFF7E7",
                 greyL: "#F0F0F0",
                 redL: "#ED6D6D",
                 inactive: "#F2F2F2",
@@ -98,13 +99,13 @@ module.exports = {
                 rotate: "rotate 200ms ease-in"
             },
             fontFamily: {
-                light: ['QuickSand_Light.ttf'],
-                medium: ['QuickSand_Medium.ttf'],
-                regular: ['QuickSand_Regular.ttf'],
-                semibold: ['QuickSand_SemiBold.ttf'],
-                bold: ['QuickSand_Bold.ttf'],
-                body: ["Quicksand-Medium"],
-                legend: ["Quicksand-Light"],
+                light: ['ZenMaruGothic_Light'],
+                medium: ['ZenMaruGothic_Medium'],
+                regular: ['ZenMaruGothic-Regular'],
+                semibold: ['ZenMaruGothic-Regular'],
+                bold: ['ZenMaruGothic_Bold'],
+                body: ["ZenMaruGothic_Medium"],
+                legend: ["ZenMaruGothic_Light"],
             },
         }
     },

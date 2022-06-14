@@ -1,41 +1,34 @@
 import {
-  InstagramIcon,
-  wwwlogo,
-  FBIcon,
-  tiktokIcon,
-  pinterestIcon,
-  twitterIcon,
-  youtubeIcon,
+  wwwlogo
 } from "icons";
-import { includes, forEach } from "lodash";
+import { forEach, includes } from "lodash";
 
 const socialMedia = {
   instagram: {
     name: "Instagram",
-    icon: InstagramIcon,
+    icon: "bxl-instagram text-darkBlue hover:text-yellow",
   },
   facebook: {
     name: "Facebook",
-    icon: FBIcon,
+    icon: "bxl-facebook text-darkBlue hover:text-yellow",
   },
   tiktok: {
     name: "tiktok",
-    icon: tiktokIcon,
+    icon: "bxl-tiktok text-darkBlue hover:text-yellow",
   },
   pinterest: {
     name: "Pinterest",
-    icon: pinterestIcon,
+    icon: "bxl-pinterest text-darkBlue hover:text-yellow",
   },
   twitter: {
     name: "Twitter",
-    icon: twitterIcon,
+    icon: "bxl-twitter text-darkBlue hover:text-yellow",
   },
   youtube: {
     name: "Youtube",
-    icon: youtubeIcon,
+    icon: "bxl-youtube text-darkBlue hover:text-yellow",
   },
 };
-
 export const getLogoAndNameByUrl = (url: string) => {
   let logo = { name: "", icon: "" };
   forEach(socialMedia, function (value, key) {
@@ -46,7 +39,7 @@ export const getLogoAndNameByUrl = (url: string) => {
   if (logo?.name === "")
     return {
       name: "Autres",
-      icon: wwwlogo,
+      icon: "bx-world text-darkBlue hover:text-yellow",
     };
   return logo;
 };

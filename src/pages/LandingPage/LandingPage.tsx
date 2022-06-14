@@ -220,7 +220,7 @@ const LandingPage = () => {
               key={item.title}
             />
           ))}
-          <div className="self-center w-1 mx-6 border-r h-18 border-grey mb-14"></div>
+          <div className="self-center w-1 mx-6 border-r h-18 border-darkBlue mb-14"></div>
           {landingPageCategories.slice(3).map(item => (
             <CategoryCircle
               name={item.title}
@@ -238,13 +238,13 @@ const LandingPage = () => {
         {isMobile ? (
           <div className="grid grid-cols-2 mt-4 mb-2 sm:grid-cols-3">
             {recipes?.slice(0, 6).map((recipe, index: number) => (
-              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} id={recipe?.node?.id}/>
             ))}
           </div>
         ) : (
           <div className="grid grid-cols-4 justify-items-center gap-y-10 gap-x-4">
             {recipes?.map(recipe => (
-              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} id={recipe?.node?.id}/>
             ))}
           </div>
         )}
@@ -461,28 +461,6 @@ const LandingPage = () => {
           </div>
         </div>
       </Container>
-
-      <div className="grid w-full px-6 py-12 mt-10 bg-orange justify-items-center">
-        <div className="grid mb-8 text-center">
-          <h2 className="mb-2 text-xl text-white md:text-2xl">
-            Tous les ateliers DIY proches de chez toi !{" "}
-          </h2>
-          <h3 className="text-white text-lg md:text-xl | text-center whitespace-pre-line">
-            Fais-toi aider et rencontre d’autres passionnés
-          </h3>
-        </div>
-        <div className="grid grid-flow-row auto-rows-auto justify-items-center">
-          <div className="relative justify-center">
-            <img src={atelier} className="w-56 h-56" alt="liked button" />
-          </div>
-          <Link className="mt-5 self-top" to={RouteName.workshops}>
-            <Button className="border-white" type="orange">
-              Explorer des ateliers
-            </Button>
-          </Link>
-        </div>
-      </div>
-
       <Container
         className="w-full h-full mb-6 md:w-3/5"
         itemsCenter

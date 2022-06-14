@@ -12,40 +12,34 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
   const [isIngredientSelected, setIngredientSelected] = useState(true);
 
   return (
-    <div className="flex items-center mt-14 mb-14">
+    <div className="flex items-center mt-12 mb-12">
       <div className="w-full">
-        <div
-          className={`flex ${
-            isIngredientSelected
-              ? "ingredient-border"
-              : "ingredient-border-ustensil"
-          }`}
-        >
+        <div className={`flex ${isIngredientSelected ? "" : ""}`}>
           <div
-            className={`flex pb-1 cursor-pointer justify-center h-14 w-44 items-center ingredient-base ${
+            className={`flex border-b-4 ${
               isIngredientSelected
-                ? "ingredient-shadow-btn is-selected-single-page"
-                : ""
-            } `}
+                ? "border-blue shadow-btn-section"
+                : "border-blueL"
+            }  cursor-pointer justify-center h-12 w-64 items-center`}
             onClick={() => {
               setIngredientSelected(true);
             }}
           >
-            <IconNbrIngredient nbOfIngredient={recipe?.numberOfIngredients} />
-            <div className="text-xl ml-2">Ingredients</div>
+            <i className="bx bx-bowl-hot bx-sm"></i>
+            <h4 className="ml-2">Ingrédients</h4>
           </div>
           <div
-            className={`flex pb-1 cursor-pointer justify-center h-14 w-44 items-center ingredient-base-ustensil ${
+            className={`flex border-b-4 ${
               !isIngredientSelected
-                ? "ingredient-shadow-btn is-selected-single-page-ustensil"
-                : ""
-            }`}
+                ? "shadow-btn-section border-blue"
+                : "border-blueL"
+            } cursor-pointer justify-center h-12 w-64 items-center `}
             onClick={() => {
               setIngredientSelected(false);
             }}
           >
-            <GiForkKnifeSpoon />
-            <div className="text-xl ml-2">Ustensiles</div>
+            <i className="bx bx-knife bx-sm"></i>
+            <h4 className="ml-2">Ustensiles</h4>
           </div>
         </div>
 

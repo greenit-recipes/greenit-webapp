@@ -117,7 +117,7 @@ const ProfilPage: React.FC = () => {
 
         <Button
           className="w-26 ease-linear transition-all duration-150 mt-2"
-          type="grey"
+          type="darkBlue"
           onClick={() => setShowModal(true)}
         >
           Paramètres

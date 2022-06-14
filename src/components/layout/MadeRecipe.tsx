@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { Button } from "components/misc";
 import { ADD_OR_REMOVE_MADE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { useState } from "react";
 import { AiFillCheckSquare } from "react-icons/ai";
@@ -29,12 +30,13 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
   const [addOrRemoveMadeRecipe] = useMutation(ADD_OR_REMOVE_MADE_RECIPE);
 
   return (
-    <>
+    <div className={`${customClassName}`}>
       {isLoggedIn ? (
-        <button
-          className={`btn-single-page p-2 flex ${
-            customClassName ? customClassName : ""
-          }`}
+        <Button
+          id="recette-réalisée-login"
+          type="darkBlue"
+          rounded="lg"
+          haveIcon={true}
           onClick={() => {
             if (!isRefetchData) setMade(!isMade);
             // @ts-ignore: Object is possibly 'null'.
@@ -46,6 +48,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
               return parentFunction ? parentFunction() : null;
             });
           }}
+          className="mr-1"
         >
           <div className={` flex justify-items-center `}>
             {isMade ? (
@@ -55,32 +58,31 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
             )}
             <div className="flex flex-col justify-center ml-1">réalisée</div>
           </div>
-        </button>
+        </Button>
       ) : (
         <div>
           <ModalLogGreenit
             btn={
-              <button
-                className={`btn-single-page p-2 flex ${
-                  customClassName ? customClassName : ""
-                }`}
-              >
-                <div className={` flex justify-items-center `}>
-                  {isMade ? (
-                    <AiFillCheckSquare className="w-6 h-6"></AiFillCheckSquare>
-                  ) : (
-                    <FiSquare className="w-6 h-6"></FiSquare>
-                  )}
-
-                  <div className="flex flex-col justify-center ml-1 ">
-                    réalisée
-                  </div>
-                </div>
-              </button>
+              <Button
+              id="recette-réalisée-pas-connecte"
+              type="darkBlue"
+              rounded="lg"
+              haveIcon={true}
+              className="mr-1"
+            >
+              <div className={` flex justify-items-center `}>
+                {isMade ? (
+                  <AiFillCheckSquare className="w-6 h-6"></AiFillCheckSquare>
+                ) : (
+                  <FiSquare className="w-6 h-6"></FiSquare>
+                )}
+                <div className="flex flex-col justify-center ml-1">réalisée</div>
+              </div>
+            </Button>
             }
           ></ModalLogGreenit>
         </div>
       )}
-    </>
+    </div>
   );
 };
