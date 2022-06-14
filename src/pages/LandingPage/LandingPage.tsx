@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client";
 import { RouteName } from "App";
-import { BugFormulaire } from "components/layout/BugFormulaire";
 import Modal from "components/layout/Modal/Modal";
 import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
@@ -22,7 +21,7 @@ import {
   Loading,
   Navbar,
   RecipeCard,
-  SearchBar,
+  SearchBar
 } from "../../components";
 import { Press } from "../../components/layout/TheyTalkAboutUs";
 import { useRecipesQuery } from "../../graphql";
@@ -38,13 +37,12 @@ import {
   planet,
   sixHTN,
   Ustensil,
-  wellbeing,
+  wellbeing
 } from "../../icons";
 import "../../pages/recipe/SinglePage/SinglePage.css";
+import { GET_FEATURE_BY_NAME } from "../../services/feature.service";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
-import { GET_FEATURE_BY_NAME } from "../../services/feature.service";
-import { CookieBanner } from "../../components/misc/CookieBanner";
 
 const responsiveCarouselLanding = {
   desktop: {
@@ -159,7 +157,6 @@ const LandingPage = () => {
           content="Votre espace de partage de recette DIY, des astuces écologiques pour la maison, des ateliers pour débuter dans le fait-maison et des pages sur les bienfaits des ingrédients."
         />
       </Helmet>
-      {/*<BugFormulaire />*/}
       <BackgroundImage className="overflow-hidden" />
       {dataFullXP?.featureFlag?.isActive && (
         <>
