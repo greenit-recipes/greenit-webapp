@@ -7,7 +7,11 @@ import { useHistory } from "react-router-dom";
 //Todo : Use typescript path lib scoping for cleaner paths
 import { Circle, CircleProps } from "../../../components/misc/Circle";
 
-export const CategoryCircle: React.FC<CircleProps> = ({ name, icon }) => {
+export const CategoryCircle: React.FC<CircleProps> = ({
+  name,
+  icon,
+  isLandingPage = false,
+}) => {
   const history = useHistory();
   const isTag = [
     "Premiers pas",
@@ -24,7 +28,7 @@ export const CategoryCircle: React.FC<CircleProps> = ({ name, icon }) => {
         history.push(RouteName.recipes);
       }}
     >
-      <Circle name={name} icon={icon} />
+      <Circle name={name} icon={icon} isLandingPage={isLandingPage} />
     </div>
   );
 };

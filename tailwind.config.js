@@ -103,6 +103,7 @@ module.exports = {
                 medium: ['ZenMaruGothic_Medium'],
                 regular: ['ZenMaruGothic-Regular'],
                 semibold: ['ZenMaruGothic-Regular'],
+                diy: ['SquarePeg-Regular'],
                 bold: ['ZenMaruGothic_Bold'],
                 body: ["ZenMaruGothic_Medium"],
                 legend: ["ZenMaruGothic_Light"],

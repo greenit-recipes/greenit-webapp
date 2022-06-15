@@ -209,7 +209,7 @@ const RecipeSinglePage = () => {
                       haveIcon={true}
                       className="ml-2"
                     >
-                      <i className="bx  bx-share bx-flip-horizontal bx-sm mr-2"></i>
+                      <i className="bx bx-share bx-flip-horizontal bx-sm mr-2"></i>
                       partage
                     </Button>
                   </RWebShare>

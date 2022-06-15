@@ -132,6 +132,12 @@ import userlogo from "./user.svg";
 import confirmpwd from "./confirmpwd.svg";
 import explorer from "./explorer.svg";
 import creator from "./influencer.svg";
+import boxOpen from "./box-open-mobile.svg";
+
+import BadgeSavonMobile from "./Badge_Savon_Mobile.svg";
+import BadgeMarqueMobile from "./Badge_Marque_Mobile.svg";
+import BadgeControleMobile from "./Badge_Controle_Mobile.svg";
+import Badge100Mobile from "./Badge_100_Mobile.svg";
 
 // FUll XP GREENIT
 import boxGreenit from "./GIFDesktop_Box_GIY.gif";
@@ -149,7 +155,7 @@ import boxConfirmation from "./confirmation-fullxp.png";
 import boxFullXp from "./image_box_DIY_5.png";
 import cremeFullXp from "./image_box_DIY_6.jpeg";
 
-import rondIcon from "./rond-icon.svg"
+import rondIcon from "./rond-icon.svg";
 
 export {
   wellbeing,
@@ -271,4 +277,9 @@ export {
   cremeFullXp,
   boxFullXp,
   rondIcon,
+  boxOpen,
+  BadgeSavonMobile,
+  BadgeMarqueMobile,
+  BadgeControleMobile,
+  Badge100Mobile,
 };

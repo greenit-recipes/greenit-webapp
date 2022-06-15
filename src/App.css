@@ -1,4 +1,3 @@
-
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -22,12 +21,8 @@
 }
 
 .g-text-details {
-
-}
-
-.g-text-details {
   font-size: 0.75rem; /* 12px */
-line-height: 1rem; /* 16px */
+  line-height: 1rem; /* 16px */
 }
 
 .text_logo {
@@ -66,6 +61,18 @@ line-height: 1rem; /* 16px */
   }
 }
 
+.trait-img:after {
+  background-image: url(./icons/soleil-gauche.svg);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  top: 45px;
+  left: 58px;
+  bottom: 0;
+  width: 54px;
+  height: 54px;
+}
+
 .arrow-img:hover::after {
   background-image: url(./icons/double-trait.svg);
   background-repeat: no-repeat;
@@ -98,24 +105,24 @@ line-height: 1rem; /* 16px */
 }
 
 .shadow-btn {
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-box-shadow: 0px 0px 10px #48484829;
-border-radius: 5px;
-opacity: 1;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 10px #48484829;
+  border-radius: 5px;
+  opacity: 1;
 }
 
 .shadow-btn-section {
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-box-shadow: 0px 0px 10px #53535329;
-border-radius: 10px 10px 0px 0px;
-opacity: 1;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 10px #53535329;
+  border-radius: 10px 10px 0px 0px;
+  opacity: 1;
 }
 
 .shadow-btn-sectionL {
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-box-shadow: 0px 0px 1px #53535329;
-border-radius: 10px 10px 0px 0px;
-opacity: 1;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 1px #53535329;
+  border-radius: 10px 10px 0px 0px;
+  opacity: 1;
 }
 
 .navBar_fadeIn {
@@ -150,12 +157,12 @@ opacity: 1;
   border-radius: 100%;
   transition: 0.5s;
   position: relative;
-  border-color: #192A51;
+  border-color: #192a51;
   transform: scale(1.3);
 }
 
 .hamburger_fadeIn::before {
-  border-color: #192A51;
+  border-color: #192a51;
   transition: 0.5s;
   background: rgb(255, 255, 255);
   position: absolute;
@@ -169,7 +176,7 @@ opacity: 1;
 }
 
 .hamburger_fadeIn::after {
-  border-color: #192A51;
+  border-color: #192a51;
   transition: 0.5s;
   background: rgb(255, 255, 255);
   position: absolute;

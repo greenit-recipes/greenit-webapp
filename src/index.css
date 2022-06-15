@@ -2,22 +2,27 @@
 
 h1 {
   @apply font-bold;
-  @apply text-3xl; /* 30px */
+  @apply text-xl md:text-3xl; /* 30px */
 }
 
 h2 {
   @apply font-medium;
-  @apply text-2xl; /* 24px */
+  @apply text-lg  md:text-2xl; /* 24px */
 }
 
 h3 {
   @apply font-medium;
-  @apply text-xl; /* 20px */
+  @apply text-base md:text-xl; /* 20px */
 }
 
 h4 {
   @apply font-medium;
-  @apply text-base; /* 16px */
+  @apply text-sm md:text-base; /* 16px */
+}
+
+p {
+  @apply font-regular;
+  @apply text-sm md:text-base; /* 16px */
 }
 
 @tailwind components;
@@ -31,6 +36,11 @@ h4 {
 @font-face {
   font-family: ZenMaruGothic-Regular;
   src: url(./fonts/ZenMaruGothic-Regular.ttf);
+}
+
+@font-face {
+  font-family: SquarePeg-Regular;
+  src: url(./fonts/SquarePeg-Regular.ttf);
 }
 @font-face {
   font-family: ZenMaruGothic_Medium;
@@ -46,10 +56,21 @@ h4 {
   src: url(./fonts/ZenMaruGothic-Bold.ttf);
 }
 
-
 html {
   font-family: ZenMaruGothic-Regular !important;
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
+  color: #192a51 !important;
   font-size: 1rem !important; /* 16px */
   line-height: 1.5rem !important; /* 24px */
+}
+
+@media only screen and (max-width: 768px) {
+  /* For tablets: */
+  html {
+    font-family: ZenMaruGothic-Regular !important;
+    background-color: #ffffff !important;
+    color: #192a51 !important;
+    font-size: 0.75rem !important; /* 12px */
+    line-height: 1rem !important; /* 18px */
+  }
 }

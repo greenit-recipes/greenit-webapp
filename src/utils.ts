@@ -75,14 +75,6 @@ export const landingPageCategories = [
     title: "Premiers pas",
   },
   {
-    icon: zeroWaste,
-    title: "Zéro-déchet",
-  },
-  {
-    icon: fridge,
-    title: "Avec les ingrédients de la cuisine",
-  },
-  {
     icon: maison,
     title: "Maison",
   },
