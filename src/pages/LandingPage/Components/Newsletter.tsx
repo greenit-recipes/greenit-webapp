@@ -31,14 +31,18 @@ export const Newsletter: React.FC = () => {
     }).then(() => reset());
   };
   return (
-    <Container className="w-full h-full md:w-3/5" margin={10} itemsCenter>
-      <h2 className="text-xl md:text-2xl sm:w-3/4 | px-5 text-center">
-        Inscris toi à la newsletter pour découvrir des astuces DIY
-        {"\n"} et être au courant des nouvelles recettes !
+    <Container
+      className="flex flex-col items-center | px-4
+    | pt-9 pb-9 md:mt-4 text-center w-full bg-greenL"
+      itemsCenter
+    >
+      <h2>
+        Inscris toi à la newsletter pour découvrir <br></br>des astuces DIY et
+        être au courant des <br></br> nouvelles recettes !
       </h2>
 
       <form
-        className="p-6 md:flex"
+        className="flex mt-4 mb-4"
         // @ts-ignore
         onSubmit={handleSubmit(onSubmitHandler)}
       >
@@ -50,11 +54,9 @@ export const Newsletter: React.FC = () => {
           {...register("email")}
         ></input>
 
-        <div className="grid w-full mt-4 justify-items-center md:mt-0 md:ml-4">
-          <Button type="green" className="p-4 sm:h-12">
-            Rejoindre
-          </Button>
-        </div>
+        <Button type="darkBlue" className="ml-2">
+          Rejoindre
+        </Button>
         <div>
           <p className="text-xs italic text-red-500">{errors.email?.message}</p>
         </div>
@@ -67,9 +69,8 @@ export const Newsletter: React.FC = () => {
       )}
       <div className="w-3/4 text-xs text-center md:text-sm lg:mx-80">
         Nous utilisons cette newsletter uniquement pour garder notre communauté
-        informée des évolutions de Greenit ainsi que pour connaître vos avis sur
-        certaines décisions. Vous pouvez vous désinscrire à tout moment en nous
-        contactant à hello@greenitcommunity.com
+        informée. Vous pouvez vous désinscrire à tout moment en nous contactant
+        à hello@greenitcommunity.com.
       </div>
     </Container>
   );

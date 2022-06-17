@@ -126,7 +126,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 type="red"
                 onClick={() => removeFilters()}
               >
-                <h3 className="text-sm text-end">Supprimer les filtres X</h3>
+                Supprimer les filtres X
               </Button>
             )}
             <div className={isMobile ? "" : "grid grid-cols-5 mt-4 w-10/12"}>
@@ -158,7 +158,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                   <>
                     <div className="flex">
                       <div>
-                        <h2 className="self-center">Filtres:</h2>
+                        <h4 className="self-center">Filtres:</h4>
                       </div>
                       <div className="flex flex-wrap">
                         {map(
@@ -183,16 +183,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                     </div>
                     <div>
                       <Button type="darkBlue" onClick={() => removeFilters()}>
-                        <h3 className="text-sm">
-                          Supprimer tous les filtres X
-                        </h3>
+                        Supprimer tous les filtres X
                       </Button>
                     </div>
                   </>
                 )}
                 {!isCurrentFilterEmpty && (
                   <div className="grid | h-18">
-                    <h4 className="self-center">Pas de filtre sélectionné</h4>
+                    <p className="self-center">Pas de filtre sélectionné</p>
                   </div>
                 )}
               </div>

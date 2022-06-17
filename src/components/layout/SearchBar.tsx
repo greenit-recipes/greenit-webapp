@@ -211,7 +211,7 @@ export const SearchBar: React.FC<{
       )}
       <input
         type="text"
-        className={`text-base bg-transparent
+        className={`text-base bg-transparent placeholder:font-diy placeholder:text-xl
           } | w-full | focus:outline-none search-bar`}
         onKeyDown={onKeyDown}
         onFocus={event => {

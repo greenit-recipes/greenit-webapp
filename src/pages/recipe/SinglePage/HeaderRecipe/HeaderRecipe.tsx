@@ -26,7 +26,8 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
     <div
       ref={divElement => {
         if (divElement && divElement.clientHeight !== 0)
-          setHeight(divElement.clientHeight);
+          setHeight(divElement?.clientHeight);
+        console.log("divElement.clientHeight", divElement?.clientHeight);
       }}
       className="fixed z-0 grid w-full pb-20 justify-items-center bg-yellowL lg:mt-2"
     >
@@ -42,7 +43,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
               <h3 className="">{recipe?.author?.username}</h3>
               <div className="mb-1 text-sm">Créateur.ice</div>
             </div>
-            <div className="flex flex-row flex-wrap mb-3 mt-3">
+            <div className="flex flex-row mb-3 mt-3">
               {
                 // @ts-ignore
                 !isEmpty(JSON.parse(recipe?.author?.urlsSocialMedia)) &&

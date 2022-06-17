@@ -131,13 +131,11 @@ const WorkshopPage = () => {
       </Helmet>
       <div className="flex flex-col | items-center self-center">
         <Navbar />
-        <Container className="flex flex-col | items-center | w-5/6 md:w-full mt-16 lg:mt-28 p-4">
-          <h1 className="text-2xl font-medium md:text-3xl | text-center">
-            Tous les ateliers DIY proches de chez toi !
-          </h1>
+        <Container className="flex flex-col | items-center | w-5/6 md:w-full mt-10 lg:mt-10 p-4">
+          <h1>Tous les ateliers DIY proches de chez toi !</h1>
 
           <h3
-            className="mt-2 text-1xl md:text-2xl | md:pb-10 text-center"
+            className="mt-2 md:pb-10 text-center"
             ref={fieldRefOnlineWorkshop}
           >
             Fais-toi aider et rencontre d’autres passionnés
@@ -178,7 +176,7 @@ const WorkshopPage = () => {
             <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
                 <Link to={RouteName.contact}>
-                  <Button id="contactWs1" type="green" className="md:text-xl">
+                  <Button id="contactWs1" type="green">
                     Contacter
                   </Button>
                 </Link>
@@ -186,14 +184,14 @@ const WorkshopPage = () => {
             </div>
             <div className="bg-transparent mt-4 rounded md:col-span-2">
               <div>
-                <h3 className="text-ms">
+                <h4>
                   Nous sommes passionnés de fait-maison depuis de nombreuses
                   années. Adrien et Andrea vous proposent un atelier gratuit
                   pensé pour les curieux et nouveaux arrivants dans le monde du
                   fait-maison. C’est aussi l’occasion d’échanger sur ce mode de
                   consommation et de comprendre les raisons et les motivations
                   associées !
-                </h3>
+                </h4>
               </div>
             </div>
           </div>
@@ -382,9 +380,9 @@ const WorkshopPage = () => {
             href="mailto:hello@greenitcommunity.com"
             className="inline-flex gap-x-4"
           >
-            <button id="Offer-ws" className="button_contact">
-              <h3 className="text-lg md:text-xl">Proposer un atelier</h3>
-            </button>
+            <Button type="green" id="workshop-proposer-atelier">
+              Proposer un atelier
+            </Button>
           </a>
         </Container>
 

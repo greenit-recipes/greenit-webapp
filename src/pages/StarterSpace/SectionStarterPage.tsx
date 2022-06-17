@@ -27,7 +27,7 @@ export const SectionStarterPage: React.FC<SectionStarterPageProps> = ({
         } self-top rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16`}
       >
         <div className="flex">
-          <h3 className="text-lg lg:text-2xl font-semibold text-center self-center mr-3">
+          <h3 className="font-semibold text-center self-center mr-3">
             {maintitle}
           </h3>
           <div
@@ -37,17 +37,13 @@ export const SectionStarterPage: React.FC<SectionStarterPageProps> = ({
                 : "hidden"
             }
           >
-            <h2 className="text-lg lg:text-2xl text-center self-center font-bold">
-              {number}
-            </h2>
+            <h2 className="text-center self-center font-bold">{number}</h2>
           </div>
         </div>
       </div>
       <div className="grid lg:col-span-2">
-        <h3 className="text-lg self-center lg:text-2xl font-semibold px-6">
-          {title}
-        </h3>
-        <h3 className="text-sm lg:text-lg font-light px-6">{text}</h3>
+        <h3 className="self-center font-semibold px-6">{title}</h3>
+        <p className="font-light px-6">{text}</p>
       </div>
     </div>
   );

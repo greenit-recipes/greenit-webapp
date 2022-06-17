@@ -81,7 +81,7 @@ export const Navbar: React.FC = () => {
           <Link to="/" className="z-50 ">
             <h5
               id="home"
-              className="self-center text-3xl font-medium text-center text-green"
+              className="self-center text-xl md:text-3xl font-bold text-center text-green"
             >
               Greenit
             </h5>

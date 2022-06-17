@@ -44,9 +44,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const isMobile = useIsMobile();
-  const imageHeight = isMobile ? 56 : 72;
-  const imageWidth = isMobile ? 44 : 48;
-  const bandeauWidth = isMobile ? 44 : 48;
+  const imageHeight = isMobile ? 50 : 72;
+  const imageWidth = isMobile ? 52 : 52;
+  const bandeauWidth = isMobile ? 52 : 52;
 
   return (
     <div
@@ -89,7 +89,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             className={`flex flex-col object-cover | ${
               enableShadow && "shadow-lg"
             } ${`h-${imageHeight} w-${imageWidth}`}
-            rounded-2xl | justify-self-center smooth-image image-${
+            rounded-t-2xl | justify-self-center smooth-image image-${
               imageLoaded ? "visible" : "hidden"
             }`}
             // @ts-ignore
