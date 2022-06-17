@@ -122,14 +122,14 @@ const StarterPage = () => {
 
       <Container className="flex flex-col | w-10/12 mt-8 lg:my-20">
         <div className="lg:mb-4">
-          <h1 className="text-2xl lg:text-4xl text-blue font-semibold | mb-2">
+          <h1 className="text-blue font-semibold | mb-2">
             Comment se lancer ?
           </h1>
-          <h2 className="text-lg lg:text-xl mb-2">
+          <h3 className="mb-2">
             Pour tous les curieux qui ne savent pas par où commencer dans le
             DIY, <br /> ce guide est fait pour vous !
-          </h2>
-          <h3 className="text-sm lg: font-light">
+          </h3>
+          <h3 className="font-light">
             Voici 3 étapes simples pour vous lancer dans le fait-maison en
             débutant pas à pas.
           </h3>
@@ -177,23 +177,23 @@ const StarterPage = () => {
             </div>
           ))}
           <div className="flex flex-col justify-center items-center gap-2">
-            <h2>Motivez-vous avec vos ami.e.s :</h2>
+            <h4>Motivez-vous avec vos ami.e.s :</h4>
 
             <RWebShare
               data={{
                 url: window.location.href,
               }}
             >
-              <button
-                className="flex justify-center items-center border rounded-lg shadow-lg p-2"
-                id="shared-recipe"
+              <Button
+                id="recette-partager"
+                type="darkBlue"
+                rounded="lg"
+                haveIcon={true}
+                className="ml-2"
               >
-                <RiShareForwardLine className="justify-self-center ml-1 w-6 h-6" />
-                <h2 className="text-center ml-2">
-                  {" "}
-                  partager le lien du guide{" "}
-                </h2>
-              </button>
+                <i className="bx bx-share bx-flip-horizontal bx-sm mr-2"></i>
+                partager le lien du guide
+              </Button>
             </RWebShare>
           </div>
         </div>
@@ -307,13 +307,11 @@ const StarterPage = () => {
                     loading="lazy"
                   />{" "}
                 </div>
-                <h3 className="text-xl text-center font-semibold h-8">
+                <h3 className="text-center font-semibold h-8">
                   {item.maintitle}
                 </h3>
-                <h2 className=" text-center mb-2 h-8">{item.title}</h2>
-                <h4 className="text-sm  text-center font-light h-32">
-                  {item.subtitle}
-                </h4>
+                <h4 className="text-center mb-2 h-8">{item.title}</h4>
+                <p className="text-center h-32">{item.subtitle}</p>
               </div>
             ))}
           </div>

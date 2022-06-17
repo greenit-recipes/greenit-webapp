@@ -87,14 +87,12 @@ const WhyPage: React.FC = () => {
           id="1"
           className="grid justify-items-center text-white w-full pb-20"
         >
-          <h1 className="text-4xl md:text-5xl font-semibold text-white">
-            Greenit Community
-          </h1>
-          <h2 className="mt-5 text-xl lg:text-2xl md:w-2/3">
+          <h1 className="font-semibold text-white">Greenit Community</h1>
+          <h2 className="mt-5 md:w-2/3">
             Un projet étudiant pour le développement de modes de consommation
             plus sains.
           </h2>
-          <h3 className="text-center mt-5 mb-5 text-xl md:w-2/3">
+          <h3 className="text-center mt-5 mb-5 md:w-2/3">
             Aujourd’hui, Greenit c’est une communauté d’humains engagés et
             proactifs qui veulent répandre un mode de production et consommation
             plus conscient.
@@ -109,7 +107,7 @@ const WhyPage: React.FC = () => {
         </div>
 
         <div className="grid justify-items-center lg:w-2/3">
-          <p className="mt-5  lg:text-xl w-3/4 text-justify">
+          <p className="mt-5  w-3/4 text-justify">
             En mars 2020, lorsque le Covid confine Andrea chez elle, Andrea
             s’intéresse à la composition de ses produits du quotidien, lassée de
             ses irritations et allergies.
@@ -141,7 +139,7 @@ const WhyPage: React.FC = () => {
           ></img>
         </div>
 
-        <h2 className=" text-center text-2xl md:text-3xl mt-20 w-3/4">
+        <h2 className=" text-center mt-20 w-3/4">
           Pourquoi faire ses produits maison ?{" "}
         </h2>
 
@@ -152,15 +150,15 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center md:mt-4 md:justify-self-end"
           ></img>
           <div className="">
-            <h2 className="text-md md:text-xl text-green">Pour la planète</h2>
-            <h3 className="text-md md:">
+            <h3 className="text-md text-green">Pour la planète</h3>
+            <h4 className="text-md">
               Parlons des compositions des shampoings, des lessives, des
               liquides vaisselles : silicones, methylchloroisothiazolinone,
               polycarboxylates… La liste est longue et leurs pollutions
               environnementales catastrophiques. La production maison, c’est un
               contrôle des ingrédients et des contenants. Consommons uniquement
               le nécessaire !
-            </h3>
+            </h4>
           </div>
           <img
             src={corpsWhy}
@@ -168,16 +166,14 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start mt-10 justify-self-center md:hidden"
           ></img>
           <div>
-            <h2 className="text-md md:text-xl text-blue text-right">
-              Pour ton corps
-            </h2>
-            <h3 className="text-md md: text-right">
+            <h3 className="text-md text-blue text-right">Pour ton corps</h3>
+            <h4 className="text-md text-right">
               Ces mêmes ingrédients chimiques endommagent, irritent et
               vulnérabilisent ta peau et tes cheveux. Hélas, même dans les
               produits les plus biologiques : les perturbateurs endocriniens,
               alcool et aluminium attaquent nos corps. La production maison est
               aussi personnalisée et respecte les différences de chacun.{" "}
-            </h3>
+            </h4>
           </div>
           <img
             src={corpsWhy}
@@ -190,15 +186,13 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center mt-10 md:mt-4 md:justify-self-end"
           ></img>
           <div>
-            <h2 className="text-md md:text-xl text-yellow">
-              Pour tes économies
-            </h2>
-            <h3 className="text-md md:">
+            <h3 className="text-md text-yellow">Pour tes économies</h3>
+            <h4 className="text-md ">
               27,90€ le baume réparateur bio ? 5,80€ le stick à lèvres naturel ?
               L’industrie des produits cosmétiques et ménagers ne respecte pas
               notre pouvoir d’achat. Sur Greenit, le baume revient à 6€ et le
               stick à lèvres à 1,50€.
-            </h3>
+            </h4>
           </div>
           <img
             src={wellbeing}
@@ -206,15 +200,13 @@ const WhyPage: React.FC = () => {
             className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start mt-10 justify-self-center md:hidden"
           ></img>
           <div>
-            <h2 className="text-md md:text-xl text-orange text-right">
-              Pour ton esprit
-            </h2>
-            <h3 className="text-md md: text-right">
+            <h3 className="text-md text-orange text-right">Pour ton esprit</h3>
+            <h4 className="text-md text-right">
               La production maison c’est aussi une activité manuelle et
               épanouissante. La création apporte une stimulation des sens, un
               sentiment d’accomplissement et une manière de se déconnecter, seul
               ou à plusieurs.
-            </h3>
+            </h4>
           </div>
           <img
             src={wellbeing}
@@ -224,10 +216,7 @@ const WhyPage: React.FC = () => {
         </div>
       </div>
       <Block id="4" className="grid w-full p-2 justify-items-center mb-20">
-        <h2 className="text-xl md:text-2xl">
-          {" "}
-          Merci à toutes celles et ceux qui nous aident{" "}
-        </h2>
+        <h2> Merci à toutes celles et ceux qui nous aident </h2>
         <div className="w-full mt-12">
           <img
             src={isMobile ? communityMobile : communityDesktop}

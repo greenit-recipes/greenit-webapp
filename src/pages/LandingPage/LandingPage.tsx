@@ -212,7 +212,7 @@ const LandingPage = () => {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-4 justify-items-center gap-y-10 gap-x-4">
+            <div className="grid grid-cols-4 justify-items-center mt-10 gap-y-10 gap-x-4">
               {recipes?.map(recipe => (
                 <RecipeCard
                   recipe={recipe?.node}
@@ -367,7 +367,7 @@ const LandingPage = () => {
         </h2>
       </Container>
       <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center">
-        <div className="flex items-center justify-center">
+        <div className="flex justify-center">
           {[
             {
               image:
@@ -388,7 +388,7 @@ const LandingPage = () => {
               describe: "Lorem Ipsum is simply dummy text of the printing",
             },
           ]?.map(person => (
-            <div className="flex flex-col items-center ml-4">
+            <div className="flex flex-col items-center ml-4 justify-center">
               <img
                 src={person.image}
                 className="w-24 h-24 rounded-full object-cover"
