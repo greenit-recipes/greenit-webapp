@@ -71,7 +71,6 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   });
 
   const responseGoogle = (responseGoogle: any) => {
-
     const variables: any = {
       email: responseGoogle?.profileObj.email,
       username: responseGoogle?.profileObj.name,
@@ -101,11 +100,11 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
       }
       const data = {
         email: responseGoogle?.profileObj.email,
-        password: process.env.REACT_APP_PASSWORD + responseGoogle?.profileObj.id,
+        password:
+          process.env.REACT_APP_PASSWORD + responseGoogle?.profileObj.id,
       };
       onSubmitHandler(data);
     });
-
   };
 
   const errorGoogle = (response: any) => {
@@ -219,125 +218,122 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
           isMobile ? "" : "login-modal-size"
         } flex-col items-center justify-items-center`}
       >
-        <div className="flex-row w-full lg:flex">
-          <div className="desktopbg"></div>
-          <div className="flex flex-col items-center mobile">
-            <div className="text-xl font-bold text-center">
-              Connexion vers ton espace DIY <br />
-            </div>
-            <form
-              className="flex flex-col lg:w-72 md:my-2"
-              // @ts-ignore
-              onSubmit={handleSubmit(onSubmitHandler)}
+        <div className="flex flex-col items-center justify-center mobile">
+          <div className="text-2xl font-bold text-center">
+            Connexion <br />
+          </div>
+          <div>
+            <p
+              onClick={() => loginOpen(false)}
+              id="modal-connexion-pas-encore-de-compte"
+              className="m-4 text-sm text-center text-darkBlue underline cursor-pointer md:m-10"
             >
-              <div className="flex flex-row items-center w-full">
-                <img
-                  className="w-6 h-6 ml-2"
-                  src={loginMail}
-                  alt="icone email"
-                />
-                <input
-                  className="w-full h-8 px-3 m-4 leading-tight text-gray-700 border shadow-lg appearance-none rounded-xl py-1 focus:outline-none focus:shadow-outline"
-                  id="email"
-                  placeholder="Email"
-                  type="email"
-                  {...register("email")}
-                ></input>
-              </div>
-              <p className="text-xs italic text-red">
-                {errors.password?.message}
-              </p>
-
-              <div className="flex flex-row items-center w-full">
-                <img
-                  className="w-6 h-6 ml-2"
-                  src={loginPassword}
-                  alt="icone mot de passe"
-                />
-                <div className="flex flex-row items-center w-full h-8 m-4 leading-tight text-gray-700 border shadow-lg rounded-xl focus:shadow-outline">
-                  <input
-                    className="w-full h-full px-3 appearance-none rounded-xl py-1 focus:outline-none"
-                    id="password"
-                    type={isRevealPwd ? "text" : "password"}
-                    placeholder="Mot de passe"
-                    {...register("password")}
-                  />
-                  <img
-                    className="mr-2"
-                    src={isRevealPwd ? mdpVisible : mdpNonVisible}
-                    alt="voir le mot de passe"
-                    onClick={() => setIsRevealPwd(prevState => !prevState)}
-                  />
+              Pas encore de compte ? - Créer son compte
+            </p>
+          </div>
+          <div className="flex flex-col md:flex-row md:space-x-8">
+            <div className="mb-4 w-10/12 lg:mb-1 mt-2">
+              <GoogleLogin
+                // @ts-ignore
+                clientId={process.env.REACT_APP_GOOGLE_ID}
+                buttonText="Login"
+                className="h-[50px] w-full text-center rounded-2xl"
+                onSuccess={responseGoogle}
+                onFailure={errorGoogle}
+                // @ts-ignore
+                buttonText={"Connexion avec Google"}
+                id="connexion-google-login"
+              />
+              {errorLoginGoogle && (
+                <div className="mt-6 text-xs italic text-red">
+                  {errorLoginGoogle}
                 </div>
-              </div>
-              <p className="text-xs italic text-red">
-                {errors.password?.message}
-              </p>
-              <a
-                className="self-end px-4 mt-2 mb-6 text-sm font-bold lg:text-base text-blue"
-                id="modal-login-mot-de-passe-oublie"
-                href={RouteName.resetPassword}
-              >
-                Mot de passe oublié ?
-              </a>
-              <Button
-                type="blue"
-                id="modal-button-connexion"
-                className="mt-4 font-extrabold"
-                isLoading={loading}
-              >
-                Connexion
-              </Button>
-            </form>
-            <div className="m-4 text-gray-700 separator md:m-10">Ou</div>
-            <GoogleLogin
-              // @ts-ignore
-              clientId={process.env.REACT_APP_GOOGLE_ID}
-              buttonText="Login"
-              className="my-google-button-class mb-4"
-              onSuccess={responseGoogle}
-              onFailure={errorGoogle}
-                            // @ts-ignore
-              buttonText={'Connexion avec Google'}
-              id="connexion-google-login"
-            />
-            {errorLoginGoogle && (
-              <div className="mt-4 text-xs italic text-red">
-                {errorLoginGoogle}
-              </div>
-            )}
-            <FacebookLogin
-              // @ts-ignore
-              appId={process.env.REACT_APP_FACEBOOK_ID}
-              fields="name,email,picture"
-              callback={responseFacebook}
-              disableMobileRedirect={true}
-              cssClass="my-facebook-button-class"
-              textButton={"Connexion avec Facebook"}
-              id="connexion-facebook-login"
-              icon={
-                loadingAuth ? (
-                  <div className="animate-spin mr-4">
-                    <BiLoaderAlt />
-                  </div>
-                ) : (
-                  <IoLogoFacebook className="w-6 h-6 mr-4" />
-                )
-              }
-            />
-            {errorLoginFb && (
-              <div className="mt-4 text-xs italic text-red">{errorLoginFb}</div>
-            )}
-            <div>
-              <p
-                onClick={() => loginOpen(false)}
-                id="modal-connexion-pas-encore-de-compte"
-                className="m-4 text-sm text-center text-gray-700 underline cursor-pointer md:m-10"
-              >
-                Pas encore de compte ? - Créer son compte
-              </p>
+              )}
+            </div>
+            <div className="mb-4 w-[500px] lg:mb-1 mt-2">
+              <FacebookLogin
+                // @ts-ignore
+                appId={process.env.REACT_APP_FACEBOOK_ID}
+                fields="name,email,picture"
+                callback={responseFacebook}
+                disableMobileRedirect={true}
+                cssClass="my-facebook-button-class"
+                id="modal-register-facebook"
+                textButton={"Connexion avec Facebook"}
+                icon={
+                  loadingAuth ? (
+                    <div className="animate-spin mr-4">
+                      <BiLoaderAlt />
+                    </div>
+                  ) : (
+                    <IoLogoFacebook className="w-6 h-6 mr-4" />
+                  )
+                }
+              />
+              {errorLoginFb && (
+                <div className="mt-6 text-xs italic text-red">
+                  {errorLoginFb}
+                </div>
+              )}
             </div>
           </div>
+          <div className="m-4 w-full text-darkBlue separator md:m-10">OU</div>
+          <form
+            className="flex flex-col w-11/12 lg:w-96 md:my-2"
+            // @ts-ignore
+            onSubmit={handleSubmit(onSubmitHandler)}
+          >
+            <div className="flex flex-row items-center w-full">
+              <i className="bx bx-envelope mr-2 text-darkBlue text-3xl"></i>
+              <input
+                className="w-full h-10 px-3 m-4 leading-tight text-gray-700 border shadow-lg appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline"
+                id="email"
+                placeholder="Email"
+                type="email"
+                {...register("email")}
+              ></input>
+            </div>
+            <p className="text-xs italic text-red">
+              {errors.password?.message}
+            </p>
+
+            <div className="flex flex-row items-center w-full">
+              <i className="bx bx-lock-alt mr-2 text-darkBlue text-3xl"></i>
+              <div className="flex flex-row items-center w-full h-10 m-4 leading-tight text-gray-700 border shadow-lg rounded-md focus:shadow-outline">
+                <input
+                  className="w-full h-full px-3 appearance-none rounded-xl py-1 focus:outline-none"
+                  id="password"
+                  type={isRevealPwd ? "text" : "password"}
+                  placeholder="Mot de passe"
+                  {...register("password")}
+                />
+                <img
+                  className="mr-2"
+                  src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                  alt="voir le mot de passe"
+                  onClick={() => setIsRevealPwd(prevState => !prevState)}
+                />
+              </div>
+            </div>
+            <p className="text-xs italic text-red">
+              {errors.password?.message}
+            </p>
+            <a
+              className="self-end px-4 mt-2 mb-6 text-sm font-bold decoration-solid underline lg:text-base text-darkBlue"
+              id="modal-login-mot-de-passe-oublie"
+              href={RouteName.resetPassword}
+            >
+              Mot de passe oublié ?
+            </a>
+            <Button
+              type="blue"
+              id="modal-button-connexion"
+              className="mt-4 font-extrabold"
+              isLoading={loading}
+            >
+              Connexion
+            </Button>
+          </form>
         </div>
       </div>
     </>

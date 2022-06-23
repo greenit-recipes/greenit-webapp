@@ -53,12 +53,17 @@ export const GreenitFullXpHeadband: React.FC<GreenitFullXpHeadbandProps> = ({
       </div>
 
       <div className="flex bg-greenL lg:pl-20 h-16 items-center justify-center lg:justify-start">
-        <Button id="landing_tenez_moi_au_courant" type="green"
-        onClick={() => isOutOfStock
-          ? showModal(true)
-          : history.push(RouteName.startDiyGreenitFullXp)}
-        >Je commande</Button>
-
+        <Button
+          id="landing_tenez_moi_au_courant"
+          type="green"
+          onClick={() =>
+            isOutOfStock
+              ? showModal(true)
+              : history.push(RouteName.startDiyGreenitFullXp)
+          }
+        >
+          Je commande
+        </Button>
 
         <p className="p-2 mr-1 text-center pl-10 order-1 lg:order-2 text-sm lg:text-left">
           Offre limitée : 50 box à commander !

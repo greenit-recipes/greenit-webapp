@@ -45,11 +45,7 @@ export const CircleGreenit: React.FC<ICircleGreenit> = ({
         )}
       </div>
       {!isOnlyIcon && (
-        <div
-          className={`${
-            textWidth ? textWidth : ""
-          } text-center mt-1`}
-        >
+        <div className={`${textWidth ? textWidth : ""} text-center mt-1`}>
           {text}
         </div>
       )}

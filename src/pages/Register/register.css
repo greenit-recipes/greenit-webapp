@@ -52,7 +52,8 @@ input[type="radio"]:checked + label > img {
   font-size: 1rem;
   line-height: 1.5rem;
   align-items: center;
-  height: 2rem;
+  justify-items: center;
+  height: 33px;
   border-radius: 0.5rem;
   border-width: 2px;
   border-color: transparent;
@@ -69,7 +70,6 @@ input[type="radio"]:checked + label > img {
   }
 }
 
-
 .my-google-button-class {
   display: flex;
   padding-left: 1.25rem;
@@ -84,7 +84,8 @@ input[type="radio"]:checked + label > img {
   border-color: transparent !important;
   cursor: pointer;
   font-weight: 700;
-  width: 60%;
+  height: 33px;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
