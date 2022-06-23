@@ -134,10 +134,18 @@ import explorer from "./explorer.svg";
 import creator from "./influencer.svg";
 import boxOpen from "./box-open-mobile.svg";
 
-import BadgeSavonMobile from "./Badge_Savon_Mobile.svg";
-import BadgeMarqueMobile from "./Badge_Marque_Mobile.svg";
-import BadgeControleMobile from "./Badge_Controle_Mobile.svg";
-import Badge100Mobile from "./Badge_100_Mobile.svg";
+import BadgeSavonMobile from "./Badge_Savon_Mobile.png";
+import BadgeSavonDesktop from "./Badge_Savon_Desktop.png";
+import BadgeMarqueMobile from "./Badge_Marque_Mobile.png";
+import BadgeMarqueDesktop from "./Badge_Marque_Desktop.png";
+import BadgeControleMobile from "./Badge_controle_Mobile.png";
+import BadgeControleDesktop from "./Badge_controle_Desktop.png";
+import Badge100Mobile from "./Badge_100pc_Mobile.png";
+import Badge100Desktop from "./Badge_100pc_Desktop.png";
+import TopImageMobile from "./TopImageLP_Mobile.svg";
+import TopImageDesktopLeft from "./TopImageLP_gauche.svg";
+import TopImageDesktopRight from "./TopImageLP_droite.svg";
+import LPImage4Desktop from "./LPImage_4_Desktop.svg";
 
 // FUll XP GREENIT
 import boxGreenit from "./GIFDesktop_Box_GIY.gif";
@@ -279,7 +287,15 @@ export {
   rondIcon,
   boxOpen,
   BadgeSavonMobile,
+  BadgeSavonDesktop,
   BadgeMarqueMobile,
+  BadgeMarqueDesktop,
   BadgeControleMobile,
+  BadgeControleDesktop,
   Badge100Mobile,
+  Badge100Desktop,
+  TopImageMobile,
+  TopImageDesktopLeft,
+  TopImageDesktopRight,
+  LPImage4Desktop,
 };

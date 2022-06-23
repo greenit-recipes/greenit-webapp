@@ -52,22 +52,14 @@ export const LikeField: React.FC<ILikeField> = ({
             }).then(() => (parentFunction ? parentFunction() : null));
           }}
         >
+          <h2 className="flex self-center text-base lg:text-lg mr-1">
+            {nbrLiked}
+          </h2>
           {isLiked ? (
-            <img
-              src={clapIconOn}
-              className="flex self-center w-6 h-6 lg:w-7 lg:h-7 mb-1"
-              alt="likes"
-              loading="lazy"
-            />
+            <i className="bx bxs-donate-heart flex self-center text-lg"></i>
           ) : (
-            <img
-              src={clapIconOff}
-              className="flex self-center w-6 h-6 lg:w-7 lg:h-7 mb-1"
-              alt="likes"
-              loading="lazy"
-            />
+            <i className="bx bx-donate-heart flex self-center text-lg"></i>
           )}
-          <h2 className="flex self-center text-base lg:text-lg">{nbrLiked}</h2>
         </button>
       ) : (
         <Suspense fallback={<Loading />}>

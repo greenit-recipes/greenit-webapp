@@ -1,22 +1,16 @@
 import { useQuery } from "@apollo/client";
 import { RouteName } from "App";
-import Modal from "components/layout/Modal/Modal";
 import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
-import { GreenitFullXpHeadband } from "pages/LandingPage/Components/GreenitFullXpHeadband";
-import GreenitFullXpModal from "pages/LandingPage/Components/GreenitFullXpModal";
 import "pages/LandingPage/LandingPage.css";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ReactPlayer from "react-player/lazy";
 import { Link, useHistory } from "react-router-dom";
 import { landingPageCategories } from "utils";
 import {
-  BackgroundImage,
   Button,
   Container,
   Footer,
@@ -24,28 +18,30 @@ import {
   Navbar,
   RecipeCard,
   SearchBar,
-} from "../../components";
-import { Press } from "../../components/layout/TheyTalkAboutUs";
+} from "components";
+import { Press } from "components/layout/TheyTalkAboutUs";
 import { useRecipesQuery } from "../../graphql";
-import useIsMobile from "../../hooks/isMobile";
+import useIsMobile from "hooks/isMobile";
 import {
+  Badge100Desktop,
   Badge100Mobile,
   BadgeMarqueMobile,
+  BadgeMarqueDesktop,
   BadgeSavonMobile,
+  BadgeSavonDesktop,
+  BadgeControleMobile,
+  TopImageMobile,
+  TopImageDesktopLeft,
+  TopImageDesktopRight,
+  LPImage4Desktop,
   boxOpen,
-  Conseil,
-  Cooking,
-  corpsWhy,
   escapeTheCity,
   issy,
-  money,
-  planet,
   sixHTN,
-  Ustensil,
-  wellbeing,
-} from "../../icons";
-import "../../pages/recipe/SinglePage/SinglePage.css";
-import { GET_FEATURE_BY_NAME } from "../../services/feature.service";
+  BadgeControleDesktop,
+} from "icons";
+import "pages/recipe/SinglePage/SinglePage.css";
+import { GET_FEATURE_BY_NAME } from "services/feature.service";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
 
@@ -67,9 +63,48 @@ const responsiveCarouselLanding = {
   },
 };
 
+const communityMembers = [
+  {
+    image:
+      "https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg",
+    name: "Jackouille",
+    describe: "Lorem Ipsum is simply",
+  },
+  {
+    image:
+      "https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg",
+    name: "Bernard",
+    describe: "Lorem Ipsum is simply dummy",
+  },
+  {
+    image:
+      "https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg",
+    name: "Zack",
+    describe: "Lorem Ipsum is simply dummy",
+  },
+];
+
+interface ExploreMoreProps {
+  filter: string;
+}
+
+const ExploreMore: React.FC<ExploreMoreProps> = ({ filter }) => {
+  return (
+    <Link to={`${RouteName.recipes}?${filter}`}>
+      <div className="ml-1 mr-5 h-96 md:h-84 w-52 bg-white rounded-2xl self-center relative">
+        <i className="absolute top-[40%] left-[40%] text-5xl bx bx-right-arrow-alt"></i>
+        <p className="absolute top-[52%] left-[30%] text-lg font-semibold">
+          Explorer plus
+        </p>
+      </div>
+    </Link>
+  );
+};
+
 const LandingPage = () => {
   const isMobile = useIsMobile();
   const history = useHistory();
+  const totalRecipeCards = isMobile ? 5 : 4;
   /* Feature Flag Start*/
   //Create an easier API for feature flags
   const { loading: loadingOutOfStock, data: dataOutOfStock } = useQuery(
@@ -179,19 +214,53 @@ const LandingPage = () => {
           </Modal>
         </>
       ) */}
-      <div className="bg-greenL w-full">
+      <div className="realtive bg-greenL w-full">
         <Container
           className="flex flex-col items-center | px-4
          | mt-9 mb-28"
         >
-          <div className="mb-6 text-center">
-            <h1>
-              <span className="text-green trait-img">Greenit,</span> la
-              communauté centrale <br></br> pour les recettes{" "}
-              <span className="double-trait-img">faits maison</span>
+          {isMobile ? (
+            <img
+              className="absolute top-0"
+              alt="Communauté Greenit"
+              src={TopImageMobile}
+              loading="lazy"
+            />
+          ) : (
+            <>
+              <img
+                className="absolute top-20 -left-10"
+                src={TopImageDesktopLeft}
+                alt="Communauté Greenit partie 1"
+                loading="lazy"
+              />
+              <img
+                className="absolute top-10 -right-20"
+                alt="Communauté Greenit partie 2"
+                src={TopImageDesktopRight}
+                loading="lazy"
+              />
+            </>
+          )}
+
+          <div className={`relative msm:mt-24 mb-6 text-center`}>
+            <h1 className="text-2xl md:text-3xl">
+              {isMobile ? (
+                <>
+                  <span className="text-green trait-img">Greenit</span>, la
+                  communauté centrale <br></br> pour les recettes{" "}
+                  <span className="double-trait-img">faits maison</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-green trait-img">Greenit</span>, la
+                  communauté du fait-maison<br></br> pour une consommation{" "}
+                  <span className="double-trait-img">durable</span>
+                </>
+              )}
             </h1>
           </div>
-          <div className="w-full mb-2 lg:w-2/5">
+          <div className="w-9/12 mb-2 mx-12 lg:w-1/5">
             <SearchBar
               keyId="searchBarLandingPage"
               suggestionIsActive={true}
@@ -200,6 +269,11 @@ const LandingPage = () => {
               // @ts-ignore
               suggestions={recipesAutoComplete}
             />
+          </div>
+          <div className="text-center my-5">
+            <h4 className="font-semibold text-xl">
+              Notre sélection de la semaine
+            </h4>
           </div>
           {isMobile ? (
             <div className="grid grid-cols-2 mt-4 mb-2 sm:grid-cols-3">
@@ -232,105 +306,134 @@ const LandingPage = () => {
             <img
               className="w-40 h-40 absolute left-10"
               alt="100% fait maison"
-              src={Badge100Mobile}
+              src={isMobile ? Badge100Mobile : Badge100Desktop}
               loading="lazy"
             />
           </div>
         </Container>
       </div>
       <Container
-        className="flex flex-col items-center | px-4
-         | mt-12 mb-12 text-center"
+        className="flex flex-col justify-center items-center md:items-start | px-4
+         | mt-12 mb-12 text-center md:text-left md:w-10/12"
       >
-        <h2 className="text-xl md:text-2xl">
-          Le kit fait-maison idéal pour débuter
-        </h2>
-        <h2 className="text-xl md:text-2xl | mb-6 font-diy text-2xl">
-          mes premiers pas
-        </h2>
-        <img src={boxOpen} className="w-44 h-44" alt={`Box greenit`} />
-        <div className="flex justify-between mt-4">
-          {recipesBegginerFullXp?.map(recipe => (
-            <div className="ml-9">
-              <img
-                src={recipe.image}
-                className="w-20 h-20 rounded-full"
-                alt={recipe.name}
-              />
-              <p>{recipe.name}</p>
+        <div className="md:flex md:justify-start md:space-x-4">
+          <h2 className="text-xl md:text-2xl">
+            Le kit fait-maison idéal pour débuter
+          </h2>
+          <h2 className="text-xl md:text-2xl | mb-6 font-diy text-2xl">
+            mes premiers pas
+          </h2>
+        </div>
+        <div className="md:flex md:items-center">
+          <div className="flex justify-center mb-3">
+            <img
+              src={boxOpen}
+              className="w-56 h-56 md:w-64 md:h-64 md:mr-24"
+              alt={`Box greenit`}
+            />
+          </div>
+          <div>
+            <div className="flex msm:justify-between md:space-x-24 mt-4">
+              {recipesBegginerFullXp?.map(recipe => (
+                <div className="ml-9">
+                  <img
+                    src={recipe.image}
+                    className="w-20 h-20 md:w-24 md:h-24 rounded-full"
+                    alt={recipe.name}
+                  />
+                  <p>{recipe.name}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <h4 className="mt-9 mb-4">
-          L’essentiel pour réaliser 3 recettes validées <br></br>par la
-          communauté !
-        </h4>
-        <p>Garantie pas de gâchis et avec des contenants en verre !</p>
-        <p className="mb-6">
-          Résultat, c’est 11 substances toxiques épargnées, 154 g de<br></br>{" "}
-          plastique évités et 32 % d’économie
-        </p>
-        <div className="flex">
-          <Button
-            className="mr-3"
-            id="landing-box-je-commande"
-            type="green"
-            onClick={() => history.push(RouteName.startDiyGreenitFullXp)}
-          >
-            Je commande
-          </Button>
-          <Button
-            id="landing-box-en-savoir-plus"
-            type="darkBlue"
-            onClick={() => history.push(RouteName.startDiyGreenitFullXp)} // Mettre la bonne route
-          >
-            En savoir plus
-          </Button>
+            <h4 className="mt-9 mb-4 font-medium text-lg">
+              L’essentiel pour réaliser 3 recettes validées{" "}
+              {isMobile && <br></br>} par la communauté !
+            </h4>
+            <p>Garantie pas de gâchis et avec des contenants en verre !</p>
+            <p className="mb-6">
+              Résultat, c’est 11 substances toxiques épargnées, 154 g de
+              {isMobile && <br></br>} plastique évités et 32 % d’économie
+            </p>
+            <div className="flex justify-center md:justify-start">
+              <Button
+                className="mr-3"
+                id="landing-box-je-commande"
+                type="green"
+                onClick={() => history.push(RouteName.startDiyGreenitFullXp)}
+              >
+                Je commande
+              </Button>
+              <Button
+                id="landing-box-en-savoir-plus"
+                type="darkBlue"
+                onClick={() => history.push(RouteName.startDiyGreenitFullXp)} // Mettre la bonne route
+              >
+                En savoir plus
+              </Button>
+            </div>
+          </div>
         </div>
       </Container>
       <Container
         className="flex flex-col items-center | px-4
-         | pt-9 text-center bg-blueL w-full"
+         | pt-9 text-center bg-blueL w-full relative | pb-5"
       >
-        <h2>Les recettes 100% débutants</h2>
-        <h2 className="font-diy text-2xl">idéal pour se lancer !</h2>
-      </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
-        <div className="flex w-max overflow-x-auto">
-          {recipesBegginer?.map(recipe => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-          ))}
-        </div>
-      </div>
-      <Container
-        className="flex flex-col items-center | px-4
-         | pt-9 text-center bg-blueL w-full"
-      >
-        <h2>Tout pour la maison</h2>
-        <h2 className="font-diy text-2xl">recettes pour un ménage écolo !</h2>
-      </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
-        <div className="flex w-max overflow-x-auto">
-          {recipesBegginer?.map(recipe => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-          ))}
-        </div>
-        <div>
+        {!isMobile && (
           <img
-            className="w-40 h-40 absolute right-6"
+            className="h-56 absolute -top-28 -right-12"
             alt="Mon savon ? Je le fais moi-même"
-            src={BadgeSavonMobile}
+            src={LPImage4Desktop}
             loading="lazy"
           />
+        )}
+        <div className="flex flex-col md:flex-row md:self-start md:space-x-4 md:ml-14">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Les recettes 100% débutants
+          </h2>
+          <h2 className="font-diy text-2xl">idéal pour se lancer !</h2>
+        </div>
+      </Container>
+      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
+        <div className="flex w-max">
+          {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
+            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+          ))}
+          <ExploreMore filter="tags=Premiers pas" />
         </div>
       </div>
-
       <Container
         className="flex flex-col items-center | px-4
+         | pt-9 text-center bg-blueL w-full | pb-5"
+      >
+        <div className="flex flex-col md:flex-row md:self-start md:space-x-4 md:ml-24">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Tout pour la maison
+          </h2>
+          <h2 className="font-diy text-2xl">recettes pour un ménage écolo !</h2>
+        </div>
+      </Container>
+      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
+        <div className="flex w-max">
+          {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
+            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+          ))}
+          <ExploreMore filter="category=Maison" />
+        </div>
+      </div>
+      <Container
+        className="relative w-full flex flex-col items-center | px-4
         | mt-16 mb-12 text-center"
       >
-        <h2>Les catégories les plus inspirantes</h2>
-        <div className="grid pt-9 grid-cols-2 gap-x-11 gap-y-11">
+        <img
+          className="h-40 absolute right-6 -top-32"
+          alt="Mon savon ? Je le fais moi-même"
+          src={isMobile ? BadgeSavonMobile : BadgeSavonDesktop}
+          loading="lazy"
+        />
+        <h2 className="text-xl md:text-2xl msm:mt-14">
+          Les catégories les plus inspirantes
+        </h2>
+        <div className="grid pt-9 grid-cols-2 gap-x-11 gap-y-11 md:flex ">
           {landingPageCategories.map(item => (
             <CategoryCircle
               isLandingPage={true}
@@ -341,204 +444,323 @@ const LandingPage = () => {
           ))}
         </div>
       </Container>
-      <Container
-        className="flex flex-col items-center | px-4
-         | pt-9 text-center bg-yellowL w-full"
-      >
-        <h2>Les recettes avec les ingrédients chez vous</h2>
-        <h2 className="font-diy text-2xl">
-          Bicarbonate, savon de marseille, curcumin …
-        </h2>
-      </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 bg-yellowL">
-        <div className="flex w-max">
-          {recipesBegginer?.map(recipe => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-          ))}
+      <div className="w-full bg-yellowL">
+        <div className="md:flex md:items-center md:justify-start md:space-x-0 md:mt-10 md:ml-10 md:mr-20">
+          <Container
+            className="md:w-1/3 flex flex-col items-center | px-4
+         | pt-9 text-center md:text-left bg-yellowL w-full"
+          >
+            <div className="flex flex-col">
+              <h2 className="text-xl md:text-2xl font-semibold">
+                Les recettes avec {!isMobile && <br />} les ingrédients chez
+                vous
+              </h2>
+              <h2 className="font-diy text-2xl md:text-3xl">
+                Bicarbonate, savon de marseille, curcumin …
+              </h2>
+            </div>
+          </Container>
+          <div className="w-full md:w-3/5 pt-4 pl-4 overflow-x-auto pb-12 bg-yellowL">
+            <div className="md:flex md:justify-center">
+              <div className="flex w-max">
+                {recipesBegginer
+                  ?.slice(0, isMobile ? totalRecipeCards : 3)
+                  .map(recipe => (
+                    <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+                  ))}
+                {/*Todo: Fill category later*/}
+                {isMobile && <ExploreMore filter="category=Missing" />}
+              </div>
+            </div>
+            {isMobile && (
+              <div className="mt-12 text-center">
+                <h4 className="font-semibold text-xl mx-12">
+                  Envie de profiter des bienfaits de l’avocat, de l’huile
+                  d’olive ou des graines de lin ?
+                </h4>
+                <h2 className="font-diy text-2xl">
+                  Banane, oeuf, amidon de maïs…
+                </h2>
+              </div>
+            )}
+          </div>
         </div>
+        {!isMobile && (
+          <div className="md:flex md:items-center md:justify-start md:space-x-0 md:ml-20 md:mr-10">
+            <div className="w-full md:w-3/5 pt-4 pl-4 overflow-x-auto pb-12 bg-yellowL">
+              <div className="md:flex md:justify-center">
+                <div className="flex w-max">
+                  {recipesBegginer
+                    ?.slice(0, isMobile ? totalRecipeCards : 3)
+                    .map(recipe => (
+                      <RecipeCard
+                        recipe={recipe?.node}
+                        key={recipe?.node?.id}
+                      />
+                    ))}
+                  {/*Todo: Fill category later*/}
+                  {isMobile && <ExploreMore filter="category=Missing" />}
+                </div>
+              </div>
+            </div>
+            <Container
+              className="md:w-1/3 flex flex-col items-center | px-4
+         | pt-9 text-center md:text-left bg-yellowL w-full"
+            >
+              <div className="flex flex-col">
+                <h2 className="text-xl md:text-2xl font-semibold">
+                  Envie de profiter des bienfaits de l’avocat, de l’huile
+                  d’olive ou des graines de lin ?
+                </h2>
+                <h2 className="font-diy text-3xl">
+                  Banane, oeuf, amidon de maïs…
+                </h2>
+              </div>
+            </Container>
+          </div>
+        )}
       </div>
+
       <Container
         className="flex flex-col items-center | px-4
          | pt-9 text-center w-full"
       >
-        <h2>
-          Derrière Greenit des passionées, des curieux, des donateurs, des
-          débutants. . .
+        <h2 className="text-2xl font-semibold mx-10 mb-5">
+          Derrière Greenit {isMobile && <br />} des passionées, des curieux,{" "}
+          {isMobile && <br />} des donateurs, des débutants. . .
         </h2>
       </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center">
-        <div className="flex justify-center">
-          {[
-            {
-              image:
-                "https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg",
-              name: "Jackouille",
-              describe: "Lorem Ipsum is simply",
-            },
-            {
-              image:
-                "https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg",
-              name: "Bernard",
-              describe: "Lorem Ipsum is simply dummy",
-            },
-            {
-              image:
-                "https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg",
-              name: "Zack",
-              describe: "Lorem Ipsum is simply dummy text of the printing",
-            },
-          ]?.map(person => (
-            <div className="flex flex-col items-center ml-4 justify-center">
-              <img
-                src={person.image}
-                className="w-24 h-24 rounded-full object-cover"
-                alt={person.name}
-              />
-              <h4>{person.name}</h4>
-              <h4 className="font-diy text-2xl">{person.describe}</h4>
+      {/*Todo: Refactor later*/}
+      {isMobile ? (
+        <>
+          <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center relative">
+            <div className="flex justify-center">
+              {communityMembers?.map(person => (
+                <div className="flex flex-col items-center ml-4 justify-center">
+                  <img
+                    src={person.image}
+                    className="w-24 h-24 rounded-full object-cover"
+                    alt={person.name}
+                  />
+                  <h4>{person.name}</h4>
+                  <h4 className="font-diy text-2xl">{person.describe}</h4>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center relative">
+            <div className="flex justify-center">
+              {communityMembers?.map(person => (
+                <div className="flex flex-col items-center ml-4 justify-center">
+                  <img
+                    src={person.image}
+                    className="w-24 h-24 rounded-full object-cover"
+                    alt={person.name}
+                  />
+                  <h4>{person.name}</h4>
+                  <h4 className="font-diy text-2xl">{person.describe}</h4>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center relative">
+          <div className="flex justify-center">
+            {communityMembers?.map(person => (
+              <div className="flex flex-col items-center ml-4 justify-center">
+                <img
+                  src={person.image}
+                  className="w-24 h-24 rounded-full object-cover"
+                  alt={person.name}
+                />
+                <h4>{person.name}</h4>
+                <h4 className="font-diy text-2xl">{person.describe}</h4>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div>
+      )}
+      <div className="relative">
         <img
-          className="w-40 h-40 absolute"
+          className="w-44 h-20 md:w-72 absolute top-[-12%] right-[35%] md:top-[-7%] md:right-[40%]"
           alt="Ma marque préférée"
-          src={BadgeMarqueMobile}
+          src={isMobile ? BadgeMarqueMobile : BadgeMarqueDesktop}
           loading="lazy"
         />
+        <Newsletter />
       </div>
-      <Newsletter />
       <Container
         className="flex flex-col items-center | px-4
-         | pt-9 pb-12 md:mt-4 text-center"
+         | pt-9 pb-12 md:mt-4 text-center md:w-full"
       >
-        <div>
-          <h2>
-            Le DIY c’est reprendre le contôle <br></br>sur sa consommation
+        <div className="md:w-full md:flex md:flex-col md:items-start md:ml-32">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Le DIY c’est reprendre le contôle {isMobile && <br></br>} sur sa
+            consommation
           </h2>
           <h2 className="mt-2 font-diy text-2xl">
             Le diy pour ta santé, ton bien-être et un mode de vie viable
           </h2>
         </div>
-        <div className="mt-5">
-          <RecipeCard
-            recipe={recipesOrderByLikes[1]?.node}
-            key={recipesOrderByLikes[0]?.node?.id}
-          />
+        <div className="md:flex md:items-center md:space-x-24">
+          <div
+            className={`${isMobile && "flex items-center justify-center"} mt-5`}
+          >
+            <RecipeCard
+              recipe={recipesOrderByLikes[1]?.node}
+              key={recipesOrderByLikes[0]?.node?.id}
+            />
+          </div>
+          <div className="flex mt-6">
+            <CircleGreenit
+              sizeCircle="w-24 h-24"
+              colorCircle="bg-blue"
+              icon={
+                <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
+              }
+              symbol=""
+              number={"0"}
+              text="Substances épargnées"
+            />
+            <CircleGreenit
+              sizeCircle="w-24 h-24"
+              colorCircle="bg-yellow"
+              icon={
+                <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
+              }
+              customClassName="ml-16"
+              symbol="€"
+              number={"0"}
+              text="Argent économisé"
+            />
+            <CircleGreenit
+              sizeCircle="w-24 h-24"
+              colorCircle="bg-green"
+              icon={
+                <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
+              }
+              customClassName="ml-16"
+              symbol="g"
+              number={"0"}
+              text="Plastiques évités"
+            />
+          </div>
+          <p className="mt-6 md:text-left">
+            Passer au fait-maison c’est des économies ! <br></br> Ça te fait du
+            bien et ça fait du bien à la planète.
+          </p>
         </div>
-        <div className="flex mt-6">
-          <CircleGreenit
-            colorCircle="bg-blue"
-            icon={
-              <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
-            }
-            symbol=""
-            number={"0"}
-            text="Substances épargnées"
-          />
-          <CircleGreenit
-            colorCircle="bg-yellow"
-            icon={
-              <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
-            }
-            customClassName="ml-16"
-            symbol="€"
-            number={"0"}
-            text="Argent économisé"
-          />
-          <CircleGreenit
-            colorCircle="bg-green"
-            icon={
-              <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
-            }
-            customClassName="ml-16"
-            symbol="g"
-            number={"0"}
-            text="Plastiques évités"
-          />
-        </div>
-        <p className="mt-6">
-          Passer au fait-maison c’est des économies ! <br></br> Ça te fait du
-          bien et ça fait du bien à la planète.
-        </p>
       </Container>
       <Container
         className="flex flex-col items-center | px-4
          | pt-9 pb-12 md:mt-4 text-center bg-yellowL w-full"
       >
-        <div>
-          <h2>Le guide pour se lancer dans le fait-maison</h2>
-          <h2 className="font-diy text-2xl">
-            co-écrit avec des experts de la communauté Greenit !
+        <div className="md:flex md:items-start md:space-x-20">
+          <div className="md:text-left md:mt-5">
+            <h2 className="text-xl md:text-2xl  font-semibold">
+              Le guide pour se lancer dans le fait-maison
+            </h2>
+            <h2 className="font-diy text-2xl">
+              co-écrit avec des experts de la communauté Greenit !
+            </h2>
+            {!isMobile && (
+              <Link to={RouteName.starterPage}>
+                <Button
+                  className="mt-5"
+                  type="darkBlue"
+                  id="landing-voir-le-guide"
+                >
+                  Voir le guide
+                </Button>
+              </Link>
+            )}
+          </div>
+          <div className="flex flex-row gap-2 my-6 justify-evenly lg:gap-6">
+            {[
+              {
+                icon: "bx-donate-heart",
+                title: "3 conseils pour débuter",
+                id: "landing-3-conseils-pour-débuter",
+              },
+              {
+                icon: "bx-knife",
+                title: "Les ingrédients et les ustentiles",
+                id: "landing-ingredients-et-ustentiles",
+              },
+              {
+                icon: "bx-bowl-hot",
+                title: "2 recettes simples",
+                id: "landing-2-recette-simples",
+              },
+            ].map(item => (
+              <Link to={RouteName.starterPage} key={item.id} id={item.id}>
+                <div className="w-32 h-32 grid bg-white rounded-xl shadow-lg p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150 m-auto">
+                  <i className={`bx ${item.icon} bx-md mt-4`}></i>
+                  <p>{item.title}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+        {isMobile && (
+          <Link to={RouteName.starterPage}>
+            <Button className="" type="darkBlue" id="landing-voir-le-guide">
+              Voir le guide
+            </Button>
+          </Link>
+        )}
+      </Container>
+      <Container
+        className="flex flex-col items-center | px-4
+         | pt-9 text-center bg-blueL w-full | pb-5"
+      >
+        <div className="flex flex-col md:flex-row md:self-start md:space-x-4 md:ml-14">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Les recettes de shampooings et soins
           </h2>
+          <h2 className="font-diy text-2xl">pour des cheveux soyeux</h2>
         </div>
-
-        <div className="flex flex-row gap-2 my-6 justify-evenly lg:gap-6">
-          {[
-            {
-              icon: "bx-donate-heart",
-              title: "3 conseils pour débuter",
-              id: "landing-3-conseils-pour-débuter",
-            },
-            {
-              icon: "bx-bowl-hot",
-              title: "Les ingrédients et les ustentiles",
-              id: "landing-ingredients-et-ustentiles",
-            },
-            {
-              icon: "bx-knife",
-              title: "2 recettes simples",
-              id: "landing-2-recette-simples",
-            },
-          ].map(item => (
-            <Link to={RouteName.starterPage} key={item.id} id={item.id}>
-              <div className="w-32 h-32 grid bg-white rounded-xl shadow-lg p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150 m-auto">
-                <i className={`bx ${item.icon} bx-md mt-4`}></i>
-                <p>{item.title}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <Link to={RouteName.starterPage}>
-          <Button className="" type="darkBlue" id="landing-voir-le-guide">
-            Voir le guide
-          </Button>
-        </Link>
       </Container>
-      <Container
-        className="flex flex-col items-center | px-4
-         | pt-9 text-center bg-blueL w-full"
-      >
-        <h2>Les recettes de shampooings et soins</h2>
-        <h2 className="font-diy text-2xl">pour des cheveux soyeux</h2>
-      </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
+      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
         <div className="flex w-max">
-          {recipesBegginer?.map(recipe => (
+          {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
+          <ExploreMore filter="category=Cheveux" />
         </div>
       </div>
 
       <Container
         className="flex flex-col items-center | px-4
-         | pt-9 text-center bg-blueL w-full"
+         | pt-9 text-center bg-blueL w-full | pb-5"
       >
-        <h2>Les recettes de masques</h2>
-        <h2 className="font-diy text-2xl">adaptées à vos problématiques</h2>
+        <div className="flex flex-col md:flex-row md:self-start md:space-x-4 md:ml-14">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Les recettes de masques
+          </h2>
+          <h2 className="font-diy text-2xl">adaptées à vos problématiques</h2>
+        </div>
       </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
+      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
         <div className="flex w-max">
-          {recipesBegginer?.map(recipe => (
+          {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
+          <ExploreMore filter="search=Masque" />
         </div>
       </div>
       <Container
-        className="w-full h-full px-6 my-6 md:mt-20 md:w-3/5"
+        className="relative w-full h-full px-6 my-6 mt-40 md:mt-20 md:w-3/5"
         itemsCenter
       >
+        <img
+          className="h-52 absolute -top-64 md:-top-40 -right-5 md:-right-72"
+          alt="Mon savon ? Je le fais moi-même"
+          src={isMobile ? BadgeControleMobile : BadgeControleDesktop}
+          loading="lazy"
+        />
+
         <h2 className="text-xl md:text-2xl | lg:mb-10 text-center">
           On parle de nous !
         </h2>

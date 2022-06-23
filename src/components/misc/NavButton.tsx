@@ -30,9 +30,8 @@ export const NavButton: React.FC<NavButtonProps> = ({
       id={id}
       className={`${className} flex justify-center items-center cursor-pointer
         border-b-2 border-transparent px-5 pb-2 mt-2
-        ease-linear transition-all duration-150
-        arrow-img fontQSmedium darkBlue
-        hover:text-${type ? type : "blue"}`}
+        ease-linear transition-all duration-150 z-100
+        arrow-img fontQSmedium darkBlue`}
       onClick={() => {
         if (onClick) {
           onClick();

@@ -230,175 +230,177 @@ export const Navbar: React.FC = () => {
           <div id="navlist_big">
             <div className="grid w-2/5 grid-cols-3 pt-2 ml-20 justify-items-center">
               <div className="flex flex-col pt-4 text-lg">
-                <h4 className="mb-2 cursor-default">Raccourcis</h4>
+                <h4 className="mb-2 cursor-default font-bold">Raccourcis</h4>
 
                 <Link
                   id="allRecipes"
                   to={RouteName.recipes}
                   onClick={() => resetFilter()}
                 >
-                  <div
+                  <h4
                     id="allRecipes"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Toutes les recettes
-                  </div>
+                  </h4>
                 </Link>
                 {isLoggedIn ? (
                   <Link to={RouteName.createRecipe} className="flex">
-                    <div
+                    <h4
                       id="shareRecipe"
                       className="mb-2 cursor-pointer hover:text-green"
                     >
                       Partager une recette
-                    </div>
+                    </h4>
                   </Link>
                 ) : (
                   <Link to={RouteName.createRecipe} className="flex">
-                    <div
+                    <h4
                       id="shareRecipe"
                       className="mb-2 cursor-pointer hover:text-green"
                     >
                       Partager une recette
-                    </div>
+                    </h4>
                   </Link>
                 )}
 
                 <Link to={`${RouteName.recipes}?tags=Premiers pas`}>
-                  <div
+                  <h4
                     id="firstSteps"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Premiers pas
-                  </div>
+                  </h4>
                 </Link>
                 <Link
                   to={`${RouteName.recipes}?tags=Avec les ingrédients de la cuisine`}
                 >
-                  <div
+                  <h4
                     id="withKitchenIngredients"
                     className="mb-2 text-left cursor-pointer hover:text-green"
                   >
                     Avec les ingrédients de la cuisine
-                  </div>
+                  </h4>
                 </Link>
                 <Link to={`${RouteName.recipes}?tags=Sans cuisson`}>
-                  <div
+                  <h4
                     id="withoutCooking"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Sans cuisson
-                  </div>
+                  </h4>
                 </Link>
               </div>
               <div className="flex flex-col pt-4 text-lg">
-                <h4 className="mb-2 cursor-default">Catégories</h4>{" "}
+                <h4 className="mb-2 cursor-default font-bold">Catégories</h4>{" "}
                 <Link id="house" to={`${RouteName.recipes}?category=Maison`}>
-                  <div
+                  <h4
                     id="house"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Maison
-                  </div>
+                  </h4>
                 </Link>
                 <Link id="body" to={`${RouteName.recipes}?category=Corps`}>
-                  <div
+                  <h4
                     id="body"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Corps
-                  </div>
+                  </h4>
                 </Link>
                 <Link id="face" to={`${RouteName.recipes}?category=Visage`}>
                   <button id="face">
-                    <div
+                    <h4
                       id="face"
                       className="mb-2 cursor-pointer hover:text-green"
                     >
                       Visage
-                    </div>
+                    </h4>
                   </button>
                 </Link>
                 <Link to={`${RouteName.recipes}?category=Cheveux`}>
-                  <div
+                  <h4
                     id="hair"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Cheveux
-                  </div>
+                  </h4>
                 </Link>
                 <Link
                   id="wellBeing"
                   to={`${RouteName.recipes}?category=Bien-être`}
                 >
-                  <div
+                  <h4
                     id="wellBeing"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Bien-être
-                  </div>
+                  </h4>
                 </Link>
                 <Link id="health" to={`${RouteName.recipes}?category=Santé`}>
-                  <div
+                  <h4
                     id="health"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Santé
-                  </div>
+                  </h4>
                 </Link>
                 <Link
                   id="makeUp"
                   to={`${RouteName.recipes}?category=Maquillage`}
                 >
-                  <div
+                  <h4
                     id="makeUp"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Maquillage
-                  </div>
+                  </h4>
                 </Link>
               </div>
               <div className="flex flex-col pt-4 text-lg">
-                <h4 className="mb-2 cursor-default">Type de produit</h4>
+                <h4 className="mb-2 cursor-default font-bold">
+                  Type de produit
+                </h4>
                 <Link to={`${RouteName.recipes}?search=Savon`}>
-                  <div
+                  <h4
                     id="soap"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Savon
-                  </div>
+                  </h4>
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Shampooing`}>
-                  <div
+                  <h4
                     id="shampoo"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Shampooing
-                  </div>
+                  </h4>
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Baume`}>
-                  <div
+                  <h4
                     id="balm"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Baume
-                  </div>
+                  </h4>
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Solide`}>
-                  <div
+                  <h4
                     id="solid"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Solide
-                  </div>
+                  </h4>
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Crème`}>
-                  <div
+                  <h4
                     id="cream"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Crème
-                  </div>
+                  </h4>
                 </Link>
               </div>
             </div>
