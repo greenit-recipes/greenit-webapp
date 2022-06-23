@@ -139,6 +139,7 @@ import BadgeSavonDesktop from "./Badge_Savon_Desktop.png";
 import BadgeMarqueMobile from "./Badge_Marque_Mobile.png";
 import BadgeMarqueDesktop from "./Badge_Marque_Desktop.png";
 import BadgeControleMobile from "./Badge_controle_Mobile.png";
+import BadgeControleDesktop from "./Badge_controle_Desktop.png";
 import Badge100Mobile from "./Badge_100pc_Mobile.png";
 import Badge100Desktop from "./Badge_100pc_Desktop.png";
 import TopImageMobile from "./TopImageLP_Mobile.svg";
@@ -290,6 +291,7 @@ export {
   BadgeMarqueMobile,
   BadgeMarqueDesktop,
   BadgeControleMobile,
+  BadgeControleDesktop,
   Badge100Mobile,
   Badge100Desktop,
   TopImageMobile,

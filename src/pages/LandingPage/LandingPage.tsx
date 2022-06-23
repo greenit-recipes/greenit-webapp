@@ -38,6 +38,7 @@ import {
   escapeTheCity,
   issy,
   sixHTN,
+  BadgeControleDesktop,
 } from "icons";
 import "pages/recipe/SinglePage/SinglePage.css";
 import { GET_FEATURE_BY_NAME } from "services/feature.service";
@@ -90,7 +91,7 @@ interface ExploreMoreProps {
 const ExploreMore: React.FC<ExploreMoreProps> = ({ filter }) => {
   return (
     <Link to={`${RouteName.recipes}?${filter}`}>
-      <div className="ml-1 mr-5 h-96 w-52 bg-white rounded-2xl self-center relative">
+      <div className="ml-1 mr-5 h-96 md:h-84 w-52 bg-white rounded-2xl self-center relative">
         <i className="absolute top-[40%] left-[40%] text-5xl bx bx-right-arrow-alt"></i>
         <p className="absolute top-[52%] left-[30%] text-lg font-semibold">
           Explorer plus
@@ -375,21 +376,25 @@ const LandingPage = () => {
       </Container>
       <Container
         className="flex flex-col items-center | px-4
-         | pt-9 text-center bg-blueL w-full relative"
+         | pt-9 text-center bg-blueL w-full relative | pb-5"
       >
         {!isMobile && (
           <img
-            className="h-64 absolute -top-24 -right-12"
+            className="h-56 absolute -top-28 -right-12"
             alt="Mon savon ? Je le fais moi-même"
             src={LPImage4Desktop}
             loading="lazy"
           />
         )}
-        <h2 className="text-xl font-semibold">Les recettes 100% débutants</h2>
-        <h2 className="font-diy text-2xl">idéal pour se lancer !</h2>
+        <div className="flex flex-col md:flex-row md:self-start md:space-x-4 md:ml-14">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Les recettes 100% débutants
+          </h2>
+          <h2 className="font-diy text-2xl">idéal pour se lancer !</h2>
+        </div>
       </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
-        <div className="flex w-max overflow-x-auto">
+      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
+        <div className="flex w-max">
           {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
@@ -398,34 +403,37 @@ const LandingPage = () => {
       </div>
       <Container
         className="flex flex-col items-center | px-4
-         | pt-9 text-center bg-blueL w-full"
+         | pt-9 text-center bg-blueL w-full | pb-5"
       >
-        <h2 className="text-xl font-semibold">Tout pour la maison</h2>
-        <h2 className="font-diy text-2xl">recettes pour un ménage écolo !</h2>
+        <div className="flex flex-col md:flex-row md:self-start md:space-x-4 md:ml-24">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Tout pour la maison
+          </h2>
+          <h2 className="font-diy text-2xl">recettes pour un ménage écolo !</h2>
+        </div>
       </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
-        <div className="flex w-max overflow-x-auto">
+      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
+        <div className="flex w-max">
           {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
           <ExploreMore filter="category=Maison" />
         </div>
-        <div>
-          <img
-            className="h-40 absolute right-6"
-            alt="Mon savon ? Je le fais moi-même"
-            src={BadgeSavonMobile}
-            loading="lazy"
-          />
-        </div>
       </div>
-
       <Container
-        className="flex flex-col items-center | px-4
+        className="relative w-full flex flex-col items-center | px-4
         | mt-16 mb-12 text-center"
       >
-        <h2 className="text-xl">Les catégories les plus inspirantes</h2>
-        <div className="grid pt-9 grid-cols-2 gap-x-11 gap-y-11">
+        <img
+          className="h-40 absolute right-6 -top-32"
+          alt="Mon savon ? Je le fais moi-même"
+          src={isMobile ? BadgeSavonMobile : BadgeSavonDesktop}
+          loading="lazy"
+        />
+        <h2 className="text-xl md:text-2xl msm:mt-14">
+          Les catégories les plus inspirantes
+        </h2>
+        <div className="grid pt-9 grid-cols-2 gap-x-11 gap-y-11 md:flex ">
           {landingPageCategories.map(item => (
             <CategoryCircle
               isLandingPage={true}
@@ -436,36 +444,83 @@ const LandingPage = () => {
           ))}
         </div>
       </Container>
-      <Container
-        className="flex flex-col items-center | px-4
-         | pt-9 text-center bg-yellowL w-full"
-      >
-        <h2 className="text-xl font-semibold">
-          Les recettes avec les ingrédients chez vous
-        </h2>
-        <h2 className="font-diy text-2xl">
-          Bicarbonate, savon de marseille, curcumin …
-        </h2>
-      </Container>
-      <div className="w-full pt-4 pl-4 pb-12 bg-yellowL">
-        <div className="overflow-x-auto">
-          <div className="flex w-max">
-            {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
-              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-            ))}
-            {/*Todo: Fill category later*/}
-            <ExploreMore filter="category=Missing" />
+      <div className="w-full bg-yellowL">
+        <div className="md:flex md:items-center md:justify-start md:space-x-0 md:mt-10 md:ml-10 md:mr-20">
+          <Container
+            className="md:w-1/3 flex flex-col items-center | px-4
+         | pt-9 text-center md:text-left bg-yellowL w-full"
+          >
+            <div className="flex flex-col">
+              <h2 className="text-xl md:text-2xl font-semibold">
+                Les recettes avec {!isMobile && <br />} les ingrédients chez
+                vous
+              </h2>
+              <h2 className="font-diy text-2xl md:text-3xl">
+                Bicarbonate, savon de marseille, curcumin …
+              </h2>
+            </div>
+          </Container>
+          <div className="w-full md:w-3/5 pt-4 pl-4 overflow-x-auto pb-12 bg-yellowL">
+            <div className="md:flex md:justify-center">
+              <div className="flex w-max">
+                {recipesBegginer
+                  ?.slice(0, isMobile ? totalRecipeCards : 3)
+                  .map(recipe => (
+                    <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+                  ))}
+                {/*Todo: Fill category later*/}
+                {isMobile && <ExploreMore filter="category=Missing" />}
+              </div>
+            </div>
+            {isMobile && (
+              <div className="mt-12 text-center">
+                <h4 className="font-semibold text-xl mx-12">
+                  Envie de profiter des bienfaits de l’avocat, de l’huile
+                  d’olive ou des graines de lin ?
+                </h4>
+                <h2 className="font-diy text-2xl">
+                  Banane, oeuf, amidon de maïs…
+                </h2>
+              </div>
+            )}
           </div>
         </div>
-
-        <div className="mt-12 text-center">
-          <h4 className="font-semibold text-xl mx-12">
-            Envie de profiter des bienfaits de l’avocat, de l’huile d’olive ou
-            des graines de lin ?
-          </h4>
-          <h2 className="font-diy text-2xl">Banane, oeuf, amidon de maïs…</h2>
-        </div>
+        {!isMobile && (
+          <div className="md:flex md:items-center md:justify-start md:space-x-0 md:ml-20 md:mr-10">
+            <div className="w-full md:w-3/5 pt-4 pl-4 overflow-x-auto pb-12 bg-yellowL">
+              <div className="md:flex md:justify-center">
+                <div className="flex w-max">
+                  {recipesBegginer
+                    ?.slice(0, isMobile ? totalRecipeCards : 3)
+                    .map(recipe => (
+                      <RecipeCard
+                        recipe={recipe?.node}
+                        key={recipe?.node?.id}
+                      />
+                    ))}
+                  {/*Todo: Fill category later*/}
+                  {isMobile && <ExploreMore filter="category=Missing" />}
+                </div>
+              </div>
+            </div>
+            <Container
+              className="md:w-1/3 flex flex-col items-center | px-4
+         | pt-9 text-center md:text-left bg-yellowL w-full"
+            >
+              <div className="flex flex-col">
+                <h2 className="text-xl md:text-2xl font-semibold">
+                  Envie de profiter des bienfaits de l’avocat, de l’huile
+                  d’olive ou des graines de lin ?
+                </h2>
+                <h2 className="font-diy text-3xl">
+                  Banane, oeuf, amidon de maïs…
+                </h2>
+              </div>
+            </Container>
+          </div>
+        )}
       </div>
+
       <Container
         className="flex flex-col items-center | px-4
          | pt-9 text-center w-full"
@@ -475,157 +530,199 @@ const LandingPage = () => {
           {isMobile && <br />} des donateurs, des débutants. . .
         </h2>
       </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center relative">
-        <div className="flex justify-center">
-          {communityMembers?.map(person => (
-            <div className="flex flex-col items-center ml-4 justify-center">
-              <img
-                src={person.image}
-                className="w-24 h-24 rounded-full object-cover"
-                alt={person.name}
-              />
-              <h4>{person.name}</h4>
-              <h4 className="font-diy text-2xl">{person.describe}</h4>
+      {/*Todo: Refactor later*/}
+      {isMobile ? (
+        <>
+          <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center relative">
+            <div className="flex justify-center">
+              {communityMembers?.map(person => (
+                <div className="flex flex-col items-center ml-4 justify-center">
+                  <img
+                    src={person.image}
+                    className="w-24 h-24 rounded-full object-cover"
+                    alt={person.name}
+                  />
+                  <h4>{person.name}</h4>
+                  <h4 className="font-diy text-2xl">{person.describe}</h4>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center relative">
-        <div className="flex justify-center">
-          {communityMembers?.map(person => (
-            <div className="flex flex-col items-center ml-4 justify-center">
-              <img
-                src={person.image}
-                className="w-24 h-24 rounded-full object-cover"
-                alt={person.name}
-              />
-              <h4>{person.name}</h4>
-              <h4 className="font-diy text-2xl">{person.describe}</h4>
+          </div>
+          <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center relative">
+            <div className="flex justify-center">
+              {communityMembers?.map(person => (
+                <div className="flex flex-col items-center ml-4 justify-center">
+                  <img
+                    src={person.image}
+                    className="w-24 h-24 rounded-full object-cover"
+                    alt={person.name}
+                  />
+                  <h4>{person.name}</h4>
+                  <h4 className="font-diy text-2xl">{person.describe}</h4>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+        </>
+      ) : (
+        <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center relative">
+          <div className="flex justify-center">
+            {communityMembers?.map(person => (
+              <div className="flex flex-col items-center ml-4 justify-center">
+                <img
+                  src={person.image}
+                  className="w-24 h-24 rounded-full object-cover"
+                  alt={person.name}
+                />
+                <h4>{person.name}</h4>
+                <h4 className="font-diy text-2xl">{person.describe}</h4>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <div className="relative">
         <img
-          className="w-44 h-20 absolute top-[-12%] right-[35%]"
+          className="w-44 h-20 md:w-72 absolute top-[-12%] right-[35%] md:top-[-7%] md:right-[40%]"
           alt="Ma marque préférée"
-          src={BadgeMarqueMobile}
+          src={isMobile ? BadgeMarqueMobile : BadgeMarqueDesktop}
           loading="lazy"
         />
         <Newsletter />
       </div>
       <Container
         className="flex flex-col items-center | px-4
-         | pt-9 pb-12 md:mt-4 text-center"
+         | pt-9 pb-12 md:mt-4 text-center md:w-full"
       >
-        <div>
-          <h2 className="text-xl font-semibold">
-            Le DIY c’est reprendre le contôle <br></br>sur sa consommation
+        <div className="md:w-full md:flex md:flex-col md:items-start md:ml-32">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Le DIY c’est reprendre le contôle {isMobile && <br></br>} sur sa
+            consommation
           </h2>
           <h2 className="mt-2 font-diy text-2xl">
             Le diy pour ta santé, ton bien-être et un mode de vie viable
           </h2>
         </div>
-        <div className="mt-5">
-          <RecipeCard
-            recipe={recipesOrderByLikes[1]?.node}
-            key={recipesOrderByLikes[0]?.node?.id}
-          />
+        <div className="md:flex md:items-center md:space-x-24">
+          <div
+            className={`${isMobile && "flex items-center justify-center"} mt-5`}
+          >
+            <RecipeCard
+              recipe={recipesOrderByLikes[1]?.node}
+              key={recipesOrderByLikes[0]?.node?.id}
+            />
+          </div>
+          <div className="flex mt-6">
+            <CircleGreenit
+              sizeCircle="w-24 h-24"
+              colorCircle="bg-blue"
+              icon={
+                <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
+              }
+              symbol=""
+              number={"0"}
+              text="Substances épargnées"
+            />
+            <CircleGreenit
+              sizeCircle="w-24 h-24"
+              colorCircle="bg-yellow"
+              icon={
+                <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
+              }
+              customClassName="ml-16"
+              symbol="€"
+              number={"0"}
+              text="Argent économisé"
+            />
+            <CircleGreenit
+              sizeCircle="w-24 h-24"
+              colorCircle="bg-green"
+              icon={
+                <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
+              }
+              customClassName="ml-16"
+              symbol="g"
+              number={"0"}
+              text="Plastiques évités"
+            />
+          </div>
+          <p className="mt-6 md:text-left">
+            Passer au fait-maison c’est des économies ! <br></br> Ça te fait du
+            bien et ça fait du bien à la planète.
+          </p>
         </div>
-        <div className="flex mt-6">
-          <CircleGreenit
-            sizeCircle="w-24 h-24 lg:w-28 lg:h-28"
-            colorCircle="bg-blue"
-            icon={
-              <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
-            }
-            symbol=""
-            number={"0"}
-            text="Substances épargnées"
-          />
-          <CircleGreenit
-            sizeCircle="w-24 h-24 lg:w-28 lg:h-28"
-            colorCircle="bg-yellow"
-            icon={
-              <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
-            }
-            customClassName="ml-16"
-            symbol="€"
-            number={"0"}
-            text="Argent économisé"
-          />
-          <CircleGreenit
-            sizeCircle="w-24 h-24 lg:w-28 lg:h-28"
-            colorCircle="bg-green"
-            icon={
-              <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
-            }
-            customClassName="ml-16"
-            symbol="g"
-            number={"0"}
-            text="Plastiques évités"
-          />
-        </div>
-        <p className="mt-6">
-          Passer au fait-maison c’est des économies ! <br></br> Ça te fait du
-          bien et ça fait du bien à la planète.
-        </p>
       </Container>
       <Container
         className="flex flex-col items-center | px-4
          | pt-9 pb-12 md:mt-4 text-center bg-yellowL w-full"
       >
-        <div>
-          <h2 className="text-xl font-semibold">
-            Le guide pour se lancer dans le fait-maison
-          </h2>
-          <h2 className="font-diy text-2xl">
-            co-écrit avec des experts de la communauté Greenit !
-          </h2>
+        <div className="md:flex md:items-start md:space-x-20">
+          <div className="md:text-left md:mt-5">
+            <h2 className="text-xl md:text-2xl  font-semibold">
+              Le guide pour se lancer dans le fait-maison
+            </h2>
+            <h2 className="font-diy text-2xl">
+              co-écrit avec des experts de la communauté Greenit !
+            </h2>
+            {!isMobile && (
+              <Link to={RouteName.starterPage}>
+                <Button
+                  className="mt-5"
+                  type="darkBlue"
+                  id="landing-voir-le-guide"
+                >
+                  Voir le guide
+                </Button>
+              </Link>
+            )}
+          </div>
+          <div className="flex flex-row gap-2 my-6 justify-evenly lg:gap-6">
+            {[
+              {
+                icon: "bx-donate-heart",
+                title: "3 conseils pour débuter",
+                id: "landing-3-conseils-pour-débuter",
+              },
+              {
+                icon: "bx-bowl-hot",
+                title: "Les ingrédients et les ustentiles",
+                id: "landing-ingredients-et-ustentiles",
+              },
+              {
+                icon: "bx-knife",
+                title: "2 recettes simples",
+                id: "landing-2-recette-simples",
+              },
+            ].map(item => (
+              <Link to={RouteName.starterPage} key={item.id} id={item.id}>
+                <div className="w-32 h-32 grid bg-white rounded-xl shadow-lg p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150 m-auto">
+                  <i className={`bx ${item.icon} bx-md mt-4`}></i>
+                  <p>{item.title}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-
-        <div className="flex flex-row gap-2 my-6 justify-evenly lg:gap-6">
-          {[
-            {
-              icon: "bx-donate-heart",
-              title: "3 conseils pour débuter",
-              id: "landing-3-conseils-pour-débuter",
-            },
-            {
-              icon: "bx-bowl-hot",
-              title: "Les ingrédients et les ustentiles",
-              id: "landing-ingredients-et-ustentiles",
-            },
-            {
-              icon: "bx-knife",
-              title: "2 recettes simples",
-              id: "landing-2-recette-simples",
-            },
-          ].map(item => (
-            <Link to={RouteName.starterPage} key={item.id} id={item.id}>
-              <div className="w-32 h-32 grid bg-white rounded-xl shadow-lg p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150 m-auto">
-                <i className={`bx ${item.icon} bx-md mt-4`}></i>
-                <p>{item.title}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <Link to={RouteName.starterPage}>
-          <Button className="" type="darkBlue" id="landing-voir-le-guide">
-            Voir le guide
-          </Button>
-        </Link>
+        {isMobile && (
+          <Link to={RouteName.starterPage}>
+            <Button className="" type="darkBlue" id="landing-voir-le-guide">
+              Voir le guide
+            </Button>
+          </Link>
+        )}
       </Container>
       <Container
         className="flex flex-col items-center | px-4
-         | pt-9 text-center bg-blueL w-full"
+         | pt-9 text-center bg-blueL w-full | pb-5"
       >
-        <h2 className="text-xl font-semibold">
-          Les recettes de shampooings et soins
-        </h2>
-        <h2 className="font-diy text-2xl">pour des cheveux soyeux</h2>
+        <div className="flex flex-col md:flex-row md:self-start md:space-x-4 md:ml-14">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Les recettes de shampooings et soins
+          </h2>
+          <h2 className="font-diy text-2xl">pour des cheveux soyeux</h2>
+        </div>
       </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
+      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
         <div className="flex w-max">
           {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
@@ -636,31 +733,34 @@ const LandingPage = () => {
 
       <Container
         className="flex flex-col items-center | px-4
-         | pt-9 text-center bg-blueL w-full"
+         | pt-9 text-center bg-blueL w-full | pb-5"
       >
-        <h2 className="text-xl font-semibold">Les recettes de masques</h2>
-        <h2 className="font-diy text-2xl">adaptées à vos problématiques</h2>
+        <div className="flex flex-col md:flex-row md:self-start md:space-x-4 md:ml-14">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Les recettes de masques
+          </h2>
+          <h2 className="font-diy text-2xl">adaptées à vos problématiques</h2>
+        </div>
       </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
+      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
         <div className="flex w-max">
           {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
           <ExploreMore filter="search=Masque" />
         </div>
-        <div>
-          <img
-            className="h-52 absolute -right-10"
-            alt="Mon savon ? Je le fais moi-même"
-            src={BadgeControleMobile}
-            loading="lazy"
-          />
-        </div>
       </div>
       <Container
-        className="w-full h-full px-6 my-6 mt-40 md:mt-20 md:w-3/5"
+        className="relative w-full h-full px-6 my-6 mt-40 md:mt-20 md:w-3/5"
         itemsCenter
       >
+        <img
+          className="h-52 absolute -top-64 md:-top-40 -right-5 md:-right-72"
+          alt="Mon savon ? Je le fais moi-même"
+          src={isMobile ? BadgeControleMobile : BadgeControleDesktop}
+          loading="lazy"
+        />
+
         <h2 className="text-xl md:text-2xl | lg:mb-10 text-center">
           On parle de nous !
         </h2>
