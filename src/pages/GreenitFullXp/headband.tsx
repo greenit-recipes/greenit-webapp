@@ -31,7 +31,7 @@ const HeadBand: React.FC<IHeadBand> = ({
             setNavigation(menuFullXp[currentPositionMenu + 1].name);
           }}
         >
-         Étape suivante
+          Étape suivante
         </button>
       )}
     </div>

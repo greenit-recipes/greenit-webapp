@@ -71,7 +71,6 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   });
 
   const responseGoogle = (responseGoogle: any) => {
-
     const variables: any = {
       email: responseGoogle?.profileObj.email,
       username: responseGoogle?.profileObj.name,
@@ -101,11 +100,11 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
       }
       const data = {
         email: responseGoogle?.profileObj.email,
-        password: process.env.REACT_APP_PASSWORD + responseGoogle?.profileObj.id,
+        password:
+          process.env.REACT_APP_PASSWORD + responseGoogle?.profileObj.id,
       };
       onSubmitHandler(data);
     });
-
   };
 
   const errorGoogle = (response: any) => {
@@ -297,8 +296,8 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               className="my-google-button-class mb-4"
               onSuccess={responseGoogle}
               onFailure={errorGoogle}
-                            // @ts-ignore
-              buttonText={'Connexion avec Google'}
+              // @ts-ignore
+              buttonText={"Connexion avec Google"}
               id="connexion-google-login"
             />
             {errorLoginGoogle && (

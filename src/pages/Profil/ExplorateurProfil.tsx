@@ -147,7 +147,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         <CircleGreenit
           colorCircle="bg-orange"
           icon={
-           <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
+            <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
           }
           symbol=""
           number={substancesRecipes}

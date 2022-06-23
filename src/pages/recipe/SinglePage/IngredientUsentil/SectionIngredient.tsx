@@ -42,7 +42,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
         <div className="flex-grow w-1/6 ml-4"> {data?.name} </div>
         <div className="w-1/6">
           <div className="flex items-center justify-end w-full">
-             <i
+            <i
               className={`bx bx-chevron-down bx-md mr-6 cursor-pointer ${
                 isArrowDown ? "section-arrow-up" : "section-arrow-down"
               }`}

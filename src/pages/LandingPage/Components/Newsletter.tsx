@@ -36,7 +36,7 @@ export const Newsletter: React.FC = () => {
     | pt-9 pb-9 md:mt-4 text-center w-full bg-greenL"
       itemsCenter
     >
-      <h2>
+      <h2 className="text-xl font-semibold mt-4">
         Inscris toi à la newsletter pour découvrir <br></br>des astuces DIY et
         être au courant des <br></br> nouvelles recettes !
       </h2>
@@ -67,7 +67,7 @@ export const Newsletter: React.FC = () => {
           boite mail !
         </div>
       )}
-      <div className="w-3/4 text-xs text-center md:text-sm lg:mx-80">
+      <div className="w-10/12 text-sm text-center md:text-base lg:mx-80">
         Nous utilisons cette newsletter uniquement pour garder notre communauté
         informée. Vous pouvez vous désinscrire à tout moment en nous contactant
         à hello@greenitcommunity.com.

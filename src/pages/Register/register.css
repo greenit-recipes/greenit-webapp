@@ -69,7 +69,6 @@ input[type="radio"]:checked + label > img {
   }
 }
 
-
 .my-google-button-class {
   display: flex;
   padding-left: 1.25rem;
