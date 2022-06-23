@@ -43,19 +43,9 @@ export const LikeComment: React.FC<ILikeComment> = ({
           }}
         >
           {isLiked ? (
-            <img
-              src={LikedIconCommentOn}
-              className="self-center w-4 h-4 lg:w-6 lg:h-6"
-              alt="likes"
-              loading="lazy"
-            />
+            <i className="bx bxs-donate-heart flex self-center text-lg"></i>
           ) : (
-            <img
-              src={LikedIconCommentOff}
-              className="flex self-center w-4 h-4 lg:w-6 lg:h-6"
-              alt="likes"
-              loading="lazy"
-            />
+            <i className="bx bx-donate-heart flex self-center text-lg"></i>
           )}
           <h2 className="self-center  lg:text-xl ml-1">{nbrLiked}</h2>
         </div>

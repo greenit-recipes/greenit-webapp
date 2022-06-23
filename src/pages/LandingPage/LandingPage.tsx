@@ -684,12 +684,12 @@ const LandingPage = () => {
                 id: "landing-3-conseils-pour-débuter",
               },
               {
-                icon: "bx-bowl-hot",
+                icon: "bx-knife",
                 title: "Les ingrédients et les ustentiles",
                 id: "landing-ingredients-et-ustentiles",
               },
               {
-                icon: "bx-knife",
+                icon: "bx-bowl-hot",
                 title: "2 recettes simples",
                 id: "landing-2-recette-simples",
               },

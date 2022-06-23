@@ -6,6 +6,7 @@
   z-index: 100;
   position: absolute;
   left: 0;
+  margin-top: 10px;
 }
 
 #navmenu:hover #navlist {
@@ -20,14 +21,14 @@
 }
 
 #navmenu_big #navlist_big {
-  z-index: 100;
+  z-index: 0;
   height: 0px;
   width: 0px;
   transition: height 0.25s ease-out;
   overflow: hidden;
-  z-index: 100;
   position: absolute;
   left: 0;
+  margin-top: 10px;
 }
 
 #navmenu_big:hover #navlist_big {
@@ -36,7 +37,7 @@
   width: 100%;
   overflow: hidden;
   position: absolute;
-  z-index: 100;
+  z-index: 0;
   left: 0;
   transition: height 0.3s ease-in;
 }
