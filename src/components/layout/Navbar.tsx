@@ -95,7 +95,7 @@ export const Navbar: React.FC = () => {
                   rounded="lg"
                   className="mr-1"
                 >
-                  <h2 id="Access_Profil" className="text-xs text-white">
+                  <h2 id="Access_Profil" className="text-xs">
                     Profil
                   </h2>
                 </Button>

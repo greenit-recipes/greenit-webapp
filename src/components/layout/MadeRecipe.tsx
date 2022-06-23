@@ -64,21 +64,23 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
           <ModalLogGreenit
             btn={
               <Button
-              id="recette-réalisée-pas-connecte"
-              type="darkBlue"
-              rounded="lg"
-              haveIcon={true}
-              className="mr-1"
-            >
-              <div className={` flex justify-items-center `}>
-                {isMade ? (
-                  <AiFillCheckSquare className="w-6 h-6"></AiFillCheckSquare>
-                ) : (
-                  <FiSquare className="w-6 h-6"></FiSquare>
-                )}
-                <div className="flex flex-col justify-center ml-1">réalisée</div>
-              </div>
-            </Button>
+                id="recette-réalisée-pas-connecte"
+                type="darkBlue"
+                rounded="lg"
+                haveIcon={true}
+                className="mr-1"
+              >
+                <div className={` flex justify-items-center `}>
+                  {isMade ? (
+                    <AiFillCheckSquare className="w-6 h-6"></AiFillCheckSquare>
+                  ) : (
+                    <FiSquare className="w-6 h-6"></FiSquare>
+                  )}
+                  <div className="flex flex-col justify-center ml-1">
+                    réalisée
+                  </div>
+                </div>
+              </Button>
             }
           ></ModalLogGreenit>
         </div>

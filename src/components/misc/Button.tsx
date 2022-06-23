@@ -89,11 +89,17 @@ export const Button: React.FC<ButtonProps> = ({
       style.borderColor = "border-blueL";
       style.hoverTextColor = "text-blueL";
       break;
+    case "blue":
+      style.hoverBgColor = "hover:bg-blue";
+      style.borderColor = "border-blue";
+      style.hoverTextColor = "text-blue";
+      break;
     default:
       style.hoverBgColor = "hover:bg-blue";
       style.borderColor = "border-blue";
       style.hoverTextColor = "text-blue";
   }
+
   switch (rounded) {
     case "lg":
       style.borderRadius = "rounded-lg";

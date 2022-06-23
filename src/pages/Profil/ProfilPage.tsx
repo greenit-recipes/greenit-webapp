@@ -76,63 +76,64 @@ const ProfilPage: React.FC = () => {
       </Helmet>
 
       <div className="fixed z-0 grid w-full pb-28 justify-items-center bgColorHeaderProfil mt-16">
-        <div
-          className="absolute w-32 h-32 transition-all duration-150 ease-linear rounded-full cursor-pointer md:h-40 md:w-40"
-          onClick={() => setShowModalImage(true)}
-        >
-          {!userImage && (
-            <div className="grid items-center w-full h-full rounded-full justify-items-center">
-              <h2 className="p-2 text-xs bg-white opacity-75 text-grey-700 rounded-3xl">
-                Ajoute ta photo
-              </h2>
-            </div>
-          )}
-        </div>
-        <Modal
-          title={"Change ta photo"}
-          isCenter={true}
-          onClose={() => setShowModalImage(false)}
-          show={showModalImage}
-        >
-          <ModalImageProfil
-            parentFunction={refetch}
-            parentFunctionOpenModal={setShowModalImage}
-          />
-        </Modal>
-        <img
-          className={`object-cover h-28 w-28 md:h-28 md:w-28 mt-1
+        <div className="flex space-x-4 md:space-x-10 mt-5">
+          <div
+            className="absolute w-32 h-32 transition-all duration-150 ease-linear rounded-full cursor-pointer md:h-40 md:w-40"
+            onClick={() => setShowModalImage(true)}
+          >
+            {!userImage && (
+              <div className="grid items-center w-full h-full rounded-full justify-items-center">
+                <h2 className="p-2 text-xs bg-white opacity-75 text-grey-700 rounded-3xl">
+                  Ajoute ta photo
+                </h2>
+              </div>
+            )}
+          </div>
+          <Modal
+            title={"Change ta photo"}
+            isCenter={true}
+            onClose={() => setShowModalImage(false)}
+            show={showModalImage}
+          >
+            <ModalImageProfil
+              parentFunction={refetch}
+              parentFunctionOpenModal={setShowModalImage}
+            />
+          </Modal>
+          <img
+            className={`object-cover h-24 w-24 border-2 border-white md:h-28 md:w-28 mt-1
               rounded-full | self-center`}
-          // @ts-ignore
-          src={userImage ? userImage : defaultImageProfil}
-          alt="user profil"
-          loading="lazy"
-        ></img>
-        <div className="flex flex-col | self-center">
-          <div className="flex-inline overflow-clip overflow-hidden ...">
-            <h1 className="text-2xl fontQSemibold md:text-2xl">
-              {user?.username}
-            </h1>
+            // @ts-ignore
+            src={userImage ? userImage : defaultImageProfil}
+            alt="user profil"
+            loading="lazy"
+          ></img>
+          <div className="flex flex-col | self-center font-medium">
+            <div className="flex-inline overflow-clip overflow-hidden ...">
+              <h1 className="fontQSemibold text-xl md:text-2xl">
+                {user?.username}
+              </h1>
+            </div>
+
+            <span
+              className="text-xs lg:text-base hover:cursor-pointer text-darkBlue underline decoration-solid"
+              onClick={() => setShowModal(true)}
+            >
+              Paramètres
+            </span>
+            <Modal
+              title={"Paramètres"}
+              isCenter={true}
+              onClose={() => setShowModal(false)}
+              show={showModal}
+            >
+              <ModalProfil />
+            </Modal>
           </div>
         </div>
-
-        <Button
-          className="w-26 ease-linear transition-all duration-150 mt-2"
-          type="darkBlue"
-          onClick={() => setShowModal(true)}
-        >
-          Paramètres
-        </Button>
-        <Modal
-          title={"Paramètres"}
-          isCenter={true}
-          onClose={() => setShowModal(false)}
-          show={showModal}
-        >
-          <ModalProfil />
-        </Modal>
       </div>
-      <div className="w-full flex flex-col | items-center  z-20 rounded-profil mt-56 pt-10 bg-white">
-        <div className="w-full mb-10 sm:w-5/6 lg:w-4/6">
+      <div className="w-full flex flex-col | items-center z-20 rounded-profil mt-40 pt-5 bg-white">
+        <div className="w-full mb-5 sm:w-5/6 lg:w-4/6">
           {user?.isCreatorProfil && (
             <CreatorProfil parentFunction={refetch} user={user}></CreatorProfil>
           )}
@@ -149,48 +150,53 @@ const ProfilPage: React.FC = () => {
               isRecipeMadeBeginnerBox={user?.isRecipeMadeBeginnerBox}
             ></ProfilGreenitFullXp>
           )}
-          <div className="grid grid-cols-2 px-4 gap-4 | md:px-20">
-            <button
-              className={
-                "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-green |" +
-                (visible ? "outline-none border-green" : "")
-              }
-              onClick={() => setVisible(true)}
-            >
-              <div className="flex flex-row items-center justify-center	 gap-2">
-                <img className="h-8" src={Cooking} alt="logo recette" />
-                <h3 className="text-left text-lg md:text-xl">Vos recettes</h3>
+
+          <div className="flex items-center mt-12 mb-12 mx-5">
+            <div className="w-full">
+              <div className={`flex justify-center ${visible ? "" : ""}`}>
+                <div
+                  className={`flex border-b-4 ${
+                    visible ? "border-blue shadow-btn-section" : "border-blueL"
+                  }  cursor-pointer justify-center h-12 w-64 items-center`}
+                  onClick={() => {
+                    setVisible(true);
+                  }}
+                >
+                  <i
+                    className={`bx bxs-bookmark-heart bx-sm ${
+                      visible ? "text-blue" : "text-darkBlue"
+                    }`}
+                  ></i>
+                  <h4 className="ml-2">Recettes favorites</h4>
+                </div>
+                <div
+                  className={`flex border-b-4 ${
+                    !visible ? "shadow-btn-section border-blue" : "border-blueL"
+                  } cursor-pointer justify-center h-12 w-64 items-center `}
+                  onClick={() => {
+                    setVisible(false);
+                  }}
+                >
+                  <i
+                    className={`bx bx${!visible ? "s" : ""}-bowl-hot bx-sm ${
+                      !visible ? "text-blue" : "text-darkBlue"
+                    }`}
+                  ></i>
+                  <h4 className="ml-2">Mes Recettes</h4>
+                </div>
               </div>
-            </button>
-            <button
-              className={
-                "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue" +
-                (!visible ? "outline-none border-blue" : "")
-              }
-              onClick={() => setVisible(false)}
-            >
-              <div className="flex flex-row items-center justify-center	 gap-2">
-                <img
-                  className="h-10"
-                  src={likedIconOn}
-                  alt="logo recettes favorites"
-                />
-                <h3 className="text-left text-lg md:text-xl">
-                  Recettes favorites
-                </h3>
-              </div>
-            </button>
+            </div>
           </div>
 
           <div className="flex flex-col mb-20 | items-center">
-            <div className={"text-center" + (visible ? " hidden" : "")}>
-              {!visible && (
-                <div className="grid grid-cols-2 gap-2 mt-5 md:grid-cols-3 auto-rows-auto justify-items-center">
+            <div className={"text-center" + (!visible ? " hidden" : "")}>
+              {visible && (
+                <div className="grid grid-cols-2 gap-2 mt-5 mx-5 md:grid-cols-3 auto-rows-auto justify-items-center">
                   {isEmpty(user?.recipeFavorite) && (
                     <div
                       className={
                         "grid text-center col-span-3 w-full mb-56 mt-8 justify-items-center" +
-                        (visible ? " hidden" : "")
+                        (!visible ? " hidden" : "")
                       }
                     >
                       <h2 className=" md:text-xl">
@@ -234,7 +240,7 @@ const ProfilPage: React.FC = () => {
                 </div>
               )}
             </div>
-            {visible && (
+            {!visible && (
               <div className="grid grid-cols-2 mt-5 sm:gap-2 md:grid-cols-3 auto-rows-auto justify-items-center">
                 <CTACard
                   className="lg:mt-2 lg:mb-6"

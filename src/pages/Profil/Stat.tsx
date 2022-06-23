@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { useMutation } from "@apollo/client";
 import { Button } from "components";
 import { EMAIL_PROFIL_PAGE_CREATOR } from "pages/Profil/CreatorProfilRequest";
+import React from "react";
 
 export const StatProfilForm: React.FC = () => {
   const schema = yup.object().shape({
@@ -31,31 +32,37 @@ export const StatProfilForm: React.FC = () => {
     }).then(() => reset());
   };
   return (
-    <div className="grid lg:col-span-2 gap-4 justify-items-center self-center | mt-8 lg:mt-0">
-      <div>De quoi as-tu besoin ?</div>
+    <div className="grid lg:col-span-2 gap-4 w-full md:w-3/5 justify-items-center self-center | lg:mt-0">
+      <div className="underline decoration-solid text-green font-medium">
+        De quelle statistique as-tu besoin ?
+      </div>
       <form
-        className="flex flex-col gap-4"
+        className="flex flex-col w-full"
         // @ts-ignore
         onSubmit={handleSubmit(onSubmitHandler)}
       >
-        <textarea
-          className="self-center w-full p-4 mb-4 leading-tight text-gray-700 border rounded appearance-none sm:w-3/4 focus:outline-none focus:shadow-outline"
-          id="question"
-          rows={5}
-          cols={55}
-          placeholder="Message..."
-          {...register("question")}
-        ></textarea>
+        <div className="w-full flex justify-between md:items-center space-x-4 mb-7">
+          <input
+            id="question"
+            className={`py-2 px-3 ml-10 border w-11/12 rounded-md appearance-none text-sm lg:text-base placeholder:text-darkBlue xfocus:outline-none focus:shadow-outline h-full`}
+            placeholder="statistiques souhaitées…"
+            {...register("question")}
+          />
 
-        <div className="grid w-full justify-items-center">
-          <Button id="what_do_u_need" type="green" className="h-10 p-4">
-            Envoyer
-          </Button>
-        </div>
-        <div>
-          <p className="text-xs italic text-red-500">
-            {errors.question?.message}
-          </p>
+          <div className="">
+            <Button
+              id="what_do_u_need"
+              type="darkBlue"
+              className="border-darkBlue bg-white h-10 p-4 mr-5"
+            >
+              Envoyer
+            </Button>
+          </div>
+          <div>
+            <p className="text-xs italic text-red-500">
+              {errors.question?.message}
+            </p>
+          </div>
         </div>
       </form>
       {data?.emailProfilPage?.success && (

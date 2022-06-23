@@ -62,9 +62,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
   return (
     <div className="flex flex-col items-center mb-14">
       <div className="w-full lg:w-4/6">
-        <div className="text-2xl font-semibold text-center">
-          Tes recettes réalisées
-        </div>
+        <div className="text-xl font-semibold text-center">Ton impact</div>
         <div className="flex items-center justify-center">
           <Button
             id="Share_a_recipe"
@@ -143,35 +141,38 @@ export const ExplorateurProfil: React.FC<IUser> = ({
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center mt-10">
+      <div className="flex mx-12 mt-10">
         <CircleGreenit
-          colorCircle="bg-orange"
+          colorCircle="bg-blue"
+          sizeCircle="h-20 w-20"
           icon={
-           <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
+            <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
           }
           symbol=""
           number={substancesRecipes}
-          text="Total des substances épargnées"
+          text="Substances épargnées"
         />
         <CircleGreenit
           colorCircle="bg-yellow"
+          sizeCircle="h-20 w-20"
           icon={
             <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
           }
           customClassName="ml-16"
           symbol="€"
           number={moneySavedRecipes}
-          text="Total argent économisé"
+          text="Argent économisé"
         />
         <CircleGreenit
           colorCircle="bg-green"
+          sizeCircle="h-20 w-20"
           icon={
             <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
           }
           customClassName="ml-16"
           symbol="g"
           number={plasticSavedRecipes}
-          text="Total de plastiques évités"
+          text="Plastique évité"
         />
       </div>
     </div>
