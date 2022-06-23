@@ -4,8 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ADD_USER_TO_NEWSLETTER } from "pages/LandingPage/Components/NewsletterRequest";
 import { useMutation } from "@apollo/client";
+import useIsMobile from "../../../hooks/isMobile";
 
 export const Newsletter: React.FC = () => {
+  const isMobile = useIsMobile();
   const schema = yup.object().shape({
     email: yup.string().email().required("L'email est obligatoire."),
   });
@@ -36,9 +38,10 @@ export const Newsletter: React.FC = () => {
     | pt-9 pb-9 md:mt-4 text-center w-full bg-greenL"
       itemsCenter
     >
-      <h2>
-        Inscris toi à la newsletter pour découvrir <br></br>des astuces DIY et
-        être au courant des <br></br> nouvelles recettes !
+      <h2 className="text-xl font-semibold mt-4">
+        Inscris toi à la newsletter pour découvrir {isMobile && <br></br>} des
+        astuces DIY {!isMobile && <br />} et être au courant des{" "}
+        {isMobile && <br></br>} nouvelles recettes !
       </h2>
 
       <form
@@ -67,7 +70,7 @@ export const Newsletter: React.FC = () => {
           boite mail !
         </div>
       )}
-      <div className="w-3/4 text-xs text-center md:text-sm lg:mx-80">
+      <div className="w-10/12 md:w-1/2 text-sm text-center md:text-base lg:mx-80">
         Nous utilisons cette newsletter uniquement pour garder notre communauté
         informée. Vous pouvez vous désinscrire à tout moment en nous contactant
         à hello@greenitcommunity.com.

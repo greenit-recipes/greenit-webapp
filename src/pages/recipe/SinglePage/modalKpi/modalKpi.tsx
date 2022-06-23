@@ -72,15 +72,27 @@ export const ModalKpi: React.FC<IModalKpi> = ({
   const iconKpi = (sizeBig: boolean = false) => {
     if (nameKpi === "substance")
       return (
-       <i className={`${!sizeBig ? "absolute" : ""} bx bxs-vial -rotate-12 w-8 h-8 icon-position-circle bx-md`}></i>
+        <i
+          className={`${
+            !sizeBig ? "absolute" : ""
+          } bx bxs-vial -rotate-12 w-8 h-8 icon-position-circle bx-md`}
+        ></i>
       );
     else if (nameKpi === "money")
       return (
-        <i className={`${!sizeBig ? "absolute" : ""} bx bx-euro w-8 h-8 icon-position-circle bx-md`}></i>
+        <i
+          className={`${
+            !sizeBig ? "absolute" : ""
+          } bx bx-euro w-8 h-8 icon-position-circle bx-md`}
+        ></i>
       );
     else if (nameKpi === "plastic")
       return (
-        <i className={`${!sizeBig ? "absolute" : ""} bx bx-leaf w-8 h-8 icon-position-circle bx-md`}></i>
+        <i
+          className={`${
+            !sizeBig ? "absolute" : ""
+          } bx bx-leaf w-8 h-8 icon-position-circle bx-md`}
+        ></i>
       );
   };
 

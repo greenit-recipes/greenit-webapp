@@ -101,15 +101,15 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
               <ModalLogGreenit
                 btn={
                   <Button
-                  id="favorite"
-                  type="darkBlue"
-                  rounded="lg"
-                  haveIcon={true}
-                  className="mr-1"
-                >
-                  <i className='bx bx-bookmark-heart bx-sm mr-2'></i>
-                  favoris
-                </Button>
+                    id="favorite"
+                    type="darkBlue"
+                    rounded="lg"
+                    haveIcon={true}
+                    className="mr-1"
+                  >
+                    <i className="bx bx-bookmark-heart bx-sm mr-2"></i>
+                    favoris
+                  </Button>
                 }
               ></ModalLogGreenit>
             </Suspense>
