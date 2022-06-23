@@ -43,9 +43,7 @@ export const UserBadge: React.FC<IUserBadge> = ({
             />
           </div>
 
-          {!isRecipeCard && (
-            <h2 className="self-center text-lg md:text-xl">{name}</h2>
-          )}
+          {!isRecipeCard && <h4 className="self-center text-lg">{name}</h4>}
         </div>
       ) : (
         <img
