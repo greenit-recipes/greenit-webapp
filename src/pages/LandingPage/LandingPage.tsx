@@ -3,7 +3,7 @@ import { RouteName } from "App";
 import {
   Button,
   Container,
-  Footer,1
+  Footer,
   Loading,
   Navbar,
   RecipeCard,
@@ -36,7 +36,7 @@ import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
 import "pages/LandingPage/LandingPage.css";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
 import "pages/recipe/SinglePage/SinglePage.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import "react-multi-carousel/lib/styles.css";
 import { Link, useHistory } from "react-router-dom";
@@ -45,7 +45,6 @@ import { landingPageCategories } from "utils";
 import { useRecipesQuery } from "../../graphql";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
-import { map, orderBy, sum, toNumber } from "lodash";
 
 const communityMembers = [
   {
