@@ -70,7 +70,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
             rounded="lg"
             haveArrow={true}
             isArrowDown={isArrowDown}
-            onClick={() => setArrowDown(true)}
+            onClick={() => setArrowDown(!isArrowDown)}
             className="mt-4 inline justify-end self-center | mr-2 cursor-pointer"
           >
             {amountTotal} produits fabriqués

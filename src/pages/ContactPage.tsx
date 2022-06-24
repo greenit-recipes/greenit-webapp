@@ -9,7 +9,7 @@ import {
   MailIcon,
   FBIcon,
 } from "../icons";
-import { BackgroundImage } from "../components/layout/BackgroundImage";
+import { BackgroundImage } from "components/layout/BackgroundImage";
 import { Helmet } from "react-helmet";
 
 const ContactPage = () => {
@@ -107,7 +107,6 @@ const ContactPage = () => {
             ))}
           </div>
         </div>
-        <UXFormulaire />
         <Footer />
       </div>
     </div>

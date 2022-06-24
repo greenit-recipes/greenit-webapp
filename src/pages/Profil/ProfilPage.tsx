@@ -75,8 +75,8 @@ const ProfilPage: React.FC = () => {
         />
       </Helmet>
 
-      <div className="fixed z-0 grid w-full pb-28 justify-items-center bgColorHeaderProfil mt-16">
-        <div className="flex space-x-4 md:space-x-10 mt-5">
+      <div className="fixed z-0 grid w-full pb-28 justify-items-center bgColorHeaderProfil">
+        <div className="flex space-x-4 md:space-x-10 mt-20">
           <div
             className="absolute w-32 h-32 transition-all duration-150 ease-linear rounded-full cursor-pointer md:h-40 md:w-40"
             onClick={() => setShowModalImage(true)}
@@ -101,7 +101,7 @@ const ProfilPage: React.FC = () => {
             />
           </Modal>
           <img
-            className={`object-cover h-24 w-24 border-2 border-white md:h-28 md:w-28 mt-1
+            className={`object-cover h-24 w-24 border-2 border-white md:h-26 md:w-26 mt-1
               rounded-full | self-center`}
             // @ts-ignore
             src={userImage ? userImage : defaultImageProfil}

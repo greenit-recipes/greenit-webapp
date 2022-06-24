@@ -513,7 +513,7 @@ const RecipeSinglePage = () => {
               <p className="text-md">{recipe?.notesFromAuthor}</p>
             </div>
             <div className="flex flex-col mt-8">
-              <p className="text-xs text-grey">
+              <p className="text-xs text-darkBlue">
                 Quelques précautions sont à prendre lors de la confection de vos
                 produits. Pour chaque recette postée, nous passons du temps à
                 les vérifier (et modifier si nécessaire). Toutefois, certaines

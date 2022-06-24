@@ -197,13 +197,11 @@ const CreateRecipeForm: React.FC = () => {
     >
       {/* Input */}
       <div className="mb-10">
-        <h2 className="mt-2 text-lg font-bold md:text-2xl">
+        <h3 className="mt-2 text-lg font-bold md:text-xl">
           Utilise le formulaire pour partager ta recette
-        </h2>
-        <label className="block text-xl text-gray-700">Nom de la recette</label>
-        <h3 className="block mb-2 text-sm text-gray-700">
-          Par exemple : Masque à la coco
         </h3>
+        <label className="block text-lg">Nom de la recette</label>
+        <h3 className="block mb-2 text-sm">Par exemple : Masque à la coco</h3>
         <textarea
           className="w-2/3 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
           id="name"
@@ -214,7 +212,7 @@ const CreateRecipeForm: React.FC = () => {
       </div>
 
       <div className="mb-10">
-        <label className="block mb-2 text-xl text-gray-700">Description</label>
+        <label className="block mb-2 text-lg text-gray-700">Description</label>
         <h3 className="block mb-2 text-sm text-gray-700">
           Pourquoi tu utilises ces ingrédients ?
           <br /> Comment tu utilises le produit ?
@@ -231,7 +229,7 @@ const CreateRecipeForm: React.FC = () => {
       </div>
 
       <div className="mb-10">
-        <label className="block mb-2 text-xl text-gray-700">Photos</label>
+        <label className="block mb-2 text-lg text-gray-700">Photos</label>
         <h3 className="block mb-2 text-sm text-gray-700">
           Upload une jolie photo du résultat !
         </h3>
@@ -245,7 +243,7 @@ const CreateRecipeForm: React.FC = () => {
 
       {/* Select */}
       <div className="mb-10">
-        <label className="block mb-2 text-xl text-gray-700">Difficulté</label>
+        <label className="block mb-2 text-lg text-gray-700">Difficulté</label>
         <Controller
           name="difficulty"
           control={control}
@@ -262,7 +260,7 @@ const CreateRecipeForm: React.FC = () => {
       </div>
 
       <div className="mb-10">
-        <label className="block mb-2 text-xl text-gray-700">Catégorie</label>
+        <label className="block mb-2 text-lg text-gray-700">Catégorie</label>
         <Controller
           name="category"
           control={control}
@@ -289,7 +287,7 @@ const CreateRecipeForm: React.FC = () => {
       {/* Time */}
 
       <div className="w-2/3 mb-10">
-        <label className="block mb-2 text-xl text-gray-700">Durée</label>
+        <label className="block mb-2 text-lg text-gray-700">Durée</label>
         <h3 className="block mb-2 text-sm text-gray-700">10m, 15m, 30m ...</h3>
 
         <input
@@ -304,7 +302,7 @@ const CreateRecipeForm: React.FC = () => {
       {/* Select multiple */}
 
       <div className="mb-10">
-        <label className="block mb-2 text-xl text-gray-700">Tags</label>
+        <label className="block mb-2 text-lg text-gray-700">Tags</label>
         <h3 className="block mb-2 text-sm text-gray-700">
           Ces tags faciliteront le référencement de ta recette.
         </h3>
@@ -341,7 +339,7 @@ const CreateRecipeForm: React.FC = () => {
       {/* dynamic */}
 
       <div className="mb-10">
-        <label className="block mb-2 text-xl text-gray-700">
+        <label className="block mb-2 text-lg text-gray-700">
           Ingrédients et quantité
         </label>
         <h3 className="block mb-2 text-sm text-gray-700">
@@ -411,7 +409,7 @@ const CreateRecipeForm: React.FC = () => {
       </div>
 
       <div className="mb-10">
-        <label className="block mb-2 text-xl text-gray-700">
+        <label className="block mb-2 text-lg text-gray-700">
           Lien de ton post ou de ta vidéo
         </label>
         <input
@@ -424,7 +422,7 @@ const CreateRecipeForm: React.FC = () => {
       </div>
 
       <div className="mb-10">
-        <label className="block mb-2 text-xl text-gray-700">
+        <label className="block mb-2 text-lg text-gray-700">
           Liste d'instructions
         </label>
         <h3 className="block mb-2 text-sm text-gray-700">
@@ -473,7 +471,7 @@ const CreateRecipeForm: React.FC = () => {
       </div>
 
       <div className="mb-10">
-        <label className="block mb-2 text-xl text-gray-700">
+        <label className="block mb-2 text-lg text-gray-700">
           Ustensiles et quantité
         </label>
         <h3 className="block mb-2 text-sm text-gray-700">
@@ -543,7 +541,7 @@ const CreateRecipeForm: React.FC = () => {
       </div>
 
       <div className="mb-10">
-        <label className="block mb-2 text-xl text-gray-700">Conservation</label>
+        <label className="block mb-2 text-lg text-gray-700">Conservation</label>
         <h3 className="block text-sm text-gray-700">
           Comment et combien de temps conserves-tu ton produit ?
         </h3>
@@ -562,7 +560,7 @@ const CreateRecipeForm: React.FC = () => {
       </div>
 
       <div className="mb-12">
-        <label className="block mb-2 text-xl text-gray-700">
+        <label className="block mb-2 text-lg text-gray-700">
           Note de l'auteur.e
         </label>
         <h3 className="block w-11/12 mb-4 text-sm text-gray-700">
@@ -582,7 +580,7 @@ const CreateRecipeForm: React.FC = () => {
       </div>
 
       <div className="mb-12">
-        <label className="block mb-2 text-xl text-gray-700">
+        <label className="block mb-2 text-lg text-gray-700">
           Rajoute le lien de ton site (si tu en as un)
         </label>
         <input
