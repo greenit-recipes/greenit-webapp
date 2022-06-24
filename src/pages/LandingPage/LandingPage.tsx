@@ -3,13 +3,14 @@ import { RouteName } from "App";
 import {
   Button,
   Container,
-  Footer,
+  Footer,1
   Loading,
   Navbar,
   RecipeCard,
   SearchBar,
 } from "components";
 import { Press } from "components/layout/TheyTalkAboutUs";
+import { ExploreMore } from "components/recipe/ExploreMore";
 import useIsMobile from "hooks/isMobile";
 import {
   Badge100Desktop,
@@ -66,23 +67,6 @@ const communityMembers = [
     describe: "Lorem Ipsum is simply dummy",
   },
 ];
-
-interface ExploreMoreProps {
-  filter: string;
-}
-
-const ExploreMore: React.FC<ExploreMoreProps> = ({ filter }) => {
-  return (
-    <Link to={`${RouteName.recipes}?${filter}`}>
-      <div className="ml-1 mr-5 h-96 md:h-84 w-52 bg-white rounded-2xl self-center relative">
-        <i className="absolute top-[40%] left-[40%] text-5xl bx bx-right-arrow-alt"></i>
-        <p className="absolute top-[52%] left-[30%] text-lg font-semibold">
-          Explorer plus
-        </p>
-      </div>
-    </Link>
-  );
-};
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
@@ -187,6 +171,16 @@ const LandingPage = () => {
     return <Loading />;
   }
 
+  const highlighedRecipe = {
+    id: "8485c5ae-4175-474b-9107-9aa306874c5f",
+    image: "user/admin/recipe/lessive.jpeg",
+    difficulty: "BEGINNER",
+    name: "Lessive Express",
+    numberOfLikes: 5,
+    numberOfIngredients: 4,
+    isLikedByCurrentUser: false,
+    duration: 10,
+  };
   const recipes = dataIsDiplayHome.allRecipes?.edges || [];
   const recipesBegginer = dataBegginer.allRecipes?.edges || [];
   const dataHomes = dataHome.allRecipes?.edges || [];
@@ -704,7 +698,7 @@ const LandingPage = () => {
               },
             ].map(item => (
               <Link to={RouteName.starterPage} key={item.id} id={item.id}>
-                <div className="w-32 h-32 grid bg-white rounded-xl shadow-lg p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150 m-auto">
+                <div className="w-32 h-32 md:w-36 md:h-36 grid bg-white rounded-xl shadow-lg p-1 md:p-4 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150 m-auto | hover:border-2">
                   <i className={`bx ${item.icon} bx-md mt-4`}></i>
                   <p>{item.title}</p>
                 </div>

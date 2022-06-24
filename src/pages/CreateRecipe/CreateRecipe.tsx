@@ -128,9 +128,9 @@ const CreateRecipe: React.FC = () => {
           <h1 className="mt-16 text-xl font-semibold text-center md:text-2xl">
             Partage ta recette avec la communauté
           </h1>
-          <h3 className="mt-2 text-lg font-semibold text-center md:text-xl">
+          <h2 className="mt-2 text-lg font-semibold text-center md:text-xl">
             Merci pour ton engagement !
-          </h3>
+          </h2>
         </div>
         <form
           className="p-4 my-10 bg-white rounded-lg shadow-lg md:p-10 md:w-1/2"
@@ -138,39 +138,37 @@ const CreateRecipe: React.FC = () => {
           onSubmit={handleSubmitLink(onSubmitHandlerLink)}
         >
           <div className="mb-4">
-            <h2 className="text-lg font-semibold md:text-2xl">
+            <h3 className="text-lg font-semibold md:text-xl">
               À partir d’un lien existant
-            </h2>
-            <h3 className="block mt-2 text-sm font-semibold">
+            </h3>
+            <p className="block mt-2 text-sm font-normal">
               Tu souhaites partager une recette de ton blog, ton Instagram ou
               une publication Facebook ? Ajoute le lien de ta recette et nous la
               partagerons avec la communauté !{" "}
-            </h3>
+            </p>
           </div>
           <div className="flex flex-col items-center lg:flex-row">
             <input
-              className="w-5/6 px-3 pl-3 leading-tight text-gray-700 border rounded shadow width: lg:w-4/6 focus:outline-none py-1 focus:shadow-outline "
+              className="w-5/6 md:h-9 px-3 pl-3 leading-tight text-gray-700 border rounded shadow width: lg:w-4/6 focus:outline-none py-1 focus:shadow-outline "
               placeholder="Lien de la recette"
               type="text"
               {...registerLink("link")}
             ></input>
             <div className="w-8 h-3"></div>
-            <Button className="px-0 py-1-0" type="green">
-              Envoyer ma recette
+            <Button className="px-2 py-1-0" type="green">
+              Envoyer
             </Button>
           </div>
           <p className="mt-2 text-xs italic text-red">
             {errosLink.link?.message}
           </p>
           <div className="mt-4">
-            <h3 className="block mt-2 text-sm text-gray-700">
+            <p className="block mt-2 text-sm font-normal">
               Nous nous assurons qu’il n’y ait pas de duplication de contenu et
               que le.a créateur.ice soit crédité.e.
-            </h3>
+            </p>
             <div className="flex flex-col mt-4 lg:flex-row lg:items-center">
-              <h3 className="block mr-4 text-sm text-gray-700">
-                Exemples de liens :
-              </h3>
+              <p className="block mr-4 text-xs">Exemples de liens :</p>
               <div className="flex flex-row gap-2">
                 <img className="w-8" src={wwwlogo} alt="www-logo" />
                 <img className="w-8" src={fblogo} alt="facebook-logo" />

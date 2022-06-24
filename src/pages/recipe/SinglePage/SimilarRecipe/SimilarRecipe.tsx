@@ -3,6 +3,7 @@ import useIsMobile from "hooks/isMobile";
 import { RecipeCard } from "components";
 import { useRecipesQuery } from "../../../../graphql";
 import "./SimilarRecipe.css";
+import { ExploreMore } from "../../../../components/recipe/ExploreMore";
 
 interface ISimilarRecipe {
   data: any;
@@ -15,7 +16,7 @@ export const SimilarRecipe: React.FC<ISimilarRecipe> = data => {
     fetchPolicy: "no-cache",
     // @ts-ignore
     variables: {
-      first: 5,
+      first: 4,
       filter: {
         category: [data?.data?.category?.name],
         isRandomList: true,
@@ -49,50 +50,14 @@ export const SimilarRecipe: React.FC<ISimilarRecipe> = data => {
 
   return (
     <>
-      {isMobile ? (
-        <div className="w-full py-1-4 overflow-x-auto">
-          <div className="w-max flex">
-            {
-              // @ts-ignore
-              recipes?.map(recipe => (
-                <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-              ))
-            }
-          </div>
+      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12">
+        <div className="flex w-max">
+          {recipes?.slice(0, 3).map(recipe => (
+            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+          ))}
+          <ExploreMore filter={`category=${data?.data?.category?.name}`} />
         </div>
-      ) : (
-        //@ts-ignore
-        <Carousel
-          swipeable={true}
-          showDots={true}
-          responsive={responsiveCarouselLanding}
-          infinite={true}
-          ssr={true}
-          keyBoardControl={true}
-          transitionDuration={500}
-          containerClass={
-            isMobile
-              ? "carousel-similar-recipe-mobile"
-              : "carousel-similar-recipe"
-          }
-          customTransition="transform 300ms ease-in-out"
-          dotListClass={
-            isMobile ? "custom-dot-list-style-mobile" : "custom-dot-list-style"
-          }
-          itemClass={isMobile ? "carousel-item-mobile" : "carousel-item"}
-        >
-          {
-            // @ts-ignore
-            recipes?.map(recipe => (
-              <RecipeCard
-                recipe={recipe?.node}
-                key={recipe?.node?.id}
-                isCarrousel={true}
-              />
-            ))
-          }
-        </Carousel>
-      )}
+      </div>
     </>
   );
 };
