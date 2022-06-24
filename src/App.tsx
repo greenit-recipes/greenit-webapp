@@ -1,4 +1,5 @@
 import { Loading } from "components";
+import FullXPRoute from "components/route/FullXPRoute";
 import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
 import { createBrowserHistory } from "history";
@@ -7,9 +8,6 @@ import React, { Suspense } from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import FullXPRoute from "components/route/FullXPRoute";
-import ReactDOM from "react-dom";
-import { CookieBanner } from "./components/misc/CookieBanner";
 
 const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
 const ActivateAccount = React.lazy(() => import("pages/activate"));
