@@ -1,4 +1,3 @@
-import Carousel from "react-multi-carousel";
 import useIsMobile from "hooks/isMobile";
 import { RecipeCard } from "components";
 import { useRecipesQuery } from "../../../../graphql";

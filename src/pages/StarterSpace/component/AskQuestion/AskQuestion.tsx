@@ -36,7 +36,7 @@ export const AskQuestion: React.FC = () => {
     }).then(() => reset());
   };
   return (
-    <div className="flex flex-col self-center mb-20 justify-items-center lg:w-1/3">
+    <div className="flex flex-col self-center mb-20 justify-items-center w-9/12 lg:w-1/3">
       <form
         className="flex flex-col w-full gap-2"
         // @ts-ignore
