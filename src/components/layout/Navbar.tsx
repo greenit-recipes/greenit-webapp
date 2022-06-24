@@ -481,7 +481,7 @@ export const Navbar: React.FC = () => {
       </div>
       {/*Todo : Update width dynamically with custom breakpoints on smaller screens*/}
       {showSearchBar && (
-        <div className="flex flex-row w-[25%] h-full items-center">
+        <div className="flex flex-row w-[25%] ml-52 h-full items-center">
           <SearchBar
             keyId="searchBarNav"
             size="small"
@@ -495,8 +495,8 @@ export const Navbar: React.FC = () => {
       )}
       <div
         className={`grid items-center ${
-          showSearchBar ? "w-[25%]" : "w-3/5"
-        } justify-self-end`}
+          showSearchBar ? "grow" : "w-3/5"
+        } justify-self-end `}
       >
         <div className="flex space-between items-center justify-self-end">
           {isLoggedIn ? (
