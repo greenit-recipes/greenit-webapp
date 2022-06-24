@@ -243,7 +243,7 @@ const ProfilPage: React.FC = () => {
             {!visible && (
               <div className="grid grid-cols-2 mt-5 sm:gap-2 md:grid-cols-3 auto-rows-auto justify-items-center">
                 <CTACard
-                  className="lg:mt-2 lg:mb-6"
+                  className="lg:mb-6"
                   type="blue"
                   link={RouteName.createRecipe}
                 >

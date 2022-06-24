@@ -176,7 +176,7 @@ const WorkshopPage = () => {
             <div className="bg-transparent rounded mt-2">
               <div className="flex items-center align-middle h-full md:justify-end">
                 <Link to={RouteName.contact}>
-                  <Button id="contactWs1" type="green">
+                  <Button id="contactWs1" type="darkBlue">
                     Contacter
                   </Button>
                 </Link>
@@ -222,9 +222,13 @@ const WorkshopPage = () => {
                       href="https://www.eventbrite.fr/e/billets-premiers-pas-en-diy-et-recette-de-lessive-greenit-community-347098720617"
                       target="_blank"
                     >
-                      <button id="book1" className="button_reserver">
+                      <Button
+                        type="green"
+                        id="book1"
+                        className="button_reserver"
+                      >
                         Reserver
-                      </button>
+                      </Button>
                     </a>
                   </div>
                 </div>
@@ -253,9 +257,13 @@ const WorkshopPage = () => {
                       href={"https://www.instagram.com/eclatdessences/"}
                       target="_blank"
                     >
-                      <button id="book4-1" className="button_reserver">
+                      <Button
+                        type="green"
+                        id="book4-1"
+                        className="button_reserver"
+                      >
                         Reserver
-                      </button>
+                      </Button>
                     </a>
                   </div>
                 </div>

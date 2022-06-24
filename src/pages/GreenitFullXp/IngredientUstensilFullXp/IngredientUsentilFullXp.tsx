@@ -41,14 +41,12 @@ const IngredientUsentilFullXp = () => {
         <div className="flex flex-col mb-6">
           <div className="ml-10 lg:ml-0">
             {" "}
-            <h1 className="text-2xl font-medium">Ingrédients et ustensiles</h1>
+            <h2 className="text-2xl font-medium">Ingrédients et ustensiles</h2>
           </div>
           {isMobile && list}
         </div>
         <div className="flex justify-center flex-col w-full rounded-none lg:rounded-2xl bg-greenL p-5">
-          <p className="text-xl fontQSemibold text-center lg:text-left mt-2">
-            Inclus dans la box
-          </p>
+          <h3 className="text-center lg:text-left mt-2">Inclus dans la box</h3>
           <p className="text-xs lg:text-sm mt-4">Tous les ingrédients</p>
           <div
             className={`relative flex items-center btn-single-page ingredient-shadow h-11 mt-4 ${
@@ -91,9 +89,9 @@ const IngredientUsentilFullXp = () => {
           ))}
         </div>
         <div className="flex justify-center flex-col w-full p-5">
-          <p className="text-xl fontQSemibold text-center lg:text-left mt-6">
+          <h3 className="text-center lg:text-left mt-6">
             À trouver chez toi !
-          </p>
+          </h3>
           {ustensilsAlreadyHaveBeginner.map((item: any, index: any) => (
             <SectionUstensil data={item} key={index} />
           ))}

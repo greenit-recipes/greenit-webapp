@@ -194,7 +194,7 @@ const RecipeSinglePage = () => {
                     isToltipActif={false}
                     isRecipePage={true}
                     isBtnDesing={true}
-                    customClassName="flex w-28"
+                    customClassName="flex"
                     recipe={data?.recipe}
                   ></FavouriteField>
                   <MadeRecipe customClassName="ml-3" recipe={data?.recipe} />
@@ -509,7 +509,7 @@ const RecipeSinglePage = () => {
               </div>
             </div>
             <div className="flex flex-col mt-8">
-              <h3 className="pb-2">Conseils de l'auteur</h3>
+              <h4 className="pb-2">Conseils de l'auteur</h4>
               <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
             </div>
             <div className="flex flex-col mt-8">

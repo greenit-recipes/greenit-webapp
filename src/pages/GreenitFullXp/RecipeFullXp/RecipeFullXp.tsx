@@ -35,9 +35,7 @@ const RecipeFullXP = () => {
     <div className="flex flex-col lg:flex-row items-center justify-around">
       <div className="flex flex-col">
         <div className="flex justify-between ml-10 lg:ml-0">
-          <h1 className="text-2xl font-semibold">
-            Coup d’oeil sur les recettes{" "}
-          </h1>
+          <h2 className="">Coup d’oeil sur les recettes </h2>
           {!isMobile && (
             <div className="flex justify-center items-center">
               <BiTimeFive className=" mr-2 w-10 h-10"></BiTimeFive>
@@ -73,9 +71,9 @@ const RecipeFullXP = () => {
       <div className="flex justify-center flex-col w-full lg:w-2/5">
         {!isMobile && list}
 
-        <p className="text-2xl fontQSemibold font-semibold text-center lg:text-left mt-6">
+        <h2 className="text-center lg:text-left mt-6">
           Ton impact avec ces produits maison
-        </p>
+        </h2>
         <div className={`flex justify-around mt-8 mx-5 md:w-4/5 md:space-x-20`}>
           <CircleGreenit
             colorCircle="bg-blue"

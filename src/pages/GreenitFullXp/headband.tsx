@@ -18,7 +18,7 @@ const HeadBand: React.FC<IHeadBand> = ({
     <div className="headband h-16 pb-2 bg-white">
       <div>
         <p className="fontQSemibold">Box Premiers Pas</p>
-        <p className="fontQSbold text-green">20 € la box</p>
+        <h3 className="fontQSbold text-green">20 € la box</h3>
       </div>
 
       {currentPositionMenu === 1 ? (
