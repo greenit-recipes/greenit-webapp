@@ -1,20 +1,20 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "components";
+import { PellGreenit } from "components/layout/Editor/PellEditor";
 import { getLogoAndNameByUrl } from "helpers/social-media.helper";
-import { filter, map, sum, isEmpty } from "lodash";
+import { filter, map, sum } from "lodash";
 import { StatProfilForm } from "pages/Profil/Stat";
 import React, { useEffect, useState } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { UPDATE_ACCOUNT } from "services/auth.service";
 import * as yup from "yup";
 import HTMLReactParser from "html-react-parser";
-import { Cooking, clapIconOff } from "../../icons";
+import { rondIcon } from "../../icons";
 import { RouteName } from "App";
 import { Link } from "react-router-dom";
 import { FiEdit } from "react-icons/fi";
-import { FaRegEye } from "react-icons/fa";
-import { PellGreenit } from "../../components/layout/Editor/PellEditor";
+import { isEmpty } from "lodash";
 
 interface IUser {
   user: {
@@ -103,39 +103,37 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
   const [isEditor, setEditor] = useState(true);
   const [isDisplayStat, setDisplayStat] = useState(false);
   return (
-    <div className="flex flex-col items-center w-10/12 md:w-11/12">
+    <div className="flex flex-col items-center text-darkBlue md:w-11/12 lg:w-full">
       {/* Stat */}
-      <div className="flex flex-row justify-center w-full gap-2">
-        <div className="flex flex-row items-center justify-center w-4/12 p-2 rounded-lg justify-evenly md:justify-center md:gap-2 md:w-40 md:h-20 lg:py-6 bg-blueL">
-          <img
-            className="w-8 h-8 p-1 bg-white rounded-full lg:w-12 lg:h-12"
-            src={Cooking}
-            alt="logo recette"
-          />
-          <div>
-            <p className="text-xs lg:text-sm">Recettes </p>
+      <div className="flex flex-row text-center justify-center w-11/12 gap-2">
+        <div className="flex flex-row items-center justify-center w-4/12 p-2 rounded-2xl justify-evenly md:justify-center md:gap-2 md:w-40 md:h-20 lg:py-6 bg-blueL">
+          <i
+            className={`bx bxs-bowl-hot bx-sm text-darkBlue w-8 h-8 p-1 md:p-3 bg-white rounded-full lg:w-12 lg:h-12`}
+          ></i>
+          <div className="flex flex-col items-center">
+            <p className="font-medium text-sm">Recettes </p>
             <p className="text-2xl font-extrabold lg:text-3xl">
               {user?.recipeAuthor.length}
             </p>
           </div>
         </div>
-        <div className="flex flex-row items-center justify-center w-4/12 p-2 rounded-lg justify-evenly md:justify-center md:gap-2 bg-orangeL md:w-40 md:h-20 lg:py-6">
-          <img
-            className="w-8 h-8 bg-white rounded-full lg:w-12 lg:h-12"
-            src={clapIconOff}
-            alt="logo clap"
-          />
-          <div>
-            <p className="text-xs lg:text-sm">claps </p>
+        <div className="flex flex-row items-center justify-center w-4/12 p-2 rounded-2xl justify-evenly md:justify-center md:gap-2 bg-greenL md:w-40 md:h-20 lg:py-6">
+          <i
+            className={`bx bxs-donate-heart bx-sm text-darkBlue w-8 h-8 p-1 md:p-3 bg-white rounded-full lg:w-12 lg:h-12`}
+          ></i>
+          <div className="flex flex-col items-center">
+            <p className="font-medium text-sm">Soutien</p>
             <p className="text-2xl font-extrabold lg:text-3xl">
               {sum(nbrLikes)}
             </p>
           </div>
         </div>
-        <div className="flex flex-row items-center justify-center w-4/12 p-2 rounded-lg justify-evenly md:justify-center md:gap-2 bg-yellowL md:w-40 md:h-20 lg:py-6">
-          <FaRegEye className="w-8 h-8 p-1 bg-white rounded-full lg:w-12 lg:h-12" />
-          <div>
-            <p className="text-xs lg:text-sm">Vues </p>
+        <div className="flex flex-row items-center justify-center w-4/12 p-2 rounded-2xl justify-evenly md:justify-center md:gap-2 bg-yellowL md:w-40 md:h-20 lg:py-6">
+          <i
+            className={`bx bxs-low-vision bx-sm text-darkBlue w-8 h-8 p-1 md:p-3 bg-white rounded-full lg:w-12 lg:h-12`}
+          ></i>
+          <div className="flex flex-col items-center">
+            <p className="font-medium text-sm">Vues </p>
             <p className="text-2xl font-extrabold lg:text-3xl">
               {sum(nbrView)}
             </p>
@@ -143,7 +141,7 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
         </div>
       </div>
       <div
-        className="my-6 text-sm font-semibold text-center cursor-pointer lg:my-10 lg:sm"
+        className="my-6 text-sm font-semibold text-center text-darkBlue underline decoration-solid cursor-pointer lg:my-10 lg:sm"
         onClick={() => {
           setDisplayStat(!isDisplayStat);
         }}
@@ -158,10 +156,10 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
           Vos modifications ont été enregistrées
         </div>
       )}
-      <div className="flex flex-col gap-12 lg:flex-row lg:w-4/6">
+      <div className="flex flex-col justify-start mx-12 md:space-x-24 w-11/12 lg:flex-row lg:w-5/6">
         {/* Biographie */}
 
-        <div className="flex flex-col gap-4 lg:w-2/4">
+        <div className="flex flex-col gap-4 lg:w-2/4 mb-3">
           <div className="flex flex-col gap-4 ">
             <div className="flex flex-row items-center gap-4 md:justify-center">
               <h3 className="text-lg font-semibold lg:text-xl">Biographie</h3>
@@ -190,8 +188,8 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
                   control={controlBio}
                   defaultValue={user?.biographie}
                 />
-                <div className="flex items-center justify-between">
-                  <button className="flex items-center justify-center h-10 p-3 mt-4 mr-5 text-lg text-white align-middle border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green">
+                <div className="flex justify-end">
+                  <button className="flex items-center justify-center h-10 py-3 px-6 mt-5 mb-4 text-base shadow-lg font-medium text-darkBlue align-middle border-2 border-darkBlue rounded-lg cursor-pointer bold hover:bg-white hover:border-green hover:text-green">
                     Valider
                   </button>
                 </div>
@@ -222,24 +220,30 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
                   !isEmpty(JSON.parse(socialMedias)) &&
                     /* @ts-ignore */
                     JSON.parse(socialMedias)?.map((data: any, index: any) => (
-                      <a href={data?.url} key={index}>
-                        <div className="flex flex-row items-center justify-center gap-2 p-1 border rounded-lg shadow-lg lg:p-2">
+                      <div
+                        className="relative mr-2 w-9 h-9 justify-center flex items-center "
+                        key={index}
+                      >
+                        <a href={data?.url}>
                           <img
-                            src={getLogoAndNameByUrl(data?.url)?.icon}
-                            className="w-5 h-5"
-                            alt={getLogoAndNameByUrl(data?.url)?.name}
-                          />
-                          <div className="text-sm lg:text-base">
-                            {getLogoAndNameByUrl(data?.url)?.name}
-                          </div>
-                        </div>
-                      </a>
+                            src={rondIcon}
+                            className="absolute hover:fill-yellow top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                            alt="icon rond"
+                          ></img>
+
+                          <i
+                            className={`bx  mt-1 ${
+                              getLogoAndNameByUrl(data?.url)?.icon
+                            } bx-sm`}
+                          ></i>
+                        </a>
+                      </div>
                     ))
                 }
               </div>
               <div
                 onClick={() => setEditLink(!isEditLink)}
-                className="mt-4 mb-4 text-sm text-center cursor-pointer lg:text-base"
+                className="md:ml-16 mt-4 mb-4 text-sm font-medium underline decoration-solid cursor-pointer lg:text-base"
               >
                 + Ajouter un lien
               </div>
@@ -257,45 +261,48 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
                       <>
                         <li
                           key={index}
-                          className={`flex justify-between items-center shadow-lg appearance-none border lg:text-lg rounded-xl w-full  py-2 px-3 text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline mb-2`}
+                          className={`flex space-x-10 items-center appearance-none lg:text-lg w-full  text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline mb-2`}
                         >
-                          <p className="text-sm lg:text-base whitespace-nowrap">
+                          <p className="ml-5 text-sm lg:text-base whitespace-nowrap">
                             {index + 1}{" "}
                           </p>
-                          <div className="h-full border align-self-start"></div>
-                          <input
-                            className={`appearance-none text-sm lg:text-base  focus:outline-none focus:shadow-outline h-full`}
-                            placeholder="Nouveau lien"
-                            {...register(`urlsSocialMedia.${index}.url`)}
-                          />
+                          <div className="flex justify-between py-2 px-3 border rounded-md w-5/6">
+                            <input
+                              className={`appearance-none text-sm lg:text-base placeholder:text-darkBlue focus:outline-none focus:shadow-outline h-full`}
+                              placeholder="Nouveau lien"
+                              {...register(`urlsSocialMedia.${index}.url`)}
+                            />
 
-                          <p className="text-xs italic text-red">
-                            {errors?.urlsSocialMedia?.[index]?.url?.message}
-                          </p>
+                            <p className="text-xs italic text-red">
+                              {errors?.urlsSocialMedia?.[index]?.url?.message}
+                            </p>
 
-                          <div
-                            className="p-1 text-sm text-white rounded-lg cursor-pointer bg-red lg:text-base"
-                            onClick={() => urlsSocialMediaRemove(index)}
-                          >
-                            Supprimer
+                            <div
+                              className="text-sm font-medium underline decoration-solid hover:text-red"
+                              onClick={() => urlsSocialMediaRemove(index)}
+                            >
+                              Supprimer
+                            </div>
                           </div>
                         </li>
                       </>
                     ))}
                   </ul>
-                  <div
-                    onClick={() =>
-                      urlsSocialMediaAppend({}, { shouldFocus: true })
-                    }
-                    className="w-40 px-2 text-center text-white rounded-lg cursor-pointer py-1 bg-blue"
-                  >
-                    Ajouter un lien
+                  <div className="flex justify-between">
+                    <div
+                      onClick={() =>
+                        urlsSocialMediaAppend({}, { shouldFocus: true })
+                      }
+                      className="mt-5 ml-10 text-sm font-semibold underline decoration-solid cursor-pointer"
+                    >
+                      Ajouter un lien
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <button className="flex items-center justify-center h-10 py-3 px-6 mb-4 text-base shadow-lg font-medium text-darkBlue align-middle border-2 border-darkBlue rounded-lg cursor-pointer bold hover:bg-white hover:border-green hover:text-green">
+                        Valider
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <button className="flex items-center justify-center h-10 p-3 mb-4 mr-5 text-lg text-white align-middle border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green">
-                    Valider
-                  </button>
                 </div>
               </form>
             </div>
@@ -304,12 +311,15 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
       </div>
       <div className="flex items-center w-11/12 h-px mb-5 bg-grey grow lg:w-5/12 lg:my-10"></div>
       <Button
-        type="grey"
+        type="green"
         rounded="lg"
-        className="md:hidden w-full inline justify-end self-center text-base | cursor-pointer mb-4"
+        className="md:hidden w-11/12 inline justify-end self-center text-base | cursor-pointer mb-4"
       >
         <Link to={RouteName.createRecipe} className="flex">
-          <h3 id="shareRecipe" className="cursor-pointer hover:text-green">
+          <h3
+            id="shareRecipe"
+            className="cursor-pointer text-base hover:text-green"
+          >
             Partager une recette
           </h3>
         </Link>
