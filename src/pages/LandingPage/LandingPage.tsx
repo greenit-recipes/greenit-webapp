@@ -1,15 +1,5 @@
 import { useQuery } from "@apollo/client";
 import { RouteName } from "App";
-import debounce from "lodash/debounce";
-import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
-import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
-import "pages/LandingPage/LandingPage.css";
-import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
-import React, { useState } from "react";
-import { Helmet } from "react-helmet";
-import "react-multi-carousel/lib/styles.css";
-import { Link, useHistory } from "react-router-dom";
-import { landingPageCategories } from "utils";
 import {
   Button,
   Container,
@@ -20,48 +10,40 @@ import {
   SearchBar,
 } from "components";
 import { Press } from "components/layout/TheyTalkAboutUs";
-import { useRecipesQuery } from "../../graphql";
 import useIsMobile from "hooks/isMobile";
 import {
   Badge100Desktop,
   Badge100Mobile,
-  BadgeMarqueMobile,
-  BadgeMarqueDesktop,
-  BadgeSavonMobile,
-  BadgeSavonDesktop,
+  BadgeControleDesktop,
   BadgeControleMobile,
-  TopImageMobile,
-  TopImageDesktopLeft,
-  TopImageDesktopRight,
-  LPImage4Desktop,
+  BadgeMarqueDesktop,
+  BadgeMarqueMobile,
+  BadgeSavonDesktop,
+  BadgeSavonMobile,
   boxOpen,
   escapeTheCity,
   issy,
+  LPImage4Desktop,
   sixHTN,
-  BadgeControleDesktop,
+  TopImageDesktopLeft,
+  TopImageDesktopRight,
+  TopImageMobile,
 } from "icons";
+import debounce from "lodash/debounce";
+import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
+import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
+import "pages/LandingPage/LandingPage.css";
+import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
 import "pages/recipe/SinglePage/SinglePage.css";
+import React, { useState } from "react";
+import { Helmet } from "react-helmet";
+import "react-multi-carousel/lib/styles.css";
+import { Link, useHistory } from "react-router-dom";
 import { GET_FEATURE_BY_NAME } from "services/feature.service";
+import { landingPageCategories } from "utils";
+import { useRecipesQuery } from "../../graphql";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
-
-const responsiveCarouselLanding = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1224 },
-    items: 4,
-    slidesToSlide: 1, // optional, default to 1.
-  },
-  tablet: {
-    breakpoint: { max: 1224, min: 664 },
-    items: 3,
-    slidesToSlide: 1, // optional, default to 1.
-  },
-  mobile: {
-    breakpoint: { max: 664, min: 0 },
-    items: 2,
-    slidesToSlide: 1, // optional, default to 1.
-  },
-};
 
 const communityMembers = [
   {
@@ -216,7 +198,7 @@ const LandingPage = () => {
       ) */}
       <div className="realtive bg-greenL w-full">
         <Container
-          className="flex flex-col items-center | px-4
+          className="flex flex-col items-center | md:px-4
          | mt-9 mb-28"
         >
           {isMobile ? (
@@ -235,7 +217,7 @@ const LandingPage = () => {
                 loading="lazy"
               />
               <img
-                className="absolute top-10 -right-20"
+                className="absolute top-10 right-0"
                 alt="Communauté Greenit partie 2"
                 src={TopImageDesktopRight}
                 loading="lazy"
@@ -313,7 +295,7 @@ const LandingPage = () => {
         </Container>
       </div>
       <Container
-        className="flex flex-col justify-center items-center md:items-start | px-4
+        className="flex flex-col justify-center items-center md:items-start | md:px-4
          | mt-12 mb-12 text-center md:text-left md:w-10/12"
       >
         <div className="md:flex md:justify-start md:space-x-4">
@@ -375,12 +357,12 @@ const LandingPage = () => {
         </div>
       </Container>
       <Container
-        className="flex flex-col items-center | px-4
+        className="flex flex-col items-center | md:px-4
          | pt-9 text-center bg-blueL w-full relative | pb-5"
       >
         {!isMobile && (
           <img
-            className="h-56 absolute -top-28 -right-12"
+            className="h-56 absolute -top-28 right-0"
             alt="Mon savon ? Je le fais moi-même"
             src={LPImage4Desktop}
             loading="lazy"
@@ -402,7 +384,7 @@ const LandingPage = () => {
         </div>
       </div>
       <Container
-        className="flex flex-col items-center | px-4
+        className="flex flex-col items-center | md:px-4
          | pt-9 text-center bg-blueL w-full | pb-5"
       >
         <div className="flex flex-col md:flex-row md:self-start md:space-x-4 md:ml-24">
@@ -421,7 +403,7 @@ const LandingPage = () => {
         </div>
       </div>
       <Container
-        className="relative w-full flex flex-col items-center | px-4
+        className="relative w-full flex flex-col items-center | md:px-4
         | mt-16 mb-12 text-center"
       >
         <img
@@ -447,7 +429,7 @@ const LandingPage = () => {
       <div className="w-full bg-yellowL">
         <div className="md:flex md:items-center md:justify-start md:space-x-0 md:mt-10 md:ml-10 md:mr-20">
           <Container
-            className="md:w-1/3 flex flex-col items-center | px-4
+            className="md:w-1/3 flex flex-col items-center | md:px-4
          | pt-9 text-center md:text-left bg-yellowL w-full"
           >
             <div className="flex flex-col">
@@ -472,17 +454,6 @@ const LandingPage = () => {
                 {isMobile && <ExploreMore filter="category=Missing" />}
               </div>
             </div>
-            {isMobile && (
-              <div className="mt-12 text-center">
-                <h4 className="font-semibold text-xl mx-12">
-                  Envie de profiter des bienfaits de l’avocat, de l’huile
-                  d’olive ou des graines de lin ?
-                </h4>
-                <h2 className="font-diy text-2xl">
-                  Banane, oeuf, amidon de maïs…
-                </h2>
-              </div>
-            )}
           </div>
         </div>
         {!isMobile && (
@@ -504,7 +475,7 @@ const LandingPage = () => {
               </div>
             </div>
             <Container
-              className="md:w-1/3 flex flex-col items-center | px-4
+              className="md:w-1/3 flex flex-col items-center | md:px-4
          | pt-9 text-center md:text-left bg-yellowL w-full"
             >
               <div className="flex flex-col">
@@ -522,7 +493,7 @@ const LandingPage = () => {
       </div>
 
       <Container
-        className="flex flex-col items-center | px-4
+        className="flex flex-col items-center | md:px-4
          | pt-9 text-center w-full"
       >
         <h2 className="text-2xl font-semibold mx-10 mb-5">
@@ -591,15 +562,15 @@ const LandingPage = () => {
         <Newsletter />
       </div>
       <Container
-        className="flex flex-col items-center | px-4
+        className="flex flex-col items-center | md:px-4
          | pt-9 pb-12 md:mt-4 text-center md:w-full"
       >
-        <div className="md:w-full md:flex md:flex-col md:items-start md:ml-32">
+        <div className="flex flex-col md:self-start md:space-x-4 md:ml-14">
           <h2 className="text-xl md:text-2xl font-semibold">
             Le DIY c’est reprendre le contôle {isMobile && <br></br>} sur sa
             consommation
           </h2>
-          <h2 className="mt-2 font-diy text-2xl">
+          <h2 className="font-diy text-2xl text-left no-margin">
             Le diy pour ta santé, ton bien-être et un mode de vie viable
           </h2>
         </div>
@@ -653,7 +624,7 @@ const LandingPage = () => {
         </div>
       </Container>
       <Container
-        className="flex flex-col items-center | px-4
+        className="flex flex-col items-center | md:px-4
          | pt-9 pb-12 md:mt-4 text-center bg-yellowL w-full"
       >
         <div className="md:flex md:items-start md:space-x-20">
@@ -712,7 +683,7 @@ const LandingPage = () => {
         )}
       </Container>
       <Container
-        className="flex flex-col items-center | px-4
+        className="flex flex-col items-center | md:px-4
          | pt-9 text-center bg-blueL w-full | pb-5"
       >
         <div className="flex flex-col md:flex-row md:self-start md:space-x-4 md:ml-14">
@@ -732,7 +703,7 @@ const LandingPage = () => {
       </div>
 
       <Container
-        className="flex flex-col items-center | px-4
+        className="flex flex-col items-center | md:px-4
          | pt-9 text-center bg-blueL w-full | pb-5"
       >
         <div className="flex flex-col md:flex-row md:self-start md:space-x-4 md:ml-14">
@@ -755,7 +726,7 @@ const LandingPage = () => {
         itemsCenter
       >
         <img
-          className="h-52 absolute -top-64 md:-top-40 -right-5 md:-right-72"
+          className="h-52 absolute -top-64 md:-top-40 right-0 md:-right-72"
           alt="Mon savon ? Je le fais moi-même"
           src={isMobile ? BadgeControleMobile : BadgeControleDesktop}
           loading="lazy"
