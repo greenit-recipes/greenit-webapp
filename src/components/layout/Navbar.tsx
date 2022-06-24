@@ -480,25 +480,25 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
       {/*Todo : Update width dynamically with custom breakpoints on smaller screens*/}
-      {showSearchBar && (
-        <div className="flex flex-row w-[25%] ml-52 h-full items-center">
-          <SearchBar
-            keyId="searchBarNav"
-            size="small"
-            suggestionIsActive={true}
-            setValue={setSearchTermDebounced}
-            isLoading={autoCompleteLoading}
-            // @ts-ignore
-            suggestions={recipesAutoComplete}
-          />
-        </div>
-      )}
       <div
         className={`grid items-center ${
           showSearchBar ? "grow" : "w-3/5"
         } justify-self-end `}
       >
         <div className="flex space-between items-center justify-self-end">
+          {showSearchBar && (
+            <div className="mr-4">
+              <SearchBar
+                keyId="searchBarNav"
+                size="small"
+                suggestionIsActive={true}
+                setValue={setSearchTermDebounced}
+                isLoading={autoCompleteLoading}
+                // @ts-ignore
+                suggestions={recipesAutoComplete}
+              />
+            </div>
+          )}
           {isLoggedIn ? (
             <Link to={RouteName.createRecipe} className="flex">
               <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
