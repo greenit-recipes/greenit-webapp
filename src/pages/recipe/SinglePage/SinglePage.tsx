@@ -509,8 +509,8 @@ const RecipeSinglePage = () => {
               </div>
             </div>
             <div className="flex flex-col mt-8">
-              <h4 className="pb-2">Conseils de l'auteur</h4>
-              <p className="text-md lg:text-lg">{recipe?.notesFromAuthor}</p>
+              <h3 className="pb-2">Conseils de l'auteur</h3>
+              <p className="text-md">{recipe?.notesFromAuthor}</p>
             </div>
             <div className="flex flex-col mt-8">
               <p className="text-xs text-grey">

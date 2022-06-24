@@ -87,7 +87,7 @@ const StartDiyGreenitFullXp = () => {
             </Link>
             <Link to={RouteName.findOUtMoreBoxGreentilFullXP}>
               <button
-                className={`btn-single-page justify-center mb-4 mt-4 p-2 h-10 flex w-full bg-white text-green`}
+                className={`btn-single-page justify-center mb-4 mt-4 p-2 h-10 flex w-full text-center border-2 border-darkBlue bg-white text-darkBlue`}
                 id="se-lancer-dans-le-fait-maison-en-savoir-plus"
               >
                 En savoir plus

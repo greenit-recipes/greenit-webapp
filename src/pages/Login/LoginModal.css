@@ -44,7 +44,6 @@
 
 .my-facebook-button-class {
   display: flex;
-  padding-left: 1.25rem;
   padding-right: 1.25rem;
   color: #ffffff;
   font-size: 1rem;
@@ -67,6 +66,10 @@
     padding: 1.5rem;
     height: 2.5rem;
   }
+}
+
+.margin-0 {
+  margin-left: 0px !important;
 }
 
 .my-google-button-class {

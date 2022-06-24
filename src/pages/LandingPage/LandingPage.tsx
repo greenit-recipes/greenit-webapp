@@ -480,7 +480,7 @@ const LandingPage = () => {
               <div className="md:flex md:justify-center">
                 <div className="flex w-max">
                   {recipesBegginer
-                    ?.slice(0, isMobile ? totalRecipeCards : 3)
+                    ?.slice(3, isMobile ? totalRecipeCards : 6)
                     .map(recipe => (
                       <RecipeCard
                         recipe={recipe?.node}

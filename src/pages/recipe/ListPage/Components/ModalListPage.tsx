@@ -45,7 +45,7 @@ export const ModalListPage: React.FC<IModalListPage> = props => {
           <div className="grid justify-items-center fixed bottom-0 h-20 z-40 bg-white w-full">
             <Button
               type="green"
-              className=" z-40 w-4/5 h-10 ml-4 self-center"
+              className=" z-40e w-4/5 h-10 ml-4 self-center"
               onClick={() => props.parentFunction(false)}
             >
               Afficher les résultats

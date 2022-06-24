@@ -231,8 +231,8 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               Pas encore de compte ? - Créer son compte
             </p>
           </div>
-          <div className="flex flex-col md:flex-row md:space-x-8">
-            <div className="mb-4 w-10/12 lg:mb-1 mt-2">
+          <div className="flex flex-col md:space-x-8">
+            <div className="mb-4 ml-0 lg:mb-1 mt-2">
               <GoogleLogin
                 // @ts-ignore
                 clientId={process.env.REACT_APP_GOOGLE_ID}
@@ -250,7 +250,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                 </div>
               )}
             </div>
-            <div className="mb-4 lg:mb-1 mt-2">
+            <div className="mb-4 ml-0 lg:mb-1 mt-2 margin-0">
               <FacebookLogin
                 // @ts-ignore
                 appId={process.env.REACT_APP_FACEBOOK_ID}

@@ -53,7 +53,7 @@ input[type="radio"]:checked + label > img {
   line-height: 1.5rem;
   align-items: center;
   justify-items: center;
-  height: 33px;
+  height: 40px !important;
   border-radius: 0.5rem;
   border-width: 2px;
   border-color: transparent;
@@ -61,13 +61,6 @@ input[type="radio"]:checked + label > img {
   background-color: #4267b2;
   font-weight: 700;
   width: 100%;
-}
-@media (min-width: 768px) {
-  .my-facebook-button-class {
-    line-height: 1.75rem;
-    padding: 1.5rem;
-    height: 2.5rem;
-  }
 }
 
 .my-google-button-class {

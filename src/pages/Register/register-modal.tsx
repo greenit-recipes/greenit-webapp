@@ -311,7 +311,7 @@ export const RegisterModal: React.FC<{
             // @ts-ignore
             clientId={process.env.REACT_APP_GOOGLE_ID}
             buttonText="Login"
-            className="h-[30px] w-full text-center"
+            className=" w-full text-center"
             onSuccess={responseGoogle}
             onFailure={errorGoogle}
             // @ts-ignore

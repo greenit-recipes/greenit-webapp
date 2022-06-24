@@ -44,7 +44,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const isMobile = useIsMobile();
-  const imageHeight = isMobile ? 50 : 72;
+  const imageHeight = isMobile ? 72 : 72;
   const imageWidth = isMobile ? 52 : 52;
   const bandeauWidth = isMobile ? 52 : 52;
 
