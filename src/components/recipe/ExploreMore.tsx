@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { RouteName } from "../../App";
+import { RouteName } from "App";
 
 interface ExploreMoreProps {
   filter: string;
