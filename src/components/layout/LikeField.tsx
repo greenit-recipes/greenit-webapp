@@ -66,7 +66,7 @@ export const LikeField: React.FC<ILikeField> = ({
           <ModalLogGreenit
             btn={
               <div className="flex self-center w-6 h-6 lg:w-8 lg:h-8">
-                <i className="bx bx-donate-heart flex self-center text-lg mr-1"></i>
+                <i className="bx bx-donate-heart flex self-center text-lg"></i>
                 <h2 className="flex self-center text-lg lg:text-lg">
                   {nbrLiked}
                 </h2>

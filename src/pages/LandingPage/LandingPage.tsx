@@ -44,6 +44,7 @@ import { landingPageCategories } from "utils";
 import { useRecipesQuery } from "../../graphql";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
+import { map, orderBy, sum, toNumber } from "lodash";
 
 const communityMembers = [
   {
@@ -127,6 +128,17 @@ const LandingPage = () => {
     variables: { first: 8, filter: { tags: ["Premiers pas"] } },
   });
 
+  const { data: dataIngredientCuisine } = useRecipesQuery({
+    variables: {
+      first: 8,
+      filter: { tags: ["Avec les ingrédients de la cuisine"] },
+    },
+  });
+
+  const { data: dataById } = useRecipesQuery({
+    variables: { filter: { id: ["8485c5ae-4175-474b-9107-9aa306874c5f"] } },
+  });
+
   const { data: dataHome } = useRecipesQuery({
     variables: { first: 8, filter: { category: ["Maison"] } },
   });
@@ -166,6 +178,8 @@ const LandingPage = () => {
     !dataHome ||
     !dataHair ||
     !dataSearchMasque ||
+    !dataIngredientCuisine ||
+    !dataById ||
     !dataNbrLikes ||
     !dataOutOfStock ||
     !dataFullXP
@@ -178,6 +192,8 @@ const LandingPage = () => {
   const dataHomes = dataHome.allRecipes?.edges || [];
   const dataHairs = dataHair.allRecipes?.edges || [];
   const dataSearchMasques = dataSearchMasque.allRecipes?.edges || [];
+  const dataIngredientCuisines = dataIngredientCuisine.allRecipes?.edges || [];
+  const dataByIds = dataById.allRecipes?.edges || [];
   const recipesOrderByLikes = dataNbrLikes.allRecipes?.edges || [];
   const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {
     recipes: [],
@@ -463,13 +479,15 @@ const LandingPage = () => {
           <div className="w-full md:w-3/5 pt-4 pl-4 overflow-x-auto pb-12 bg-yellowL">
             <div className="md:flex md:justify-center">
               <div className="flex w-max">
-                {recipesBegginer
+                {dataIngredientCuisines
                   ?.slice(0, isMobile ? totalRecipeCards : 3)
                   .map(recipe => (
                     <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
                   ))}
                 {/*Todo: Fill category later*/}
-                {isMobile && <ExploreMore filter="category=Missing" />}
+                {isMobile && (
+                  <ExploreMore filter="category=Avec les ingrédients de la cuisine" />
+                )}
               </div>
             </div>
           </div>
@@ -479,7 +497,7 @@ const LandingPage = () => {
             <div className="w-full md:w-3/5 pt-4 pl-4 overflow-x-auto pb-12 bg-yellowL">
               <div className="md:flex md:justify-center">
                 <div className="flex w-max">
-                  {recipesBegginer
+                  {dataIngredientCuisines
                     ?.slice(3, isMobile ? totalRecipeCards : 6)
                     .map(recipe => (
                       <RecipeCard
@@ -488,7 +506,9 @@ const LandingPage = () => {
                       />
                     ))}
                   {/*Todo: Fill category later*/}
-                  {isMobile && <ExploreMore filter="category=Missing" />}
+                  {isMobile && (
+                    <ExploreMore filter="category=Avec les ingrédients de la cuisine" />
+                  )}
                 </div>
               </div>
             </div>
@@ -597,8 +617,8 @@ const LandingPage = () => {
             className={`${isMobile && "flex items-center justify-center"} mt-5`}
           >
             <RecipeCard
-              recipe={recipesOrderByLikes[1]?.node}
-              key={recipesOrderByLikes[0]?.node?.id}
+              recipe={dataByIds[0]?.node}
+              key={dataByIds[0]?.node?.id}
             />
           </div>
           <div className="flex mt-6">
@@ -609,7 +629,7 @@ const LandingPage = () => {
                 <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
               }
               symbol=""
-              number={"0"}
+              number={"6"}
               text="Substances épargnées"
             />
             <CircleGreenit
@@ -620,7 +640,7 @@ const LandingPage = () => {
               }
               customClassName="ml-16"
               symbol="€"
-              number={"0"}
+              number={"2"}
               text="Argent économisé"
             />
             <CircleGreenit
@@ -631,7 +651,7 @@ const LandingPage = () => {
               }
               customClassName="ml-16"
               symbol="g"
-              number={"0"}
+              number={"70"}
               text="Plastiques évités"
             />
           </div>
