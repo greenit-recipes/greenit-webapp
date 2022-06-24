@@ -70,7 +70,7 @@ html {
     font-family: ZenMaruGothic-Regular !important;
     background-color: #ffffff !important;
     color: #192a51 !important;
-    font-size: 0.75rem !important; /* 12px */
-    line-height: 1rem !important; /* 18px */
+    font-size: 0.875rem !important; /* 14px */
+    line-height: 1.25rem !important; /* 20px */
   }
 }
