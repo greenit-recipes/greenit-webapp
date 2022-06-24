@@ -29,6 +29,16 @@ import {
   TopImageDesktopLeft,
   TopImageDesktopRight,
   TopImageMobile,
+  Member1,
+  Member2,
+  Member3,
+  Member4,
+  Member5,
+  Member6,
+  Member7,
+  Member8,
+  Member9,
+  Member10,
 } from "icons";
 import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
@@ -48,22 +58,54 @@ import { Newsletter } from "./Components/Newsletter";
 
 const communityMembers = [
   {
-    image:
-      "https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg",
-    name: "Jackouille",
-    describe: "Lorem Ipsum is simply",
+    image: Member1,
+    name: "Andréa",
+    describe: "experte de DIY depuis 4 ans",
   },
   {
-    image:
-      "https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg",
-    name: "Bernard",
-    describe: "Lorem Ipsum is simply dummy",
+    image: Member2,
+    name: "Adrien",
+    describe: "se nourrit des communautés engagées",
   },
   {
-    image:
-      "https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fgeo.2F2021.2F03.2F15.2Fb7e513c6-4445-4cd9-876c-ec012b5b0936.2Ejpeg/1200x630/cr/wqkgR2V0dHkgSW1hZ2VzIC8gR0VP/mouette-et-goeland-comment-les-differencier.jpg",
+    image: Member3,
+    name: "Florian",
+    describe: "cherche des produits sains et durables",
+  },
+  {
+    image: Member4,
     name: "Zack",
-    describe: "Lorem Ipsum is simply dummy",
+    describe: "membre de communauté de passionnés",
+  },
+  {
+    image: Member5,
+    name: "Annabelle",
+    describe: "soucieuse de mon bilan carbone",
+  },
+  {
+    image: Member6,
+    name: "Clemence",
+    describe: "milite pour le progrès sociale",
+  },
+  {
+    image: Member7,
+    name: "Camille",
+    describe: "fait déjà tout maison",
+  },
+  {
+    image: Member8,
+    name: "Carlos",
+    describe: "fait son ménage au naturel",
+  },
+  {
+    image: Member9,
+    name: "Hugues",
+    describe: "bénévole engagé",
+  },
+  {
+    image: Member10,
+    name: "Hugo",
+    describe: "coach de startups engagées",
   },
 ];
 
@@ -537,30 +579,15 @@ const LandingPage = () => {
         <>
           <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center relative">
             <div className="flex justify-center">
-              {communityMembers?.map(person => (
-                <div className="flex flex-col items-center ml-4 justify-center">
+              {communityMembers?.slice(0, 4).map(person => (
+                <div className="flex flex-col items-center justify-center">
                   <img
                     src={person.image}
-                    className="w-24 h-24 rounded-full object-cover"
+                    className="w-20 h-20 rounded-full object-cover"
                     alt={person.name}
                   />
                   <h4>{person.name}</h4>
-                  <h4 className="font-diy text-2xl">{person.describe}</h4>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center relative">
-            <div className="flex justify-center">
-              {communityMembers?.map(person => (
-                <div className="flex flex-col items-center ml-4 justify-center">
-                  <img
-                    src={person.image}
-                    className="w-24 h-24 rounded-full object-cover"
-                    alt={person.name}
-                  />
-                  <h4>{person.name}</h4>
-                  <h4 className="font-diy text-2xl">{person.describe}</h4>
+                  <h4 className="font-diy text-sm">{person.describe}</h4>
                 </div>
               ))}
             </div>
@@ -569,7 +596,7 @@ const LandingPage = () => {
       ) : (
         <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 text-center relative">
           <div className="flex justify-center">
-            {communityMembers?.map(person => (
+            {communityMembers?.slice(0, 6).map(person => (
               <div className="flex flex-col items-center ml-4 justify-center">
                 <img
                   src={person.image}

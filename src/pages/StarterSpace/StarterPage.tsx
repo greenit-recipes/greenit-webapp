@@ -271,7 +271,7 @@ const StarterPage = () => {
                 maintitle: "Bol en inox",
                 title: "Pour la cuisson au bain-marie",
                 subtitle:
-                  "Le bol permet de faire vos préparations avant de les verser dans les contenants. Certaines préparations nécessitent une chauffe au bain-marie, l’inox est donc idéal. Il permet une cuisson uniforme tout en étant facilement lavables.",
+                  "Le bol permet de faire vos préparations avant de les verser dans les contenants. Certaines préparations nécessitent une chauffe au bain-marie, l’inox est donc idéal.",
               },
               {
                 icon: Fouet,

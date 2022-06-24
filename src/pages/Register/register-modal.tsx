@@ -342,7 +342,6 @@ export const RegisterModal: React.FC<{
               <div className="flex flex-col w-2/4 ">
                 <div className="flex flex-col py-5 items-center transition border-2 shadow-lg cursor-pointer rounded-md h-34 border-darkBlue">
                   <div className="size-emoji-modal mb-8">🕵️‍♀️</div>
-
                   <div className="text-darkBlue">Explorateur</div>
                 </div>
                 <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
