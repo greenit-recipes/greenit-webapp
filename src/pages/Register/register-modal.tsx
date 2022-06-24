@@ -44,7 +44,7 @@ export const RegisterModal: React.FC<{
   loginOpen: any;
   enabledGif?: boolean;
   enabledSectionIcon?: boolean;
-}> = ({ loginOpen, enabledGif = true, enabledSectionIcon = true }) => {
+}> = ({ loginOpen, enabledGif = false, enabledSectionIcon = true }) => {
   const {
     register,
     handleSubmit,
@@ -270,78 +270,19 @@ export const RegisterModal: React.FC<{
     >
       <div className="flex flex-col items-center bg-white rounded-3xl">
         <div className="mb-4 text-xl font-bold text-center">
-          Créé ton espace DIY
+          Créer un compte
           <br />
         </div>
         <div>
           <p
             onClick={() => loginOpen(true)}
             id="modal-register-deja-un-compte"
-            className="mb-4 text-sm text-center text-blue underline cursor-pointer md:text-base"
+            className="mb-4 text-sm text-center text-darkBlue underline cursor-pointer md:text-base"
           >
             Déjà un compte ? Se connecter ici !
           </p>
         </div>
-        {enabledGif && (
-          <img
-            className="mr-2 w-60 h-70 "
-            src={gifModalProfil}
-            alt="gif email"
-          />
-        )}
-        {enabledSectionIcon && (
-          <>
-            <h2 className="mb-4 text-base md:text-lg">
-              Quel type de compte veux-tu créer ?
-            </h2>
-            <div className="flex flex-row w-5/6 gap-8 justify-evenly">
-              <div className="flex flex-col w-2/4 ">
-                <div className="flex flex-col items-center transition border-4 shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white border-blue">
-                  <div className="size-emoji-modal">🕵️‍♀️</div>
-                  <div className="mb-2">Explorateur</div>
-                </div>
-                <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
-                  Trouve de l’inspiration réalise tes recettes en toute
-                  simplicité !
-                </div>
-              </div>
-              <div className="flex flex-col w-2/4 ">
-                <Link
-                  to={RouteName.register}
-                  id="modal-register-createur"
-                  className="flex flex-col items-center transition border shadow-lg cursor-pointer rounded-xl h-34 hover:bg-grey hover:text-white"
-                >
-                  <div className="size-emoji-modal">🧑‍🎨</div>
-                  <div className="mb-2">Créateur</div>
-                </Link>
-
-                <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
-                  Partage tes créations avec la communauté !
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-
-        <div className="mb-4 lg:mb-1 mt-2">
-          <GoogleLogin
-            // @ts-ignore
-            clientId={process.env.REACT_APP_GOOGLE_ID}
-            buttonText="Login"
-            className="w-full"
-            onSuccess={responseGoogle}
-            onFailure={errorGoogle}
-            // @ts-ignore
-            buttonText={"Connexion avec Google"}
-            id="connexion-google-login"
-          />
-          {errorLoginGoogle && (
-            <div className="mt-6 text-xs italic text-red">
-              {errorLoginGoogle}
-            </div>
-          )}
-        </div>
-        <div className="mb-4 lg:mb-1 mt-2">
+        <div className="mb-4 w-10/12 lg:mb-1 mt-2">
           <FacebookLogin
             // @ts-ignore
             appId={process.env.REACT_APP_FACEBOOK_ID}
@@ -357,7 +298,7 @@ export const RegisterModal: React.FC<{
                   <BiLoaderAlt />
                 </div>
               ) : (
-                <IoLogoFacebook className="w-6 h-6 mr-4" />
+                <IoLogoFacebook className="w-6 h-6 ml-5 mr-10" />
               )
             }
           />
@@ -365,7 +306,68 @@ export const RegisterModal: React.FC<{
             <div className="mt-6 text-xs italic text-red">{errorLoginFb}</div>
           )}
         </div>
-        <div className="text-gray-700 separator md:m-4">Ou</div>
+        <div className="mb-4 w-10/12 lg:mb-1 mt-2">
+          <GoogleLogin
+            // @ts-ignore
+            clientId={process.env.REACT_APP_GOOGLE_ID}
+            buttonText="Login"
+            className="h-[30px] w-full text-center"
+            onSuccess={responseGoogle}
+            onFailure={errorGoogle}
+            // @ts-ignore
+            buttonText={"Connexion avec Google"}
+            id="connexion-google-login"
+          />
+          {errorLoginGoogle && (
+            <div className="mt-6 text-xs italic text-red">
+              {errorLoginGoogle}
+            </div>
+          )}
+        </div>
+
+        {enabledGif && (
+          <img
+            className="mr-2 w-60 h-70 "
+            src={gifModalProfil}
+            alt="gif email"
+          />
+        )}
+        <div className="w-full text-darkBlue-700 separator mb-5 md:m-4">OU</div>
+        {enabledSectionIcon && (
+          <>
+            <h2 className="mb-4 text-base text-darkBlue font-semibold md:text-lg">
+              Quel type de compte te correspond le mieux ?
+            </h2>
+            <div className="flex flex-row w-5/6 gap-8 justify-evenly">
+              <div className="flex flex-col w-2/4 ">
+                <div className="flex flex-col py-5 items-center transition border-2 shadow-lg cursor-pointer rounded-md h-34 border-darkBlue">
+                  <div className="size-emoji-modal mb-8">🕵️‍♀️</div>
+
+                  <div className="text-darkBlue">Explorateur</div>
+                </div>
+                <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
+                  Trouve de l’inspiration réalise tes recettes en toute
+                  simplicité !
+                </div>
+              </div>
+              <div className="flex flex-col w-2/4 ">
+                <Link
+                  to={RouteName.register}
+                  id="modal-register-createur"
+                  className="flex flex-col py-5 items-center transition shadow-lg cursor-pointer rounded-md h-34"
+                >
+                  <div className="size-emoji-modal mb-8">🧑‍🎨</div>
+                  <div className="">Créateur</div>
+                </Link>
+
+                <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
+                  Partage tes créations avec la communauté !
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
         <div className="w-10/12 lg:w-8/12">
           <form
             className="flex flex-col "
@@ -373,13 +375,9 @@ export const RegisterModal: React.FC<{
             onSubmit={handleSubmit(onSubmitHandler)}
           >
             <div className="flex flex-row items-center w-full mt-6 ">
-              <img
-                className="mr-2 md:w-6 md:h-6"
-                src={loginMail}
-                alt="icone email"
-              />
+              <i className="bx bx-envelope mr-2 text-darkBlue text-3xl"></i>
               <input
-                className="w-full px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-xl py-1 focus:outline-none focus:shadow-outline "
+                className="w-full h-10 px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline "
                 id="email"
                 placeholder="Email"
                 type="email"
@@ -389,13 +387,9 @@ export const RegisterModal: React.FC<{
             <p className="text-xs italic text-red">{errors.email?.message}</p>
 
             <div className="flex flex-row items-center w-full mt-6 ">
-              <img
-                className="mr-2 md:w-6 md:h-6"
-                src={userlogo}
-                alt="icone email"
-              />
+              <i className="bx bx-user mr-2 text-darkBlue text-3xl"></i>
               <input
-                className="w-full px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-xl py-1 focus:outline-none focus:shadow-outline "
+                className="w-full h-10 px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline "
                 id="utilisateur"
                 placeholder="Nom d'utilisateur"
                 type="text"
@@ -406,13 +400,9 @@ export const RegisterModal: React.FC<{
               {errors.utilisateur?.message}
             </p>
 
-            <div className="flex flex-row items-center w-full mt-6 ">
-              <img
-                className="mr-2 md:w-6 md:h-6"
-                src={loginPassword}
-                alt="icone mot de passe"
-              />
-              <div className="flex flex-row items-center w-full leading-tight text-gray-700 border shadow-lg rounded-xl focus:shadow-outline ">
+            <div className="flex flex-row items-center w-full mt-6">
+              <i className="bx bx-lock-alt mr-2 text-darkBlue text-3xl"></i>
+              <div className="flex flex-row items-center w-full h-10 leading-tight text-gray-700 border shadow-lg rounded-md focus:shadow-outline ">
                 <input
                   className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                   id="password"
@@ -433,12 +423,8 @@ export const RegisterModal: React.FC<{
             </div>
 
             <div className="flex flex-row items-center w-full mt-6">
-              <img
-                className="mr-2 md:w-6 md:h-6"
-                src={confirmpwd}
-                alt="icone mot de passe"
-              />
-              <div className="flex flex-row items-center w-full leading-tight text-gray-700 border shadow-lg rounded-xl focus:shadow-outline ">
+              <i className="bx bx-lock-open-alt mr-2 text-darkBlue text-3xl"></i>
+              <div className="flex flex-row items-center w-full h-10 leading-tight text-gray-700 border shadow-lg rounded-md focus:shadow-outline ">
                 <input
                   className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
                   id="passwordConfirmation"
@@ -465,7 +451,7 @@ export const RegisterModal: React.FC<{
                   <Select
                     {...field}
                     options={optionsUserCategoryLvl}
-                    className={`w-full shadow-lg`}
+                    className={`w-full shadow-lg text-darkBlue rounded-md border-1 border-darkBlue`}
                     placeholder="Qui es-tu ?"
                   />
                 )}
@@ -482,7 +468,7 @@ export const RegisterModal: React.FC<{
                   <Select
                     {...field}
                     options={optionsUserCategoryAge}
-                    className={`w-full shadow-lg `}
+                    className={`w-full shadow-lg text-darkBlue rounded-md border-1 border-darkBlue`}
                     placeholder="A quel groupe appartiens-tu ?"
                   />
                 )}
@@ -491,14 +477,14 @@ export const RegisterModal: React.FC<{
             <p className="text-xs italic text-red">
               {errors.userCategoryAge?.message}
             </p>
-            <div className="flex self-center w-full mt-6">
+            <div className="flex self-center w-full ml-10 mt-6">
               <input
                 type="checkbox"
-                className="w-6 h-6"
+                className="w-6 h-6 border border-darkBlue"
                 {...register("isFollowNewsletter")}
                 id="Modal-Register-is-Follow-Newsletter"
               />
-              <label className="self-center ml-2 text-sm text-gray-700">
+              <label className="self-center ml-2 text-sm text-darkBlue">
                 Coche la case si tu veux recevoir nos dernières actualités et
                 les tendances du secteur du DIY.
               </label>
