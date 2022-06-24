@@ -52,14 +52,16 @@ export const LikeField: React.FC<ILikeField> = ({
             }).then(() => (parentFunction ? parentFunction() : null));
           }}
         >
+          \
           <h2 className="flex self-center text-base lg:text-lg mr-1">
             {nbrLiked}
           </h2>
           {isLiked ? (
-            <i className="bx bxs-donate-heart flex self-center text-lg"></i>
+            <i className="bx bxs-donate-heart flex self-center text-blue text-lg"></i>
           ) : (
             <i className="bx bx-donate-heart flex self-center text-lg"></i>
           )}
+          1
         </button>
       ) : (
         <Suspense fallback={<Loading />}>
