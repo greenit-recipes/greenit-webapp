@@ -127,6 +127,18 @@ const LandingPage = () => {
     variables: { first: 8, filter: { tags: ["Premiers pas"] } },
   });
 
+  const { data: dataHome } = useRecipesQuery({
+    variables: { first: 8, filter: { category: ["Maison"] } },
+  });
+
+  const { data: dataHair } = useRecipesQuery({
+    variables: { first: 8, filter: { category: ["Cheveux"] } },
+  });
+
+  const { data: dataSearchMasque } = useRecipesQuery({
+    variables: { first: 8, filter: { search: "Masque" } },
+  });
+
   const { data: dataNbrLikes } = useRecipesQuery({
     variables: { first: 8, filter: { isOrderByNumberLike: true } },
   });
@@ -151,6 +163,9 @@ const LandingPage = () => {
     loadingFeature ||
     !dataIsDiplayHome ||
     !dataBegginer ||
+    !dataHome ||
+    !dataHair ||
+    !dataSearchMasque ||
     !dataNbrLikes ||
     !dataOutOfStock ||
     !dataFullXP
@@ -160,6 +175,9 @@ const LandingPage = () => {
 
   const recipes = dataIsDiplayHome.allRecipes?.edges || [];
   const recipesBegginer = dataBegginer.allRecipes?.edges || [];
+  const dataHomes = dataHome.allRecipes?.edges || [];
+  const dataHairs = dataHair.allRecipes?.edges || [];
+  const dataSearchMasques = dataSearchMasque.allRecipes?.edges || [];
   const recipesOrderByLikes = dataNbrLikes.allRecipes?.edges || [];
   const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {
     recipes: [],
@@ -396,7 +414,7 @@ const LandingPage = () => {
       </Container>
       <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
         <div className="flex w-max">
-          {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
+          {dataHomes?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
           <ExploreMore filter="category=Maison" />
@@ -497,7 +515,7 @@ const LandingPage = () => {
          | pt-9 text-center w-full"
       >
         <h2 className="text-2xl font-semibold mx-10 mb-5">
-          Derrière Greenit {isMobile && <br />} des passionées, des curieux,{" "}
+          Derrière Greenit {isMobile && <br />} des passionés, des curieux,{" "}
           {isMobile && <br />} des donateurs, des débutants. . .
         </h2>
       </Container>
@@ -695,7 +713,7 @@ const LandingPage = () => {
       </Container>
       <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
         <div className="flex w-max">
-          {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
+          {dataHairs?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
           <ExploreMore filter="category=Cheveux" />
@@ -715,7 +733,7 @@ const LandingPage = () => {
       </Container>
       <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
         <div className="flex w-max">
-          {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
+          {dataSearchMasques?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
           <ExploreMore filter="search=Masque" />

@@ -29,7 +29,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
         }}
       >
         <div className="flex items-center justify-between">
-          <div className="flex items-center justify-center h-12 py-2 px-4 text-center rounded-l-md bg-blueL">
+          <div className="flex items-center justify-center h-12 py-2 px-4 text-center rounded-l-md bg-blueL font-semibold">
             {data?.amount}
           </div>
           <img

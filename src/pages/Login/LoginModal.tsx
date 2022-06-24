@@ -250,7 +250,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                 </div>
               )}
             </div>
-            <div className="mb-4 w-[500px] lg:mb-1 mt-2">
+            <div className="mb-4 lg:mb-1 mt-2">
               <FacebookLogin
                 // @ts-ignore
                 appId={process.env.REACT_APP_FACEBOOK_ID}

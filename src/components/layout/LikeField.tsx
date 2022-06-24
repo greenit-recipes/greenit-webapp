@@ -65,13 +65,8 @@ export const LikeField: React.FC<ILikeField> = ({
         <Suspense fallback={<Loading />}>
           <ModalLogGreenit
             btn={
-              <div className="flex self-center w-6 h-6 lg:w-8 lg:h-8 mr-3">
-                <img
-                  src={clapIconOff}
-                  className="flex self-center w-6 h-6 lg:w-8 lg:h-8"
-                  alt="likes"
-                  loading="lazy"
-                />
+              <div className="flex self-center w-6 h-6 lg:w-8 lg:h-8">
+                <i className="bx bx-donate-heart flex self-center text-lg mr-1"></i>
                 <h2 className="flex self-center text-lg lg:text-lg">
                   {nbrLiked}
                 </h2>
