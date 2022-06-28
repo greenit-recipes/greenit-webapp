@@ -2,69 +2,177 @@
 import { clone, filter, includes } from "lodash";
 
 import {
-  Member1,
-  Member10,
-  Member2,
-  Member3,
-  Member4,
-  Member5,
-  Member6,
-  Member7,
-  Member8,
-  Member9,
+  annabelle,
+  andrea,
+  antoni,
+  angel,
+  nathalier,
+  carlos,
+  alice,
+  lea,
+  fanny,
+  florian,
+  jacques,
+  nathalies,
+  camille,
+  maries,
+  clemence,
+  anne,
+  jd,
+  mathilde,
+  hugues,
+  hugo,
+  jb,
+  emmanuelle,
+  tanguy,
+  vincent,
+  adrien,
+  zack,
+  aarnav,
+  domie,
 } from "icons";
 import { useEffect, useState } from "react";
 
 const communityMembers = [
   {
-    image: Member1,
-    name: "Andréa",
-    describe: "experte de DIY depuis 4 ans",
-  },
-  {
-    image: Member2,
-    name: "Adrien",
-    describe: "se nourrit des communautés engagées",
-  },
-  {
-    image: Member3,
-    name: "Florian",
-    describe: "cherche des produits sains et durables",
-  },
-  {
-    image: Member4,
-    name: "Zack",
-    describe: "membre de communauté de passionnés",
-  },
-  {
-    image: Member5,
+    image: annabelle,
     name: "Annabelle",
     describe: "soucieuse de mon bilan carbone",
   },
   {
-    image: Member6,
-    name: "Clemence",
-    describe: "milite pour le progrès sociale",
+    image: andrea,
+    name: "Andréa",
+    describe: "experte de DIY depuis 4 ans",
   },
   {
-    image: Member7,
-    name: "Camille",
-    describe: "fait déjà tout maison",
+    image: antoni,
+    name: "Antoni",
+    describe: "veut bousculer ses habitudes",
   },
   {
-    image: Member8,
+    image: angel,
+    name: "Angel",
+    describe: "cherche plus de sens à sa conso",
+  },
+  {
+    image: nathalier,
+    name: "Nathalie",
+    describe: "passionnée de fleur de Bach",
+  },
+  {
+    image: carlos,
     name: "Carlos",
     describe: "fait son ménage au naturel",
   },
   {
-    image: Member9,
+    image: alice,
+    name: "Alice",
+    describe: "assurément écolo",
+  },
+  {
+    image: lea,
+    name: "souhaite",
+    describe: "souhaite des produits plus naturels",
+  },
+  {
+    image: fanny,
+    name: "Fanny",
+    describe: "scanne ses produits du quotidien",
+  },
+  {
+    image: florian,
+    name: "Florian",
+    describe: "cherche des produits sains et durables",
+  },
+  {
+    image: jacques,
+    name: "Jacques",
+    describe: "engagé depuis le début",
+  },
+  {
+    image: nathalies,
+    name: "Nathalie",
+    describe: "aventurière engagée",
+  },
+  {
+    image: camille,
+    name: "Camille",
+    describe: "fait déjà tout maison",
+  },
+  {
+    image: maries,
+    name: "Marie",
+    describe: "adepte du minimalisme",
+  },
+  {
+    image: clemence,
+    name: "Clemence",
+    describe: "milite pour le progrès sociale",
+  },
+  {
+    image: anne,
+    name: "Anne",
+    describe: "cherche à en savoir plus sur sa conso",
+  },
+  {
+    image: jd,
+    name: "Jean-Denis",
+    describe: "sensible à l'impact sur sa santé",
+  },
+  {
+    image: mathilde,
+    name: "Mathilde",
+    describe: "sensible à son impact écologique",
+  },
+  {
+    image: hugues,
     name: "Hugues",
     describe: "bénévole engagé",
   },
   {
-    image: Member10,
+    image: hugo,
     name: "Hugo",
     describe: "coach de startups engagées",
+  },
+  {
+    image: jb,
+    name: "Jean-Baptiste",
+    describe: "donateur bourré d'idées",
+  },
+  {
+    image: emmanuelle,
+    name: "Emmanuelle",
+    describe: "favorise les circuits courts",
+  },
+  {
+    image: tanguy,
+    name: "Tanguy",
+    describe: "prône déjà le fait-maison ",
+  },
+  {
+    image: vincent,
+    name: "Vincent",
+    describe: "cherche des produits ultra-personnalisé",
+  },
+  {
+    image: adrien,
+    name: "Adrien",
+    describe: "se nourrit des communautés engagées",
+  },
+  {
+    image: zack,
+    name: "Zack",
+    describe: "membre de communauté de passionnés",
+  },
+  {
+    image: aarnav,
+    name: "Aarnav",
+    describe: "participe à un projet à impact",
+  },
+  {
+    image: domie,
+    name: "Domie",
+    describe: "veritable passionée depuis des années ",
   },
 ];
 
@@ -76,7 +184,7 @@ export const Community: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
   }
 
   function randomImage(element: any) {
-    const currentIndexNumberPhoto = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // 10 photos
+    const currentIndexNumberPhoto = [...Array(28).keys()]; // 28 photos
     const imgHired = filter(
       currentIndexNumberPhoto,
       (x: any) => !includes(element, x),
@@ -103,7 +211,7 @@ export const Community: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
     <div className="w-full pt-4 pl-4 pb-12 text-center">
       <div
         className={`justify-center ${
-          isMobile ? " grid grid-cols-2 justify-items-center" : "flex"
+          isMobile ? " grid grid-cols-2 justify-items-center" : "flex h-52"
         }`}
       >
         {communityMembers?.slice(0, 6).map((person, index) => (
