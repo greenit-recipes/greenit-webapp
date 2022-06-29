@@ -162,7 +162,7 @@ const communityMembers = [
   {
     image: zack,
     name: "Zack",
-    describe: "membre de communauté de passionnés",
+    describe: "entre membre de communauté passionés",
   },
   {
     image: aarnav,
