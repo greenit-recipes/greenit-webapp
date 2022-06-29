@@ -55,7 +55,7 @@ import commentaireIcon from "./commentaire_icon.png";
 import partageIcon from "./partage_icon.png";
 import bugIcon from "./bug_icon.png";
 import atelier from "./ateliers_icon.png";
-import defaultImageProfil from "./default_image_profile.svg";
+import defaultImageProfil from "./userdefaultbadge.svg";
 import PhotoAtelier from "./PhotoAtelier.png";
 
 // WORKSHOP & WHY IMAGE

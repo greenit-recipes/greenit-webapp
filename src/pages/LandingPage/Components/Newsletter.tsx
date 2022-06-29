@@ -39,7 +39,7 @@ export const Newsletter: React.FC = () => {
       itemsCenter
     >
       <h2 className="text-xl font-semibold mt-4">
-        Inscris toi à la newsletter pour découvrir {isMobile && <br></br>} des
+        Inscris-toi à la newsletter pour découvrir {isMobile && <br></br>} des
         astuces DIY {!isMobile && <br />} et être au courant des{" "}
         {isMobile && <br></br>} nouvelles recettes !
       </h2>

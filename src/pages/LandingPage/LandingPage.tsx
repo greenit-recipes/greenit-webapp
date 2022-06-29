@@ -150,16 +150,6 @@ const LandingPage = () => {
     return <Loading />;
   }
 
-  const highlighedRecipe = {
-    id: "8485c5ae-4175-474b-9107-9aa306874c5f",
-    image: "user/admin/recipe/lessive.jpeg",
-    difficulty: "BEGINNER",
-    name: "Lessive Express",
-    numberOfLikes: 5,
-    numberOfIngredients: 4,
-    isLikedByCurrentUser: false,
-    duration: 10,
-  };
   const recipes = dataIsDiplayHome.allRecipes?.edges || [];
   const recipesBegginer = dataBegginer.allRecipes?.edges || [];
   const dataHomes = dataHome.allRecipes?.edges || [];
@@ -507,7 +497,7 @@ const LandingPage = () => {
          | pt-9 text-center w-full"
       >
         <h2 className="text-2xl font-semibold mx-10 mb-5">
-          Derrière Greenit {isMobile && <br />} des passionés, des curieux,{" "}
+          Derrière Greenit {isMobile && <br />} des passionnés, des curieux,{" "}
           {isMobile && <br />} des donateurs, des débutants. . .
         </h2>
       </Container>

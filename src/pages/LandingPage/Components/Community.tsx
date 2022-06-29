@@ -107,7 +107,7 @@ const communityMembers = [
   {
     image: clemence,
     name: "Clemence",
-    describe: "milite pour le progrès sociale",
+    describe: "milite pour le progrès social",
   },
   {
     image: anne,
@@ -152,7 +152,7 @@ const communityMembers = [
   {
     image: vincent,
     name: "Vincent",
-    describe: "cherche des produits ultra-personnalisé",
+    describe: "cherche des produits ultra-personnalisés",
   },
   {
     image: adrien,
@@ -162,7 +162,7 @@ const communityMembers = [
   {
     image: zack,
     name: "Zack",
-    describe: "entre membre de communauté passionés",
+    describe: "membre de communautés de passionnés",
   },
   {
     image: aarnav,
@@ -172,7 +172,7 @@ const communityMembers = [
   {
     image: domie,
     name: "Domie",
-    describe: "veritable passionée depuis des années ",
+    describe: "véritable passionnée depuis des années",
   },
 ];
 

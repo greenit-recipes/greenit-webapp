@@ -86,7 +86,7 @@ const FindOutMoreBoxGreentilFullXP = () => {
                   {item.imgSrc.map(it => (
                     <img
                       loading="lazy"
-                      className="h-20 w-20 | ml-auto mr-auto | flex place-self-center rounded-full"
+                      className="h-20 w-20 | ml-auto mr-auto | flex place-self-center roundfed-full"
                       src={it}
                       alt={item.alt}
                     ></img>
