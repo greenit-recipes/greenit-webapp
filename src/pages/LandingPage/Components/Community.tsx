@@ -215,14 +215,18 @@ export const Community: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
         }`}
       >
         {communityMembers?.slice(0, 6).map((person, index) => (
-          <div className="flex flex-col items-center w-52 ml-4 justify-center">
+          <div
+            className={`flex flex-col items-center w-52 justify-center  ${
+              isMobile ? "mt-4" : "ml-4"
+            }`}
+          >
             <img
               src={communityMembers[numeros[index]].image}
               className="w-24 h-24 rounded-full object-cover"
               alt={communityMembers[numeros[index]].name}
             />
             <h4>{communityMembers[numeros[index]].name}</h4>
-            <h4 className="font-diy text-2xl">
+            <h4 className="font-diy leading-6 text-2xl">
               {communityMembers[numeros[index]].describe}
             </h4>
           </div>
