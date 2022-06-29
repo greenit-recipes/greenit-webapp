@@ -41,19 +41,19 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
 
       <div className="flex justify-evenly">
         <img
-          className="w-16 h-16 rounded-full"
+          className="w-16 h-16 rounded-full object-cover"
           alt={recipesBegginerFullXp[0]?.name}
           src={recipesBegginerFullXp[0]?.image}
           loading="lazy"
         />
         <img
-          className="w-16 h-16 rounded-full"
+          className="w-16 h-16 rounded-full object-cover"
           alt={recipesBegginerFullXp[1]?.name}
           src={recipesBegginerFullXp[1]?.image}
           loading="lazy"
         />
         <img
-          className="w-16 h-16 rounded-full"
+          className="w-16 h-16 rounded-full object-cover"
           alt={recipesBegginerFullXp[2]?.name}
           src={recipesBegginerFullXp[2]?.image}
           loading="lazy"
