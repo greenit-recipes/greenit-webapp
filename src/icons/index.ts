@@ -166,16 +166,35 @@ import cremeFullXp from "./image_box_DIY_6.jpeg";
 import rondIcon from "./rond-icon.svg";
 
 // Greenit Community members
-import Member1 from "./user_andrea.png";
-import Member2 from "./user_adrien.png";
-import Member3 from "./user_florian.png";
-import Member4 from "./user_zack.png";
-import Member5 from "./user_annabelle.png";
-import Member6 from "./user_clemence.png";
-import Member7 from "./user_camille.png";
-import Member8 from "./user_carlos.png";
-import Member9 from "./user_hugues.png";
-import Member10 from "./user_hugo.png";
+
+import annabelle from "./annabelle.png";
+import andrea from "./andrea.png";
+import antoni from "./antoni.png";
+import angel from "./angel.png";
+import nathalier from "./nathalier.png";
+import carlos from "./carlos.png";
+import alice from "./alice.png";
+import lea from "./lea.png";
+import fanny from "./fanny.png";
+import florian from "./florian.png";
+import jacques from "./jacques.png";
+import nathalies from "./nathalies.png";
+import camille from "./camille.png";
+import maries from "./maries.png";
+import clemence from "./clemence.png";
+import anne from "./anne.png";
+import jd from "./jd.png";
+import mathilde from "./mathilde.png";
+import hugues from "./hugues.png";
+import hugo from "./hugo.png";
+import jb from "./jb.png";
+import emmanuelle from "./emmanuelle.png";
+import tanguy from "./tanguy.png";
+import vincent from "./vincent.png";
+import adrien from "./adrien.png";
+import zack from "./zack.png";
+import aarnav from "./aarnav.png";
+import domie from "./domi.png";
 
 export {
   wellbeing,
@@ -310,14 +329,32 @@ export {
   TopImageDesktopLeft,
   TopImageDesktopRight,
   LPImage4Desktop,
-  Member1,
-  Member2,
-  Member3,
-  Member4,
-  Member5,
-  Member6,
-  Member7,
-  Member8,
-  Member9,
-  Member10,
+  annabelle,
+  andrea,
+  antoni,
+  angel,
+  nathalier,
+  carlos,
+  alice,
+  lea,
+  fanny,
+  florian,
+  jacques,
+  nathalies,
+  camille,
+  maries,
+  clemence,
+  anne,
+  jd,
+  mathilde,
+  hugues,
+  hugo,
+  jb,
+  emmanuelle,
+  tanguy,
+  vincent,
+  adrien,
+  zack,
+  aarnav,
+  domie,
 };

@@ -8,7 +8,6 @@ import React, { Suspense } from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-
 const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
 const ActivateAccount = React.lazy(() => import("pages/activate"));
 const ActivateResetPassword = React.lazy(

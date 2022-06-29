@@ -51,7 +51,7 @@ export const UserBadge: React.FC<IUserBadge> = ({
           src={normalImage ? normalImage : defaultImageProfil}
           alt="badge"
           loading="lazy"
-          className="rounded-full h-28 md:w-28 object-cover"
+          className="rounded-full h-28 w-28 md:w-24 md:h-24 object-cover"
         />
       )}
     </>
