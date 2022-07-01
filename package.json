@@ -72,6 +72,7 @@
     ]
   },
   "devDependencies": {
+    "@dreysolano/prerender-spa-plugin": "^1.0.3",
     "@graphql-codegen/cli": "^1.21.3",
     "@graphql-codegen/typescript-react-apollo": "^2.2.3",
     "@testing-library/jest-dom": "^5.11.4",
