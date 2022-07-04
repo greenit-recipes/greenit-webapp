@@ -71,7 +71,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   });
 
   const responseGoogle = (responseGoogle: any) => {
-    const variables: any = {
+    let variables: any = {
       email: responseGoogle?.profileObj.email,
       username: responseGoogle?.profileObj.name,
       password: process.env.REACT_APP_PASSWORD + responseGoogle?.profileObj.id,
@@ -82,7 +82,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     };
     //Add the field optionally to avoid defaults
     if (!persistBoxPurchaseOnRegister()) {
-      omit(variables, ["isBeginnerBox"]);
+      variables = omit(variables, ["isBeginnerBox"]);
     }
     // Error si pas d'email
 
@@ -150,7 +150,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   const location = useLocation();
 
   const responseFacebook = (responseFb: any) => {
-    const variables: any = {
+    let variables: any = {
       email: responseFb.email,
       username: responseFb.name,
       password: process.env.REACT_APP_PASSWORD + responseFb.id,
@@ -160,7 +160,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     };
     //Add the field optionally to avoid defaults
     if (!persistBoxPurchaseOnRegister()) {
-      omit(variables, ["isBeginnerBox"]);
+      variables = omit(variables, ["isBeginnerBox"]);
     }
     // Error si pas d'email
 

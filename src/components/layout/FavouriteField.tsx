@@ -41,36 +41,40 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
   return (
     <div className="grid justify-items-center">
       {isLoggedIn ? (
-        <button
-          className={isBtnDesing ? "btn-single-page" : ""}
-          onClick={() => {
-            if (!isRefetchData) setFavorite(!isFavorite);
-            // @ts-ignore: Object is possibly 'null'.
-            addOrRemoveFavoriteRecipe({
-              variables: {
-                recipeId: recipe?.id,
-              },
-            }).then(() => {
-              return parentFunction ? parentFunction() : null;
-            });
-          }}
-        >
+        <div>
           {isFavorite ? (
             <div
               className={`tooltip justify-items-center ${
                 customClassName ? customClassName : "grid"
               }`}
             >
-              <img
-                className="w-10 h-10"
-                alt="like button"
-                src={likedIconOn}
-                loading="lazy"
-              />
-              {isToltipActif ? (
-                <span className="tooltiptext">Retirer des favoris</span>
-              ) : (
-                <div className="flex flex-col justify-center">favoris</div>
+              <Button
+                id="favorite"
+                type="darkBlue"
+                rounded="lg"
+                haveIcon={true}
+                className="mr-1"
+                onClick={() => {
+                  if (!isRefetchData) setFavorite(!isFavorite);
+                  // @ts-ignore: Object is possibly 'null'.
+                  addOrRemoveFavoriteRecipe({
+                    variables: {
+                      recipeId: recipe?.id,
+                    },
+                  }).then(() => {
+                    return parentFunction ? parentFunction() : null;
+                  });
+                }}
+              >
+                <i
+                  className={`bx bxs-bookmark-heart bx-sm ${
+                    !isToltipActif ? "" : ""
+                  }`}
+                ></i>
+                {!isToltipActif && "favoris"}
+              </Button>
+              {isToltipActif && (
+                <span className="tooltiptext mt-1">Retirer des favoris</span>
               )}
             </div>
           ) : (
@@ -79,20 +83,37 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 customClassName ? customClassName : "grid"
               }`}
             >
-              <img
-                className="w-10 h-10"
-                alt="dislike button"
-                src={likedIconOff}
-                loading="lazy"
-              />
-              {isToltipActif ? (
-                <span className="tooltiptext">Ajouter aux favoris</span>
-              ) : (
-                <div className="flex flex-col justify-center">favoris</div>
+              <Button
+                id="favorite"
+                type="darkBlue"
+                rounded="lg"
+                haveIcon={true}
+                className="mr-1"
+                onClick={() => {
+                  if (!isRefetchData) setFavorite(!isFavorite);
+                  // @ts-ignore: Object is possibly 'null'.
+                  addOrRemoveFavoriteRecipe({
+                    variables: {
+                      recipeId: recipe?.id,
+                    },
+                  }).then(() => {
+                    return parentFunction ? parentFunction() : null;
+                  });
+                }}
+              >
+                <i
+                  className={`bx bx-bookmark-heart bx-sm ${
+                    isToltipActif ? "" : ""
+                  }`}
+                ></i>
+                {!isToltipActif && "favoris"}
+              </Button>
+              {isToltipActif && (
+                <span className="tooltiptext mt-1">Retirer des favoris</span>
               )}
             </div>
           )}
-        </button>
+        </div>
       ) : (
         <div>
           {" "}

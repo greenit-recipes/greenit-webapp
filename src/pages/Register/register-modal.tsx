@@ -120,7 +120,7 @@ export const RegisterModal: React.FC<{
   }, []);
 
   const responseGoogle = (responseGoogle: any) => {
-    const variables: any = {
+    let variables: any = {
       email: responseGoogle?.profileObj.email,
       username: responseGoogle?.profileObj.name,
       password: process.env.REACT_APP_PASSWORD + responseGoogle?.profileObj.id,
@@ -131,7 +131,7 @@ export const RegisterModal: React.FC<{
     };
     //Add the field optionally to avoid defaults
     if (!persistBoxPurchaseOnRegister()) {
-      omit(variables, ["isBeginnerBox"]);
+      variables = omit(variables, ["isBeginnerBox"]);
     }
     // Error si pas d'email
 
@@ -172,7 +172,7 @@ export const RegisterModal: React.FC<{
     };
     //Add the field optionally to avoid defaults
     if (!persistBoxPurchaseOnRegister()) {
-      omit(variables, ["isBeginnerBox"]);
+      variables = omit(variables, ["isBeginnerBox"]);
     }
     // Error si pas d'email
 
@@ -247,7 +247,7 @@ export const RegisterModal: React.FC<{
       isBeginnerBox: true,
     };
     //Add the field optionally to avoid defaults
-    if (persistBoxPurchaseOnRegister()) {
+    if (!persistBoxPurchaseOnRegister()) {
       omit(variables, ["isBeginnerbox"]);
     }
 
