@@ -110,6 +110,7 @@
     "install": "^0.13.0",
     "lint-staged": "^12.4.2",
     "postcss": "^8.4.14",
+    "prerender-spa-plugin": "^3.4.0",
     "prettier": "^2.6.2",
     "react-app-rewired": "^2.2.1",
     "tailwindcss": "^3.0.24",

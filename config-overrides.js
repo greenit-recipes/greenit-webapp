@@ -8,7 +8,7 @@ module.exports = override(
   disableEsLint(),
   // addWebpackPlugin(new BundleAnalyzerPlugin()),
   addWebpackPlugin(new PrerenderSPAPlugin({
-    routes: ['/', '/recettes/deodorant-solide-facile'],
+    routes: ['/', '/recettes','/recettes/deodorant-solide-facile','/recettes/serum-hydratant-naturel-a-laloe-vera'],
     staticDir: path.join(__dirname, 'build'),
     renderer: new Renderer({
       renderAfterTime: 5000
