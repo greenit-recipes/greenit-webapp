@@ -236,7 +236,7 @@ export const RegisterModal: React.FC<{
     const getValue = (field: any) => field.value;
     const setValue = (object: any, field: any, value: any) =>
       (object[field] = value);
-    const variables = {
+    let variables: any = {
       email: data.email,
       username: data.utilisateur,
       password1: data.password,
@@ -248,7 +248,7 @@ export const RegisterModal: React.FC<{
     };
     //Add the field optionally to avoid defaults
     if (!persistBoxPurchaseOnRegister()) {
-      omit(variables, ["isBeginnerbox"]);
+      variables = omit(variables, ["isBeginnerBox"]);
     }
 
     authService.removeToken();
