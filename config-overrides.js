@@ -165,8 +165,14 @@ module.exports = override(
     staticDir: path.join(__dirname, 'build'),
     renderer: new Renderer({
       renderAfterTime: 3000,
-      maxConcurrentRoutes: 6,
-      timeout: 60000
+      timeout: 60000,
+      injectProperty: "__PRERENDER_INJECTED",
+      inject: {
+        prerendered: false,
+      },
+      headless: true,
+      ignoreHTTPSErrors: true,
+      maxConcurrentRoutes: 4,
     }),
   })),
   //Babel Plugins
