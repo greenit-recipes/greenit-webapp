@@ -1,7 +1,7 @@
 const fs = require('fs');
 const fetch = require("node-fetch").default;
 
-async function generateSitemap() {
+async function generatePrerenderedHTML() {
   try {
 
     fetch('https://greenitcommunity.com/graphql/', {

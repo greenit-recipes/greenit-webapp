@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-export const CookieBanner = () => {
+export const CookieBanner: React.FC = () => {
   const [hidden, setHidden] = useState(
     localStorage.getItem("cookies") === "true" || false,
   );
@@ -15,7 +15,7 @@ export const CookieBanner = () => {
       <div
         className={` ${
           hidden && "hidden"
-        } z-10 flex flex-col items-center fixed bg-white w-[95%] h-40 md:h-50
+        } z-50 flex flex-col items-center fixed bg-white w-[95%] h-40 md:h-50
        md:w-[500px] left-3 md:left-6 bottom-7 p-5 text-center rounded-2xl shadow-md`}
       >
         <span className="text-[#192A51] text-sm md:text-lg font-semibold mb-3">
