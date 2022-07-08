@@ -160,7 +160,7 @@ const recettes = [
 module.exports = override(
   disableEsLint(),
   // addWebpackPlugin(new BundleAnalyzerPlugin()),
-  addWebpackPlugin(new PrerenderSPAPlugin({
+  process.env.NODE_ENV === "production" && addWebpackPlugin(new PrerenderSPAPlugin({
     routes: ['/', '/recettes'].concat(recettes),
     staticDir: path.join(__dirname, 'build'),
     renderer: new Renderer({
@@ -183,7 +183,7 @@ module.exports = override(
         "preventFullImport": true
       }
     }]),
-  addBabelPlugin([
+  process.env.NODE_ENV === "production" && addBabelPlugin([
     "transform-react-remove-prop-types",
     {
       "removeImport": true
