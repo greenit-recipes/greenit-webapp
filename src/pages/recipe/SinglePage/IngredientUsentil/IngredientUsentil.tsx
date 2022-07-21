@@ -1,8 +1,9 @@
 import { IconNbrIngredient } from "components/misc/IconNbrIngredient";
-import { useState } from "react";
+import React, { useState } from "react";
 import { SectionIngredient } from "./SectionIngredient";
 import { SectionUstensil } from "./SectionUsentil";
 import { GiForkKnifeSpoon } from "react-icons/gi";
+import { Button } from "../../../../components";
 
 interface IIngredientUsentil {
   recipe: any;
@@ -10,6 +11,7 @@ interface IIngredientUsentil {
 
 export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
   const [isIngredientSelected, setIngredientSelected] = useState(true);
+  const [isBulkLDCActive, setIsBulkLDCActive] = useState(false);
 
   return (
     <div className="flex items-center mt-12 mb-12">
@@ -56,6 +58,28 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
               <SectionUstensil data={item} key={index} />
             </div>
           ))}
+        </div>
+        <div className="flex items-center justify-end space-x-2 md:space-x-4 | mt-5">
+          <span className="text-sm font-normal">
+            {isBulkLDCActive ? "Retirer tout de " : "Ajouter tout à "}ma liste
+            de course
+          </span>
+          <Button
+            className={`px-4 mr-3 shadow-md ${
+              isBulkLDCActive && "border-blue"
+            } hover:text-blue active:border-blue active:bg-white`}
+            haveIcon={true}
+            type="darkBlueIcon"
+            onClick={() => {
+              setIsBulkLDCActive(!isBulkLDCActive);
+            }}
+          >
+            <i
+              className={`bx bx-cart-download ${
+                isBulkLDCActive ? "text-blue" : "text-darkBlue"
+              }  text-2xl`}
+            ></i>
+          </Button>
         </div>
       </div>
     </div>

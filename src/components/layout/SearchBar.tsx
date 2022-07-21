@@ -24,6 +24,7 @@ export const SearchBar: React.FC<{
   suggestionIsActive?: boolean;
   isLoading?: boolean;
   hideSearchIcon?: boolean;
+  placeholder?: string;
 }> = ({
   size = "large",
   value = "",
@@ -35,6 +36,7 @@ export const SearchBar: React.FC<{
   onSubmit,
   hideSearchIcon,
   keyId = "search",
+  placeholder = "Je cherche une recette, un ingrédient...",
 }) => {
   const isLarge = size === "large";
   const history = useHistory();
@@ -217,7 +219,7 @@ export const SearchBar: React.FC<{
         onFocus={event => {
           event.target.setAttribute("autocomplete", "off");
         }}
-        placeholder="Je cherche une recette, un ingrédient..."
+        placeholder={placeholder}
         id={keyId}
         value={input}
         onChange={onChange}

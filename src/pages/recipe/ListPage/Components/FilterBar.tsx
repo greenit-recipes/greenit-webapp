@@ -92,7 +92,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           setCurrentFilters={setCurrentFilters}
         />
       ) : (
-        <div className="grid w-full bg-white justify-items-start lg:justify-items-center">
+        <div className="grid w-full bg-greenL justify-items-start lg:justify-items-center">
           <div
             className={
               isMobile

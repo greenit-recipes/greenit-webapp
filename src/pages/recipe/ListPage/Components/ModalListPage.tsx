@@ -10,20 +10,22 @@ interface IModalListPage {
 export const ModalListPage: React.FC<IModalListPage> = props => {
   return (
     <>
-      <Button
-        className="ease-linear transition-all duration-150 mt-2 w-4/5 h-8 rounded"
-        type="darkBlue"
+      <div
+        className="flex items-center text-center mt-2 space-x-2 | font-medium"
         onClick={() => props.parentFunction(true)}
       >
-        {props.nbrFilter === 0 ? (
-          <span>Ajouter un filtre</span>
-        ) : (
-          <span>
-            {" "}
-            Filtre{props.nbrFilter > 1 ? "s" : ""} ({props.nbrFilter}){" "}
-          </span>
-        )}
-      </Button>
+        <i className="bx bx-filter-alt text-xl"></i>
+        <div className="underline">
+          {props.nbrFilter === 0 ? (
+            <span>Ajouter des filtres</span>
+          ) : (
+            <span>
+              {" "}
+              Filtre{props.nbrFilter > 1 ? "s" : ""} ({props.nbrFilter}){" "}
+            </span>
+          )}
+        </div>
+      </div>
       {props.isShowModal ? (
         <>
           <Button

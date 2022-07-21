@@ -10,6 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useHistory } from "react-router-dom";
 import {
   BackgroundImage,
+  Button,
   Empty,
   Footer,
   Loading,
@@ -21,8 +22,19 @@ import useIsMobile from "../../../hooks/isMobile";
 import { scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
+import ModalPersonalization from "../../../components/personalization/ModalPersonalization";
+import ModalIngredientSearch from "../../../components/personalization/ModalIngredientSearch";
+import ModalPersonalizationInfo from "../../../components/personalization/ModalPersonalizationInfo";
+import SectionPersonalization from "../../../components/personalization/sections/SectionPersonalization";
+import SectionICM from "../../../components/personalization/sections/SectionICM";
 
 const RecipeListPage = () => {
+  //Personalization
+  const [isParticularityActive, setIsParticularityActive] = useState(false);
+  const [isICMActive, setIsICMActive] = useState(false);
+
+  //End Personalization
+
   const cleanDataPlayload = (filter: any) =>
     mapValues(filter, function (value, key) {
       if (key === "search") return value;
@@ -165,67 +177,143 @@ const RecipeListPage = () => {
           content="Découvrez nos recettes 100 % naturelles partagées par la communauté : cosmétique maison, produits ménagers, produit bien-être, santé, maquillage. Fabriquez vos produits d’hygiène !"
         />
       </Helmet>
-      {!isMobile && (
-        <>
-          <FilterBar
-            recipesAutoComplete={recipesAutoComplete}
-            setSearch={setSearchTermDebounced}
-            search={searchTerm}
-            filter={filterData}
-            currentFilters={currentFilters}
-            setCurrentFilters={setCurrentFilters}
-            isMobile={isMobile}
-            toggle={toggle}
-            setScrollOffset={setScrollOffset}
-          />
-        </>
-      )}
+      <div className="bg-greenL pt-5">
+        {/*Personalization section*/}
 
-      {isMobile && (
-        <div className="z-30 grid py-2 bg-white justify-items-center">
-          <div className="self-center w-4/5">
-            <FilterBar
-              isOnlyForSearch={true}
-              recipesAutoComplete={recipesAutoComplete}
-              search={searchTerm}
-              setSearch={setSearchTermDebounced}
-              filter={filterData}
-              currentFilters={currentFilters}
-              setCurrentFilters={setCurrentFilters}
-              isMobile={isMobile}
-              toggle={toggle}
-              setScrollOffset={setScrollOffset}
-            />
-          </div>
-          {searchText && searchText.length && (
-            <div className="w-4/5 mt-4 border-b-1 pb-2">
-              <p className="text-sm font-bold mb-1">
-                Résultat pour "{searchText}"
-              </p>
-            </div>
-          )}
-          <ModalListPage
-            nbrFilter={nbrFilter}
-            isShowModal={isShowModal}
-            parentFunction={setIsShowModal}
+        <div className="flex justify-center ">
+          <Button
+            className="px-4 py-1 mr-3 mb-4 shadow-md"
+            haveIcon={true}
+            onClick={() => {
+              setIsParticularityActive(!isParticularityActive);
+              isICMActive && setIsICMActive(!isICMActive);
+            }}
+            type="green"
           >
+            <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
+            Mes particularités
+          </Button>
+          <Button
+            className="mr-3 mb-4 shadow-md"
+            haveIcon={true}
+            onClick={() => {
+              setIsICMActive(!isICMActive);
+              isParticularityActive &&
+                setIsParticularityActive(!isParticularityActive);
+            }}
+            type="darkBlue"
+          >
+            <i className="bx bx-lemon text-2xl mt-0.5 mr-2"></i>
+            Ingrédients chez moi
+          </Button>
+        </div>
+
+        {/*Paritucularities*/}
+        {isParticularityActive && <SectionPersonalization />}
+
+        {/*ICM*/}
+        {isICMActive && <SectionICM />}
+
+        {/*End Personalization section*/}
+
+        {!isMobile && (
+          <>
             <FilterBar
-              filter={filterData}
               recipesAutoComplete={recipesAutoComplete}
-              search={searchTerm}
               setSearch={setSearchTermDebounced}
+              search={searchTerm}
+              filter={filterData}
               currentFilters={currentFilters}
               setCurrentFilters={setCurrentFilters}
               isMobile={isMobile}
               toggle={toggle}
               setScrollOffset={setScrollOffset}
             />
-          </ModalListPage>
-        </div>
-      )}
-      <div className="flex justify-center">
+          </>
+        )}
+
+        {isMobile && (
+          <div className="z-30 grid py-2 justify-items-center">
+            <div className="self-center w-4/5">
+              <FilterBar
+                isOnlyForSearch={true}
+                recipesAutoComplete={recipesAutoComplete}
+                search={searchTerm}
+                setSearch={setSearchTermDebounced}
+                filter={filterData}
+                currentFilters={currentFilters}
+                setCurrentFilters={setCurrentFilters}
+                isMobile={isMobile}
+                toggle={toggle}
+                setScrollOffset={setScrollOffset}
+              />
+            </div>
+            {searchText && searchText.length && (
+              <div className="w-4/5 mt-4 border-b-1 pb-2">
+                <p className="text-sm font-bold mb-1">
+                  Résultat pour "{searchText}"
+                </p>
+              </div>
+            )}
+            <ModalListPage
+              nbrFilter={nbrFilter}
+              isShowModal={isShowModal}
+              parentFunction={setIsShowModal}
+            >
+              <FilterBar
+                filter={filterData}
+                recipesAutoComplete={recipesAutoComplete}
+                search={searchTerm}
+                setSearch={setSearchTermDebounced}
+                currentFilters={currentFilters}
+                setCurrentFilters={setCurrentFilters}
+                isMobile={isMobile}
+                toggle={toggle}
+                setScrollOffset={setScrollOffset}
+              />
+            </ModalListPage>
+          </div>
+        )}
+      </div>
+
+      <div className="flex justify-center bg-white recipe-list">
         <div className="h-auto max-w-7xl justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
+          {/*Recommended Recipes*/}
+          <div className="mt-2">
+            <div className="flex text-center justify-center space-x-2 md:mb-5">
+              <h3 className="text-2xl font-normal">Recettes pour vous</h3>
+              <ModalPersonalizationInfo
+                btn={
+                  <i className="bx bx-info-circle hover:text-blue text-2xl mt-1 cursor-pointer"></i>
+                }
+              ></ModalPersonalizationInfo>
+            </div>
+            {isMobile ? (
+              <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
+                {recipes?.slice(0, 4).map(recipe => {
+                  return (
+                    <div key={recipe?.node?.id}>
+                      <RecipeCard recipe={recipe?.node} />
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
+                <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
+                  {recipes?.slice(0, 4).map(recipe => (
+                    <div key={recipe?.node?.id}>
+                      <RecipeCard recipe={recipe?.node} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
           {/* to refacto infinite scroll*/}
+          <h3 className="text-2xl text-center font-normal | mt-12 md:mb-5">
+            Découvrir d’autres recettes
+          </h3>
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
             hasMore={hasMore}
@@ -234,7 +322,7 @@ const RecipeListPage = () => {
             endMessage={
               recipes?.length > 0 && (
                 <div className="font-light text-center">
-                  <div>Tu as tout vu ! </div>
+                  <div>Tu as tout vu !</div>
                 </div>
               )
             }

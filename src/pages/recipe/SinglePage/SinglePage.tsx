@@ -115,6 +115,7 @@ const RecipeSinglePage = () => {
   };
 
   const isMobile = useIsMobile();
+  const [isSeeMoreActive, setIsSeeMoreActive] = useState(!isMobile);
 
   useEffect(() => {
     const timeoutID = window.setInterval(() => {
@@ -157,6 +158,7 @@ const RecipeSinglePage = () => {
     return <Loading />;
   }
   const { recipe } = data;
+  // @ts-ignore
   return (
     <>
       <HelmetRecipe recipe={recipe} />
@@ -287,106 +289,138 @@ const RecipeSinglePage = () => {
               )}
               {/* Description + image */}
               <div className="flex flex-col mt-8 lg:flex-row md">
-                <img
-                  // @ts-ignore
-                  src={getImagePath(recipe?.image)}
-                  alt={recipe?.name}
-                  loading="lazy"
-                  className="object-cover h-64 m-auto w-52 lg:w-64 lg:h-80 rounded-3xl"
-                />
-                {isMobile && (
-                  <div className="flex items-center justify-center mt-8">
-                    <div
-                      className="cursor-pointer"
-                      onClick={() => {
-                        setTypeModal("substance");
-                        setNumberModal(recipe?.substances?.length || 0);
-                        setShowModal(true);
-                      }}
-                    >
-                      <CircleGreenit
-                        colorCircle="bg-blue"
-                        icon={
-                          <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
-                        }
-                        symbol=""
-                        number={recipe?.substances?.length}
-                        text="Substances épargnées"
-                      />
+                <div className="flex w-full">
+                  <img
+                    // @ts-ignore
+                    src={getImagePath(recipe?.image)}
+                    alt={recipe?.name}
+                    loading="lazy"
+                    className="object-cover h-80 m-auto w-52 lg:w-64 lg:h-80 rounded-3xl"
+                  />
+                  {isMobile && (
+                    <div className="flex flex-col items-center justify-center mx-7 space-y-4 mt-8">
+                      <div
+                        className="cursor-pointer"
+                        onClick={() => {
+                          setTypeModal("substance");
+                          setNumberModal(recipe?.substances?.length || 0);
+                          setShowModal(true);
+                        }}
+                      >
+                        <CircleGreenit
+                          colorCircle="bg-blue"
+                          icon={
+                            <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
+                          }
+                          symbol=""
+                          number={recipe?.substances?.length}
+                          text="Substances épargnées"
+                          textWidth="w-16"
+                        />
+                      </div>
+                      <div
+                        className="cursor-pointer"
+                        onClick={() => {
+                          setTypeModal("money");
+                          setNumberModal(recipe?.moneySaved || 0);
+                          setShowModal(true);
+                        }}
+                      >
+                        <CircleGreenit
+                          colorCircle="bg-yellow"
+                          icon={
+                            <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
+                          }
+                          symbol="€"
+                          number={recipe?.moneySaved}
+                          text="Argent économisé"
+                          textWidth="w-16"
+                        />
+                      </div>{" "}
+                      <div
+                        className="cursor-pointer"
+                        onClick={() => {
+                          setTypeModal("plastic");
+                          setNumberModal(recipe?.plasticSaved || 0);
+                          setShowModal(true);
+                        }}
+                      >
+                        <CircleGreenit
+                          colorCircle="bg-green"
+                          icon={
+                            <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
+                          }
+                          symbol="g"
+                          number={recipe?.plasticSaved}
+                          text="Plastiques évités"
+                          textWidth="w-16"
+                        />
+                      </div>
                     </div>
-                    <div
-                      className="cursor-pointer"
-                      onClick={() => {
-                        setTypeModal("money");
-                        setNumberModal(recipe?.moneySaved || 0);
-                        setShowModal(true);
-                      }}
-                    >
-                      <CircleGreenit
-                        colorCircle="bg-yellow"
-                        icon={
-                          <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
-                        }
-                        customClassName="ml-16"
-                        symbol="€"
-                        number={recipe?.moneySaved}
-                        text="Argent économisé"
-                      />
-                    </div>{" "}
-                    <div
-                      className="cursor-pointer"
-                      onClick={() => {
-                        setTypeModal("plastic");
-                        setNumberModal(recipe?.plasticSaved || 0);
-                        setShowModal(true);
-                      }}
-                    >
-                      <CircleGreenit
-                        colorCircle="bg-green"
-                        icon={
-                          <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
-                        }
-                        customClassName="ml-16"
-                        symbol="g"
-                        number={recipe?.plasticSaved}
-                        text="Plastiques évités"
-                      />
-                    </div>
-                  </div>
-                )}
+                  )}
+                </div>
+
                 {isMobile && <h2 className="mt-8 text-xl">Description</h2>}
 
                 <div className="flex flex-col mt-5 lg:ml-12">
                   {!isEmpty(recipe?.description) ? (
                     <div className="w-full lg:w-5/6">
                       {
+                        //Todo (zack): Find a better Regex pattern
                         // @ts-ignore: Object is possibly 'null'.
-                        recipe && HTMLReactParser(recipe?.description)
+                        // !isSeeMoreActive
+                        //   ? (recipe &&
+                        //     HTMLReactParser(recipe?.description)
+                        //       .toString()
+                        //       .match(/,\n[A-Za-z](.*?),\[/)[0]
+                        //       .replace(/[\n,]/, "")
+                        //       .slice(0, 30) + "...")
+                        //   : HTMLReactP arser(recipe?.description)
+                        HTMLReactParser(recipe?.description)
                       }
                     </div>
                   ) : (
                     ""
                   )}
-                  <div className="pt-5 pb-2 fontQSemibold ">Conservation</div>
-                  <p>{recipe?.expiry}</p>
-                  <div className="flex mt-6 black">
-                    <div className="h-16">
-                      <div className="mt-1 mb-1 text-center">Temps</div>
-                      <div className="flex items-center justify-center">
-                        <i className="bx bxs-hourglass bx-sm  mr-2"></i>
-                        <div>{recipe?.duration} m</div>
+                  {isSeeMoreActive && (
+                    <>
+                      <div className="pt-5 pb-2 fontQSemibold ">
+                        Conservation
                       </div>
-                    </div>
-                    <div className="px-1.5 h-16 ml-6">
-                      <div className="mt-1 mb-1 text-center">Prix</div>
-                      <div className="flex items-center justify-center">
-                        <i className="bx bx-coin bx-sm mr-2"></i>
-                        <div>
-                          {recipe?.priceMin} € - {recipe?.priceMax} €
+                      <p>{recipe?.expiry}</p>
+                      <div className="flex mt-6 black">
+                        <div className="h-16">
+                          <div className="mt-1 mb-1 text-center">Temps</div>
+                          <div className="flex items-center justify-center">
+                            <i className="bx bxs-hourglass bx-sm  mr-2"></i>
+                            <div>{recipe?.duration} m</div>
+                          </div>
+                        </div>
+                        <div className="px-1.5 h-16 ml-6">
+                          <div className="mt-1 mb-1 text-center">Prix</div>
+                          <div className="flex items-center justify-center">
+                            <i className="bx bx-coin bx-sm mr-2"></i>
+                            <div>
+                              {recipe?.priceMin} € - {recipe?.priceMax} €
+                            </div>
+                          </div>
                         </div>
                       </div>
+                    </>
+                  )}
+                  {isMobile && (
+                    <div className="flex justify-center | mt-4">
+                      <Button
+                        className="mb-4 w-24 shadow-md"
+                        onClick={() => {
+                          setIsSeeMoreActive(!isSeeMoreActive);
+                        }}
+                        type="darkBlue"
+                      >
+                        voir {!isSeeMoreActive ? " plus" : " moins"}
+                      </Button>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
