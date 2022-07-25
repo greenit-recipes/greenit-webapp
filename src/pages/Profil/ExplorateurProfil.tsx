@@ -62,7 +62,14 @@ export const ExplorateurProfil: React.FC<IUser> = ({
   return (
     <div className="flex flex-col items-center mb-14">
       <div className="w-full lg:w-4/6">
-        <div className="text-xl font-semibold text-center">Ton impact</div>
+        <div className="w-full flex flex-col items-center justify-center | mb-4">
+          <div className="w-full flex items-center justify-center space-x-2">
+            <h2 className="text-xl font-semibold">Mon impact</h2>
+          </div>
+          <span className="text-2xl font-diy">
+            Calcule ton impact en ajoutant tes recettes faites !
+          </span>
+        </div>
         <div className="flex items-center justify-center">
           <Button
             id="Share_a_recipe"

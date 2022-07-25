@@ -19,6 +19,17 @@ import "./Profil.css";
 import Modal from "components/layout/Modal/Modal";
 import { ModalProfil } from "pages/Profil/ModalProfil";
 import { ProfilGreenitFullXp } from "pages/Profil/ProfilGreenitFullXp";
+import ModalPersonalization from "../../components/personalization/ModalPersonalization";
+import ModalIngredientSearch from "../../components/personalization/ModalIngredientSearch";
+import SectionICM from "../../components/personalization/sections/SectionICM";
+import SectionPersonalization from "../../components/personalization/sections/SectionPersonalization";
+import { useRecipesQuery } from "../../graphql";
+import { ExploreMore } from "../../components/recipe/ExploreMore";
+import { SectionIngredient } from "../recipe/SinglePage/IngredientUsentil/SectionIngredient";
+import { LDCIngredients } from "../../components/personalization/PersonalizationHelper";
+import TabPersonalization from "./Tabs/TabPersonalization";
+import TabICM from "./Tabs/TabICM";
+import TabLDC from "./Tabs/TabLDC";
 
 const ProfilPage: React.FC = () => {
   useEffect(() => {
@@ -60,9 +71,27 @@ const ProfilPage: React.FC = () => {
 
   const [visible, setVisible] = React.useState(false);
 
-  if (loading || !data) {
+  //Tabs
+  const [isDashboardActive, setIsDashboardActive] = useState(true);
+  const [isParticularitiesActive, setIsParticularitiesActive] = useState(false);
+  const [isICMActive, setIsICMActive] = useState(false);
+  const [isLDCActive, setIsLDCActive] = useState(false);
+
+  //User items
+  const [hasParticularities, setHasParticularities] = useState(false);
+  const [hasICM, setHasICM] = useState(false);
+  const [hasLDC, setHasLDC] = useState(false);
+
+  //Recommended Recipes
+  const { data: dataHome } = useRecipesQuery({
+    variables: { first: 8, filter: { category: ["Maison"] } },
+  });
+
+  if (loading || !data || !dataHome) {
     return <Loading />;
   }
+
+  const dataHomes = dataHome.allRecipes?.edges || [];
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -75,7 +104,7 @@ const ProfilPage: React.FC = () => {
         />
       </Helmet>
 
-      <div className="fixed z-0 grid w-full pb-28 justify-items-center bgColorHeaderProfil">
+      <div className="fixed z-0 grid w-full pb-28 space-y-4 justify-items-center bgColorHeaderProfil">
         <div className="flex space-x-4 md:space-x-10 mt-20">
           <div
             className="absolute w-32 h-32 transition-all duration-150 ease-linear rounded-full cursor-pointer md:h-40 md:w-40"
@@ -131,96 +160,159 @@ const ProfilPage: React.FC = () => {
             </Modal>
           </div>
         </div>
+        {user?.isCreatorProfil && (
+          <CreatorProfil parentFunction={refetch} user={user}></CreatorProfil>
+        )}
       </div>
-      <div className="w-full flex flex-col | items-center z-20 rounded-profil mt-40 pt-5 bg-white">
-        <div className="w-full mb-5 sm:w-5/6 lg:w-4/6">
-          {user?.isCreatorProfil && (
-            <CreatorProfil parentFunction={refetch} user={user}></CreatorProfil>
-          )}
-          {!user?.isCreatorProfil && (
-            <ExplorateurProfil
-              isLoad={loading}
-              parentFunction={refetch}
-              recipeMadeUser={user?.recipeMadeUser}
-            ></ExplorateurProfil>
-          )}
-          {user?.isBeginnerBox && (
-            <ProfilGreenitFullXp
-              parentFunction={refetch}
-              isRecipeMadeBeginnerBox={user?.isRecipeMadeBeginnerBox}
-            ></ProfilGreenitFullXp>
-          )}
-
-          <div className="flex items-center mt-12 mb-12 mx-5">
-            <div className="w-full">
-              <div className={`flex justify-center ${visible ? "" : ""}`}>
-                <div
-                  className={`flex border-b-4 ${
-                    visible ? "border-blue shadow-btn-section" : "border-blueL"
-                  }  cursor-pointer justify-center h-12 w-64 items-center`}
-                  onClick={() => {
-                    setVisible(true);
-                  }}
-                >
-                  <i
-                    className={`bx bxs-bookmark-heart bx-sm ${
-                      visible ? "text-blue" : "text-darkBlue"
-                    }`}
-                  ></i>
-                  <h4 className="ml-2">Recettes favorites</h4>
-                </div>
-                <div
-                  className={`flex border-b-4 ${
-                    !visible ? "shadow-btn-section border-blue" : "border-blueL"
-                  } cursor-pointer justify-center h-12 w-64 items-center `}
-                  onClick={() => {
-                    setVisible(false);
-                  }}
-                >
-                  <i
-                    className={`bx bx${!visible ? "s" : ""}-bowl-hot bx-sm ${
-                      !visible ? "text-blue" : "text-darkBlue"
-                    }`}
-                  ></i>
-                  <h4 className="ml-2">Mes Recettes</h4>
-                </div>
-              </div>
-            </div>
+      <div
+        className={`w-full flex flex-col | items-center z-20 rounded-profil bg-white ${
+          user?.isCreatorProfil ? "mt-72" : "mt-40"
+        }`}
+      >
+        {/* Tabs */}
+        {/*Todo: Refactor Menu*/}
+        <div className="w-full flex justify-around items-center | mb-2">
+          <div
+            className={`flex justify-center w-1/4 ${
+              isDashboardActive
+                ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
+                : "border-b-4 border-greyL"
+            } py-2 | cursor-pointer`}
+            onClick={() => {
+              !isDashboardActive && setIsDashboardActive(!isDashboardActive);
+              isParticularitiesActive &&
+                setIsParticularitiesActive(!isParticularitiesActive);
+              isICMActive && setIsICMActive(!isICMActive);
+              isLDCActive && setIsLDCActive(!isLDCActive);
+            }}
+          >
+            <i
+              className={`bx ${
+                isDashboardActive
+                  ? "bxs-bookmark-heart text-blue"
+                  : "bx-bookmark-heart"
+              } text-3xl`}
+            ></i>
           </div>
+          <div
+            className={`flex justify-center w-1/4  ${
+              isParticularitiesActive
+                ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
+                : "border-b-4 border-greyL"
+            } py-2 | cursor-pointer`}
+            onClick={() => {
+              !isParticularitiesActive &&
+                setIsParticularitiesActive(!isParticularitiesActive);
+              isDashboardActive && setIsDashboardActive(!isDashboardActive);
+              isICMActive && setIsICMActive(!isICMActive);
+              isLDCActive && setIsLDCActive(!isLDCActive);
+            }}
+          >
+            <i
+              className={`bx ${
+                isParticularitiesActive
+                  ? "bxs-category-alt text-green"
+                  : "bx-category-alt"
+              } text-3xl`}
+            ></i>
+          </div>
+          <div
+            className={`flex justify-center w-1/4  ${
+              isICMActive
+                ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
+                : "border-b-4 border-greyL"
+            } py-2 | cursor-pointer`}
+            onClick={() => {
+              !isICMActive && setIsICMActive(!isICMActive);
+              isParticularitiesActive &&
+                setIsParticularitiesActive(!isParticularitiesActive);
+              isDashboardActive && setIsDashboardActive(!isDashboardActive);
+              isLDCActive && setIsLDCActive(!isLDCActive);
+            }}
+          >
+            <i
+              className={`bx  ${
+                isICMActive ? "bxs-lemon text-blue" : "bx-lemon"
+              } text-3xl`}
+            ></i>
+          </div>
+          <div
+            className={`flex justify-center w-1/4  ${
+              isLDCActive
+                ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
+                : "border-b-4 border-greyL"
+            } py-2 | cursor-pointer`}
+            onClick={() => {
+              !isLDCActive && setIsLDCActive(!isLDCActive);
+              isParticularitiesActive &&
+                setIsParticularitiesActive(!isParticularitiesActive);
+              isICMActive && setIsICMActive(!isICMActive);
+              isDashboardActive && setIsDashboardActive(!isDashboardActive);
+            }}
+          >
+            <i
+              className={`bx bx-cart-download ${
+                isLDCActive && "text-blue"
+              } text-3xl`}
+            ></i>
+          </div>
+        </div>
+        <div className="w-full mb-5 pt-4 sm:w-5/6 lg:w-4/6">
+          {isDashboardActive && (
+            <>
+              {/*Todo (zack) Rename Component*/}
+              <ExplorateurProfil
+                isLoad={loading}
+                parentFunction={refetch}
+                recipeMadeUser={user?.recipeMadeUser}
+              ></ExplorateurProfil>
 
-          <div className="flex flex-col mb-20 | items-center">
-            <div className={"text-center" + (!visible ? " hidden" : "")}>
-              {visible && (
-                <div className="grid grid-cols-2 gap-2 mt-5 mx-5 md:grid-cols-3 auto-rows-auto justify-items-center">
-                  {isEmpty(user?.recipeFavorite) && (
-                    <div
-                      className={
-                        "grid text-center col-span-3 w-full mb-56 mt-8 justify-items-center" +
-                        (!visible ? " hidden" : "")
-                      }
-                    >
-                      <h2 className=" md:text-xl">
-                        Tu n'as pas encore de recette favorite
-                      </h2>
-                      <h3 className="mt-4 md:text-lg">
-                        Pour mettre une recette en favoris <br />
-                        appuie sur le coeur de la recette
-                      </h3>
-                      <div>
-                        <img
-                          className="w-12 h-12"
-                          src={likedIconOff}
-                          alt="like icon off"
-                        />
-                      </div>
-                      <Link to={RouteName.recipes}>
-                        <Button className="mt-5" type="blue">
-                          Explorer des recettes
-                        </Button>
-                      </Link>
-                    </div>
-                  )}
+              {user?.isBeginnerBox && (
+                <ProfilGreenitFullXp
+                  parentFunction={refetch}
+                  isRecipeMadeBeginnerBox={user?.isRecipeMadeBeginnerBox}
+                ></ProfilGreenitFullXp>
+              )}
 
+              {/* Bookmarks */}
+              <div className="w-full flex flex-col items-center justify-center | mt-6 mb-4">
+                <div className="w-full flex items-center justify-center space-x-2">
+                  <i className="bx bxs-bookmark-heart text-3xl text-blue"></i>
+                  <h2 className="text-xl font-semibold">Recettes favorites</h2>
+                </div>
+                <span className="text-2xl font-diy">
+                  Des recettes spécialement adaptées !
+                </span>
+              </div>
+              {isEmpty(user?.recipeFavorite) && (
+                <div
+                  className={
+                    "grid text-center col-span-3 w-full mb-56 mt-8 justify-items-center"
+                  }
+                >
+                  <h2 className=" md:text-xl">
+                    Tu n'as pas encore de recette favorite
+                  </h2>
+                  <h3 className="mt-4 md:text-lg">
+                    Pour mettre une recette en favoris <br />
+                    appuie sur le coeur de la recette
+                  </h3>
+                  <div>
+                    <img
+                      className="w-12 h-12"
+                      src={likedIconOff}
+                      alt="like icon off"
+                    />
+                  </div>
+                  <Link to={RouteName.recipes}>
+                    <Button className="mt-5" type="blue">
+                      Explorer des recettes
+                    </Button>
+                  </Link>
+                </div>
+              )}
+              <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto">
+                <div className="flex w-max">
                   {user?.recipeFavorite?.map((recipe: any, index: any) => (
                     <>
                       <div
@@ -238,41 +330,60 @@ const ProfilPage: React.FC = () => {
                     </>
                   ))}
                 </div>
-              )}
-            </div>
-            {!visible && (
-              <div className="grid grid-cols-2 mt-5 sm:gap-2 md:grid-cols-3 auto-rows-auto justify-items-center">
-                <CTACard
-                  className="lg:mb-6"
-                  type="blue"
-                  link={RouteName.createRecipe}
-                >
-                  <button id="Share_a_recipe" className="w-11/12 lg:w-10/12">
-                    <h2 className="text-lg text-center text-white lg:text-xl mt-28 lg:mt-36">
-                      Publier une nouvelle recette
-                    </h2>
-                  </button>
-                </CTACard>
-                {user?.recipeAuthor?.map((recipe: any, index: any) => (
-                  <>
-                    <div
-                      key={index}
-                      className="justify-center w-full col-span-1 mb-6 md:mb-12"
-                    >
-                      <RecipeCard
-                        isDisplayUserBadge={false}
-                        parentFunction={refetchMe}
-                        disabledFavoriteRecipe={true}
-                        recipe={recipe}
-                        key={index}
-                        isProfilPage={true}
-                      />
-                    </div>
-                  </>
-                ))}
               </div>
-            )}
-          </div>
+
+              {/* Published recipes  */}
+              <div className="w-full flex flex-col items-center justify-center | mt-6 mb-4">
+                <div className="w-full flex items-center justify-center space-x-2">
+                  <i className="bx bxs-pencil text-3xl"></i>
+                  <h2 className="text-xl font-semibold">Recettes publiées</h2>
+                </div>
+                <span className="text-2xl font-diy">
+                  Ta contribution à la communauté Greenit !
+                </span>
+              </div>
+              <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto">
+                <div className="flex w-max">
+                  <CTACard
+                    className="lg:mb-6"
+                    type="blue"
+                    link={RouteName.createRecipe}
+                  >
+                    <button id="Share_a_recipe" className="w-11/12 lg:w-10/12">
+                      <h2 className="text-lg text-center text-white lg:text-xl mt-28 lg:mt-36">
+                        Publier une nouvelle recette
+                      </h2>
+                    </button>
+                  </CTACard>
+                  {user?.recipeAuthor?.map((recipe: any, index: any) => (
+                    <>
+                      <div
+                        key={index}
+                        className="justify-center w-full col-span-1 mb-6 md:mb-12"
+                      >
+                        <RecipeCard
+                          isDisplayUserBadge={false}
+                          parentFunction={refetchMe}
+                          disabledFavoriteRecipe={true}
+                          recipe={recipe}
+                          key={index}
+                          isProfilPage={true}
+                        />
+                      </div>
+                    </>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+          {isParticularitiesActive && (
+            <TabPersonalization
+              hasParticularities={hasParticularities}
+              data={dataHomes}
+            />
+          )}
+          {isICMActive && <TabICM hasICM={hasICM} />}
+          {isLDCActive && <TabLDC hasLDC={hasLDC} />}
         </div>
       </div>
 

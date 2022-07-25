@@ -212,7 +212,11 @@ const RecipeListPage = () => {
         {isParticularityActive && <SectionPersonalization />}
 
         {/*ICM*/}
-        {isICMActive && <SectionICM />}
+        {isICMActive && (
+          <div className="ml-5">
+            <SectionICM />
+          </div>
+        )}
 
         {/*End Personalization section*/}
 
