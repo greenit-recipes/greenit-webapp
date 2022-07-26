@@ -16,15 +16,15 @@ import {
   Loading,
   Navbar,
   RecipeCard,
-} from "../../../components";
-import ModalPersonalizationInfo from "../../../components/personalization/ModalPersonalizationInfo";
-import SectionICM from "../../../components/personalization/sections/SectionICM";
-import SectionPersonalization from "../../../components/personalization/sections/SectionPersonalization";
+} from "components";
 import { RecipesQuery, useRecipesQuery } from "../../../graphql";
-import useIsMobile from "../../../hooks/isMobile";
-import { scrollToTop } from "../../../icons";
-import { filterData } from "../../../utils";
+import useIsMobile from "hooks/isMobile";
+import { scrollToTop } from "icons";
+import { filterData } from "utils";
 import { FilterBar } from "./Components/FilterBar";
+import ModalPersonalizationInfo from "components/personalization/ModalPersonalizationInfo";
+import SectionPersonalization from "components/personalization/sections/SectionPersonalization";
+import SectionICM from "components/personalization/sections/SectionICM";
 
 const RecipeListPage = () => {
   //Personalization
