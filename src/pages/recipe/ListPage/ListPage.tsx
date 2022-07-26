@@ -4,7 +4,7 @@ import { map, mapValues, omit, sum } from "lodash";
 import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useHistory } from "react-router-dom";
@@ -17,16 +17,14 @@ import {
   Navbar,
   RecipeCard,
 } from "../../../components";
+import ModalPersonalizationInfo from "../../../components/personalization/ModalPersonalizationInfo";
+import SectionICM from "../../../components/personalization/sections/SectionICM";
+import SectionPersonalization from "../../../components/personalization/sections/SectionPersonalization";
 import { RecipesQuery, useRecipesQuery } from "../../../graphql";
 import useIsMobile from "../../../hooks/isMobile";
 import { scrollToTop } from "../../../icons";
 import { filterData } from "../../../utils";
 import { FilterBar } from "./Components/FilterBar";
-import ModalPersonalization from "../../../components/personalization/ModalPersonalization";
-import ModalIngredientSearch from "../../../components/personalization/ModalIngredientSearch";
-import ModalPersonalizationInfo from "../../../components/personalization/ModalPersonalizationInfo";
-import SectionPersonalization from "../../../components/personalization/sections/SectionPersonalization";
-import SectionICM from "../../../components/personalization/sections/SectionICM";
 
 const RecipeListPage = () => {
   //Personalization
@@ -38,6 +36,7 @@ const RecipeListPage = () => {
   const cleanDataPlayload = (filter: any) =>
     mapValues(filter, function (value, key) {
       if (key === "search") return value;
+      if (key === "particularity") return;
       return map(value, x => x.value);
     });
   const params = new URLSearchParams(window.location.search);
@@ -103,9 +102,18 @@ const RecipeListPage = () => {
       ? getAndDeleteParamsUrl("category")
       : categorySession,
     difficulty: sessionFilter?.difficulty || [],
+    particularity: [{ tagsSkin: [], tagsHair: [], tagsPeculiarity: [] }] || [], // [{ tagsSkin: ["00838ea5-bc78-4a11-a9fe-57d3e20aac71"], tagsHair: [], tagsPeculiarity: [] }],
+    ingredientsAtHome:
+      [
+        "e1fee130-92fd-48c6-b140-1d54e4707e64",
+        "19f7b6e1-b292-4b3b-bf83-9233dd221b39",
+        "61ee83a6-b6a7-4460-ac8c-7d9fa9e4f8a7",
+      ] || [],
     duration: sessionFilter?.duration || [],
     numberOfIngredients: sessionFilter?.numberOfIngredients || [],
   });
+
+  console.log("currentFilters", currentFilters);
 
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
     fetchPolicy: "cache-first",
@@ -125,6 +133,15 @@ const RecipeListPage = () => {
         duration: sessionFilter?.duration
           ? map(sessionFilter?.duration, "value")
           : [],
+        // @ts-ignore
+        particularity: [{ tagsSkin: [], tagsHair: [], tagsPeculiarity: [] }], // [{ tagsSkin: ["00838ea5-bc78-4a11-a9fe-57d3e20aac71"], tagsHair: [], tagsPeculiarity: [] }],
+        // @ts-ignore
+        ingredientsAtHome:
+          [
+            "e1fee130-92fd-48c6-b140-1d54e4707e64",
+            "19f7b6e1-b292-4b3b-bf83-9233dd221b39",
+            "61ee83a6-b6a7-4460-ac8c-7d9fa9e4f8a7",
+          ] || [],
         numberOfIngredients: sessionFilter?.numberOfIngredients
           ? map(sessionFilter?.numberOfIngredients, "value")
           : [],

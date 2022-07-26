@@ -1,9 +1,30 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { SearchBar } from "../layout";
-import { menuFullXp } from "../../pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import { ICMingredients } from "./PersonalizationHelper";
+import debounce from "lodash/debounce";
+import { useQuery } from "@apollo/client";
+import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 
 export const IngredientSearch = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const setSearchTermDebounced = debounce(setSearchTerm, 250);
+  // Ne par run au premier lancement
+  const { data: autoCompleteData, loading: autoCompleteLoading } = useQuery(
+    SEARCH_AUTO_COMPLETE_RECIPE,
+    {
+      fetchPolicy: "network-only",
+      variables: { search: searchTerm, isOnlyIngredients: true },
+      skip: !searchTerm,
+    },
+  );
+
+  const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {
+    recipes: [],
+    ingredients: [],
+    totalRecipes: 0,
+  };
+
   return (
     <div className="flex flex-col justify-center -mt-8 mx-12">
       <div className="flex justify-center text-center space-x-2 mb-3">
@@ -16,6 +37,12 @@ export const IngredientSearch = () => {
         <SearchBar
           suggestionIsActive={true}
           placeholder="Ajouter un ingrédient"
+          keyId="searchIngredientAtHome"
+          size="small"
+          setValue={setSearchTermDebounced}
+          isLoading={autoCompleteLoading}
+          // @ts-ignore
+          suggestions={recipesAutoComplete}
         />
       </div>
       <div className="flex flex-col h-80 space-y-4 overflow-y-auto">

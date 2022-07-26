@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-
 export const Personalization = () => {
   return (
     <div className="flex flex-col justify-center text-center -mt-8 mx-12">

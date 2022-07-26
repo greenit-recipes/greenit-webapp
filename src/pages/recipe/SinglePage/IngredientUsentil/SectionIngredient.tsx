@@ -128,7 +128,9 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                       }  text-2xl`}
                     ></i>
                   </Button>
-                  <span className="text-xs font-semibold">Déjà chez moi</span>
+                  <span className="text-xs font-semibold">
+                    Ingrédient déjà chez moi
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <Button
@@ -148,7 +150,8 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                     ></i>
                   </Button>
                   <p className="text-xs font-semibold">
-                    {isLDCActive ? "Retirer de " : "Ajouter à "}ma liste
+                    {isLDCActive ? "Retirer de " : "Ajouter à "}ma liste de
+                    course
                   </p>
                 </div>
               </div>

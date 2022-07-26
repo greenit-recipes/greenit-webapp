@@ -22,17 +22,17 @@ import {
   BadgeSavonDesktop,
   BadgeSavonMobile,
   boxOpen,
+  Desktop_faceillu,
+  Desktop_hairillu,
   escapeTheCity,
   issy,
   LPImage4Desktop,
+  Mobile_faceillu,
+  Mobile_hairillu,
   sixHTN,
   TopImageDesktopLeft,
   TopImageDesktopRight,
   TopImageMobile,
-  Mobile_faceillu,
-  Mobile_hairillu,
-  Desktop_faceillu,
-  Desktop_hairillu,
 } from "icons";
 import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
@@ -41,17 +41,16 @@ import { Community } from "pages/LandingPage/Components/Community";
 import "pages/LandingPage/LandingPage.css";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
 import "pages/recipe/SinglePage/SinglePage.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import "react-multi-carousel/lib/styles.css";
 import { Link, useHistory } from "react-router-dom";
 import { GET_FEATURE_BY_NAME } from "services/feature.service";
 import { landingPageCategories } from "utils";
+import ModalPersonalization from "../../components/personalization/ModalPersonalization";
 import { useRecipesQuery } from "../../graphql";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
-import ModalPersonalization from "../../components/personalization/ModalPersonalization";
-import ModalIngredientSearch from "../../components/personalization/ModalIngredientSearch";
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
@@ -163,7 +162,6 @@ const LandingPage = () => {
   const dataSearchMasques = dataSearchMasque.allRecipes?.edges || [];
   const dataIngredientCuisines = dataIngredientCuisine.allRecipes?.edges || [];
   const dataByIds = dataById.allRecipes?.edges || [];
-  const recipesOrderByLikes = dataNbrLikes.allRecipes?.edges || [];
   const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {
     recipes: [],
     ingredients: [],

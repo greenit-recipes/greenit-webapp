@@ -43,6 +43,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 
   const searchText = getObjectSession("filterListPage")?.search;
 
+  const omitFilterDisplay = ["search", "particularity", "ingredientsAtHome"];
   const removeFilters = () => {
     setCurrentFilters({
       search: "",
@@ -162,7 +163,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                       </div>
                       <div className="flex flex-wrap">
                         {map(
-                          omit(currentFilters, "search"),
+                          omit(currentFilters, omitFilterDisplay),
                           (item: any, key: any) =>
                             map(item, (value, index) => (
                               <div

@@ -15,3 +15,19 @@ export const ADD_OR_REMOVE_LIKE_COMMENT = gql`
     }
   }
 `;
+
+export const ADD_OR_REMOVE_INGREDIENT_AT_HOME = gql`
+  mutation createIngredientAtHomeUser($ingredientId: String!) {
+    createIngredientAtHomeUser(ingredientId: $ingredientId) {
+      success
+    }
+  }
+`;
+
+export const ADD_OR_LIST_COURSE = gql`
+  mutation createIngredientAtHomeUser($ingredientId: String!) {
+    createIngredientAtHomeUser(ingredientId: $ingredientId) {
+      success
+    }
+  }
+`;
