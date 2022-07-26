@@ -12,7 +12,6 @@ export const IngredientSearch = () => {
       </div>
       <div className="space-y-3 mb-5">
         <h3>Les ingrédients chez moi</h3>
-        {/*Todo: Investigate why I can't type in the searchbar*/}
         <SearchBar
           suggestionIsActive={true}
           placeholder="Ajouter un ingrédient"

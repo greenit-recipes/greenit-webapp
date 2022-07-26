@@ -110,3 +110,103 @@ export const particularities = {
   hairType: " Cheveux normaux",
   moreDetails: ["Acné", "Cuir chevelu irrité"],
 };
+
+export const questionnaireMenu = [
+  {
+    label: "Quel est ton type de peau ?",
+    name: "skinType",
+    singleOptions: [
+      { option: "Sèche", isSelected: false },
+      { option: "Mixte", isSelected: false },
+      {
+        option: "Grasse",
+        isSelected: false,
+      },
+      { option: "Normale", isSelected: false },
+    ],
+  },
+  {
+    label: "Quel est ton type de cheveux ?",
+    name: "hairType",
+    singleOptions: [
+      { option: "Sec", isSelected: false },
+      { option: "Gras", isSelected: false },
+      {
+        option: "Normal",
+        isSelected: false,
+      },
+    ],
+  },
+  {
+    label: "As-tu des particularités précises ?",
+    name: "moreDetails",
+    multipleOPtions: [
+      {
+        name: "Visage",
+        singleOptions: [
+          { option: "Acné", isSelected: false },
+          {
+            option: "Rides",
+            isSelected: false,
+          },
+          { option: "Rougeurs", isSelected: false },
+        ],
+      },
+      {
+        name: "Cheveux",
+        singleOptions: [
+          { option: "Pellicule", isSelected: false },
+          {
+            option: "Cuir chevelu irrité",
+            isSelected: false,
+          },
+          { option: "Perte de cheveux", isSelected: false },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Des recettes pour la maison, ça te dit ?",
+    name: "engagement",
+    singleOptions: [
+      { option: "Pourquoi pas !", isSelected: false },
+      {
+        option: "Non, pas pour le moment",
+        isSelected: false,
+      },
+    ],
+  },
+];
+
+export const optionIcons = ["square", "square-rounded", "circle", "polygon"];
+
+export const selectOption = (
+  options: any,
+  selected: string,
+  unselect = false,
+) => {
+  let selectedOptions = [];
+  let isSelected;
+  for (const element of options) {
+    isSelected =
+      element.option === selected &&
+      (unselect ? element.isSelected : !element.isSelected);
+    selectedOptions.push({ ...element, isSelected: isSelected });
+    element.isSelected = isSelected;
+  }
+  return selectedOptions;
+};
+
+export const getSelectedOptions = (options: any) => {
+  let ops = [];
+  for (const option of options) {
+    if (option.isSelected) {
+      ops.push(option.option);
+    }
+  }
+  return ops;
+};
+
+export interface Step {
+  nextStep?: any;
+}
