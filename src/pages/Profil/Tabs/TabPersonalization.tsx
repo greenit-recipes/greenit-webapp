@@ -14,7 +14,7 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
   data,
 }) => {
   return (
-    <div className="mb-24">
+    <div className="w-full mb-24">
       <div className="w-full flex flex-col items-center justify-center | mb-4">
         <div className="w-full flex items-center justify-center space-x-2">
           <i className="bx bxs-category-alt text-3xl text-green"></i>
@@ -58,7 +58,7 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
               Des recettes spécialement adaptées !
             </span>
           </div>
-          <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto">
+          <div className="md:flex md:justify-center w-full pt-4 pl-4 msm:overflow-x-auto">
             <div className="flex w-max">
               {/*@ts-ignore*/}
               {data?.slice(0, 4).map(recipe => (

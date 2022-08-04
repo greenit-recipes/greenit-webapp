@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { RouteName } from "App";
 import "App.css";
 import { Button, Loading, RecipeCard } from "components";
@@ -23,6 +23,7 @@ import { useRecipesQuery } from "../../graphql";
 import TabPersonalization from "./Tabs/TabPersonalization";
 import TabICM from "./Tabs/TabICM";
 import TabLDC from "./Tabs/TabLDC";
+import useIsMobile from "../../hooks/isMobile";
 
 const ProfilPage: React.FC = () => {
   useEffect(() => {
@@ -62,7 +63,7 @@ const ProfilPage: React.FC = () => {
 
   const refetchMe = () => refetch();
 
-  const [visible, setVisible] = React.useState(false);
+  const isMobile = useIsMobile();
 
   //Tabs
   const [isDashboardActive, setIsDashboardActive] = useState(true);
@@ -71,9 +72,9 @@ const ProfilPage: React.FC = () => {
   const [isLDCActive, setIsLDCActive] = useState(false);
 
   //User items
-  const [hasParticularities, setHasParticularities] = useState(false);
-  const [hasICM, setHasICM] = useState(false);
-  const [hasLDC, setHasLDC] = useState(false);
+  const [hasParticularities, setHasParticularities] = useState(true);
+  const [hasICM, setHasICM] = useState(true);
+  const [hasLDC, setHasLDC] = useState(true);
 
   //Recommended Recipes
   const { data: dataHome } = useRecipesQuery({
@@ -166,7 +167,7 @@ const ProfilPage: React.FC = () => {
         {/*Todo: Refactor Menu*/}
         <div className="w-full flex justify-around items-center | mb-2">
           <div
-            className={`flex justify-center w-1/4 ${
+            className={`flex justify-center md:items-center md:space-x-2 w-1/4 ${
               isDashboardActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
                 : "border-b-4 border-greyL"
@@ -186,9 +187,10 @@ const ProfilPage: React.FC = () => {
                   : "bx-bookmark-heart"
               } text-3xl`}
             ></i>
+            {!isMobile && <h4 className="text-lg">Mon carnet de recettes</h4>}
           </div>
           <div
-            className={`flex justify-center w-1/4  ${
+            className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
               isParticularitiesActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
                 : "border-b-4 border-greyL"
@@ -208,9 +210,10 @@ const ProfilPage: React.FC = () => {
                   : "bx-category-alt"
               } text-3xl`}
             ></i>
+            {!isMobile && <h4 className="text-lg">Mes particularités</h4>}
           </div>
           <div
-            className={`flex justify-center w-1/4  ${
+            className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
               isICMActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
                 : "border-b-4 border-greyL"
@@ -228,9 +231,10 @@ const ProfilPage: React.FC = () => {
                 isICMActive ? "bxs-lemon text-blue" : "bx-lemon"
               } text-3xl`}
             ></i>
+            {!isMobile && <h4 className="text-lg">Ingrédients chez moi</h4>}
           </div>
           <div
-            className={`flex justify-center w-1/4  ${
+            className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
               isLDCActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
                 : "border-b-4 border-greyL"
@@ -248,9 +252,10 @@ const ProfilPage: React.FC = () => {
                 isLDCActive && "text-blue"
               } text-3xl`}
             ></i>
+            {!isMobile && <h4 className="text-lg">Liste de course</h4>}
           </div>
         </div>
-        <div className="w-full mb-5 pt-4 sm:w-5/6 lg:w-4/6">
+        <div className="w-full mb-5 pt-4">
           {isDashboardActive && (
             <>
               {/*Todo (zack) Rename Component*/}
@@ -280,7 +285,7 @@ const ProfilPage: React.FC = () => {
               {isEmpty(user?.recipeFavorite) && (
                 <div
                   className={
-                    "grid text-center col-span-3 w-full mb-56 mt-8 justify-items-center"
+                    "grid text-center col-span-3 w-full mb-10 mt-8 justify-items-center"
                   }
                 >
                   <h2 className=" md:text-xl">
@@ -298,13 +303,14 @@ const ProfilPage: React.FC = () => {
                     />
                   </div>
                   <Link to={RouteName.recipes}>
-                    <Button className="mt-5" type="blue">
+                    <Button className="mt-5" type="darkBlue">
                       Explorer des recettes
                     </Button>
                   </Link>
                 </div>
               )}
-              <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto">
+              {/*Todo : Add flex wrap in desktop view*/}
+              <div className="md:flex md:justify-center w-full pt-4 pl-4 msm:overflow-x-auto">
                 <div className="flex w-max">
                   {user?.recipeFavorite?.map((recipe: any, index: any) => (
                     <>

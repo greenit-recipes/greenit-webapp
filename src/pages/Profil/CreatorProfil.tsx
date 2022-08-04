@@ -1,20 +1,7 @@
-import { useMutation } from "@apollo/client";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "components";
-import { PellGreenit } from "components/layout/Editor/PellEditor";
-import { getLogoAndNameByUrl } from "helpers/social-media.helper";
-import { filter, map, sum } from "lodash";
-import { StatProfilForm } from "pages/Profil/Stat";
-import React, { useEffect, useState } from "react";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
-import { UPDATE_ACCOUNT } from "services/auth.service";
-import * as yup from "yup";
-import HTMLReactParser from "html-react-parser";
-import { rondIcon } from "../../icons";
-import { RouteName } from "App";
-import { Link } from "react-router-dom";
-import { FiEdit } from "react-icons/fi";
-import { isEmpty } from "lodash";
+import { map, sum } from "lodash";
+import React from "react";
+import { ModalEditCreatorProfile } from "./ModalEditCreatorProfile";
 
 interface IUser {
   user: {
@@ -32,76 +19,6 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
   const nbrLikes = map(user?.recipeAuthor, "numberOfLikes");
   const nbrView = map(user?.recipeAuthor, "nbrView");
 
-  const [updateAccount, { data: updateAccountData, loading, error }] =
-    useMutation(UPDATE_ACCOUNT, { errorPolicy: "all" });
-
-  const { register, handleSubmit, setError, reset, control } = useForm({
-    resolver: yupResolver(
-      yup.object().shape({
-        urlSocialMedia: yup
-          .array(
-            yup.object({
-              url: yup.string().required("Ce champ est obligatoire."),
-            }),
-          )
-          .min(1, "Ce champ est obligatoire"),
-      }),
-    ),
-  });
-
-  const {
-    formState: { errors },
-    handleSubmit: handleSubmitBio,
-    control: controlBio,
-  } = useForm();
-
-  const onSubmitHandler = (data: { urlsSocialMedia: [{ url: string }] }) => {
-    const socialsMedia = filter(data?.urlsSocialMedia, x => !!x?.url);
-    updateAccount({
-      variables: {
-        urlsSocialMedia: JSON.stringify(socialsMedia),
-      },
-    }).then(() => {
-      return parentFunction
-        ? parentFunction().then(() => setEditLink(!isEditLink))
-        : null;
-    });
-  };
-
-  const onSubmitHandlerBio = (data: { bio: string }) => {
-    updateAccount({
-      variables: {
-        biographie: data?.bio,
-      },
-    }).then(() => {
-      return parentFunction ? parentFunction() : null;
-    });
-  };
-
-  const {
-    fields: urlsSocialMediaFields,
-    append: urlsSocialMediaAppend,
-    remove: urlsSocialMediaRemove,
-  } = useFieldArray({
-    control,
-    name: "urlsSocialMedia",
-  });
-
-  const socialMedias =
-    /* @ts-ignore */
-    user?.urlsSocialMedia === "{}" ? null : user?.urlsSocialMedia;
-
-  useEffect(() => {
-    // @ts-ignore
-    JSON.parse(socialMedias)?.map((data: any, index: any) =>
-      urlsSocialMediaAppend({ url: data?.url }, { shouldFocus: false }),
-    );
-    urlsSocialMediaAppend({}, { shouldFocus: true });
-  }, []);
-
-  const [isEditLink, setEditLink] = useState(false);
-  const [isEditor, setEditor] = useState(true);
-  const [isDisplayStat, setDisplayStat] = useState(false);
   return (
     <div className="flex flex-col items-center text-darkBlue w-full md:w-11/12 lg:w-full">
       {/* Stat */}
@@ -141,9 +58,21 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
         </div>
       </div>
       {/*Modal Biography and Social media*/}
-      <Button className="w-11/12 mt-2 mb-4 shadow-md" type="darkBlue">
-        Modifier mon profil créateur
-      </Button>
+
+      <div className="md:flex md:justify-center w-11/12">
+        <ModalEditCreatorProfile
+          btn={
+            <Button
+              className="w-full md:w-52 mt-2 mb-4 shadow-md"
+              type="darkBlue"
+            >
+              Modifier mon profil créateur
+            </Button>
+          }
+          user={user}
+          parentFunction={parentFunction}
+        />
+      </div>
 
       {/* Recommend Stats */}
       {/*<div*/}
@@ -156,11 +85,6 @@ export const CreatorProfil: React.FC<IUser> = ({ user, parentFunction }) => {
       {/*  {!isDisplayStat ? "+ Plus " : "- Moins"} de statistiques*/}
       {/*</div>*/}
       {/*{isDisplayStat && <StatProfilForm></StatProfilForm>}*/}
-      {updateAccountData?.updateAccount?.success && (
-        <div className="text-green mb-2 | text-center whitespace-pre-line">
-          Vos modifications ont été enregistrées
-        </div>
-      )}
     </div>
   );
 };

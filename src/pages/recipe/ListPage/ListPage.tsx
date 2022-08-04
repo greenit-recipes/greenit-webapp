@@ -314,7 +314,7 @@ const RecipeListPage = () => {
                 {recipes?.slice(0, 4).map(recipe => {
                   return (
                     <div key={recipe?.node?.id}>
-                      <RecipeCard recipe={recipe?.node} />
+                      <RecipeCard ingredientRatio="3/5" recipe={recipe?.node} />
                     </div>
                   );
                 })}
@@ -324,7 +324,7 @@ const RecipeListPage = () => {
                 <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
                   {recipes?.slice(0, 4).map(recipe => (
                     <div key={recipe?.node?.id}>
-                      <RecipeCard recipe={recipe?.node} />
+                      <RecipeCard ingredientRatio="3/5" recipe={recipe?.node} />
                     </div>
                   ))}
                 </div>

@@ -1,8 +1,11 @@
 import ModalPersonalization from "../ModalPersonalization";
 import React from "react";
 import { particularities } from "../PersonalizationHelper";
+import { useLocation } from "react-router-dom";
+import { RouteName } from "../../../App";
 
 export const SectionPersonalization = () => {
+  const location = useLocation();
   return (
     <div>
       <div className="flex flex-col md:flex-row md:justify-center md:space-x-24 msm:space-y-3 mx-10 mb-5">
@@ -33,7 +36,7 @@ export const SectionPersonalization = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center md:flex-row">
+      <div className="flex flex-col justify-center md:flex-row md:space-x-4">
         <ModalPersonalization
           btn={
             <div className="text-center mb-2">
@@ -43,6 +46,13 @@ export const SectionPersonalization = () => {
             </div>
           }
         ></ModalPersonalization>
+        {location.pathname === RouteName.profil && (
+          <div className="text-center mb-2">
+            <span className="underline font-medium cursor-pointer">
+              Supprimer mes préférences
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ interface TabLDCProps {
 
 export const TabLDC: React.FC<TabLDCProps> = ({ hasLDC }) => {
   return (
-    <div className="mx-10">
+    <div className="mx-10 md:mx-56">
       <div className="w-full flex flex-col items-center justify-center | mb-2">
         <div className="text-center mb-2">
           <div className="w-full flex items-center justify-center space-x-2">
