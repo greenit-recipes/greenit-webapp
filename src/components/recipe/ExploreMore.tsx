@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { RouteName } from "App";
 
 interface ExploreMoreProps {
-  filter: string;
+  filter?: string;
 }
 
 export const ExploreMore: React.FC<ExploreMoreProps> = ({ filter }) => {
   return (
     <Link
-      to={`${RouteName.recipes}?${filter}`}
+      to={`${RouteName.recipes}${filter && "?" + filter}`}
       className="ml-1 mr-5 h-80 w-52 bg-white rounded-2xl self-center relative |
     transform sm:hover:scale-105 ease-linear relative transition-all duration-150"
     >

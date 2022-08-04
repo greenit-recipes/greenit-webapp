@@ -196,6 +196,12 @@ import zack from "./zack.png";
 import aarnav from "./aarnav.png";
 import domie from "./domi.png";
 
+// Personalization
+import Mobile_faceillu from "./Mobile_faceillu.png";
+import Mobile_hairillu from "./Mobile_hairillu.png";
+import Desktop_faceillu from "./Desktop_faceillu.svg";
+import Desktop_hairillu from "./Desktop_hairillu.svg";
+
 export {
   wellbeing,
   corps,
@@ -357,4 +363,8 @@ export {
   zack,
   aarnav,
   domie,
+  Mobile_faceillu,
+  Mobile_hairillu,
+  Desktop_faceillu,
+  Desktop_hairillu,
 };

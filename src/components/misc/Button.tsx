@@ -11,7 +11,8 @@ interface ButtonProps {
     | "grey"
     | "red"
     | "blueL"
-    | "darkBlue";
+    | "darkBlue"
+    | "darkBlueIcon";
   id?: string;
   rounded?: string;
   className?: string;
@@ -74,6 +75,11 @@ export const Button: React.FC<ButtonProps> = ({
       style.borderColor = "border-darkBlue";
       style.hoverTextColor = "text-darkBlue";
       break;
+    case "darkBlueIcon":
+      style.hoverBgColor = "hover:bg-white";
+      style.borderColor = "border-darkBlue";
+      style.hoverTextColor = "text-white";
+      break;
     case "grey":
       style.hoverBgColor = "hover:bg-grey";
       style.borderColor = "border-grey";
@@ -114,7 +120,7 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={isLoading}
       className={`${className} flex justify-center items-center cursor-pointer
       text-sm ${
-        haveIcon ? "px-2 py-1" : "px-3 py-2 "
+        haveIcon ? "px-3 py-0.5" : "px-3 py-2 "
       } bold  border-2 border-transparent
       fontQSbold md:ease-linear transition-all duration-150
       ${style.hoverTextColor}

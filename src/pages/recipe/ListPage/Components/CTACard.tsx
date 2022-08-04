@@ -21,11 +21,11 @@ export const CTACard: React.FC<ICTACard> = ({
       }}
     >
       <div
-        className={`transform shadow-lg h-72 md:h-84 w-40 md:w-52 bg-${
+        className={`transform shadow-lg h-72 md:h-84 w-44 md:w-52 bg-${
           type ? type : "blue"
         }  hover:scale-105
           ease-linear transition-all duration-150
-          rounded-3xl cursor-pointer hover:shadow-xl ${className}`}
+          rounded-xl cursor-pointer hover:shadow-xl ${className}`}
       >
         <div className="grid justify-items-center">{children}</div>
       </div>

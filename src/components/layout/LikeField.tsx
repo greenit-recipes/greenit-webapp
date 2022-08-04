@@ -31,7 +31,7 @@ export const LikeField: React.FC<ILikeField> = ({
     <div
       className={
         isRecipeCard
-          ? `absolute h-6 lg:h-8 w-12 lg:w-14 z-0 ${
+          ? `absolute h-6 lg:h-8 w-12 cursor-pointer before:lg:w-14  z-0 ${
               isCarrousel ? "like-greenit top-1" : "top-1 right-2"
             } | grid justify-items-center | bg-white rounded-xl ${className}`
           : `flex ${className}`

@@ -22,9 +22,13 @@ import {
   BadgeSavonDesktop,
   BadgeSavonMobile,
   boxOpen,
+  Desktop_faceillu,
+  Desktop_hairillu,
   escapeTheCity,
   issy,
   LPImage4Desktop,
+  Mobile_faceillu,
+  Mobile_hairillu,
   sixHTN,
   TopImageDesktopLeft,
   TopImageDesktopRight,
@@ -43,6 +47,7 @@ import "react-multi-carousel/lib/styles.css";
 import { Link, useHistory } from "react-router-dom";
 import { GET_FEATURE_BY_NAME } from "services/feature.service";
 import { landingPageCategories } from "utils";
+import ModalPersonalization from "../../components/personalization/ModalPersonalization";
 import { useRecipesQuery } from "../../graphql";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
@@ -157,7 +162,6 @@ const LandingPage = () => {
   const dataSearchMasques = dataSearchMasque.allRecipes?.edges || [];
   const dataIngredientCuisines = dataIngredientCuisine.allRecipes?.edges || [];
   const dataByIds = dataById.allRecipes?.edges || [];
-  const recipesOrderByLikes = dataNbrLikes.allRecipes?.edges || [];
   const recipesAutoComplete = autoCompleteData?.searchAutoCompleteRecipes || {
     recipes: [],
     ingredients: [],
@@ -292,63 +296,121 @@ const LandingPage = () => {
         </Container>
       </div>
       <Container
-        className="flex flex-col justify-center items-center md:items-start | md:px-4
-         | mt-12 mb-12 text-center md:text-left md:w-10/12"
+        className="flex flex-col justify-center items-center | md:px-4
+         | mt-20 md:mt-12 mb-12 text-center md:w-10/12 | relative"
       >
-        <div className="md:flex md:justify-start md:space-x-4">
-          <h2 className="text-xl md:text-2xl">
-            Le kit fait-maison idéal pour débuter
-          </h2>
-          <h2 className="text-xl md:text-2xl | mb-6 font-diy text-2xl">
-            mes premiers pas
-          </h2>
-        </div>
-        <div className="md:flex md:items-center">
-          <div className="flex justify-center mb-3">
+        {isMobile ? (
+          <>
             <img
-              src={boxOpen}
-              className="w-56 h-56 md:w-64 md:h-64 md:mr-24"
-              alt={`Box greenit`}
+              className="w-24 h-36 absolute top-10 left-0"
+              alt="100% fait maison"
+              src={Mobile_faceillu}
+              loading="lazy"
             />
+            <img
+              className="w-20 h-40 absolute -top-16 right-0"
+              alt="100% fait maison"
+              src={Mobile_hairillu}
+              loading="lazy"
+            />
+          </>
+        ) : (
+          <>
+            <img
+              className="w-60 h-60 absolute top-10 right-0"
+              alt="100% fait maison"
+              src={Desktop_hairillu}
+              loading="lazy"
+            />
+            <img
+              className="w-60 h-60 absolute top-16 left-0"
+              alt="100% fait maison"
+              src={Desktop_faceillu}
+              loading="lazy"
+            />
+          </>
+        )}
+
+        <div className="">
+          <h2 className="text-3xl | font-diy">Nouvelle fonctionnalité !</h2>
+          <h2 className="text-2xl md:text-2xl mb-6">Sélection personnalisée</h2>
+        </div>
+        <ModalPersonalization
+          btn={
+            <Button className="mr-3 mb-10" haveIcon={true} type="green">
+              <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
+              Définir mes particularités
+            </Button>
+          }
+        ></ModalPersonalization>
+        <h4 className="mb-4 mt-1 mx-5 md:font-normal">
+          Indique tes particularités pour trouver des {!isMobile && <br />}{" "}
+          recettes personnalisées à tes besoins
+        </h4>
+        <h2 className="text-3xl | font-diy msm:mb-6">
+          type de peau + type de cheveux + {!isMobile && <br />} particularités
+        </h2>
+      </Container>
+      <Container
+        className="flex flex-col justify-center items-center md:items-start | md:px-4
+         | text-center md:text-left w-full | bg-yellowL"
+      >
+        <div className="md:w-10/12 mt-12 mb-12 md:ml-24">
+          <div className="md:flex md:justify-start md:space-x-4">
+            <h2 className="text-xl md:text-2xl">
+              Le kit fait-maison idéal pour débuter
+            </h2>
+            <h2 className="text-xl md:text-2xl | mb-6 font-diy text-2xl">
+              mes premiers pas
+            </h2>
           </div>
-          <div>
-            <div className="flex msm:justify-between md:space-x-24 mt-4">
-              {recipesBegginerFullXp?.map(recipe => (
-                <div className="ml-9">
-                  <img
-                    src={recipe.image}
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover"
-                    alt={recipe.name}
-                  />
-                  <p>{recipe.name}</p>
-                </div>
-              ))}
+          <div className="md:flex md:items-center">
+            <div className="flex justify-center mb-3">
+              <img
+                src={boxOpen}
+                className="w-56 h-56 md:w-64 md:h-64 md:mr-24"
+                alt={`Box greenit`}
+              />
             </div>
-            <h4 className="mt-9 mb-4 font-medium text-lg">
-              L’essentiel pour réaliser 3 recettes validées{" "}
-              {isMobile && <br></br>} par la communauté !
-            </h4>
-            <p>Garantie pas de gâchis et avec des contenants en verre !</p>
-            <p className="mb-6">
-              Résultat, c’est 11 substances toxiques épargnées, 154 g de
-              {isMobile && <br></br>} plastique évités et 32 % d’économie
-            </p>
-            <div className="flex justify-center md:justify-start">
-              <Button
-                className="mr-3"
-                id="landing-box-je-commande"
-                type="green"
-                onClick={() => history.push(RouteName.startDiyGreenitFullXp)}
-              >
-                Je commande
-              </Button>
-              <Button
-                id="landing-box-en-savoir-plus"
-                type="darkBlue"
-                onClick={() => history.push(RouteName.startDiyGreenitFullXp)} // Mettre la bonne route
-              >
-                En savoir plus
-              </Button>
+            <div>
+              <div className="flex msm:justify-between md:space-x-24 mt-4">
+                {recipesBegginerFullXp?.map(recipe => (
+                  <div className="ml-9">
+                    <img
+                      src={recipe.image}
+                      className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover"
+                      alt={recipe.name}
+                    />
+                    <p>{recipe.name}</p>
+                  </div>
+                ))}
+              </div>
+              <h4 className="mt-9 mb-4 font-medium text-lg">
+                L’essentiel pour réaliser 3 recettes validées{" "}
+                {isMobile && <br></br>} par la communauté !
+              </h4>
+              <p>Garantie pas de gâchis et avec des contenants en verre !</p>
+              <p className="mb-6">
+                Résultat, c’est 11 substances toxiques épargnées, 154 g de
+                {isMobile && <br></br>} plastique évités et 32 % d’économie
+              </p>
+              <div className="flex justify-center md:justify-start">
+                <Button
+                  className="mr-3"
+                  id="landing-box-je-commande"
+                  type="green"
+                  onClick={() => history.push(RouteName.startDiyGreenitFullXp)}
+                >
+                  Je commande
+                </Button>
+                <Button
+                  id="landing-box-en-savoir-plus"
+                  type="darkBlue"
+                  onClick={() => history.push(RouteName.startDiyGreenitFullXp)} // Mettre la bonne route
+                >
+                  En savoir plus
+                </Button>
+              </div>
             </div>
           </div>
         </div>

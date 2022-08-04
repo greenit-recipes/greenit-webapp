@@ -15,6 +15,7 @@ export const SearchBar: React.FC<{
   value?: string;
   onSubmit?: () => void;
   keyId?: string;
+  customOnclick?: () => void;
   customClassList?: string;
   suggestions?: {
     recipes: [{ name: string; urlId: string }];
@@ -24,17 +25,20 @@ export const SearchBar: React.FC<{
   suggestionIsActive?: boolean;
   isLoading?: boolean;
   hideSearchIcon?: boolean;
+  placeholder?: string;
 }> = ({
   size = "large",
   value = "",
   suggestions = { recipes: [], ingredients: [], totalRecipes: 0 },
   suggestionIsActive = false,
   setValue,
+  customOnclick,
   customClassList,
   isLoading = false,
   onSubmit,
   hideSearchIcon,
   keyId = "search",
+  placeholder = "Je cherche une recette, un ingrédient...",
 }) => {
   const isLarge = size === "large";
   const history = useHistory();
@@ -166,20 +170,22 @@ export const SearchBar: React.FC<{
           {/* @ts-ignore */}
           {filteredSuggestions?.ingredients.map((suggestion, index) => {
             return (
-              <li key={index} onClick={onClick}>
+              <li key={index} onClick={customOnclick ? customOnclick : onClick}>
                 {suggestion?.name}
               </li>
             );
           })}
-          <li
-            className="cursor-pointer text-sm mt-3 mb-5"
-            onClick={() => {
-              handleSubmit();
-            }}
-          >
-            {" "}
-            Tous les résultats ({suggestions?.totalRecipes})
-          </li>
+          {suggestions?.totalRecipes > 0 && (
+            <li
+              className="cursor-pointer text-sm mt-3 mb-5"
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
+              {" "}
+              Tous les résultats ({suggestions?.totalRecipes})
+            </li>
+          )}
         </ul>
       </div>
     ) : (
@@ -217,7 +223,7 @@ export const SearchBar: React.FC<{
         onFocus={event => {
           event.target.setAttribute("autocomplete", "off");
         }}
-        placeholder="Je cherche une recette, un ingrédient..."
+        placeholder={placeholder}
         id={keyId}
         value={input}
         onChange={onChange}

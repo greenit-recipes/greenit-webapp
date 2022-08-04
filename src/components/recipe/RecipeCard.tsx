@@ -24,6 +24,7 @@ interface RecipeCardProps {
   isLikeDisabled?: boolean;
   index?: number;
   amount?: number;
+  ingredientRatio?: string;
   id?: string;
 }
 
@@ -40,6 +41,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   index,
   id,
   amount,
+  ingredientRatio,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -69,6 +71,14 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
               x{amount}
             </span>
           )}
+        </div>
+      )}
+      {ingredientRatio && (
+        <div className="absolute top-0">
+          <div className="flex items-center space-x-1 | bg-blue text-white rounded-b-xl rounded-tl-xl px-2 py-0.5">
+            <i className="bx bx-lemon text-xl"></i>
+            <span className="font-normal">{ingredientRatio}</span>
+          </div>
         </div>
       )}
       <Link
