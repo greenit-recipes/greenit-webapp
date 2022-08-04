@@ -33,8 +33,8 @@ export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <h4>{questionnaireMenu[2].label}</h4>
-      <div className="mt-4 mx-10 mb-6 | space-y-4">
+      <h4 className="md:text-lg">{questionnaireMenu[2].label}</h4>
+      <div className="mt-4 mx-10 mb-6 | msm:space-y-4 md:flex md:space-x-6 md:justify-center md:h-40 md:w-[500px]">
         <div className="flex flex-col">
           <h4>
             {
@@ -88,27 +88,29 @@ export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
           </div>
         </div>
       </div>
-      {isSkipActive ? (
-        <div className="text-center mb-2">
-          <span className="underline text-sm font-medium cursor-pointer">
-            Je passe à la question suivante
-          </span>
-        </div>
-      ) : (
-        <Button
-          className="w-11/12 mt-2 mb-4 shadow-md"
-          type="green"
-          onClick={() => {
-            nextStep(3, {
-              tagsParticularity: getSelectedOptions(
-                faceOptions.concat(hairOptions),
-              ),
-            });
-          }}
-        >
-          Valider
-        </Button>
-      )}
+      <div className="md:mt-10 md:mb-4">
+        {isSkipActive ? (
+          <div className="text-center mb-2">
+            <span className="underline text-sm font-medium cursor-pointer">
+              Je passe à la question suivante
+            </span>
+          </div>
+        ) : (
+          <Button
+            className="w-11/12 md:w-20 mt-2 mb-4 shadow-md"
+            type="green"
+            onClick={() => {
+              nextStep(3, {
+                tagsParticularity: getSelectedOptions(
+                  faceOptions.concat(hairOptions),
+                ),
+              });
+            }}
+          >
+            Valider
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

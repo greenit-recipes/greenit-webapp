@@ -14,9 +14,9 @@ export const StepHairType: React.FC<Step> = ({ nextStep }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <h4>{questionnaireMenu[1].label}</h4>
+      <h4 className="md:text-lg">{questionnaireMenu[1].label}</h4>
       <div className="mt-4 mx-10 mb-6">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 md:flex md:space-x-1 md:justify-center md:h-40 md:w-[500px]">
           {
             //@ts-ignore
             hairOptions.map((op, index) => {
