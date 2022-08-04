@@ -33,7 +33,7 @@ export const SectionPersonalization = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col justify-center md:flex-row">
         <ModalPersonalization
           btn={
             <div className="text-center mb-2">
@@ -43,11 +43,6 @@ export const SectionPersonalization = () => {
             </div>
           }
         ></ModalPersonalization>
-        <div className="text-center mb-2">
-          <span className="underline font-medium cursor-pointer">
-            Supprimer mes préférences
-          </span>
-        </div>
       </div>
     </div>
   );

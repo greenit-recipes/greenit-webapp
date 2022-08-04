@@ -9,9 +9,9 @@ interface SectionICMProps {
 export const SectionICM: React.FC<SectionICMProps> = ({ spacing }) => {
   return (
     <div className="">
-      <div className={`flex flex-wrap md:space-x-6 md:mx-36 ${spacing}`}>
+      <div className={`flex flex-wrap md:mx-36 ${spacing}`}>
         {ICMingredients.map(ingredient => (
-          <div className="flex flex-col items-center text-center space-y-1 | mb-2">
+          <div className="flex flex-col items-center text-center space-y-1 | md:mr-7 mb-2">
             <img
               src={ingredient.image}
               className="w-[77px] h-[76px] md:w-20 md:h-20 rounded-lg object-cover"
