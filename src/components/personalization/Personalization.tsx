@@ -23,7 +23,7 @@ export const Personalization = () => {
     }
   };
 
-  const getStep = (name: string) => {
+  const getStep = () => {
     return questionnaireMenu.map(el => el.name).findIndex(el => el === menu);
   };
 
@@ -73,10 +73,10 @@ export const Personalization = () => {
 
       {/*Stepper*/}
       <div className="flex justify-center items-center space-x-6">
-        {getStep(menu) > 0 && (
+        {getStep() > 0 && (
           <i
             className="bx bx-left-arrow-alt text-4xl cursor-pointer"
-            onClick={() => selectStep(getStep(menu) - 1)}
+            onClick={() => selectStep(getStep() - 1)}
           ></i>
         )}
 

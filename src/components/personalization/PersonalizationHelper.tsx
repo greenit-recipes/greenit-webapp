@@ -35,6 +35,30 @@ export const ICMingredients = [
     alt: "ingredient",
     name: "ingredients avec un nom long",
   },
+  {
+    image:
+      "https://greenit-s3-bucket.s3.eu-west-3.amazonaws.com/media/ingredient/huile_vegetale_de_coco.jpeg",
+    alt: "ingredient",
+    name: "ingredients avec un nom long",
+  },
+  {
+    image:
+      "https://greenit-s3-bucket.s3.eu-west-3.amazonaws.com/media/ingredient/huile_vegetale_de_coco.jpeg",
+    alt: "ingredient",
+    name: "ingredients avec un nom long",
+  },
+  {
+    image:
+      "https://greenit-s3-bucket.s3.eu-west-3.amazonaws.com/media/ingredient/huile_vegetale_de_coco.jpeg",
+    alt: "ingredient",
+    name: "ingredients avec un nom long",
+  },
+  {
+    image:
+      "https://greenit-s3-bucket.s3.eu-west-3.amazonaws.com/media/ingredient/huile_vegetale_de_coco.jpeg",
+    alt: "ingredient",
+    name: "ingredients avec un nom long",
+  },
 ];
 
 export const LDCIngredients = [
