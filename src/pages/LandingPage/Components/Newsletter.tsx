@@ -1,4 +1,5 @@
 import { Container, Button } from "../../../components";
+import { NotificationAlert } from "../../../components/layout/NotificationAlert";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -66,8 +67,10 @@ export const Newsletter: React.FC = () => {
       </form>
       {data?.createNewsletter?.success && (
         <div className="text-green  md: mb-2 | text-center whitespace-pre-line">
-          Votre inscription a bien été prise en compte. À très vite dans votre
-          boite mail !
+          <h1>
+            "Votre inscription a bien été prise en compte. À très vite dans
+            votre boite mail !"
+          </h1>
         </div>
       )}
       <div className="w-10/12 md:w-1/2 text-sm text-center md:text-base lg:mx-80">
