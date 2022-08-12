@@ -187,7 +187,7 @@ const ProfilPage: React.FC = () => {
                   : "bx-bookmark-heart"
               } text-3xl`}
             ></i>
-            {!isMobile && <h4 className="text-lg">Mon carnet de recettes</h4>}
+            {!isMobile && <h4 className="text-md">Mon carnet de recettes</h4>}
           </div>
           <div
             className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
@@ -210,7 +210,7 @@ const ProfilPage: React.FC = () => {
                   : "bx-category-alt"
               } text-3xl`}
             ></i>
-            {!isMobile && <h4 className="text-lg">Mes particularités</h4>}
+            {!isMobile && <h4 className="text-md">Mes particularités</h4>}
           </div>
           <div
             className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
@@ -231,7 +231,7 @@ const ProfilPage: React.FC = () => {
                 isICMActive ? "bxs-lemon text-blue" : "bx-lemon"
               } text-3xl`}
             ></i>
-            {!isMobile && <h4 className="text-lg">Ingrédients chez moi</h4>}
+            {!isMobile && <h4 className="text-md">Ingrédients chez moi</h4>}
           </div>
           <div
             className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
@@ -252,7 +252,7 @@ const ProfilPage: React.FC = () => {
                 isLDCActive && "text-blue"
               } text-3xl`}
             ></i>
-            {!isMobile && <h4 className="text-lg">Liste de course</h4>}
+            {!isMobile && <h4 className="text-md">Liste de course</h4>}
           </div>
         </div>
         <div className="w-full mb-5 pt-4">
@@ -310,8 +310,8 @@ const ProfilPage: React.FC = () => {
                 </div>
               )}
               {/*Todo : Add flex wrap in desktop view*/}
-              <div className="md:flex md:justify-center w-full pt-4 pl-4 msm:overflow-x-auto">
-                <div className="flex w-max">
+              <div className="flex justify-center w-full msm:overflow-x-auto">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 md:gap-5">
                   {user?.recipeFavorite?.map((recipe: any, index: any) => (
                     <>
                       <div

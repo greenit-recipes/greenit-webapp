@@ -64,7 +64,7 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
               {data?.slice(0, 4).map(recipe => (
                 <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
               ))}
-              <ExploreMore />
+              <ExploreMore filter="/" />
             </div>
           </div>
         </>
