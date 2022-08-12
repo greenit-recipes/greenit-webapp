@@ -1,12 +1,12 @@
 .notification {
-  animation-name: example;
+  animation-name: fadeinout;
   animation-duration: 4s;
   opacity: 0;
   bottom: 0rem;
   visibility: hidden;
 }
 
-@keyframes example {
+@keyframes fadeinout {
   0% {
     visibility: hidden;
     opacity: 0;
