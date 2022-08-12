@@ -10,7 +10,6 @@ export const RouteName = {
     "/activate/mot-de-passe-oublié/:tokenActivationAccount", // no index
   register: "/creation-compte",
   recipeCreated: "/ajout-recette", // no index
-  workshops: "/ateliers",
   ingredientPage: "/ingredients", // no index ( a activer quand on sort la page)
   starterPage: "/page-debutant-diy", // no index ( a activer quand on sort la page)
   why: "/projet",
@@ -31,7 +30,6 @@ export default (
       <Route path={RouteName.recipes} />
       <Route path="/recettes/:name" />
       <Route path={RouteName.ingredientPage} />
-      <Route path={RouteName.workshops} />
       <Route path={RouteName.starterPage} />
       <Route path={RouteName.createRecipe} />
       <Route path={RouteName.recipeCreated} />

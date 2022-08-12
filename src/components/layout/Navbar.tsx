@@ -152,11 +152,6 @@ export const Navbar: React.FC = () => {
                 Kit fait-maison
               </h2>
             </Link>
-            <Link className="p-2" to={RouteName.workshops}>
-              <h2 id="workshops" className="text-white">
-                Se former
-              </h2>
-            </Link>
             <Link className="p-2" to={RouteName.starterPage}>
               <h2 id="getStarted" className="text-white">
                 Se lancer
@@ -411,25 +406,6 @@ export const Navbar: React.FC = () => {
             Kit fait-maison
           </NavButton>
         </Link>
-        <div className="w-auto" id="navmenu">
-          <Link to={RouteName.workshops}>
-            <NavButton id="workshops" type="yellow">
-              Se former
-            </NavButton>
-          </Link>
-          <div id="navlist" className="grid pt-2 justify-items-start">
-            <div className="flex flex-col pt-4 ml-40 text-lg">
-              <Link to={RouteName.workshops}>
-                <div
-                  id="allWorkshops"
-                  className="mb-2 cursor-pointer hover:text-yellow"
-                >
-                  Tous les ateliers
-                </div>
-              </Link>
-            </div>
-          </div>
-        </div>
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.starterPage}>
             <NavButton id="getStarted" type="blue">
