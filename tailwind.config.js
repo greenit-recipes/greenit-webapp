@@ -91,7 +91,7 @@ module.exports = {
                 orangeL: "#FFF3EF",
                 yellowL: "#FFF7E7",
                 greyL: "#F0F0F0",
-                redL: "#ED6D6D",
+                redL: "#FFF3EF",
                 inactive: "#F2F2F2",
                 active: "#1CC466",
             },

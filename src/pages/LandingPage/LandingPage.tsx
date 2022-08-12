@@ -181,10 +181,6 @@ const LandingPage = () => {
           content="Votre espace de partage de recette DIY, des astuces écologiques pour la maison, des ateliers pour débuter dans le fait-maison et des pages sur les bienfaits des ingrédients."
         />
       </Helmet>
-      <NotificationAlert
-        text="Votre inscription a bien été prise en compte. À très vite dans votre
-            boite mail !"
-      ></NotificationAlert>
       {/* dataFullXP?.featureFlag?.isActive && (
         <>
           <GreenitFullXpHeadband

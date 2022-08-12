@@ -1,0 +1,30 @@
+.notification {
+  animation-name: example;
+  animation-duration: 4s;
+  opacity: 0;
+  bottom: 0rem;
+  visibility: hidden;
+}
+
+@keyframes example {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    bottom: 0;
+  }
+  15% {
+    visibility: visible;
+    opacity: 100;
+    bottom: 1rem;
+  }
+  90% {
+    visibility: visible;
+    opacity: 100;
+    bottom: 1rem;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+    bottom: 0rem;
+  }
+}
