@@ -40,7 +40,10 @@ export const SectionPersonalization = () => {
         <ModalPersonalization
           btn={
             <div className="text-center mb-2">
-              <span className="underline font-medium cursor-pointer">
+              <span
+                id="listpage-mes-particularites-modifier"
+                className="underline font-medium cursor-pointer"
+              >
                 Modifier mes préférences
               </span>
             </div>
@@ -48,7 +51,10 @@ export const SectionPersonalization = () => {
         ></ModalPersonalization>
         {location.pathname === RouteName.profil && (
           <div className="text-center mb-2">
-            <span className="underline font-medium cursor-pointer">
+            <span
+              id="listpage-mes-particularites-supprimer"
+              className="underline font-medium cursor-pointer"
+            >
               Supprimer mes préférences
             </span>
           </div>

@@ -43,9 +43,10 @@ export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
             }
           </h4>
           <div className="flex flex-col justify-center | mt-2 space-y-3">
-            {faceOptions.map(op => {
+            {faceOptions.map((op: any) => {
               return (
                 <div
+                  id={op.id}
                   className={`w-56 py-2  ${
                     op.isSelected
                       ? "border-green bg-greenL text-green"
@@ -69,9 +70,10 @@ export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
             }
           </h4>
           <div className="flex flex-col justify-center | mt-2 space-y-3">
-            {hairOptions.map(op => {
+            {hairOptions.map((op: any) => {
               return (
                 <div
+                  id={op.id}
                   className={`w-56 py-2  ${
                     op.isSelected
                       ? "border-green bg-greenL text-green"
@@ -97,6 +99,7 @@ export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
           </div>
         ) : (
           <Button
+            id="modal-personalisation-validerstepMoreDetails"
             className="w-full md:w-20 mt-2 mb-4 shadow-md"
             type="green"
             onClick={() => {

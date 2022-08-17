@@ -140,24 +140,46 @@ export const questionnaireMenu = [
     label: "Quel est ton type de peau ?",
     name: "skinType",
     singleOptions: [
-      { option: "Sèche", isSelected: false },
-      { option: "Mixte", isSelected: false },
+      {
+        option: "Sèche",
+        isSelected: false,
+        id: "modal-particularites-peau-seche",
+      },
+      {
+        option: "Mixte",
+        isSelected: false,
+        id: "modal-particularites-peau-mixte",
+      },
       {
         option: "Grasse",
         isSelected: false,
+        id: "modal-particularites-peau-grasse",
       },
-      { option: "Normale", isSelected: false },
+      {
+        option: "Normale",
+        isSelected: false,
+        id: "modal-particularites-peau-normale",
+      },
     ],
   },
   {
     label: "Quel est ton type de cheveux ?",
     name: "hairType",
     singleOptions: [
-      { option: "Sec", isSelected: false },
-      { option: "Gras", isSelected: false },
+      {
+        option: "Sec",
+        isSelected: false,
+        id: "modal-particularites-cheveux-sec",
+      },
+      {
+        option: "Gras",
+        isSelected: false,
+        id: "modal-particularites-cheveux-gras",
+      },
       {
         option: "Normal",
         isSelected: false,
+        id: "modal-particularites-cheveux-normal",
       },
     ],
   },
@@ -168,23 +190,41 @@ export const questionnaireMenu = [
       {
         name: "Visage",
         singleOptions: [
-          { option: "Acné", isSelected: false },
+          {
+            option: "Acné",
+            isSelected: false,
+            id: "modal-particularites-acne",
+          },
           {
             option: "Rides",
             isSelected: false,
+            id: "modal-particularites-rides",
           },
-          { option: "Rougeurs", isSelected: false },
+          {
+            option: "Rougeurs",
+            isSelected: false,
+            id: "modal-particularites-rougeurs",
+          },
         ],
       },
       {
         name: "Cheveux",
         singleOptions: [
-          { option: "Pellicule", isSelected: false },
+          {
+            option: "Pellicule",
+            isSelected: false,
+            id: "modal-particularites-pellicule",
+          },
           {
             option: "Cuir chevelu irrité",
             isSelected: false,
+            id: "modal-particularites-cuir",
           },
-          { option: "Perte de cheveux", isSelected: false },
+          {
+            option: "Perte de cheveux",
+            isSelected: false,
+            id: "modal-particularites-perte",
+          },
         ],
       },
     ],

@@ -199,6 +199,7 @@ const RecipeListPage = () => {
 
         <div className="flex justify-center ">
           <Button
+            id="listpage-mes-particularites"
             className="px-4 py-1 mr-3 mb-4 shadow-md"
             haveIcon={true}
             onClick={() => {
@@ -211,6 +212,7 @@ const RecipeListPage = () => {
             Mes particularités
           </Button>
           <Button
+            id="listpage-ingredientchezmoi"
             className="mr-3 mb-4 shadow-md"
             haveIcon={true}
             onClick={() => {
@@ -305,7 +307,10 @@ const RecipeListPage = () => {
               <h3 className="text-2xl font-normal">Recettes pour vous</h3>
               <ModalPersonalizationInfo
                 btn={
-                  <i className="bx bx-info-circle hover:text-blue text-2xl mt-1 cursor-pointer"></i>
+                  <i
+                    className="bx bx-info-circle hover:text-blue text-2xl mt-1 cursor-pointer"
+                    id="listpage-informations"
+                  ></i>
                 }
               ></ModalPersonalizationInfo>
             </div>

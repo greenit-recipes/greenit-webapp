@@ -337,7 +337,12 @@ const LandingPage = () => {
         </div>
         <ModalPersonalization
           btn={
-            <Button className="mr-3 mb-10" haveIcon={true} type="green">
+            <Button
+              className="mr-3 mb-10"
+              haveIcon={true}
+              type="green"
+              id="landing-mes-particularites"
+            >
               <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
               Définir mes particularités
             </Button>
@@ -439,7 +444,10 @@ const LandingPage = () => {
           {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
-          <ExploreMore filter="tags=Premiers pas" />
+          <ExploreMore
+            filter="tags=Premiers pas"
+            id="landing-debutant-debutant"
+          />
         </div>
       </div>
       <Container
@@ -458,7 +466,7 @@ const LandingPage = () => {
           {dataHomes?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
-          <ExploreMore filter="category=Maison" />
+          <ExploreMore filter="category=Maison" id="landing-maison-explorer" />
         </div>
       </div>
       <Container
@@ -481,6 +489,7 @@ const LandingPage = () => {
               name={item.title}
               icon={item.icon}
               key={item.title}
+              id={item.title}
             />
           ))}
         </div>
@@ -511,7 +520,10 @@ const LandingPage = () => {
                   ))}
                 {/*Todo: Fill category later*/}
                 {isMobile && (
-                  <ExploreMore filter="category=Avec les ingrédients de la cuisine" />
+                  <ExploreMore
+                    filter="category=Avec les ingrédients de la cuisine"
+                    id="landing-maison-ingr-cuisine"
+                  />
                 )}
               </div>
             </div>
@@ -532,7 +544,10 @@ const LandingPage = () => {
                     ))}
                   {/*Todo: Fill category later*/}
                   {isMobile && (
-                    <ExploreMore filter="category=Avec les ingrédients de la cuisine" />
+                    <ExploreMore
+                      filter="category=Avec les ingrédients de la cuisine"
+                      id="landing-maison-ingr-cuisine"
+                    />
                   )}
                 </div>
               </div>
@@ -711,7 +726,10 @@ const LandingPage = () => {
           {dataHairs?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
-          <ExploreMore filter="category=Cheveux" />
+          <ExploreMore
+            filter="category=Cheveux"
+            id="landing-shampoings-explorer"
+          />
         </div>
       </div>
 
@@ -731,7 +749,7 @@ const LandingPage = () => {
           {dataSearchMasques?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
-          <ExploreMore filter="search=Masque" />
+          <ExploreMore filter="search=Masque" id="landing-masques-explorer" />
         </div>
       </div>
       <Container

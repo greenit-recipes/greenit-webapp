@@ -238,6 +238,7 @@ const RecipeSinglePage = () => {
                     }}
                   >
                     <CircleGreenit
+                      id="recipepage-RPI-substances"
                       colorCircle="bg-blue"
                       icon={
                         <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
@@ -256,6 +257,7 @@ const RecipeSinglePage = () => {
                     }}
                   >
                     <CircleGreenit
+                      id="recipepage-RPI-argent"
                       colorCircle="bg-yellow"
                       icon={
                         <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
@@ -275,6 +277,7 @@ const RecipeSinglePage = () => {
                     }}
                   >
                     <CircleGreenit
+                      id="recipepage-RPI-plastique"
                       colorCircle="bg-green"
                       icon={
                         <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>

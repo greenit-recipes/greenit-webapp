@@ -38,7 +38,12 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
             </p>
             <ModalPersonalization
               btn={
-                <Button className="w-64 px-1" haveIcon={true} type="green">
+                <Button
+                  className="w-64 px-1"
+                  haveIcon={true}
+                  type="green"
+                  id="profil-particularites-definir-particularites"
+                >
                   <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
                   Définir mes particularités
                 </Button>
@@ -64,7 +69,7 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
               {data?.slice(0, 4).map(recipe => (
                 <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
               ))}
-              <ExploreMore />
+              <ExploreMore id="profil-particularites-explorer" />
             </div>
           </div>
         </>

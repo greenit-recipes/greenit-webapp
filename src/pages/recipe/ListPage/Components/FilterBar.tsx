@@ -126,6 +126,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 className="fixed right-0 p-2 mr-3 top-14"
                 type="red"
                 onClick={() => removeFilters()}
+                id="listpage-filtresmobile-supprimerfiltre"
               >
                 Supprimer les filtres X
               </Button>
@@ -183,7 +184,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                       </div>
                     </div>
                     <div>
-                      <Button type="darkBlue" onClick={() => removeFilters()}>
+                      <Button
+                        type="darkBlue"
+                        onClick={() => removeFilters()}
+                        id="listpage-filtredesktop-supprimerfiltre"
+                      >
                         Supprimer tous les filtres X
                       </Button>
                     </div>
