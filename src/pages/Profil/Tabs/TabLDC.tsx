@@ -36,13 +36,18 @@ export const TabLDC: React.FC<TabLDCProps> = ({ hasLDC }) => {
               <i className="bx bx-cart-download text-3xl text-blue"></i>
             </div>
             <div className="flex flex-col items-center | mt-5">
-              <Button className="px-4 py-2 mr-3 mb-4 shadow-md" type="green">
+              <Button
+                className="px-4 py-2 mr-3 mb-4 shadow-md"
+                type="green"
+                id="profil-LDCtab-acheter"
+              >
                 Acheter maintenant
               </Button>
               <Button
                 className="px-4 py-1 mr-3 mb-4 shadow-md"
                 haveIcon={true}
                 type="darkBlue"
+                id="profil-LDCtab-envoyer"
               >
                 <i className="bx bx-share text-2xl mt-0.5 mr-2 flipIcon"></i>
                 Me l’envoyer
@@ -58,7 +63,11 @@ export const TabLDC: React.FC<TabLDCProps> = ({ hasLDC }) => {
             </p>
             <i className="bx bx-cart-download mt-2 text-3xl mb-6"></i>
             <Link to={RouteName.recipes}>
-              <Button className="mb-4 shadow-md" type="darkBlue">
+              <Button
+                className="mb-4 shadow-md"
+                type="darkBlue"
+                id="profil-LDCtab-explorer-recette"
+              >
                 Explorer les recettes
               </Button>
             </Link>

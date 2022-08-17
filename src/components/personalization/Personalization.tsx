@@ -55,13 +55,17 @@ export const Personalization = () => {
                   <div className="flex flex-col justify-center md:flex-row md:space-x-4 md:justify-center | mt-2 msm:space-y-3">
                     <div
                       className="w-56 py-3 hover:border-green hover:bg-greenL hover:text-green border-darkBlue border-2 rounded-md shadow-md"
+                      id="modal-particularites-recettes-maison-oui"
                       onClick={() => {
                         console.log(options.current);
                       }}
                     >
                       Pourquoi pas !
                     </div>
-                    <div className="w-56 py-3 hover:border-green hover:bg-greenL hover:text-green border-darkBlue border-2 rounded-md shadow-md">
+                    <div
+                      id="modal-particularites-recettes-maison-non"
+                      className="w-56 py-3 hover:border-green hover:bg-greenL hover:text-green border-darkBlue border-2 rounded-md shadow-md"
+                    >
                       Non, pas pour le moment
                     </div>
                   </div>

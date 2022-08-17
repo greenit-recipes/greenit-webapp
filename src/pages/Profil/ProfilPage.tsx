@@ -167,6 +167,7 @@ const ProfilPage: React.FC = () => {
         {/*Todo: Refactor Menu*/}
         <div className="w-full flex justify-around items-center | mb-2">
           <div
+            id="profil-carnettab"
             className={`flex justify-center md:items-center md:space-x-2 w-1/4 ${
               isDashboardActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
@@ -190,6 +191,7 @@ const ProfilPage: React.FC = () => {
             {!isMobile && <h4 className="text-md">Mon carnet de recettes</h4>}
           </div>
           <div
+            id="profil-particularitestab"
             className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
               isParticularitiesActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
@@ -213,6 +215,7 @@ const ProfilPage: React.FC = () => {
             {!isMobile && <h4 className="text-md">Mes particularités</h4>}
           </div>
           <div
+            id="profil-ICMtab"
             className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
               isICMActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
@@ -234,6 +237,7 @@ const ProfilPage: React.FC = () => {
             {!isMobile && <h4 className="text-md">Ingrédients chez moi</h4>}
           </div>
           <div
+            id="profil-LDCtab"
             className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
               isLDCActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
@@ -303,7 +307,11 @@ const ProfilPage: React.FC = () => {
                     />
                   </div>
                   <Link to={RouteName.recipes}>
-                    <Button className="mt-5" type="darkBlue">
+                    <Button
+                      className="mt-5"
+                      type="darkBlue"
+                      id="profil-carnet-explorer"
+                    >
                       Explorer des recettes
                     </Button>
                   </Link>

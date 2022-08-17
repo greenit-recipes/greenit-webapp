@@ -72,7 +72,7 @@ export const ExplorateurProfil: React.FC<IUser> = ({
         </div>
         <div className="flex items-center justify-center">
           <Button
-            id="Share_a_recipe"
+            id="profil-carnet-recettes-realisees"
             type="darkBlue"
             rounded="lg"
             haveArrow={true}

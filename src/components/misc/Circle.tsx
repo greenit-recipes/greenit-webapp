@@ -2,15 +2,17 @@ export interface CircleProps {
   name: string;
   icon: string;
   isLandingPage?: boolean;
+  id?: string;
 }
 
 export const Circle: React.FC<CircleProps> = ({
   name,
   icon,
   isLandingPage = false,
+  id,
 }) => {
   return (
-    <div className="flex cursor-pointer flex-col | items-center">
+    <div className="flex cursor-pointer flex-col | items-center" id={id}>
       <div
         className={
           isLandingPage

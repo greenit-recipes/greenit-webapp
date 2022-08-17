@@ -65,6 +65,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
             de course
           </span>
           <Button
+            id="recipepage-ingredientall-LDC"
             className={`px-4 mr-3 shadow-md ${
               isBulkLDCActive && "border-blue"
             } hover:text-blue active:border-blue active:bg-white`}

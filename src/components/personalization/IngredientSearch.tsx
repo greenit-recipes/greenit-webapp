@@ -35,9 +35,9 @@ export const IngredientSearch = () => {
         <h3>Les ingrédients chez moi</h3>
         <div className="md:w-1/2">
           <SearchBar
+            keyId="modal-ingredients-chez-moi-searchbar"
             suggestionIsActive={true}
             placeholder="Ajouter un ingrédient"
-            keyId="searchIngredientAtHome"
             size="small"
             setValue={setSearchTermDebounced}
             isLoading={autoCompleteLoading}
@@ -63,13 +63,17 @@ export const IngredientSearch = () => {
               {ingredient.name}
             </p>
             <div className="flex justify-center items-center md:w-12 w-9 h-9 border-red border-2 rounded-md shadow-md | cursor-pointer">
-              <i className="bx bx-x text-red text-3xl"></i>
+              <i
+                className="bx bx-x text-red text-3xl"
+                id="modal-ingredients-chez-moi-supprimer"
+              ></i>
             </div>
           </div>
         ))}
       </div>
       <div className="self-center">
         <button
+          id="modal-ingredients-chez-moi-valider"
           className={`justify-center rounded-md shadow-md mt-2 p-2 h-10 flex w-full md:w-20 bg-green text-white`}
         >
           Valider

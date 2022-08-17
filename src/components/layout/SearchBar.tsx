@@ -14,7 +14,7 @@ export const SearchBar: React.FC<{
   setValue?: (val: string) => void;
   value?: string;
   onSubmit?: () => void;
-  keyId?: string;
+  keyId: string;
   customOnclick?: () => void;
   customClassList?: string;
   suggestions?: {
@@ -37,7 +37,7 @@ export const SearchBar: React.FC<{
   isLoading = false,
   onSubmit,
   hideSearchIcon,
-  keyId = "search",
+  keyId,
   placeholder = "Je cherche une recette, un ingrédient...",
 }) => {
   const isLarge = size === "large";

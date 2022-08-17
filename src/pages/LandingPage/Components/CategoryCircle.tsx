@@ -11,6 +11,7 @@ export const CategoryCircle: React.FC<CircleProps> = ({
   name,
   icon,
   isLandingPage = false,
+  id,
 }) => {
   const history = useHistory();
   const isTag = [
@@ -28,7 +29,7 @@ export const CategoryCircle: React.FC<CircleProps> = ({
         history.push(RouteName.recipes);
       }}
     >
-      <Circle name={name} icon={icon} isLandingPage={isLandingPage} />
+      <Circle name={name} icon={icon} id={id} isLandingPage={isLandingPage} />
     </div>
   );
 };

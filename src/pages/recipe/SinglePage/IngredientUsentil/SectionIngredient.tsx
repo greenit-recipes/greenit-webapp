@@ -58,6 +58,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
             {!isMobile && (
               <div className="flex ml-4">
                 <Button
+                  id="recipepage-ingredientcard-ICM"
                   className={`px-4 mr-3 shadow-md ${
                     isICMActive && "border-blue"
                   } hover:text-blue active:border-blue active:bg-white`}
@@ -76,6 +77,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                   ></i>
                 </Button>
                 <Button
+                  id="recipepage-ingredientcard-LDC"
                   className={`px-4 mr-3 shadow-md ${
                     isLDCActive && "border-blue"
                   } hover:text-blue active:border-blue active:bg-white`}
@@ -111,6 +113,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
               <div className="flex justify-around pt-5 space-x-2 mb-2">
                 <div className="flex items-center">
                   <Button
+                    id="recipepage-ingredientcard-ICM"
                     className={`px-4 mr-3 shadow-md ${
                       isICMActive && "border-blue"
                     } hover:text-blue active:border-blue active:bg-white`}
@@ -134,6 +137,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                 </div>
                 <div className="flex items-center">
                   <Button
+                    id="recipepage-ingredientcard-LDC"
                     className={`px-4 mr-3 shadow-md ${
                       isLDCActive && "border-blue"
                     } hover:text-blue active:border-blue active:bg-white`}

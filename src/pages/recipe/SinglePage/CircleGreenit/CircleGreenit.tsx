@@ -9,6 +9,7 @@ interface ICircleGreenit {
   isSymbolAtEndOfLine?: boolean;
   isOnlyIcon?: boolean;
   colorCircle: string;
+  id?: string;
 }
 
 export const CircleGreenit: React.FC<ICircleGreenit> = ({
@@ -22,13 +23,15 @@ export const CircleGreenit: React.FC<ICircleGreenit> = ({
   customClassName = "",
   isSymbolAtEndOfLine = true,
   isOnlyIcon = false,
+  id,
 }) => {
   const sizeCircleDefault = sizeCircle
     ? sizeCircle
     : "w-16 h-16 lg:w-20 lg:h-20";
   return (
-    <div className={`${customClassName} flex flex-col | items-center`}>
+    <div id={id} className={`${customClassName} flex flex-col | items-center`}>
       <div
+        id={id}
         className={`${sizeCircleDefault} rounded-full flex items-center justify-center relative ${colorCircle}`}
       >
         {icon}

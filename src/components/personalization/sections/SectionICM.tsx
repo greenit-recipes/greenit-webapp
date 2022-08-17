@@ -25,7 +25,10 @@ export const SectionICM: React.FC<SectionICMProps> = ({ spacing }) => {
         <div className="ml-2">
           <ModalIngredientSearch
             btn={
-              <div className="flex items-center justify-center w-[77px] h-[76px] md:w-20 md:h-20 | bg-white rounded-lg drop-shadow-md | mb-2">
+              <div
+                className="flex items-center justify-center w-[77px] h-[76px] md:w-20 md:h-20 | bg-white rounded-lg drop-shadow-md | mb-2"
+                id="listpage-ingredientchezmoi-ajouter"
+              >
                 <span className="text-2xl font-semibold">+</span>
               </div>
             }
@@ -35,7 +38,10 @@ export const SectionICM: React.FC<SectionICMProps> = ({ spacing }) => {
       <ModalIngredientSearch
         btn={
           <div className="text-center mb-2">
-            <span className="underline font-medium cursor-pointer">
+            <span
+              className="underline font-medium cursor-pointer"
+              id="listpage-ingredientchezmoi-modifier"
+            >
               Modifier mes ingrédients
             </span>
           </div>
