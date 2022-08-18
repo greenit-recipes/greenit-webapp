@@ -62,7 +62,10 @@ export const SectionPersonalization: React.FC<ISectionPersonalization> = ({
         <div className="flex flex-col justify-center md:flex-row md:space-x-4">
           <ModalPersonalization
             btn={
-              <div className="text-center mb-2">
+              <div
+                className="text-center mb-2"
+                id="listpage-mes-particularites-modifier"
+              >
                 <span className="underline font-medium cursor-pointer">
                   Modifier mes préférences
                 </span>
@@ -73,6 +76,7 @@ export const SectionPersonalization: React.FC<ISectionPersonalization> = ({
             <div className="text-center mb-2">
               <span
                 className="underline font-medium cursor-pointer"
+                id="listpage-mes-particularites-supprimer"
                 onClick={() => {
                   resetParticularities();
                   window.location.reload();
