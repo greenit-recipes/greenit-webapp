@@ -1,3 +1,5 @@
+import { cloneDeep } from "lodash";
+
 export const ICMingredients = [
   {
     image:
@@ -138,54 +140,54 @@ export const particularities = {
 export const questionnaireMenu = [
   {
     label: "Quel est ton type de peau ?",
-    name: "skinType",
+    name: "tagsSkin",
     singleOptions: [
       {
         option: "Sèche",
         isSelected: false,
-        id: "modal-particularites-peau-seche",
+        tagId: "aa0c4714-970f-4ca6-9e42-8d311f88728d",
       },
       {
         option: "Mixte",
         isSelected: false,
-        id: "modal-particularites-peau-mixte",
+        tagId: "f1942980-7bb3-4f1b-8804-1791c1bc7a73",
       },
       {
         option: "Grasse",
         isSelected: false,
-        id: "modal-particularites-peau-grasse",
+        tagId: "457aaf99-d832-4fcd-a247-45237e42caa8",
       },
       {
         option: "Normale",
         isSelected: false,
-        id: "modal-particularites-peau-normale",
+        tagId: "17ed2783-a9af-4e48-93f7-ed422b1bb7f6",
       },
     ],
   },
   {
     label: "Quel est ton type de cheveux ?",
-    name: "hairType",
+    name: "tagsHair",
     singleOptions: [
       {
         option: "Sec",
         isSelected: false,
-        id: "modal-particularites-cheveux-sec",
+        tagId: "d85a188f-40f8-48b2-824d-54d4ec72f56c",
       },
       {
         option: "Gras",
         isSelected: false,
-        id: "modal-particularites-cheveux-gras",
+        tagId: "c2665f0a-7fdf-4dbc-a436-4a6faaf98e33",
       },
       {
         option: "Normal",
         isSelected: false,
-        id: "modal-particularites-cheveux-normal",
+        tagId: "redacted",
       },
     ],
   },
   {
     label: "As-tu des particularités précises ?",
-    name: "moreDetails",
+    name: "tagsParticularity",
     multipleOPtions: [
       {
         name: "Visage",
@@ -193,17 +195,17 @@ export const questionnaireMenu = [
           {
             option: "Acné",
             isSelected: false,
-            id: "modal-particularites-acne",
+            tagId: "4e46474c-d593-4aa2-a0de-17b3781468fd",
           },
           {
             option: "Rides",
             isSelected: false,
-            id: "modal-particularites-rides",
+            tagId: "redacted",
           },
           {
             option: "Rougeurs",
             isSelected: false,
-            id: "modal-particularites-rougeurs",
+            tagId: "208cb22c-8332-44b9-a436-64829dcebd2c",
           },
         ],
       },
@@ -213,17 +215,17 @@ export const questionnaireMenu = [
           {
             option: "Pellicule",
             isSelected: false,
-            id: "modal-particularites-pellicule",
+            tagId: "a61cb4b3-46ea-453d-9ba2-4328bdc028a2",
           },
           {
             option: "Cuir chevelu irrité",
             isSelected: false,
-            id: "modal-particularites-cuir",
+            tagId: "30da1acf-a505-4b8e-b067-dd775e4a67c6",
           },
           {
             option: "Perte de cheveux",
             isSelected: false,
-            id: "modal-particularites-perte",
+            tagId: "3b29c90c-6e8b-4cd6-8b8d-4f4f079a338b",
           },
         ],
       },
@@ -233,10 +235,11 @@ export const questionnaireMenu = [
     label: "Des recettes pour la maison, ça te dit ?",
     name: "engagement",
     singleOptions: [
-      { option: "Pourquoi pas !", isSelected: false },
+      { option: "Pourquoi pas !", isSelected: false, tagId: "redacted" },
       {
         option: "Non, pas pour le moment",
         isSelected: false,
+        tagId: "redacted",
       },
     ],
   },
@@ -271,6 +274,77 @@ export const getSelectedOptions = (options: any) => {
   return ops;
 };
 
+export const getTagIdsByName = (particularities: any) => {
+  const p = {
+    tagsSkin: [],
+    tagsHair: [],
+    tagsParticularity: [],
+  };
+  for (const [key, values] of Object.entries(particularities)) {
+    const step = questionnaireMenu.find((element: any) => element.name === key);
+    if (step) {
+      if (key !== "tagsParticularity") {
+        // @ts-ignore
+        p[key] = values.map(
+          (v: any) =>
+            // @ts-ignore
+            step.singleOptions.find((el: any) => el.option === v)["tagId"],
+        );
+      } else {
+        // @ts-ignore
+        p[key] = [
+          // @ts-ignore
+          step.multipleOPtions[0].singleOptions.find(
+            // @ts-ignore
+            (el: any) => el.option === values[0],
+          )["tagId"],
+        ].concat([
+          // @ts-ignore
+          step.multipleOPtions[1].singleOptions.find(
+            // @ts-ignore
+            (el: any) => el.option === values[1],
+          )["tagId"],
+        ]);
+      }
+    }
+  }
+  return p;
+};
+
+export const getIngredientAtHomeCount = (
+  ingredientAtHome: any,
+  recipe: any,
+) => {
+  let count = 0;
+  recipe.ingredients.forEach((ingredient: any) => {
+    if (ingredientAtHome.find((el: any) => el.id === ingredient.id)) {
+      count++;
+    }
+  });
+  return count;
+};
+
+export const annotateRecipeResult = (recipes: any, ingredientAtHome: any) => {
+  const newRecipes = cloneDeep(recipes);
+  for (let i = 0; i < recipes.length; i++) {
+    newRecipes[i].node["ingredientAtHomeCount"] = getIngredientAtHomeCount(
+      ingredientAtHome,
+      recipes[i]?.node,
+    );
+    newRecipes[i].node["ingredientAtHomeRatio"] =
+      newRecipes[i].node["ingredientAtHomeCount"] /
+      recipes[i]?.node.numberOfIngredients;
+  }
+  return newRecipes.sort((a: any, b: any) => {
+    return b.node.ingredientAtHomeRatio - a.node.ingredientAtHomeRatio;
+  });
+};
+
 export interface Step {
   nextStep?: any;
 }
+
+//ICM & LDC
+export const hasIngredientOnList = (list: any, ingredient: string) => {
+  return list.map((el: any) => el.id).some((el: any) => el === ingredient);
+};

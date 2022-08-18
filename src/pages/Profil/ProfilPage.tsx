@@ -50,6 +50,8 @@ const ProfilPage: React.FC = () => {
     });
   }
   const user = data?.me;
+  //@ts-ignore
+  window.me = user;
   // Image
   const [userImage, setImage] = useState(user?.imageProfile);
 
@@ -70,11 +72,6 @@ const ProfilPage: React.FC = () => {
   const [isParticularitiesActive, setIsParticularitiesActive] = useState(false);
   const [isICMActive, setIsICMActive] = useState(false);
   const [isLDCActive, setIsLDCActive] = useState(false);
-
-  //User items
-  const [hasParticularities, setHasParticularities] = useState(true);
-  const [hasICM, setHasICM] = useState(true);
-  const [hasLDC, setHasLDC] = useState(true);
 
   //Recommended Recipes
   const { data: dataHome } = useRecipesQuery({
@@ -385,12 +382,23 @@ const ProfilPage: React.FC = () => {
           )}
           {isParticularitiesActive && (
             <TabPersonalization
-              hasParticularities={hasParticularities}
-              data={dataHomes}
+              hasParticularities={
+                !isEmpty(JSON.parse(user.particularitySearch))
+              }
             />
           )}
-          {isICMActive && <TabICM hasICM={hasICM} />}
-          {isLDCActive && <TabLDC hasLDC={hasLDC} />}
+          {isICMActive && (
+            <TabICM
+              hasICM={user?.ingredientAtHomeUser.length > 0}
+              data={user.ingredientAtHomeUser}
+            />
+          )}
+          {isLDCActive && (
+            <TabLDC
+              hasLDC={user?.ingredientShoppingListUser.length > 0}
+              data={user.ingredientShoppingListUser}
+            />
+          )}
         </div>
       </div>
 

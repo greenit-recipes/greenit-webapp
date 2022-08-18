@@ -2,14 +2,21 @@ import { Link } from "react-router-dom";
 import { RouteName } from "App";
 import { Button } from "components";
 import React from "react";
-import { LDCIngredients } from "components/personalization/PersonalizationHelper";
+import {
+  hasIngredientOnList,
+  LDCIngredients,
+} from "components/personalization/PersonalizationHelper";
 import { SectionIngredient } from "../../recipe/SinglePage/IngredientUsentil/SectionIngredient";
 
 interface TabLDCProps {
   hasLDC: boolean;
+  data?: any;
 }
 
-export const TabLDC: React.FC<TabLDCProps> = ({ hasLDC }) => {
+export const TabLDC: React.FC<TabLDCProps> = ({ hasLDC, data }) => {
+  let isICMactive = false;
+  let isLDCactive = false;
+
   return (
     <div className="mx-10 md:mx-56">
       <div className="w-full flex flex-col items-center justify-center | mb-2">
@@ -24,11 +31,28 @@ export const TabLDC: React.FC<TabLDCProps> = ({ hasLDC }) => {
         </div>
         {hasLDC ? (
           <div>
-            {LDCIngredients.map((item: any, index: any) => (
-              <div key={index}>
-                <SectionIngredient data={item} />
-              </div>
-            ))}
+            {data.map((item: any, index: any) => {
+              isLDCactive = hasIngredientOnList(
+                //@ts-ignore
+                window.me.ingredientShoppingListUser,
+                item.id,
+              );
+              isICMactive = hasIngredientOnList(
+                //@ts-ignore
+                window.me.ingredientAtHomeUser,
+                item.id,
+              );
+
+              return (
+                <div key={index}>
+                  <SectionIngredient
+                    data={item}
+                    isLDCactive={isLDCactive}
+                    isICMactive={isICMactive}
+                  />
+                </div>
+              );
+            })}
             <div className="flex items-center mt-2">
               <p className="text-sm">
                 Pour enlever un ingrédient, appuie dessus et clique sur{" "}

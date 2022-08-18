@@ -14,7 +14,9 @@ export const SEARCH_AUTO_COMPLETE_RECIPE = gql`
         urlId
       }
       ingredients {
+        id
         name
+        image
       }
       totalRecipes
     }

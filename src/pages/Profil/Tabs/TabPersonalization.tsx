@@ -1,17 +1,16 @@
 import React from "react";
 import SectionPersonalization from "components/personalization/sections/SectionPersonalization";
 import ModalPersonalization from "components/personalization/ModalPersonalization";
-import { Button, RecipeCard } from "components";
+import { Button } from "components";
 import { ExploreMore } from "components/recipe/ExploreMore";
+import { RecommendedRecipes } from "../../recipe/ListPage/Components/RecommendedRecipes";
 
 interface TabPersonalizationProps {
-  hasParticularities: boolean;
-  data: any;
+  hasParticularities?: boolean;
 }
 
 export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
-  hasParticularities,
-  data,
+  hasParticularities = true,
 }) => {
   return (
     <div className="w-full mb-24">
@@ -28,7 +27,10 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
       <div className="w-full py-5 bg-greenL">
         {hasParticularities ? (
           <>
-            <SectionPersonalization />
+            <SectionPersonalization
+              /*@ts-ignore*/
+              particularities={JSON.parse(window.me.particularitySearch)}
+            />
           </>
         ) : (
           <div className="w-full flex flex-col items-center py-5 bg-greenL text-center space-y-4">
@@ -65,10 +67,7 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
           </div>
           <div className="md:flex md:justify-center w-full pt-4 pl-4 msm:overflow-x-auto">
             <div className="flex w-max">
-              {/*@ts-ignore*/}
-              {data?.slice(0, 4).map(recipe => (
-                <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-              ))}
+              <RecommendedRecipes />
               <ExploreMore id="profil-particularites-explorer" filter="/"/>
             </div>
           </div>

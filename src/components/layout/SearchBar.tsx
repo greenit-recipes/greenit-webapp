@@ -1,7 +1,3 @@
-import {
-  getObjectSession,
-  setObjectFilterSession,
-} from "helpers/session-helper";
 import { Link, useHistory } from "react-router-dom";
 import { RouteName } from "App";
 import { useEffect, useState } from "react";
@@ -26,6 +22,8 @@ export const SearchBar: React.FC<{
   isLoading?: boolean;
   hideSearchIcon?: boolean;
   placeholder?: string;
+  parentFunction?: any;
+  sendResultToParent?: boolean;
 }> = ({
   size = "large",
   value = "",
@@ -39,6 +37,8 @@ export const SearchBar: React.FC<{
   hideSearchIcon,
   keyId,
   placeholder = "Je cherche une recette, un ingrédient...",
+  parentFunction,
+  sendResultToParent = false,
 }) => {
   const isLarge = size === "large";
   const history = useHistory();
@@ -170,7 +170,19 @@ export const SearchBar: React.FC<{
           {/* @ts-ignore */}
           {filteredSuggestions?.ingredients.map((suggestion, index) => {
             return (
-              <li key={index} onClick={customOnclick ? customOnclick : onClick}>
+              <li
+                key={index}
+                onClick={
+                  customOnclick
+                    ? customOnclick
+                    : sendResultToParent
+                    ? () => {
+                        setShowSuggestions(false);
+                        parentFunction(suggestion);
+                      }
+                    : onClick
+                }
+              >
                 {suggestion?.name}
               </li>
             );

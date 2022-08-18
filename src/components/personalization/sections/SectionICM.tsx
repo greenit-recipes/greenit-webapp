@@ -1,21 +1,26 @@
 import ModalIngredientSearch from "../ModalIngredientSearch";
 import React from "react";
 import { ICMingredients } from "../PersonalizationHelper";
+import { getImagePath } from "../../../helpers/image.helper";
 
 interface SectionICMProps {
   spacing?: string;
+  ingredientsAtHome?: any;
 }
 
-export const SectionICM: React.FC<SectionICMProps> = ({ spacing }) => {
+export const SectionICM: React.FC<SectionICMProps> = ({
+  spacing,
+  ingredientsAtHome,
+}) => {
   return (
     <div className="">
       <div className={`flex flex-wrap md:mx-36 ${spacing}`}>
-        {ICMingredients.map(ingredient => (
+        {ingredientsAtHome.map((ingredient: any) => (
           <div className="flex flex-col items-center text-center space-y-1 | md:mr-7 mb-2">
             <img
-              src={ingredient.image}
+              src={getImagePath(ingredient.image)}
               className="w-[77px] h-[76px] md:w-20 md:h-20 rounded-lg object-cover"
-              alt={ingredient.alt}
+              alt={ingredient.name}
             />
             <p className="text-sm font-normal w-24 leading-4">
               {ingredient.name}

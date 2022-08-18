@@ -1,4 +1,4 @@
-import { useMutation } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { Button, Footer, Loading, Navbar } from "components";
@@ -20,14 +20,14 @@ import { ModalKpi } from "pages/recipe/SinglePage/modalKpi/modalKpi";
 import { checkUserAlreadyViewRecipe } from "pages/recipe/SinglePage/SinglePage-helper";
 import { HelmetRecipe } from "pages/recipe/SinglePage/SinglePageHelmet";
 import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest";
-import React, { createRef, useEffect, useState } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BsWallet2 } from "react-icons/bs";
 import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
 import ReactPlayer from "react-player/lazy";
 import { useHistory, useParams } from "react-router-dom";
 import { RWebShare } from "react-web-share";
-import authService from "services/auth.service";
+import authService, { ME } from "services/auth.service";
 import * as yup from "yup";
 import { useRecipeQuery } from "../../../graphql";
 import { noVideo, retourIcon } from "../../../icons";
@@ -153,10 +153,27 @@ const RecipeSinglePage = () => {
     });
   };
 
-  console.log("sizeCretorHeader", sizeCretorHeader);
-  if (loading || !data) {
+  const [getUser, { loading: loadingUser, error: errorUser, data: dataUser }] =
+    useLazyQuery(ME, {
+      fetchPolicy: "network-only",
+    });
+
+  let user = useRef({});
+  useEffect(() => {
+    if (isLoggedIn) {
+      getUser();
+    }
+  }, [isLoggedIn]);
+
+  if (loading || !data || loadingUser) {
     return <Loading />;
   }
+
+  //Todo : refactor variable into contexts
+  //@ts-ignore
+  window.me = dataUser?.me;
+  user.current = dataUser?.me;
+
   const { recipe } = data;
   // @ts-ignore
   return (

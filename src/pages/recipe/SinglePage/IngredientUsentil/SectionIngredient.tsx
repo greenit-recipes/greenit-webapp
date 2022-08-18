@@ -2,24 +2,47 @@ import { getImagePath } from "helpers/image.helper";
 import useIsMobile from "hooks/isMobile";
 import HTMLReactParser from "html-react-parser";
 import React, { useState } from "react";
-import { HiOutlineChevronDown } from "react-icons/hi";
 import { RiComputerLine } from "react-icons/ri";
 import { BsShop } from "react-icons/bs";
-import { Button } from "../../../../components";
+import { Button } from "components";
+import { useMutation } from "@apollo/client";
+import {
+  ADD_OR_REMOVE_INGREDIENT_AT_HOME,
+  ADD_OR_REMOVE_INGREDIENT_SHOPPING_LIST,
+} from "../SinglePage-helper";
+import { hasIngredientOnList } from "components/personalization/PersonalizationHelper";
 
 interface ISectionIngredient {
   className?: string;
   data: any;
+  isICMactive?: boolean;
+  isLDCactive?: boolean;
 }
 
 export const SectionIngredient: React.FC<ISectionIngredient> = ({
   data,
   className,
+  isICMactive,
+  isLDCactive,
 }) => {
   const [isArrowDown, setArrowDown] = useState(true);
-  const [isICMActive, setIsICMActive] = useState(false);
-  const [isLDCActive, setIsLDCActive] = useState(false);
+  //@ts-ignore
+  const [isICMActive, setIsICMActive] = useState(isICMactive);
+  //@ts-ignore
+  const [isLDCActive, setIsLDCActive] = useState(isLDCactive);
   const isMobile = useIsMobile();
+
+  const [
+    createOrDeleteIngredientAtHomeUser,
+    { data: createOrDeleteICMdata, loading: loadingICM, error: errorICM },
+  ] = useMutation(ADD_OR_REMOVE_INGREDIENT_AT_HOME, { errorPolicy: "all" });
+
+  const [
+    createOrDeleteIngredientShoppingList,
+    { data: createOrDeleteLDCdata, loading: loadingLDC, error: errorLDC },
+  ] = useMutation(ADD_OR_REMOVE_INGREDIENT_SHOPPING_LIST, {
+    errorPolicy: "all",
+  });
 
   return (
     <>
@@ -34,9 +57,11 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
             if (!isMobile) setArrowDown(!isArrowDown);
           }}
         >
-          <div className="flex items-center justify-center h-12 py-2 px-4 text-center rounded-l-md bg-blueL font-semibold">
-            {data?.amount}
-          </div>
+          {data?.amount && (
+            <div className="flex items-center justify-center h-12 py-2 px-4 text-center rounded-l-md bg-blueL font-semibold">
+              {data?.amount}
+            </div>
+          )}
           <img
             className="w-12 h-12 rounded"
             alt={data?.name}
@@ -66,6 +91,14 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                   type="darkBlueIcon"
                   onClick={() => {
                     setIsICMActive(!isICMActive);
+                    createOrDeleteIngredientAtHomeUser({
+                      variables: {
+                        ingredientAtHome: {
+                          additions: [data?.id],
+                          deletions: [],
+                        },
+                      },
+                    });
                   }}
                 >
                   <i
@@ -85,6 +118,14 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                   type="darkBlueIcon"
                   onClick={() => {
                     setIsLDCActive(!isLDCActive);
+                    createOrDeleteIngredientShoppingList({
+                      variables: {
+                        ingredientShoppingList: {
+                          additions: [data?.id],
+                          deletions: [],
+                        },
+                      },
+                    });
                   }}
                 >
                   <i
@@ -121,6 +162,14 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                     type="darkBlueIcon"
                     onClick={() => {
                       setIsICMActive(!isICMActive);
+                      createOrDeleteIngredientShoppingList({
+                        variables: {
+                          ingredientAtHome: {
+                            additions: [data?.id],
+                            deletions: [],
+                          },
+                        },
+                      });
                     }}
                   >
                     <i
@@ -145,6 +194,14 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                     type="darkBlueIcon"
                     onClick={() => {
                       setIsLDCActive(!isLDCActive);
+                      createOrDeleteIngredientShoppingList({
+                        variables: {
+                          ingredientShoppingList: {
+                            additions: [data?.id],
+                            deletions: [],
+                          },
+                        },
+                      });
                     }}
                   >
                     <i

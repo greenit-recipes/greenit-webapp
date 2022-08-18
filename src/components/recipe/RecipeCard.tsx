@@ -10,6 +10,7 @@ import { Icon } from "../misc";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import "./RecipeCard.css";
+import { has } from "lodash";
 
 interface RecipeCardProps {
   enableShadow?: boolean;
@@ -24,7 +25,6 @@ interface RecipeCardProps {
   isLikeDisabled?: boolean;
   index?: number;
   amount?: number;
-  ingredientRatio?: string;
   id?: string;
 }
 
@@ -41,7 +41,6 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   index,
   id,
   amount,
-  ingredientRatio,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -73,11 +72,13 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           )}
         </div>
       )}
-      {ingredientRatio && (
+      {has(recipe, "ingredientAtHomeCount") && (
         <div className="absolute top-0">
           <div className="flex items-center space-x-1 | bg-blue text-white rounded-b-xl rounded-tl-xl px-2 py-0.5">
             <i className="bx bx-lemon text-xl"></i>
-            <span className="font-normal">{ingredientRatio}</span>
+            <span className="font-normal">
+              {recipe?.ingredientAtHomeCount}/{recipe?.numberOfIngredients}
+            </span>
           </div>
         </div>
       )}

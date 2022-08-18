@@ -124,6 +124,14 @@ export const UPDATE_IMAGE_ACCOUNT = gql`
   }
 `;
 
+export const UPDATE_PARTICULARITIES_ACCOUNT = gql`
+  mutation updateParticularitiesAccount($particularities: JSONString!) {
+    updateParticularitiesAccount(particularities: $particularities) {
+      success
+    }
+  }
+`;
+
 export const UPDATE_ACCOUNT = gql`
   mutation updateAccount($urlsSocialMedia: JSONString, $biographie: String) {
     updateAccount(urlsSocialMedia: $urlsSocialMedia, biographie: $biographie) {
@@ -155,6 +163,18 @@ export const ME = gql`
       isCreatorProfil
       urlsSocialMedia
       isBeginnerBox
+      particularitySearch
+      ingredientAtHomeUser {
+        id
+        name
+        image
+      }
+      ingredientShoppingListUser {
+        id
+        name
+        image
+        description
+      }
       isRecipeMadeBeginnerBox
       recipeAuthor {
         id

@@ -1,12 +1,44 @@
-import React, { useRef, useState } from "react";
-import { questionnaireMenu } from "./PersonalizationHelper";
+import React, {useRef, useState} from "react";
+import {questionnaireMenu} from "./PersonalizationHelper";
 import StepSkinType from "./steps/StepSkinType";
 import StepHairType from "./steps/StepHairType";
 import StepMoreDetails from "./steps/StepMoreDetails";
+import {useMutation} from "@apollo/client";
+import Auth, {
+  UPDATE_PARTICULARITIES_ACCOUNT,
+} from "../../services/auth.service";
+import {ModalLogGreenit} from "../layout";
 
 export const Personalization = () => {
   const [menu, setMenu] = useState(questionnaireMenu[0].name);
   let options: any = useRef([]);
+  const isLoggedIn = Auth.isLoggedIn();
+
+  const [
+    updateParticularitiesAccount,
+    {data: updateAccountData, loading, error},
+  ] = useMutation(UPDATE_PARTICULARITIES_ACCOUNT, {errorPolicy: "all"});
+
+  const onSubmitHandler = (particularities: any) => {
+    const tags = ["tagsSkin", "tagsHair", "tagsParticularity"];
+    const data: any = {
+      tagsSkin: [],
+      tagsHair: [],
+      tagsParticularity: [],
+    };
+    particularities.forEach((element: any) => {
+      for (const [key, _] of Object.entries(element)) {
+        if (tags.includes(key)) {
+          data[key] = element[key];
+        }
+      }
+    });
+    updateParticularitiesAccount({
+      variables: {
+        particularities: JSON.stringify(data),
+      },
+    });
+  };
 
   const selectStep = (step: number, data?: any) => {
     setTimeout(() => {
@@ -37,11 +69,11 @@ export const Personalization = () => {
       {(() => {
         switch (menu) {
           case questionnaireMenu[0].name:
-            return <StepSkinType nextStep={selectStep} />;
+            return <StepSkinType nextStep={selectStep}/>;
           case questionnaireMenu[1].name:
-            return <StepHairType nextStep={selectStep} />;
+            return <StepHairType nextStep={selectStep}/>;
           case questionnaireMenu[2].name:
-            return <StepMoreDetails nextStep={selectStep} />;
+            return <StepMoreDetails nextStep={selectStep}/>;
           case questionnaireMenu[3].name:
             return (
               <div className="flex flex-col items-center">
@@ -52,16 +84,33 @@ export const Personalization = () => {
                   lessive, liquide vaiselle, nettoyant . . .
                 </p>
                 <div className="mt-4 mx-10 mb-6 | space-y-4 md:h-40 md:w-[500px]">
-                  <div className="flex flex-col justify-center md:flex-row md:space-x-4 md:justify-center | mt-2 msm:space-y-3">
-                    <div
-                      className="w-56 py-3 hover:border-green hover:bg-greenL hover:text-green border-darkBlue border-2 rounded-md shadow-md"
-                      id="modal-particularites-recettes-maison-oui"
-                      onClick={() => {
-                        console.log(options.current);
-                      }}
-                    >
-                      Pourquoi pas !
-                    </div>
+                  <div
+                    className="flex flex-col justify-center md:flex-row md:space-x-4 md:justify-center | mt-2 msm:space-y-3">
+                    {/**/}
+                    {!isLoggedIn ? (
+                      <ModalLogGreenit
+                        btn={
+                          <div
+                            className="w-56 py-3 hover:border-green hover:bg-greenL hover:text-green border-darkBlue border-2 rounded-md shadow-md"
+                            id="modal-particularites-recettes-maison-oui"
+                          >
+                            Pourquoi pas !
+                          </div>
+                        }
+                      ></ModalLogGreenit>
+                    ) : (
+                      <>
+                        <div
+                          className="w-56 py-3 hover:border-green hover:bg-greenL hover:text-green border-darkBlue border-2 rounded-md shadow-md"
+                          id="modal-particularites-recettes-maison-oui" onClick={() => {
+                          onSubmitHandler(options.current);
+                          window.location.reload();
+                        }}
+                        >
+                          Pourquoi pas !
+                        </div>
+                      </>
+                    )}
                     <div
                       id="modal-particularites-recettes-maison-non"
                       className="w-56 py-3 hover:border-green hover:bg-greenL hover:text-green border-darkBlue border-2 rounded-md shadow-md"

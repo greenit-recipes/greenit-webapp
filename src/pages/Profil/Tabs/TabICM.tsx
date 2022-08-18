@@ -7,9 +7,10 @@ import React from "react";
 
 interface TabICMProps {
   hasICM: boolean;
+  data?: any;
 }
 
-export const TabICM: React.FC<TabICMProps> = ({ hasICM }) => {
+export const TabICM: React.FC<TabICMProps> = ({ hasICM, data }) => {
   return (
     <div className="mx-7 mb-24">
       <div className="w-full flex flex-col items-center justify-center text-center | mb-2">
@@ -23,7 +24,7 @@ export const TabICM: React.FC<TabICMProps> = ({ hasICM }) => {
 
         {hasICM ? (
           <div className="flex flex-col items-center mt-4 space-y-2">
-            <SectionICM />
+            <SectionICM ingredientsAtHome={data} />
             <Link to={RouteName.recipes}>
               <Button
                 className="mb-4 shadow-md"

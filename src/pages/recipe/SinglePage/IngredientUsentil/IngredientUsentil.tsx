@@ -4,6 +4,10 @@ import { SectionIngredient } from "./SectionIngredient";
 import { SectionUstensil } from "./SectionUsentil";
 import { GiForkKnifeSpoon } from "react-icons/gi";
 import { Button } from "../../../../components";
+import { cloneDeep, max } from "lodash";
+import { hasIngredientOnList } from "../../../../components/personalization/PersonalizationHelper";
+import { useMutation } from "@apollo/client";
+import { ADD_OR_REMOVE_INGREDIENT_SHOPPING_LIST } from "../SinglePage-helper";
 
 interface IIngredientUsentil {
   recipe: any;
@@ -11,7 +15,26 @@ interface IIngredientUsentil {
 
 export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
   const [isIngredientSelected, setIngredientSelected] = useState(true);
-  const [isBulkLDCActive, setIsBulkLDCActive] = useState(false);
+  const [isBulkLDCActive, setIsBulkLDCActive] = useState(
+    recipe.ingredients.every((ingredient: any) =>
+      //@ts-ignore
+      hasIngredientOnList(window.me.ingredientShoppingListUser, ingredient.id),
+    ),
+  );
+  let isICMactive = false;
+  let isLDCactive = false;
+
+  const [
+    createOrDeleteIngredientShoppingList,
+    { data: createOrDeleteLDCdata, loading: loadingLDC, error: errorLDC },
+  ] = useMutation(ADD_OR_REMOVE_INGREDIENT_SHOPPING_LIST, {
+    errorPolicy: "all",
+  });
+
+  const ingredientShoppingListOperations: any = {
+    potentialAdditions: [],
+    potentialDeletions: [],
+  };
 
   return (
     <div className="flex items-center mt-12 mb-12">
@@ -46,11 +69,32 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
         </div>
 
         <div className={`${isIngredientSelected ? "" : "hidden"}`}>
-          {recipe.ingredients.map((item: any, index: any) => (
-            <div key={index}>
-              <SectionIngredient data={item} />
-            </div>
-          ))}
+          {recipe.ingredients.map((item: any, index: any) => {
+            isLDCactive = hasIngredientOnList(
+              //@ts-ignore
+              window.me.ingredientShoppingListUser,
+              item.id,
+            );
+            isICMactive = hasIngredientOnList(
+              //@ts-ignore
+              window.me.ingredientAtHomeUser,
+              item.id,
+            );
+            if (isLDCactive) {
+              ingredientShoppingListOperations.potentialDeletions.push(item.id);
+            } else {
+              ingredientShoppingListOperations.potentialAdditions.push(item.id);
+            }
+            return (
+              <div key={index}>
+                <SectionIngredient
+                  data={item}
+                  isLDCactive={isLDCactive}
+                  isICMactive={isICMactive}
+                />
+              </div>
+            );
+          })}
         </div>
         <div className={`${isIngredientSelected ? "hidden" : ""}`}>
           {recipe.utensils.map((item: any, index: any) => (
@@ -72,6 +116,22 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
             haveIcon={true}
             type="darkBlueIcon"
             onClick={() => {
+              const ingredientShoppingList = {
+                additions: [],
+                deletions: [],
+              };
+              if (!isBulkLDCActive) {
+                ingredientShoppingList.additions =
+                  ingredientShoppingListOperations.potentialAdditions;
+              } else {
+                ingredientShoppingList.deletions =
+                  ingredientShoppingListOperations.potentialDeletions;
+              }
+              createOrDeleteIngredientShoppingList({
+                variables: {
+                  ingredientShoppingList,
+                },
+              });
               setIsBulkLDCActive(!isBulkLDCActive);
             }}
           >
