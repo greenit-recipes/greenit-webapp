@@ -2,7 +2,7 @@
 import { gql } from "@apollo/client";
 
 //Todo (zack) : Refactor later
-type MutationOperation = () => Promise<any>;
+export type MutationOperation = (data?: any) => Promise<any>;
 
 const HAS_PURCHASED_BEGINNER_BOX = gql`
   mutation HasPurchasedBeginnerBox {
@@ -12,15 +12,8 @@ const HAS_PURCHASED_BEGINNER_BOX = gql`
   }
 `;
 
-const persistMutation = (mutation: MutationOperation) => {
-  mutation()
-    .then(data => {
-      // console.log(data)
-    })
-    .catch(e => {
-      //Todo : Handle error with a UI toaster or someting of the like
-      // console.error(e)
-    });
+export const persistMutation = (mutation: MutationOperation, data?: any) => {
+  data ? mutation(data) : mutation();
 };
 
 const beginnerBoxCookieExist = () => {

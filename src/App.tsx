@@ -40,7 +40,6 @@ const RecipeListPage = React.lazy(
 );
 const Register = React.lazy(() => import("./pages/Register/register"));
 const WhyPage = React.lazy(() => import("./pages/WhyPage"));
-const WorkshopPage = React.lazy(() => import("./pages/WorkshopPage"));
 const GreenitFullXp = React.lazy(
   () => import("./pages/GreenitFullXp/genericFullXp"),
 );
@@ -81,7 +80,6 @@ export const RouteName = {
   register: "/creation-compte",
   recipeCreated: "/ajout-recette", // no index
   greenitFullXp: "/commande-box",
-  workshops: "/ateliers",
   ingredientPage: "/ingredients", // no index ( a activer quand on sort la page)
   starterPage: "/page-debutant-diy",
   why: "/projet",
@@ -150,11 +148,6 @@ const App: React.FC = () => {
           <PublicRoute
             path={RouteName.ingredientPage}
             component={IngredientPage}
-            exact
-          />
-          <PublicRoute
-            path={RouteName.workshops}
-            component={WorkshopPage}
             exact
           />
           <PublicRoute

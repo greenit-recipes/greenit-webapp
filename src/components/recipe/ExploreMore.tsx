@@ -4,11 +4,13 @@ import { RouteName } from "App";
 
 interface ExploreMoreProps {
   filter?: string;
+  id?: string;
 }
 
-export const ExploreMore: React.FC<ExploreMoreProps> = ({ filter }) => {
+export const ExploreMore: React.FC<ExploreMoreProps> = ({ filter, id }) => {
   return (
     <Link
+      id={id}
       to={`${RouteName.recipes}${filter && "?" + filter}`}
       className="ml-1 mr-5 h-80 w-52 bg-white rounded-2xl self-center relative |
     transform sm:hover:scale-105 ease-linear relative transition-all duration-150"

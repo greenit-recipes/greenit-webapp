@@ -1,10 +1,10 @@
-import { useQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { getObjectSession } from "helpers/session-helper";
-import { map, mapValues, omit, sum } from "lodash";
+import { cloneDeep, isEmpty, map, mapValues, omit, sum } from "lodash";
 import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useHistory } from "react-router-dom";
@@ -14,6 +14,7 @@ import {
   Empty,
   Footer,
   Loading,
+  ModalLogGreenit,
   Navbar,
   RecipeCard,
 } from "components";
@@ -22,11 +23,15 @@ import useIsMobile from "hooks/isMobile";
 import { scrollToTop } from "icons";
 import { filterData } from "utils";
 import { FilterBar } from "./Components/FilterBar";
-import ModalPersonalizationInfo from "components/personalization/ModalPersonalizationInfo";
 import SectionPersonalization from "components/personalization/sections/SectionPersonalization";
 import SectionICM from "components/personalization/sections/SectionICM";
+import Auth, { ME } from "services/auth.service";
+import { SectionRecommendedRecipe } from "./Components/SectionRecommendedRecipe";
+import { annotateRecipeResult } from "../../../components/personalization/PersonalizationHelper";
+import ModalPersonalization from "../../../components/personalization/ModalPersonalization";
 
 const RecipeListPage = () => {
+  const isLoggedIn = Auth.isLoggedIn();
   //Personalization
   const [isParticularityActive, setIsParticularityActive] = useState(false);
   const [isICMActive, setIsICMActive] = useState(false);
@@ -102,13 +107,13 @@ const RecipeListPage = () => {
       ? getAndDeleteParamsUrl("category")
       : categorySession,
     difficulty: sessionFilter?.difficulty || [],
-    particularity: [{ tagsSkin: [], tagsHair: [], tagsPeculiarity: [] }] || [], // [{ tagsSkin: ["00838ea5-bc78-4a11-a9fe-57d3e20aac71"], tagsHair: [], tagsPeculiarity: [] }],
-    ingredientsAtHome:
-      [
-        "e1fee130-92fd-48c6-b140-1d54e4707e64",
-        "19f7b6e1-b292-4b3b-bf83-9233dd221b39",
-        "61ee83a6-b6a7-4460-ac8c-7d9fa9e4f8a7",
-      ] || [],
+    // particularity: [{tagsSkin: [], tagsHair: [], tagsPeculiarity: []}] || [], // [{ tagsSkin: ["00838ea5-bc78-4a11-a9fe-57d3e20aac71"], tagsHair: [], tagsPeculiarity: [] }],
+    // ingredientsAtHome:
+    //   [
+    //     "e1fee130-92fd-48c6-b140-1d54e4707e64",
+    //     "19f7b6e1-b292-4b3b-bf83-9233dd221b39",
+    //     "61ee83a6-b6a7-4460-ac8c-7d9fa9e4f8a7",
+    //   ] || [],
     duration: sessionFilter?.duration || [],
     numberOfIngredients: sessionFilter?.numberOfIngredients || [],
   });
@@ -133,15 +138,6 @@ const RecipeListPage = () => {
         duration: sessionFilter?.duration
           ? map(sessionFilter?.duration, "value")
           : [],
-        // @ts-ignore
-        particularity: [{ tagsSkin: [], tagsHair: [], tagsPeculiarity: [] }], // [{ tagsSkin: ["00838ea5-bc78-4a11-a9fe-57d3e20aac71"], tagsHair: [], tagsPeculiarity: [] }],
-        // @ts-ignore
-        ingredientsAtHome:
-          [
-            "e1fee130-92fd-48c6-b140-1d54e4707e64",
-            "19f7b6e1-b292-4b3b-bf83-9233dd221b39",
-            "61ee83a6-b6a7-4460-ac8c-7d9fa9e4f8a7",
-          ] || [],
         numberOfIngredients: sessionFilter?.numberOfIngredients
           ? map(sessionFilter?.numberOfIngredients, "value")
           : [],
@@ -176,10 +172,46 @@ const RecipeListPage = () => {
 
   const [isShowModal, setIsShowModal] = useState(false);
 
-  if (loading) {
+  // Fetching particularities
+
+  //Todo: fetch user before rendering pages
+  const [
+    getUser,
+    {
+      loading: loadingUser,
+      error: errorUser,
+      data: dataUser,
+      refetch: refetchMe,
+    },
+  ] = useLazyQuery(ME, {
+    fetchPolicy: "network-only",
+  });
+
+  const user = useRef({});
+  const [ingredientAtHome, setIngredientAtHome] = useState(
+    JSON.parse(localStorage.getItem("ingredientAtHome") ?? JSON.stringify([])),
+  );
+  let hasParticularities = false;
+  if (isLoggedIn) {
+    hasParticularities = !isEmpty(
+      //@ts-ignore
+      JSON.parse(user.current?.particularitySearch || JSON.stringify({})),
+    );
+  }
+
+  useEffect(() => {
+    if (isLoggedIn && isEmpty(user.current)) {
+      getUser();
+    }
+  }, [isLoggedIn]);
+
+  if (loading || (isLoggedIn && (loadingUser || isEmpty(dataUser)))) {
     return <Loading />;
   }
 
+  //@ts-ignore
+  window.me = dataUser?.me;
+  user.current = dataUser?.me;
   const recipes = data?.allRecipes?.edges || [];
   const hasMore = data?.allRecipes?.pageInfo.hasNextPage || false;
   const nbrFilter = sum(map(omit(currentFilters, "search"), x => x?.length));
@@ -198,19 +230,56 @@ const RecipeListPage = () => {
         {/*Personalization section*/}
 
         <div className="flex justify-center ">
+          {!isLoggedIn ? (
+            <ModalLogGreenit
+              btn={
+                <Button
+                  id="listpage-mes-particularites"
+                  className="px-4 py-1 mr-3 mb-4 shadow-md"
+                  haveIcon={true}
+                  type="green"
+                >
+                  <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
+                  Mes particularités
+                </Button>
+              }
+            ></ModalLogGreenit>
+          ) : hasParticularities ? (
+            <Button
+              id="listpage-mes-particularites"
+              className="px-4 py-1 mr-3 mb-4 shadow-md"
+              haveIcon={true}
+              onClick={() => {
+                setIsParticularityActive(!isParticularityActive);
+                isICMActive && setIsICMActive(!isICMActive);
+              }}
+              type="green"
+            >
+              <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
+              Mes particularités
+            </Button>
+          ) : (
+            <ModalPersonalization
+              parentFunction={refetchMe}
+              btn={
+                <Button
+                  id="listpage-mes-particularites"
+                  className="px-4 py-1 mr-3 mb-4 shadow-md"
+                  haveIcon={true}
+                  onClick={() => {
+                    setIsParticularityActive(!isParticularityActive);
+                    isICMActive && setIsICMActive(!isICMActive);
+                  }}
+                  type="green"
+                >
+                  <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
+                  Définir mes particularités
+                </Button>
+              }
+            />
+          )}
           <Button
-            className="px-4 py-1 mr-3 mb-4 shadow-md"
-            haveIcon={true}
-            onClick={() => {
-              setIsParticularityActive(!isParticularityActive);
-              isICMActive && setIsICMActive(!isICMActive);
-            }}
-            type="green"
-          >
-            <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
-            Mes particularités
-          </Button>
-          <Button
+            id="listpage-ingredientchezmoi"
             className="mr-3 mb-4 shadow-md"
             haveIcon={true}
             onClick={() => {
@@ -226,12 +295,26 @@ const RecipeListPage = () => {
         </div>
 
         {/*Paritucularities*/}
-        {isParticularityActive && <SectionPersonalization />}
+        {isParticularityActive && hasParticularities && (
+          <SectionPersonalization
+            parentFunction={refetchMe}
+            //@ts-ignore
+            particularities={JSON.parse(user.current.particularitySearch)}
+          />
+        )}
 
         {/*ICM*/}
         {isICMActive && (
           <div className="ml-5">
-            <SectionICM />
+            <SectionICM
+              parentFunction={isLoggedIn ? refetchMe : setIngredientAtHome}
+              ingredientsAtHome={
+                isLoggedIn
+                  ? /*@ts-ignore*/
+                    user.current.ingredientAtHomeUser
+                  : ingredientAtHome
+              }
+            />
           </div>
         )}
 
@@ -300,37 +383,14 @@ const RecipeListPage = () => {
       <div className="flex justify-center bg-white recipe-list">
         <div className="h-auto max-w-7xl justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
           {/*Recommended Recipes*/}
-          <div className="mt-2">
-            <div className="flex text-center justify-center space-x-2 md:mb-5">
-              <h3 className="text-2xl font-normal">Recettes pour vous</h3>
-              <ModalPersonalizationInfo
-                btn={
-                  <i className="bx bx-info-circle hover:text-blue text-2xl mt-1 cursor-pointer"></i>
-                }
-              ></ModalPersonalizationInfo>
-            </div>
-            {isMobile ? (
-              <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
-                {recipes?.slice(0, 4).map(recipe => {
-                  return (
-                    <div key={recipe?.node?.id}>
-                      <RecipeCard ingredientRatio="3/5" recipe={recipe?.node} />
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
-                <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
-                  {recipes?.slice(0, 4).map(recipe => (
-                    <div key={recipe?.node?.id}>
-                      <RecipeCard ingredientRatio="3/5" recipe={recipe?.node} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+          {isLoggedIn && hasParticularities && (
+            <SectionRecommendedRecipe
+              //@ts-ignore
+              particularities={user.current.particularitySearch}
+              //@ts-ignore
+              ingredientAtHome={user.current.ingredientAtHomeUser}
+            />
+          )}
           {/* to refacto infinite scroll*/}
           <h3 className="text-2xl text-center font-normal | mt-12 md:mb-5">
             Découvrir d’autres recettes
@@ -380,7 +440,12 @@ const RecipeListPage = () => {
           >
             {isMobile ? (
               <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
-                {recipes?.map(recipe => {
+                {annotateRecipeResult(
+                  recipes,
+                  //@ts-ignore
+                  (isLoggedIn && user.current.ingredientAtHomeUser) || [],
+                  //@ts-ignore
+                ).map(recipe => {
                   return (
                     <div key={recipe?.node?.id}>
                       <RecipeCard recipe={recipe?.node} />
@@ -391,7 +456,13 @@ const RecipeListPage = () => {
             ) : (
               <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
                 <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
-                  {recipes?.map(recipe => (
+                  {/*@ts-ignore*/}
+                  {annotateRecipeResult(
+                    recipes,
+                    //@ts-ignore
+                    (isLoggedIn && user.current.ingredientAtHomeUser) || [],
+                    //@ts-ignore
+                  ).map(recipe => (
                     <div key={recipe?.node?.id}>
                       <RecipeCard recipe={recipe?.node} />
                     </div>

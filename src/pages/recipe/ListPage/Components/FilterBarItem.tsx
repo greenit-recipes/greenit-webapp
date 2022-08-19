@@ -23,7 +23,7 @@ export const FilterBarItem: React.FC<IFilterBarItem> = ({
     <>
       {!isMobile ? (
         <div className="w-auto min-w-14" id="menu">
-          <button className="flex border-b-2 border-transparent hover:border-blue self-center">
+          <button className="flex border-b-2 border-transparent hover:border-darkBlue self-center">
             <h4>{item.title} ▾ </h4>
             <div className="ml-2 self-center text-md">
               {currentFilters?.[item.name]?.length ? (

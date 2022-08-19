@@ -74,7 +74,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 {!isToltipActif && "favoris"}
               </Button>
               {isToltipActif && (
-                <span className="tooltiptext mt-1">Retirer des favoris</span>
+                <span className="tooltiptext pt-2">Retirer des favoris</span>
               )}
             </div>
           ) : (
@@ -109,7 +109,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 {!isToltipActif && "favoris"}
               </Button>
               {isToltipActif && (
-                <span className="tooltiptext mt-1">Retirer des favoris</span>
+                <span className="tooltiptext pt-2">Ajouter des favoris</span>
               )}
             </div>
           )}

@@ -14,6 +14,7 @@ import { GoogleLogin } from "react-google-login";
 import authService, {
   CREATE_USER_FROM_AUTH,
   LOGIN_ACCOUNT,
+  UPDATE_PARTICULARITIES_ACCOUNT,
 } from "services/auth.service";
 import * as yup from "yup";
 import "./LoginModal.css";
@@ -25,6 +26,10 @@ import {
   persistBoxPurchaseOnRegister,
 } from "../../services/boxfullxp.service";
 import { gapi } from "gapi-script";
+import {
+  particularityConverter,
+  persistParticularityOnFirstLogin,
+} from "../../components/personalization/PersonalizationHelper";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -59,6 +64,10 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
   const [hasPurchasedBeginnerBox] = useMutation(HAS_PURCHASED_BEGINNER_BOX, {
     errorPolicy: "all",
   });
+  const [updateParticularitiesAccount] = useMutation(
+    UPDATE_PARTICULARITIES_ACCOUNT,
+    { errorPolicy: "all" },
+  );
 
   const [errorLoginFb, setErrorLoginFb] = useState("");
   const [errorLoginGoogle, setErrorLoginGoogle] = useState("");
@@ -197,6 +206,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
         if (beginnerBoxCookieExist()) {
           persistBoxPurchaseOnFirstLogin(hasPurchasedBeginnerBox);
         }
+        persistParticularityOnFirstLogin(updateParticularitiesAccount);
         authService.setStorageLoginToken(response?.data?.tokenAuth?.token);
         authService.setStorageLoginRefreshToken(
           response?.data?.tokenAuth?.refreshToken,

@@ -7,9 +7,15 @@ import React from "react";
 
 interface TabICMProps {
   hasICM: boolean;
+  ingredientsAtHome?: any;
+  parentFunction: any;
 }
 
-export const TabICM: React.FC<TabICMProps> = ({ hasICM }) => {
+export const TabICM: React.FC<TabICMProps> = ({
+  hasICM,
+  ingredientsAtHome,
+  parentFunction,
+}) => {
   return (
     <div className="mx-7 mb-24">
       <div className="w-full flex flex-col items-center justify-center text-center | mb-2">
@@ -23,9 +29,16 @@ export const TabICM: React.FC<TabICMProps> = ({ hasICM }) => {
 
         {hasICM ? (
           <div className="flex flex-col items-center mt-4 space-y-2">
-            <SectionICM />
+            <SectionICM
+              parentFunction={parentFunction}
+              ingredientsAtHome={ingredientsAtHome}
+            />
             <Link to={RouteName.recipes}>
-              <Button className="mb-4 shadow-md" type="darkBlue">
+              <Button
+                className="mb-4 shadow-md"
+                type="darkBlue"
+                id="profil-ICMtab-acceder-recette"
+              >
                 Accéder aux recettes
               </Button>
             </Link>
@@ -38,18 +51,30 @@ export const TabICM: React.FC<TabICMProps> = ({ hasICM }) => {
             </p>
             <div className="self-start mt-4 w-20">
               <ModalIngredientSearch
+                ingredientsAtHome={ingredientsAtHome}
+                parentFunction={parentFunction}
                 btn={
                   <div className="flex items-center justify-center w-20 h-20 md:w-20 md:h-20 | bg-white rounded-lg drop-shadow-md | mb-2">
-                    <span className="text-2xl font-semibold">+</span>
+                    <span
+                      id="profil-ICMtab-ajouter-ingredient"
+                      className="text-2xl font-semibold"
+                    >
+                      +
+                    </span>
                   </div>
                 }
               ></ModalIngredientSearch>
             </div>
             <div className="mt-9">
               <ModalIngredientSearch
+                ingredientsAtHome={ingredientsAtHome}
+                parentFunction={parentFunction}
                 btn={
                   <div className="text-center mb-2">
-                    <span className="underline font-medium cursor-pointer">
+                    <span
+                      id="profil-ICMtab-modifier-ingredient"
+                      className="underline font-medium cursor-pointer"
+                    >
                       Modifier mes ingrédients
                     </span>
                   </div>

@@ -50,6 +50,7 @@ const ProfilPage: React.FC = () => {
     });
   }
   const user = data?.me;
+
   // Image
   const [userImage, setImage] = useState(user?.imageProfile);
 
@@ -70,11 +71,6 @@ const ProfilPage: React.FC = () => {
   const [isParticularitiesActive, setIsParticularitiesActive] = useState(false);
   const [isICMActive, setIsICMActive] = useState(false);
   const [isLDCActive, setIsLDCActive] = useState(false);
-
-  //User items
-  const [hasParticularities, setHasParticularities] = useState(true);
-  const [hasICM, setHasICM] = useState(true);
-  const [hasLDC, setHasLDC] = useState(true);
 
   //Recommended Recipes
   const { data: dataHome } = useRecipesQuery({
@@ -167,6 +163,7 @@ const ProfilPage: React.FC = () => {
         {/*Todo: Refactor Menu*/}
         <div className="w-full flex justify-around items-center | mb-2">
           <div
+            id="profil-carnettab"
             className={`flex justify-center md:items-center md:space-x-2 w-1/4 ${
               isDashboardActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
@@ -187,9 +184,10 @@ const ProfilPage: React.FC = () => {
                   : "bx-bookmark-heart"
               } text-3xl`}
             ></i>
-            {!isMobile && <h4 className="text-lg">Mon carnet de recettes</h4>}
+            {!isMobile && <h4 className="text-md">Mon carnet de recettes</h4>}
           </div>
           <div
+            id="profil-particularitestab"
             className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
               isParticularitiesActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
@@ -210,9 +208,10 @@ const ProfilPage: React.FC = () => {
                   : "bx-category-alt"
               } text-3xl`}
             ></i>
-            {!isMobile && <h4 className="text-lg">Mes particularités</h4>}
+            {!isMobile && <h4 className="text-md">Mes particularités</h4>}
           </div>
           <div
+            id="profil-ICMtab"
             className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
               isICMActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
@@ -231,9 +230,10 @@ const ProfilPage: React.FC = () => {
                 isICMActive ? "bxs-lemon text-blue" : "bx-lemon"
               } text-3xl`}
             ></i>
-            {!isMobile && <h4 className="text-lg">Ingrédients chez moi</h4>}
+            {!isMobile && <h4 className="text-md">Ingrédients chez moi</h4>}
           </div>
           <div
+            id="profil-LDCtab"
             className={`flex justify-center md:items-center md:space-x-2 w-1/4  ${
               isLDCActive
                 ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
@@ -252,7 +252,7 @@ const ProfilPage: React.FC = () => {
                 isLDCActive && "text-blue"
               } text-3xl`}
             ></i>
-            {!isMobile && <h4 className="text-lg">Liste de course</h4>}
+            {!isMobile && <h4 className="text-md">Liste de course</h4>}
           </div>
         </div>
         <div className="w-full mb-5 pt-4">
@@ -303,15 +303,19 @@ const ProfilPage: React.FC = () => {
                     />
                   </div>
                   <Link to={RouteName.recipes}>
-                    <Button className="mt-5" type="darkBlue">
+                    <Button
+                      className="mt-5"
+                      type="darkBlue"
+                      id="profil-carnet-explorer"
+                    >
                       Explorer des recettes
                     </Button>
                   </Link>
                 </div>
               )}
               {/*Todo : Add flex wrap in desktop view*/}
-              <div className="md:flex md:justify-center w-full pt-4 pl-4 msm:overflow-x-auto">
-                <div className="flex w-max">
+              <div className="flex justify-center w-full msm:overflow-x-auto">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 md:gap-5">
                   {user?.recipeFavorite?.map((recipe: any, index: any) => (
                     <>
                       <div
@@ -377,12 +381,29 @@ const ProfilPage: React.FC = () => {
           )}
           {isParticularitiesActive && (
             <TabPersonalization
-              hasParticularities={hasParticularities}
-              data={dataHomes}
+              ingredientAtHome={user.ingredientAtHomeUser}
+              parentFunction={refetchMe}
+              particularities={user.particularitySearch}
+              hasParticularities={
+                !isEmpty(JSON.parse(user.particularitySearch))
+              }
             />
           )}
-          {isICMActive && <TabICM hasICM={hasICM} />}
-          {isLDCActive && <TabLDC hasLDC={hasLDC} />}
+          {isICMActive && (
+            <TabICM
+              parentFunction={refetchMe}
+              hasICM={user?.ingredientAtHomeUser.length > 0}
+              ingredientsAtHome={user.ingredientAtHomeUser}
+            />
+          )}
+          {isLDCActive && (
+            <TabLDC
+              user={user}
+              parentFunction={refetchMe}
+              hasLDC={user?.ingredientShoppingListUser.length > 0}
+              data={user.ingredientShoppingListUser}
+            />
+          )}
         </div>
       </div>
 

@@ -6,10 +6,11 @@ import {
   Step,
 } from "../PersonalizationHelper";
 import React, { useState } from "react";
+import { cloneDeep } from "lodash";
 
 export const StepSkinType: React.FC<Step> = ({ nextStep }) => {
   const [skinOptions, setSkinOptions] = useState(
-    questionnaireMenu[0].singleOptions,
+    cloneDeep(questionnaireMenu[0].singleOptions),
   );
 
   return (
@@ -19,9 +20,10 @@ export const StepSkinType: React.FC<Step> = ({ nextStep }) => {
         <div className="grid grid-cols-2 gap-4 md:flex md:space-x-1 md:justify-center md:h-40 md:w-[500px]">
           {
             //@ts-ignore
-            skinOptions.map((op, index) => {
+            skinOptions.map((op: any, index) => {
               return (
                 <div
+                  id={op.id}
                   className={`flex flex-col justify-center ${
                     op.isSelected
                       ? "border-green bg-greenL text-green"

@@ -126,6 +126,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 className="fixed right-0 p-2 mr-3 top-14"
                 type="red"
                 onClick={() => removeFilters()}
+                id="listpage-filtresmobile-supprimerfiltre"
               >
                 Supprimer les filtres X
               </Button>
@@ -154,7 +155,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             </div>
 
             {!isMobile && (
-              <div className="flex-col w-11/12 h-auto px-4 py-2 mt-4 rounded-lg bg-blueL">
+              <div className="flex-col w-11/12 h-auto px-4 py-2 mt-4 rounded-lg">
                 {isCurrentFilterEmpty && (
                   <>
                     <div className="flex">
@@ -167,7 +168,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                           (item: any, key: any) =>
                             map(item, (value, index) => (
                               <div
-                                className="flex inline h-8 px-3 mb-2 ml-2 text-white rounded-lg bg-blue py-1"
+                                className="flex inline h-8 px-3 mb-2 ml-2 text-white rounded-lg bg-darkBlue py-1"
                                 key={index}
                               >
                                 <p>{value.title}</p>
@@ -183,7 +184,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                       </div>
                     </div>
                     <div>
-                      <Button type="darkBlue" onClick={() => removeFilters()}>
+                      <Button
+                        type="darkBlue"
+                        onClick={() => removeFilters()}
+                        id="listpage-filtredesktop-supprimerfiltre"
+                      >
                         Supprimer tous les filtres X
                       </Button>
                     </div>

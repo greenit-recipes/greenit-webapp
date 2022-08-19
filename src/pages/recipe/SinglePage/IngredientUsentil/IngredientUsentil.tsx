@@ -1,17 +1,135 @@
-import { IconNbrIngredient } from "components/misc/IconNbrIngredient";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SectionIngredient } from "./SectionIngredient";
 import { SectionUstensil } from "./SectionUsentil";
-import { GiForkKnifeSpoon } from "react-icons/gi";
-import { Button } from "../../../../components";
+import { Button } from "components";
+import { hasIngredientOnList } from "components/personalization/PersonalizationHelper";
+import { useMutation } from "@apollo/client";
+import { ADD_OR_REMOVE_INGREDIENT_SHOPPING_LIST } from "../SinglePage-helper";
+import { cloneDeep } from "lodash";
+import authService from "../../../../services/auth.service";
+import ReactDOM from "react-dom";
+import { NotificationAlert } from "../../../../components/layout/NotificationAlert";
 
 interface IIngredientUsentil {
   recipe: any;
+  ingredientShoppingList: any;
+  ingredientAtHome: any;
+  parentFunction?: any;
 }
 
-export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
+export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
+  recipe,
+  ingredientShoppingList,
+  ingredientAtHome,
+  parentFunction,
+}) => {
   const [isIngredientSelected, setIngredientSelected] = useState(true);
-  const [isBulkLDCActive, setIsBulkLDCActive] = useState(false);
+  const [isBulkLDCActive, setIsBulkLDCActive] = useState(
+    recipe.ingredients.every((ingredient: any) =>
+      //@ts-ignore
+      hasIngredientOnList(ingredientShoppingList, ingredient.id),
+    ),
+  );
+  let isICMactive = false;
+  let isLDCactive = false;
+  const isLoggedIn = authService.isLoggedIn();
+
+  const [ingredientAtHomeCurrent, setIngredientAtHomeCurrent] = useState(
+    cloneDeep(
+      !isLoggedIn
+        ? JSON.parse(
+            // @ts-ignore
+            localStorage.getItem("ingredientAtHome" || JSON.stringify([])),
+          )
+        : ingredientAtHome,
+    ),
+  );
+
+  const [
+    createOrDeleteIngredientShoppingList,
+    { data: createOrDeleteLDCdata, loading: loadingLDC, error: errorLDC },
+  ] = useMutation(ADD_OR_REMOVE_INGREDIENT_SHOPPING_LIST, {
+    errorPolicy: "all",
+  });
+
+  const ingredientShoppingListOperations: any = {
+    potentialAdditions: [],
+    potentialDeletions: [],
+  };
+
+  // console.log(ingredientAtHomeCurrent)
+
+  let keyCounter: any = useRef(0);
+  const [isLDCBulkAddedNotifActive, setIsLDCBulkAddedNotifActive] =
+    useState(false);
+  const [isLimitReachedNotifActive, setIsLimitReachedNotifActive] =
+    useState(false);
+  const [isLDCAccessNotifActive, setIsLDCAccessNotifActive] = useState(false);
+
+  useEffect(() => {
+    if (isLDCBulkAddedNotifActive) {
+      ReactDOM.render(
+        <NotificationAlert
+          key={"ldc-bulk-added-" + keyCounter.current++}
+          type="success"
+          titre="Ajouté(s) aux ingrédients chez toi !"
+          text="Retrouve ta liste dans ton profil."
+        />,
+        document.getElementById("notif"),
+      );
+      setIsLDCBulkAddedNotifActive(false);
+    }
+    if (isLimitReachedNotifActive) {
+      ReactDOM.render(
+        <NotificationAlert
+          key={"ingredient-limit-reached-recipe-" + keyCounter.current++}
+          type="alert"
+          titre="Tu as beaucoup d’ingrédients chez toi ?"
+          text="Crée-toi un compte pour en ajouter plus !"
+        />,
+        document.getElementById("notif"),
+      );
+      setIsLimitReachedNotifActive(false);
+    }
+    if (isLDCAccessNotifActive) {
+      ReactDOM.render(
+        <NotificationAlert
+          key={"ldc-bulk-access-" + keyCounter.current++}
+          type="alert"
+          titre="Tu n’as pas accès à la liste de course."
+          text="Crée-toi un compte pour ajouter à ta liste !"
+        />,
+        document.getElementById("notif"),
+      );
+      setIsLDCAccessNotifActive(false);
+    }
+  }, [
+    isLDCBulkAddedNotifActive,
+    isLimitReachedNotifActive,
+    isLDCAccessNotifActive,
+  ]);
+
+  const updateIngredientAtHome = (ingredient: any) => {
+    let newIngredient = [];
+    if (!ingredientAtHomeCurrent.some((el: any) => el.id === ingredient.id)) {
+      if (!isLoggedIn && ingredientAtHomeCurrent.length + 1 <= 2) {
+        newIngredient = cloneDeep(ingredientAtHomeCurrent);
+        newIngredient.push(ingredient);
+        setIngredientAtHomeCurrent(newIngredient);
+        localStorage.setItem("ingredientAtHome", JSON.stringify(newIngredient));
+      } else {
+        setIsLimitReachedNotifActive(true);
+        return false;
+      }
+    } else {
+      newIngredient = ingredientAtHomeCurrent.filter(
+        (el: any) => el.id != ingredient.id,
+      );
+      setIngredientAtHomeCurrent(newIngredient);
+      localStorage.setItem("ingredientAtHome", JSON.stringify(newIngredient));
+    }
+    return true;
+  };
 
   return (
     <div className="flex items-center mt-12 mb-12">
@@ -46,11 +164,40 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
         </div>
 
         <div className={`${isIngredientSelected ? "" : "hidden"}`}>
-          {recipe.ingredients.map((item: any, index: any) => (
-            <div key={index}>
-              <SectionIngredient data={item} />
-            </div>
-          ))}
+          {
+            //Todo : update bulk icon active
+            recipe.ingredients.map((item: any, index: any) => {
+              isLDCactive = hasIngredientOnList(
+                ingredientShoppingList,
+                item.id,
+              );
+              isICMactive = hasIngredientOnList(
+                ingredientAtHomeCurrent,
+                item.id,
+              );
+              if (isLDCactive) {
+                ingredientShoppingListOperations.potentialDeletions.push(
+                  item.id,
+                );
+              } else {
+                ingredientShoppingListOperations.potentialAdditions.push(
+                  item.id,
+                );
+              }
+              return (
+                <div key={index}>
+                  <SectionIngredient
+                    parentFunction={
+                      isLoggedIn ? parentFunction : updateIngredientAtHome
+                    }
+                    data={item}
+                    isLDCactive={isLDCactive}
+                    isICMactive={isICMactive}
+                  />
+                </div>
+              );
+            })
+          }
         </div>
         <div className={`${isIngredientSelected ? "hidden" : ""}`}>
           {recipe.utensils.map((item: any, index: any) => (
@@ -65,13 +212,38 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({ recipe }) => {
             de course
           </span>
           <Button
+            id="recipepage-ingredientall-LDC"
             className={`px-4 mr-3 shadow-md ${
               isBulkLDCActive && "border-blue"
             } hover:text-blue active:border-blue active:bg-white`}
             haveIcon={true}
             type="darkBlueIcon"
             onClick={() => {
-              setIsBulkLDCActive(!isBulkLDCActive);
+              if (isLoggedIn) {
+                setIsBulkLDCActive(!isBulkLDCActive);
+                !isBulkLDCActive &&
+                  !isLDCBulkAddedNotifActive &&
+                  setIsLDCBulkAddedNotifActive(true);
+                const ingredientShoppingListCurrent = {
+                  additions: [],
+                  deletions: [],
+                };
+                if (!isBulkLDCActive) {
+                  ingredientShoppingListCurrent.additions =
+                    ingredientShoppingListOperations.potentialAdditions;
+                } else {
+                  ingredientShoppingListCurrent.deletions =
+                    ingredientShoppingListOperations.potentialDeletions;
+                }
+                createOrDeleteIngredientShoppingList({
+                  variables: {
+                    ingredientShoppingList: ingredientShoppingListCurrent,
+                  },
+                });
+                parentFunction ? parentFunction() : null;
+              } else {
+                setIsLDCAccessNotifActive(true);
+              }
             }}
           >
             <i

@@ -1,16 +1,19 @@
 import Modal from "components/layout/Modal/Modal";
 import React, { useEffect, useState } from "react";
-import Personalization from "./Personalization";
 import IngredientSearch from "./IngredientSearch";
 
 interface IModalIngredientSearch {
   btn: any;
   show?: boolean;
+  ingredientsAtHome: any;
+  parentFunction: any;
 }
 
 //Todo: Load the component lazily
 export const ModalIngredientSearch: React.FC<IModalIngredientSearch> = ({
   btn,
+  ingredientsAtHome,
+  parentFunction,
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -35,7 +38,11 @@ export const ModalIngredientSearch: React.FC<IModalIngredientSearch> = ({
         {btn}
       </div>
       <Modal onClose={() => setShowModal(false)} show={showModal}>
-        <IngredientSearch />
+        <IngredientSearch
+          parentFunction={parentFunction}
+          setModalState={setShowModal}
+          ingredientsAtHome={ingredientsAtHome}
+        />
       </Modal>
     </div>
   );

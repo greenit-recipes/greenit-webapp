@@ -1,4 +1,4 @@
-import { useMutation } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { Button, Footer, Loading, Navbar } from "components";
@@ -20,14 +20,12 @@ import { ModalKpi } from "pages/recipe/SinglePage/modalKpi/modalKpi";
 import { checkUserAlreadyViewRecipe } from "pages/recipe/SinglePage/SinglePage-helper";
 import { HelmetRecipe } from "pages/recipe/SinglePage/SinglePageHelmet";
 import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest";
-import React, { createRef, useEffect, useState } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { BsWallet2 } from "react-icons/bs";
-import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
 import ReactPlayer from "react-player/lazy";
 import { useHistory, useParams } from "react-router-dom";
 import { RWebShare } from "react-web-share";
-import authService from "services/auth.service";
+import authService, { ME } from "services/auth.service";
 import * as yup from "yup";
 import { useRecipeQuery } from "../../../graphql";
 import { noVideo, retourIcon } from "../../../icons";
@@ -153,11 +151,35 @@ const RecipeSinglePage = () => {
     });
   };
 
-  console.log("sizeCretorHeader", sizeCretorHeader);
-  if (loading || !data) {
+  const [
+    getUser,
+    {
+      loading: loadingUser,
+      error: errorUser,
+      data: dataUser,
+      refetch: refetchMe,
+    },
+  ] = useLazyQuery(ME, {
+    fetchPolicy: "network-only",
+  });
+
+  let user = useRef({});
+  useEffect(() => {
+    if (isLoggedIn && isEmpty(user.current)) {
+      getUser();
+    }
+  }, [isLoggedIn]);
+
+  if (loading || !data || (isLoggedIn && (loadingUser || isEmpty(dataUser)))) {
     return <Loading />;
   }
+
+  //Todo : refactor variable into contexts
+  user.current = dataUser?.me;
+
+  // @ts-ignore
   const { recipe } = data;
+  // @ts-ignore
   // @ts-ignore
   return (
     <>
@@ -238,6 +260,7 @@ const RecipeSinglePage = () => {
                     }}
                   >
                     <CircleGreenit
+                      id="recipepage-RPI-substances"
                       colorCircle="bg-blue"
                       icon={
                         <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
@@ -256,6 +279,7 @@ const RecipeSinglePage = () => {
                     }}
                   >
                     <CircleGreenit
+                      id="recipepage-RPI-argent"
                       colorCircle="bg-yellow"
                       icon={
                         <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
@@ -275,6 +299,7 @@ const RecipeSinglePage = () => {
                     }}
                   >
                     <CircleGreenit
+                      id="recipepage-RPI-plastique"
                       colorCircle="bg-green"
                       icon={
                         <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
@@ -424,8 +449,18 @@ const RecipeSinglePage = () => {
                 </div>
               </div>
             </div>
-
-            <IngredientUsentil recipe={recipe} />
+            <IngredientUsentil
+              ingredientShoppingList={
+                //@ts-ignore
+                isLoggedIn ? user.current.ingredientShoppingListUser : []
+              }
+              ingredientAtHome={
+                //@ts-ignore
+                isLoggedIn ? user.current.ingredientAtHomeUser : []
+              }
+              parentFunction={refetchMe}
+              recipe={recipe}
+            />
             <div className="flex flex-col w-full h-full lg:flex-row">
               {isMobile && (
                 <>

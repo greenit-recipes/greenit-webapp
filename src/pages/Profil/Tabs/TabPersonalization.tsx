@@ -1,17 +1,22 @@
 import React from "react";
 import SectionPersonalization from "components/personalization/sections/SectionPersonalization";
 import ModalPersonalization from "components/personalization/ModalPersonalization";
-import { Button, RecipeCard } from "components";
+import { Button } from "components";
 import { ExploreMore } from "components/recipe/ExploreMore";
+import { RecommendedRecipes } from "../../recipe/ListPage/Components/RecommendedRecipes";
 
 interface TabPersonalizationProps {
-  hasParticularities: boolean;
-  data: any;
+  hasParticularities?: boolean;
+  parentFunction: any;
+  particularities: any;
+  ingredientAtHome: any;
 }
 
 export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
-  hasParticularities,
-  data,
+  hasParticularities = true,
+  parentFunction,
+  particularities,
+  ingredientAtHome,
 }) => {
   return (
     <div className="w-full mb-24">
@@ -28,7 +33,11 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
       <div className="w-full py-5 bg-greenL">
         {hasParticularities ? (
           <>
-            <SectionPersonalization />
+            <SectionPersonalization
+              parentFunction={parentFunction}
+              /*@ts-ignore*/
+              particularities={JSON.parse(particularities)}
+            />
           </>
         ) : (
           <div className="w-full flex flex-col items-center py-5 bg-greenL text-center space-y-4">
@@ -37,8 +46,14 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
               personnalisées à tes besoins.
             </p>
             <ModalPersonalization
+              parentFunction={parentFunction}
               btn={
-                <Button className="w-64 px-1" haveIcon={true} type="green">
+                <Button
+                  className="w-64 px-1"
+                  haveIcon={true}
+                  type="green"
+                  id="profil-particularites-definir-particularites"
+                >
                   <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
                   Définir mes particularités
                 </Button>
@@ -60,11 +75,11 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
           </div>
           <div className="md:flex md:justify-center w-full pt-4 pl-4 msm:overflow-x-auto">
             <div className="flex w-max">
-              {/*@ts-ignore*/}
-              {data?.slice(0, 4).map(recipe => (
-                <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-              ))}
-              <ExploreMore />
+              <RecommendedRecipes
+                particularities={particularities}
+                ingredientAtHome={ingredientAtHome}
+              />
+              <ExploreMore id="profil-particularites-explorer" filter="/" />
             </div>
           </div>
         </>

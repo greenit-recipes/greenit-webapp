@@ -41,7 +41,7 @@ import { Community } from "pages/LandingPage/Components/Community";
 import "pages/LandingPage/LandingPage.css";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
 import "pages/recipe/SinglePage/SinglePage.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import "react-multi-carousel/lib/styles.css";
 import { Link, useHistory } from "react-router-dom";
@@ -124,6 +124,19 @@ const LandingPage = () => {
   });
 
   const [showModalComingSoon, setShowModalComingSoon] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (showModal) {
+      // à voir
+      document.body.classList.add("no-scroll");
+
+      return () => {
+        document.body.classList.remove("no-scroll");
+      };
+    }
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const setSearchTermDebounced = debounce(setSearchTerm, 250);
@@ -226,7 +239,7 @@ const LandingPage = () => {
             </>
           )}
 
-          <div className={`relative msm:mt-24 mb-6 text-center`}>
+          <div className={`relative mt-16 md:mt-6 mb-6 text-center`}>
             <h1 className="text-2xl md:text-3xl">
               {isMobile ? (
                 <>
@@ -243,14 +256,29 @@ const LandingPage = () => {
               )}
             </h1>
           </div>
-          <div className="w-9/12 mb-2 mx-12 lg:w-1/5">
-            <SearchBar
-              keyId="searchBarLandingPage"
-              suggestionIsActive={true}
-              setValue={setSearchTermDebounced}
-              isLoading={autoCompleteLoading}
-              // @ts-ignore
-              suggestions={recipesAutoComplete}
+          <div className="flex flex-row gap-2 w-9/12 sm:w-auto md:my-8 mx-12">
+            <div className="md:w-3/5">
+              <SearchBar
+                keyId="searchBarLandingPage"
+                suggestionIsActive={true}
+                setValue={setSearchTermDebounced}
+                isLoading={autoCompleteLoading}
+                // @ts-ignore
+                suggestions={recipesAutoComplete}
+              />
+            </div>
+            <ModalPersonalization
+              btn={
+                <Button
+                  className="hidden md:flex z-10"
+                  haveIcon={true}
+                  type="green"
+                  onClick={() => setShowModal(true)}
+                >
+                  <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
+                  Définir mes particularités
+                </Button>
+              }
             />
           </div>
           <div className="text-center my-5">
@@ -259,7 +287,7 @@ const LandingPage = () => {
             </h4>
           </div>
           {isMobile ? (
-            <div className="grid grid-cols-2 mt-4 mb-2 sm:grid-cols-3">
+            <div className="grid grid-cols-2 mb-2 sm:grid-cols-3">
               {recipes?.slice(0, 6).map((recipe, index: number) => (
                 <RecipeCard
                   recipe={recipe?.node}
@@ -269,7 +297,7 @@ const LandingPage = () => {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-4 justify-items-center mt-10 gap-y-10 gap-x-4">
+            <div className="grid grid-cols-4 justify-items-center gap-y-10 gap-x-4">
               {recipes?.map(recipe => (
                 <RecipeCard
                   recipe={recipe?.node}
@@ -337,7 +365,12 @@ const LandingPage = () => {
         </div>
         <ModalPersonalization
           btn={
-            <Button className="mr-3 mb-10" haveIcon={true} type="green">
+            <Button
+              className="mr-3 mb-10"
+              haveIcon={true}
+              type="green"
+              id="landing-mes-particularites"
+            >
               <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
               Définir mes particularités
             </Button>
@@ -439,7 +472,10 @@ const LandingPage = () => {
           {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
-          <ExploreMore filter="tags=Premiers pas" />
+          <ExploreMore
+            filter="tags=Premiers pas"
+            id="landing-debutant-debutant"
+          />
         </div>
       </div>
       <Container
@@ -458,7 +494,7 @@ const LandingPage = () => {
           {dataHomes?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
-          <ExploreMore filter="category=Maison" />
+          <ExploreMore filter="category=Maison" id="landing-maison-explorer" />
         </div>
       </div>
       <Container
@@ -481,6 +517,7 @@ const LandingPage = () => {
               name={item.title}
               icon={item.icon}
               key={item.title}
+              id={item.title}
             />
           ))}
         </div>
@@ -511,7 +548,10 @@ const LandingPage = () => {
                   ))}
                 {/*Todo: Fill category later*/}
                 {isMobile && (
-                  <ExploreMore filter="category=Avec les ingrédients de la cuisine" />
+                  <ExploreMore
+                    filter="category=Avec les ingrédients de la cuisine"
+                    id="landing-maison-ingr-cuisine"
+                  />
                 )}
               </div>
             </div>
@@ -532,7 +572,10 @@ const LandingPage = () => {
                     ))}
                   {/*Todo: Fill category later*/}
                   {isMobile && (
-                    <ExploreMore filter="category=Avec les ingrédients de la cuisine" />
+                    <ExploreMore
+                      filter="category=Avec les ingrédients de la cuisine"
+                      id="landing-maison-ingr-cuisine"
+                    />
                   )}
                 </div>
               </div>
@@ -711,7 +754,10 @@ const LandingPage = () => {
           {dataHairs?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
-          <ExploreMore filter="category=Cheveux" />
+          <ExploreMore
+            filter="category=Cheveux"
+            id="landing-shampoings-explorer"
+          />
         </div>
       </div>
 
@@ -731,7 +777,7 @@ const LandingPage = () => {
           {dataSearchMasques?.slice(0, totalRecipeCards).map(recipe => (
             <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
           ))}
-          <ExploreMore filter="search=Masque" />
+          <ExploreMore filter="search=Masque" id="landing-masques-explorer" />
         </div>
       </div>
       <Container

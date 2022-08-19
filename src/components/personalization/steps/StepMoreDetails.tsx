@@ -6,16 +6,17 @@ import {
 } from "../PersonalizationHelper";
 import React, { useEffect, useState } from "react";
 import { Button } from "../../misc";
+import { cloneDeep } from "lodash";
 
 export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
   const [faceOptions, setFaceOptions] = useState(
     // @ts-ignore
-    questionnaireMenu[2].multipleOPtions[0].singleOptions,
+    cloneDeep(questionnaireMenu[2].multipleOPtions[0].singleOptions),
   );
 
   const [hairOptions, setHairOptions] = useState(
     // @ts-ignore
-    questionnaireMenu[2].multipleOPtions[1].singleOptions,
+    cloneDeep(questionnaireMenu[2].multipleOPtions[1].singleOptions),
   );
 
   const [isSkipActive, setIsSkipActive] = useState(true);
@@ -43,9 +44,10 @@ export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
             }
           </h4>
           <div className="flex flex-col justify-center | mt-2 space-y-3">
-            {faceOptions.map(op => {
+            {faceOptions.map((op: any) => {
               return (
                 <div
+                  id={op.id}
                   className={`w-56 py-2  ${
                     op.isSelected
                       ? "border-green bg-greenL text-green"
@@ -69,9 +71,10 @@ export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
             }
           </h4>
           <div className="flex flex-col justify-center | mt-2 space-y-3">
-            {hairOptions.map(op => {
+            {hairOptions.map((op: any) => {
               return (
                 <div
+                  id={op.id}
                   className={`w-56 py-2  ${
                     op.isSelected
                       ? "border-green bg-greenL text-green"
@@ -97,6 +100,7 @@ export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
           </div>
         ) : (
           <Button
+            id="modal-personalisation-validerstepMoreDetails"
             className="w-full md:w-20 mt-2 mb-4 shadow-md"
             type="green"
             onClick={() => {
