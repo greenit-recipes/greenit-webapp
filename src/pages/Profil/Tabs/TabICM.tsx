@@ -7,10 +7,15 @@ import React from "react";
 
 interface TabICMProps {
   hasICM: boolean;
-  data?: any;
+  ingredientsAtHome?: any;
+  parentFunction: any;
 }
 
-export const TabICM: React.FC<TabICMProps> = ({ hasICM, data }) => {
+export const TabICM: React.FC<TabICMProps> = ({
+  hasICM,
+  ingredientsAtHome,
+  parentFunction,
+}) => {
   return (
     <div className="mx-7 mb-24">
       <div className="w-full flex flex-col items-center justify-center text-center | mb-2">
@@ -24,7 +29,10 @@ export const TabICM: React.FC<TabICMProps> = ({ hasICM, data }) => {
 
         {hasICM ? (
           <div className="flex flex-col items-center mt-4 space-y-2">
-            <SectionICM ingredientsAtHome={data} />
+            <SectionICM
+              parentFunction={parentFunction}
+              ingredientsAtHome={ingredientsAtHome}
+            />
             <Link to={RouteName.recipes}>
               <Button
                 className="mb-4 shadow-md"
@@ -43,6 +51,8 @@ export const TabICM: React.FC<TabICMProps> = ({ hasICM, data }) => {
             </p>
             <div className="self-start mt-4 w-20">
               <ModalIngredientSearch
+                ingredientsAtHome={ingredientsAtHome}
+                parentFunction={parentFunction}
                 btn={
                   <div className="flex items-center justify-center w-20 h-20 md:w-20 md:h-20 | bg-white rounded-lg drop-shadow-md | mb-2">
                     <span
@@ -57,6 +67,8 @@ export const TabICM: React.FC<TabICMProps> = ({ hasICM, data }) => {
             </div>
             <div className="mt-9">
               <ModalIngredientSearch
+                ingredientsAtHome={ingredientsAtHome}
+                parentFunction={parentFunction}
                 btn={
                   <div className="text-center mb-2">
                     <span

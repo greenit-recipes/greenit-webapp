@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SearchBar } from "../layout";
 import debounce from "lodash/debounce";
 import { useMutation, useQuery } from "@apollo/client";
@@ -6,13 +6,33 @@ import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 import { getImagePath } from "helpers/image.helper";
 import { ADD_OR_REMOVE_INGREDIENT_AT_HOME } from "../../pages/recipe/SinglePage/SinglePage-helper";
 import { cloneDeep, max } from "lodash";
+import ReactDOM from "react-dom";
+import { NotificationAlert } from "../layout/NotificationAlert";
+import Auth from "services/auth.service";
+import authService from "services/auth.service";
 
-export const IngredientSearch = () => {
+interface IngredientSearchProps {
+  ingredientsAtHome: any;
+  setModalState: any;
+  parentFunction: any;
+}
+
+export const EmptyDiv = () => {
+  return <div className="hidden"></div>;
+};
+
+export const IngredientSearch: React.FC<IngredientSearchProps> = ({
+  ingredientsAtHome,
+  setModalState,
+  parentFunction,
+}) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [ingredientAtHome, setIngredientAtHome] = useState(
+  const [ingredientAtHomeCurrent, setIngredientAtHomeCurrent] = useState(
     // @ts-ignore
-    cloneDeep(window.me.ingredientAtHomeUser) || [],
+    cloneDeep(ingredientsAtHome),
   );
+
+  const isLoggedIn = authService.isLoggedIn();
 
   //Resolve differences between the two arrays
   const ingredientDiffing = (original: any, final: any) => {
@@ -59,15 +79,70 @@ export const IngredientSearch = () => {
   };
 
   const appendIngredient = (ingredient: any) => {
-    if (!ingredientAtHome.some((el: any) => el.id === ingredient.id)) {
-      ingredientAtHome.push(ingredient);
-      setIngredientAtHome(
-        ingredientAtHome.filter((element: any, index: any) => {
-          return ingredientAtHome.indexOf(element) === index;
-        }),
-      );
+    if (!ingredientAtHomeCurrent.some((el: any) => el.id === ingredient.id)) {
+      if (isLoggedIn || ingredientAtHomeCurrent.length + 1 <= 2) {
+        let newIngredient = cloneDeep(ingredientAtHomeCurrent);
+        newIngredient.push(ingredient);
+        setIngredientAtHomeCurrent(newIngredient);
+        console.log(ingredientAtHomeCurrent.length);
+      } else {
+        setIsLimitReachedNotifActive(true);
+      }
+    } else {
+      setIsIngredientNotifExistActive(true);
     }
   };
+
+  let keyCounter: any = useRef(0);
+  const [isIngredientExistNotifActive, setIsIngredientNotifExistActive] =
+    useState(false);
+  const [isLimitReachedNotifActive, setIsLimitReachedNotifActive] =
+    useState(false);
+  const [isIngredientsSavedNotifActive, setIsIngredientsSavedNotifActive] =
+    useState(false);
+
+  useEffect(() => {
+    if (isIngredientExistNotifActive) {
+      ReactDOM.render(
+        <NotificationAlert
+          key={"ingredient-exist-" + keyCounter.current++}
+          type="alert"
+          titre="Tu as déjà cet ingrédient dans ta liste !"
+          text="Tu peux ajouter d’autres ingrédients."
+        />,
+        document.getElementById("notif"),
+      );
+      setIsIngredientNotifExistActive(false);
+    }
+    if (isLimitReachedNotifActive) {
+      ReactDOM.render(
+        <NotificationAlert
+          key={"ingredient-limit-reached-" + keyCounter.current++}
+          type="alert"
+          titre="Tu as beaucoup d’ingrédients chez toi ?"
+          text="Crée-toi un compte pour en ajouter plus !"
+        />,
+        document.getElementById("notif"),
+      );
+      setIsLimitReachedNotifActive(false);
+    }
+    if (isIngredientsSavedNotifActive) {
+      ReactDOM.render(
+        <NotificationAlert
+          key={"ingredients-saved-" + keyCounter.current++}
+          type="success"
+          titre="Mise à jour de tes ingrédients !"
+          text="Retrouve ta sélection de recettes adaptées."
+        />,
+        document.getElementById("notif"),
+      );
+      setIsIngredientsSavedNotifActive(false);
+    }
+  }, [
+    isIngredientExistNotifActive,
+    isLimitReachedNotifActive,
+    isIngredientsSavedNotifActive,
+  ]);
 
   return (
     <div className="flex flex-col justify-center -mt-8 md:-mt-4 mx-12 md:mx-24 md:w-[700px]">
@@ -94,10 +169,10 @@ export const IngredientSearch = () => {
       </div>
       <div
         className={`flex flex-col md:flex-row md:flex-wrap h-80 ${
-          ingredientAtHome.length > 6 ? "md:h-[450px]" : "md:h-56"
+          ingredientAtHomeCurrent.length > 6 ? "md:h-[450px]" : "md:h-56"
         } msm:space-y-4 overflow-y-auto`}
       >
-        {ingredientAtHome.map((ingredient: any) => (
+        {ingredientAtHomeCurrent?.map((ingredient: any) => (
           <div className="flex md:flex-col items-center msm:space-x-3 space-y-2 | md:mb-6">
             <img
               src={getImagePath(ingredient.image)}
@@ -111,8 +186,8 @@ export const IngredientSearch = () => {
             <div
               className="flex justify-center items-center md:w-12 w-9 h-9 border-red border-2 rounded-md shadow-md | cursor-pointer"
               onClick={() => {
-                setIngredientAtHome(
-                  ingredientAtHome.filter(
+                setIngredientAtHomeCurrent(
+                  ingredientAtHomeCurrent.filter(
                     (ing: any) => ing.id != ingredient.id,
                   ),
                 );
@@ -131,15 +206,25 @@ export const IngredientSearch = () => {
           id="modal-ingredients-chez-moi-valider"
           className={`justify-center rounded-md shadow-md mt-2 p-2 h-10 flex w-full md:w-20 bg-green text-white`}
           onClick={() => {
-            createOrDeleteIngredientAtHomeUser({
-              variables: {
-                ingredientAtHome: ingredientDiffing(
-                  // @ts-ignore
-                  window.me.ingredientAtHomeUser,
-                  ingredientAtHome,
-                ),
-              },
-            });
+            if (isLoggedIn) {
+              createOrDeleteIngredientAtHomeUser({
+                variables: {
+                  ingredientAtHome: ingredientDiffing(
+                    ingredientsAtHome,
+                    ingredientAtHomeCurrent,
+                  ),
+                },
+              });
+              parentFunction ? parentFunction() : null;
+            } else {
+              localStorage.setItem(
+                "ingredientAtHome",
+                JSON.stringify(ingredientAtHomeCurrent),
+              );
+              parentFunction ? parentFunction(ingredientAtHomeCurrent) : null;
+            }
+            setIsIngredientsSavedNotifActive(true);
+            setModalState(false);
           }}
         >
           Valider

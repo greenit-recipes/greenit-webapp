@@ -8,11 +8,13 @@ interface IModalLogGreenit {
   btn: any;
   isModalLogin?: boolean;
   show?: boolean;
+  parentFunction?: any;
 }
 
 export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({
   btn,
   isModalLogin,
+  parentFunction,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(isModalLogin || false);
@@ -32,7 +34,10 @@ export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({
     <div>
       <div
         className="justify-items-center flex flex-col"
-        onClick={() => setShowModal(true)}
+        onClick={() => {
+          parentFunction && parentFunction(true);
+          setShowModal(true);
+        }}
       >
         {btn}
       </div>

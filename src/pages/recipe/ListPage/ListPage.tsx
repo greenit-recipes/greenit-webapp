@@ -1,6 +1,6 @@
 import { useLazyQuery, useQuery } from "@apollo/client";
 import { getObjectSession } from "helpers/session-helper";
-import { map, mapValues, omit, sum } from "lodash";
+import { cloneDeep, isEmpty, map, mapValues, omit, sum } from "lodash";
 import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
@@ -28,6 +28,7 @@ import SectionICM from "components/personalization/sections/SectionICM";
 import Auth, { ME } from "services/auth.service";
 import { SectionRecommendedRecipe } from "./Components/SectionRecommendedRecipe";
 import { annotateRecipeResult } from "../../../components/personalization/PersonalizationHelper";
+import ModalPersonalization from "../../../components/personalization/ModalPersonalization";
 
 const RecipeListPage = () => {
   const isLoggedIn = Auth.isLoggedIn();
@@ -174,19 +175,37 @@ const RecipeListPage = () => {
   // Fetching particularities
 
   //Todo: fetch user before rendering pages
-  const [getUser, { loading: loadingUser, error: errorUser, data: dataUser }] =
-    useLazyQuery(ME, {
-      fetchPolicy: "network-only",
-    });
+  const [
+    getUser,
+    {
+      loading: loadingUser,
+      error: errorUser,
+      data: dataUser,
+      refetch: refetchMe,
+    },
+  ] = useLazyQuery(ME, {
+    fetchPolicy: "network-only",
+  });
 
-  let user = useRef({});
+  const user = useRef({});
+  const [ingredientAtHome, setIngredientAtHome] = useState(
+    JSON.parse(localStorage.getItem("ingredientAtHome") ?? JSON.stringify([])),
+  );
+  let hasParticularities = false;
+  if (isLoggedIn) {
+    hasParticularities = !isEmpty(
+      //@ts-ignore
+      JSON.parse(user.current?.particularitySearch || JSON.stringify({})),
+    );
+  }
+
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && isEmpty(user.current)) {
       getUser();
     }
   }, [isLoggedIn]);
 
-  if (loading || loadingUser) {
+  if (loading || (isLoggedIn && (loadingUser || isEmpty(dataUser)))) {
     return <Loading />;
   }
 
@@ -225,7 +244,7 @@ const RecipeListPage = () => {
                 </Button>
               }
             ></ModalLogGreenit>
-          ) : (
+          ) : hasParticularities ? (
             <Button
               id="listpage-mes-particularites"
               className="px-4 py-1 mr-3 mb-4 shadow-md"
@@ -239,6 +258,25 @@ const RecipeListPage = () => {
               <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
               Mes particularités
             </Button>
+          ) : (
+            <ModalPersonalization
+              parentFunction={refetchMe}
+              btn={
+                <Button
+                  id="listpage-mes-particularites"
+                  className="px-4 py-1 mr-3 mb-4 shadow-md"
+                  haveIcon={true}
+                  onClick={() => {
+                    setIsParticularityActive(!isParticularityActive);
+                    isICMActive && setIsICMActive(!isICMActive);
+                  }}
+                  type="green"
+                >
+                  <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
+                  Définir mes particularités
+                </Button>
+              }
+            />
           )}
           <Button
             id="listpage-ingredientchezmoi"
@@ -257,8 +295,9 @@ const RecipeListPage = () => {
         </div>
 
         {/*Paritucularities*/}
-        {isParticularityActive && (
+        {isParticularityActive && hasParticularities && (
           <SectionPersonalization
+            parentFunction={refetchMe}
             //@ts-ignore
             particularities={JSON.parse(user.current.particularitySearch)}
           />
@@ -267,8 +306,15 @@ const RecipeListPage = () => {
         {/*ICM*/}
         {isICMActive && (
           <div className="ml-5">
-            {/*//@ts-ignore*/}
-            <SectionICM ingredientsAtHome={user.current.ingredientAtHomeUser} />
+            <SectionICM
+              parentFunction={isLoggedIn ? refetchMe : setIngredientAtHome}
+              ingredientsAtHome={
+                isLoggedIn
+                  ? /*@ts-ignore*/
+                    user.current.ingredientAtHomeUser
+                  : ingredientAtHome
+              }
+            />
           </div>
         )}
 
@@ -337,7 +383,14 @@ const RecipeListPage = () => {
       <div className="flex justify-center bg-white recipe-list">
         <div className="h-auto max-w-7xl justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
           {/*Recommended Recipes*/}
-          {isLoggedIn && <SectionRecommendedRecipe />}
+          {isLoggedIn && hasParticularities && (
+            <SectionRecommendedRecipe
+              //@ts-ignore
+              particularities={user.current.particularitySearch}
+              //@ts-ignore
+              ingredientAtHome={user.current.ingredientAtHomeUser}
+            />
+          )}
           {/* to refacto infinite scroll*/}
           <h3 className="text-2xl text-center font-normal | mt-12 md:mb-5">
             Découvrir d’autres recettes
@@ -390,7 +443,7 @@ const RecipeListPage = () => {
                 {annotateRecipeResult(
                   recipes,
                   //@ts-ignore
-                  window.me.ingredientAtHomeUser,
+                  (isLoggedIn && user.current.ingredientAtHomeUser) || [],
                   //@ts-ignore
                 ).map(recipe => {
                   return (
@@ -407,7 +460,7 @@ const RecipeListPage = () => {
                   {annotateRecipeResult(
                     recipes,
                     //@ts-ignore
-                    window.me.ingredientAtHomeUser,
+                    (isLoggedIn && user.current.ingredientAtHomeUser) || [],
                     //@ts-ignore
                   ).map(recipe => (
                     <div key={recipe?.node?.id}>

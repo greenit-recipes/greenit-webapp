@@ -7,10 +7,12 @@ import { useMutation } from "@apollo/client";
 
 interface ISectionPersonalization {
   particularities?: any;
+  parentFunction: any;
 }
 
 export const SectionPersonalization: React.FC<ISectionPersonalization> = ({
   particularities,
+  parentFunction,
 }) => {
   const location = useLocation();
   const isLoggedIn = Auth.isLoggedIn();
@@ -25,6 +27,8 @@ export const SectionPersonalization: React.FC<ISectionPersonalization> = ({
       variables: {
         particularities: JSON.stringify({}),
       },
+    }).then(() => {
+      parentFunction ? parentFunction() : null;
     });
   };
 
@@ -61,6 +65,8 @@ export const SectionPersonalization: React.FC<ISectionPersonalization> = ({
         </div>
         <div className="flex flex-col justify-center md:flex-row md:space-x-4">
           <ModalPersonalization
+            hasParticularities={!!particularities}
+            parentFunction={parentFunction}
             btn={
               <div
                 className="text-center mb-2"
@@ -79,7 +85,6 @@ export const SectionPersonalization: React.FC<ISectionPersonalization> = ({
                 id="listpage-mes-particularites-supprimer"
                 onClick={() => {
                   resetParticularities();
-                  window.location.reload();
                 }}
               >
                 Supprimer mes préférences

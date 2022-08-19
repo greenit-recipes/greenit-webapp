@@ -7,15 +7,25 @@ import {
   LDCIngredients,
 } from "components/personalization/PersonalizationHelper";
 import { SectionIngredient } from "../../recipe/SinglePage/IngredientUsentil/SectionIngredient";
+import useIsMobile from "../../../hooks/isMobile";
 
 interface TabLDCProps {
   hasLDC: boolean;
   data?: any;
+  user: any;
+  parentFunction: any;
 }
 
-export const TabLDC: React.FC<TabLDCProps> = ({ hasLDC, data }) => {
+export const TabLDC: React.FC<TabLDCProps> = ({
+  hasLDC,
+  user,
+  data,
+  parentFunction,
+}) => {
   let isICMactive = false;
   let isLDCactive = false;
+
+  const isMobile = useIsMobile();
 
   return (
     <div className="mx-10 md:mx-56">
@@ -33,19 +43,18 @@ export const TabLDC: React.FC<TabLDCProps> = ({ hasLDC, data }) => {
           <div>
             {data.map((item: any, index: any) => {
               isLDCactive = hasIngredientOnList(
-                //@ts-ignore
-                window.me.ingredientShoppingListUser,
+                user.ingredientShoppingListUser,
                 item.id,
               );
               isICMactive = hasIngredientOnList(
-                //@ts-ignore
-                window.me.ingredientAtHomeUser,
+                user.ingredientAtHomeUser,
                 item.id,
               );
 
               return (
                 <div key={index}>
                   <SectionIngredient
+                    parentFunction={parentFunction}
                     data={item}
                     isLDCactive={isLDCactive}
                     isICMactive={isICMactive}
@@ -53,12 +62,14 @@ export const TabLDC: React.FC<TabLDCProps> = ({ hasLDC, data }) => {
                 </div>
               );
             })}
-            <div className="flex items-center mt-2">
-              <p className="text-sm">
-                Pour enlever un ingrédient, appuie dessus et clique sur{" "}
-              </p>
-              <i className="bx bx-cart-download text-3xl text-blue"></i>
-            </div>
+            {isMobile && (
+              <div className="flex items-center mt-2">
+                <p className="text-sm">
+                  Pour enlever un ingrédient, appuie dessus et clique sur{" "}
+                </p>
+                <i className="bx bx-cart-download text-3xl text-blue"></i>
+              </div>
+            )}
             <div className="flex flex-col items-center | mt-5">
               <Button
                 className="px-4 py-2 mr-3 mb-4 shadow-md"

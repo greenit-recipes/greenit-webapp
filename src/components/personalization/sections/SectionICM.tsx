@@ -1,16 +1,17 @@
 import ModalIngredientSearch from "../ModalIngredientSearch";
 import React from "react";
-import { ICMingredients } from "../PersonalizationHelper";
 import { getImagePath } from "../../../helpers/image.helper";
 
 interface SectionICMProps {
   spacing?: string;
   ingredientsAtHome?: any;
+  parentFunction: any;
 }
 
 export const SectionICM: React.FC<SectionICMProps> = ({
   spacing,
   ingredientsAtHome,
+  parentFunction,
 }) => {
   return (
     <div className="">
@@ -29,6 +30,8 @@ export const SectionICM: React.FC<SectionICMProps> = ({
         ))}
         <div className="ml-2">
           <ModalIngredientSearch
+            ingredientsAtHome={ingredientsAtHome}
+            parentFunction={parentFunction}
             btn={
               <div
                 className="flex items-center justify-center w-[77px] h-[76px] md:w-20 md:h-20 | bg-white rounded-lg drop-shadow-md | mb-2"
@@ -41,6 +44,8 @@ export const SectionICM: React.FC<SectionICMProps> = ({
         </div>
       </div>
       <ModalIngredientSearch
+        ingredientsAtHome={ingredientsAtHome}
+        parentFunction={parentFunction}
         btn={
           <div className="text-center mb-2">
             <span

@@ -9,10 +9,14 @@ import {
 
 interface RecommendedRecipeProps {
   quantity?: number;
+  particularities: any;
+  ingredientAtHome: any;
 }
 
 export const RecommendedRecipes: React.FC<RecommendedRecipeProps> = ({
   quantity = 4,
+  ingredientAtHome,
+  particularities,
 }) => {
   const {
     error: errorPersonalization,
@@ -25,11 +29,10 @@ export const RecommendedRecipes: React.FC<RecommendedRecipeProps> = ({
         particularity: [
           JSON.stringify(
             // @ts-ignore
-            getTagIdsByName(JSON.parse(window.me.particularitySearch)),
+            getTagIdsByName(JSON.parse(particularities)),
           ),
         ], // [{ tagsSkin: ["00838ea5-bc78-4a11-a9fe-57d3e20aac71"], tagsHair: [], tagsPeculiarity: [] }],
-        // @ts-ignore
-        ingredientsAtHome: window.me.ingredientAtHomeUser || [],
+        ingredientsAtHome: ingredientAtHome || [],
       },
     },
   });
@@ -41,11 +44,7 @@ export const RecommendedRecipes: React.FC<RecommendedRecipeProps> = ({
 
   return (
     <>
-      {annotateRecipeResult(
-        recipes?.slice(0, quantity),
-        // @ts-ignore
-        window.me.ingredientAtHomeUser,
-      )
+      {annotateRecipeResult(recipes?.slice(0, quantity), ingredientAtHome)
         // @ts-ignore
         .sort((a, b) => {
           return a.ingredientAtHomeRatio - b.ingredientAtHomeRatio;

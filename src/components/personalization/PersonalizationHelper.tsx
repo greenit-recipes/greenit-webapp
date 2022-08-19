@@ -1,4 +1,8 @@
 import { cloneDeep } from "lodash";
+import {
+  MutationOperation,
+  persistMutation,
+} from "../../services/boxfullxp.service";
 
 export const ICMingredients = [
   {
@@ -248,11 +252,17 @@ export const questionnaireMenu = [
     label: "Des recettes pour la maison, ça te dit ?",
     name: "engagement",
     singleOptions: [
-      { option: "Pourquoi pas !", isSelected: false, tagId: "redacted" },
+      {
+        option: "Pourquoi pas !",
+        isSelected: false,
+        tagId: "redacted",
+        id: "modal-particularites-recettes-maison-oui",
+      },
       {
         option: "Non, pas pour le moment",
         isSelected: false,
         tagId: "redacted",
+        id: "modal-particularites-recettes-maison-non",
       },
     ],
   },
@@ -351,6 +361,40 @@ export const annotateRecipeResult = (recipes: any, ingredientAtHome: any) => {
   return newRecipes.sort((a: any, b: any) => {
     return b.node.ingredientAtHomeRatio - a.node.ingredientAtHomeRatio;
   });
+};
+
+//Investigate for bugs
+export const persistParticularityOnFirstLogin = (
+  mutation: MutationOperation,
+) => {
+  const particularity = localStorage.getItem("particularity");
+  if (particularity) {
+    persistMutation(mutation, {
+      variables: {
+        particularities: JSON.stringify(
+          particularityConverter(JSON.parse(particularity)),
+        ),
+      },
+    });
+    localStorage.removeItem("particularity");
+  }
+};
+
+export const particularityConverter = (particularities: any) => {
+  const tags = ["tagsSkin", "tagsHair", "tagsParticularity"];
+  const data: any = {
+    tagsSkin: [],
+    tagsHair: [],
+    tagsParticularity: [],
+  };
+  particularities.forEach((element: any) => {
+    for (const [key, _] of Object.entries(element)) {
+      if (tags.includes(key)) {
+        data[key] = element[key];
+      }
+    }
+  });
+  return data;
 };
 
 export interface Step {

@@ -3,7 +3,14 @@ import ModalPersonalizationInfo from "components/personalization/ModalPersonaliz
 import useIsMobile from "hooks/isMobile";
 import { RecommendedRecipes } from "./RecommendedRecipes";
 
-export const SectionRecommendedRecipe: React.FC = () => {
+interface SectionRecommendedRecipeInteface {
+  particularities: any;
+  ingredientAtHome: any;
+}
+
+export const SectionRecommendedRecipe: React.FC<
+  SectionRecommendedRecipeInteface
+> = ({ particularities, ingredientAtHome }) => {
   const isMobile = useIsMobile();
 
   return (
@@ -21,12 +28,20 @@ export const SectionRecommendedRecipe: React.FC = () => {
       </div>
       {isMobile ? (
         <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
-          <RecommendedRecipes quantity={8} />
+          <RecommendedRecipes
+            ingredientAtHome={ingredientAtHome}
+            particularities={particularities}
+            quantity={10}
+          />
         </div>
       ) : (
         <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
           <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
-            <RecommendedRecipes quantity={8} />
+            <RecommendedRecipes
+              ingredientAtHome={ingredientAtHome}
+              particularities={particularities}
+              quantity={10}
+            />
           </div>
         </div>
       )}

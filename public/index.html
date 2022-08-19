@@ -2,19 +2,19 @@
 <html lang="fr">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta charset="utf-8"/>
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Toutes les recettes pour nos produits faits maison" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
+  <meta name="theme-color" content="#000000"/>
+  <meta name="description" content="Toutes les recettes pour nos produits faits maison"/>
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png"/>
   <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -28,12 +28,17 @@
   <script>
     if (window.location.host === "greenitcommunity.com") {
       (function (w, d, s, l, i) {
-        w[l] = w[l] || []; w[l].push({
+        w[l] = w[l] || [];
+        w[l].push({
           'gtm.start':
             new Date().getTime(), event: 'gtm.js'
-        }); var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-NMKPCLN');
     }
   </script>
@@ -45,7 +50,11 @@
   <script>
     if (window.location.host === "greenitcommunity.com") {
       window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
       gtag('js', new Date());
 
       gtag('config', 'G-E98FJJ53V8');
@@ -72,22 +81,31 @@
         s.parentNode.insertBefore(g, s);
       })();
       var _mtm = window._mtm = window._mtm || [];
-      _mtm.push({ 'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start' });
+      _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
       var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-      g.async = true; g.src = 'https://cdn.matomo.cloud/greenitcommunity.matomo.cloud/container_y2SZ6Brm.js'; s.parentNode.insertBefore(g, s);
+      g.async = true;
+      g.src = 'https://cdn.matomo.cloud/greenitcommunity.matomo.cloud/container_y2SZ6Brm.js';
+      s.parentNode.insertBefore(g, s);
     }
   </script>
   <!-- Meta Pixel Code -->
   <script>
     if (window.location.host === "greenitcommunity.com") {
       !function (f, b, e, v, n, t, s) {
-        if (f.fbq) return; n = f.fbq = function () {
+        if (f.fbq) return;
+        n = f.fbq = function () {
           n.callMethod ?
-          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
         };
-        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-        n.queue = []; t = b.createElement(e); t.async = !0;
-        t.src = v; s = b.getElementsByTagName(e)[0];
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t, s)
       }(window, document, 'script',
         'https://connect.facebook.net/en_US/fbevents.js');
@@ -96,29 +114,32 @@
     }
   </script>
   <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=487154703013149&ev=PageView&noscript=1" /></noscript>
+                 src="https://www.facebook.com/tr?id=487154703013149&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel Code -->
   <!-- End Matomo Code -->
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMKPCLN" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <div id="cookie"></div>
-  <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMKPCLN" height="0" width="0"
+          style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+<div id="cookie"></div>
+<div id="notif"></div>
+<!--
+    This HTML file is a template.
+    If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    You can add webfonts, meta tags, or analytics to this file.
+    The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    To begin the development, run `npm start` or `yarn start`.
+    To create a production bundle, use `npm run build` or `yarn build`.
+  -->
 </body>
 
 </html>

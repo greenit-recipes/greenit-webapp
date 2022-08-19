@@ -6,16 +6,17 @@ import {
 } from "../PersonalizationHelper";
 import React, { useEffect, useState } from "react";
 import { Button } from "../../misc";
+import { cloneDeep } from "lodash";
 
 export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
   const [faceOptions, setFaceOptions] = useState(
     // @ts-ignore
-    questionnaireMenu[2].multipleOPtions[0].singleOptions,
+    cloneDeep(questionnaireMenu[2].multipleOPtions[0].singleOptions),
   );
 
   const [hairOptions, setHairOptions] = useState(
     // @ts-ignore
-    questionnaireMenu[2].multipleOPtions[1].singleOptions,
+    cloneDeep(questionnaireMenu[2].multipleOPtions[1].singleOptions),
   );
 
   const [isSkipActive, setIsSkipActive] = useState(true);

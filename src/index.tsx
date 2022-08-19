@@ -15,7 +15,6 @@ import ReactDOM, { hydrate, render } from "react-dom";
 import authService from "services/auth.service";
 import App from "./App";
 import "./index.css";
-import reportWebVitals from "./reportWebVitals";
 import { CookieBanner } from "./components/misc/CookieBanner";
 
 let isRefreshing = false;

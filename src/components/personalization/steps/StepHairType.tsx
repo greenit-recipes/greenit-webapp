@@ -6,10 +6,11 @@ import {
   Step,
 } from "../PersonalizationHelper";
 import React, { useState } from "react";
+import { cloneDeep } from "lodash";
 
 export const StepHairType: React.FC<Step> = ({ nextStep }) => {
   const [hairOptions, setHairOptions] = useState(
-    questionnaireMenu[1].singleOptions,
+    cloneDeep(questionnaireMenu[1].singleOptions),
   );
 
   return (

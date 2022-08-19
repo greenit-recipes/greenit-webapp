@@ -22,8 +22,6 @@ import { HelmetRecipe } from "pages/recipe/SinglePage/SinglePageHelmet";
 import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest";
 import React, { createRef, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { BsWallet2 } from "react-icons/bs";
-import { IoEarthOutline, IoFlaskOutline } from "react-icons/io5";
 import ReactPlayer from "react-player/lazy";
 import { useHistory, useParams } from "react-router-dom";
 import { RWebShare } from "react-web-share";
@@ -153,28 +151,35 @@ const RecipeSinglePage = () => {
     });
   };
 
-  const [getUser, { loading: loadingUser, error: errorUser, data: dataUser }] =
-    useLazyQuery(ME, {
-      fetchPolicy: "network-only",
-    });
+  const [
+    getUser,
+    {
+      loading: loadingUser,
+      error: errorUser,
+      data: dataUser,
+      refetch: refetchMe,
+    },
+  ] = useLazyQuery(ME, {
+    fetchPolicy: "network-only",
+  });
 
   let user = useRef({});
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && isEmpty(user.current)) {
       getUser();
     }
   }, [isLoggedIn]);
 
-  if (loading || !data || loadingUser) {
+  if (loading || !data || (isLoggedIn && (loadingUser || isEmpty(dataUser)))) {
     return <Loading />;
   }
 
   //Todo : refactor variable into contexts
-  //@ts-ignore
-  window.me = dataUser?.me;
   user.current = dataUser?.me;
 
+  // @ts-ignore
   const { recipe } = data;
+  // @ts-ignore
   // @ts-ignore
   return (
     <>
@@ -444,8 +449,18 @@ const RecipeSinglePage = () => {
                 </div>
               </div>
             </div>
-
-            <IngredientUsentil recipe={recipe} />
+            <IngredientUsentil
+              ingredientShoppingList={
+                //@ts-ignore
+                isLoggedIn ? user.current.ingredientShoppingListUser : []
+              }
+              ingredientAtHome={
+                //@ts-ignore
+                isLoggedIn ? user.current.ingredientAtHomeUser : []
+              }
+              parentFunction={refetchMe}
+              recipe={recipe}
+            />
             <div className="flex flex-col w-full h-full lg:flex-row">
               {isMobile && (
                 <>

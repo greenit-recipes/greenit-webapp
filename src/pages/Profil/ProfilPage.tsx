@@ -50,8 +50,7 @@ const ProfilPage: React.FC = () => {
     });
   }
   const user = data?.me;
-  //@ts-ignore
-  window.me = user;
+
   // Image
   const [userImage, setImage] = useState(user?.imageProfile);
 
@@ -382,6 +381,9 @@ const ProfilPage: React.FC = () => {
           )}
           {isParticularitiesActive && (
             <TabPersonalization
+              ingredientAtHome={user.ingredientAtHomeUser}
+              parentFunction={refetchMe}
+              particularities={user.particularitySearch}
               hasParticularities={
                 !isEmpty(JSON.parse(user.particularitySearch))
               }
@@ -389,12 +391,15 @@ const ProfilPage: React.FC = () => {
           )}
           {isICMActive && (
             <TabICM
+              parentFunction={refetchMe}
               hasICM={user?.ingredientAtHomeUser.length > 0}
-              data={user.ingredientAtHomeUser}
+              ingredientsAtHome={user.ingredientAtHomeUser}
             />
           )}
           {isLDCActive && (
             <TabLDC
+              user={user}
+              parentFunction={refetchMe}
               hasLDC={user?.ingredientShoppingListUser.length > 0}
               data={user.ingredientShoppingListUser}
             />

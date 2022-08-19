@@ -7,10 +7,16 @@ import { RecommendedRecipes } from "../../recipe/ListPage/Components/Recommended
 
 interface TabPersonalizationProps {
   hasParticularities?: boolean;
+  parentFunction: any;
+  particularities: any;
+  ingredientAtHome: any;
 }
 
 export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
   hasParticularities = true,
+  parentFunction,
+  particularities,
+  ingredientAtHome,
 }) => {
   return (
     <div className="w-full mb-24">
@@ -28,8 +34,9 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
         {hasParticularities ? (
           <>
             <SectionPersonalization
+              parentFunction={parentFunction}
               /*@ts-ignore*/
-              particularities={JSON.parse(window.me.particularitySearch)}
+              particularities={JSON.parse(particularities)}
             />
           </>
         ) : (
@@ -39,6 +46,7 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
               personnalisées à tes besoins.
             </p>
             <ModalPersonalization
+              parentFunction={parentFunction}
               btn={
                 <Button
                   className="w-64 px-1"
@@ -67,8 +75,11 @@ export const TabPersonalization: React.FC<TabPersonalizationProps> = ({
           </div>
           <div className="md:flex md:justify-center w-full pt-4 pl-4 msm:overflow-x-auto">
             <div className="flex w-max">
-              <RecommendedRecipes />
-              <ExploreMore id="profil-particularites-explorer" filter="/"/>
+              <RecommendedRecipes
+                particularities={particularities}
+                ingredientAtHome={ingredientAtHome}
+              />
+              <ExploreMore id="profil-particularites-explorer" filter="/" />
             </div>
           </div>
         </>

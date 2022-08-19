@@ -9,9 +9,7 @@ import {
   RecipeCard,
   SearchBar,
 } from "components";
-import Modal from "components/layout/Modal/Modal";
 import { Press } from "components/layout/TheyTalkAboutUs";
-import Personalization from "components/personalization/Personalization";
 import { ExploreMore } from "components/recipe/ExploreMore";
 import useIsMobile from "hooks/isMobile";
 import {
@@ -269,18 +267,19 @@ const LandingPage = () => {
                 suggestions={recipesAutoComplete}
               />
             </div>
-            <Button
-              className="hidden md:flex z-10"
-              haveIcon={true}
-              type="green"
-              onClick={() => setShowModal(true)}
-            >
-              <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
-              Définir mes particularités
-            </Button>
-            <Modal onClose={() => setShowModal(false)} show={showModal}>
-              <Personalization />
-            </Modal>
+            <ModalPersonalization
+              btn={
+                <Button
+                  className="hidden md:flex z-10"
+                  haveIcon={true}
+                  type="green"
+                  onClick={() => setShowModal(true)}
+                >
+                  <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
+                  Définir mes particularités
+                </Button>
+              }
+            />
           </div>
           <div className="text-center my-5">
             <h4 className="font-semibold text-xl">

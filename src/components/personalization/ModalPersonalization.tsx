@@ -5,11 +5,15 @@ import Personalization from "./Personalization";
 interface IModalPersonalization {
   btn: any;
   show?: boolean;
+  parentFunction?: any;
+  hasParticularities?: any;
 }
 
 //Todo: Load the component lazily
 export const ModalPersonalization: React.FC<IModalPersonalization> = ({
   btn,
+  parentFunction,
+  hasParticularities,
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -34,7 +38,11 @@ export const ModalPersonalization: React.FC<IModalPersonalization> = ({
         {btn}
       </div>
       <Modal onClose={() => setShowModal(false)} show={showModal}>
-        <Personalization />
+        <Personalization
+          hasParticularities={hasParticularities}
+          parentFunction={parentFunction}
+          setModalState={setShowModal}
+        />
       </Modal>
     </div>
   );
