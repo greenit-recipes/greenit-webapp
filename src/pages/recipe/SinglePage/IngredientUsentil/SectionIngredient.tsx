@@ -11,8 +11,8 @@ import {
   ADD_OR_REMOVE_INGREDIENT_SHOPPING_LIST,
 } from "../SinglePage-helper";
 import ReactDOM from "react-dom";
-import { NotificationAlert } from "../../../../components/layout/NotificationAlert";
-import authService from "../../../../services/auth.service";
+import { NotificationAlert } from "components/layout/NotificationAlert";
+import authService from "services/auth.service";
 import { useLocation } from "react-router-dom";
 
 interface ISectionIngredient {

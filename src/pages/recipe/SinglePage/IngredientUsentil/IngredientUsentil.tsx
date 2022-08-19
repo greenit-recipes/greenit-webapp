@@ -39,7 +39,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
       !isLoggedIn
         ? JSON.parse(
             // @ts-ignore
-            localStorage.getItem("ingredientAtHome" || JSON.stringify([])),
+            localStorage.getItem("ingredientAtHome") || JSON.stringify([]),
           )
         : ingredientAtHome,
     ),
