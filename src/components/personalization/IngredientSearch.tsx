@@ -8,8 +8,9 @@ import { ADD_OR_REMOVE_INGREDIENT_AT_HOME } from "../../pages/recipe/SinglePage/
 import { cloneDeep, max } from "lodash";
 import ReactDOM from "react-dom";
 import { NotificationAlert } from "../layout/NotificationAlert";
-import Auth from "services/auth.service";
 import authService from "services/auth.service";
+import { getRandomKey } from "./PersonalizationHelper";
+import { useForceUpdate } from "../../hooks/useForceUpdate";
 
 interface IngredientSearchProps {
   ingredientsAtHome: any;
@@ -28,12 +29,10 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [ingredientAtHomeCurrent, setIngredientAtHomeCurrent] = useState(
-    // @ts-ignore
     cloneDeep(ingredientsAtHome),
   );
 
   const isLoggedIn = authService.isLoggedIn();
-
   //Resolve differences between the two arrays
   const ingredientDiffing = (original: any, final: any) => {
     let additions = [];
@@ -105,7 +104,7 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
     if (isIngredientExistNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={"ingredient-exist-" + keyCounter.current++}
+          key={getRandomKey("ingredient-exist")}
           type="alert"
           titre="Tu as déjà cet ingrédient dans ta liste !"
           text="Tu peux ajouter d’autres ingrédients."
@@ -117,7 +116,7 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
     if (isLimitReachedNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={"ingredient-limit-reached-" + keyCounter.current++}
+          key={getRandomKey("ingredient-limit-reached")}
           type="alert"
           titre="Tu as beaucoup d’ingrédients chez toi ?"
           text="Crée-toi un compte pour en ajouter plus !"
@@ -129,7 +128,7 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
     if (isIngredientsSavedNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={"ingredients-saved-" + keyCounter.current++}
+          key={getRandomKey("ingredients-saved")}
           type="success"
           titre="Mise à jour de tes ingrédients !"
           text="Retrouve ta sélection de recettes adaptées."
@@ -214,8 +213,9 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
                     ingredientAtHomeCurrent,
                   ),
                 },
+              }).then(() => {
+                parentFunction ? parentFunction() : null;
               });
-              parentFunction ? parentFunction() : null;
             } else {
               localStorage.setItem(
                 "ingredientAtHome",

@@ -14,6 +14,7 @@ import ReactDOM from "react-dom";
 import { NotificationAlert } from "components/layout/NotificationAlert";
 import authService from "services/auth.service";
 import { useLocation } from "react-router-dom";
+import { getRandomKey } from "../../../../components/personalization/PersonalizationHelper";
 
 interface ISectionIngredient {
   className?: string;
@@ -61,11 +62,11 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
     if (isICMAddedNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={
+          key={getRandomKey(
             "icm-added-" + location.pathname === "profile"
-              ? "profile-"
-              : "recipe-" + keyCounter.current++
-          }
+              ? "profile"
+              : "recipe",
+          )}
           type="success"
           titre="Ajouté(s) aux ingrédients chez toi !"
           text="Retrouve ta liste dans ton profil."
@@ -78,11 +79,11 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
     if (isLDCAddedNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={
+          key={getRandomKey(
             "ldc-added-" + location.pathname === "profile"
-              ? "profile-"
-              : "recipe-" + keyCounter.current++
-          }
+              ? "profile"
+              : "recipe",
+          )}
           type="success"
           titre="Ajouté(s) à la liste de course !"
           text="Retrouve ta liste dans ton profil."
@@ -95,7 +96,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
     if (isLDCUpdatedNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={"ldc-updated-" + keyCounter.current++}
+          key={getRandomKey("ldc-updated")}
           type="success"
           titre="Mise à jour de ta liste de course !"
           text="Ajoute des ingrédients depuis les recettes."
@@ -108,7 +109,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
     if (isLDCAccessNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={"ldc-access-" + keyCounter.current++}
+          key={getRandomKey("ldc-access-")}
           type="alert"
           titre="Tu n’as pas accès à la liste de course."
           text="Crée-toi un compte pour ajouter à ta liste !"
@@ -182,8 +183,9 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                             deletions: [],
                           },
                         },
+                      }).then(() => {
+                        parentFunction ? parentFunction() : null;
                       });
-                      parentFunction ? parentFunction() : null;
                     } else {
                       if (parentFunction ? parentFunction(data) : null) {
                         setIsICMActive(!isICMActive);
@@ -225,8 +227,9 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                             deletions: [],
                           },
                         },
+                      }).then(() => {
+                        parentFunction ? parentFunction() : null;
                       });
-                      parentFunction ? parentFunction() : null;
                     } else {
                       setIsLDCAccessNotifActive(true);
                     }
@@ -277,8 +280,9 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                               deletions: [],
                             },
                           },
+                        }).then(() => {
+                          parentFunction ? parentFunction() : null;
                         });
-                        parentFunction ? parentFunction() : null;
                       } else {
                         if (parentFunction ? parentFunction(data) : null) {
                           setIsICMActive(!isICMActive);
@@ -325,8 +329,9 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                               deletions: [],
                             },
                           },
+                        }).then(() => {
+                          parentFunction ? parentFunction() : null;
                         });
-                        parentFunction ? parentFunction() : null;
                       } else {
                         setIsLDCAccessNotifActive(true);
                       }

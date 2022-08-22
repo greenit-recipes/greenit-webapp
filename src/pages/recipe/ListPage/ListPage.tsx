@@ -191,13 +191,6 @@ const RecipeListPage = () => {
   const [ingredientAtHome, setIngredientAtHome] = useState(
     JSON.parse(localStorage.getItem("ingredientAtHome") ?? JSON.stringify([])),
   );
-  let hasParticularities = false;
-  if (isLoggedIn) {
-    hasParticularities = !isEmpty(
-      //@ts-ignore
-      JSON.parse(user.current?.particularitySearch || JSON.stringify({})),
-    );
-  }
 
   useEffect(() => {
     if (isLoggedIn && isEmpty(user.current)) {
@@ -244,7 +237,12 @@ const RecipeListPage = () => {
                 </Button>
               }
             ></ModalLogGreenit>
-          ) : hasParticularities ? (
+          ) : !isEmpty(
+              JSON.parse(
+                //@ts-ignore
+                user.current?.particularitySearch || JSON.stringify({}),
+              ),
+            ) ? (
             <Button
               id="listpage-mes-particularites"
               className="px-4 py-1 mr-3 mb-4 shadow-md"
@@ -293,15 +291,34 @@ const RecipeListPage = () => {
             Ingrédients chez moi
           </Button>
         </div>
+        {!isMobile && (
+          <>
+            <FilterBar
+              recipesAutoComplete={recipesAutoComplete}
+              setSearch={setSearchTermDebounced}
+              search={searchTerm}
+              filter={filterData}
+              currentFilters={currentFilters}
+              setCurrentFilters={setCurrentFilters}
+              isMobile={isMobile}
+              toggle={toggle}
+              setScrollOffset={setScrollOffset}
+            />
+          </>
+        )}
 
         {/*Paritucularities*/}
-        {isParticularityActive && hasParticularities && (
-          <SectionPersonalization
-            parentFunction={refetchMe}
+        {isParticularityActive &&
+          !isEmpty(
             //@ts-ignore
-            particularities={JSON.parse(user.current.particularitySearch)}
-          />
-        )}
+            JSON.parse(user.current?.particularitySearch || JSON.stringify({})),
+          ) && (
+            <SectionPersonalization
+              parentFunction={refetchMe}
+              //@ts-ignore
+              particularities={JSON.parse(user.current.particularitySearch)}
+            />
+          )}
 
         {/*ICM*/}
         {isICMActive && (
@@ -319,22 +336,6 @@ const RecipeListPage = () => {
         )}
 
         {/*End Personalization section*/}
-
-        {!isMobile && (
-          <>
-            <FilterBar
-              recipesAutoComplete={recipesAutoComplete}
-              setSearch={setSearchTermDebounced}
-              search={searchTerm}
-              filter={filterData}
-              currentFilters={currentFilters}
-              setCurrentFilters={setCurrentFilters}
-              isMobile={isMobile}
-              toggle={toggle}
-              setScrollOffset={setScrollOffset}
-            />
-          </>
-        )}
 
         {isMobile && (
           <div className="z-30 grid py-2 justify-items-center">
@@ -383,14 +384,20 @@ const RecipeListPage = () => {
       <div className="flex justify-center bg-white recipe-list">
         <div className="h-auto max-w-7xl justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
           {/*Recommended Recipes*/}
-          {isLoggedIn && hasParticularities && (
-            <SectionRecommendedRecipe
-              //@ts-ignore
-              particularities={user.current.particularitySearch}
-              //@ts-ignore
-              ingredientAtHome={user.current.ingredientAtHomeUser}
-            />
-          )}
+          {isLoggedIn &&
+            !isEmpty(
+              JSON.parse(
+                //@ts-ignore
+                user.current?.particularitySearch || JSON.stringify({}),
+              ),
+            ) && (
+              <SectionRecommendedRecipe
+                //@ts-ignore
+                particularities={user.current.particularitySearch}
+                //@ts-ignore
+                ingredientAtHome={user.current.ingredientAtHomeUser}
+              />
+            )}
           {/* to refacto infinite scroll*/}
           <h3 className="text-2xl text-center font-normal | mt-12 md:mb-5">
             Découvrir d’autres recettes
@@ -442,8 +449,10 @@ const RecipeListPage = () => {
               <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
                 {annotateRecipeResult(
                   recipes,
-                  //@ts-ignore
-                  (isLoggedIn && user.current.ingredientAtHomeUser) || [],
+                  isLoggedIn
+                    ? /*@ts-ignore*/
+                      user.current.ingredientAtHomeUser
+                    : ingredientAtHome,
                   //@ts-ignore
                 ).map(recipe => {
                   return (
@@ -459,8 +468,10 @@ const RecipeListPage = () => {
                   {/*@ts-ignore*/}
                   {annotateRecipeResult(
                     recipes,
-                    //@ts-ignore
-                    (isLoggedIn && user.current.ingredientAtHomeUser) || [],
+                    isLoggedIn
+                      ? /*@ts-ignore*/
+                        user.current.ingredientAtHomeUser
+                      : ingredientAtHome,
                     //@ts-ignore
                   ).map(recipe => (
                     <div key={recipe?.node?.id}>

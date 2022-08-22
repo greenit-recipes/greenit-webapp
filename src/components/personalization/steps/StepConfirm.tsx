@@ -5,6 +5,7 @@ import AuthService, {
 } from "../../../services/auth.service";
 import { ModalLogGreenit } from "../../layout";
 import {
+  getRandomKey,
   particularityConverter,
   questionnaireMenu,
   selectOption,
@@ -70,7 +71,6 @@ export const StepConfirm: React.FC<StepConfirmProps> = ({
     localStorage.setItem("particularity", JSON.stringify(options));
   }
 
-  let keyCounter: any = useRef(0);
   const [isLoginNotifActive, setIsLoginNotifActive] = useState(false);
   const [isParticularitySavedNotifActive, setIsParticularitySavedNotifActive] =
     useState(false);
@@ -80,7 +80,7 @@ export const StepConfirm: React.FC<StepConfirmProps> = ({
       // @ts-ignore
       ReactDOM.render(
         <NotificationAlert
-          key={"login-" + keyCounter.current++}
+          key={getRandomKey("login")}
           type="alert"
           titre="Connecte-toi pour les résultats !"
           text="Découvre une sélection de recettes adaptées."
@@ -91,7 +91,7 @@ export const StepConfirm: React.FC<StepConfirmProps> = ({
     if (isConfirmButtonClicked && isParticularitySavedNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={"particularity-saved-" + keyCounter.current++}
+          key={getRandomKey("particularity-saved")}
           type="success"
           titre={
             hasParticularities
