@@ -380,6 +380,33 @@ export const persistParticularityOnFirstLogin = (
   }
 };
 
+export const persistIngredientAtHomeOnFirstLogin = (
+  mutation: MutationOperation,
+) => {
+  const ingredientAtHome = localStorage.getItem("ingredientAtHome");
+  if (ingredientAtHome) {
+    persistMutation(mutation, {
+      variables: {
+        ingredientAtHome: ingredientAtHomeConverter(
+          JSON.parse(ingredientAtHome),
+        ),
+      },
+    });
+    localStorage.removeItem("ingredientAtHome");
+  }
+};
+
+export const ingredientAtHomeConverter = (ingredientAtHome: any) => {
+  const data: any = {
+    additions: [],
+    deletions: [],
+  };
+  ingredientAtHome.forEach((element: any) => {
+    data.additions.push(element.id);
+  });
+  return data;
+};
+
 export const particularityConverter = (particularities: any) => {
   const tags = ["tagsSkin", "tagsHair", "tagsParticularity"];
   const data: any = {
@@ -395,6 +422,10 @@ export const particularityConverter = (particularities: any) => {
     }
   });
   return data;
+};
+
+export const getRandomKey = (componentName: string) => {
+  return componentName + "-" + Math.random() * 100000;
 };
 
 export interface Step {

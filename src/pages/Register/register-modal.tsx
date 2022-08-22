@@ -29,6 +29,7 @@ import authService, {
   CREATE_ACCOUNT,
   CREATE_USER_FROM_AUTH,
   LOGIN_ACCOUNT,
+  UPDATE_PARTICULARITIES_ACCOUNT,
 } from "services/auth.service";
 import {
   beginnerBoxCookieExist,
@@ -39,6 +40,11 @@ import {
 import { gapi } from "gapi-script";
 import "./register.css";
 import GoogleLogin from "react-google-login";
+import { ADD_OR_REMOVE_INGREDIENT_AT_HOME } from "../recipe/SinglePage/SinglePage-helper";
+import {
+  persistIngredientAtHomeOnFirstLogin,
+  persistParticularityOnFirstLogin,
+} from "../../components/personalization/PersonalizationHelper";
 
 export const RegisterModal: React.FC<{
   loginOpen: any;
@@ -67,6 +73,15 @@ export const RegisterModal: React.FC<{
   const [hasPurchasedBeginnerBox] = useMutation(HAS_PURCHASED_BEGINNER_BOX, {
     errorPolicy: "all",
   });
+
+  const [updateParticularitiesAccount] = useMutation(
+    UPDATE_PARTICULARITIES_ACCOUNT,
+    { errorPolicy: "all" },
+  );
+  const [
+    createOrDeleteIngredientAtHomeUser,
+    { data: createOrDeleteICMdata, loading: loadingICM, error: errorICM },
+  ] = useMutation(ADD_OR_REMOVE_INGREDIENT_AT_HOME, { errorPolicy: "all" });
 
   const [errorLoginFb, setErrorLoginFb] = useState("");
   const [errorLoginGoogle, setErrorLoginGoogle] = useState("");
@@ -174,6 +189,7 @@ export const RegisterModal: React.FC<{
     if (!persistBoxPurchaseOnRegister()) {
       variables = omit(variables, ["isBeginnerBox"]);
     }
+
     // Error si pas d'email
 
     if (responseFb.status === "unknown") {
@@ -214,6 +230,8 @@ export const RegisterModal: React.FC<{
         if (beginnerBoxCookieExist()) {
           persistBoxPurchaseOnFirstLogin(hasPurchasedBeginnerBox);
         }
+        persistParticularityOnFirstLogin(updateParticularitiesAccount);
+        persistIngredientAtHomeOnFirstLogin(createOrDeleteIngredientAtHomeUser);
         if (authService.isRedirectToProfil(location?.pathname)) {
         }
         history.push("/profil");

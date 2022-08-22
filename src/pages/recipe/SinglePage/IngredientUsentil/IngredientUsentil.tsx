@@ -2,13 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import { SectionIngredient } from "./SectionIngredient";
 import { SectionUstensil } from "./SectionUsentil";
 import { Button } from "components";
-import { hasIngredientOnList } from "components/personalization/PersonalizationHelper";
+import {
+  getRandomKey,
+  hasIngredientOnList,
+} from "components/personalization/PersonalizationHelper";
 import { useMutation } from "@apollo/client";
 import { ADD_OR_REMOVE_INGREDIENT_SHOPPING_LIST } from "../SinglePage-helper";
 import { cloneDeep } from "lodash";
-import authService from "../../../../services/auth.service";
+import authService from "services/auth.service";
 import ReactDOM from "react-dom";
-import { NotificationAlert } from "../../../../components/layout/NotificationAlert";
+import { NotificationAlert } from "components/layout/NotificationAlert";
 
 interface IIngredientUsentil {
   recipe: any;
@@ -59,7 +62,6 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
 
   // console.log(ingredientAtHomeCurrent)
 
-  let keyCounter: any = useRef(0);
   const [isLDCBulkAddedNotifActive, setIsLDCBulkAddedNotifActive] =
     useState(false);
   const [isLimitReachedNotifActive, setIsLimitReachedNotifActive] =
@@ -70,7 +72,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
     if (isLDCBulkAddedNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={"ldc-bulk-added-" + keyCounter.current++}
+          key={getRandomKey("ldc-bulk-added")}
           type="success"
           titre="Ajouté(s) aux ingrédients chez toi !"
           text="Retrouve ta liste dans ton profil."
@@ -82,7 +84,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
     if (isLimitReachedNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={"ingredient-limit-reached-recipe-" + keyCounter.current++}
+          key={getRandomKey("ingredient-limit-reached-recipe")}
           type="alert"
           titre="Tu as beaucoup d’ingrédients chez toi ?"
           text="Crée-toi un compte pour en ajouter plus !"
@@ -94,7 +96,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
     if (isLDCAccessNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={"ldc-bulk-access-" + keyCounter.current++}
+          key={getRandomKey("ldc-bulk-access")}
           type="alert"
           titre="Tu n’as pas accès à la liste de course."
           text="Crée-toi un compte pour ajouter à ta liste !"

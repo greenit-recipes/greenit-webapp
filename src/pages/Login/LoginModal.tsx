@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { Button } from "components";
 import useIsMobile from "hooks/isMobile";
-import { mdpNonVisible, mdpVisible, loginMail, loginPassword } from "icons";
+import { mdpNonVisible, mdpVisible } from "icons";
 import { IoLogoFacebook } from "react-icons/io5";
 import { omit } from "lodash";
 import React, { useEffect, useState } from "react";
@@ -27,9 +27,10 @@ import {
 } from "../../services/boxfullxp.service";
 import { gapi } from "gapi-script";
 import {
-  particularityConverter,
+  persistIngredientAtHomeOnFirstLogin,
   persistParticularityOnFirstLogin,
 } from "../../components/personalization/PersonalizationHelper";
+import { ADD_OR_REMOVE_INGREDIENT_AT_HOME } from "../recipe/SinglePage/SinglePage-helper";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -68,6 +69,10 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
     UPDATE_PARTICULARITIES_ACCOUNT,
     { errorPolicy: "all" },
   );
+  const [
+    createOrDeleteIngredientAtHomeUser,
+    { data: createOrDeleteICMdata, loading: loadingICM, error: errorICM },
+  ] = useMutation(ADD_OR_REMOVE_INGREDIENT_AT_HOME, { errorPolicy: "all" });
 
   const [errorLoginFb, setErrorLoginFb] = useState("");
   const [errorLoginGoogle, setErrorLoginGoogle] = useState("");
@@ -189,6 +194,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
         email: responseFb.email,
         password: process.env.REACT_APP_PASSWORD + responseFb.id,
       };
+      console.log("google login");
       onSubmitHandler(data);
     });
   };
@@ -202,11 +208,13 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
       },
     }).then(response => {
       if (response?.data?.tokenAuth?.token) {
-        //Todo : Handle first login case
+        //Persisting Temporary cookies
         if (beginnerBoxCookieExist()) {
           persistBoxPurchaseOnFirstLogin(hasPurchasedBeginnerBox);
         }
         persistParticularityOnFirstLogin(updateParticularitiesAccount);
+        persistIngredientAtHomeOnFirstLogin(createOrDeleteIngredientAtHomeUser);
+
         authService.setStorageLoginToken(response?.data?.tokenAuth?.token);
         authService.setStorageLoginRefreshToken(
           response?.data?.tokenAuth?.refreshToken,
