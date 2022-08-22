@@ -61,7 +61,7 @@ export const ModalPersonalizationInfo: React.FC<IModalPersonalizationInfo> = ({
             </div>
             <i className="bx bxs-lemon text-4xl text-blue md:mb-2"></i>
             <p className="md:self-start">
-              Les ingrédient chez toi n’excluent aucune recette. Ils permettent
+              Les ingrédients chez toi n’excluent aucune recette. Ils permettent
               de prioriser les “recettes pour moi”.
             </p>
             <p className="md:self-start mb-5 md:mb-10">
