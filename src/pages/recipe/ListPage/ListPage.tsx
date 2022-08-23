@@ -235,7 +235,7 @@ const RecipeListPage = () => {
               btn={
                 <Button
                   id="listpage-mes-particularites"
-                  className="px-4 py-1 mr-3 mb-4 shadow-md"
+                  className="px-4 py-1 mr-3 mb-2 shadow-md"
                   haveIcon={true}
                   type="green"
                 >
@@ -247,7 +247,7 @@ const RecipeListPage = () => {
           ) : hasParticularities ? (
             <Button
               id="listpage-mes-particularites"
-              className="px-4 py-1 mr-3 mb-4 shadow-md"
+              className="px-4 py-1 mr-3 mb-2 shadow-md"
               haveIcon={true}
               onClick={() => {
                 setIsParticularityActive(!isParticularityActive);
@@ -264,7 +264,7 @@ const RecipeListPage = () => {
               btn={
                 <Button
                   id="listpage-mes-particularites"
-                  className="px-4 py-1 mr-3 mb-4 shadow-md"
+                  className="px-4 py-1 mr-3 mb-2 shadow-md"
                   haveIcon={true}
                   onClick={() => {
                     setIsParticularityActive(!isParticularityActive);
@@ -273,14 +273,14 @@ const RecipeListPage = () => {
                   type="green"
                 >
                   <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
-                  Définir mes particularités
+                  Mes particularités
                 </Button>
               }
             />
           )}
           <Button
             id="listpage-ingredientchezmoi"
-            className="mr-3 mb-4 shadow-md"
+            className="mb-2 shadow-md"
             haveIcon={true}
             onClick={() => {
               setIsICMActive(!isICMActive);
@@ -338,7 +338,7 @@ const RecipeListPage = () => {
 
         {isMobile && (
           <div className="z-30 grid py-2 justify-items-center">
-            <div className="self-center w-4/5">
+            <div className="self-center">
               <FilterBar
                 isOnlyForSearch={true}
                 recipesAutoComplete={recipesAutoComplete}
