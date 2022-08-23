@@ -127,7 +127,7 @@ export const ModalEditCreatorProfile: React.FC<IModalEditCreatorProfile> = ({
         {btn}
       </div>
       <Modal onClose={() => setShowModal(false)} show={showModal}>
-        <div className="md:w-[800px] md:space-x-12 md:space-y-4">
+        <div className="md:w-[900px]">
           <div className="text-center mb-2 -mt-5">
             <div className="w-full flex items-center justify-center space-x-2">
               <h2 className="text-xl font-semibold">
@@ -139,28 +139,24 @@ export const ModalEditCreatorProfile: React.FC<IModalEditCreatorProfile> = ({
               Ta bio et tes liens seront présents sur chacune de tes recettes.
             </span>
           </div>
-          <div className="flex flex-col justify-start md:space-x-24 lg:flex-row lg:w-5/6">
+          <div className="grid grid-cols-1 md:grid-cols-2 justify-start">
             {/* Biographie */}
 
-            <div className="flex flex-col gap-4 lg:w-2/4 mb-3 ml-5">
-              <div className="flex flex-col gap-4 ">
-                <div className="flex flex-row items-center gap-4 md:justify-center">
-                  <h3 className="text-lg font-semibold lg:text-xl">
-                    Biographie
-                  </h3>
-                  <span
-                    className="underline text-sm font-medium cursor-pointer"
-                    onClick={() => {
-                      setEditor(!isEditor);
-                    }}
-                  >
-                    Modifier
-                  </span>
-                </div>
-                <p className="text-sm leading-tight lg:text-lg md:self-center">
-                  {user?.biographie && HTMLReactParser(user?.biographie)}
-                </p>
+            <div className="flex-rows p-4 mt-4">
+              <div className="flex gap-4 items-center">
+                <h3 className="text-lg font-semibold lg:text-xl">Biographie</h3>
+                <span
+                  className="underline text-sm font-medium cursor-pointer"
+                  onClick={() => {
+                    setEditor(!isEditor);
+                  }}
+                >
+                  Modifier
+                </span>
               </div>
+              <p className="text-sm leading-tight lg:text-lg md:self-center my-4">
+                {user?.biographie && HTMLReactParser(user?.biographie)}
+              </p>
               {!isEditor ? (
                 <div>
                   <form
@@ -186,13 +182,13 @@ export const ModalEditCreatorProfile: React.FC<IModalEditCreatorProfile> = ({
             </div>
 
             {isMobile && (
-              <div className="flex items-center w-full h-px mb-5 bg-darkBlue"></div>
+              <div className="flex items-center justify-self-center w-full h-px mb-5 bg-darkBlue"></div>
             )}
 
             {/* Link */}
 
-            <div className="flex flex-col gap-4 lg:w-2/4 ml-5">
-              <div className="flex flex-row items-center gap-4 md:justify-center">
+            <div className="flex-rows p-4 mt-4">
+              <div className="flex gap-4 items-center">
                 <h3 className="text-lg font-semibold lg:text-xl">
                   Liens vers vos espaces
                 </h3>
@@ -256,12 +252,12 @@ export const ModalEditCreatorProfile: React.FC<IModalEditCreatorProfile> = ({
                           <>
                             <li
                               key={index}
-                              className={`flex space-x-10 items-center appearance-none lg:text-lg w-full  text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline mb-2`}
+                              className={`flex space-x-3 items-center appearance-none lg:text-lg w-full  text-gray-700 h-10 md:h-12  leading-tight focus:outline-none focus:shadow-outline mb-2`}
                             >
-                              <p className="ml-5 text-sm lg:text-base whitespace-nowrap">
+                              <p className="ml-2 text-sm lg:text-base whitespace-nowrap">
                                 {index + 1}{" "}
                               </p>
-                              <div className="flex justify-between py-2 px-3 border rounded-md w-5/6">
+                              <div className="flex justify-between py-2 px-3 ml-1 border rounded-md">
                                 <input
                                   className={`appearance-none text-sm lg:text-base placeholder:text-darkBlue focus:outline-none focus:shadow-outline h-full`}
                                   placeholder="Nouveau lien"
@@ -276,7 +272,7 @@ export const ModalEditCreatorProfile: React.FC<IModalEditCreatorProfile> = ({
                                 </p>
 
                                 <div
-                                  className="text-sm font-medium underline decoration-solid hover:text-red"
+                                  className="text-xs font-medium underline hover:text-red"
                                   onClick={() => urlsSocialMediaRemove(index)}
                                 >
                                   Supprimer
