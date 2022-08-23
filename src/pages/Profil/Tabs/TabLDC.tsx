@@ -90,16 +90,16 @@ export const TabLDC: React.FC<TabLDCProps> = ({
             </div>
           </div>
         ) : (
-          <div className="text-center">
+          <div className="text-center ">
             <p className="mt-5 font-normal">Ta liste est vide !</p>
             <p className="mt-2 font-normal">
               Pour ajouter un ingrédient à ta liste de course, appuie sur le
               panier sur les ingrédients des recettes
             </p>
             <i className="bx bx-cart-download mt-2 text-3xl mb-6"></i>
-            <Link to={RouteName.recipes}>
+            <Link to={RouteName.recipes} className="grid">
               <Button
-                className="mb-4 shadow-md"
+                className="mb-4 shadow-md justify-self-center"
                 type="darkBlue"
                 id="profil-LDCtab-explorer-recette"
               >
