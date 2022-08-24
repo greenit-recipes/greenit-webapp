@@ -167,8 +167,8 @@ export const questionnaireMenu = [
       {
         option: "Normale",
         isSelected: false,
-        tagId: "17ed2783-a9af-4e48-93f7-ed422b1bb7f6",
-        id: "modal-particularites-peau-mixte",
+        tagId: "7f0dce05-f8c5-4745-a626-e7b639407035",
+        id: "modal-particularites-peau-normale",
       },
     ],
   },
@@ -191,7 +191,7 @@ export const questionnaireMenu = [
       {
         option: "Normal",
         isSelected: false,
-        tagId: "redacted",
+        tagId: "6ea58006-39a8-4ac9-9fff-c8040ed307f4",
         id: "modal-particularites-cheveux-normal",
       },
     ],
@@ -212,7 +212,7 @@ export const questionnaireMenu = [
           {
             option: "Rides",
             isSelected: false,
-            tagId: "redacted",
+            tagId: "b71df96b-f9a4-43b4-a870-434171ebd88a",
             id: "modal-particularites-rides",
           },
           {
@@ -315,19 +315,22 @@ export const getTagIdsByName = (particularities: any) => {
         );
       } else {
         // @ts-ignore
-        p[key] = [
+        if (values.length > 0) {
           // @ts-ignore
-          step.multipleOPtions[0].singleOptions.find(
+          p[key] = [
             // @ts-ignore
-            (el: any) => el.option === values[0],
-          )["tagId"],
-        ].concat([
-          // @ts-ignore
-          step.multipleOPtions[1].singleOptions.find(
+            step.multipleOPtions[0].singleOptions.find(
+              // @ts-ignore
+              (el: any) => el.option === values[0],
+            )["tagId"],
+          ].concat([
             // @ts-ignore
-            (el: any) => el.option === values[1],
-          )["tagId"],
-        ]);
+            step.multipleOPtions[1].singleOptions.find(
+              // @ts-ignore
+              (el: any) => el.option === values[1],
+            )["tagId"],
+          ]);
+        }
       }
     }
   }
@@ -422,6 +425,14 @@ export const particularityConverter = (particularities: any) => {
     }
   });
   return data;
+};
+
+export const formatShoppingList = (ingredientShoppingList: any) => {
+  let formatted = "";
+  ingredientShoppingList.forEach((ingredient: any) => {
+    formatted += "• " + ingredient.name + "\n";
+  });
+  return formatted;
 };
 
 export const getRandomKey = (componentName: string) => {

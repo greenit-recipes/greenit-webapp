@@ -55,11 +55,17 @@ export const SectionPersonalization: React.FC<ISectionPersonalization> = ({
           <div className="md:flex md:flex-col items-center">
             <h4 className="text-xl font-normal mb-2">Mes particularités</h4>
             <div className="flex flex-wrap space-x-2">
-              {particularities.tagsParticularity.map((item: string) => (
-                <span className="text-base font-light text-white py-1 px-2 bg-green rounded-lg">
-                  {item}
+              {particularities.tagsParticularity.length > 0 ? (
+                particularities.tagsParticularity.map((item: string) => (
+                  <span className="text-base font-light text-white py-1 px-2 bg-green rounded-lg">
+                    {item}
+                  </span>
+                ))
+              ) : (
+                <span className="text-base font-normal text-darkBlue py-1 px-2">
+                  non définies
                 </span>
-              ))}
+              )}
             </div>
           </div>
         </div>

@@ -224,19 +224,19 @@ const RecipeListPage = () => {
 
         <div className="flex justify-center ">
           {!isLoggedIn ? (
-            <ModalLogGreenit
+            <ModalPersonalization
               btn={
                 <Button
                   id="listpage-mes-particularites"
-                  className="px-4 py-1 mr-3 mb-4 shadow-md"
+                  className="px-4 py-1 mr-3 mb-2 shadow-md"
                   haveIcon={true}
                   type="green"
                 >
                   <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
-                  Mes particularités
+                  Définir mes particularités
                 </Button>
               }
-            ></ModalLogGreenit>
+            />
           ) : !isEmpty(
               JSON.parse(
                 //@ts-ignore
@@ -245,8 +245,9 @@ const RecipeListPage = () => {
             ) ? (
             <Button
               id="listpage-mes-particularites"
-              className="px-4 py-1 mr-3 mb-4 shadow-md"
+              className="px-4 py-1 mr-3 mb-2 shadow-md"
               haveIcon={true}
+              isSelected={isParticularityActive}
               onClick={() => {
                 setIsParticularityActive(!isParticularityActive);
                 isICMActive && setIsICMActive(!isICMActive);
@@ -262,7 +263,7 @@ const RecipeListPage = () => {
               btn={
                 <Button
                   id="listpage-mes-particularites"
-                  className="px-4 py-1 mr-3 mb-4 shadow-md"
+                  className="px-4 py-1 mr-3 mb-2 shadow-md"
                   haveIcon={true}
                   onClick={() => {
                     setIsParticularityActive(!isParticularityActive);
@@ -271,15 +272,16 @@ const RecipeListPage = () => {
                   type="green"
                 >
                   <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
-                  Définir mes particularités
+                  Mes particularités
                 </Button>
               }
             />
           )}
           <Button
             id="listpage-ingredientchezmoi"
-            className="mr-3 mb-4 shadow-md"
+            className="mb-2 shadow-md"
             haveIcon={true}
+            isSelected={isICMActive}
             onClick={() => {
               setIsICMActive(!isICMActive);
               isParticularityActive &&
@@ -291,21 +293,6 @@ const RecipeListPage = () => {
             Ingrédients chez moi
           </Button>
         </div>
-        {!isMobile && (
-          <>
-            <FilterBar
-              recipesAutoComplete={recipesAutoComplete}
-              setSearch={setSearchTermDebounced}
-              search={searchTerm}
-              filter={filterData}
-              currentFilters={currentFilters}
-              setCurrentFilters={setCurrentFilters}
-              isMobile={isMobile}
-              toggle={toggle}
-              setScrollOffset={setScrollOffset}
-            />
-          </>
-        )}
 
         {/*Paritucularities*/}
         {isParticularityActive &&
@@ -337,9 +324,25 @@ const RecipeListPage = () => {
 
         {/*End Personalization section*/}
 
+        {!isMobile && (
+          <>
+            <FilterBar
+              recipesAutoComplete={recipesAutoComplete}
+              setSearch={setSearchTermDebounced}
+              search={searchTerm}
+              filter={filterData}
+              currentFilters={currentFilters}
+              setCurrentFilters={setCurrentFilters}
+              isMobile={isMobile}
+              toggle={toggle}
+              setScrollOffset={setScrollOffset}
+            />
+          </>
+        )}
+
         {isMobile && (
           <div className="z-30 grid py-2 justify-items-center">
-            <div className="self-center w-4/5">
+            <div className="self-center">
               <FilterBar
                 isOnlyForSearch={true}
                 recipesAutoComplete={recipesAutoComplete}
@@ -383,24 +386,26 @@ const RecipeListPage = () => {
 
       <div className="flex justify-center bg-white recipe-list">
         <div className="h-auto max-w-7xl justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
-          {/*Recommended Recipes*/}
-          {isLoggedIn &&
-            !isEmpty(
-              JSON.parse(
-                //@ts-ignore
-                user.current?.particularitySearch || JSON.stringify({}),
-              ),
-            ) && (
-              <SectionRecommendedRecipe
-                //@ts-ignore
-                particularities={user.current.particularitySearch}
-                //@ts-ignore
-                ingredientAtHome={user.current.ingredientAtHomeUser}
-              />
-            )}
+          {/*Reco]mmended Recipes*/}
+          {isLoggedIn && (
+            <SectionRecommendedRecipe
+              hasParticularities={
+                !isEmpty(
+                  JSON.parse(
+                    //@ts-ignore
+                    user.current?.particularitySearch || JSON.stringify({}),
+                  ),
+                )
+              }
+              //@ts-ignore
+              particularities={user.current.particularitySearch}
+              //@ts-ignore
+              ingredientAtHome={user.current.ingredientAtHomeUser}
+            />
+          )}
           {/* to refacto infinite scroll*/}
           <h3 className="text-2xl text-center font-normal | mt-12 md:mb-5">
-            Découvrir d’autres recettes
+            Suggestions de recettes
           </h3>
           <InfiniteScroll
             dataLength={recipes?.length ?? 0}
@@ -464,7 +469,7 @@ const RecipeListPage = () => {
               </div>
             ) : (
               <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
-                <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
+                <div className="flex flex-wrap justify-center gap-y-10 gap-x-4 md:p-2">
                   {/*@ts-ignore*/}
                   {annotateRecipeResult(
                     recipes,

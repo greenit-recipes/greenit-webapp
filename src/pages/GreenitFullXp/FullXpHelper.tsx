@@ -24,7 +24,8 @@ export const recipesBegginerFullXp = [
   {
     id: "3b349672-a3b4-4eb5-a063-41eb79e5b542",
     urlId: "lessive-au-geranium",
-    image: boxIngredientLessive,
+    image: "user/Greenit/recipe/lessive_geranium.jpeg",
+    miniatureImage: boxIngredientLessive,
     name: "Lessive maison",
     numberOfIngredients: 4,
     quantity: 2,
@@ -33,7 +34,8 @@ export const recipesBegginerFullXp = [
   {
     id: "d9c8be17-1997-48de-adac-433121693b40",
     urlId: "savon-solide-tout-en-un",
-    image: boxIngredientSavon,
+    image: "user/Greenit/recipe/savon_tout_en_un.jpeg",
+    miniatureImage: boxIngredientSavon,
     name: "Savon solide",
     numberOfIngredients: 3,
     quantity: 1,
@@ -42,7 +44,8 @@ export const recipesBegginerFullXp = [
   {
     id: "57d20e4b-72e7-48ce-99e1-839c75cb1566",
     urlId: "creme-de-jour-debutant",
-    image: boxIngredientCreme,
+    image: "user/Greenit/recipe/creme_jour_debutant.jpeg",
+    miniatureImage: boxIngredientCreme,
     name: "Crème de jour",
     numberOfIngredients: 5,
     quantity: 1,

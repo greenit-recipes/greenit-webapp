@@ -43,19 +43,19 @@ export const ProfilGreenitFullXp: React.FC<IProfilGreenitFullXp> = ({
         <img
           className="w-16 h-16 rounded-full object-cover"
           alt={recipesBegginerFullXp[0]?.name}
-          src={recipesBegginerFullXp[0]?.image}
+          src={recipesBegginerFullXp[0]?.miniatureImage}
           loading="lazy"
         />
         <img
           className="w-16 h-16 rounded-full object-cover"
           alt={recipesBegginerFullXp[1]?.name}
-          src={recipesBegginerFullXp[1]?.image}
+          src={recipesBegginerFullXp[1]?.miniatureImage}
           loading="lazy"
         />
         <img
           className="w-16 h-16 rounded-full object-cover"
           alt={recipesBegginerFullXp[2]?.name}
-          src={recipesBegginerFullXp[2]?.image}
+          src={recipesBegginerFullXp[2]?.miniatureImage}
           loading="lazy"
         />
       </div>

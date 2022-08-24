@@ -3,15 +3,18 @@ import { RouteName } from "App";
 import { Button } from "components";
 import React from "react";
 import {
+  formatShoppingList,
   hasIngredientOnList,
   LDCIngredients,
 } from "components/personalization/PersonalizationHelper";
 import { SectionIngredient } from "../../recipe/SinglePage/IngredientUsentil/SectionIngredient";
 import useIsMobile from "../../../hooks/isMobile";
+import { ModalShoppingListPurchase } from "../ModalShoppingListPurchase";
+import { RWebShare } from "react-web-share";
 
 interface TabLDCProps {
   hasLDC: boolean;
-  data?: any;
+  ingredientShoppingList?: any;
   user: any;
   parentFunction: any;
 }
@@ -19,7 +22,7 @@ interface TabLDCProps {
 export const TabLDC: React.FC<TabLDCProps> = ({
   hasLDC,
   user,
-  data,
+  ingredientShoppingList,
   parentFunction,
 }) => {
   let isICMactive = false;
@@ -41,7 +44,7 @@ export const TabLDC: React.FC<TabLDCProps> = ({
         </div>
         {hasLDC ? (
           <div>
-            {data.map((item: any, index: any) => {
+            {ingredientShoppingList.map((item: any, index: any) => {
               isLDCactive = hasIngredientOnList(
                 user.ingredientShoppingListUser,
                 item.id,
@@ -71,35 +74,48 @@ export const TabLDC: React.FC<TabLDCProps> = ({
               </div>
             )}
             <div className="flex flex-col items-center | mt-5">
-              <Button
-                className="px-4 py-2 mr-3 mb-4 shadow-md"
-                type="green"
-                id="profil-LDCtab-acheter"
+              <ModalShoppingListPurchase
+                btn={
+                  <Button
+                    className="px-4 py-2 mr-3 mb-4 shadow-md"
+                    type="green"
+                    id="profil-LDCtab-acheter"
+                  >
+                    Acheter maintenant
+                  </Button>
+                }
+              />
+
+              <RWebShare
+                data={{
+                  text: formatShoppingList(ingredientShoppingList),
+                  url: "",
+                  title: "Ma liste de course",
+                }}
               >
-                Acheter maintenant
-              </Button>
-              <Button
-                className="px-4 py-1 mr-3 mb-4 shadow-md"
-                haveIcon={true}
-                type="darkBlue"
-                id="profil-LDCtab-envoyer"
-              >
-                <i className="bx bx-share text-2xl mt-0.5 mr-2 flipIcon"></i>
-                Me l’envoyer
-              </Button>
+                <Button
+                  className="px-4 py-1 mr-3 mb-4 shadow-md"
+                  haveIcon={true}
+                  type="darkBlue"
+                  id="profil-LDCtab-envoyer"
+                >
+                  <i className="bx bx-share text-2xl mt-0.5 mr-2 flipIcon"></i>
+                  Me l’envoyer
+                </Button>
+              </RWebShare>
             </div>
           </div>
         ) : (
-          <div className="text-center">
+          <div className="text-center ">
             <p className="mt-5 font-normal">Ta liste est vide !</p>
             <p className="mt-2 font-normal">
               Pour ajouter un ingrédient à ta liste de course, appuie sur le
               panier sur les ingrédients des recettes
             </p>
             <i className="bx bx-cart-download mt-2 text-3xl mb-6"></i>
-            <Link to={RouteName.recipes}>
+            <Link to={RouteName.recipes} className="grid">
               <Button
-                className="mb-4 shadow-md"
+                className="mb-4 shadow-md justify-self-center"
                 type="darkBlue"
                 id="profil-LDCtab-explorer-recette"
               >

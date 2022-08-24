@@ -215,7 +215,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
           </span>
           <Button
             id="recipepage-ingredientall-LDC"
-            className={`px-4 mr-3 shadow-md ${
+            className={`relative px-4 mr-3 shadow-md ${
               isBulkLDCActive && "border-blue"
             } hover:text-blue active:border-blue active:bg-white`}
             haveIcon={true}
@@ -252,6 +252,12 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
               className={`bx bx-cart-download ${
                 isBulkLDCActive ? "text-blue" : "text-darkBlue"
               }  text-2xl`}
+            ></i>
+            <i
+              className={`bx ${
+                isBulkLDCActive ? "bx-minus text-blue" : "bx-plus text-darkBlue"
+              }
+                   text-sm text-darkBlue absolute -top-0.5 right-0.5`}
             ></i>
           </Button>
         </div>
