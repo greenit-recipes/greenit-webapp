@@ -204,7 +204,7 @@ const CreateRecipeForm: React.FC = () => {
         <h3 className="block mb-2 text-sm">Par exemple : Masque à la coco</h3>
         <textarea
           className="w-2/3 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-          id="name"
+          id="create-recipe-form-name"
           placeholder="nom de la recette"
           {...register("name")}
         ></textarea>
@@ -219,7 +219,7 @@ const CreateRecipeForm: React.FC = () => {
         </h3>
         <textarea
           className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-          id="description"
+          id="create-recipe-form-description"
           placeholder="description"
           rows={12}
           cols={34}
@@ -551,7 +551,7 @@ const CreateRecipeForm: React.FC = () => {
 
         <input
           className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
-          id="expiry"
+          id="create-recipe-page-expiry"
           placeholder="temps de conservation"
           type="text"
           {...register("expiry")}
@@ -569,7 +569,7 @@ const CreateRecipeForm: React.FC = () => {
         </h3>
         <input
           className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
-          id="notes_from_author"
+          id="create-recipe-notes_from_author"
           placeholder="tes conseils et astuces"
           type="text"
           {...register("notes_from_author")}
@@ -585,7 +585,7 @@ const CreateRecipeForm: React.FC = () => {
         </label>
         <input
           className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none lg:w-1/2 focus:outline-none focus:shadow-outline"
-          id="text_associate"
+          id="create-recipe-text_associate"
           placeholder="ton lien vers ton site :) "
           type="text"
           {...register("text_associate")}

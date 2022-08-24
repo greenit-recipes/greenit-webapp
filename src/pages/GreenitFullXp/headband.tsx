@@ -25,7 +25,7 @@ const HeadBand: React.FC<IHeadBand> = ({
         <CheckoutFullXp />
       ) : (
         <button
-          id={`${idButton}-etape-suivante`}
+          id={`${idButton}-box-commande-etape-suivante`}
           className="h-10 rounded-lg bg-green w-32 lg:w-72 text-white"
           onClick={() => {
             setNavigation(menuFullXp[currentPositionMenu + 1].name);

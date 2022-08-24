@@ -49,7 +49,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
               }`}
             >
               <Button
-                id="favorite"
+                id="recipe-card-favoriteButton"
                 type="blueIcon"
                 rounded="lg"
                 isOnClickActive={false}
@@ -84,7 +84,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
               }`}
             >
               <Button
-                id="favorite"
+                id="recipe-card-favoriteButton"
                 type="FavoritedarkBlueIcon"
                 rounded="lg"
                 haveIcon={true}
@@ -123,7 +123,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
               <ModalLogGreenit
                 btn={
                   <Button
-                    id="favorite"
+                    id="recipe-card-favoriteButton"
                     type="darkBlue"
                     rounded="lg"
                     haveIcon={true}

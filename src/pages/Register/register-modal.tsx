@@ -370,7 +370,7 @@ export const RegisterModal: React.FC<{
               <div className="flex flex-col w-2/4 ">
                 <Link
                   to={RouteName.register}
-                  id="modal-register-createur"
+                  id="register-modal-createur"
                   className="flex flex-col py-5 items-center transition shadow-lg cursor-pointer rounded-md h-34"
                 >
                   <div className="size-emoji-modal mb-8">🧑‍🎨</div>
@@ -395,7 +395,7 @@ export const RegisterModal: React.FC<{
               <i className="bx bx-envelope mr-2 text-darkBlue text-3xl"></i>
               <input
                 className="w-full h-10 px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline "
-                id="email"
+                id="register-modal-email"
                 placeholder="Email"
                 type="email"
                 {...register("email")}
@@ -407,7 +407,7 @@ export const RegisterModal: React.FC<{
               <i className="bx bx-user mr-2 text-darkBlue text-3xl"></i>
               <input
                 className="w-full h-10 px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline "
-                id="utilisateur"
+                id="modal-register-username"
                 placeholder="Nom d'utilisateur"
                 type="text"
                 {...register("utilisateur")}
@@ -422,7 +422,7 @@ export const RegisterModal: React.FC<{
               <div className="flex flex-row items-center w-full h-10 leading-tight text-gray-700 border shadow-lg rounded-md focus:shadow-outline ">
                 <input
                   className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
-                  id="password"
+                  id="register-page-password"
                   type={isRevealPwd ? "text" : "password"}
                   placeholder="Mot de passe"
                   {...register("password")}
@@ -444,7 +444,7 @@ export const RegisterModal: React.FC<{
               <div className="flex flex-row items-center w-full h-10 leading-tight text-gray-700 border shadow-lg rounded-md focus:shadow-outline ">
                 <input
                   className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
-                  id="passwordConfirmation"
+                  id="register-modal-password-confirmation"
                   type={isRevealPwd ? "text" : "password"}
                   placeholder="Confirmer le mot de passe"
                   {...register("passwordConfirmation")}
@@ -499,7 +499,7 @@ export const RegisterModal: React.FC<{
                 type="checkbox"
                 className="w-6 h-6 border border-darkBlue"
                 {...register("isFollowNewsletter")}
-                id="Modal-Register-is-Follow-Newsletter"
+                id="modal-register-is-Follow-Newsletter"
               />
               <label className="self-center ml-2 text-sm text-darkBlue">
                 Coche la case si tu veux recevoir nos dernières actualités et

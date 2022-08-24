@@ -48,7 +48,7 @@ const RecipeFullXP = () => {
           {recipesBegginerFullXp.map((recipe, index) => (
             <div key={recipe?.id} className="lg:mr-2">
               <RecipeCard
-                id="commande-box"
+                id="fullXP-commande-box"
                 disabledFavoriteRecipe={!isLoggedIn}
                 isLikeDisabled={true}
                 recipe={recipe}

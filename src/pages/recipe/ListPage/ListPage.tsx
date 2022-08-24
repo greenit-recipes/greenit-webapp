@@ -483,7 +483,7 @@ const RecipeListPage = () => {
         src={scrollToTop}
         alt="scroll to top"
         className="fixed z-20 w-12 h-12 cursor-pointer bottom-6 right-4"
-        id="scrollToTop"
+        id="list-page-scrollToTop"
         onClick={() => {
           window.scrollTo({
             top: scrollOffset,

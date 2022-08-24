@@ -45,7 +45,7 @@ export const SharedWithFriend: React.FC = () => {
       >
         <input
           className="w-56 h-10 bg-white rounded-full shadow-lg focus:outline-none | pl-4 | border-2 border-blue"
-          id="email"
+          id="starterPage-share-email"
           placeholder="son email"
           type="email"
           {...register("email")}

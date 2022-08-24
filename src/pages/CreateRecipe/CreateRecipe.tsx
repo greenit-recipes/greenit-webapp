@@ -200,7 +200,7 @@ const CreateRecipe: React.FC = () => {
               btn={
                 <div className="flex m-auto mt-6">
                   <Button
-                    id="Create_Profil"
+                    id="navbar-access-profil"
                     type="blue"
                     rounded="lg"
                     className="inline justify-end self-center | cursor-pointer mr-2"

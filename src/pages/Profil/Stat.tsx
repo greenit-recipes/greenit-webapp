@@ -43,7 +43,7 @@ export const StatProfilForm: React.FC = () => {
       >
         <div className="w-full flex justify-between md:items-center space-x-4 mb-7">
           <input
-            id="question"
+            id="profil-creator-page-question-stat"
             className={`py-2 px-3 ml-10 border w-11/12 rounded-md appearance-none text-sm lg:text-base placeholder:text-darkBlue xfocus:outline-none focus:shadow-outline h-full`}
             placeholder="statistiques souhaitées…"
             {...register("question")}

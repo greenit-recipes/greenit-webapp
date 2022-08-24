@@ -98,7 +98,7 @@ const ActivateResetPassword: React.FC = () => {
             </label>
             <input
               className="w-full px-3 py-2 mb-4 leading-tight text-gray-700 rounded shadow-lg appearance-none focus:outline-none focus:shadow-outline"
-              id="password"
+              id="resetPswrd-page-password-field1"
               type="password"
               placeholder="******************"
               {...register("password")}
@@ -117,7 +117,7 @@ const ActivateResetPassword: React.FC = () => {
             </label>
             <input
               className="w-full px-3 py-2 mb-4 leading-tight text-gray-700 rounded shadow-lg appearance-none focus:outline-none focus:shadow-outline"
-              id="passwordConfirmation"
+              id="resetPswrd-page-password-field2"
               type="password"
               placeholder="******************"
               {...register("passwordConfirmation")}

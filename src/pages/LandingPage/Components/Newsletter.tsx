@@ -51,7 +51,7 @@ export const Newsletter: React.FC = () => {
       >
         <input
           className="shadow-lg rounded-lg h-12 w-full px-3 text-gray-700 min-w-18 border-2 border-grey-200 | focus:outline-none focus:shadow-outline"
-          id="email"
+          id="landingPage-newsletter-email"
           placeholder="Ton email"
           type="email"
           {...register("email")}
