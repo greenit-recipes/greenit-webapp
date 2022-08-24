@@ -401,7 +401,7 @@ const ProfilPage: React.FC = () => {
               user={user}
               parentFunction={refetchMe}
               hasLDC={user?.ingredientShoppingListUser.length > 0}
-              data={user.ingredientShoppingListUser}
+              ingredientShoppingList={user.ingredientShoppingListUser}
             />
           )}
         </div>

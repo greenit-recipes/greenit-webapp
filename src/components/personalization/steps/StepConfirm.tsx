@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import AuthService, {
   UPDATE_PARTICULARITIES_ACCOUNT,
-} from "../../../services/auth.service";
+} from "services/auth.service";
 import { ModalLogGreenit } from "../../layout";
 import {
   getRandomKey,
@@ -14,6 +14,8 @@ import { Button } from "../../misc";
 import { NotificationAlert } from "components/layout/NotificationAlert";
 import ReactDOM from "react-dom";
 import { cloneDeep } from "lodash";
+import { useHistory, useLocation } from "react-router-dom";
+import { RouteName } from "App";
 
 interface StepConfirmProps {
   options: any;
@@ -66,6 +68,8 @@ export const StepConfirm: React.FC<StepConfirmProps> = ({
   }, [confirmOptions]);
 
   const isLoggedIn = AuthService.isLoggedIn();
+  const history = useHistory();
+  const location = useLocation();
 
   if (!isLoggedIn) {
     localStorage.setItem("particularity", JSON.stringify(options));
@@ -204,6 +208,9 @@ export const StepConfirm: React.FC<StepConfirmProps> = ({
                 setIsConfirmButtonClicked(true);
                 saveParticularities(options);
                 setModalState(false);
+                if (location.pathname === RouteName.accueil) {
+                  history.push(RouteName.recipes);
+                }
               }}
             >
               Valider

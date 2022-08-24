@@ -224,7 +224,7 @@ const RecipeListPage = () => {
 
         <div className="flex justify-center ">
           {!isLoggedIn ? (
-            <ModalLogGreenit
+            <ModalPersonalization
               btn={
                 <Button
                   id="listpage-mes-particularites"
@@ -233,10 +233,10 @@ const RecipeListPage = () => {
                   type="green"
                 >
                   <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
-                  Mes particularités
+                  Définir mes particularités
                 </Button>
               }
-            ></ModalLogGreenit>
+            />
           ) : !isEmpty(
               JSON.parse(
                 //@ts-ignore
@@ -247,6 +247,7 @@ const RecipeListPage = () => {
               id="listpage-mes-particularites"
               className="px-4 py-1 mr-3 mb-2 shadow-md"
               haveIcon={true}
+              isSelected={isParticularityActive}
               onClick={() => {
                 setIsParticularityActive(!isParticularityActive);
                 isICMActive && setIsICMActive(!isICMActive);
@@ -280,6 +281,7 @@ const RecipeListPage = () => {
             id="listpage-ingredientchezmoi"
             className="mb-2 shadow-md"
             haveIcon={true}
+            isSelected={isICMActive}
             onClick={() => {
               setIsICMActive(!isICMActive);
               isParticularityActive &&
@@ -291,21 +293,6 @@ const RecipeListPage = () => {
             Ingrédients chez moi
           </Button>
         </div>
-        {!isMobile && (
-          <>
-            <FilterBar
-              recipesAutoComplete={recipesAutoComplete}
-              setSearch={setSearchTermDebounced}
-              search={searchTerm}
-              filter={filterData}
-              currentFilters={currentFilters}
-              setCurrentFilters={setCurrentFilters}
-              isMobile={isMobile}
-              toggle={toggle}
-              setScrollOffset={setScrollOffset}
-            />
-          </>
-        )}
 
         {/*Paritucularities*/}
         {isParticularityActive &&
@@ -336,6 +323,22 @@ const RecipeListPage = () => {
         )}
 
         {/*End Personalization section*/}
+
+        {!isMobile && (
+          <>
+            <FilterBar
+              recipesAutoComplete={recipesAutoComplete}
+              setSearch={setSearchTermDebounced}
+              search={searchTerm}
+              filter={filterData}
+              currentFilters={currentFilters}
+              setCurrentFilters={setCurrentFilters}
+              isMobile={isMobile}
+              toggle={toggle}
+              setScrollOffset={setScrollOffset}
+            />
+          </>
+        )}
 
         {isMobile && (
           <div className="z-30 grid py-2 justify-items-center">
@@ -383,21 +386,23 @@ const RecipeListPage = () => {
 
       <div className="flex justify-center bg-white recipe-list">
         <div className="h-auto max-w-7xl justify-items-center | top-0 mb-20 sm:p-4 flex flex-col items-center">
-          {/*Recommended Recipes*/}
-          {isLoggedIn &&
-            !isEmpty(
-              JSON.parse(
-                //@ts-ignore
-                user.current?.particularitySearch || JSON.stringify({}),
-              ),
-            ) && (
-              <SectionRecommendedRecipe
-                //@ts-ignore
-                particularities={user.current.particularitySearch}
-                //@ts-ignore
-                ingredientAtHome={user.current.ingredientAtHomeUser}
-              />
-            )}
+          {/*Reco]mmended Recipes*/}
+          {isLoggedIn && (
+            <SectionRecommendedRecipe
+              hasParticularities={
+                !isEmpty(
+                  JSON.parse(
+                    //@ts-ignore
+                    user.current?.particularitySearch || JSON.stringify({}),
+                  ),
+                )
+              }
+              //@ts-ignore
+              particularities={user.current.particularitySearch}
+              //@ts-ignore
+              ingredientAtHome={user.current.ingredientAtHomeUser}
+            />
+          )}
           {/* to refacto infinite scroll*/}
           <h3 className="text-2xl text-center font-normal | mt-12 md:mb-5">
             Suggestions de recettes

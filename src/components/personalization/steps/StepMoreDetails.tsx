@@ -93,7 +93,12 @@ export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
       </div>
       <div className="md:flex md:justify-center w-11/12 md:mt-10 md:mb-4">
         {isSkipActive ? (
-          <div className="text-center mb-2">
+          <div
+            className="text-center mb-2"
+            onClick={() => {
+              nextStep(3);
+            }}
+          >
             <span className="underline text-sm font-medium cursor-pointer">
               Je passe à la question suivante
             </span>

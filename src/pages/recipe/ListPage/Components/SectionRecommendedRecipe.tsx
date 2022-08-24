@@ -6,11 +6,12 @@ import { RecommendedRecipes } from "./RecommendedRecipes";
 interface SectionRecommendedRecipeInteface {
   particularities: any;
   ingredientAtHome: any;
+  hasParticularities?: boolean;
 }
 
 export const SectionRecommendedRecipe: React.FC<
   SectionRecommendedRecipeInteface
-> = ({ particularities, ingredientAtHome }) => {
+> = ({ particularities, ingredientAtHome, hasParticularities = true }) => {
   const isMobile = useIsMobile();
 
   return (
@@ -26,7 +27,12 @@ export const SectionRecommendedRecipe: React.FC<
           }
         ></ModalPersonalizationInfo>
       </div>
-      {isMobile ? (
+      {!hasParticularities && (
+        <h2 className="font-diy text-center">
+          Ajoute tes particularités pour accéder à des recettes adaptées !
+        </h2>
+      )}
+      {hasParticularities && isMobile && (
         <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
           <RecommendedRecipes
             ingredientAtHome={ingredientAtHome}
@@ -34,7 +40,8 @@ export const SectionRecommendedRecipe: React.FC<
             quantity={10}
           />
         </div>
-      ) : (
+      )}
+      {hasParticularities && !isMobile && (
         <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
           <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
             <RecommendedRecipes

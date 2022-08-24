@@ -102,7 +102,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             }
           >
             {!isMobile && (
-              <div className="flex self-center w-11/12 flex-col">
+              <div className="flex self-center items-center w-11/12 flex-col">
                 <FilterBarSearch
                   customClass="w-2/6"
                   recipesAutoComplete={recipesAutoComplete}

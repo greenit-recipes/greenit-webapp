@@ -163,84 +163,113 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
           <div className="flex items-center justify-end w-full">
             {!isMobile && (
               <div className="flex ml-4">
-                <Button
-                  id="recipepage-ingredientcard-ICM"
-                  className={`px-4 mr-3 shadow-md ${
-                    isICMActive && "border-blue"
-                  } hover:text-blue active:border-blue active:bg-white`}
-                  haveIcon={true}
-                  type="darkBlueIcon"
-                  onClick={() => {
-                    if (isLoggedIn) {
-                      setIsICMActive(!isICMActive);
-                      !isICMActive &&
-                        !isICMAddedNotifActive &&
-                        setIsICMAddedNotifActive(true);
-                      createOrDeleteIngredientAtHomeUser({
-                        variables: {
-                          ingredientAtHome: {
-                            additions: [data?.id],
-                            deletions: [],
-                          },
-                        },
-                      }).then(() => {
-                        parentFunction ? parentFunction() : null;
-                      });
-                    } else {
-                      if (parentFunction ? parentFunction(data) : null) {
+                <div className="tooltip relative flex-col">
+                  <Button
+                    id="recipepage-ingredientcard-ICM"
+                    className={`relative px-4 mr-3 shadow-md ${
+                      isICMActive && "border-blue"
+                    } hover:text-blue active:border-blue active:bg-white`}
+                    haveIcon={true}
+                    type="darkBlueIcon"
+                    onClick={() => {
+                      if (isLoggedIn) {
                         setIsICMActive(!isICMActive);
                         !isICMActive &&
                           !isICMAddedNotifActive &&
                           setIsICMAddedNotifActive(true);
-                      }
-                    }
-                  }}
-                >
-                  <i
-                    className={`bx ${
-                      isICMActive
-                        ? "bxs-lemon text-blue"
-                        : "bx-lemon text-darkBlue"
-                    }  text-xl`}
-                  ></i>
-                </Button>
-                <Button
-                  id="recipepage-ingredientcard-LDC"
-                  className={`px-4 mr-3 shadow-md ${
-                    isLDCActive && "border-blue"
-                  } hover:text-blue active:border-blue active:bg-white`}
-                  haveIcon={true}
-                  type="darkBlueIcon"
-                  onClick={() => {
-                    if (isLoggedIn) {
-                      setIsLDCActive(!isLDCActive);
-                      !isLDCActive &&
-                        !isLDCAddedNotifActive &&
-                        setIsLDCAddedNotifActive(true);
-                      isLDCActive &&
-                        !isLDCUpdatedNotifActive &&
-                        setIsLDCUpdatedNotifActive(true);
-                      createOrDeleteIngredientShoppingList({
-                        variables: {
-                          ingredientShoppingList: {
-                            additions: [data?.id],
-                            deletions: [],
+                        createOrDeleteIngredientAtHomeUser({
+                          variables: {
+                            ingredientAtHome: {
+                              additions: [data?.id],
+                              deletions: [],
+                            },
                           },
-                        },
-                      }).then(() => {
-                        parentFunction ? parentFunction() : null;
-                      });
-                    } else {
-                      setIsLDCAccessNotifActive(true);
-                    }
-                  }}
-                >
-                  <i
-                    className={`bx bx-cart-download ${
-                      isLDCActive ? "text-blue" : "text-darkBlue"
-                    }  text-xl`}
-                  ></i>
-                </Button>
+                        }).then(() => {
+                          parentFunction ? parentFunction() : null;
+                        });
+                      } else {
+                        if (parentFunction ? parentFunction(data) : null) {
+                          setIsICMActive(!isICMActive);
+                          !isICMActive &&
+                            !isICMAddedNotifActive &&
+                            setIsICMAddedNotifActive(true);
+                        }
+                      }
+                    }}
+                  >
+                    <i
+                      className={`bx ${
+                        isICMActive
+                          ? "bxs-lemon text-blue"
+                          : "bx-lemon text-darkBlue"
+                      }  text-xl`}
+                    ></i>
+                    <i
+                      className={`bx ${
+                        isICMActive
+                          ? "bx-minus text-blue"
+                          : "bx-plus text-darkBlue"
+                      }
+                   text-sm text-darkBlue absolute -top-0.5 right-0.5`}
+                    ></i>
+                  </Button>
+                  {!isICMActive && (
+                    <span className="tooltipcontent -top-7 -right-10">
+                      J’ai cet ingrédient chez moi
+                    </span>
+                  )}
+                </div>
+                <div className="tooltip relative flex-col">
+                  <Button
+                    id="recipepage-ingredientcard-LDC"
+                    className={`relative px-4 mr-3 shadow-md ${
+                      isLDCActive && "border-blue"
+                    } hover:text-blue active:border-blue active:bg-white`}
+                    haveIcon={true}
+                    type="darkBlueIcon"
+                    onClick={() => {
+                      if (isLoggedIn) {
+                        setIsLDCActive(!isLDCActive);
+                        !isLDCActive &&
+                          !isLDCAddedNotifActive &&
+                          setIsLDCAddedNotifActive(true);
+                        isLDCActive &&
+                          !isLDCUpdatedNotifActive &&
+                          setIsLDCUpdatedNotifActive(true);
+                        createOrDeleteIngredientShoppingList({
+                          variables: {
+                            ingredientShoppingList: {
+                              additions: [data?.id],
+                              deletions: [],
+                            },
+                          },
+                        }).then(() => {
+                          parentFunction ? parentFunction() : null;
+                        });
+                      } else {
+                        setIsLDCAccessNotifActive(true);
+                      }
+                    }}
+                  >
+                    <i
+                      className={`bx bx-cart-download ${
+                        isLDCActive ? "text-blue" : "text-darkBlue"
+                      }  text-xl`}
+                    ></i>
+                    <i
+                      className={`bx ${
+                        isLDCActive
+                          ? "bx-minus text-blue"
+                          : "bx-plus text-darkBlue"
+                      }
+                   text-sm text-darkBlue absolute -top-0.5 right-0.5`}
+                    ></i>
+                  </Button>
+                  <span className="tooltipcontent -top-7 -right-20">
+                    {!isLDCActive ? "Ajouter à" : "Enlever de"} ma liste de
+                    course
+                  </span>
+                </div>
               </div>
             )}
             <i
@@ -262,7 +291,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                 <div className="flex items-center">
                   <Button
                     id="recipepage-ingredientcard-ICM"
-                    className={`px-4 mr-3 shadow-md ${
+                    className={`relative px-4 mr-3 shadow-md ${
                       isICMActive && "border-blue"
                     } hover:text-blue active:border-blue active:bg-white`}
                     haveIcon={true}
@@ -300,6 +329,14 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                           : "bx-lemon text-darkBlue"
                       }  text-2xl`}
                     ></i>
+                    <i
+                      className={`bx ${
+                        isICMActive
+                          ? "bx-minus text-blue"
+                          : "bx-plus text-darkBlue"
+                      }
+                   text-sm text-darkBlue absolute -top-0.5 right-0.5`}
+                    ></i>
                   </Button>
                   <span className="text-xs font-semibold">
                     Ingrédient déjà chez moi
@@ -308,7 +345,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                 <div className="flex items-center">
                   <Button
                     id="recipepage-ingredientcard-LDC"
-                    className={`px-4 mr-3 shadow-md ${
+                    className={`relative px-4 mr-3 shadow-md ${
                       isLDCActive && "border-blue"
                     } hover:text-blue active:border-blue active:bg-white`}
                     haveIcon={true}
@@ -341,6 +378,14 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                       className={`bx bx-cart-download ${
                         isLDCActive ? "text-blue" : "text-darkBlue"
                       }  text-2xl`}
+                    ></i>
+                    <i
+                      className={`bx ${
+                        isLDCActive
+                          ? "bx-minus text-blue"
+                          : "bx-plus text-darkBlue"
+                      }
+                   text-sm text-darkBlue absolute -top-0.5 right-0.5`}
                     ></i>
                   </Button>
                   <p className="text-xs font-semibold">

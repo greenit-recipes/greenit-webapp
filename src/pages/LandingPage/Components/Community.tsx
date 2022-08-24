@@ -71,7 +71,7 @@ const communityMembers = [
   },
   {
     image: lea,
-    name: "souhaite",
+    name: "Léa",
     describe: "souhaite des produits plus naturels",
   },
   {

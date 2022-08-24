@@ -410,7 +410,7 @@ const LandingPage = () => {
                 {recipesBegginerFullXp?.map(recipe => (
                   <div className="ml-9">
                     <img
-                      src={recipe.image}
+                      src={recipe.miniatureImage}
                       className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover"
                       alt={recipe.name}
                     />

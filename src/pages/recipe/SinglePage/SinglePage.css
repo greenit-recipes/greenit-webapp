@@ -121,3 +121,17 @@
 .height-video {
   height: 34rem;
 }
+
+.tooltip .tooltipcontent {
+  visibility: hidden;
+  color: black;
+  width: 200px;
+  text-align: center;
+  font-size: 10px;
+  z-index: 1;
+  position: absolute;
+}
+
+.tooltip:hover .tooltipcontent {
+  visibility: visible;
+}

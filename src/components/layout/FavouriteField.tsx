@@ -67,8 +67,8 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 }}
               >
                 <i
-                  className={`bx bxs-bookmark-heart bx-sm ${
-                    !isToltipActif ? "" : ""
+                  className={`bx bx-bookmark-heart bx-sm ${
+                    isToltipActif ? "" : ""
                   }`}
                 ></i>
                 {!isToltipActif && "favoris"}

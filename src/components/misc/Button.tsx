@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
 import { BiLoaderAlt } from "react-icons/bi";
 
@@ -23,6 +23,7 @@ interface ButtonProps {
   haveArrow?: boolean;
   isArrowDown?: boolean;
   isLoading?: boolean;
+  isSelected?: boolean;
 }
 
 interface ButtonStyle {
@@ -31,6 +32,7 @@ interface ButtonStyle {
   borderRadius: string;
   textColor: string;
   hoverTextColor: string;
+  bgColor: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -44,6 +46,7 @@ export const Button: React.FC<ButtonProps> = ({
   haveArrow,
   isArrowDown,
   isLoading,
+  isSelected = false,
 }) => {
   const style: ButtonStyle = {
     hoverBgColor: "",
@@ -51,6 +54,7 @@ export const Button: React.FC<ButtonProps> = ({
     textColor: "",
     borderRadius: "",
     hoverTextColor: "",
+    bgColor: "",
   };
 
   switch (type) {
@@ -59,51 +63,64 @@ export const Button: React.FC<ButtonProps> = ({
       style.textColor = "text-white";
       style.borderColor = "border-green";
       style.hoverTextColor = "hover:text-green";
+      style.bgColor = "bg-white";
       break;
     case "yellow":
       style.hoverBgColor = "hover:bg-yellow";
       style.borderColor = "border-yellow";
       style.hoverTextColor = "text-yellow";
+      style.bgColor = "bg-yellow";
       break;
     case "orange":
       style.hoverBgColor = "hover:bg-orange";
       style.borderColor = "border-orange";
       style.hoverTextColor = "text-orange";
+      style.bgColor = "bg-orange";
       break;
     case "darkBlue":
       style.hoverBgColor = "hover:bg-darkBlue";
+      style.bgColor = "bg-darkBlue";
       style.borderColor = "border-darkBlue";
       style.hoverTextColor = "text-darkBlue";
+      style.textColor = "text-darkBlue";
+      style.bgColor = "bg-darkBlue";
       break;
     case "darkBlueIcon":
       style.hoverBgColor = "hover:bg-white";
       style.borderColor = "border-darkBlue";
       style.hoverTextColor = "text-white";
+      style.textColor = "text-darkBlue";
+      style.bgColor = "bg-white";
       break;
     case "grey":
       style.hoverBgColor = "hover:bg-grey";
       style.borderColor = "border-grey";
       style.hoverTextColor = "text-grey";
+      style.bgColor = "bg-grey";
       break;
     case "red":
       style.hoverBgColor = "hover:bg-red";
       style.borderColor = "border-red";
       style.hoverTextColor = "text-red";
+      style.bgColor = "bg-red";
       break;
     case "blueL":
       style.hoverBgColor = "hover:bg-blueL";
       style.borderColor = "border-blueL";
       style.hoverTextColor = "text-blueL";
+      style.bgColor = "bg-blueL";
       break;
     case "blue":
       style.hoverBgColor = "hover:bg-blue";
       style.borderColor = "border-blue";
       style.hoverTextColor = "text-blue";
+      style.bgColor = "bg-blue";
       break;
     default:
       style.hoverBgColor = "hover:bg-blue";
       style.borderColor = "border-blue";
       style.hoverTextColor = "text-blue";
+      style.bgColor = "bg-blue";
   }
 
   switch (rounded) {
@@ -113,6 +130,8 @@ export const Button: React.FC<ButtonProps> = ({
     default:
       style.borderRadius = "rounded-md";
   }
+
+  const [isClicked, setIsClicked] = useState(isSelected);
 
   return (
     <button
@@ -130,11 +149,18 @@ export const Button: React.FC<ButtonProps> = ({
           : "bg-white hover:text-white active:bg-white"
       }
       ${style.borderColor}
-      ${style.textColor}
       ${style.borderRadius}
       ${style.hoverBgColor}
+      ${
+        isClicked
+          ? (type !== "green" ? "text-white " : "text-green ") + style.bgColor
+          : style.textColor
+      }
         `}
-      onClick={onClick}
+      onClick={() => {
+        setIsClicked(!isClicked);
+        onClick ? onClick() : null;
+      }}
     >
       {isLoading ? (
         <div className="animate-spin">
