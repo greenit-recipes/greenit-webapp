@@ -316,20 +316,27 @@ export const getTagIdsByName = (particularities: any) => {
       } else {
         // @ts-ignore
         if (values.length > 0) {
+          let p1 = "";
+          let p2 = "";
           // @ts-ignore
-          p[key] = [
+          let faceOptions = step.multipleOPtions[0].singleOptions.find(
             // @ts-ignore
-            step.multipleOPtions[0].singleOptions.find(
-              // @ts-ignore
-              (el: any) => el.option === values[0],
-            )["tagId"],
-          ].concat([
+            (el: any) => el.option === values[0],
+          );
+
+          // @ts-ignore
+          let hairOptions = step.multipleOPtions[1].singleOptions.find(
             // @ts-ignore
-            step.multipleOPtions[1].singleOptions.find(
-              // @ts-ignore
-              (el: any) => el.option === values[1],
-            )["tagId"],
-          ]);
+            (el: any) => el.option === values[1],
+          );
+          if (faceOptions) {
+            p1 = faceOptions["tagId"];
+          }
+          if (hairOptions) {
+            p2 = hairOptions["tagId"];
+          }
+          // @ts-ignore
+          p[key] = [p1].concat([p2]).filter((el: any) => el !== "");
         }
       }
     }
