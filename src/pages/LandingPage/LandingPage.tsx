@@ -241,13 +241,25 @@ const LandingPage = () => {
 
           <div className={`relative mt-16 md:mt-6 mb-6 text-center`}>
             <h1 className="text-2xl md:text-3xl">
-              <span className="text-green trait-img">Greenit</span>, la
-              communauté {isMobile && <br />}
-              du fait-maison !
+              {!isMobile ? (
+                <>
+                  <span className="text-green trait-img-desktop">Greenit</span>,
+                  la communauté du fait-maison pour <br /> une consommation
+                  durable !
+                </>
+              ) : (
+                <>
+                  <span className="text-green trait-img-mobile left-0">
+                    Greenit
+                  </span>
+                  , la communauté <br /> qui rend accessible le fait-maison
+                </>
+              )}
             </h1>
           </div>
+
           <div className="flex flex-row gap-2 w-9/12 sm:w-auto md:my-8 mx-12">
-            <div className="md:w-3/5">
+            <div className="w-full md:w-3/5">
               <SearchBar
                 keyId="searchBarLandingPage"
                 suggestionIsActive={true}

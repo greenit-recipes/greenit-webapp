@@ -345,8 +345,8 @@ const ProfilPage: React.FC = () => {
                   Ta contribution à la communauté Greenit !
                 </span>
               </div>
-              <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto">
-                <div className="flex w-max">
+              <div className="flex justify-center w-full msm:overflow-x-auto">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 md:gap-5">
                   <CTACard
                     className="lg:mb-6"
                     type="blue"

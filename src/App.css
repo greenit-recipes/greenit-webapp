@@ -44,6 +44,7 @@
   float: right;
   margin-right: -6rem;
 }
+
 .alice-carousel__prev-btn-wrapper {
   float: left;
   margin-left: -5rem;
@@ -54,6 +55,7 @@
     width: 20rem;
   }
 }
+
 @media only screen and (min-width: 768px) {
   .recipesOfTheWeekCarousel .alice-carousel__stage-item {
     width: 20rem;
@@ -61,7 +63,19 @@
   }
 }
 
-.trait-img:after {
+.trait-img-mobile:after {
+  background-image: url(./icons/soleil-gauche.svg);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  bottom: 0;
+  width: 54px;
+  height: 54px;
+}
+
+.trait-img-desktop:after {
   background-image: url(./icons/soleil-gauche.svg);
   background-repeat: no-repeat;
   content: "";
@@ -90,6 +104,7 @@
   max-height: 0px;
   transition: visibility 0s linear 300ms, opacity 300ms;
 }
+
 .filterBar_fadeIn {
   min-width: 300px;
   overflow-y: auto;
