@@ -4,13 +4,13 @@ import { Button } from "components";
 import React from "react";
 import {
   formatShoppingList,
+  getRandomKey,
   hasIngredientOnList,
-  LDCIngredients,
 } from "components/personalization/PersonalizationHelper";
 import { SectionIngredient } from "../../recipe/SinglePage/IngredientUsentil/SectionIngredient";
 import useIsMobile from "../../../hooks/isMobile";
-import { ModalShoppingListPurchase } from "../ModalShoppingListPurchase";
 import { RWebShare } from "react-web-share";
+import { ModalShoppingListPurchase } from "../ModalShoppingListPurchase";
 
 interface TabLDCProps {
   hasLDC: boolean;
@@ -55,8 +55,9 @@ export const TabLDC: React.FC<TabLDCProps> = ({
               );
 
               return (
-                <div key={index}>
+                <div key={getRandomKey("section-ingredient")}>
                   <SectionIngredient
+                    isIngredientListUserActive={true}
                     parentFunction={parentFunction}
                     data={item}
                     isLDCactive={isLDCactive}

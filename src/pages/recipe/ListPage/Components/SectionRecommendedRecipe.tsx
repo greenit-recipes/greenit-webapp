@@ -7,11 +7,17 @@ interface SectionRecommendedRecipeInteface {
   particularities: any;
   ingredientAtHome: any;
   hasParticularities?: boolean;
+  currentFilters?: any;
 }
 
 export const SectionRecommendedRecipe: React.FC<
   SectionRecommendedRecipeInteface
-> = ({ particularities, ingredientAtHome, hasParticularities = true }) => {
+> = ({
+  particularities,
+  ingredientAtHome,
+  hasParticularities = true,
+  currentFilters,
+}) => {
   const isMobile = useIsMobile();
 
   return (
@@ -35,6 +41,7 @@ export const SectionRecommendedRecipe: React.FC<
       {hasParticularities && isMobile && (
         <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
           <RecommendedRecipes
+            currentFilters={currentFilters}
             ingredientAtHome={ingredientAtHome}
             particularities={particularities}
             quantity={10}
@@ -45,6 +52,7 @@ export const SectionRecommendedRecipe: React.FC<
         <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
           <div className="flex flex-wrap justify-center gap-y-10 gap-x-4">
             <RecommendedRecipes
+              currentFilters={currentFilters}
               ingredientAtHome={ingredientAtHome}
               particularities={particularities}
               quantity={10}

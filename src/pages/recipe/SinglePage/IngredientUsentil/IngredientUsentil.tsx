@@ -28,11 +28,23 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
 }) => {
   const [isIngredientSelected, setIngredientSelected] = useState(true);
   const [isBulkLDCActive, setIsBulkLDCActive] = useState(
-    recipe.ingredients.every((ingredient: any) =>
-      //@ts-ignore
-      hasIngredientOnList(ingredientShoppingList, ingredient.id),
-    ),
+    recipe.ingredients.every((ingredient: any) => {
+      return hasIngredientOnList(ingredientShoppingList, ingredient.id);
+    }),
   );
+
+  useEffect(() => {
+    if (
+      recipe.ingredients.every((ingredient: any) => {
+        return hasIngredientOnList(ingredientShoppingList, ingredient.id);
+      })
+    ) {
+      !isBulkLDCActive && setIsBulkLDCActive(true);
+    } else {
+      isBulkLDCActive && setIsBulkLDCActive(false);
+    }
+  }, [ingredientShoppingList]);
+
   let isICMactive = false;
   let isLDCactive = false;
   const isLoggedIn = authService.isLoggedIn();
@@ -59,8 +71,6 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
     potentialAdditions: [],
     potentialDeletions: [],
   };
-
-  // console.log(ingredientAtHomeCurrent)
 
   const [isLDCBulkAddedNotifActive, setIsLDCBulkAddedNotifActive] =
     useState(false);
@@ -189,6 +199,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
               return (
                 <div key={index}>
                   <SectionIngredient
+                    isIngredientListUserActive={true}
                     parentFunction={
                       isLoggedIn ? parentFunction : updateIngredientAtHome
                     }
@@ -241,8 +252,9 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
                   variables: {
                     ingredientShoppingList: ingredientShoppingListCurrent,
                   },
+                }).then(() => {
+                  parentFunction ? parentFunction() : null;
                 });
-                parentFunction ? parentFunction() : null;
               } else {
                 setIsLDCAccessNotifActive(true);
               }

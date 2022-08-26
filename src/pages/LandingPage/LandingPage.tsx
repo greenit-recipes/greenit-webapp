@@ -241,19 +241,9 @@ const LandingPage = () => {
 
           <div className={`relative mt-16 md:mt-6 mb-6 text-center`}>
             <h1 className="text-2xl md:text-3xl">
-              {isMobile ? (
-                <>
-                  <span className="text-green trait-img">Greenit</span>, la
-                  communauté centrale <br></br> pour les recettes{" "}
-                  <span className="double-trait-img">faits maison</span>
-                </>
-              ) : (
-                <>
-                  <span className="text-green trait-img">Greenit</span>, la
-                  communauté du fait-maison<br></br> pour une consommation{" "}
-                  <span className="double-trait-img">durable</span>
-                </>
-              )}
+              <span className="text-green trait-img">Greenit</span>, la
+              communauté {isMobile && <br />}
+              du fait-maison !
             </h1>
           </div>
           <div className="flex flex-row gap-2 w-9/12 sm:w-auto md:my-8 mx-12">

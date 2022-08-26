@@ -1,4 +1,5 @@
 import {
+  getRandomKey,
   getSelectedOptions,
   optionIcons,
   questionnaireMenu,
@@ -23,6 +24,7 @@ export const StepSkinType: React.FC<Step> = ({ nextStep }) => {
             skinOptions.map((op: any, index) => {
               return (
                 <div
+                  key={getRandomKey("step-1")}
                   id={op.id}
                   className={`flex flex-col justify-center ${
                     op.isSelected

@@ -1,4 +1,5 @@
 import {
+  getRandomKey,
   getSelectedOptions,
   questionnaireMenu,
   selectOption,
@@ -47,6 +48,7 @@ export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
             {faceOptions.map((op: any) => {
               return (
                 <div
+                  key={getRandomKey("step-3-1")}
                   id={op.id}
                   className={`w-56 py-2  ${
                     op.isSelected
@@ -74,6 +76,7 @@ export const StepMoreDetailsType: React.FC<Step> = ({ nextStep }) => {
             {hairOptions.map((op: any) => {
               return (
                 <div
+                  key={getRandomKey("step-3-2")}
                   id={op.id}
                   className={`w-56 py-2  ${
                     op.isSelected

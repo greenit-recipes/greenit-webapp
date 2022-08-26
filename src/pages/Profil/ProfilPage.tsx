@@ -4,7 +4,7 @@ import "App.css";
 import { Button, Loading, RecipeCard } from "components";
 import { getImagePath } from "helpers/image.helper";
 import { Cooking, defaultImageProfil, likedIconOff, likedIconOn } from "icons";
-import { isEmpty } from "lodash";
+import { cloneDeep, isEmpty } from "lodash";
 import { ExplorateurProfil } from "pages/Profil/ExplorateurProfil";
 import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
 import { CTACard } from "pages/recipe/ListPage/Components/CTACard";
@@ -49,7 +49,7 @@ const ProfilPage: React.FC = () => {
       pathname: "/",
     });
   }
-  const user = data?.me;
+  const user = cloneDeep(data?.me);
 
   // Image
   const [userImage, setImage] = useState(user?.imageProfile);
