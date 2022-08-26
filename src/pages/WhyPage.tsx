@@ -8,10 +8,13 @@ import {
   planet,
   wellbeing,
   GreenitTeam,
+  BadgeControleDesktop,
+  BadgeControleMobile,
 } from "../icons";
 import communityDesktop from "../icons/community_desktop.png";
 import communityMobile from "../icons/community_mobile.png";
 import { Helmet } from "react-helmet";
+import { CircleGreenit } from "./recipe/SinglePage/CircleGreenit/CircleGreenit";
 
 const Block: React.FC<{
   id: string;
@@ -79,151 +82,218 @@ const WhyPage: React.FC = () => {
           content="Greenit Community cherche à devenir la plateforme référente du fait-maison. Le partage de recettes, les ateliers et les informations sont portés par une communauté de passionnés en DIY."
         />
       </Helmet>
-      <div className="h-auto w-full flex flex-col items-center mb-12 leading-loose">
-        <Block
-          style={{
-            backgroundColor: "#8fb5e7",
-          }}
-          id="1"
-          className="grid justify-items-center text-white w-full pb-20"
-        >
-          <h1 className="font-semibold text-white">Greenit Community</h1>
-          <h2 className="mt-5 md:w-2/3">
-            Un projet étudiant pour le développement de modes de consommation
-            plus sains.
-          </h2>
-          <h3 className="text-center mt-5 mb-5 md:w-2/3">
-            Aujourd’hui, Greenit c’est une communauté d’humains engagés et
-            proactifs qui veulent répandre un mode de production et consommation
-            plus conscient.
-          </h3>
-        </Block>
-        <div className="grid justify-items-center bg-white rounded-full h-24 w-24 lg:h-32 lg:w-32 -mt-10 lg:-mt-16">
-          <img
-            src={logo}
-            alt="greenit logo"
-            className="self-center h-20 w-20 lg:h-28 lg:w-28"
-          />
+      <div className="h-auto w-full">
+        <div className="bg-blueL w-full h-64 | flex items-center justify-center">
+          <h1 className="text-center">
+            Greenit, la communauté qui rend accessible le fait-maison !
+          </h1>
         </div>
-
-        <div className="grid justify-items-center lg:w-2/3">
-          <p className="mt-5  w-3/4 text-justify">
-            En mars 2020, lorsque le Covid confine Andrea chez elle, Andrea
-            s’intéresse à la composition de ses produits du quotidien, lassée de
-            ses irritations et allergies.
-            <br />
-            <br />
-            Convaincue de la toxicité des produits industriels, Andrea se lance
-            dans sa première crème maison : une grande réussite ! <br />
-            <br />
-            Stimulée par cette première victoire, elle multiplie les recherches
-            et découvre une passion pour le DIY.
-            <br />
-            <br />
+        <div className="w-full h-auto p-6 | flex flex-col items-center justify-center">
+          <h2 className="text-center">Pour la petite histoire</h2>
+          <p className="text-center font-diy text-3xl">
+            c’est le moment faire connaissance !
+          </p>
+          <p className="text-center mt-4">
+            En 2020, lassée de ses irritations et allergies, Andréa s’intéresse
+            à la composition de ses produits du quotidien : shampooings, soins,
+            crèmes, lessives… Elle est rapidement alertée par les nombreux
+            ingrédients qui créent la polémique et qui sont désignés comme
+            préoccupants par les scientifiques (malgré qu’ils soient largement
+            autorisés !) <br /> <br /> Finalement, elle se lance dans sa
+            première crème maison : une grande réussite ! Stimulée par cette
+            première victoire, elle multiplie les recherches et découvre une
+            passion pour le DIY.
+            <br /> <br />
             Consciente des bienfaits physiques et écologiques, elle crée avec
             Adrien, entrepreneur dans l’âme et motivé par de profondes ambitions
             écologiques, Greenit, une communauté qui supporte la production
-            maison. Ces derniers s’entourent d’étudiants qui apportent leurs
-            pierres à l’édifice en proposant un design, une identité de marque
-            et leur aide pour développer le premier site internet lancé en juin
-            2021. <br />
-            <br />
-            L’équipe s’agrandit à nouveau en novembre 2021 pour accueillir
-            Florian, le codeur fou, qui est venu booster les ambitions de
-            Greenit en apportant son savoir-faire.
+            maison.
+            <br /> <br /> Ces derniers s’entourent d’étudiants qui apportent
+            leurs pierres à l’édifice en proposant un design, une identité de
+            marque et leur aide pour développer le premier site internet lancé
+            en juin 2021. L’équipe s’agrandit à nouveau en novembre 2021 pour
+            accueillir Florian qui est venu booster les ambitions de Greenit en
+            apportant son savoir-faire.
           </p>
+        </div>
+        <div className="w-full h-auto p-6 bg-yellowL | flex flex-col items-center justify-center">
+          <h2 className="text-center">
+            On bouscule ces habitudes qui nous abîment
+          </h2>
+          <p className="text-center font-diy text-3xl">
+            quand est-ce qu’on dit stop ?
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
+            <div>
+              <h1 className="text-center text-yellow font-diy text-5xl">
+                60 000
+              </h1>
+              <p className="text-center">
+                tonnes de plastique à usage unique rejetés par l’industrie de la
+                cosmétique et de l’hygiène
+              </p>
+            </div>
+            <div>
+              <h1 className="text-center text-yellow font-diy text-5xl">
+                78 %
+              </h1>
+              <p className="text-center">
+                des produits cosmétiques français qui contiennent des molécules
+                dites préoccupantes
+              </p>
+            </div>
+          </div>
+          <p className="text-center my-14">
+            La révolution se passe à la maison !
+          </p>
+        </div>
+        <div className="relative">
+          <div className="absolute -top-16 -right-8">
+            <img
+              className="h-48 md:h-52"
+              alt="Mon savon ? Je le fais moi-même"
+              src={isMobile ? BadgeControleMobile : BadgeControleDesktop}
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div className="w-full h-auto p-4 | flex flex-col items-center justify-center">
+          <h2 className="text-center mt-24">
+            Le fait-maison, un retour aux sources qui fait sens
+          </h2>
+          <p className="text-center font-diy text-3xl mt-3">
+            4 raisons de s’y mettre
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center w-4/5 md:w-2/3 md:gap-6 mt-10">
+            {[
+              {
+                icon: planet,
+                alt: "image planet",
+                title: "Pour la planète",
+                text: "Parlons des compositions des shampoings, des lessives, des liquides vaisselles : silicones, methylchloroisothiazolinone, polycarboxylates… La liste est longue et leurs pollutions environnementales catastrophiques. La production maison, c’est un contrôle des ingrédients et des contenants. Consommons uniquement le nécessaire !",
+              },
+              {
+                icon: corpsWhy,
+                alt: "image santé",
+                title: "Les ingrédients & ustensiles",
+                text: "Ces mêmes ingrédients chimiques endommagent, irritent et vulnérabilisent ta peau et tes cheveux. Hélas, même dans les produits les plus biologiques : les perturbateurs endocriniens, alcool et aluminium attaquent nos corps. La production maison est aussi personnalisée et respecte les différences de chacun.",
+              },
+              {
+                icon: money,
+                alt: "image argent",
+                title: "Pour tes économies",
+                text: "27,90€ le baume réparateur bio ? 5,80€ le stick à lèvres naturel ? L’industrie des produits cosmétiques et ménagers ne respecte pas notre pouvoir d’achat. Sur Greenit, le baume revient à 6€ et estick à lèvres à 1,50€.",
+              },
+              {
+                icon: wellbeing,
+                alt: "image bien-etre",
+                title: "Pour ton esprit",
+                text: "La production maison c’est aussi une activité manuelle et épanouissante. La création apporte une stimulation des sens, un sentiment d’accomplissement et une manière de se déconnecter, seul ou à plusieurs.",
+              },
+            ].map(item => (
+              <div className="flex flex-col justify-center mb-10">
+                <img
+                  src={item.icon}
+                  alt={item.alt}
+                  className="w-28 h-28 md:w-32 md:h-32 self-center"
+                ></img>
+                <h3 className="font-diy text-center text-3xl my-2">
+                  {item.title}
+                </h3>
+                <p className="text-center">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="w-full h-auto p-2 bg-greenL | flex flex-col items-center justify-center">
+          <h2 className="text-center">Aujourd’hui, Greenit c’est…</h2>
+          <p className="text-center font-diy text-3xl">
+            Un impact grandissant...
+          </p>
+          <div className="grid grid-cols-3 md:grid-cols-3 gap-2 mt-10">
+            <CircleGreenit
+              id="recipepage-RPI-substances"
+              colorCircle="bg-blue"
+              icon={
+                <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
+              }
+              symbol=""
+              number="10"
+              text="Substances épargnées"
+            />
+            <CircleGreenit
+              id="recipepage-RPI-argent"
+              colorCircle="bg-yellow"
+              icon={
+                <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
+              }
+              customClassName=""
+              symbol="€"
+              number="10"
+              text="Argent économisé"
+            />
+            <CircleGreenit
+              id="recipepage-RPI-plastique"
+              colorCircle="bg-green"
+              icon={
+                <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
+              }
+              customClassName=""
+              symbol="g"
+              number="200"
+              text="Plastiques évités"
+            />
+          </div>
+          <p className="my-14 text-center font-diy text-3xl">
+            et ça continue !
+          </p>
+        </div>
+        <div>
+          <h2 className="text-center mt-10">Notre équipe fondatrice</h2>
           <img
             src={GreenitTeam}
             alt="greenit equipe"
-            className="rounded-lg w-full md:w-1/2 self-start justify-self-center mt-10 justify-self-center"
+            className="rounded-lg w-full md:w-1/2 justify-self-center mt-10 justify-self-center"
           ></img>
         </div>
-
-        <h2 className=" text-center mt-20 w-3/4">
-          Pourquoi faire ses produits maison ?{" "}
-        </h2>
-
-        <div className="grid grid-cols-1 grid-rows-8 md:grid-cols-2 md:grid-rows-4 items-center w-4/5 md:w-2/3 md:gap-6 mt-10">
-          <img
-            src={planet}
-            alt="icon planet"
-            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center md:mt-4 md:justify-self-end"
-          ></img>
-          <div className="">
-            <h3 className="text-md text-green">Pour la planète</h3>
-            <h4 className="text-md">
-              Parlons des compositions des shampoings, des lessives, des
-              liquides vaisselles : silicones, methylchloroisothiazolinone,
-              polycarboxylates… La liste est longue et leurs pollutions
-              environnementales catastrophiques. La production maison, c’est un
-              contrôle des ingrédients et des contenants. Consommons uniquement
-              le nécessaire !
-            </h4>
+        <p className="my-14 text-center font-diy text-3xl">
+          et c’est grâce à vous que le projet continue !
+        </p>
+        <div className="w-full h-auto p-2 bg-blueL | flex flex-col items-center justify-center">
+          <h2 className="text-center">Nous ne sommes pas parfaits !</h2>
+          <p className="text-center font-diy text-3xl">
+            mais nous faisons de notre mieux
+          </p>
+          <div className="grid grid-rows-2 md:grid-rows-1 mb-10">
+            <img src={GreenitTeam} className="rounded-full"></img>
+            <div className="flex flex-col p-4">
+              {[
+                {
+                  text: "✅ 100% made in chez moi",
+                },
+                {
+                  text: "✅ Des ingrédients sélectionnés qui ne nous veulent pas du mal",
+                },
+                {
+                  text: "✅ Des recettes confectionnées et validées par la communauté",
+                },
+                {
+                  text: "✅ Côté kit, des contenants en verre ou en carton recyclable",
+                },
+                {
+                  text: "⏳ Une logistique qui se veut éco-responsable",
+                },
+                {
+                  text: "⏳ Des ingrédients produits en France ou Europe proche",
+                },
+              ].map(item => (
+                <p className=""> {item.text}</p>
+              ))}
+            </div>
           </div>
-          <img
-            src={corpsWhy}
-            alt="corps bien-etre"
-            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start mt-10 justify-self-center md:hidden"
-          ></img>
-          <div>
-            <h3 className="text-md text-blue text-right">Pour ton corps</h3>
-            <h4 className="text-md text-right">
-              Ces mêmes ingrédients chimiques endommagent, irritent et
-              vulnérabilisent ta peau et tes cheveux. Hélas, même dans les
-              produits les plus biologiques : les perturbateurs endocriniens,
-              alcool et aluminium attaquent nos corps. La production maison est
-              aussi personnalisée et respecte les différences de chacun.{" "}
-            </h4>
-          </div>
-          <img
-            src={corpsWhy}
-            alt="corps bien-etre"
-            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start md:mt-4 hidden md:flex"
-          ></img>
-          <img
-            src={money}
-            alt="argent"
-            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start justify-self-center mt-10 md:mt-4 md:justify-self-end"
-          ></img>
-          <div>
-            <h3 className="text-md text-yellow">Pour tes économies</h3>
-            <h4 className="text-md ">
-              27,90€ le baume réparateur bio ? 5,80€ le stick à lèvres naturel ?
-              L’industrie des produits cosmétiques et ménagers ne respecte pas
-              notre pouvoir d’achat. Sur Greenit, le baume revient à 6€ et le
-              stick à lèvres à 1,50€.
-            </h4>
-          </div>
-          <img
-            src={wellbeing}
-            alt="bien-etre"
-            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start mt-10 justify-self-center md:hidden"
-          ></img>
-          <div>
-            <h3 className="text-md text-orange text-right">Pour ton esprit</h3>
-            <h4 className="text-md text-right">
-              La production maison c’est aussi une activité manuelle et
-              épanouissante. La création apporte une stimulation des sens, un
-              sentiment d’accomplissement et une manière de se déconnecter, seul
-              ou à plusieurs.
-            </h4>
-          </div>
-          <img
-            src={wellbeing}
-            alt="bien-etre"
-            className="w-28 h-28 md:w-32 md:h-32 pb-2 self-start hidden md:mt-4 md:flex"
-          ></img>
         </div>
       </div>
-      <Block id="4" className="grid w-full p-2 justify-items-center mb-20">
-        <h2> Merci à toutes celles et ceux qui nous aident </h2>
-        <div className="w-full mt-12">
-          <img
-            src={isMobile ? communityMobile : communityDesktop}
-            alt="communauté"
-          />
-        </div>
-      </Block>
       <Footer />
     </div>
   );
