@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ModalPersonalizationInfo from "components/personalization/ModalPersonalizationInfo";
 import useIsMobile from "hooks/isMobile";
 import { RecommendedRecipes } from "./RecommendedRecipes";
@@ -19,6 +19,11 @@ export const SectionRecommendedRecipe: React.FC<
   currentFilters,
 }) => {
   const isMobile = useIsMobile();
+  const [isRecommendationEmpty, setIsRecommendationEmpty] = useState(false);
+
+  const isEmpty = (state: boolean) => {
+    setIsRecommendationEmpty(state);
+  };
 
   return (
     <div className="mt-2">
@@ -39,8 +44,13 @@ export const SectionRecommendedRecipe: React.FC<
         </h2>
       )}
       {hasParticularities && isMobile && (
-        <div className="grid justify-center grid-cols-2 mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10">
+        <div
+          className={`grid justify-center ${
+            isRecommendationEmpty ? "grid-cols-1" : "grid-cols-2"
+          } mt-4 sm:grid-cols-3 md:grid-cols-4 md:gap-x-4 md:gap-y-10`}
+        >
           <RecommendedRecipes
+            parentFunction={isEmpty}
             currentFilters={currentFilters}
             ingredientAtHome={ingredientAtHome}
             particularities={particularities}

@@ -14,6 +14,7 @@ interface RecommendedRecipeProps {
   particularities: any;
   ingredientAtHome: any;
   currentFilters?: any;
+  parentFunction?: any;
 }
 
 export const RecommendedRecipes: React.FC<RecommendedRecipeProps> = ({
@@ -21,6 +22,7 @@ export const RecommendedRecipes: React.FC<RecommendedRecipeProps> = ({
   ingredientAtHome,
   particularities,
   currentFilters = {},
+  parentFunction,
 }) => {
   const [showHomeRecipe, setShowHomeRecipe] = useState(
     localStorage.getItem("hasHomeRecipe__personalization") === "true",
@@ -79,7 +81,14 @@ export const RecommendedRecipes: React.FC<RecommendedRecipeProps> = ({
   const allRecipes = homeRecipes.concat(recipes);
 
   if (recipes.length === 0) {
-    return <Empty />;
+    parentFunction ? parentFunction(true) : null;
+    return (
+      <div className="flex justify-center">
+        <Empty />
+      </div>
+    );
+  } else {
+    parentFunction ? parentFunction(false) : null;
   }
 
   return (
