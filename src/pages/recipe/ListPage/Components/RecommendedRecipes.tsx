@@ -44,10 +44,12 @@ export const RecommendedRecipes: React.FC<RecommendedRecipeProps> = ({
     fetchPolicy: "cache-first",
     variables: {
       filter: {
+        //@ts-ignore
         particularity: [
           //@ts-ignore
           JSON.stringify(getTagIdsByName(JSON.parse(particularities))),
         ],
+        //@ts-ignore
         ingredientsAtHome: ingredientAtHome || [],
         ...cleanDataPlayload(currentFilters),
       },
