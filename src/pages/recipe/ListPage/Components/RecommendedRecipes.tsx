@@ -28,6 +28,14 @@ export const RecommendedRecipes: React.FC<RecommendedRecipeProps> = ({
     localStorage.getItem("hasHomeRecipe__personalization") === "true",
   );
 
+  useEffect(() => {
+    if (localStorage.getItem("hasHomeRecipe__personalization") === "true") {
+      !showHomeRecipe && setShowHomeRecipe(true);
+    } else {
+      showHomeRecipe && setShowHomeRecipe(false);
+    }
+  });
+
   const {
     error: errorPersonalization,
     loading: loadingPersonalization,
