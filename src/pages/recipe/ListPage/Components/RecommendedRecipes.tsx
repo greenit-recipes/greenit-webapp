@@ -45,6 +45,7 @@ export const RecommendedRecipes: React.FC<RecommendedRecipeProps> = ({
     variables: {
       filter: {
         particularity: [
+          //@ts-ignore
           JSON.stringify(getTagIdsByName(JSON.parse(particularities))),
         ],
         ingredientsAtHome: ingredientAtHome || [],
