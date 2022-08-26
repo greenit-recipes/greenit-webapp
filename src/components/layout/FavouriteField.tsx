@@ -50,10 +50,10 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
             >
               <Button
                 id="favorite"
-                type="darkBlue"
+                type="blueIcon"
                 rounded="lg"
+                isOnClickActive={false}
                 haveIcon={true}
-                className="mr-1"
                 onClick={() => {
                   if (!isRefetchData) setFavorite(!isFavorite);
                   // @ts-ignore: Object is possibly 'null'.
@@ -67,7 +67,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 }}
               >
                 <i
-                  className={`bx bx-bookmark-heart bx-sm ${
+                  className={`bx bxs-bookmark-heart bx-sm text-blue ${
                     isToltipActif ? "" : ""
                   }`}
                 ></i>
@@ -85,9 +85,10 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
             >
               <Button
                 id="favorite"
-                type="darkBlue"
+                type="FavoritedarkBlueIcon"
                 rounded="lg"
                 haveIcon={true}
+                isOnClickActive={false}
                 className="mr-1"
                 onClick={() => {
                   if (!isRefetchData) setFavorite(!isFavorite);

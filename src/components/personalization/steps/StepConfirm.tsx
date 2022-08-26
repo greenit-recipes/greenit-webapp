@@ -160,6 +160,7 @@ export const StepConfirm: React.FC<StepConfirmProps> = ({
           {confirmOptions.map((op: any) => {
             return (
               <div
+                key={getRandomKey("step-4")}
                 id={op.id}
                 className={`w-56 py-3  ${
                   op.isSelected

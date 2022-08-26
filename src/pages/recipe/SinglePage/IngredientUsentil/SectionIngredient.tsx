@@ -14,7 +14,10 @@ import ReactDOM from "react-dom";
 import { NotificationAlert } from "components/layout/NotificationAlert";
 import authService from "services/auth.service";
 import { useLocation } from "react-router-dom";
-import { getRandomKey } from "../../../../components/personalization/PersonalizationHelper";
+import {
+  getRandomKey,
+  hasIngredientOnList,
+} from "../../../../components/personalization/PersonalizationHelper";
 
 interface ISectionIngredient {
   className?: string;
@@ -22,14 +25,16 @@ interface ISectionIngredient {
   isICMactive?: boolean;
   isLDCactive?: boolean;
   parentFunction?: any;
+  isIngredientListUserActive?: boolean;
 }
 
 export const SectionIngredient: React.FC<ISectionIngredient> = ({
   data,
   className,
-  isICMactive,
-  isLDCactive,
+  isICMactive = false,
+  isLDCactive = false,
   parentFunction,
+  isIngredientListUserActive = false,
 }) => {
   const [isArrowDown, setArrowDown] = useState(true);
   //@ts-ignore
@@ -39,6 +44,12 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
   const isMobile = useIsMobile();
   const location = useLocation();
   const isLoggedIn = authService.isLoggedIn();
+
+  useEffect(() => {
+    isLDCactive
+      ? !isLDCActive && setIsLDCActive(true)
+      : isLDCActive && setIsLDCActive(false);
+  }, [isLDCactive]);
 
   const [
     createOrDeleteIngredientAtHomeUser,
@@ -52,7 +63,6 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
     errorPolicy: "all",
   });
 
-  let keyCounter: any = useRef(0);
   const [isICMAddedNotifActive, setIsICMAddedNotifActive] = useState(false);
   const [isLDCAddedNotifActive, setIsLDCAddedNotifActive] = useState(false);
   const [isLDCUpdatedNotifActive, setIsLDCUpdatedNotifActive] = useState(false);
@@ -161,7 +171,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
         </div>
         <div className="w-1/6">
           <div className="flex items-center justify-end w-full">
-            {!isMobile && (
+            {isIngredientListUserActive && !isMobile && (
               <div className="flex ml-4">
                 <div className="tooltip relative flex-col">
                   <Button
@@ -286,7 +296,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
       <div className={!isArrowDown ? "fadeIn-arrow" : " fadeOut-arrow"}>
         <div className="rounded-b bg-blueL">
           <div className="w-5/6 ml-6 lg:w-4/6">
-            {isMobile && (
+            {isIngredientListUserActive && isMobile && (
               <div className="flex justify-around pt-5 space-x-2 mb-2">
                 <div className="flex items-center">
                   <Button

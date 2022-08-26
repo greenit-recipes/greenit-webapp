@@ -13,7 +13,7 @@ import { momentGreenit, momentGreenitNow } from "helpers/time.helper";
 import { getUuidFromId } from "helpers/user.helper";
 import useIsMobile from "hooks/isMobile";
 import HTMLReactParser from "html-react-parser";
-import { isEmpty } from "lodash";
+import { cloneDeep, isEmpty } from "lodash";
 import { IngredientUsentil } from "pages/recipe/SinglePage/IngredientUsentil/IngredientUsentil";
 import { Instruction } from "pages/recipe/SinglePage/Instructions/Instructions";
 import { ModalKpi } from "pages/recipe/SinglePage/modalKpi/modalKpi";
@@ -175,7 +175,9 @@ const RecipeSinglePage = () => {
   }
 
   //Todo : refactor variable into contexts
-  user.current = dataUser?.me;
+
+  user.current = cloneDeep(dataUser?.me);
+  console.log(user.current);
 
   // @ts-ignore
   const { recipe } = data;
@@ -452,7 +454,9 @@ const RecipeSinglePage = () => {
             <IngredientUsentil
               ingredientShoppingList={
                 //@ts-ignore
-                isLoggedIn ? user.current.ingredientShoppingListUser : []
+                isLoggedIn
+                  ? cloneDeep(user.current.ingredientShoppingListUser)
+                  : []
               }
               ingredientAtHome={
                 //@ts-ignore

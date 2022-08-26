@@ -83,7 +83,6 @@ export const Personalization: React.FC<PersonalizationProps> = ({
                   ? " w-8 h-8 bg-darkBlue rounded-full text-white"
                   : ""
               }`}
-              onClick={() => selectStep(el - 1)}
             >
               {el.toString()}
             </div>

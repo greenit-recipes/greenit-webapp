@@ -1,6 +1,6 @@
 import { useLazyQuery, useQuery } from "@apollo/client";
-import { getObjectSession } from "helpers/session-helper";
-import { cloneDeep, isEmpty, map, mapValues, omit, sum } from "lodash";
+import { cleanDataPlayload, getObjectSession } from "helpers/session-helper";
+import { isEmpty, map, omit, sum } from "lodash";
 import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 import { ModalListPage } from "pages/recipe/ListPage/Components/ModalListPage";
@@ -14,7 +14,6 @@ import {
   Empty,
   Footer,
   Loading,
-  ModalLogGreenit,
   Navbar,
   RecipeCard,
 } from "components";
@@ -27,8 +26,8 @@ import SectionPersonalization from "components/personalization/sections/SectionP
 import SectionICM from "components/personalization/sections/SectionICM";
 import Auth, { ME } from "services/auth.service";
 import { SectionRecommendedRecipe } from "./Components/SectionRecommendedRecipe";
-import { annotateRecipeResult } from "../../../components/personalization/PersonalizationHelper";
-import ModalPersonalization from "../../../components/personalization/ModalPersonalization";
+import { annotateRecipeResult } from "components/personalization/PersonalizationHelper";
+import ModalPersonalization from "components/personalization/ModalPersonalization";
 
 const RecipeListPage = () => {
   const isLoggedIn = Auth.isLoggedIn();
@@ -38,12 +37,6 @@ const RecipeListPage = () => {
 
   //End Personalization
 
-  const cleanDataPlayload = (filter: any) =>
-    mapValues(filter, function (value, key) {
-      if (key === "search") return value;
-      if (key === "particularity") return;
-      return map(value, x => x.value);
-    });
   const params = new URLSearchParams(window.location.search);
   const history = useHistory();
 
@@ -107,13 +100,6 @@ const RecipeListPage = () => {
       ? getAndDeleteParamsUrl("category")
       : categorySession,
     difficulty: sessionFilter?.difficulty || [],
-    // particularity: [{tagsSkin: [], tagsHair: [], tagsPeculiarity: []}] || [], // [{ tagsSkin: ["00838ea5-bc78-4a11-a9fe-57d3e20aac71"], tagsHair: [], tagsPeculiarity: [] }],
-    // ingredientsAtHome:
-    //   [
-    //     "e1fee130-92fd-48c6-b140-1d54e4707e64",
-    //     "19f7b6e1-b292-4b3b-bf83-9233dd221b39",
-    //     "61ee83a6-b6a7-4460-ac8c-7d9fa9e4f8a7",
-    //   ] || [],
     duration: sessionFilter?.duration || [],
     numberOfIngredients: sessionFilter?.numberOfIngredients || [],
   });
@@ -248,6 +234,7 @@ const RecipeListPage = () => {
               className="px-4 py-1 mr-3 mb-2 shadow-md"
               haveIcon={true}
               isSelected={isParticularityActive}
+              isOnClickActive={true}
               onClick={() => {
                 setIsParticularityActive(!isParticularityActive);
                 isICMActive && setIsICMActive(!isICMActive);
@@ -281,6 +268,7 @@ const RecipeListPage = () => {
             id="listpage-ingredientchezmoi"
             className="mb-2 shadow-md"
             haveIcon={true}
+            isOnClickActive={true}
             isSelected={isICMActive}
             onClick={() => {
               setIsICMActive(!isICMActive);
@@ -389,6 +377,7 @@ const RecipeListPage = () => {
           {/*Reco]mmended Recipes*/}
           {isLoggedIn && (
             <SectionRecommendedRecipe
+              currentFilters={currentFilters}
               hasParticularities={
                 !isEmpty(
                   JSON.parse(
