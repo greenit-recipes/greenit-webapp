@@ -453,9 +453,9 @@ const RecipeSinglePage = () => {
             </div>
             <IngredientUsentil
               ingredientShoppingList={
-                //@ts-ignore
                 isLoggedIn
-                  ? cloneDeep(user.current.ingredientShoppingListUser)
+                  ? //@ts-ignore
+                    cloneDeep(user.current.ingredientShoppingListUser)
                   : []
               }
               ingredientAtHome={
