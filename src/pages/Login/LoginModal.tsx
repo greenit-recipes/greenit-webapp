@@ -305,7 +305,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               <i className="bx bx-envelope mr-2 text-darkBlue text-3xl"></i>
               <input
                 className="w-full h-10 px-3 m-4 leading-tight text-gray-700 border shadow-lg appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline"
-                id="email"
+                id="modal-login-email"
                 placeholder="Email"
                 type="email"
                 {...register("email")}
@@ -320,7 +320,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               <div className="flex flex-row items-center w-full h-10 m-4 leading-tight text-gray-700 border shadow-lg rounded-md focus:shadow-outline">
                 <input
                   className="w-full h-full px-3 appearance-none rounded-xl py-1 focus:outline-none"
-                  id="password"
+                  id="login-page-password"
                   type={isRevealPwd ? "text" : "password"}
                   placeholder="Mot de passe"
                   {...register("password")}
@@ -345,7 +345,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
             </a>
             <Button
               type="blue"
-              id="modal-button-connexion"
+              id="login-modal-button-connexion"
               className="mt-4 font-extrabold"
               isLoading={loading}
             >

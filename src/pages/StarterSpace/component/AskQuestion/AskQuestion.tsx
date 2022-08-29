@@ -44,7 +44,7 @@ export const AskQuestion: React.FC = () => {
       >
         <textarea
           className="bg-white shadow-sm focus:outline-none | border-2 border-blue rounded-lg p-4"
-          id="question"
+          id="starter-page-askquestion"
           placeholder="Une question ? Nous sommes là pour vous aider !"
           rows={6}
           cols={34}
@@ -57,7 +57,7 @@ export const AskQuestion: React.FC = () => {
         </div>
         <input
           className="w-2/3 h-10 bg-white rounded-lg shadow-sm focus:outline-none | p-4 | border-2 border-blue"
-          id="email"
+          id="starter-page-askquestion-email"
           placeholder="Ton email"
           type="email"
           {...register("email")}

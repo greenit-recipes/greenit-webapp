@@ -510,7 +510,7 @@ const StarterPage = () => {
               <div>
                 <p className="text-center mb-4">9,40 €</p>
                 <Button
-                  id="order_jolieessence"
+                  id="page-debutant-order-jolieessence"
                   href="#"
                   onClick={() => {
                     window.open(
@@ -733,7 +733,7 @@ const StarterPage = () => {
               </p>
               <div>
                 <Button
-                  id="order_biocop"
+                  id="page-debutant-order-biocop"
                   href="#"
                   onClick={() => {
                     window.open(

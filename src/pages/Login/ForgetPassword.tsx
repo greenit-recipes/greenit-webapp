@@ -64,7 +64,7 @@ const ForgetPassword: React.FC = () => {
             </label>
             <input
               className="w-full px-3 py-2 mb-6 leading-tight text-gray-700 rounded shadow-lg appearance-none focus:outline-none focus:shadow-outline"
-              id="email"
+              id="resetPswrd-page-email"
               placeholder="email"
               type="email"
               {...register("email")}

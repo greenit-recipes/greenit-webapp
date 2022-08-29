@@ -47,7 +47,7 @@ export const FirstStep: React.FC<IFirstStep> = ({ item }) => {
         <p>{HTMLReactParser(item.longDescription)}</p>
       </div>
       <Button
-        id="read_more"
+        id="premierPas-page-lire-plus"
         type="darkBlue"
         onClick={() => setIsActive(!isActive)}
         className={"w-24 self-center mt-2 mb-6"}

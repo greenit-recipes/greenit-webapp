@@ -352,7 +352,10 @@ const ProfilPage: React.FC = () => {
                     type="blue"
                     link={RouteName.createRecipe}
                   >
-                    <button id="Share_a_recipe" className="w-11/12 lg:w-10/12">
+                    <button
+                      id="profil-page-shareRecipe"
+                      className="w-11/12 lg:w-10/12"
+                    >
                       <h2 className="text-lg text-center text-white lg:text-xl mt-28 lg:mt-36">
                         Publier une nouvelle recette
                       </h2>

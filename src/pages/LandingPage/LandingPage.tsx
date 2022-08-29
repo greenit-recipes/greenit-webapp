@@ -261,7 +261,7 @@ const LandingPage = () => {
           <div className="flex flex-row gap-2 w-9/12 sm:w-auto md:my-8 mx-12">
             <div className="w-full md:w-3/5">
               <SearchBar
-                keyId="searchBarLandingPage"
+                keyId="landing-page-searchBar"
                 suggestionIsActive={true}
                 setValue={setSearchTermDebounced}
                 isLoading={autoCompleteLoading}
@@ -432,14 +432,14 @@ const LandingPage = () => {
               <div className="flex justify-center md:justify-start">
                 <Button
                   className="mr-3"
-                  id="landing-box-je-commande"
+                  id="landing-page-box-button-je-commande"
                   type="green"
                   onClick={() => history.push(RouteName.startDiyGreenitFullXp)}
                 >
                   Je commande
                 </Button>
                 <Button
-                  id="landing-box-en-savoir-plus"
+                  id="landing-box-button-en-savoir-plus"
                   type="darkBlue"
                   onClick={() => history.push(RouteName.startDiyGreenitFullXp)} // Mettre la bonne route
                 >
@@ -698,7 +698,7 @@ const LandingPage = () => {
                 <Button
                   className="mt-5"
                   type="darkBlue"
-                  id="landing-voir-le-guide"
+                  id="landing-page-voir-le-guide"
                 >
                   Voir le guide
                 </Button>

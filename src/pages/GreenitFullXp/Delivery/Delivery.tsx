@@ -111,7 +111,7 @@ const DeliveryGreenitFullXp: React.FC<IHeadBand> = ({ setNavigation }) => {
           </label>
           <input
             className="w-full h-12 px-3 py-2 mb-6 leading-tight text-gray-700 border rounded shadow-lg appearance-none sm:w-80 focus:outline-none focus:shadow-outline"
-            id="email"
+            id="fullXPBox-delivery-page-email"
             placeholder="Email"
             type="email"
             {...register("email")}

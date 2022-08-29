@@ -33,7 +33,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
     <div className={`${customClassName}`}>
       {isLoggedIn ? (
         <Button
-          id="recette-réalisée-login"
+          id="recipe-page-recette-realisee-logged"
           type="darkBlue"
           rounded="lg"
           haveIcon={true}
@@ -64,7 +64,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
           <ModalLogGreenit
             btn={
               <Button
-                id="recette-réalisée-pas-connecte"
+                id="recipe-page-recette-realisee-notLogged"
                 type="darkBlue"
                 rounded="lg"
                 haveIcon={true}

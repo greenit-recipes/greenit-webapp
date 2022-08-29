@@ -162,7 +162,7 @@ const Register: React.FC = () => {
             />
             <input
               className="w-full px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-xl py-1 focus:outline-none focus:shadow-outline "
-              id="email"
+              id="register-modal-email"
               placeholder="Email"
               type="email"
               {...register("email")}
@@ -180,7 +180,7 @@ const Register: React.FC = () => {
             />
             <input
               className="w-full px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-xl py-1 focus:outline-none focus:shadow-outline "
-              id="utilisateur"
+              id="register-page-username"
               placeholder="Nom d'utilisateur"
               type="text"
               {...register("utilisateur")}
@@ -199,7 +199,7 @@ const Register: React.FC = () => {
             <div className="flex flex-row items-center w-full leading-tight text-gray-700 border shadow-lg rounded-xl focus:shadow-outline ">
               <input
                 className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
-                id="password"
+                id="register-page-password"
                 type={isRevealPwd ? "text" : "password"}
                 placeholder="Mot de passe"
                 {...register("password")}
@@ -225,7 +225,7 @@ const Register: React.FC = () => {
             <div className="flex flex-row items-center w-full leading-tight text-gray-700 border shadow-lg rounded-xl focus:shadow-outline ">
               <input
                 className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
-                id="passwordConfirmation"
+                id="register-page-password-confirmation"
                 type={isRevealPwd ? "text" : "password"}
                 placeholder="Confirmer le mot de passe"
                 {...register("passwordConfirmation")}
@@ -319,7 +319,7 @@ const Register: React.FC = () => {
               type="checkbox"
               className="w-6 h-6 cursor-pointer"
               {...register("isFollowNewsletter")}
-              id="isFollowNewsletter"
+              id="register-page-isFollowNewsletter"
             />
             <label className="self-center ml-2 text-sm text-gray-700">
               Coche la case si tu veux recevoir nos dernières actualités et les

@@ -494,6 +494,7 @@ const RecipeSinglePage = () => {
                         : recipe?.videoUrl
                     }
                     className="react-player"
+                    id="single-page-reactPlayer"
                     controls={true}
                     ref={player}
                     config={{
@@ -653,7 +654,7 @@ const RecipeSinglePage = () => {
                   <div className="w-full mb-4">
                     <textarea
                       className="w-full p-4 mb-4 leading-tight text-gray-700 rounded appearance-none sm:w-3/4 focus:outline-none focus:shadow-outline"
-                      id="comment"
+                      id="recette-page-comment"
                       placeholder="Commentaire"
                       {...register("comment")}
                     ></textarea>

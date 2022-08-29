@@ -88,7 +88,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           customClass="w-[330px] md:w-full lg:w-3/6"
           recipesAutoComplete={recipesAutoComplete}
           search={search}
-          keyId="SearchFilterBarForMobile"
+          keyId="list-page-filterBar-search-mobile"
           setSearch={setSearch}
           setCurrentFilters={setCurrentFilters}
         />
@@ -107,7 +107,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                   customClass="w-2/6"
                   recipesAutoComplete={recipesAutoComplete}
                   search={search}
-                  keyId="SearchFilterBar"
+                  keyId="list-page-filterBar-searchBar"
                   setSearch={setSearch}
                   setCurrentFilters={setCurrentFilters}
                 />

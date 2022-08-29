@@ -31,7 +31,7 @@ const QRFullXp = () => {
               className="h-10 w-10 md:h-12 md:w-12"
               alt="Greenit Logo"
               loading="lazy"
-              id="home"
+              id="landing-page-navbar-home"
             />
           </Link>
           <h5 className="text-green font-semibold text-xl md:text-2xl mt-1">

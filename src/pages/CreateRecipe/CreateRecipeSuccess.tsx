@@ -70,10 +70,10 @@ const RecipeCreatedPage = () => {
             btn={
               <>
                 <button
-                  id="Create_Profil"
+                  id="navbar-create-profil"
                   className="p-2 mr-1 rounded-lg bg-blue mt-10 mb-10 h-9"
                 >
-                  <h2 id="Create_Profil" className="text-xs text-white">
+                  <h2 id="navbar-create-profil" className="text-xs text-white">
                     Créer mon compte
                   </h2>
                 </button>

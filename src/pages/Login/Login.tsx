@@ -188,7 +188,7 @@ const Login: React.FC = () => {
             </label>
             <input
               className="w-full h-12 px-3 py-2 mb-6 leading-tight text-gray-700 border rounded shadow-lg appearance-none sm:w-80 focus:outline-none focus:shadow-outline"
-              id="email"
+              id="modal-login-email"
               placeholder="email"
               type="email"
               {...register("email")}
@@ -202,7 +202,7 @@ const Login: React.FC = () => {
             <div className="flex flex-row items-center justify-between w-full h-12 px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow-lg sm:w-80 focus:shadow-outline">
               <input
                 className="appearance-none focus:outline-none"
-                id="password"
+                id="login-page-password"
                 type={isRevealPwd ? "text" : "password"}
                 placeholder="******************"
                 {...register("password")}

@@ -119,7 +119,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
     if (isLDCAccessNotifActive) {
       ReactDOM.render(
         <NotificationAlert
-          key={getRandomKey("ldc-access-")}
+          key={getRandomKey("ingredient-card-ldc-access")}
           type="alert"
           titre="Tu n’as pas accès à la liste de course."
           text="Crée-toi un compte pour ajouter à ta liste !"

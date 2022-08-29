@@ -80,7 +80,7 @@ export const Navbar: React.FC = () => {
           </div>
           <Link to="/" className="z-50 ">
             <h5
-              id="home"
+              id="landingpage-"
               className="self-center text-xl md:text-3xl font-bold text-center text-green"
             >
               Greenit
@@ -90,12 +90,12 @@ export const Navbar: React.FC = () => {
             <div className="grid w-full justify-items-end">
               <Link to={RouteName.profil}>
                 <Button
-                  id="Access_Profil"
+                  id="navbar-access-profil"
                   type="blue"
                   rounded="lg"
                   className="mr-1"
                 >
-                  <h2 id="Access_Profil" className="text-xs">
+                  <h2 id="navbar-access-profil" className="text-xs">
                     Profil
                   </h2>
                 </Button>
@@ -107,7 +107,7 @@ export const Navbar: React.FC = () => {
                 <ModalLogGreenit
                   btn={
                     <Button
-                      id="Create_Profil"
+                      id="navbar-create-profil"
                       type="blue"
                       rounded="lg"
                       className="mr-1"
@@ -130,9 +130,9 @@ export const Navbar: React.FC = () => {
           }
         >
           <div className="flex flex-col">
-            <SearchBar keyId="SearchNavMobile" />
+            <SearchBar keyId="menu-searchBar-mobile" />
             <Link className="p-2 mt-3" to={RouteName.accueil}>
-              <h2 id="home" className="text-white">
+              <h2 id="navbar-home" className="text-white">
                 Accueil
               </h2>
             </Link>
@@ -142,35 +142,49 @@ export const Navbar: React.FC = () => {
               onClick={() => resetFilter()}
             >
               <div className="border-b-2 border-transparent">
-                <h2 id="recipes" className="text-white focus:text-green">
+                <h2
+                  id="navbar-recipes-mobile"
+                  className="text-white focus:text-green"
+                >
                   Recettes
                 </h2>
               </div>
             </Link>
             <Link className="p-2" to={RouteName.startDiyGreenitFullXp}>
-              <h2 id="nav-box-mobile" className="text-white">
+              <h2 id="navbar-box-mobile" className="text-white">
                 Kit fait-maison
               </h2>
             </Link>
             <Link className="p-2" to={RouteName.starterPage}>
-              <h2 id="getStarted" className="text-white">
+              <h2 id="navbar-getStarted-mobile" className="text-white">
                 Se lancer
               </h2>
             </Link>
             <Link className="p-2" to={RouteName.why}>
-              <h2 id="project" className="text-white">
+              <h2 id="navbar-project-mobile" className="text-white">
                 Le projet
               </h2>
             </Link>
             <hr className="mt-5 mb-2 border-white border" />
-            <Link className="p-2" to={RouteName.createRecipe}>
-              <h2 id="sharedRecipeNavMobile" className="text-white">
+            <Link
+              className="p-2"
+              id="navbar-sharedRecipe-mobile"
+              to={RouteName.createRecipe}
+            >
+              <h2 id="navbar-sharedRecipe-mobile" className="text-white">
                 Partager une recette
               </h2>
             </Link>
             {isLoggedIn ? (
-              <Link id="Access_Profil" className="p-2" to={RouteName.profil}>
-                <h2 id="Access_Profil" className="text-white">
+              <Link
+                id="navbar-access-profil-logged"
+                className="p-2"
+                to={RouteName.profil}
+              >
+                <h2
+                  id="navbar-access-profil-logged-mobile"
+                  className="text-white"
+                >
                   Mon profil
                 </h2>
               </Link>
@@ -202,7 +216,7 @@ export const Navbar: React.FC = () => {
             className="h-10 w-10 | ml-4 self-center"
             alt="Greenit Logo"
             loading="lazy"
-            id="home"
+            id="navbar-logohome"
           />
         </Link>
       </div>
@@ -212,13 +226,13 @@ export const Navbar: React.FC = () => {
         } h-full ml-4 justify-items-start`}
       >
         <Link to={RouteName.accueil}>
-          <NavButton id="home" type="black">
+          <NavButton id="navbar-home" type="black">
             Accueil
           </NavButton>
         </Link>
         <div className="w-auto" id="navmenu_big">
           <Link to={RouteName.recipes} onClick={() => resetFilter()}>
-            <NavButton id="recipes" type="green">
+            <NavButton id="navbar-recipes" type="green">
               Recettes
             </NavButton>
           </Link>
@@ -228,30 +242,38 @@ export const Navbar: React.FC = () => {
                 <h4 className="mb-2 cursor-default font-bold">Raccourcis</h4>
 
                 <Link
-                  id="allRecipes"
+                  id="navbar-allRecipes"
                   to={RouteName.recipes}
                   onClick={() => resetFilter()}
                 >
                   <h4
-                    id="allRecipes"
+                    id="navbar-allRecipes"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Toutes les recettes
                   </h4>
                 </Link>
                 {isLoggedIn ? (
-                  <Link to={RouteName.createRecipe} className="flex">
+                  <Link
+                    id="navbar-shareRecipe-logged"
+                    to={RouteName.createRecipe}
+                    className="flex"
+                  >
                     <h4
-                      id="shareRecipe"
+                      id="navbar-shareRecipe-logged"
                       className="mb-2 cursor-pointer hover:text-green"
                     >
                       Partager une recette
                     </h4>
                   </Link>
                 ) : (
-                  <Link to={RouteName.createRecipe} className="flex">
+                  <Link
+                    id="navbar-shareRecipe"
+                    to={RouteName.createRecipe}
+                    className="flex"
+                  >
                     <h4
-                      id="shareRecipe"
+                      id="navbar-shareRecipe"
                       className="mb-2 cursor-pointer hover:text-green"
                     >
                       Partager une recette
@@ -259,27 +281,34 @@ export const Navbar: React.FC = () => {
                   </Link>
                 )}
 
-                <Link to={`${RouteName.recipes}?tags=Premiers pas`}>
+                <Link
+                  id="navbar-premiesrPas"
+                  to={`${RouteName.recipes}?tags=Premiers pas`}
+                >
                   <h4
-                    id="firstSteps"
+                    id="navbar-premiesrPas"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Premiers pas
                   </h4>
                 </Link>
                 <Link
+                  id="navbar-ingredients-cuisine"
                   to={`${RouteName.recipes}?tags=Avec les ingrédients de la cuisine`}
                 >
                   <h4
-                    id="withKitchenIngredients"
+                    id="navbar-ingredients-cuisine"
                     className="mb-2 text-left cursor-pointer hover:text-green"
                   >
                     Avec les ingrédients de la cuisine
                   </h4>
                 </Link>
-                <Link to={`${RouteName.recipes}?tags=Sans cuisson`}>
+                <Link
+                  id="navbar-sans-cuisson"
+                  to={`${RouteName.recipes}?tags=Sans cuisson`}
+                >
                   <h4
-                    id="withoutCooking"
+                    id="navbar-sans-cuisson"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Sans cuisson
@@ -288,65 +317,80 @@ export const Navbar: React.FC = () => {
               </div>
               <div className="flex flex-col pt-4 text-lg">
                 <h4 className="mb-2 cursor-default font-bold">Catégories</h4>{" "}
-                <Link id="house" to={`${RouteName.recipes}?category=Maison`}>
+                <Link
+                  id="navbar-maison"
+                  to={`${RouteName.recipes}?category=Maison`}
+                >
                   <h4
-                    id="house"
+                    id="navbar-maison"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Maison
                   </h4>
                 </Link>
-                <Link id="body" to={`${RouteName.recipes}?category=Corps`}>
+                <Link
+                  id="navbar-corps"
+                  to={`${RouteName.recipes}?category=Corps`}
+                >
                   <h4
-                    id="body"
+                    id="navbar-corps"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Corps
                   </h4>
                 </Link>
-                <Link id="face" to={`${RouteName.recipes}?category=Visage`}>
-                  <button id="face">
+                <Link
+                  id="navbar-visage"
+                  to={`${RouteName.recipes}?category=Visage`}
+                >
+                  <button id="navbar-visage">
                     <h4
-                      id="face"
+                      id="navbar-visage"
                       className="mb-2 cursor-pointer hover:text-green"
                     >
                       Visage
                     </h4>
                   </button>
                 </Link>
-                <Link to={`${RouteName.recipes}?category=Cheveux`}>
+                <Link
+                  id="navbar-cheveux"
+                  to={`${RouteName.recipes}?category=Cheveux`}
+                >
                   <h4
-                    id="hair"
+                    id="navbar-cheveux"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Cheveux
                   </h4>
                 </Link>
                 <Link
-                  id="wellBeing"
+                  id="navbar-bienetre"
                   to={`${RouteName.recipes}?category=Bien-être`}
                 >
                   <h4
-                    id="wellBeing"
+                    id="navbar-bienetre"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Bien-être
                   </h4>
                 </Link>
-                <Link id="health" to={`${RouteName.recipes}?category=Santé`}>
+                <Link
+                  id="navbar-sante"
+                  to={`${RouteName.recipes}?category=Santé`}
+                >
                   <h4
-                    id="health"
+                    id="navbar-sante"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Santé
                   </h4>
                 </Link>
                 <Link
-                  id="makeUp"
+                  id="navbar-makeUp"
                   to={`${RouteName.recipes}?category=Maquillage`}
                 >
                   <h4
-                    id="makeUp"
+                    id="navbar-makeUp"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Maquillage
@@ -359,7 +403,7 @@ export const Navbar: React.FC = () => {
                 </h4>
                 <Link to={`${RouteName.recipes}?search=Savon`}>
                   <h4
-                    id="soap"
+                    id="navbar-savon"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Savon
@@ -367,7 +411,7 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Shampooing`}>
                   <h4
-                    id="shampoo"
+                    id="navbar-shampoing"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Shampooing
@@ -375,7 +419,7 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Baume`}>
                   <h4
-                    id="balm"
+                    id="navbar-baume"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Baume
@@ -383,7 +427,7 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Solide`}>
                   <h4
-                    id="solid"
+                    id="navbar-solide"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Solide
@@ -391,7 +435,7 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <Link to={`${RouteName.recipes}?search=Crème`}>
                   <h4
-                    id="cream"
+                    id="navbar-creme"
                     className="mb-2 cursor-pointer hover:text-green"
                   >
                     Crème
@@ -402,13 +446,13 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
         <Link to={RouteName.startDiyGreenitFullXp}>
-          <NavButton id="box-nav" type="black">
+          <NavButton id="navbar-box" type="black">
             Kit fait-maison
           </NavButton>
         </Link>
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.starterPage}>
-            <NavButton id="getStarted" type="blue">
+            <NavButton id="navbar-pageDebutant" type="blue">
               Se lancer
             </NavButton>
           </Link>
@@ -429,7 +473,7 @@ export const Navbar: React.FC = () => {
         </div>
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.why}>
-            <NavButton id="project" type="darkBlue">
+            <NavButton id="navbar-project" type="darkBlue">
               Le projet
             </NavButton>
           </Link>
@@ -437,7 +481,7 @@ export const Navbar: React.FC = () => {
             <div className="flex flex-col pt-4 text-lg ml-100">
               <Link to={RouteName.why}>
                 <div
-                  id="whyGreenit"
+                  id="navbar-whyGreenit"
                   className="mb-2 cursor-pointer hover:text-darkBlue"
                 >
                   Pourquoi Greenit ?
@@ -445,7 +489,7 @@ export const Navbar: React.FC = () => {
               </Link>
               <Link to={RouteName.contact}>
                 <div
-                  id="contactUs"
+                  id="navbar-contactUs"
                   className="mb-2 cursor-pointer hover:text-darkBlue"
                 >
                   Contacte-nous
@@ -465,7 +509,7 @@ export const Navbar: React.FC = () => {
           {showSearchBar && (
             <div className="mr-4">
               <SearchBar
-                keyId="searchBarNav"
+                keyId="navbar-searchBar"
                 size="small"
                 suggestionIsActive={true}
                 setValue={setSearchTermDebounced}
@@ -480,7 +524,7 @@ export const Navbar: React.FC = () => {
               <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
                 <div className="flex">
                   <Button
-                    id="Share_a_recipe"
+                    id="navbar-shareRecipe-logged"
                     type="darkBlue"
                     rounded="lg"
                     className="inline justify-end self-center | mr-2 cursor-pointer"
@@ -495,7 +539,7 @@ export const Navbar: React.FC = () => {
               <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
                 <div className="flex">
                   <Button
-                    id="Share_a_recipe"
+                    id="navbar-shareRecipe"
                     type="darkBlue"
                     rounded="lg"
                     className="inline justify-end self-center | mr-2 cursor-pointer"
@@ -511,7 +555,7 @@ export const Navbar: React.FC = () => {
               <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
                 <div className="flex">
                   <Button
-                    id="Access_Profil"
+                    id="navbar-access-profil-logged"
                     type="blue"
                     rounded="lg"
                     className="inline justify-end self-center | mr-4 cursor-pointer"
@@ -528,7 +572,7 @@ export const Navbar: React.FC = () => {
                 btn={
                   <div className="flex">
                     <Button
-                      id="Create_Profil"
+                      id="navbar-access-profil"
                       type="blue"
                       rounded="lg"
                       className="inline justify-end self-center | cursor-pointer mr-2"
