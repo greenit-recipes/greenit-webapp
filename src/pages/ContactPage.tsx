@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Navbar } from "../components/layout/Navbar";
-import { UXFormulaire } from "components/layout/UXFormulaire";
 import { Footer } from "components/layout/Footer";
 import {
   pinterestIcon,
@@ -8,9 +7,12 @@ import {
   InstagramIcon,
   MailIcon,
   FBIcon,
+  rondIcon,
 } from "../icons";
-import { BackgroundImage } from "components/layout/BackgroundImage";
 import { Helmet } from "react-helmet";
+import isMobile from "hooks/isMobile";
+import { getLogoAndNameByUrl } from "helpers/social-media.helper";
+import { AskQuestion } from "./StarterSpace/component/AskQuestion/AskQuestion";
 
 const ContactPage = () => {
   const params = new URLSearchParams(window.location.search);
@@ -23,8 +25,7 @@ const ContactPage = () => {
     }
   }, []);
   return (
-    <div>
-      <BackgroundImage />
+    <div className="flex flex-col | items-center self-center">
       <Navbar />
       <Helmet>
         <title>Contactez-nous | Greenit Community</title>
@@ -33,82 +34,65 @@ const ContactPage = () => {
           content="Besoin d’aide ? Une question ? Un partenariat ? Un conseil ? Une critique ? Écrivez-nous à notre adresse ou remplissez le formulaire de contact. Nous vous répondrons !"
         />
       </Helmet>
-      <div className="grid justify-items-center auto-rows-max h-screen">
-        <div className="w-4/5">
-          <h2 className="text-center text-xl md:text-2xl md:text-3xl mt-16">
-            Tous vos retours sont les bienvenus !
-          </h2>
-          <h3 className="text-center text-lg md:text-xl mt-2">
-            Merci à toutes celles et ceux qui nous aident.
-          </h3>
-        </div>
-
-        <div className=" grid justify-items-center w-4/5 md:w-auto p-10 shadow-xl rounded-xl mt-10 mb-14 bg-white">
-          <h2 className="text-2xl mb-5">Contacte-nous !</h2>
-          <a
-            href="mailto:hello@greenitcommunity.com"
-            className="inline-flex gap-x-4"
-          >
-            <img
-              src={MailIcon}
-              alt="icon mail"
-              className="w-7 h-7 self-center"
-            />
-            <h1 className="text-xs md:text-lg self-center pt-1">
-              hello@greenitcommunity.com
-            </h1>
-          </a>
-          <div className="flex flex-row gap-x-4 justify-center mt-3">
-            {[
-              {
-                href: "https://www.instagram.com/greenitcommunity/",
-                children: (
-                  <img
-                    src={InstagramIcon}
-                    alt="instagram icon"
-                    className="w-8 h-8 mt-2 self-start"
-                  />
-                ),
-              },
-              {
-                href: "https://www.facebook.com/greenitcommunity/",
-                children: (
-                  <img
-                    src={FBIcon}
-                    alt="facebook icon"
-                    className="w-6 h-6 mt-2 self-start mt-3"
-                  />
-                ),
-              },
-              {
-                href: "https://www.pinterest.fr/greenitcommunity/",
-                children: (
-                  <img
-                    src={pinterestIcon}
-                    alt="pinterest icon"
-                    className="w-8 h-8 mt-2 self-start"
-                  />
-                ),
-              },
-              {
-                href: "https://www.tiktok.com/@greenitcommunity",
-                children: (
-                  <img
-                    src={tiktokIcon}
-                    alt="tiktok icon"
-                    className="w-8 h-8 mt-2 self-start"
-                  />
-                ),
-              },
-            ].map(item => (
-              <a href={item.href} target="_blank" rel="norefferer">
-                {item.children}
-              </a>
-            ))}
-          </div>
-        </div>
-        <Footer />
+      <div className="bg-blueL w-full h-40 md:h-52 | flex items-center justify-center">
+        <h2 className="text-center text-2xl md:text-3xl">
+          {isMobile() ? (
+            <>
+              <span className=" trait-img">
+                {" "}
+                C’est le moment de <br /> faire connaissance !
+              </span>
+            </>
+          ) : (
+            <>
+              <span className="trait-img">
+                C’est le moment de faire connaissance !
+              </span>
+            </>
+          )}
+        </h2>
       </div>
+      <h2 className="text-center mt-8">Contacte nous</h2>
+      <p className="text-center font-diy text-3xl md:ml-4">
+        Tous les retours sont bons à prendre !
+      </p>
+
+      <div className="grid justify-items-center auto-rows-max h-auto">
+        <h2 className="text-center text-xl md:text-2xl md:text-3xl mt-14">
+          En nous envoyant un message privé
+        </h2>
+        <div className="flex flex-cols mt-4 gap-3">
+          <a href="https://greenitcommunity.com">
+            <div className="grid w-14 items-center">
+              <img src={rondIcon} className="absolute w-13" alt="icon rond" />
+              <i className="bx bxl-facebook-circle text-4xl ml-2"></i>
+            </div>
+          </a>
+          <a href="https://greenitcommunity.com">
+            <div className="grid w-14 items-center">
+              <img src={rondIcon} className="absolute w-13" alt="icon rond" />
+              <i className="bx bxl-instagram-alt text-4xl ml-2"></i>
+            </div>
+          </a>
+          <a href="https://greenitcommunity.com">
+            <div className="grid w-14 items-center">
+              <img src={rondIcon} className="absolute w-13" alt="icon rond" />
+              <i className="bx bxl-linkedin text-4xl ml-2"></i>
+            </div>
+          </a>
+          <a href="https://greenitcommunity.com">
+            <div className="grid w-14 items-center">
+              <img src={rondIcon} className="absolute w-13" alt="icon rond" />
+              <i className="bx bxs-envelope text-4xl ml-2"></i>
+            </div>
+          </a>
+        </div>
+        <h2 className="text-center text-xl md:text-2xl md:text-3xl mt-14">
+          En remplissant ce questionnaire
+        </h2>
+      </div>
+      <AskQuestion />
+      <Footer />
     </div>
   );
 };
