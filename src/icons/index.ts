@@ -146,6 +146,7 @@ import TopImageMobile from "./TopImageLP_Mobile.svg";
 import TopImageDesktopLeft from "./TopImageLP_gauche.svg";
 import TopImageDesktopRight from "./TopImageLP_droite.svg";
 import LPImage4Desktop from "./LPImage_4_Desktop.svg";
+import ProjectTopImageDesktop from "./TopImageProject_desktop.svg";
 
 // FUll XP GREENIT
 import boxGreenit from "./GIFDesktop_Box_GIY.gif";
@@ -335,6 +336,7 @@ export {
   TopImageDesktopLeft,
   TopImageDesktopRight,
   LPImage4Desktop,
+  ProjectTopImageDesktop,
   annabelle,
   andrea,
   antoni,

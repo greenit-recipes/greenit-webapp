@@ -9,9 +9,16 @@ import {
   GreenitTeam,
   BadgeControleDesktop,
   BadgeControleMobile,
+  TopImageDesktopLeft,
+  TopImageDesktopRight,
+  TopImageMobile,
+  ProjectTopImageDesktop,
+  boxGreenit,
+  boxFullXp,
 } from "../icons";
 import { Helmet } from "react-helmet";
 import { CircleGreenit } from "./recipe/SinglePage/CircleGreenit/CircleGreenit";
+import "./../App.css";
 
 const WhyPage: React.FC = () => {
   const isMobile = useIsMobile();
@@ -34,10 +41,39 @@ const WhyPage: React.FC = () => {
         />
       </Helmet>
       <div className="h-auto w-full">
-        <div className="bg-blueL w-full h-64 | flex items-center justify-center">
-          <h1 className="text-center">
-            Greenit, la communauté qui rend accessible le fait-maison !
-          </h1>
+        <div className="bg-blueL w-full h-52 md:h-72 | flex items-center justify-center">
+          {isMobile ? (
+            <img
+              className="absolute top-0"
+              alt="Communauté Greenit"
+              src={TopImageMobile}
+              loading="lazy"
+            />
+          ) : (
+            <>
+              <img
+                className="absolute top-0 w-full"
+                src={ProjectTopImageDesktop}
+                alt="Communauté Greenit"
+                loading="lazy"
+              />
+            </>
+          )}
+          <h2 className="text-center text-2xl md:text-3xl mt-12 md:mt-20">
+            {isMobile ? (
+              <>
+                <span className="text-blue trait-img">Greenit</span>, la
+                communauté qui <br /> rend accessible le
+                <span className="double-trait-img"> fait maison !</span>
+              </>
+            ) : (
+              <>
+                <span className="text-blue trait-img">Greenit</span>, la
+                communauté qui rend accessible le
+                <span className="double-trait-img"> fait maison !</span>
+              </>
+            )}
+          </h2>
         </div>
         <div className="w-full h-auto p-6 md:p-20 | flex flex-col items-center justify-center">
           <div className="flex flex-col md:flex-row w-full">
@@ -48,7 +84,7 @@ const WhyPage: React.FC = () => {
               c’est le moment faire connaissance !
             </p>
           </div>
-          <p className="text-centerm d:text-right mt-4">
+          <p className="text-center md:text-right mt-4">
             En 2020, lassée de ses irritations et allergies, Andréa s’intéresse
             à la composition de ses produits du quotidien : shampooings, soins,
             crèmes, lessives… Elle est rapidement alertée par les nombreux
@@ -98,12 +134,12 @@ const WhyPage: React.FC = () => {
               </p>
             </div>
           </div>
-          <p className="text-center font-diy my-14 text-2xl">
+          <p className="text-center font-diy my-10 text-2xl">
             La révolution se passe à la maison !
           </p>
         </div>
         <div className="relative">
-          <div className="absolute -top-16 -right-8">
+          <div className="absolute -top-16 -right-8 md:right-10">
             <img
               className="h-48 md:h-52"
               alt="Mon savon ? Je le fais moi-même"
@@ -113,10 +149,17 @@ const WhyPage: React.FC = () => {
           </div>
         </div>
         <div className="w-full h-auto p-4 md:px-20 | flex flex-col items-center justify-center">
-          <div className="flex flex-col md:flex-row w-full mt-20 md:mb-10">
-            <h2 className="text-center md:text-right mb-3">
-              Le fait-maison, un retour aux sources qui fait sens
-            </h2>
+          <div className="flex flex-col md:flex-row w-full mt-28 md:mt-14 md:mb-10">
+            {isMobile ? (
+              <h2 className="text-center md:text-right mb-3">
+                Le fait-maison, un retour aux sources <br /> qui fait sens
+              </h2>
+            ) : (
+              <h2 className="text-center md:text-right mb-3">
+                Le fait-maison, un retour aux sources qui fait sens
+              </h2>
+            )}
+
             <p className="text-center font-diy text-3xl md:ml-4">
               4 raisons de s’y mettre
             </p>
@@ -234,7 +277,7 @@ const WhyPage: React.FC = () => {
           </div>
           <div className="grid md:gap-10 md:flex md:flex-rows mb-10 md:mt-10 justify-center">
             <img
-              src={GreenitTeam}
+              src={boxFullXp}
               className="flex rounded-full justify-self-center w-40 md:w-80 md:h-80 my-4"
             ></img>
             <div className="flex flex-col p-4 md:justify-center">
