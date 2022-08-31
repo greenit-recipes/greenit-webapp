@@ -1029,8 +1029,9 @@ const StarterPage = () => {
       <h3 className="text-sm lg:text-lg font-light px-6 text-center mt-4 mb-6">
         👇 Ici 👇
       </h3>
-      <AskQuestion></AskQuestion>
-
+      <div className="w-11/12 flex justify-center">
+        <AskQuestion></AskQuestion>
+      </div>
       <Footer />
     </div>
   );

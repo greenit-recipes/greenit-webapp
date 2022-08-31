@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { useMutation } from "@apollo/client";
 import { Button } from "components";
 import { EMAIL_ASK_QUESTION_STARTER_PAGE } from "pages/StarterSpace/component/AskQuestion/askQuestionRequest";
+import { NotificationAlert } from "components/layout/NotificationAlert";
 
 export const AskQuestion: React.FC = () => {
   const schema = yup.object().shape({
@@ -36,14 +37,14 @@ export const AskQuestion: React.FC = () => {
     }).then(() => reset());
   };
   return (
-    <div className="flex flex-col self-center mb-20 justify-items-center w-9/12 lg:w-1/3">
+    <div className="flex flex-col self-center mb-20 justify-items-center w-full lg:w-96">
       <form
         className="flex flex-col w-full gap-2"
         // @ts-ignore
         onSubmit={handleSubmit(onSubmitHandler)}
       >
         <textarea
-          className="bg-white shadow-sm focus:outline-none | border-2 border-blue rounded-lg p-4"
+          className="bg-white shadow-sm focus:outline-none | border-2 rounded-lg p-4"
           id="starter-page-askquestion"
           placeholder="Une question ? Nous sommes là pour vous aider !"
           rows={6}
@@ -56,25 +57,27 @@ export const AskQuestion: React.FC = () => {
           </p>
         </div>
         <input
-          className="w-2/3 h-10 bg-white rounded-lg shadow-sm focus:outline-none | p-4 | border-2 border-blue"
+          className="h-12 bg-white rounded-lg shadow-sm focus:outline-none | p-4 | border-2"
           id="starter-page-askquestion-email"
           placeholder="Ton email"
           type="email"
           {...register("email")}
         ></input>
         <div>
-          <p className="text-xs italic text-red-500">{errors.email?.message}</p>
+          <p className="text-xs italic text-red">{errors.email?.message}</p>
         </div>
         <div className="grid w-full justify-items-center">
-          <Button id="send_question" type="blue" className="h-10 p-4 mt-4">
+          <Button id="send_question" type="darkBlue" className="h-10 p-4 mt-4">
             Envoyer
           </Button>
         </div>
       </form>
       {data?.emailAskQuestionStartePage?.success && (
-        <div className="text-green  md: mt-6 | text-center whitespace-pre-line">
-          Ta question a bien été envoyée !
-        </div>
+        <NotificationAlert
+          type="success"
+          titre="Ta question a bien été envoyée !"
+          text="Nous y répondrons d'ici 48 heures"
+        />
       )}
     </div>
   );

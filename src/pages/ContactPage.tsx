@@ -52,46 +52,62 @@ const ContactPage = () => {
           )}
         </h2>
       </div>
-      <h2 className="text-center mt-8">Contacte nous</h2>
+      <h2 className="text-center mt-8">Contacte-nous</h2>
       <p className="text-center font-diy text-3xl md:ml-4">
         Tous les retours sont bons à prendre !
       </p>
-
-      <div className="grid justify-items-center auto-rows-max h-auto">
-        <h2 className="text-center text-xl md:text-2xl md:text-3xl mt-14">
-          En nous envoyant un message privé
-        </h2>
-        <div className="flex flex-cols mt-4 gap-3">
-          <a href="https://greenitcommunity.com">
-            <div className="grid w-14 items-center">
-              <img src={rondIcon} className="absolute w-13" alt="icon rond" />
-              <i className="bx bxl-facebook-circle text-4xl ml-2"></i>
-            </div>
-          </a>
-          <a href="https://greenitcommunity.com">
-            <div className="grid w-14 items-center">
-              <img src={rondIcon} className="absolute w-13" alt="icon rond" />
-              <i className="bx bxl-instagram-alt text-4xl ml-2"></i>
-            </div>
-          </a>
-          <a href="https://greenitcommunity.com">
-            <div className="grid w-14 items-center">
-              <img src={rondIcon} className="absolute w-13" alt="icon rond" />
-              <i className="bx bxl-linkedin text-4xl ml-2"></i>
-            </div>
-          </a>
-          <a href="https://greenitcommunity.com">
-            <div className="grid w-14 items-center">
-              <img src={rondIcon} className="absolute w-13" alt="icon rond" />
-              <i className="bx bxs-envelope text-4xl ml-2"></i>
-            </div>
-          </a>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-9/12">
+        <div className="grid justify-items-center auto-rows-max h-auto">
+          <h3 className="text-center text-lg md:text-xl mt-14">
+            En nous envoyant un message privé
+          </h3>
+          <div className="flex flex-cols mt-4 gap-3 md:pt-4">
+            <a
+              href="https://greenitcommunity.com"
+              className="hover:text-yellow sm:hover:scale-105 ease-linear"
+            >
+              <div className="grid w-14 items-center">
+                <img src={rondIcon} className="absolute w-13" alt="icon rond" />
+                <i className="bx bxl-facebook-circle text-4xl ml-2 "></i>
+              </div>
+            </a>
+            <a
+              href="https://greenitcommunity.com"
+              className="hover:text-yellow sm:hover:scale-105 ease-linear"
+            >
+              <div className="grid w-14 items-center">
+                <img src={rondIcon} className="absolute w-13" alt="icon rond" />
+                <i className="bx bxl-instagram-alt text-4xl ml-2"></i>
+              </div>
+            </a>
+            <a
+              href="https://greenitcommunity.com"
+              className="hover:text-yellow sm:hover:scale-105 ease-linear"
+            >
+              <div className="grid w-14 items-center">
+                <img src={rondIcon} className="absolute w-13" alt="icon rond" />
+                <i className="bx bxl-linkedin text-4xl ml-2"></i>
+              </div>
+            </a>
+            <a
+              href="https://greenitcommunity.com"
+              className="hover:text-yellow sm:hover:scale-105 ease-linear"
+            >
+              <div className="grid w-14 items-center">
+                <img src={rondIcon} className="absolute w-13" alt="icon rond" />
+                <i className="bx bxs-envelope text-4xl ml-2"></i>
+              </div>
+            </a>
+          </div>
         </div>
-        <h2 className="text-center text-xl md:text-2xl md:text-3xl mt-14">
-          En remplissant ce questionnaire
-        </h2>
+        <div className="flex flex-col">
+          <h3 className="text-center text-lg md:text-xl mt-14 mb-6">
+            En remplissant ce questionnaire
+          </h3>
+          <AskQuestion />
+        </div>
       </div>
-      <AskQuestion />
+
       <Footer />
     </div>
   );
