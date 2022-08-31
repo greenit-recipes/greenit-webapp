@@ -63,7 +63,7 @@ const ContactPage = () => {
           </h3>
           <div className="flex flex-cols mt-4 gap-3 md:pt-4">
             <a
-              href="https://greenitcommunity.com"
+              href="https://www.facebook.com/greenitcommunity/"
               className="hover:text-yellow sm:hover:scale-105 ease-linear"
             >
               <div className="grid w-14 items-center">
@@ -72,7 +72,7 @@ const ContactPage = () => {
               </div>
             </a>
             <a
-              href="https://greenitcommunity.com"
+              href="https://www.instagram.com/greenitcommunity/"
               className="hover:text-yellow sm:hover:scale-105 ease-linear"
             >
               <div className="grid w-14 items-center">
@@ -81,7 +81,7 @@ const ContactPage = () => {
               </div>
             </a>
             <a
-              href="https://greenitcommunity.com"
+              href="https://www.linkedin.com/company/greenit-community/"
               className="hover:text-yellow sm:hover:scale-105 ease-linear"
             >
               <div className="grid w-14 items-center">
@@ -90,7 +90,7 @@ const ContactPage = () => {
               </div>
             </a>
             <a
-              href="https://greenitcommunity.com"
+              href="mailto:hello@greenitcommunity.com"
               className="hover:text-yellow sm:hover:scale-105 ease-linear"
             >
               <div className="grid w-14 items-center">
