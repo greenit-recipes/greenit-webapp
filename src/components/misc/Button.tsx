@@ -89,7 +89,6 @@ export const Button: React.FC<ButtonProps> = ({
       style.borderColor = "border-darkBlue";
       style.hoverTextColor = "hover:text-white";
       style.textColor = "text-darkBlue";
-      style.bgColor = "bg-darkBlue";
       break;
     case "darkBlueIcon":
       style.hoverBgColor = "hover:bg-white";
