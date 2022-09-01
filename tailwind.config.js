@@ -109,6 +109,9 @@ module.exports = {
                 body: ["ZenMaruGothic_Medium"],
                 legend: ["ZenMaruGothic_Light"],
             },
+            boxShadow: {
+                'flat': '0px 0px 12px 2px rgb(0 0 0 / 0.1)',
+            },
         }
     },
 };

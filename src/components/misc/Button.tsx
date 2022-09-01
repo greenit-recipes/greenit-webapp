@@ -4,6 +4,7 @@ import { BiLoaderAlt } from "react-icons/bi";
 
 interface ButtonProps {
   type:
+    | "none"
     | "blue"
     | "green"
     | "yellow"
