@@ -225,13 +225,13 @@ const LandingPage = () => {
           ) : (
             <>
               <img
-                className="absolute top-20 -left-10"
+                className="sm:opacity-10 lg:opacity-100 absolute top-20 -left-10"
                 src={TopImageDesktopLeft}
                 alt="Communauté Greenit partie 1"
                 loading="lazy"
               />
               <img
-                className="absolute top-10 right-0"
+                className="sm:opacity-10 lg:opacity-100 absolute top-10 right-0"
                 alt="Communauté Greenit partie 2"
                 src={TopImageDesktopRight}
                 loading="lazy"
@@ -272,7 +272,7 @@ const LandingPage = () => {
             <ModalPersonalization
               btn={
                 <Button
-                  className="hidden md:flex z-10"
+                  className="hidden md:flex z-10 h-12"
                   haveIcon={true}
                   type="green"
                   onClick={() => setShowModal(true)}
