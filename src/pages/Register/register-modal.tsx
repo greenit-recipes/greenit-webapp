@@ -287,234 +287,234 @@ export const RegisterModal: React.FC<{
       } items-center`}
     >
       <div className="flex flex-col items-center bg-white rounded-3xl">
-        <div className="mb-4 text-xl font-bold text-center">
-          Créer un compte
-          <br />
+        <div className="text-xl font-bold text-center">
+          <h3>Créer un compte</h3>
         </div>
         <div>
           <p
             onClick={() => loginOpen(true)}
             id="modal-register-deja-un-compte"
-            className="mb-4 text-sm text-center text-darkBlue underline cursor-pointer md:text-base"
+            className="md:my-4 text-sm text-center text-darkBlue underline cursor-pointer md:text-base"
           >
             Déjà un compte ? Se connecter ici !
           </p>
         </div>
-        <div className="mb-4 w-10/12 lg:mb-1 mt-2">
-          <FacebookLogin
-            // @ts-ignore
-            appId={process.env.REACT_APP_FACEBOOK_ID}
-            fields="name,email,picture"
-            callback={responseFacebook}
-            disableMobileRedirect={true}
-            cssClass="my-facebook-button-class"
-            id="modal-register-facebook"
-            textButton={"Connexion avec Facebook"}
-            icon={
-              loadingAuth ? (
-                <div className="animate-spin mr-4">
-                  <BiLoaderAlt />
-                </div>
-              ) : (
-                <IoLogoFacebook className="w-6 h-6 ml-5 mr-10" />
-              )
-            }
-          />
-          {errorLoginFb && (
-            <div className="mt-6 text-xs italic text-red">{errorLoginFb}</div>
-          )}
-        </div>
-        <div className="mb-4 w-10/12 lg:mb-1 mt-2">
-          <GoogleLogin
-            // @ts-ignore
-            clientId={process.env.REACT_APP_GOOGLE_ID}
-            buttonText="Login"
-            className=" w-full text-center"
-            onSuccess={responseGoogle}
-            onFailure={errorGoogle}
-            // @ts-ignore
-            buttonText={"Connexion avec Google"}
-            id="connexion-google-login"
-          />
-          {errorLoginGoogle && (
-            <div className="mt-6 text-xs italic text-red">
-              {errorLoginGoogle}
-            </div>
-          )}
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 md:p-4">
+          <div className="row-span-2 md:pt-40 md:border-r-1 br-darkBlue">
+            {enabledSectionIcon && (
+              <>
+                <h2 className="mt-6 md:mt-0 mb-4 text-base text-darkBlue font-regular md:text-lg text-center">
+                  Quel type de compte te correspond le mieux ?
+                </h2>
+                <div className="grid grid-cols-2 md:px-10 justify-items-center">
+                  <div className="grid justify-items-center">
+                    <div className="grid justify-items-center border-2 br-darkBlue w-40 h-28 bg-white shadow-flat rounded-lg text-5xl pt-2">
+                      🕵️‍♀️
+                      <p>Explorateur.ice</p>
+                    </div>
+                    <div className="block text-xs w-10/12 md:w-2/3 text-center mt-2">
+                      Trouve de l’inspiration pour tes recettes !
+                    </div>
+                  </div>
+                  <div className="grid justify-items-center">
+                    <Link to={RouteName.register} id="modal-register-createur">
+                      <button className="grid justify-items-center hover:border-2 br-darkBlue w-40 h-28 bg-white shadow-flat rounded-lg text-5xl pt-2">
+                        🧑‍🍳
+                        <p>Créateur.ice</p>
+                      </button>
+                    </Link>
 
-        {enabledGif && (
-          <img
-            className="mr-2 w-60 h-70 "
-            src={gifModalProfil}
-            alt="gif email"
-          />
-        )}
-        <div className="w-full text-darkBlue-700 separator mb-5 md:m-4">OU</div>
-        {enabledSectionIcon && (
-          <>
-            <h2 className="mb-4 text-base text-darkBlue font-semibold md:text-lg">
-              Quel type de compte te correspond le mieux ?
-            </h2>
-            <div className="flex flex-row w-5/6 gap-8 justify-evenly">
-              <div className="flex flex-col w-2/4 ">
-                <div className="flex flex-col py-5 items-center transition border-2 shadow-lg cursor-pointer rounded-md h-34 border-darkBlue">
-                  <div className="size-emoji-modal mb-8">🕵️‍♀️</div>
-                  <div className="text-darkBlue">Explorateur</div>
+                    <div className="text-xs w-10/12 md:w-2/3 text-center mt-2">
+                      Partage tes créations avec la communauté !
+                    </div>
+                  </div>
                 </div>
-                <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
-                  Trouve de l’inspiration réalise tes recettes en toute
-                  simplicité !
-                </div>
+              </>
+            )}
+          </div>
+          <div className="mt-8 md:mt-0 md:px-10 grid justify-items-center">
+            <FacebookLogin
+              // @ts-ignore
+              appId={process.env.REACT_APP_FACEBOOK_ID}
+              fields="name,email,picture"
+              callback={responseFacebook}
+              disableMobileRedirect={true}
+              cssClass="my-facebook-button-class"
+              id="modal-register-facebook"
+              textButton={"Connexion avec Facebook"}
+              icon={
+                loadingAuth ? (
+                  <div className="animate-spin mr-4">
+                    <BiLoaderAlt />
+                  </div>
+                ) : (
+                  <IoLogoFacebook className="w-6 h-6 mr-3" />
+                )
+              }
+            />
+            {errorLoginFb && (
+              <div className="mt-6 text-xs italic text-red">{errorLoginFb}</div>
+            )}
+            <GoogleLogin
+              // @ts-ignore
+              clientId={process.env.REACT_APP_GOOGLE_ID}
+              buttonText="Login"
+              className="w-80 rounded-lg mt-3 grid justify-center"
+              onSuccess={responseGoogle}
+              onFailure={errorGoogle}
+              // @ts-ignore
+              buttonText={"Connexion avec Google"}
+              id="connexion-google-login"
+            />
+            {errorLoginGoogle && (
+              <div className="mt-6 text-xs italic text-red">
+                {errorLoginGoogle}
               </div>
-              <div className="flex flex-col w-2/4 ">
-                <Link
-                  to={RouteName.register}
-                  id="register-modal-createur"
-                  className="flex flex-col py-5 items-center transition shadow-lg cursor-pointer rounded-md h-34"
+            )}
+
+            <div className="w-full text-darkBlue-700 separator mt-4">OU</div>
+
+            {enabledGif && (
+              <img
+                className="mr-2 w-60 h-70 "
+                src={gifModalProfil}
+                alt="gif email"
+              />
+            )}
+
+            <div className="px-4">
+              <form
+                className="flex flex-col gap-2"
+                // @ts-ignore
+                onSubmit={handleSubmit(onSubmitHandler)}
+              >
+                <div className="flex flex-row items-center w-full mt-6 ">
+                  <i className="bx bx-envelope mr-2 text-darkBlue text-3xl"></i>
+                  <input
+                    className="w-full h-10 px-3 leading-tight text-gray-700 border appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline "
+                    id="email"
+                    placeholder="Email"
+                    type="email"
+                    {...register("email")}
+                  ></input>
+                </div>
+                <p className="text-xs italic text-red">
+                  {errors.email?.message}
+                </p>
+
+                <div className="flex flex-row items-center w-full">
+                  <i className="bx bx-user mr-2 text-darkBlue text-3xl"></i>
+                  <input
+                    className="w-full h-10 px-3 leading-tight text-gray-700 border appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline "
+                    id="utilisateur"
+                    placeholder="Nom d'utilisateur"
+                    type="text"
+                    {...register("utilisateur")}
+                  ></input>
+                </div>
+                <p className="text-xs italic text-red">
+                  {errors.utilisateur?.message}
+                </p>
+
+                <div className="flex flex-row items-center w-full">
+                  <i className="bx bx-lock-alt mr-2 text-darkBlue text-3xl"></i>
+                  <div className="flex flex-row items-center w-full h-10 leading-tight text-gray-700 border rounded-md focus:shadow-outline ">
+                    <input
+                      className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
+                      id="password"
+                      type={isRevealPwd ? "text" : "password"}
+                      placeholder="Mot de passe"
+                      {...register("password")}
+                    />
+                    <img
+                      className="mr-2"
+                      src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                      alt="voir le mot de passe"
+                      onClick={() => setIsRevealPwd(prevState => !prevState)}
+                    />
+                  </div>
+                </div>
+                <p className="text-xs italic text-red">
+                  {errors.password?.message}
+                </p>
+
+                <div className="flex flex-row items-center w-full">
+                  <i className="bx bx-lock-open-alt mr-2 text-darkBlue text-3xl"></i>
+                  <div className="flex flex-row items-center w-full h-10 leading-tight text-gray-700 border rounded-md focus:shadow-outline ">
+                    <input
+                      className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
+                      id="passwordConfirmation"
+                      type={isRevealPwd ? "text" : "password"}
+                      placeholder="Confirmer le mot de passe"
+                      {...register("passwordConfirmation")}
+                    />
+                    <img
+                      className="mr-2"
+                      src={isRevealPwd ? mdpVisible : mdpNonVisible}
+                      alt="voir le mot de passe"
+                      onClick={() => setIsRevealPwd(prevState => !prevState)}
+                    />
+                  </div>
+                </div>
+                <p className="text-xs italic text-red">
+                  {errors.passwordConfirmation?.message}
+                </p>
+                <div className="flex items-center">
+                  <Controller
+                    name="userCategoryLvl"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        options={optionsUserCategoryLvl}
+                        className={`w-full text-darkBlue rounded-md border-1 border-darkBlue`}
+                        placeholder="Qui es-tu ?"
+                      />
+                    )}
+                  />
+                </div>
+                <p className="text-xs italic text-red">
+                  {errors.userCategoryLvl?.message}
+                </p>
+                <div className="flex items-center">
+                  <Controller
+                    name="userCategoryAge"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        options={optionsUserCategoryAge}
+                        className={`w-full text-darkBlue rounded-md border-1 border-darkBlue`}
+                        placeholder="A quel groupe appartiens-tu ?"
+                      />
+                    )}
+                  />
+                </div>
+                <p className="text-xs italic text-red">
+                  {errors.userCategoryAge?.message}
+                </p>
+                <div className="flex self-center w-full ml-10">
+                  <input
+                    type="checkbox"
+                    className="w-6 h-6 border border-darkBlue"
+                    {...register("isFollowNewsletter")}
+                    id="Modal-Register-is-Follow-Newsletter"
+                  />
+                  <label className="self-center ml-2 mb-2 text-sm text-darkBlue">
+                    Coche la case si tu veux recevoir nos dernières actualités
+                    et les tendances du secteur du DIY.
+                  </label>
+                </div>
+                <Button
+                  type="darkBlue"
+                  id="modal-register-button-cree-profil"
+                  isLoading={loadingCreateAccount}
                 >
-                  <div className="size-emoji-modal mb-8">🧑‍🎨</div>
-                  <div className="">Créateur</div>
-                </Link>
-
-                <div className="mt-2 mb-2 text-xs w-full text-center fontQSregular">
-                  Partage tes créations avec la communauté !
-                </div>
-              </div>
+                  Créer ton profil
+                </Button>
+              </form>
             </div>
-          </>
-        )}
-
-        <div className="w-10/12 lg:w-8/12">
-          <form
-            className="flex flex-col "
-            // @ts-ignore
-            onSubmit={handleSubmit(onSubmitHandler)}
-          >
-            <div className="flex flex-row items-center w-full mt-6 ">
-              <i className="bx bx-envelope mr-2 text-darkBlue text-3xl"></i>
-              <input
-                className="w-full h-10 px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline "
-                id="register-modal-email"
-                placeholder="Email"
-                type="email"
-                {...register("email")}
-              ></input>
-            </div>
-            <p className="text-xs italic text-red">{errors.email?.message}</p>
-
-            <div className="flex flex-row items-center w-full mt-6 ">
-              <i className="bx bx-user mr-2 text-darkBlue text-3xl"></i>
-              <input
-                className="w-full h-10 px-3 leading-tight text-gray-700 border shadow-lg appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline "
-                id="modal-register-username"
-                placeholder="Nom d'utilisateur"
-                type="text"
-                {...register("utilisateur")}
-              ></input>
-            </div>
-            <p className="text-xs italic text-red">
-              {errors.utilisateur?.message}
-            </p>
-
-            <div className="flex flex-row items-center w-full mt-6">
-              <i className="bx bx-lock-alt mr-2 text-darkBlue text-3xl"></i>
-              <div className="flex flex-row items-center w-full h-10 leading-tight text-gray-700 border shadow-lg rounded-md focus:shadow-outline ">
-                <input
-                  className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
-                  id="register-page-password"
-                  type={isRevealPwd ? "text" : "password"}
-                  placeholder="Mot de passe"
-                  {...register("password")}
-                />
-                <img
-                  className="mr-2"
-                  src={isRevealPwd ? mdpVisible : mdpNonVisible}
-                  alt="voir le mot de passe"
-                  onClick={() => setIsRevealPwd(prevState => !prevState)}
-                />
-              </div>
-              <p className="text-xs italic text-red">
-                {errors.password?.message}
-              </p>
-            </div>
-
-            <div className="flex flex-row items-center w-full mt-6">
-              <i className="bx bx-lock-open-alt mr-2 text-darkBlue text-3xl"></i>
-              <div className="flex flex-row items-center w-full h-10 leading-tight text-gray-700 border shadow-lg rounded-md focus:shadow-outline ">
-                <input
-                  className="w-full h-full px-3 appearance-none py-1 rounded-xl focus:outline-none"
-                  id="register-modal-password-confirmation"
-                  type={isRevealPwd ? "text" : "password"}
-                  placeholder="Confirmer le mot de passe"
-                  {...register("passwordConfirmation")}
-                />
-                <img
-                  className="mr-2"
-                  src={isRevealPwd ? mdpVisible : mdpNonVisible}
-                  alt="voir le mot de passe"
-                  onClick={() => setIsRevealPwd(prevState => !prevState)}
-                />
-              </div>
-              <p className="text-xs italic text-red">
-                {errors.passwordConfirmation?.message}
-              </p>
-            </div>
-            <div className="flex items-center mt-6 ">
-              <Controller
-                name="userCategoryLvl"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    options={optionsUserCategoryLvl}
-                    className={`w-full shadow-lg text-darkBlue rounded-md border-1 border-darkBlue`}
-                    placeholder="Qui es-tu ?"
-                  />
-                )}
-              />
-            </div>
-            <p className="text-xs italic text-red">
-              {errors.userCategoryLvl?.message}
-            </p>
-            <div className="flex items-center mt-6">
-              <Controller
-                name="userCategoryAge"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    options={optionsUserCategoryAge}
-                    className={`w-full shadow-lg text-darkBlue rounded-md border-1 border-darkBlue`}
-                    placeholder="A quel groupe appartiens-tu ?"
-                  />
-                )}
-              />
-            </div>
-            <p className="text-xs italic text-red">
-              {errors.userCategoryAge?.message}
-            </p>
-            <div className="flex self-center w-full ml-10 mt-6">
-              <input
-                type="checkbox"
-                className="w-6 h-6 border border-darkBlue"
-                {...register("isFollowNewsletter")}
-                id="modal-register-is-Follow-Newsletter"
-              />
-              <label className="self-center ml-2 text-sm text-darkBlue">
-                Coche la case si tu veux recevoir nos dernières actualités et
-                les tendances du secteur du DIY.
-              </label>
-            </div>
-            <Button
-              type="blue"
-              id="modal-register-button-cree-profil"
-              className="mt-4 font-extrabold"
-              isLoading={loadingCreateAccount}
-            >
-              Créer ton profil
-            </Button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

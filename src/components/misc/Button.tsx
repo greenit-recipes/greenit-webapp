@@ -4,6 +4,7 @@ import { BiLoaderAlt } from "react-icons/bi";
 
 interface ButtonProps {
   type:
+    | "none"
     | "blue"
     | "green"
     | "yellow"
@@ -89,7 +90,6 @@ export const Button: React.FC<ButtonProps> = ({
       style.borderColor = "border-darkBlue";
       style.hoverTextColor = "hover:text-white";
       style.textColor = "text-darkBlue";
-      style.bgColor = "bg-darkBlue";
       break;
     case "darkBlueIcon":
       style.hoverBgColor = "hover:bg-white";
@@ -165,9 +165,9 @@ export const Button: React.FC<ButtonProps> = ({
       className={`${className} flex justify-center items-center cursor-pointer
       text-sm ${
         haveIcon ? "px-3 py-0.5" : "px-3 py-2 "
-      } bold  border-2 border-transparent
-      fontQSbold md:ease-linear transition-all duration-150
-      hover:shadow-lg  ${
+      }   border-2 border-transparent
+      font-medium md:ease-linear transition-all duration-150
+      hover:shadow-flat  ${
         type === "green"
           ? "hover:bg-white " + style.hoverTextColor
           : "bg-white " + style.hoverTextColor + " active:bg-white"

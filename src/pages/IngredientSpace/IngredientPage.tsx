@@ -1,4 +1,4 @@
-import { Navbar, Container, BackgroundImage, Button } from "components";
+import { Navbar, Container, Button } from "components";
 import { Helmet } from "react-helmet";
 
 const ingredientPage = () => {
@@ -16,7 +16,6 @@ const ingredientPage = () => {
         />
       </Helmet>
       <Navbar />
-      <BackgroundImage />
       <Container className="flex flex-col | items-center | md:w-2/3 mt-16 lg:mt-28 px-8 ">
         <h1 className="text-2xl md:text-3xl | text-center">
           Bientôt l'espace ingrédient,

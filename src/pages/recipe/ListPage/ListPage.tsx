@@ -8,15 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useHistory } from "react-router-dom";
-import {
-  BackgroundImage,
-  Button,
-  Empty,
-  Footer,
-  Loading,
-  Navbar,
-  RecipeCard,
-} from "components";
+import { Button, Empty, Footer, Loading, Navbar, RecipeCard } from "components";
 import { RecipesQuery, useRecipesQuery } from "../../../graphql";
 import useIsMobile from "hooks/isMobile";
 import { scrollToTop } from "icons";
@@ -197,7 +189,6 @@ const RecipeListPage = () => {
   return (
     <div className={""}>
       <Navbar />
-      <BackgroundImage />
       <Helmet>
         <title>Recettes DIY : Cosmétiques, produits ménagers | Greenit</title>
         <meta

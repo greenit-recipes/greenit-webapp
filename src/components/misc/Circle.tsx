@@ -24,7 +24,7 @@ export const Circle: React.FC<CircleProps> = ({
           loading="lazy"
           className={
             isLandingPage
-              ? `w-28 h-28 ml-auto mr-auto | flex place-self-center rounded-full transform sm:hover:scale-105 ease-linear transition-all duration-150`
+              ? `w-28 h-28 ml-auto mr-auto | flex place-self-center rounded-full transform md:hover:scale-105 hover:border-2 hover:br-darkBlue ease-linear duration-100`
               : `max-h-full max-w-full | ml-auto mr-auto | flex place-self-center rounded-full`
           }
           src={icon}

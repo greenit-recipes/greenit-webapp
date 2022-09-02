@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { SEND_EMAIL_RESET_PASSWORD } from "services/auth.service";
 import * as yup from "yup";
 import { Navbar } from "components/layout/Navbar";
-import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import { Helmet } from "react-helmet";
 
 const schema = yup.object().shape({
@@ -47,7 +46,6 @@ const ForgetPassword: React.FC = () => {
       <Helmet>
         <meta name="robots" content="noindex" />
       </Helmet>
-      <BackgroundImage className="overflow-hidden" />
       <h3 className="text-2xl w-2/3 md:text-3xl | mt-16 text-center">
         Réinitialise ton mot de passe depuis ta boîte mail.
         <br />

@@ -11,7 +11,6 @@ import authServiceService, {
 } from "services/auth.service";
 import * as yup from "yup";
 import { Footer, Navbar } from "components";
-import { BackgroundImage } from "components/layout/BackgroundImage";
 import { Helmet } from "react-helmet";
 import FacebookLogin from "react-facebook-login";
 import { mdpNonVisible, mdpVisible } from "icons";
@@ -162,7 +161,6 @@ const Login: React.FC = () => {
           content="Connectez vous. Accédez à votre compte et espace personnel DIY. Vous pouvez ajouter des recettes maison et sauvegarder vos recettes préférées."
         />
       </Helmet>
-      <BackgroundImage className="overflow-hidden" />
       <h1 className="text-xl font-medium w-2/3 md:text-2xl | mt-16 text-center">
         Connexion vers ton espace DIY <br />
       </h1>

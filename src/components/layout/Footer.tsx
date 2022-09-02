@@ -9,6 +9,7 @@ import {
   InstagramIcon,
   MailIcon,
   pinterestIcon,
+  rondIcon,
   tiktokIcon,
 } from "../../icons";
 import privacyPdf from "../../privacy.pdf";
@@ -19,131 +20,119 @@ export const Footer: React.FC = () => {
       <div className="mb-4 w-full grid justify-items-center">
         <div className="flex mt-10">
           <Link to={RouteName.why}>
-            <h2 className="text-white md:text-xl self-center underline drop-shadow-lg hover:text-yellow">
+            <h2 className="text-white md:text-xl self-center hover:text-yellow">
               Qui sommes-nous ?
             </h2>
           </Link>
           <h2 className="text-white md:text-xl self-center ml-6 mr-6"> | </h2>
           <Link to={RouteName.contact}>
-            <h2 className="text-white md:text-xl self-center underline drop-shadow-lg hover:text-yellow">
+            <h2 className="text-white md:text-xl self-center hover:text-yellow">
               Contacte-nous !{" "}
             </h2>
           </Link>
         </div>
       </div>
+      <div className="grid justify-items-center">
+        <a
+          href="mailto:hello@greenitcommunity.com"
+          className="inline-flex gap-x-4 text-white"
+        >
+          <div className="grid items-center">
+            <i className="bx bx-envelope text-2xl"></i>
+          </div>
+          <h2 className="text-lg font-light md:text-lg self-center text-white">
+            hello@greenitcommunity.com
+          </h2>
+        </a>
+        <div className="flex flex-cols mt-4 gap-1 md:pt-4">
+          <a
+            href="https://www.instagram.com/greenitcommunity/"
+            rel="noopener"
+            target="blank"
+            className="text-white"
+          >
+            <div className="grid w-14 items-center">
+              <i className="bx bxl-instagram-alt text-4xl ml-2"></i>
+            </div>
+          </a>
+          <a
+            href="https://www.facebook.com/greenitcommunity/"
+            rel="noopener"
+            target="blank"
+            className="text-white"
+          >
+            <div className="grid w-14 items-center">
+              <i className="bx bxl-facebook-circle text-4xl ml-2 "></i>
+            </div>
+          </a>
+          <a
+            href="https://www.tiktok.com/@greenitcommunity"
+            rel="noopener"
+            target="blank"
+            className="text-white"
+          >
+            <div className="grid w-14 items-center">
+              <i className="bx bxl-tiktok text-4xl ml-2"></i>
+            </div>
+          </a>
+          <a
+            href="https://www.pinterest.fr/greenit/"
+            rel="noopener"
+            target="blank"
+            className="text-white"
+          >
+            <div className="grid w-14 items-center">
+              <i className="bx bxl-pinterest text-4xl ml-2"></i>
+            </div>
+          </a>
+          <a
+            href="https://www.linkedin.com/company/greenit-community/"
+            rel="noopener"
+            target="blank"
+            className="text-white"
+          >
+            <div className="grid w-14 items-center">
+              <i className="bx bxl-linkedin text-4xl ml-2"></i>
+            </div>
+          </a>
+        </div>
+      </div>
       <div className="grid md:grid-cols-3 gap-12 w-10/12 mt-10 text-left text-sm text-white justify-items-center">
         {[
           {
-            icon: footerWorld,
+            icon: "bx bx-leaf",
             title: "Ecolo(mique)",
             text: "Greenit est une solution sociale, économique et écologique aux problèmes environnementaux auxquels nous sommes confrontés. Notre mission ? Répandre un mode de consommation plus responsable et durable en remplaçant la production industrielle par une production plus locale et artisanale.",
           },
           {
-            icon: footerChat,
+            icon: "bx bx-chat",
             title: "Collectif",
             text: "Notre première mission, ensemble, est de développer une communauté qui soutient le partage des connaissances pour une consommation et une production saines.",
           },
           {
-            icon: footerValues,
+            icon: "bx bx-world",
             title: "Transparent",
-            text: "Ici, il n’y a pas de collecte de tes données personnelles. Nous utilisons un analytics qui anonymise tes actions pour un plus grand respect de ta vie privée. N’hésite pas à poser tes questions et à voter pour les prochaines fonctionnalités Greenit.",
+            text: "Ici il n’y pas de collection de données personnelles et pas de publicités. Greenit est aussi un projet open-source disponible sur Github. N’hésites pas à poser tes questions et à voter pour les prochaines functionalités Greenit.",
           },
         ].map((item, index) => (
           <div className="flex flex-col" key={index}>
             <div className="flex">
-              <img
-                src={item.icon}
-                className="h-12 w-12"
-                alt={`${item.title} Icon`}
-                loading="lazy"
-              />
-              <h3 className="text-2xl pl-2 flex self-center">{item.title}</h3>
+              <i className={`text-3xl ${item.icon}`} />
+              <h3 className="text-xl pl-2 flex self-center">{item.title}</h3>
             </div>
-            <div className="mt-5">{item.text}</div>
+            <div>{item.text}</div>
           </div>
         ))}
-      </div>
-      <div className=" grid justify-items-center w-4/5 md:w-auto p-10 shadow-xl rounded-xl mt-10 mb-14 bg-white">
-        <h2 className="text-2xl mb-5">Contacte-nous !</h2>
-        <a
-          href="mailto:hello@greenitcommunity.com"
-          className="inline-flex gap-x-4"
-        >
-          <img
-            src={MailIcon}
-            className="w-7 h-7 self-center"
-            alt="e-mail-icon"
-          />
-          <h2 className="text-xs md:text-lg self-center pt-1">
-            hello@greenitcommunity.com
-          </h2>
-        </a>
-        <div className="flex flex-row gap-x-4 justify-center mt-3">
-          {[
-            {
-              href: "https://www.instagram.com/greenitcommunity/",
-              rel: "noopener",
-              children: (
-                <img
-                  src={InstagramIcon}
-                  alt="instagram icon"
-                  className="w-8 h-8 mt-2 self-start"
-                  loading="lazy"
-                />
-              ),
-            },
-            {
-              href: "https://www.facebook.com/greenitcommunity/",
-              rel: "noopener",
-              children: (
-                <img
-                  src={FBIcon}
-                  alt="facebook icon"
-                  className="w-6 h-6 mt-2 self-start mt-3"
-                  loading="lazy"
-                />
-              ),
-            },
-            {
-              href: "https://www.pinterest.fr/greenitcommunity/",
-              rel: "noopener",
-              children: (
-                <img
-                  src={pinterestIcon}
-                  alt="pinterest icon"
-                  className="w-8 h-8 mt-2 self-start"
-                  loading="lazy"
-                />
-              ),
-            },
-            {
-              href: "https://www.tiktok.com/@greenitcommunity",
-              rel: "noopener",
-              children: (
-                <img
-                  src={tiktokIcon}
-                  alt="tiktok icon"
-                  className="w-8 h-8 mt-2 self-start"
-                  loading="lazy"
-                />
-              ),
-            },
-          ].map((item, index) => (
-            <a href={item.href} target="_blank" rel="norefferer" key={index}>
-              {item.children}
-            </a>
-          ))}
-        </div>
       </div>
       <a
         href={privacyPdf}
         target="_blank"
         rel="noreferrer"
-        className="text-xl underline text-white mt-10"
+        className="text-sm underline text-white mt-10"
       >
         Privacy Policy
       </a>
-      <div className="mt-4 mb-5 self-start flex">
+      <div className="my-4 self-start flex flex-row w-full gap-4">
         <a
           rel="license"
           className="relative self-center"
@@ -152,13 +141,13 @@ export const Footer: React.FC = () => {
           <img
             loading="lazy"
             alt="Creative Commons License"
-            className="ml-10 mr-5"
+            className="ml-10 mr-5 w-10"
             src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"
           />
         </a>
-        <div className="w-44 sm:w-auto">
+        <div className="w-full">
           <p className="text-xs md:text-sm text-white text-left relative inline">
-            All content is licensed under a{" "}
+            All content is licensed under a
           </p>
           <a
             rel="license"

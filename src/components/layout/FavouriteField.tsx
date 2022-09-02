@@ -3,6 +3,7 @@ import { Loading } from "components/layout/Loading";
 import { Button } from "components/misc";
 import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { Suspense, useState } from "react";
+import { classNames } from "react-select/dist/declarations/src/utils";
 import authService from "services/auth.service";
 import { likedIconOff, likedIconOn } from "../../icons";
 
@@ -123,7 +124,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
               <ModalLogGreenit
                 btn={
                   <Button
-                    id="recipe-card-favoriteButton"
+                    id="RecipePage-favorite-noLogged"
                     type="darkBlue"
                     rounded="lg"
                     haveIcon={true}
@@ -139,21 +140,22 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
             <Suspense fallback={<Loading />}>
               <ModalLogGreenit
                 btn={
-                  <button className={isBtnDesing ? "btn-single-page" : ""}>
-                    <div
-                      className={`tooltip justify-items-center ${
-                        customClassName ? customClassName : "grid"
-                      }`}
+                  <div className="tooltip flex w-full justify-center">
+                    <Button
+                      id="RecipeCard-favorite-noLogged"
+                      type="darkBlue"
+                      haveIcon={true}
                     >
-                      <img
-                        className="w-10 h-10"
-                        alt="dislike button"
-                        src={likedIconOff}
-                        loading="lazy"
-                      />
-                      <span className="tooltiptext">Ajouter aux favoris</span>{" "}
-                    </div>
-                  </button>
+                      <i
+                        className={`bx bx-bookmark-heart bx-sm ${
+                          isToltipActif ? "" : ""
+                        }`}
+                      ></i>
+                    </Button>
+                    <span className="absolute tooltiptext pt-10">
+                      Ajouter au favoris
+                    </span>
+                  </div>
                 }
               ></ModalLogGreenit>
             </Suspense>

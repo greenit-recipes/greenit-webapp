@@ -39,7 +39,7 @@ const RecipeListPage = React.lazy(
   () => import("./pages/recipe/ListPage/ListPage"),
 );
 const Register = React.lazy(() => import("./pages/Register/register"));
-const WhyPage = React.lazy(() => import("./pages/WhyPage"));
+const WhyPage = React.lazy(() => import("./pages/recipe/SinglePage/WhyPage"));
 const GreenitFullXp = React.lazy(
   () => import("./pages/GreenitFullXp/genericFullXp"),
 );

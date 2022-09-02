@@ -33,7 +33,7 @@ const Modal = (props: any) => {
       >
         <div
           className={`modal-content ${
-            isMobile ? "w-11/12 my-5 mx-5" : "mt-5 mb-5"
+            isMobile ? "w-11/12 my-5 mx-5" : "mt-5 mb-5 w-auto"
           }`}
           onClick={e => e.stopPropagation()}
         >

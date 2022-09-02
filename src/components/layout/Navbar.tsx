@@ -507,7 +507,7 @@ export const Navbar: React.FC = () => {
       >
         <div className="flex space-between items-center justify-self-end">
           {showSearchBar && (
-            <div className="mr-4">
+            <div className="mr-4 hidden lg:flex">
               <SearchBar
                 keyId="navbar-searchBar"
                 size="small"
@@ -527,7 +527,7 @@ export const Navbar: React.FC = () => {
                     id="navbar-shareRecipe-logged"
                     type="darkBlue"
                     rounded="lg"
-                    className="inline justify-end self-center | mr-2 cursor-pointer"
+                    className="inline justify-end self-center | mr-2 cursor-pointer | h-10"
                   >
                     Partager une recette
                   </Button>
@@ -542,7 +542,7 @@ export const Navbar: React.FC = () => {
                     id="navbar-shareRecipe"
                     type="darkBlue"
                     rounded="lg"
-                    className="inline justify-end self-center | mr-2 cursor-pointer"
+                    className="inline justify-end self-center | mr-2 cursor-pointer | h-10"
                   >
                     Partager une recette
                   </Button>
@@ -558,7 +558,7 @@ export const Navbar: React.FC = () => {
                     id="navbar-access-profil-logged"
                     type="blue"
                     rounded="lg"
-                    className="inline justify-end self-center | mr-4 cursor-pointer"
+                    className="inline justify-end self-center | mr-4 cursor-pointer | h-10"
                   >
                     Profil
                   </Button>
@@ -575,7 +575,7 @@ export const Navbar: React.FC = () => {
                       id="navbar-access-profil"
                       type="blue"
                       rounded="lg"
-                      className="inline justify-end self-center | cursor-pointer mr-2"
+                      className="inline justify-end self-center | cursor-pointer mr-2 | h-10"
                     >
                       Accéder au profil
                     </Button>

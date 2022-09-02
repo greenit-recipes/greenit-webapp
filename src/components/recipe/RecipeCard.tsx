@@ -98,7 +98,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             src={getImagePath(recipe?.image)}
             alt={recipe?.name}
             className={`flex flex-col object-cover | ${
-              enableShadow && "shadow-lg"
+              enableShadow && "shadow-flat"
             } ${`h-${imageHeight} w-${imageWidth}`}
             rounded-t-2xl | justify-self-center smooth-image image-${
               imageLoaded ? "visible" : "hidden"
@@ -118,7 +118,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       )}
 
       <div
-        className={`absolute | h-auto | mt-auto | bg-white shadow-lg rounded-2xl -bottom-10 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
+        className={`absolute | h-auto | mt-auto | bg-white shadow-flat rounded-2xl -bottom-10 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
       >
         {!disabledFavoriteRecipe && (
           <div className={`absolute -top-4 lg:-top-6 w-${imageWidth} z-10`}>

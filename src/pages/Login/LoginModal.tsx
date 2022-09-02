@@ -237,16 +237,16 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
         } flex-col items-center justify-items-center`}
       >
         <div className="flex flex-col items-center justify-center mobile">
-          <div className="text-2xl font-bold text-center">
-            Connexion <br />
+          <div className="text-xl font-bold text-center">
+            <h3>Connexion</h3>
           </div>
           <div>
             <p
               onClick={() => loginOpen(false)}
               id="modal-connexion-pas-encore-de-compte"
-              className="m-4 text-sm text-center text-darkBlue underline cursor-pointer md:m-10"
+              className="md:my-4 text-sm text-center text-darkBlue underline cursor-pointer md:text-base"
             >
-              Pas encore de compte ? - Créer son compte
+              Pas encore de compte ? Crée ton compte
             </p>
           </div>
           <div className="flex flex-col md:space-x-8">
@@ -295,7 +295,7 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               )}
             </div>
           </div>
-          <div className="m-4 w-full text-darkBlue separator md:m-10">OU</div>
+          <div className="my-4 w-full text-darkBlue separator md:my-8">OU</div>
           <form
             className="flex flex-col w-11/12 lg:w-96 md:my-2"
             // @ts-ignore
@@ -304,20 +304,18 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
             <div className="flex flex-row items-center w-full">
               <i className="bx bx-envelope mr-2 text-darkBlue text-3xl"></i>
               <input
-                className="w-full h-10 px-3 m-4 leading-tight text-gray-700 border shadow-lg appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline"
+                className="w-full h-10 px-3 leading-tight text-gray-700 border appearance-none rounded-md py-1 focus:outline-none focus:shadow-outline "
                 id="modal-login-email"
                 placeholder="Email"
                 type="email"
                 {...register("email")}
               ></input>
             </div>
-            <p className="text-xs italic text-red">
-              {errors.password?.message}
-            </p>
+            <p className="text-xs italic text-red">{errors.email?.message}</p>
 
             <div className="flex flex-row items-center w-full">
-              <i className="bx bx-lock-alt mr-2 text-darkBlue text-3xl"></i>
-              <div className="flex flex-row items-center w-full h-10 m-4 leading-tight text-gray-700 border shadow-lg rounded-md focus:shadow-outline">
+              <i className="bx bx-lock-alt mr-2 mt-1 text-darkBlue text-3xl"></i>
+              <div className="flex flex-row items-center w-full h-10 mt-3 leading-tight text-gray-700 border rounded-md focus:shadow-outline">
                 <input
                   className="w-full h-full px-3 appearance-none rounded-xl py-1 focus:outline-none"
                   id="login-page-password"
@@ -337,16 +335,16 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               {errors.password?.message}
             </p>
             <a
-              className="self-end px-4 mt-2 mb-6 text-sm font-bold decoration-solid underline lg:text-base text-darkBlue"
+              className="self-end px-4 mt-2 mb-6 text-sm decoration-solid underline lg:text-base text-darkBlue"
               id="modal-login-mot-de-passe-oublie"
               href={RouteName.resetPassword}
             >
               Mot de passe oublié ?
             </a>
             <Button
-              type="blue"
+              type="green"
               id="login-modal-button-connexion"
-              className="mt-4 font-extrabold"
+              className="w-40 self-center my-4"
               isLoading={loading}
             >
               Connexion

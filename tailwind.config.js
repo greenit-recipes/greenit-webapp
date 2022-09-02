@@ -36,6 +36,7 @@ module.exports = {
                 '1': '1px'
             },
             width: {
+                '13': '3.25rem',
                 '26': '6.5rem',
                 '38': '9.5rem',
                 '50': '12.6rem',
@@ -50,6 +51,7 @@ module.exports = {
                 '38': '9.5rem',
                 '50': '12.6rem',
                 '66': '18rem',
+                '82': '21rem',
                 '84': '22rem',
                 '98': '26rem',
             },
@@ -63,6 +65,7 @@ module.exports = {
             },
             maxWidth: {
                 '90': '90rem',
+                '32': '32rem',
                 '26': '26rem',
                 '20': '20rem',
                 '12': '16rem',
@@ -107,6 +110,9 @@ module.exports = {
                 bold: ['ZenMaruGothic_Bold'],
                 body: ["ZenMaruGothic_Medium"],
                 legend: ["ZenMaruGothic_Light"],
+            },
+            boxShadow: {
+                'flat': '0px 0px 12px 2px rgb(0 0 0 / 0.1)',
             },
         }
     },

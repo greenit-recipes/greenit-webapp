@@ -53,10 +53,14 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
                         className="relative mr-2 w-9 h-9 justify-center flex items-center "
                         key={index}
                       >
-                        <a href={data?.url} target="_blank">
+                        <a
+                          href={data?.url}
+                          target="_blank"
+                          className="hover:text-yellow sm:hover:scale-105 ease-linear"
+                        >
                           <img
                             src={rondIcon}
-                            className="absolute hover:fill-yellow top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                             alt="icon rond"
                           ></img>
 
