@@ -1,6 +1,5 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { BackgroundImage } from "components/layout/BackgroundImage";
 import { Navbar } from "components/layout/Navbar";
 import React from "react";
 import { Helmet } from "react-helmet";
@@ -71,7 +70,6 @@ const ActivateResetPassword: React.FC = () => {
       <Helmet>
         <meta name="robots" content="noindex" />
       </Helmet>
-      <BackgroundImage className="overflow-hidden" />
       <h3 className="text-xl w-2/3 md:text-3xl | mt-16 text-center">
         Réinitialisation du mot de passe. <br />
       </h3>

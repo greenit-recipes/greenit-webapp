@@ -1,4 +1,3 @@
-import { BackgroundImage } from "components";
 import { Footer } from "components/layout/Footer";
 import { Navbar } from "components/layout/Navbar";
 import { Button } from "components/misc/Button";
@@ -24,7 +23,6 @@ const RecipeCreatedPage = () => {
 
   return (
     <div>
-      <BackgroundImage />
       <Helmet>
         <meta name="robots" content="noindex" />
       </Helmet>

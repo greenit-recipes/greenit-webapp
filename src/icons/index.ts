@@ -74,10 +74,6 @@ import LCBougie from "./L&CBougie.jpg";
 import LCPAtelier from "./L&CAtelier.png";
 import LCShampoing from "./L&CShampoing.jpg";
 
-//BACKGROUND IMAGE
-import BackgroundImageMobile from "./backgroundMobile.jpg";
-import BackgroundImageDesktop from "./backgroundDesktop.jpg";
-
 //STARTER PAGE
 import Conseil from "./icon_conseil.png";
 import Cooking from "./icon_cooking.png";
@@ -260,8 +256,6 @@ export {
   wwwlogo,
   ytlogo,
   pastelogo,
-  BackgroundImageMobile,
-  BackgroundImageDesktop,
   LCParfum,
   LCBougie,
   LCPAtelier,

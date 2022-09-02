@@ -2,7 +2,6 @@ import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { Button, Footer, Navbar } from "components";
-import { BackgroundImage } from "components/layout/BackgroundImage";
 import { imageValidation } from "helpers/yup-validation.helper";
 import CreateRecipeForm from "pages/CreateRecipe/CreateRecipeForm";
 import { EMAIL_LINK_SHARED_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";

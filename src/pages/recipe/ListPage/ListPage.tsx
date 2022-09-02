@@ -9,7 +9,6 @@ import { Helmet } from "react-helmet";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useHistory } from "react-router-dom";
 import {
-  BackgroundImage,
   Button,
   Empty,
   Footer,
@@ -197,7 +196,6 @@ const RecipeListPage = () => {
   return (
     <div className={""}>
       <Navbar />
-      <BackgroundImage />
       <Helmet>
         <title>Recettes DIY : Cosmétiques, produits ménagers | Greenit</title>
         <meta

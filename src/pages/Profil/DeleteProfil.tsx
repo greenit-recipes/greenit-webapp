@@ -1,4 +1,4 @@
-import { BackgroundImage, Button, Container, Footer, Navbar } from "components";
+import { Button, Container, Footer, Navbar } from "components";
 import { MailIcon } from "icons";
 import React from "react";
 import { Helmet } from "react-helmet";
@@ -15,7 +15,6 @@ const DeleteProfil: React.FC = () => {
           content="Supprimer votre compte et vos données."
         />
       </Helmet>
-      <BackgroundImage />
       <Navbar />
       <Container className="flex flex-col | items-center | md:w-2/3 mt-16 lg:mt-28 px-8 mb-40">
         <h3 className="text-2xl md:text-3xl | text-center">

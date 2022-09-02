@@ -24,7 +24,6 @@ import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import authService, { CREATE_ACCOUNT } from "services/auth.service";
 import { Button, Footer, Navbar } from "../../components";
-import { BackgroundImage } from "../../components/layout/BackgroundImage";
 import "./register.css";
 import { PellGreenit } from "../../components/layout/Editor/PellEditor";
 const ModalLogGreenit = React.lazy(
