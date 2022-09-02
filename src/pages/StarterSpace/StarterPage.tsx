@@ -145,7 +145,7 @@ const StarterPage = () => {
             },
           ].map(item => (
             <div
-              className="w-28 h-28 lg:w-40 lg:h-40 grid bg-white rounded-md shadow-flat m-1 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
+              className="w-28 h-28 lg:w-40 lg:h-40 grid bg-white rounded-md shadow-flat m-1 p-2 | cursor-pointer transform hover:border-1 hover:br-darkBlue hover:scale-105 duration-100"
               onClick={() => item.fonction()}
             >
               <div className="grid absolute w-8 h-8 -mt-2 -ml-2 bg-white rounded-full shadow-sm m-2">
@@ -449,10 +449,10 @@ const StarterPage = () => {
             <div className="flex flex-col">
               <button
                 id="starterPage-info-ingredients"
-                className="flex cursor-pointer"
+                className="flex cursor-pointer hover:text-yellow"
                 onClick={() => setIsActive(!isActive)}
               >
-                <i className="bx bx-info-circle hover:text-yellow text-2xl mt-1 cursor-pointer"></i>
+                <i className="bx bx-info-circle text-2xl mt-1 cursor-pointer"></i>
                 <p id="info_ingredients" className="self-center ml-3">
                   {" "}
                   Pourquoi ces ingrédients ?
@@ -682,10 +682,10 @@ const StarterPage = () => {
             </div>
             <div className="flex flex-col">
               <button
-                className="flex cursor-pointer"
+                className="flex cursor-pointer hover:text-yellow"
                 onClick={() => setToggle(!toggle)}
               >
-                <i className="bx bx-info-circle hover:text-yellow text-2xl mt-1 cursor-pointer"></i>
+                <i className="bx bx-info-circle text-2xl mt-1 cursor-pointer"></i>
                 <p id="info_ingredients" className="self-center ml-3">
                   {" "}
                   Pourquoi ces ingrédients ?
@@ -694,8 +694,8 @@ const StarterPage = () => {
               <div
                 className={toggle ? "ingredient_fadeIn" : "ingredient_fadeOut"}
               >
-                <div className="flex justify-self-center p-2 mt-4 bg-darkBlue rounded-lg">
-                  <h4 className="text-white text-sm">
+                <div className="flex justify-self-center p-3 mt-1 bg-yellowL rounded-md">
+                  <h4 className="font-regular text-sm">
                     Le savon de Marseille est un nettoyant et un désinfectant.
                     Il dégraisse les surfaces et agit comme un antiseptique. Le
                     bicarbonate de soude ravive le blanc, adoucit et élimine les
