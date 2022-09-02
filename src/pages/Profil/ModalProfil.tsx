@@ -8,7 +8,7 @@ export const ModalProfil: React.FC = () => {
   const isMobile = useIsMobile();
   return (
     <div className="flex flex-col gap-2 p-6 md:p-20">
-      <div className="flex gap-3 hover:text-red">
+      <div className="flex gap-3 hover:text-blue">
         <i className="bx bxs-user-x text-3xl"></i>
         <button onClick={() => authService.logout()}>
           <h2 className="text-xl">Déconnexion</h2>
