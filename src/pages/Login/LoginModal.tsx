@@ -311,13 +311,11 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
                 {...register("email")}
               ></input>
             </div>
-            <p className="text-xs italic text-red">
-              {errors.password?.message}
-            </p>
+            <p className="text-xs italic text-red">{errors.email?.message}</p>
 
             <div className="flex flex-row items-center w-full">
               <i className="bx bx-lock-alt mr-2 mt-1 text-darkBlue text-3xl"></i>
-              <div className="flex flex-row items-center w-full h-10 mt-3 leading-tight text-gray-700 border shadow-lg rounded-md focus:shadow-outline">
+              <div className="flex flex-row items-center w-full h-10 mt-3 leading-tight text-gray-700 border rounded-md focus:shadow-outline">
                 <input
                   className="w-full h-full px-3 appearance-none rounded-xl py-1 focus:outline-none"
                   id="login-page-password"
@@ -337,16 +335,16 @@ export const LoginModal: React.FC<{ loginOpen: any }> = ({ loginOpen }) => {
               {errors.password?.message}
             </p>
             <a
-              className="self-end px-4 mt-2 mb-6 text-sm font-bold decoration-solid underline lg:text-base text-darkBlue"
+              className="self-end px-4 mt-2 mb-6 text-sm decoration-solid underline lg:text-base text-darkBlue"
               id="modal-login-mot-de-passe-oublie"
               href={RouteName.resetPassword}
             >
               Mot de passe oublié ?
             </a>
             <Button
-              type="blue"
+              type="green"
               id="login-modal-button-connexion"
-              className="mt-4 font-extrabold"
+              className="w-40 self-center my-4"
               isLoading={loading}
             >
               Connexion
