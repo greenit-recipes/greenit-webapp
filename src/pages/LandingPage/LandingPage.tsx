@@ -249,9 +249,7 @@ const LandingPage = () => {
                 </>
               ) : (
                 <>
-                  <span className="text-green trait-img-mobile left-0">
-                    Greenit
-                  </span>
+                  <span className="text-green trait-img-mobile">Greenit</span>
                   , la communauté <br /> qui rend accessible le fait-maison
                 </>
               )}

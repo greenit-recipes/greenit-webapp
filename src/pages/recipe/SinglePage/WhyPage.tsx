@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Footer, Navbar } from "../components";
-import useIsMobile from "../hooks/isMobile";
+import { Footer, Navbar } from "../../../components";
+import useIsMobile from "../../../hooks/isMobile";
 import {
   corpsWhy,
   money,
@@ -12,10 +12,9 @@ import {
   TopImageMobile,
   ProjectTopImageDesktop,
   boxFullXp,
-} from "../icons";
+} from "../../../icons";
 import { Helmet } from "react-helmet";
-import { CircleGreenit } from "./recipe/SinglePage/CircleGreenit/CircleGreenit";
-import "./../App.css";
+import { CircleGreenit } from "./CircleGreenit/CircleGreenit";
 
 const WhyPage: React.FC = () => {
   const isMobile = useIsMobile();
@@ -48,25 +47,27 @@ const WhyPage: React.FC = () => {
         ) : (
           <>
             <img
-              className="absolute top-0 w-full"
+              className="absolute top-0 2xl:-top-20 w-full"
               src={ProjectTopImageDesktop}
               alt="Communauté Greenit"
               loading="lazy"
             />
           </>
         )}
-        <h2 className="text-center text-2xl md:text-3xl mt-16 md:mt-20">
+        <h2 className="relative text-center text-2xl md:text-3xl mt-16 md:mt-20">
           {isMobile ? (
             <>
-              <span className="text-blue trait-img">Greenit</span>, la
-              communauté qui <br /> rend accessible le
-              <span className="double-trait-img"> fait maison !</span>
+              <span className="text-blue deco-img-project-mobile">Greenit</span>
+              , la communauté qui <br /> rend accessible le
+              <span> fait maison !</span>
             </>
           ) : (
             <>
-              <span className="text-blue trait-img">Greenit</span>, la
-              communauté qui rend accessible le
-              <span className="double-trait-img"> fait maison !</span>
+              <span className="text-blue deco-img-project-desktop">
+                Greenit
+              </span>
+              , la communauté qui rend accessible le
+              <span> fait maison !</span>
             </>
           )}
         </h2>
@@ -78,12 +79,12 @@ const WhyPage: React.FC = () => {
             c’est le moment faire connaissance !
           </p>
         </div>
-        <p className="text-center md:text-right mt-4">
+        <p className="text-center md:text-left mt-4">
           En 2020, lassée de ses irritations et allergies, Andréa s’intéresse à
           la composition de ses produits du quotidien : shampooings, soins,
           crèmes, lessives… Elle est rapidement alertée par les nombreux
           ingrédients qui créent la polémique et qui sont désignés comme
-          préoccupants par les scientifiques (malgré qu’ils soient largement
+          préoccupants par les scientifiques (alors qu’ils restent largement
           autorisés !) <br /> <br /> Finalement, elle se lance dans sa première
           crème maison : une grande réussite ! Stimulée par cette première
           victoire, elle multiplie les recherches et découvre une passion pour

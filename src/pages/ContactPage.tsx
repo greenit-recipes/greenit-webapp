@@ -34,19 +34,17 @@ const ContactPage = () => {
         />
       </Helmet>
       <div className="bg-blueL w-full h-40 md:h-52 | flex items-center justify-center">
-        <h2 className="text-center text-2xl md:text-3xl">
+        <h2 className="relative text-center text-2xl md:text-3xl">
           {isMobile() ? (
             <>
-              <span className=" trait-img">
+              <span>
                 {" "}
                 C’est le moment de <br /> faire connaissance !
               </span>
             </>
           ) : (
             <>
-              <span className="trait-img">
-                C’est le moment de faire connaissance !
-              </span>
+              <span>C’est le moment de faire connaissance !</span>
             </>
           )}
         </h2>
