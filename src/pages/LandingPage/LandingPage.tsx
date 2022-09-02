@@ -299,7 +299,7 @@ const LandingPage = () => {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-4 justify-items-center gap-y-10 gap-x-4">
+            <div className="grid grid-cols-4 justify-items-center gap-y-8 gap-x-2">
               {recipes?.map(recipe => (
                 <RecipeCard
                   recipe={recipe?.node}
@@ -472,7 +472,9 @@ const LandingPage = () => {
       <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
         <div className="flex w-max">
           {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            <div className="flex mr-2">
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            </div>
           ))}
           <ExploreMore
             filter="tags=Premiers pas"
@@ -494,7 +496,9 @@ const LandingPage = () => {
       <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
         <div className="flex w-max">
           {dataHomes?.slice(0, totalRecipeCards).map(recipe => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            <div className="flex mr-2">
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            </div>
           ))}
           <ExploreMore filter="category=Maison" id="landing-maison-explorer" />
         </div>
@@ -546,7 +550,12 @@ const LandingPage = () => {
                 {dataIngredientCuisines
                   ?.slice(0, isMobile ? totalRecipeCards : 3)
                   .map(recipe => (
-                    <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+                    <div className="flex mr-2">
+                      <RecipeCard
+                        recipe={recipe?.node}
+                        key={recipe?.node?.id}
+                      />
+                    </div>
                   ))}
                 {/*Todo: Fill category later*/}
                 {isMobile && (
@@ -567,10 +576,12 @@ const LandingPage = () => {
                   {dataIngredientCuisines
                     ?.slice(3, isMobile ? totalRecipeCards : 6)
                     .map(recipe => (
-                      <RecipeCard
-                        recipe={recipe?.node}
-                        key={recipe?.node?.id}
-                      />
+                      <div className="flex mr-2">
+                        <RecipeCard
+                          recipe={recipe?.node}
+                          key={recipe?.node?.id}
+                        />
+                      </div>
                     ))}
                   {/*Todo: Fill category later*/}
                   {isMobile && (
@@ -754,7 +765,9 @@ const LandingPage = () => {
       <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
         <div className="flex w-max">
           {dataHairs?.slice(0, totalRecipeCards).map(recipe => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            <div className="flex mr-2">
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            </div>
           ))}
           <ExploreMore
             filter="category=Cheveux"
@@ -777,7 +790,9 @@ const LandingPage = () => {
       <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
         <div className="flex w-max">
           {dataSearchMasques?.slice(0, totalRecipeCards).map(recipe => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            <div className="flex mr-2">
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            </div>
           ))}
           <ExploreMore filter="search=Masque" id="landing-masques-explorer" />
         </div>

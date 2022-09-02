@@ -12,14 +12,14 @@ export const ExploreMore: React.FC<ExploreMoreProps> = ({ filter, id }) => {
     <Link
       id={id}
       to={`${RouteName.recipes}${filter && "?" + filter}`}
-      className="ml-1 mr-5 h-80 w-52 bg-white rounded-2xl self-center relative |
+      className="ml-2 mb-2 md:mb-0 mr-5 h-82 w-52 bg-white shadow-flat rounded-2xl self-center |
     transform sm:hover:scale-105 ease-linear relative transition-all duration-150"
     >
-      <div>
-        <i className="absolute top-[40%] left-[40%] text-5xl bx bx-right-arrow-alt"></i>
-        <p className="absolute top-[52%] left-[30%] text-lg font-semibold">
-          Explorer plus
-        </p>
+      <div className="grid w-full h-full justify-center content-center">
+        <div className="flex flex-col h-20 justify-center">
+          <i className="text-5xl bx bx-right-arrow-alt text-center mr-2"></i>
+          <p className="text-lg font-medium text-center">Explorer plus</p>
+        </div>
       </div>
     </Link>
   );

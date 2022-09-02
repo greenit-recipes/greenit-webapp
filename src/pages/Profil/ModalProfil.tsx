@@ -7,28 +7,19 @@ import authService from "services/auth.service";
 export const ModalProfil: React.FC = () => {
   const isMobile = useIsMobile();
   return (
-    <>
-      <div
-        className={`flex ${
-          isMobile ? "" : "login-modal-size"
-        } justify-items-center flex flex-col`}
-      >
-        <div className="relative p-6 flex-auto text-center">
-          <button
-            className={
-              "py-2 text-center text-xl mb-2 cursor-pointer border-b-4 | hover:border-blue"
-            }
-            onClick={() => authService.logout()}
-          >
-            <h2>Déconnexion</h2>
-          </button>
-        </div>
-        <Link to={RouteName.deleteProfil} className="justify-center flex">
-          <div className="relative cursor pointer flex-auto py-2 text-start w-2/3 max-w-12 mb-8 ml-6 border-b-4 text-center | hover:border-blue">
-            <h2 className="text-xl">Supprimer mon compte</h2>
-          </div>
+    <div className="flex flex-col gap-2 p-6 md:p-20">
+      <div className="flex gap-3 hover:text-red">
+        <i className="bx bxs-user-x text-3xl"></i>
+        <button onClick={() => authService.logout()}>
+          <h2 className="text-xl">Déconnexion</h2>
+        </button>
+      </div>
+      <div className="flex gap-3 hover:text-red">
+        <i className="bx bxs-trash text-2xl"></i>
+        <Link to={RouteName.deleteProfil}>
+          <h2 className="text-xl">Supprimer mon compte</h2>
         </Link>
       </div>
-    </>
+    </div>
   );
 };

@@ -191,13 +191,13 @@ const CreateRecipeForm: React.FC = () => {
 
   return (
     <form
-      className="p-4 my-10 bg-white rounded-lg shadow-lg md:p-10 md:w-1/2"
+      className="flex flex-col gap-2 bg-blueL p-4 md:p-8 mt-6 md:mt-10 rounded"
       // @ts-ignore
       onSubmit={handleSubmit(onSubmitHandler)}
     >
       {/* Input */}
       <div className="mb-10">
-        <h3 className="mt-2 text-lg font-bold md:text-xl">
+        <h3 className="my-2 text-lg md:text-xl">
           Utilise le formulaire pour partager ta recette
         </h3>
         <label className="block text-lg">Nom de la recette</label>
@@ -599,7 +599,7 @@ const CreateRecipeForm: React.FC = () => {
 
       <div className="grid w-full justify-items-center">
         <Button
-          className="px-2 py-3 text-lg"
+          className="w-40 h-10"
           type="green"
           disabled={loadingCreateRecipe}
         >

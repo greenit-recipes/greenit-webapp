@@ -21,12 +21,10 @@ export const CarrouselLanding: React.FC<ICarrouselLanding> = ({
         <h2>{title}</h2>
         <h2 className="font-diy text-2xl">{subtitle}</h2>
       </Container>
-      <div className="w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
-        <div className="flex w-max">
-          {recipeData?.map((recipe: any) => (
-            <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-          ))}
-        </div>
+      <div className="w-full p-4 overflow-x-auto pb-12 bg-blueL">
+        {recipeData?.map((recipe: any) => (
+          <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+        ))}
       </div>
     </div>
   );
