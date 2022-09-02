@@ -23,27 +23,21 @@ export const SectionStarterPage: React.FC<SectionStarterPageProps> = ({
     <div className={`${className} grid gap-2 lg:grid-cols-4 w-full mb-4`}>
       <div
         className={`grid justify-items-end bg-${
-          color ? color : "blue"
-        } self-top rounded-tr-full rounded-br-full shadow-lg | p-1 -ml-10 w-2/3 lg:w-full h-16`}
+          color ? color : "blueL"
+        } self-top rounded-tr-full rounded-br-full | p-1 -ml-10 w-2/3 lg:w-full h-16`}
       >
         <div className="flex">
-          <h3 className="font-semibold text-center self-center mr-3">
+          <h3 className="text-center self-center mr-3 text-xl md:text-2xl">
             {maintitle}
           </h3>
-          <div
-            className={
-              step
-                ? "grid w-10 h-10 self-center items-end bg-white rounded-full shadow-sm mr-1"
-                : "hidden"
-            }
-          >
-            <h2 className="text-center self-center font-bold">{number}</h2>
-          </div>
+          <h3 className="text-center self-center mr-6 text-xl md:text-2xll">
+            {number}
+          </h3>
         </div>
       </div>
       <div className="grid lg:col-span-2">
-        <h3 className="self-center font-semibold px-6">{title}</h3>
-        <p className="font-light px-6">{text}</p>
+        <h2 className="self-center px-6 text-lg font-medium">{title}</h2>
+        <p className="font-diy px-6 mt-1 text-2xl leading-6">{text}</p>
       </div>
     </div>
   );

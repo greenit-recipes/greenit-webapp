@@ -20,8 +20,8 @@ export const FirstStep: React.FC<IFirstStep> = ({ item }) => {
 
   return (
     <>
-      <div className="flex flex-cols w-full mt-8 mb-2">
-        <div className="border-r-2 border-blue">
+      <div className="flex flex-cols w-full mt-8 md:mt-0 mb-2">
+        <div className="border-r-1 border-darkBlue">
           <img
             src={item.imgProfil}
             className="w-14 h-14 lg:w-18 mr-8"
@@ -38,7 +38,7 @@ export const FirstStep: React.FC<IFirstStep> = ({ item }) => {
           </h4>
         </div>
       </div>
-      <h3 className=" text-blue lg:text-xl font-semibold mb-2">
+      <h3 className="font-diy mt-1 text-2xl leading-6 mb-2">
         "{item.citation}"
       </h3>
       <p>{HTMLReactParser(item.shortDescription)}</p>

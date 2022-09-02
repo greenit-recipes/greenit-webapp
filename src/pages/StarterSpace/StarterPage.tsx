@@ -31,17 +31,12 @@ import {
   EcorceArgume,
   Fouet,
   HuileRicin,
-  IconAtelier,
-  IconInternet,
-  IconMarche,
-  IconSite,
   Lessive,
-  Livre,
   logo,
   Maryse,
-  Producteur,
   SavonMarseille,
   Ustensil,
+  BadgeJeDebute,
 } from "../../icons";
 import "./StarterPage.css";
 const ModalLogGreenit = React.lazy(
@@ -49,18 +44,6 @@ const ModalLogGreenit = React.lazy(
 );
 
 const StarterPage = () => {
-  const { data } = useRecipesQuery({
-    fetchPolicy: "no-cache",
-    variables: {
-      filter: {
-        id: [
-          "8485c5ae-4175-474b-9107-9aa306874c5f",
-          "e0ef40bb-70e1-4127-80b6-4c106f268b03",
-        ],
-      },
-    },
-  });
-
   useEffect(() => {
     if (window.pageYOffset > 0) {
       window.scrollTo({
@@ -71,7 +54,6 @@ const StarterPage = () => {
   }, []);
 
   const isLoggedIn = authService.isLoggedIn();
-  const recipes = data?.allRecipes?.edges || [];
 
   const fieldRefEtape3 = useRef<HTMLInputElement>(null);
   const fieldRefEtape1 = useRef<HTMLInputElement>(null);
@@ -120,22 +102,28 @@ const StarterPage = () => {
         />
       </Helmet>
 
-      <Container className="flex flex-col | w-10/12 mt-8 lg:my-20">
-        <div className="lg:mb-4">
-          <h1 className="text-blue font-semibold | mb-2">
-            Comment se lancer ?
-          </h1>
-          <h3 className="mb-2">
+      <Container className="flex justify-center w-full pt-10 pb-20 md:py-16 bg-yellowL">
+        <div className="flex flex-col gap-2 w-10/12">
+          <h1 className="font-medium">Comment se lancer ?</h1>
+          <h3>
             Pour tous les curieux qui ne savent pas par où commencer dans le
             DIY, <br /> ce guide est fait pour vous !
           </h3>
-          <h3 className="font-light">
+          <h4 className="font-light">
             Voici 3 étapes simples pour vous lancer dans le fait-maison en
             débutant pas à pas.
-          </h3>
+          </h4>
         </div>
+      </Container>
 
-        <div className="grid grid-rows-4 | lg:grid-rows-1 lg:grid-cols-5 lg:ml-10 gap-2 my-6 justify-items-center">
+      <Container className="grid md:w-10/12 justify-items-end mb-10">
+        <div className="invisible lg:visible lg:relative w-full">
+          <img
+            className="absolute -top-11 -rotate-12 w-36 h-36"
+            src={BadgeJeDebute}
+          />{" "}
+        </div>
+        <div className="grid grid-cols-3 | gap-4 -mt-10 md:-mt-20">
           {[
             {
               icon: Conseil,
@@ -157,47 +145,29 @@ const StarterPage = () => {
             },
           ].map(item => (
             <div
-              className="w-32 h-32 lg:w-40 lg:h-40 grid bg-white rounded-xl shadow-lg m-2 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
+              className="w-28 h-28 lg:w-40 lg:h-40 grid bg-white rounded-md shadow-flat m-1 p-2 | cursor-pointer transform sm:hover:scale-105 ease-linear transition-all duration-150"
               onClick={() => item.fonction()}
             >
-              <div className="grid absolute w-10 h-10 -mt-4 -ml-4 bg-white rounded-full shadow-sm m-2">
-                <h2 className="text-center self-center font-bold text-xl">
+              <div className="grid absolute w-8 h-8 -mt-2 -ml-2 bg-white rounded-full shadow-sm m-2">
+                <h2 className="text-center self-center text-lg">
                   {item.number}
                 </h2>
               </div>
               <div className="grid justify-items-center">
                 <img
                   src={item.icon}
-                  className="w-14 lg:w-16 self-center items-center"
+                  className="w-10 lg:w-16 self-center items-center"
                   alt="conseils_diy"
                   loading="lazy"
                 />{" "}
               </div>
-              <h3 className="text-sm  text-center font-light">{item.title}</h3>
+              <h3 className="text-sm  text-center font-regular">
+                {item.title}
+              </h3>
             </div>
           ))}
-          <div className="flex flex-col justify-center items-center gap-2">
-            <h4>Motivez-vous avec vos ami.e.s :</h4>
-
-            <RWebShare
-              data={{
-                url: window.location.href,
-              }}
-            >
-              <Button
-                id="recette-partager"
-                type="darkBlue"
-                rounded="lg"
-                haveIcon={true}
-                className="ml-2"
-              >
-                <i className="bx bx-share bx-flip-horizontal bx-sm mr-2"></i>
-                partager le lien du guide
-              </Button>
-            </RWebShare>
-          </div>
         </div>
-        <div ref={fieldRefEtape1}></div>
+        <div ref={fieldRefEtape1} />
       </Container>
 
       <SectionStarterPage
@@ -263,8 +233,8 @@ const StarterPage = () => {
       ></SectionStarterPage>
 
       <Container className="grid lg:justify-center w-full mt-4 mb-20">
-        <div className="flex flex-row overflow-x-auto w-full pb-6 px-4 mb-2">
-          <div className="flex gap-4 lg:gap-0">
+        <div className="flex flex-row overflow-x-auto w-full px-4">
+          <div className="flex gap-4 p-4 lg:gap-0">
             {[
               {
                 icon: Bol,
@@ -296,7 +266,7 @@ const StarterPage = () => {
               },
             ].map((item, index) => (
               <div
-                className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72"
+                className="grid bg-white rounded-md shadow-flat m-2 p-6 w-72"
                 key={index}
               >
                 <div className="grid justify-items-center h-20">
@@ -329,16 +299,28 @@ const StarterPage = () => {
 
       {/* Etape 3 Recette 1 */}
       <Container className="flex| lg:w-10/12 w-11/12 p-3 lg:mt-6">
-        <h2 className="text-2xl font-semibold mb-2">Recette 1 :</h2>
+        <h2 className="text-2xl mb-1">Recette 1 :</h2>
         <div className="flex flex-col justify-between lg:flex-row">
           <div className="flex-col flex">
-            <h2 className="text-xl font-medium mb-4 mr-4">
+            <h2 className="text-xl font-regular mb-4 mr-4">
               Crème nourrissante
             </h2>
-            <div className="place-self-center lg:place-self-start">
+            <div className="relative place-self-center lg:place-self-start">
+              <Button
+                className="absolute bottom-0 right-0 mx-3 mb-1 md:mb-2 md:ml-2 shadow-flat"
+                type="darkBlue"
+                href="#"
+                onClick={() => {
+                  window.open(
+                    "https://greenitcommunity.com/recettes/creme-pour-le-corps-hydratante-a-la-vanille",
+                  );
+                }}
+              >
+                Voir la recette
+              </Button>
               <img
                 src={CremeCorp}
-                className={`${isMobile ? "rounded-xl w-36 h-45" : "img-dim"}`}
+                className={`${isMobile ? "rounded-md w-36 h-45" : "img-dim"}`}
                 loading="lazy"
                 alt="creme corps"
               />
@@ -346,17 +328,17 @@ const StarterPage = () => {
             <div className="flex flex-col justify-center items-center">
               <div className="flex mt-2">
                 <p>Quantité : </p>
-                <p className="font-semibold">&nbsp;70 g</p>
+                <p>&nbsp;70 g</p>
               </div>
-              <div className="flex mt-2 mb-3">
+              <div className="flex mb-2">
                 <p>Prix : </p>
-                <p className="font-semibold">&nbsp;2,80 €</p>
+                <p>&nbsp;2,80 €</p>
               </div>
             </div>
           </div>
           <div className="flex flex-col lg:w-2/4">
             <div className="flex mb-4">
-              <h2 className="text-xl self-end font-medium">Les ingrédients</h2>
+              <h2 className="text-xl font-regular self-end">Les ingrédients</h2>
             </div>
             <div className="flex items-center overflow-x-auto lg mb-4">
               <div className="m-2 w-32 h-60">
@@ -368,7 +350,7 @@ const StarterPage = () => {
                     loading="lazy"
                   />{" "}
                 </div>
-                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                <div className="flex justify-center w-12 h-12 bg-blueL rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
                     50 g
                   </p>
@@ -378,7 +360,7 @@ const StarterPage = () => {
                     Beurre de karité
                   </p>
                 </div>
-                <h4 className="text-xs lg:text-sm font-light text-center mt-8">
+                <h4 className="text-xs lg:text-sm font-regular text-center">
                   3,90 € / 100 g{" "}
                 </h4>
               </div>
@@ -396,7 +378,7 @@ const StarterPage = () => {
                     loading="lazy"
                   />{" "}
                 </div>
-                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                <div className="flex justify-center w-12 h-12 bg-blueL rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
                     20 g{" "}
                   </p>
@@ -406,7 +388,7 @@ const StarterPage = () => {
                     Huile végétale de ricin{" "}
                   </p>
                 </div>
-                <h4 className="text-xs lg:text-sm font-light text-center mt-8">
+                <h4 className="text-xs lg:text-sm font-regular text-center">
                   2,60 € / 100 g{" "}
                 </h4>
               </div>
@@ -424,7 +406,7 @@ const StarterPage = () => {
                     loading="lazy"
                   />{" "}
                 </div>
-                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                <div className="flex justify-center w-12 h-12 bg-blueL rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
                     2 g{" "}
                   </p>
@@ -434,7 +416,7 @@ const StarterPage = () => {
                     Cire d’abeille{" "}
                   </p>
                 </div>
-                <h4 className="text-xs lg:text-sm font-light text-center  mt-8">
+                <h4 className="text-xs lg:text-sm font-regular text-center">
                   2,90 € / 30 g{" "}
                 </h4>
               </div>
@@ -452,7 +434,7 @@ const StarterPage = () => {
                     loading="lazy"
                   />{" "}
                 </div>
-                <div className="flex justify-center w-12 h-12 bg-grey rounded-full -mt-8 lg:ml-4 relative z-20">
+                <div className="flex justify-center w-12 h-12 bg-darkBlue rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-white text-xs self-center font-medium">
                     ≈ 100ml{" "}
                   </p>
@@ -466,15 +448,11 @@ const StarterPage = () => {
             </div>
             <div className="flex flex-col">
               <button
-                className="flex cursor-pointer ml-6"
+                id="starterPage-info-ingredients"
+                className="flex cursor-pointer"
                 onClick={() => setIsActive(!isActive)}
               >
-                <div
-                  id="info_ingredients"
-                  className="flex h-8 w-8 bg-grey rounded-full justify-center"
-                >
-                  <p className="self-center text-white font-bold">𝓲</p>
-                </div>
+                <i className="bx bx-info-circle hover:text-yellow text-2xl mt-1 cursor-pointer"></i>
                 <p id="info_ingredients" className="self-center ml-3">
                   {" "}
                   Pourquoi ces ingrédients ?
@@ -485,8 +463,8 @@ const StarterPage = () => {
                   isActive ? "ingredient_fadeIn" : "ingredient_fadeOut"
                 }
               >
-                <div className="flex justify-self-center ml-6 p-2 mt-4 bg-grey rounded-lg">
-                  <h4 className="text-white text-sm">
+                <div className="flex justify-self-center p-3 mt-1 bg-yellowL rounded-md">
+                  <h4 className="font-regular text-sm">
                     Le beurre de karité permet de réparer les peaux abîmées. Il
                     pénètre rapidement et nourrit en profondeur. L’huile
                     végétale de ricin est utilisée pour ses propriétés sur la
@@ -499,10 +477,10 @@ const StarterPage = () => {
           </div>
 
           <div className="flex flex-col lg:w-1/5 mt-4 lg:mt-0">
-            <h2 className="text-lg text-center lg:text-xl lg:mb-5 font-medium">
+            <h2 className="text-lg text-center lg:text-xl lg:mb-5 font-regular">
               Où acheter ?{" "}
             </h2>
-            <div className="flex flex-col m-4 w-60 items-center self-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
+            <div className="flex flex-col m-4 w-60 items-center self-center p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-md shadow-flat">
               <p className="text-center text-sm font-light  mb-2">
                 Nous conseillons Mycosmetik 🇫🇷 pour l'acessibilité et la qualité
                 des produits. 👇
@@ -517,7 +495,7 @@ const StarterPage = () => {
                       "https://www.mycosmetik.fr/#ae411                      ",
                     );
                   }}
-                  type="orange"
+                  type="green"
                   className="w-32 h-10"
                 >
                   {" "}
@@ -535,14 +513,26 @@ const StarterPage = () => {
       </Container>
       {/* Etape 3 Recette 2 */}
       <Container className="flex| lg:w-10/12 w-11/12 p-3 lg:mt-6 mb-20">
-        <h2 className="text-2xl font-semibold mb-2">Recette 2 :</h2>
+        <h2 className="text-2xl mb-1">Recette 2 :</h2>
         <div className="flex flex-col justify-between lg:flex-row">
           <div className="flex-col flex">
-            <h2 className="text-xl font-medium mb-4 mr-4">Lessive minute</h2>
-            <div className="place-self-center lg:place-self-start">
+            <h2 className="text-xl font-regular mb-4 mr-4">Lessive minute</h2>
+            <div className="relative place-self-center lg:place-self-start">
+              <Button
+                className="absolute bottom-0 right-0 mx-3 mb-1 md:mb-2 md:ml-2 shadow-flat"
+                type="darkBlue"
+                href="#"
+                onClick={() => {
+                  window.open(
+                    "https://greenitcommunity.com/recettes/lessive-express/",
+                  );
+                }}
+              >
+                Voir la recette
+              </Button>
               <img
                 src={Lessive}
-                className={`${isMobile ? "rounded-xl w-36 h-45" : "img-dim"}`}
+                className={`${isMobile ? "rounded-md w-36 h-45" : "img-dim"}`}
                 loading="lazy"
                 alt="lessive"
               />
@@ -550,17 +540,17 @@ const StarterPage = () => {
             <div className="flex flex-col justify-center items-center">
               <div className="flex mt-2">
                 <p>Quantité : </p>
-                <p className="font-semibold">&nbsp;1 L</p>
+                <p>&nbsp;1 L</p>
               </div>
               <div className="flex mt-2 mb-3">
                 <p>Prix : </p>
-                <p className="font-semibold">&nbsp;0,50 €</p>
+                <p>&nbsp;0,50 €</p>
               </div>
             </div>
           </div>
           <div className="flex flex-col lg:w-2/4">
             <div className="flex mb-4">
-              <h2 className="text-xl self-end font-medium">Les ingrédients</h2>
+              <h2 className="text-xl self-end font-regular">Les ingrédients</h2>
             </div>
             <div className="flex items-center overflow-x-auto lg mb-4">
               <div className="m-2 w-32 h-60">
@@ -572,7 +562,7 @@ const StarterPage = () => {
                     loading="lazy"
                   />{" "}
                 </div>
-                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                <div className="flex justify-center w-12 h-12 bg-blueL rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
                     10 g
                   </p>
@@ -600,7 +590,7 @@ const StarterPage = () => {
                     loading="lazy"
                   />{" "}
                 </div>
-                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                <div className="flex justify-center w-12 h-12 bg-blueL rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
                     30 g{" "}
                   </p>
@@ -628,7 +618,7 @@ const StarterPage = () => {
                     loading="lazy"
                   />{" "}
                 </div>
-                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                <div className="flex justify-center w-12 h-12 bg-blueL rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
                     1 L{" "}
                   </p>
@@ -653,7 +643,7 @@ const StarterPage = () => {
                     loading="lazy"
                   />{" "}
                 </div>
-                <div className="flex justify-center w-12 h-12 bg-blue rounded-full -mt-8 lg:ml-4 relative z-20">
+                <div className="flex justify-center w-12 h-12 bg-blueL rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-sm self-center font-medium">
                     2 à 3{" "}
                   </p>
@@ -678,7 +668,7 @@ const StarterPage = () => {
                     loading="lazy"
                   />{" "}
                 </div>
-                <div className="flex justify-center w-12 h-12 bg-grey rounded-full -mt-8 lg:ml-4 relative z-20">
+                <div className="flex justify-center w-12 h-12 bg-darkBlue rounded-full -mt-8 lg:ml-4 relative z-20">
                   <p className="text-center text-white text-xs self-center font-medium">
                     ≈ 1 L{" "}
                   </p>
@@ -692,15 +682,10 @@ const StarterPage = () => {
             </div>
             <div className="flex flex-col">
               <button
-                className="flex cursor-pointer ml-6"
+                className="flex cursor-pointer"
                 onClick={() => setToggle(!toggle)}
               >
-                <div
-                  id="info_ingredients"
-                  className="flex h-8 w-8 bg-grey rounded-full justify-center"
-                >
-                  <p className="self-center text-white font-bold">𝓲</p>
-                </div>
+                <i className="bx bx-info-circle hover:text-yellow text-2xl mt-1 cursor-pointer"></i>
                 <p id="info_ingredients" className="self-center ml-3">
                   {" "}
                   Pourquoi ces ingrédients ?
@@ -709,7 +694,7 @@ const StarterPage = () => {
               <div
                 className={toggle ? "ingredient_fadeIn" : "ingredient_fadeOut"}
               >
-                <div className="flex justify-self-center ml-6 p-2 mt-4 bg-grey rounded-lg">
+                <div className="flex justify-self-center p-2 mt-4 bg-darkBlue rounded-lg">
                   <h4 className="text-white text-sm">
                     Le savon de Marseille est un nettoyant et un désinfectant.
                     Il dégraisse les surfaces et agit comme un antiseptique. Le
@@ -723,10 +708,10 @@ const StarterPage = () => {
           </div>
 
           <div className="flex flex-col lg:w-1/5 mt-4 lg:mt-0">
-            <h2 className="text-lg text-center lg:text-xl lg:mb-5 font-medium">
+            <h2 className="text-lg text-center lg:text-xl lg:mb-5 font-regular">
               Où acheter ?
             </h2>
-            <div className="flex flex-col m-4 w-60 items-center self-center justify-between p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-xl shadow-lg">
+            <div className="flex flex-col m-4 w-60 items-center self-center justify-between p-4 | lg:col-span-1 lg:m-0 | bg-white rounded-md shadow-lg">
               <p className="text-center text-sm font-light mb-4">
                 Ces ingredients sont trouvables dans ta biocop ou ton
                 supermarché du coin !
@@ -740,7 +725,7 @@ const StarterPage = () => {
                       "https://www.biocoop.fr/magasins-bio/Trouver-mon-magasin-Biocoop",
                     );
                   }}
-                  type="orange"
+                  type="green"
                   className="w-46 h-10"
                 >
                   Trouver une biocop
@@ -760,276 +745,85 @@ const StarterPage = () => {
       </Container>
 
       <SectionStarterPage
+        color="blueL"
         step={false}
-        maintitle="Création"
-        title="Rendez-vous ici dès que tu reçois tes ingrédients !"
-        text="En attendant, tu peux créer ton profil et appuyer sur le ♥︎ des
-        recettes pour les sauvegarder."
+        maintitle="Pour aller plus loin"
+        title="À la recherche des prochaines étapes ?"
       ></SectionStarterPage>
 
-      {isLoggedIn ? (
-        <Link className="mt-4" to={RouteName.profil}>
-          <Button id="SP_go_profil" type="blue">
-            Profil
-          </Button>
-        </Link>
-      ) : (
-        <ModalLogGreenit
-          btn={
-            <Button id="SP_create_account" type="green">
-              Créer un profil
-            </Button>
-          }
-        ></ModalLogGreenit>
-      )}
-
-      <div className="grid grid-cols-2 gap-x-2 | mt-10 mb-20">
-        {recipes.map(recipe => (
-          <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
-        ))}
-      </div>
-
-      <SectionStarterPage
-        color="green"
-        step={false}
-        maintitle="Aller plus loin"
-        title="Où acheter les ingrédients ?"
-        text="Il est parfois difficile de trouver des ingrédients de bonne qualité
-        sans faire plein d’enseignes différentes. Nous proposons quelques
-        conseils et marques pour vous aiguiller dans cette recherche."
-      ></SectionStarterPage>
-
-      <Container className="grid lg:justify-center w-full mt-6 mb-6">
-        <div className="flex flex-row overflow-x-auto w-full pb-6 px-4 mb-2">
-          <div className="flex lg:gap-10">
-            <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
-              <div className="grid justify-items-center">
-                <img
-                  src={Producteur}
-                  className="w-16 lg:w-20 self-center items-center"
-                  alt="Producteur_icon"
-                  loading="lazy"
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:w-10/12 w-11/12 p-3 md:pt-10 mb-20">
+        <div className="grid">
+          <h3 className="font-regular text-lg text-center">
+            D’autres catégories qui pourraient te plaire
+          </h3>
+          <div className="flex justify-center pt-6">
+            <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150">
+              {landingPageCategories.slice(1, 2).map(item => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
                 />
-              </div>
-              <h2 className="text-lg text-center mb-2">Producteurs locaux</h2>
-              <p className="text-sm text-center font-light">
-                Le top, c’est de faire appel à nos producteurs locaux pour vos
-                ingrédients. Ils sont toutefois plus compliqués à trouver et ne
-                s’éparpillent pas avec la productions de plusieurs type
-                ingrédients. Pour les huiles essentielles : Distillerie Bel Air,
-                pour les huiles végétales : Huiles Bertin, Daniel Rouillard. Le
-                must serait de vous fournir à votre voisin producteur.
-              </p>
+              ))}
             </div>
-            <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
-              <div className="grid justify-items-center">
-                <img
-                  src={IconMarche}
-                  className="w-16 lg:w-20 self-center items-center"
-                  alt="Marché_icon"
-                  loading="lazy"
-                />{" "}
-              </div>
-              <h2 className="text-lg text-center mb-2">
-                Biocoop ou grande surface{" "}
-              </h2>
-              <p className="text-sm text-center font-light">
-                La grande majorité des produits utilisée en fait-maison est
-                accessible dans vos supermarchés. Nous préconisons des magasins
-                bios (Naturalia, La Vie Claire, Biocoop, l’Eau Vive…) et magasin
-                bio en ligne (Kazidomi, La Fourche…). Vous pouvez y trouver
-                facilement du bicarbonate de soude, du savon de Marseille et
-                certaines huiles végétales.
-              </p>
-            </div>
-            <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
-              <div className="grid justify-items-center">
-                <img
-                  src={IconInternet}
-                  className="w-12 lg:w-16 self-center items-center"
-                  alt="Internet_icon"
-                  loading="lazy"
-                />{" "}
-              </div>
-              <h2 className="text-lg text-center mb-2">
-                Sur les sites marchands{" "}
-              </h2>
-              <p className="text-sm text-center font-light">
-                En ligne, l’offre est bien plus grande, mais attention à la
-                qualité ! Nous recommandons certaines marques françaises comme :
-                Vos huiles, La compagnie des sens ou MyCosmetik. Sur ces sites,
-                vous trouverez absolument tout ce dont vous avez besoin :
-                ingrédients cosmétiques, huiles essentielles, poudres végétales
-                et ingrédients pour le ménage.
-              </p>
+            <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150">
+              {landingPageCategories.slice(0, 1).map(item => (
+                <CategoryCircle
+                  name={item.title}
+                  icon={item.icon}
+                  key={item.title}
+                />
+              ))}
             </div>
           </div>
         </div>
-      </Container>
-
-      <SectionStarterPage
-        color="green"
-        step={false}
-        maintitle="Encore plus loin"
-        title="Où trouver les informations nécessaires ?"
-        text="Les informations sur le fait-maison sont éparpillées sur internet
-        entre les blogs, c’est la raison pour laquelle Greenit existe !
-        Greenit c’est des recettes simples, des ateliers et les information
-        ingrédients (bientôt). En attendant, nous vous proposons une
-        sélection de sources pour débuter en fait-maison."
-      ></SectionStarterPage>
-
-      <Container className="grid lg:justify-center w-full lg:mt-6 mb-6">
-        <div className="flex flex-row overflow-x-auto w-full  pb-6 mb-2 px-4">
-          <div className="flex gap-6 lg:gap-10">
-            <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
-              <div className="grid justify-items-center">
-                <img
-                  src={IconAtelier}
-                  className="w-16 lg:w-18 self-center items-center"
-                  alt="Atelier_icon"
-                  loading="lazy"
-                />{" "}
-              </div>
-              <h2 className="text-lg text-center">Ateliers </h2>
-              <p className="text-sm text-center font-light">
-                <a
-                  className="underline"
-                  target="_blank"
-                  href="https://www.atelier-diy.com"
-                >
-                  L’atelier du D.I.Y
-                </a>
-                <br />
-                <br />
-                <a
-                  className="underline"
-                  target="_blank"
-                  href="https://labonnecomposition.fr"
-                >
-                  La bonne composition à Paris
-                </a>
-                <br />
-                <br />
-                <a
-                  className="underline"
-                  target="_blank"
-                  href="https://www.lavandeetcamomille.com"
-                >
-                  Lavande et Camomille à Lyon
-                </a>
-              </p>
-            </div>
-            <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
-              <div className="grid justify-items-center">
-                <img
-                  src={Livre}
-                  className="w-16 lg:w-18 self-center items-center"
-                  alt="Livre_icon"
-                  loading="lazy"
-                />{" "}
-              </div>
-              <h2 className="text-lg text-center mb-2">Livres recommandés </h2>
-              <p className="text-sm text-center font-light">
-                Ma bible des huiles essentielles de Danièle Festy (Editions
-                Leduc) <br />
-                <br />
-                Ma bible de la slow cosmétique de Julien Kaibeck (Editions
-                Leduc) <br />
-                <br />
-                INCI BEAUTY - Bien choisir ses produits cosmétiques de
-                Jean-Christophe Janicot (Larousse) <br />
-              </p>
-            </div>
-            <div className="grid bg-white rounded-xl shadow-lg m-2 p-6 w-72">
-              <div className="grid justify-items-center">
-                <img
-                  src={IconSite}
-                  className="w-16 lg:w-18 self-center items-center"
-                  alt="Site_icon"
-                  loading="lazy"
-                />
-              </div>
-              <h2 className="text-lg text-center">Site internet </h2>
-              <p className="text-sm text-center font-light">
-                <a
-                  className="underline"
-                  target="_blank"
-                  href="https://www.slow-cosmetique.org"
-                >
-                  Le site de la Slow Cosmétique
-                </a>
-                <br />
-                <br />
-                <a
-                  className="underline"
-                  target="_blank"
-                  href="https://www.aroma-zone.com/info/guide-des-huiles-essentielles/tous"
-                >
-                  Le site d’Aroma-Zone pour leurs informations
-                </a>
-                <br />
-                <br />
-                <a
-                  className="underline"
-                  target="_blank"
-                  href="https://www.compagnie-des-sens.fr"
-                >
-                  Le site de la Compagnie des Sens
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </Container>
-
-      <SectionStarterPage
-        color="green"
-        step={false}
-        maintitle="Explorer plus"
-        title="À la recherche d'autres recettes simples pour débuter ?"
-      ></SectionStarterPage>
-
-      <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 justify-self-center justify-content-center w-10/12 lg:w-3/5 mt-6 mb-16">
-        <h3 className="text-sm lg: lg:col-span-2 font-light mt-6">
-          <p>
-            "Avec les ingrédients de la cuisine" réuni toutes les recettes avec
-            des ingrédients que l’on peut déjà avoir chez soi.
+        <div className="grid grid-cols-1 md:w-2/3 justify-center">
+          <h3 className="font-regular text-lg text-center">
+            Répandons le fait-maison ensemble !
+          </h3>
+          <p className="text-center text-sm ">
+            Partage le guide autour de toi et enregistre tes recettes préférées
+            de la communauté !
           </p>
-        </h3>
-        <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150">
-          {landingPageCategories.slice(2, 3).map(item => (
-            <CategoryCircle
-              name={item.title}
-              icon={item.icon}
-              key={item.title}
-            />
-          ))}
+          <div className="flex justify-center gap-3 mt-6 md:mt-0">
+            <RWebShare
+              data={{
+                url: window.location.href,
+              }}
+            >
+              <Button id="recette-partager" type="darkBlue" className="h-10">
+                <i className="bx bx-share bx-flip-horizontal bx-sm mr-2"></i>
+                Partager le guide
+              </Button>
+            </RWebShare>
+            {isLoggedIn ? (
+              <Link className="mt-4" to={RouteName.profil}>
+                <Button id="SP_go_profil" type="blue">
+                  Accéder à mon espace DIY
+                </Button>
+              </Link>
+            ) : (
+              <ModalLogGreenit
+                btn={
+                  <Button id="SP_create_account" type="green">
+                    Créer un profil
+                  </Button>
+                }
+              ></ModalLogGreenit>
+            )}
+          </div>
         </div>
-        <div className="transform sm:hover:scale-105 ease-linear transition-all duration-150">
-          {landingPageCategories.slice(0, 1).map(item => (
-            <CategoryCircle
-              name={item.title}
-              icon={item.icon}
-              key={item.title}
-            />
-          ))}
-        </div>
-        <h3 className="text-sm lg: lg:col-span-2 font-light mt-6 text-right">
-          <p>"Premiers pas" réuni toutes les recettes les plus simples.</p>
-        </h3>
       </div>
-
       <SectionStarterPage
-        color="green"
+        color="blueL"
         step={false}
-        maintitle="Des questions ?"
-        title="N’hésitez pas à nous partager vos questions et retours pour que l’on puisse mieux vous accompagner."
+        maintitle="Espace d'aide"
+        title="Des questions persistes, dis nous !"
       ></SectionStarterPage>
       <h3 className="text-sm lg:text-lg font-light px-6 text-center mt-4 mb-6">
         👇 Ici 👇
       </h3>
-      <div className="w-11/12 flex justify-center">
+      <div className="lg:w-10/12 w-11/12 p-3 flex justify-center">
         <AskQuestion></AskQuestion>
       </div>
       <Footer />

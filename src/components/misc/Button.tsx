@@ -165,9 +165,9 @@ export const Button: React.FC<ButtonProps> = ({
       className={`${className} flex justify-center items-center cursor-pointer
       text-sm ${
         haveIcon ? "px-3 py-0.5" : "px-3 py-2 "
-      } bold  border-2 border-transparent
-      fontQSbold md:ease-linear transition-all duration-150
-      hover:shadow-lg  ${
+      }   border-2 border-transparent
+      font-medium md:ease-linear transition-all duration-150
+      hover:shadow-flat  ${
         type === "green"
           ? "hover:bg-white " + style.hoverTextColor
           : "bg-white " + style.hoverTextColor + " active:bg-white"

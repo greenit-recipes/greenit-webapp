@@ -147,6 +147,7 @@ import TopImageDesktopLeft from "./TopImageLP_gauche.svg";
 import TopImageDesktopRight from "./TopImageLP_droite.svg";
 import LPImage4Desktop from "./LPImage_4_Desktop.svg";
 import ProjectTopImageDesktop from "./TopImageProject_desktop.svg";
+import BadgeJeDebute from "./BadgeJeDebute.svg";
 
 // FUll XP GREENIT
 import boxGreenit from "./GIFDesktop_Box_GIY.gif";
@@ -332,6 +333,7 @@ export {
   BadgeControleDesktop,
   Badge100Mobile,
   Badge100Desktop,
+  BadgeJeDebute,
   TopImageMobile,
   TopImageDesktopLeft,
   TopImageDesktopRight,

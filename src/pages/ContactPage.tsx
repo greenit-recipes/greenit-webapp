@@ -11,7 +11,6 @@ import {
 } from "../icons";
 import { Helmet } from "react-helmet";
 import isMobile from "hooks/isMobile";
-import { getLogoAndNameByUrl } from "helpers/social-media.helper";
 import { AskQuestion } from "./StarterSpace/component/AskQuestion/AskQuestion";
 
 const ContactPage = () => {

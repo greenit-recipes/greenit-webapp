@@ -44,9 +44,9 @@ export const AskQuestion: React.FC = () => {
         onSubmit={handleSubmit(onSubmitHandler)}
       >
         <textarea
-          className="bg-white shadow-sm focus:outline-none | border-2 rounded-lg p-4"
+          className="bg-white shadow-flat focus:outline-none | rounded-md p-4"
           id="starter-page-askquestion"
-          placeholder="Une question ? Nous sommes là pour vous aider !"
+          placeholder="Nous sommes là pour vous aider !"
           rows={6}
           cols={34}
           {...register("question")}
@@ -57,7 +57,7 @@ export const AskQuestion: React.FC = () => {
           </p>
         </div>
         <input
-          className="h-12 bg-white rounded-lg shadow-sm focus:outline-none | p-4 | border-2"
+          className="h-12 bg-white rounded-md shadow-flat focus:outline-none | p-4"
           id="starter-page-askquestion-email"
           placeholder="Ton email"
           type="email"
