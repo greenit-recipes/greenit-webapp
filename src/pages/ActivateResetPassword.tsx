@@ -1,6 +1,8 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Button, Footer } from "components";
 import { Navbar } from "components/layout/Navbar";
+import { NotificationAlert } from "components/layout/NotificationAlert";
 import React from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
@@ -70,74 +72,55 @@ const ActivateResetPassword: React.FC = () => {
       <Helmet>
         <meta name="robots" content="noindex" />
       </Helmet>
-      <h3 className="text-xl w-2/3 md:text-3xl | mt-16 text-center">
-        Réinitialisation du mot de passe. <br />
-      </h3>
-
-      <div className="w-full max-w-xs mt-10 md:max-w-lg">
-        <div className="grid grid-cols-2 md:w-96">
-          <ModalLogGreenit
-            isModalLogin={true}
-            btn={
-              <button className="flex items-center h-8 p-2 text-xl text-white border-2 border-transparent rounded-lg cursor-pointer bg-green bold hover:bg-white hover:border-green hover:text-green">
-                <h3 className="text-sm">Se connecter</h3>
-              </button>
-            }
-          ></ModalLogGreenit>
-        </div>
-        <form
-          className="p-12 mt-2 mb-4 bg-white shadow-lg rounded-xl"
-          // @ts-ignore
-          onSubmit={handleSubmit(onSubmitHandler)}
-        >
-          <div className="mb-4">
-            <label className="block mb-2 text-lg font-bold text-gray-700">
-              Mot de passe
-            </label>
-            <input
-              className="w-full px-3 py-2 mb-4 leading-tight text-gray-700 rounded shadow-lg appearance-none focus:outline-none focus:shadow-outline"
-              id="resetPswrd-page-password-field1"
-              type="password"
-              placeholder="******************"
-              {...register("password")}
-            />
-            <p className="text-xs italic text-red-500">
-              {errors.password?.message}
-            </p>
-            <label className="block mb-2 text-sm text-gray-700">
-              Le mot de passe doit contenir 8 caractères, une majuscule, une
-              minuscule
-            </label>
-          </div>
-          <div className="mb-4">
-            <label className="block mb-2 text-lg font-bold text-gray-700">
-              Confirmation mot de passe
-            </label>
-            <input
-              className="w-full px-3 py-2 mb-4 leading-tight text-gray-700 rounded shadow-lg appearance-none focus:outline-none focus:shadow-outline"
-              id="resetPswrd-page-password-field2"
-              type="password"
-              placeholder="******************"
-              {...register("passwordConfirmation")}
-            />
-            <p className="text-xs italic text-red-500">
-              {errors.passwordConfirmation?.message}
-            </p>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <button className="flex items-center justify-center h-10 p-3 mr-5 text-lg text-white border-2 border-transparent rounded-lg cursor-pointer bg-blue bold hover:bg-white hover:border-blue hover:text-blue">
-              Envoyer
-            </button>
-          </div>
-        </form>
-        <div>
-          {dataResetPassword?.passwordReset?.success && (
-            <div>
-              <p>Mot de passe réinitialisé, tu peux maintenant te connecter.</p>
-            </div>
-          )}
-        </div>
+      <div className="w-4/5 mt-10 md:mt-16">
+        <h2 className="text-xl text-center md:text-2xl mb-10">
+          Réinitialisation du mot de passe.
+        </h2>
+      </div>
+      <form
+        className="flex flex-col gap-3 p-12 mt-2 mb-4 bg-white shadow-flat rounded"
+        // @ts-ignore
+        onSubmit={handleSubmit(onSubmitHandler)}
+      >
+        <label className="font-medium">Mot de passe</label>
+        <input
+          className="w-full px-3 py-2 rounded shadow-flat border-1 appearance-none focus:outline-none focus:shadow-outline"
+          id="resetPswrd-page-password-field1"
+          type="password"
+          placeholder="******************"
+          {...register("password")}
+        />
+        <p className="text-xs italic text-red">{errors.password?.message}</p>
+        <label>
+          Le mot de passe doit contenir 8 caractères, une majuscule, une
+          minuscule
+        </label>
+        <label className="font-medium">Confirmation mot de passe</label>
+        <input
+          className="w-full px-3 py-2 rounded shadow-flat border-1 appearance-none focus:outline-none focus:shadow-outline"
+          id="resetPswrd-page-password-field2"
+          type="password"
+          placeholder="******************"
+          {...register("passwordConfirmation")}
+        />
+        <p className="text-xs italic text-red">
+          {errors.passwordConfirmation?.message}
+        </p>
+        <Button type="darkBlue" className="w-24">
+          Envoyer
+        </Button>
+      </form>
+      <div>
+        {dataResetPassword?.passwordReset?.success && (
+          <NotificationAlert
+            type="success"
+            titre="Mot de passe réinitialisé !"
+            text="Tu peux maintenant te connecter."
+          ></NotificationAlert>
+        )}
+      </div>
+      <div className="mt-28">
+        <Footer />
       </div>
     </div>
   );

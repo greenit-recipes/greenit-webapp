@@ -74,11 +74,11 @@ export const TabLDC: React.FC<TabLDCProps> = ({
                 <i className="bx bx-cart-download text-3xl text-blue"></i>
               </div>
             )}
-            <div className="flex flex-col items-center | mt-5">
+            <div className="flex flex-col gap-3 items-center | mt-5">
               <ModalShoppingListPurchase
                 btn={
                   <Button
-                    className="px-4 py-2 mr-3 mb-4 shadow-md"
+                    className="h-10"
                     type="green"
                     id="profil-LDCtab-acheter"
                   >
@@ -95,7 +95,7 @@ export const TabLDC: React.FC<TabLDCProps> = ({
                 }}
               >
                 <Button
-                  className="px-4 py-1 mr-3 mb-4 shadow-md"
+                  className="h-10 w-38"
                   haveIcon={true}
                   type="darkBlue"
                   id="profil-LDCtab-envoyer"

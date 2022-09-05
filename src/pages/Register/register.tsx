@@ -273,7 +273,7 @@ const Register: React.FC = () => {
               <div className="flex flex-col mt-4">
                 <h2 className="text-lg font-regular">Ajouter un lien</h2>
                 <h3 className="font-light text-sm">
-                  Ajoute un ou plusieurs lien vers tes réseaux sociaux <br />
+                  Ajoute un ou plusieurs liens vers tes réseaux sociaux <br />
                   Par exemple :
                 </h3>
                 <div className="flex flex-row my-2 gap-2">

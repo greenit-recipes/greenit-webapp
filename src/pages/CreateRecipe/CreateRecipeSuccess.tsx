@@ -1,3 +1,4 @@
+import { Container } from "components";
 import { Footer } from "components/layout/Footer";
 import { Navbar } from "components/layout/Navbar";
 import { Button } from "components/misc/Button";
@@ -27,59 +28,55 @@ const RecipeCreatedPage = () => {
         <meta name="robots" content="noindex" />
       </Helmet>
       <Navbar />
-      <div className="grid justify-items-center auto-rows-max h-auto">
-        <div className="w-2/3 md:w-2/5">
-          <h2 className="text-center text-gray-700 text-xl md:text-2xl  mt-20 ">
-            Ta recette a été prise en compte.
+      <Container className="grid w-full justify-center">
+        <div className="flex flex-col mt-16 lg:mt-28 px-8 mb-40 gap-4">
+          <h2 className="text-xl md:text-2xl | text-center">
+            Ta recette a été prise en compte !<br />
+            <br />
+            Merci d’aider la communauté ! 🙏
           </h2>
-          <h1 className="text-center font-bold text-blue text-xl md:text-2xl mt-10 ">
-            Merci d’aider la communauté !
-          </h1>
 
           {isLoggedIn ? (
             <>
-              <h3 className="text-center text-lg md:text-xl mt-10">
-                Ta recette est en attente de validation. Tu seras notifié une
-                fois la publication dans les 24/48h.
+              <h3 className="text-center text-lg md:text-xl">
+                Ta recette est en attente de validation. <br /> Tu seras notifié
+                une fois la publication dans les 24/48h.
               </h3>
-              <h3 className="text-center text-sm md: mt-10">
+              <h3 className="text-center text-sm">
                 Si tu souhaites la modifier, envoie-nous un email au plus vite à
                 hello@greenitcommunity.com.{" "}
               </h3>
             </>
           ) : (
             <>
-              <h3 className="text-center mt-10">
+              <p className="text-center">
                 Pour que ta recette te soit créditée, créé ton compte
                 créateur.ice 👇
-              </h3>
+              </p>
             </>
           )}
-        </div>
-        {isLoggedIn && (
-          <Link to="/">
-            <Button className="mt-14 mb-10 h-11" type="blue">
-              Revenir à la page d’accueil
-            </Button>
-          </Link>
-        )}
-        {!isLoggedIn && (
-          <ModalLogGreenit
-            btn={
-              <>
-                <button
+          {isLoggedIn && (
+            <Link to="/profil" className="flex justify-center">
+              <Button className="mt-14 mb-10 w-60 self-center" type="darkBlue">
+                Retourner dans mon profil
+              </Button>
+            </Link>
+          )}
+          {!isLoggedIn && (
+            <ModalLogGreenit
+              btn={
+                <Button
                   id="navbar-create-profil"
-                  className="p-2 mr-1 rounded-lg bg-blue mt-10 mb-10 h-9"
+                  type="blue"
+                  className="w-44 self-center"
                 >
-                  <h2 id="navbar-create-profil" className="text-xs text-white">
-                    Créer mon compte
-                  </h2>
-                </button>
-              </>
-            }
-          ></ModalLogGreenit>
-        )}
-      </div>
+                  Créer mon compte
+                </Button>
+              }
+            ></ModalLogGreenit>
+          )}
+        </div>
+      </Container>
       <Footer />
     </div>
   );

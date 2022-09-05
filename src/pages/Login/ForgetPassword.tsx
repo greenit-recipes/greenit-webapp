@@ -6,6 +6,8 @@ import { SEND_EMAIL_RESET_PASSWORD } from "services/auth.service";
 import * as yup from "yup";
 import { Navbar } from "components/layout/Navbar";
 import { Helmet } from "react-helmet";
+import { Button } from "components";
+import { NotificationAlert } from "components/layout/NotificationAlert";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
@@ -46,22 +48,24 @@ const ForgetPassword: React.FC = () => {
       <Helmet>
         <meta name="robots" content="noindex" />
       </Helmet>
-      <h3 className="text-2xl w-2/3 md:text-3xl | mt-16 text-center">
-        Réinitialise ton mot de passe depuis ta boîte mail.
-        <br />
-      </h3>
+      <div className="w-4/5 mt-10 md:mt-16">
+        <h2 className="text-xl text-center md:text-2xl">
+          Réinitialise ton mot de passe.
+        </h2>
+        <h3 className="mt-2 text-lg font-regular text-center md:text-xl">
+          Tu recevras un email de réinitialisation 📥
+        </h3>
+      </div>
       <div className="w-full max-w-xs mt-10 md:max-w-lg">
         <form
-          className="p-10 mt-5 mb-4 bg-white shadow-lg rounded-xl"
+          className="p-10 mt-5 mb-4 bg-white shadow-flat rounded"
           // @ts-ignore
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="mb-4">
-            <label className="block mb-2 text-lg font-bold text-gray-700">
-              Email
-            </label>
+            <label className="block mb-2 text-lg">Email</label>
             <input
-              className="w-full px-3 py-2 mb-6 leading-tight text-gray-700 rounded shadow-lg appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 mb-6 rounded border-1 appearance-none focus:outline-none focus:shadow-outline"
               id="resetPswrd-page-email"
               placeholder="email"
               type="email"
@@ -69,14 +73,14 @@ const ForgetPassword: React.FC = () => {
             ></input>
           </div>
           <div className="flex items-center justify-between">
-            <button className="flex items-center justify-center h-10 p-3 mr-5 text-lg text-white border-2 border-transparent rounded-lg cursor-pointer bg-blue bold hover:bg-white hover:border-blue hover:text-blue">
-              Envoyer
-            </button>
+            <Button type="darkBlue">Envoyer</Button>
           </div>
           {message && (
-            <div className="flex items-center justify-between">
-              Mail de réinitialisation de mot de passe envoyé
-            </div>
+            <NotificationAlert
+              type="success"
+              titre="L'email de réinitialisation a été envoyé !"
+              text="Jette aussi un coup d'oeil à tes spams 😉"
+            ></NotificationAlert>
           )}
         </form>
       </div>

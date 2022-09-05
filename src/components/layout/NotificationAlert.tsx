@@ -48,9 +48,7 @@ export const NotificationAlert: React.FC<NotificationAlertProps> = ({
     <div
       className={`${
         hidden ? "hidden" : "notification"
-      } bg-greenL fixed right-4 w-auto h-auto rounded-lg p-3 md:p-4 ${
-        style.BgColor
-      }`}
+      } fixed right-4 w-auto h-auto rounded-lg p-3 md:p-4 ${style.BgColor}`}
     >
       <div className="flex flex-row items-center">
         <i

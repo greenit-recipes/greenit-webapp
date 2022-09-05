@@ -64,7 +64,6 @@ const ContactPage = () => {
               className="hover:text-yellow sm:hover:scale-105 ease-linear"
             >
               <div className="grid w-14 items-center">
-                <img src={rondIcon} className="absolute w-13" alt="icon rond" />
                 <i className="bx bxl-facebook-circle text-4xl ml-2 "></i>
               </div>
             </a>
@@ -73,7 +72,6 @@ const ContactPage = () => {
               className="hover:text-yellow sm:hover:scale-105 ease-linear"
             >
               <div className="grid w-14 items-center">
-                <img src={rondIcon} className="absolute w-13" alt="icon rond" />
                 <i className="bx bxl-instagram-alt text-4xl ml-2"></i>
               </div>
             </a>
@@ -82,7 +80,6 @@ const ContactPage = () => {
               className="hover:text-yellow sm:hover:scale-105 ease-linear"
             >
               <div className="grid w-14 items-center">
-                <img src={rondIcon} className="absolute w-13" alt="icon rond" />
                 <i className="bx bxl-linkedin text-4xl ml-2"></i>
               </div>
             </a>
@@ -91,7 +88,6 @@ const ContactPage = () => {
               className="hover:text-yellow sm:hover:scale-105 ease-linear"
             >
               <div className="grid w-14 items-center">
-                <img src={rondIcon} className="absolute w-13" alt="icon rond" />
                 <i className="bx bxs-envelope text-4xl ml-2"></i>
               </div>
             </a>
