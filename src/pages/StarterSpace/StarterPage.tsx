@@ -211,7 +211,7 @@ const StarterPage = () => {
             altImgProfil: "Greenit Logo",
             userPresentationTitle: "Nos conseils",
             userPresentationTitleSubtitle: "Greenit Community",
-            citation: "Respectons les règles de base : ",
+            citation: "Respectons les règles de base",
             shortDescription:
               "Comme pour la cuisine, vous devez respecter quelques règles :",
             longDescription:
@@ -818,7 +818,7 @@ const StarterPage = () => {
         color="blueL"
         step={false}
         maintitle="Espace d'aide"
-        title="Des questions persistes, dis nous !"
+        title="Des questions persistes, écris-nous !"
       ></SectionStarterPage>
       <h3 className="text-sm lg:text-lg font-light px-6 text-center mt-4 mb-6">
         👇 Ici 👇

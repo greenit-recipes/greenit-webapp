@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
           {
             icon: "bx bx-world",
             title: "Transparent",
-            text: "Ici il n’y pas de collection de données personnelles et pas de publicités. Greenit est aussi un projet open-source disponible sur Github. N’hésites pas à poser tes questions et à voter pour les prochaines functionalités Greenit.",
+            text: "Ici il n’y pas de collection de données personnelles et pas de publicités. Greenit est aussi un projet open-source disponible sur Github. N’hésite pas à poser tes questions et à voter pour les prochaines fonctionnalités Greenit.",
           },
         ].map((item, index) => (
           <div className="flex flex-col" key={index}>

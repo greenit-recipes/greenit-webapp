@@ -274,6 +274,7 @@ const LandingPage = () => {
                   haveIcon={true}
                   type="green"
                   onClick={() => setShowModal(true)}
+                  id="landing-nextTosearchbar-mes-particularites"
                 >
                   <i className="bx bxs-category-alt text-2xl mt-0.5 mr-2"></i>
                   Définir mes particularités

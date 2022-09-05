@@ -176,7 +176,7 @@ const WhyPage: React.FC = () => {
               icon: money,
               alt: "image argent",
               title: "Pour tes économies",
-              text: "27,90€ le baume réparateur bio ? 5,80€ le stick à lèvres naturel ? L’industrie des produits cosmétiques et ménagers ne respecte pas notre pouvoir d’achat. Sur Greenit, le baume revient à 6€ et estick à lèvres à 1,50€.",
+              text: "27,90€ le baume réparateur bio ? 5,80€ le stick à lèvres naturel ? L’industrie des produits cosmétiques et ménagers ne respecte pas notre pouvoir d’achat. Sur Greenit, le baume revient à 6€ et le stick à lèvres à 1,50€.",
             },
             {
               icon: wellbeing,
@@ -217,7 +217,7 @@ const WhyPage: React.FC = () => {
               <i className="bx bxs-vial -rotate-12 absolute w-8 h-8 icon-position-circle bx-md"></i>
             }
             symbol=""
-            number="10"
+            number="96"
             text="Substances épargnées"
           />
           <CircleGreenit
@@ -228,7 +228,7 @@ const WhyPage: React.FC = () => {
               <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
             }
             symbol="€"
-            number="10"
+            number="613"
             text="Argent économisé"
           />
           <CircleGreenit
@@ -238,8 +238,8 @@ const WhyPage: React.FC = () => {
             icon={
               <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
             }
-            symbol="g"
-            number="200"
+            symbol="kg"
+            number="67"
             text="Plastiques évités"
           />
         </div>
