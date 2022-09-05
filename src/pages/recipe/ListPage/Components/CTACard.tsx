@@ -15,19 +15,19 @@ export const CTACard: React.FC<ICTACard> = ({
 }) => {
   return (
     <Link
-      className="justify-center w-full col-span-1"
+      className="grid justify-center w-full col-span-1"
       to={{
         pathname: `${link}`,
       }}
     >
       <div
-        className={`transform shadow-lg h-72 md:h-84 w-44 md:w-52 bg-${
+        className={`transform shadow-flat h-80 md:h-84 w-48 md:w-52 bg-${
           type ? type : "blue"
         }  hover:scale-105
-          ease-linear transition-all duration-150
-          rounded-xl cursor-pointer hover:shadow-xl ${className}`}
+          ease-linear duration-150
+          rounded-xl cursor-pointer ${className}`}
       >
-        <div className="grid justify-items-center">{children}</div>
+        {children}
       </div>
     </Link>
   );

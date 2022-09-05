@@ -354,11 +354,11 @@ const ProfilPage: React.FC = () => {
                   >
                     <button
                       id="profil-page-shareRecipe"
-                      className="w-11/12 lg:w-10/12"
+                      className="grid place-content-center w-full h-full"
                     >
-                      <h2 className="text-lg text-center text-white lg:text-xl mt-28 lg:mt-36">
+                      <h3 className="text-center text-white font-regular text-base md:text-lg">
                         Publier une nouvelle recette
-                      </h2>
+                      </h3>
                     </button>
                   </CTACard>
                   {user?.recipeAuthor?.map((recipe: any, index: any) => (

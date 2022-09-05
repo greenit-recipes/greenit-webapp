@@ -330,13 +330,13 @@ const LandingPage = () => {
         {isMobile ? (
           <>
             <img
-              className="w-24 h-36 absolute top-10 left-0"
+              className="h-36 absolute top-10 left-0"
               alt="100% fait maison"
               src={Mobile_faceillu}
               loading="lazy"
             />
             <img
-              className="w-20 h-40 absolute -top-16 right-0"
+              className="h-40 absolute -top-16 right-0"
               alt="100% fait maison"
               src={Mobile_hairillu}
               loading="lazy"

@@ -40,19 +40,19 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
   );
 
   return (
-    <div className="grid justify-items-center">
+    <div className="h-10 grid justify-items-center">
       {isLoggedIn ? (
         <div>
           {isFavorite ? (
             <div
-              className={`tooltip justify-items-center ${
+              className={`h-10 tooltip justify-items-center ${
                 customClassName ? customClassName : "grid"
               }`}
             >
               <Button
                 id="recipe-card-favoriteButton"
                 type="blueIcon"
-                rounded="lg"
+                className="h-10"
                 isOnClickActive={false}
                 haveIcon={true}
                 onClick={() => {
@@ -90,7 +90,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 rounded="lg"
                 haveIcon={true}
                 isOnClickActive={false}
-                className="mr-1"
+                className="h-10"
                 onClick={() => {
                   if (!isRefetchData) setFavorite(!isFavorite);
                   // @ts-ignore: Object is possibly 'null'.
@@ -128,7 +128,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                     type="darkBlue"
                     rounded="lg"
                     haveIcon={true}
-                    className="mr-1"
+                    className="mr-1 h-10"
                   >
                     <i className="bx bx-bookmark-heart bx-sm mr-2"></i>
                     favoris

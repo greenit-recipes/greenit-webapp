@@ -215,7 +215,7 @@ const RecipeSinglePage = () => {
                 <h1 className="mb-5 text-xl text-center lg:text-2xl font-medium">
                   {recipe?.name}
                 </h1>
-                <div className="flex items-center justify-center mb-10">
+                <div className="flex items-center justify-center mb-0 md:mb-10">
                   <FavouriteField
                     isToltipActif={false}
                     isRecipePage={true}
@@ -236,7 +236,7 @@ const RecipeSinglePage = () => {
                       type="darkBlue"
                       rounded="lg"
                       haveIcon={true}
-                      className="ml-2"
+                      className="ml-2 h-10"
                     >
                       <i className="bx bx-share bx-flip-horizontal bx-sm mr-2"></i>
                       partage
