@@ -199,6 +199,10 @@ import Mobile_faceillu from "./Mobile_faceillu.png";
 import Mobile_hairillu from "./Mobile_hairillu.png";
 import Desktop_faceillu from "./Desktop_faceillu.svg";
 import Desktop_hairillu from "./Desktop_hairillu.svg";
+import Gif_ICM from "./gif_icm.gif";
+import Gif_LDC from "./gif_ldc.gif";
+import Gif_Personnalisation from "./gif_personnalisation.gif";
+import Gif_Profil from "./gif_profil.gif";
 
 export {
   wellbeing,
@@ -365,4 +369,8 @@ export {
   Mobile_hairillu,
   Desktop_faceillu,
   Desktop_hairillu,
+  Gif_ICM,
+  Gif_LDC,
+  Gif_Personnalisation,
+  Gif_Profil,
 };

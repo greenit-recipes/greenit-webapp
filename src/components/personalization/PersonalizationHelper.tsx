@@ -450,6 +450,12 @@ export interface Step {
   nextStep?: any;
 }
 
+export const getStep = (menu: any, activeMenu: any) => {
+  return menu
+    .map((el: any) => el.name)
+    .findIndex((el: any) => el === activeMenu);
+};
+
 //ICM & LDC
 export const hasIngredientOnList = (list: any, ingredient: string) => {
   return list.map((el: any) => el.id).some((el: any) => el === ingredient);

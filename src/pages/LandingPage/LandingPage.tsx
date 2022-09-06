@@ -41,7 +41,7 @@ import { Community } from "pages/LandingPage/Components/Community";
 import "pages/LandingPage/LandingPage.css";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
 import "pages/recipe/SinglePage/SinglePage.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import "react-multi-carousel/lib/styles.css";
 import { Link, useHistory } from "react-router-dom";
@@ -324,6 +324,7 @@ const LandingPage = () => {
           </div>
         </Container>
       </div>
+
       <Container
         className="flex flex-col justify-center items-center | md:px-4
          | mt-20 md:mt-12 mb-12 text-center md:w-10/12 | relative"

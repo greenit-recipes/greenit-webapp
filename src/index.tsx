@@ -11,11 +11,12 @@ import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { createUploadLink } from "apollo-upload-client";
 import React from "react";
-import ReactDOM, { hydrate, render } from "react-dom";
+import ReactDOM from "react-dom";
 import authService from "services/auth.service";
 import App from "./App";
 import "./index.css";
 import { CookieBanner } from "./components/misc/CookieBanner";
+import ModalPersonalizationPopUp from "./components/personalization/ModalPersonalizationPopUp";
 
 let isRefreshing = false;
 let pendingRequests: any = [];
