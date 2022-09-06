@@ -6,7 +6,6 @@ interface IModalPersonalizationInfo {
   show?: boolean;
 }
 
-//Todo: Load the component lazily
 export const ModalPersonalizationInfo: React.FC<IModalPersonalizationInfo> = ({
   btn,
 }) => {

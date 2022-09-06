@@ -6,8 +6,6 @@ import {
   getTagIdsByName,
 } from "components/personalization/PersonalizationHelper";
 import { cleanDataPlayload } from "helpers/session-helper";
-import { useLazyQuery } from "@apollo/client";
-import { ME } from "../../../../services/auth.service";
 
 interface RecommendedRecipeProps {
   quantity?: number;

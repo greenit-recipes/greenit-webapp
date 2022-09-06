@@ -8,6 +8,9 @@ import React, { Suspense } from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
+import ReactDOM from "react-dom";
+import ModalPersonalizationPopUp from "./components/personalization/ModalPersonalizationPopUp";
+
 const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
 const ActivateAccount = React.lazy(() => import("pages/activate"));
 const ActivateResetPassword = React.lazy(
@@ -96,7 +99,6 @@ const App: React.FC = () => {
   history.listen(x =>
     window.sessionStorage.setItem("pathname", JSON.stringify(x?.pathname)),
   );
-  //Todo (zack): Implement custom routes for the full xp
 
   return (
     <Suspense fallback={<Loading />}>

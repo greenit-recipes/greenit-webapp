@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { questionnaireMenu } from "./PersonalizationHelper";
+import { getStep, questionnaireMenu } from "./PersonalizationHelper";
 import StepSkinType from "./steps/StepSkinType";
 import StepHairType from "./steps/StepHairType";
 import StepMoreDetails from "./steps/StepMoreDetails";
@@ -35,10 +35,6 @@ export const Personalization: React.FC<PersonalizationProps> = ({
     }
   };
 
-  const getStep = () => {
-    return questionnaireMenu.map(el => el.name).findIndex(el => el === menu);
-  };
-
   return (
     <div className="flex flex-col justify-center text-center -mt-8 md:-mt-6 mx-12">
       <div className="flex justify-center space-x-2 mb-3">
@@ -68,10 +64,10 @@ export const Personalization: React.FC<PersonalizationProps> = ({
 
       {/*Stepper*/}
       <div className="flex justify-center items-center space-x-6">
-        {getStep() > 0 && (
+        {getStep(questionnaireMenu, menu) > 0 && (
           <i
             className="bx bx-left-arrow-alt text-4xl cursor-pointer"
-            onClick={() => selectStep(getStep() - 1)}
+            onClick={() => selectStep(getStep(questionnaireMenu, menu) - 1)}
           ></i>
         )}
 
