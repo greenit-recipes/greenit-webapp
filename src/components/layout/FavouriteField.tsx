@@ -1,11 +1,14 @@
 import { useMutation } from "@apollo/client";
 import { Loading } from "components/layout/Loading";
 import { Button } from "components/misc";
+import { getRandomKey } from "components/personalization/PersonalizationHelper";
 import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { Suspense, useState } from "react";
+import ReactDOM from "react-dom";
 import { classNames } from "react-select/dist/declarations/src/utils";
 import authService from "services/auth.service";
 import { likedIconOff, likedIconOn } from "../../icons";
+import { NotificationAlert } from "./NotificationAlert";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
@@ -52,6 +55,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
               <Button
                 id="recipe-card-favoriteButton"
                 type="blueIcon"
+                className={` ${isRecipePage ? "h-10" : "h-9"}`}
                 isOnClickActive={false}
                 haveIcon={true}
                 onClick={() => {
@@ -61,9 +65,20 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                     variables: {
                       recipeId: recipe?.id,
                     },
-                  }).then(() => {
-                    return parentFunction ? parentFunction() : null;
-                  });
+                  })
+                    .then(() => {
+                      return parentFunction ? parentFunction() : null;
+                    })
+                    .then(() => {
+                      ReactDOM.render(
+                        <NotificationAlert
+                          key={getRandomKey("ingredient-limit-reached")}
+                          type="alert"
+                          titre="Recette retirée de tes favoris"
+                        />,
+                        document.getElementById("notif"),
+                      );
+                    });
                 }}
               >
                 <i
@@ -88,6 +103,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
               <Button
                 id="recipe-card-favoriteButton"
                 type="FavoritedarkBlueIcon"
+                className={` ${isRecipePage ? "h-10" : "h-9"}`}
                 rounded="lg"
                 haveIcon={true}
                 isOnClickActive={false}
@@ -98,9 +114,21 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                     variables: {
                       recipeId: recipe?.id,
                     },
-                  }).then(() => {
-                    return parentFunction ? parentFunction() : null;
-                  });
+                  })
+                    .then(() => {
+                      return parentFunction ? parentFunction() : null;
+                    })
+                    .then(() => {
+                      ReactDOM.render(
+                        <NotificationAlert
+                          key={getRandomKey("ingredient-limit-reached")}
+                          type="success"
+                          titre="Recette ajoutée à tes favoris"
+                          text="Retrouve les dans ton profil !"
+                        />,
+                        document.getElementById("notif"),
+                      );
+                    });
                 }}
               >
                 <i
@@ -130,7 +158,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                     type="darkBlue"
                     rounded="lg"
                     haveIcon={true}
-                    className="mr-1"
+                    className="mr-1 h-10"
                   >
                     <i className="bx bx-bookmark-heart bx-sm mr-2"></i>
                     favoris
@@ -147,6 +175,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                       id="RecipeCard-favorite-noLogged"
                       type="darkBlue"
                       haveIcon={true}
+                      className="h-9"
                     >
                       <i
                         className={`bx bx-bookmark-heart bx-sm ${
