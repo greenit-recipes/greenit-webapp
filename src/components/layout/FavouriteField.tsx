@@ -72,7 +72,6 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                     .then(() => {
                       ReactDOM.render(
                         <NotificationAlert
-                          key={getRandomKey("ingredient-limit-reached")}
                           type="alert"
                           titre="Recette retirée de tes favoris"
                         />,
@@ -121,7 +120,6 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                     .then(() => {
                       ReactDOM.render(
                         <NotificationAlert
-                          key={getRandomKey("ingredient-limit-reached")}
                           type="success"
                           titre="Recette ajoutée à tes favoris"
                           text="Retrouve les dans ton profil !"
