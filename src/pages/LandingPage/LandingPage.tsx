@@ -288,7 +288,7 @@ const LandingPage = () => {
             </h4>
           </div>
           {isMobile ? (
-            <div className="grid grid-cols-2 mb-2 sm:grid-cols-3">
+            <div className="grid grid-cols-2 mb-2 gap-x-1 sm:grid-cols-3">
               {recipes?.slice(0, 6).map((recipe, index: number) => (
                 <RecipeCard
                   recipe={recipe?.node}

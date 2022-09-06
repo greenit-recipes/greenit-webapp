@@ -45,14 +45,13 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
         <div>
           {isFavorite ? (
             <div
-              className={`h-10 tooltip justify-items-center ${
+              className={`tooltip justify-items-center ${
                 customClassName ? customClassName : "grid"
               }`}
             >
               <Button
                 id="recipe-card-favoriteButton"
                 type="blueIcon"
-                className="h-10"
                 isOnClickActive={false}
                 haveIcon={true}
                 onClick={() => {
@@ -75,7 +74,9 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 {!isToltipActif && "favoris"}
               </Button>
               {isToltipActif && (
-                <span className="tooltiptext pt-2">Retirer des favoris</span>
+                <span className="tooltiptext font-medium pt-1.5">
+                  Retirer des favoris
+                </span>
               )}
             </div>
           ) : (
@@ -90,7 +91,6 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 rounded="lg"
                 haveIcon={true}
                 isOnClickActive={false}
-                className="h-10"
                 onClick={() => {
                   if (!isRefetchData) setFavorite(!isFavorite);
                   // @ts-ignore: Object is possibly 'null'.
@@ -111,7 +111,9 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 {!isToltipActif && "favoris"}
               </Button>
               {isToltipActif && (
-                <span className="tooltiptext pt-2">Ajouter des favoris</span>
+                <span className="tooltiptext pt-1.5 font-medium">
+                  Ajouter des favoris
+                </span>
               )}
             </div>
           )}
@@ -128,7 +130,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                     type="darkBlue"
                     rounded="lg"
                     haveIcon={true}
-                    className="mr-1 h-10"
+                    className="mr-1"
                   >
                     <i className="bx bx-bookmark-heart bx-sm mr-2"></i>
                     favoris
@@ -152,7 +154,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                         }`}
                       ></i>
                     </Button>
-                    <span className="absolute tooltiptext pt-10">
+                    <span className="absolute tooltiptext pt-9 font-medium">
                       Ajouter au favoris
                     </span>
                   </div>

@@ -384,7 +384,7 @@ const RecipeListPage = () => {
             />
           )}
           {/* to refacto infinite scroll*/}
-          <h3 className="text-2xl text-center font-normal | mt-12 md:mb-5">
+          <h3 className="text-2xl text-center font-normal | mt-12">
             Suggestions de recettes
           </h3>
           <InfiniteScroll
@@ -448,7 +448,7 @@ const RecipeListPage = () => {
                 })}
               </div>
             ) : (
-              <div className="grid grid-cols-1 justify-items-center | py-1-4 px-8 mb-14">
+              <div className="grid grid-cols-1 justify-items-center | pt-4 px-8 mb-14">
                 <div className="flex flex-wrap justify-center gap-y-10 gap-x-4 md:p-2">
                   {/*@ts-ignore*/}
                   {annotateRecipeResult(
