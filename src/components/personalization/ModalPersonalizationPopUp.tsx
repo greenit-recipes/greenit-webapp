@@ -9,6 +9,8 @@ import {
 import { getStep } from "./PersonalizationHelper";
 import { useQuery } from "@apollo/client";
 import { GET_FEATURE_BY_NAME } from "../../services/feature.service";
+import { Button } from "../misc";
+import { ModalLogGreenit } from "../layout";
 
 interface ModalPersonalizationPopUpProps {
   show?: boolean;
@@ -128,6 +130,18 @@ export const ModalPersonalizationPopUp: React.FC<
                           alt={popUpMenu[3].alt}
                         />
                         <h3>{popUpMenu[3].name}</h3>
+                        <ModalLogGreenit
+                          btn={
+                            <Button
+                              id="modal-nouveaute-creer-compte"
+                              type="blue"
+                              rounded="lg"
+                              className="msm:w-[300px] mr-1"
+                            >
+                              Créer un compte
+                            </Button>
+                          }
+                        ></ModalLogGreenit>
                       </>
                     );
                 }
