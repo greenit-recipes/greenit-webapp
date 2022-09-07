@@ -1,11 +1,14 @@
 import { useMutation } from "@apollo/client";
 import { Loading } from "components/layout/Loading";
 import { Button } from "components/misc";
+import { getRandomKey } from "components/personalization/PersonalizationHelper";
 import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import { classNames } from "react-select/dist/declarations/src/utils";
 import authService from "services/auth.service";
 import { likedIconOff, likedIconOn } from "../../icons";
+import { NotificationAlert } from "./NotificationAlert";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
@@ -39,20 +42,50 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
     ADD_OR_REMOVE_FAVORITE_RECIPE,
   );
 
+  const [isFavoriteNotifActive, setIsFavoriteNotifActive] = useState(false);
+  const [isUnfavoriteNotifActive, setIsUnfavoriteNotifActive] = useState(false);
+
+  useEffect(() => {
+    if (isFavoriteNotifActive) {
+      ReactDOM.render(
+        <NotificationAlert
+          key={getRandomKey("recipe-favorite")}
+          type="success"
+          titre="Recette ajoutée à tes favoris"
+          text="Retrouve les dans ton profil !"
+        />,
+        document.getElementById("notif"),
+      );
+      setIsFavoriteNotifActive(false);
+    }
+
+    if (isUnfavoriteNotifActive) {
+      ReactDOM.render(
+        <NotificationAlert
+          key={getRandomKey("recipe-favorite")}
+          type="alert"
+          titre="Recette enlevée de tes favoris"
+        />,
+        document.getElementById("notif"),
+      );
+      setIsUnfavoriteNotifActive(false);
+    }
+  }, [isFavoriteNotifActive, isUnfavoriteNotifActive]);
+
   return (
     <div className="h-10 grid justify-items-center">
       {isLoggedIn ? (
         <div>
           {isFavorite ? (
             <div
-              className={`h-10 tooltip justify-items-center ${
+              className={`tooltip justify-items-center ${
                 customClassName ? customClassName : "grid"
               }`}
             >
               <Button
                 id="recipe-card-favoriteButton"
                 type="blueIcon"
-                className="h-10"
+                className={` ${isRecipePage ? "h-10" : "h-9"}`}
                 isOnClickActive={false}
                 haveIcon={true}
                 onClick={() => {
@@ -63,6 +96,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                       recipeId: recipe?.id,
                     },
                   }).then(() => {
+                    setIsUnfavoriteNotifActive(true);
                     return parentFunction ? parentFunction() : null;
                   });
                 }}
@@ -75,7 +109,9 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 {!isToltipActif && "favoris"}
               </Button>
               {isToltipActif && (
-                <span className="tooltiptext pt-2">Retirer des favoris</span>
+                <span className="tooltiptext font-medium pt-1.5">
+                  Retirer des favoris
+                </span>
               )}
             </div>
           ) : (
@@ -87,10 +123,10 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
               <Button
                 id="recipe-card-favoriteButton"
                 type="FavoritedarkBlueIcon"
+                className={` ${isRecipePage ? "h-10" : "h-9"}`}
                 rounded="lg"
                 haveIcon={true}
                 isOnClickActive={false}
-                className="h-10"
                 onClick={() => {
                   if (!isRefetchData) setFavorite(!isFavorite);
                   // @ts-ignore: Object is possibly 'null'.
@@ -99,6 +135,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                       recipeId: recipe?.id,
                     },
                   }).then(() => {
+                    setIsFavoriteNotifActive(true);
                     return parentFunction ? parentFunction() : null;
                   });
                 }}
@@ -111,7 +148,9 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                 {!isToltipActif && "favoris"}
               </Button>
               {isToltipActif && (
-                <span className="tooltiptext pt-2">Ajouter des favoris</span>
+                <span className="tooltiptext pt-1.5 font-medium">
+                  Ajouter des favoris
+                </span>
               )}
             </div>
           )}
@@ -145,6 +184,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                       id="RecipeCard-favorite-noLogged"
                       type="darkBlue"
                       haveIcon={true}
+                      className="h-9"
                     >
                       <i
                         className={`bx bx-bookmark-heart bx-sm ${
@@ -152,7 +192,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                         }`}
                       ></i>
                     </Button>
-                    <span className="absolute tooltiptext pt-10">
+                    <span className="absolute tooltiptext pt-9 font-medium">
                       Ajouter au favoris
                     </span>
                   </div>

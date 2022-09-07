@@ -1,5 +1,4 @@
 import { RouteName } from "App";
-import { LikeField } from "components/layout/LikeField";
 import { getImagePath } from "helpers/image.helper";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -46,21 +45,22 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
   const isMobile = useIsMobile();
   const imageHeight = isMobile ? 72 : 72;
-  const imageWidth = isMobile ? 52 : 52;
-  const bandeauWidth = isMobile ? 52 : 52;
+  const imageWidth = isMobile ? 48 : 48;
+  const bandeauWidth = isMobile ? 48 : 48;
 
   return (
     <div
       id={`${id}-recipe-card`}
-      className="transform sm:hover:scale-105 ease-linear relative transition-all duration-150 px-1 mb-14 md:mb-16 lg:mb-10"
+      className="transform sm:hover:scale-105 ease-linear relative transition-all duration-150 px-1 mb-8 lg:mb-0"
     >
+      {/*Code below is just for the bowx selling part*/}
       {amount && (
         <div
           className={`flex flex-col items-center pb-2 absolute right-0 mt-2 mr-3 w-8 h-${
             amount > 1 ? "14" : "8"
-          } rounded-2xl bg-white`}
+          } rounded-2xl`}
         >
-          <div className="absolute top-0">
+          <div className="absolute top-10">
             <IconContext.Provider value={{ className: "text-3.5xl text-blue" }}>
               <BsFillCheckCircleFill />
             </IconContext.Provider>
@@ -73,9 +73,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         </div>
       )}
       {has(recipe, "ingredientAtHomeCount") && (
-        <div className="absolute top-0">
-          <div className="flex items-center space-x-1 | bg-blue text-white rounded-b-xl rounded-tl-xl px-2 py-0.5">
-            <i className="bx bx-lemon text-xl"></i>
+        <div className="absolute right-1">
+          <div className="flex items-center space-x-1 | bg-blue text-white rounded-bl-lg rounded-tr-lg pl-2 py-0.5 pr-3">
+            <i className="bx bx-lemon text-lg"></i>
             <span className="font-normal">
               {recipe?.ingredientAtHomeCount}/{recipe?.numberOfIngredients}
             </span>
@@ -93,42 +93,31 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         }}
         className={`inline-block ${!isMobile}`}
       >
-        <div>
-          <img
-            src={getImagePath(recipe?.image)}
-            alt={recipe?.name}
-            className={`flex flex-col object-cover | ${
-              enableShadow && "shadow-flat"
-            } ${`h-${imageHeight} w-${imageWidth}`}
-            rounded-t-2xl | justify-self-center smooth-image image-${
+        <img
+          src={getImagePath(recipe?.image)}
+          alt={recipe?.name}
+          className={`flex flex-col object-cover | ${
+            enableShadow && "shadow-flat"
+          } ${`h-${imageHeight} w-${imageWidth}`}
+            rounded-xl | justify-self-center smooth-image image-${
               imageLoaded ? "visible" : "hidden"
             }`}
-            // @ts-ignore
-            onLoad={() => setImageLoaded(true)}
-            loading="lazy"
-          ></img>
-        </div>
+          // @ts-ignore
+          onLoad={() => setImageLoaded(true)}
+          loading="lazy"
+        ></img>
       </Link>
-      {!isLikeDisabled && (
-        <LikeField
-          recipe={recipe}
-          isRecipeCard={true}
-          isCarrousel={isCarrousel}
-        ></LikeField>
+      {!disabledFavoriteRecipe && (
+        <div className={`absolute top-60 w-${imageWidth} z-10`}>
+          <FavouriteField
+            isRefetchData={isRefetchData}
+            parentFunction={parentFunction}
+            recipe={recipe}
+          />
+        </div>
       )}
 
-      <div
-        className={`absolute | h-auto | mt-auto | bg-white shadow-flat rounded-2xl -bottom-10 lg:-bottom-12 ${`w-${bandeauWidth}`}`}
-      >
-        {!disabledFavoriteRecipe && (
-          <div className={`absolute -top-4 lg:-top-6 w-${imageWidth} z-10`}>
-            <FavouriteField
-              isRefetchData={isRefetchData}
-              parentFunction={parentFunction}
-              recipe={recipe}
-            />
-          </div>
-        )}
+      <div className={` h-auto ${`w-${bandeauWidth}`}`}>
         <Link
           onClick={() => {
             return onClickFunctionListPage
@@ -139,9 +128,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             pathname: `${RouteName.recipes}/${recipe?.urlId}`,
           }}
         >
-          <h4 className="text-center mt-4 p-1">{recipe?.name}</h4>
+          <h4 className="text-center p-1 leading-5">{recipe?.name}</h4>
           <Icon
-            nbOfIngredient={recipe?.numberOfIngredients}
+            time={recipe?.duration}
             difficulty={
               recipe?.difficulty === RecipeDifficulty.Beginner
                 ? "Facile"
