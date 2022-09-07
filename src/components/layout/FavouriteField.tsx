@@ -3,7 +3,7 @@ import { Loading } from "components/layout/Loading";
 import { Button } from "components/misc";
 import { getRandomKey } from "components/personalization/PersonalizationHelper";
 import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { classNames } from "react-select/dist/declarations/src/utils";
 import authService from "services/auth.service";
@@ -42,6 +42,36 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
     ADD_OR_REMOVE_FAVORITE_RECIPE,
   );
 
+  const [isFavoriteNotifActive, setIsFavoriteNotifActive] = useState(false);
+  const [isUnfavoriteNotifActive, setIsUnfavoriteNotifActive] = useState(false);
+
+  useEffect(() => {
+    if (isFavoriteNotifActive) {
+      ReactDOM.render(
+        <NotificationAlert
+          key={getRandomKey("recipe-favorite")}
+          type="success"
+          titre="Recette ajoutée à tes favoris"
+          text="Retrouve les dans ton profil !"
+        />,
+        document.getElementById("notif"),
+      );
+      setIsFavoriteNotifActive(false);
+    }
+
+    if (isUnfavoriteNotifActive) {
+      ReactDOM.render(
+        <NotificationAlert
+          key={getRandomKey("recipe-favorite")}
+          type="alert"
+          titre="Recette enlevée de tes favoris"
+        />,
+        document.getElementById("notif"),
+      );
+      setIsUnfavoriteNotifActive(false);
+    }
+  }, [isFavoriteNotifActive, isUnfavoriteNotifActive]);
+
   return (
     <div className="h-10 grid justify-items-center">
       {isLoggedIn ? (
@@ -65,19 +95,10 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                     variables: {
                       recipeId: recipe?.id,
                     },
-                  })
-                    .then(() => {
-                      return parentFunction ? parentFunction() : null;
-                    })
-                    .then(() => {
-                      ReactDOM.render(
-                        <NotificationAlert
-                          type="alert"
-                          titre="Recette enlevée de tes favoris"
-                        />,
-                        document.getElementById("notif"),
-                      );
-                    });
+                  }).then(() => {
+                    setIsUnfavoriteNotifActive(true);
+                    return parentFunction ? parentFunction() : null;
+                  });
                 }}
               >
                 <i
@@ -113,20 +134,10 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                     variables: {
                       recipeId: recipe?.id,
                     },
-                  })
-                    .then(() => {
-                      return parentFunction ? parentFunction() : null;
-                    })
-                    .then(() => {
-                      ReactDOM.render(
-                        <NotificationAlert
-                          type="success"
-                          titre="Recette ajoutée à tes favoris"
-                          text="Retrouve les dans ton profil !"
-                        />,
-                        document.getElementById("notif"),
-                      );
-                    });
+                  }).then(() => {
+                    setIsFavoriteNotifActive(true);
+                    return parentFunction ? parentFunction() : null;
+                  });
                 }}
               >
                 <i
