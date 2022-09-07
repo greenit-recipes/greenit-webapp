@@ -73,7 +73,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
                       ReactDOM.render(
                         <NotificationAlert
                           type="alert"
-                          titre="Recette retirée de tes favoris"
+                          titre="Recette enlevée de tes favoris"
                         />,
                         document.getElementById("notif"),
                       );
