@@ -13,7 +13,7 @@ import {
 import ReactDOM from "react-dom";
 import { NotificationAlert } from "components/layout/NotificationAlert";
 import authService from "services/auth.service";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   getRandomKey,
   hasIngredientOnList,
@@ -412,23 +412,48 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
             <div>{data?.alternative && HTMLReactParser(data?.alternative)}</div>
             <div className="flex-col items-center pt-4 pb-6 lg:flex-row">
               <h4 className="fontQSemibold">Où acheter ?</h4>
-              {data?.isSupermarket && (
-                <div className="flex items-center ml-6">
-                  <BsShop className="w-8 h-8 mr-2" />
-                  <div>
-                    Biocop
-                    <br />
-                    Supermarché
-                  </div>
-                </div>
-              )}
+              <div className="flex flex-col md:flex-row md:items-center md:space-x-10">
+                <div className="flex-col">
+                  {data?.isSupermarket && (
+                    <div className="flex items-center ml-6">
+                      <BsShop className="w-8 h-8 mr-2" />
+                      <div>
+                        Biocop
+                        <br />
+                        Supermarché
+                      </div>
+                    </div>
+                  )}
 
-              {data?.isOnline && (
-                <div className="flex items-center ml-6">
-                  <RiComputerLine className="w-8 h-8 mr-2" />
-                  <div>En ligne</div>
+                  {data?.isOnline && (
+                    <div className="flex items-center ml-6 mr-2 w-24">
+                      <RiComputerLine className="w-8 h-8 mr-2" />
+                      <div>En ligne</div>
+                    </div>
+                  )}
                 </div>
-              )}
+                {data?.purchaseLink && (
+                  <>
+                    {!isMobile && (
+                      <p className="self-start text-sm">
+                        Nous conseillons notre marque partenaire pour
+                        l’accessibilité et la qualité des produits. 👉
+                      </p>
+                    )}
+                    <div className="md:self-start flex md:h-10 msm:mt-2 msm:justify-center">
+                      <a href={data?.purchaseLink} target="_blank">
+                        <Button
+                          id="recipepage-ingredients-commanderBoutton"
+                          type="blue"
+                          rounded="lg"
+                        >
+                          Commander
+                        </Button>
+                      </a>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>

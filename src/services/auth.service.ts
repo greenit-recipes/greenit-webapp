@@ -174,6 +174,11 @@ export const ME = gql`
         name
         image
         description
+        alternative
+        isSupermarket
+        isOnline
+        isProductor
+        purchaseLink
       }
       isRecipeMadeBeginnerBox
       recipeAuthor {
