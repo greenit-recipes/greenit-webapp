@@ -101,7 +101,7 @@ export const Button: React.FC<ButtonProps> = ({
     case "FavoritedarkBlueIcon":
       style.hoverBgColor = "hover:bg-white";
       style.borderColor = "border-darkBlue";
-      style.hoverTextColor = "hover:text-blue hover:border-blue";
+      style.hoverTextColor = "hover:text-darkBlue hover:border-darkBlue";
       style.textColor = "text-darkBlue";
       style.bgColor = "bg-white";
       break;

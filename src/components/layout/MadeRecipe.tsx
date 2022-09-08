@@ -48,7 +48,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
               return parentFunction ? parentFunction() : null;
             });
           }}
-          className="mr-1 h-10"
+          className="h-10"
         >
           <div className={` flex justify-items-center `}>
             {isMade ? (
@@ -68,7 +68,7 @@ export const MadeRecipe: React.FC<IMadeRecipe> = ({
                 type="darkBlue"
                 rounded="lg"
                 haveIcon={true}
-                className="mr-1 h-10"
+                className="h-10"
               >
                 <div className={` flex justify-items-center `}>
                   {isMade ? (
