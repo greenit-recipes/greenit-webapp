@@ -357,7 +357,10 @@ const CreateRecipeForm: React.FC = () => {
                 {...register(`ingredients.${index}.quantity`)}
               />
               <p className="text-xs italic text-red">
-                {errors?.ingredients?.[index]?.quantity?.message}
+                {
+                  //@ts-ignore
+                  errors?.ingredients?.[index]?.quantity?.message
+                }
               </p>
               <Controller
                 name={`ingredients.${index}.name`}
@@ -388,7 +391,10 @@ const CreateRecipeForm: React.FC = () => {
                 }}
               />
               <p className="text-xs italic text-red">
-                {errors?.ingredients?.[index]?.name?.message}
+                {
+                  //@ts-ignore
+                  errors?.ingredients?.[index]?.name?.message
+                }
               </p>
               <div
                 className="col-span-3 | cursor-pointer flex justify-self-end mb-2 bg-red text-white rounded-lg py-1 px-2"
