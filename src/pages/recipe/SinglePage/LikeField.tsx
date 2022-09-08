@@ -50,12 +50,12 @@ export const LikeField: React.FC<ILikeField> = ({
           {isLiked ? (
             <div className="flex items-center gap-1">
               <i className="bx bxs-donate-heart text-2xl"></i>
-              <p>{nbrLiked} Soutients</p>
+              <p>{nbrLiked} soutiens</p>
             </div>
           ) : (
             <div className="flex items-center gap-1">
               <i className="bx bx-donate-heart text-2xl"></i>
-              <p>Soutient</p>
+              <p>soutien</p>
             </div>
           )}
         </Button>
@@ -70,7 +70,7 @@ export const LikeField: React.FC<ILikeField> = ({
                 className="h-10"
               >
                 <i className="bx bx-donate-heart text-2xl"></i>
-                <p className="ml-1">Soutient</p>
+                <p className="ml-1">soutien</p>
               </Button>
             }
           ></ModalLogGreenit>
