@@ -327,7 +327,7 @@ const LandingPage = () => {
 
       <Container
         className="flex flex-col justify-center items-center | md:px-4
-         | mt-20 md:mt-12 mb-12 text-center md:w-10/12 | relative"
+         | mt-20 sm:mt-12 mb-12 text-center sm:w-full lg:w-10/12 | relative"
       >
         {isMobile ? (
           <>
@@ -390,7 +390,7 @@ const LandingPage = () => {
         className="flex flex-col justify-center items-center md:items-start | md:px-4
          | text-center md:text-left w-full | bg-yellowL"
       >
-        <div className="md:w-10/12 mt-12 mb-12 md:ml-24">
+        <div className="lg:w-10/12 mt-12 mb-12 lg:ml-24">
           <div className="md:flex md:justify-start md:space-x-4">
             <h2 className="text-xl md:text-2xl">
               Le kit fait-maison idéal pour débuter
@@ -451,7 +451,7 @@ const LandingPage = () => {
         </div>
       </Container>
       <Container
-        className="flex flex-col items-center | md:px-4
+        className="flex flex-col items-center | lg:px-4
          | pt-9 text-center bg-blueL w-full relative | pb-5"
       >
         {!isMobile && (
@@ -469,7 +469,7 @@ const LandingPage = () => {
           <h2 className="font-diy text-2xl">idéal pour se lancer !</h2>
         </div>
       </Container>
-      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
+      <div className="lg:flex lg:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
         <div className="flex w-max">
           {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
             <div className="flex mr-2">
@@ -493,7 +493,7 @@ const LandingPage = () => {
           <h2 className="font-diy text-2xl">recettes pour un ménage écolo !</h2>
         </div>
       </Container>
-      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
+      <div className="lg:flex lg:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
         <div className="flex w-max">
           {dataHomes?.slice(0, totalRecipeCards).map(recipe => (
             <div className="flex mr-2">
@@ -529,7 +529,7 @@ const LandingPage = () => {
         </div>
       </Container>
       <div className="w-full bg-yellowL">
-        <div className="md:flex md:items-center md:justify-start md:space-x-0 md:mt-10 md:ml-10 md:mr-20">
+        <div className="md:flex md:items-center md:justify-start md:space-x-0 sm:mt-10 lg:ml-10 lg:mr-20">
           <Container
             className="md:w-1/3 flex flex-col items-center | md:px-4
          | pt-9 text-center md:text-left bg-yellowL w-full"
@@ -544,8 +544,8 @@ const LandingPage = () => {
               </h2>
             </div>
           </Container>
-          <div className="w-full md:w-3/5 pt-4 pl-4 overflow-x-auto pb-12 bg-yellowL">
-            <div className="md:flex md:justify-center">
+          <div className="w-full sm:w-3/5 pt-4 pl-4 overflow-x-auto pb-12 bg-yellowL">
+            <div className="lg:flex lg:justify-center">
               <div className="flex w-max">
                 {dataIngredientCuisines
                   ?.slice(0, isMobile ? totalRecipeCards : 3)
@@ -569,9 +569,9 @@ const LandingPage = () => {
           </div>
         </div>
         {!isMobile && (
-          <div className="md:flex md:items-center md:justify-start md:space-x-0 md:ml-20 md:mr-10">
-            <div className="w-full md:w-3/5 pt-4 pl-4 overflow-x-auto pb-12 bg-yellowL">
-              <div className="md:flex md:justify-center">
+          <div className="sm:flex sm:items-center sm:justify-start sm:space-x-0 lg:ml-20 lg:mr-10">
+            <div className="w-full sm:w-3/5 pt-4 pl-4 overflow-x-auto pb-12 bg-yellowL">
+              <div className="lg:flex md:justify-center">
                 <div className="flex w-max">
                   {dataIngredientCuisines
                     ?.slice(3, isMobile ? totalRecipeCards : 6)
@@ -594,8 +594,8 @@ const LandingPage = () => {
               </div>
             </div>
             <Container
-              className="md:w-1/3 flex flex-col items-center | md:px-4
-         | pt-9 text-center md:text-left bg-yellowL w-full"
+              className="sm:w-1/3 flex flex-col items-center | md:px-4
+         | pt-9 text-center lg:text-left bg-yellowL w-full"
             >
               <div className="flex flex-col">
                 <h2 className="text-xl md:text-2xl font-semibold">
@@ -634,8 +634,8 @@ const LandingPage = () => {
         className="flex flex-col items-center | md:px-4
          | pt-9 pb-12 md:mt-4 text-center md:w-full"
       >
-        <div className="flex flex-col md:self-start md:space-x-4 md:ml-14">
-          <h2 className="text-xl md:text-2xl font-semibold">
+        <div className="flex flex-col lg:self-start md:space-x-4 lg:ml-14">
+          <h2 className="text-xl lg:text-2xl font-semibold">
             Le DIY c’est reprendre le contôle {isMobile && <br></br>} sur sa
             consommation
           </h2>
@@ -643,14 +643,16 @@ const LandingPage = () => {
             Le diy pour ta santé, ton bien-être et un mode de vie viable
           </h2>
         </div>
-        <div className="md:flex md:items-center md:space-x-24">
+        <div className="lg:flex lg:items-center lg:space-x-24">
           <div
             className={`${isMobile && "flex items-center justify-center"} mt-5`}
           >
-            <RecipeCard
-              recipe={dataByIds[0]?.node}
-              key={dataByIds[0]?.node?.id}
-            />
+            <div className="grid w-48">
+              <RecipeCard
+                recipe={dataByIds[0]?.node}
+                key={dataByIds[0]?.node?.id}
+              />
+            </div>
           </div>
           <div className="flex mt-6">
             <CircleGreenit
@@ -669,7 +671,7 @@ const LandingPage = () => {
               icon={
                 <i className="bx bx-euro absolute w-8 h-8 icon-position-circle bx-md"></i>
               }
-              customClassName="ml-16"
+              customClassName="ml-8 sm:ml-16"
               symbol="€"
               number={"2"}
               text="Argent économisé"
@@ -680,7 +682,7 @@ const LandingPage = () => {
               icon={
                 <i className="bx bx-leaf absolute w-8 h-8 icon-position-circle bx-md"></i>
               }
-              customClassName="ml-16"
+              customClassName="ml-8 sm:ml-16"
               symbol="g"
               number={"70"}
               text="Plastiques évités"
@@ -762,7 +764,7 @@ const LandingPage = () => {
           <h2 className="font-diy text-2xl">pour des cheveux soyeux</h2>
         </div>
       </Container>
-      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
+      <div className="lg:flex lg:justify-center w-full pt-4 pl-4 overflow-x-auto pb-12 bg-blueL">
         <div className="flex w-max">
           {dataHairs?.slice(0, totalRecipeCards).map(recipe => (
             <div className="flex mr-2">
@@ -787,7 +789,7 @@ const LandingPage = () => {
           <h2 className="font-diy text-2xl">adaptées à vos problématiques</h2>
         </div>
       </Container>
-      <div className="md:flex md:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
+      <div className="lg:flex lg:justify-center w-full pt-4 pl-4 overflow-x-auto pb-24 bg-blueL">
         <div className="flex w-max">
           {dataSearchMasques?.slice(0, totalRecipeCards).map(recipe => (
             <div className="flex mr-2">
@@ -798,11 +800,11 @@ const LandingPage = () => {
         </div>
       </div>
       <Container
-        className="relative w-full h-full px-6 my-6 mt-40 md:mt-20 md:w-3/5"
+        className="relative w-full h-full px-6 my-6 mt-40 lg:mt-20 lg:w-3/5"
         itemsCenter
       >
         <img
-          className="h-52 absolute -top-64 md:-top-40 right-0 md:-right-72"
+          className="h-52 absolute -top-64 lg:-top-40 right-0 lg:-right-72"
           alt="Mon savon ? Je le fais moi-même"
           src={isMobile ? BadgeControleMobile : BadgeControleDesktop}
           loading="lazy"

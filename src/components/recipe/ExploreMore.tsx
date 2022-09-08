@@ -12,7 +12,7 @@ export const ExploreMore: React.FC<ExploreMoreProps> = ({ filter, id }) => {
     <Link
       id={id}
       to={`${RouteName.recipes}${filter && "?" + filter}`}
-      className="ml-2 mb-2 md:mb-0 mr-5 h-82 w-52 bg-white shadow-flat rounded-2xl self-center |
+      className="ml-2 mr-5 h-72 w-48 bg-white rounded-lg self-top |
     transform sm:hover:scale-105 ease-linear relative transition-all duration-150"
     >
       <div className="grid w-full h-full justify-center content-center">
