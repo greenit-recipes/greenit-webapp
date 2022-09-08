@@ -32,7 +32,9 @@ import { noVideo, retourIcon } from "../../../icons";
 import { getSecondsFromDuration } from "../../../utils";
 import { CircleGreenit } from "./CircleGreenit/CircleGreenit";
 import { HeaderRecipe } from "./HeaderRecipe/HeaderRecipe";
+import { LikeField } from "./LikeField";
 import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
+import isMobile from "hooks/isMobile";
 import "./SinglePage.css";
 
 const ModalLogGreenit = React.lazy(
@@ -215,7 +217,7 @@ const RecipeSinglePage = () => {
                 <h1 className="mb-5 text-xl text-center lg:text-2xl font-medium">
                   {recipe?.name}
                 </h1>
-                <div className="flex items-center justify-center mb-0 md:mb-10">
+                <div className="flex gap-3 items-center justify-center mb-0 md:mb-10">
                   <FavouriteField
                     isToltipActif={false}
                     isRecipePage={true}
@@ -223,7 +225,12 @@ const RecipeSinglePage = () => {
                     customClassName="flex"
                     recipe={data?.recipe}
                   ></FavouriteField>
-                  <MadeRecipe customClassName="ml-3" recipe={data?.recipe} />
+                  {isMobile ? (
+                    <div className="hidden" />
+                  ) : (
+                    <LikeField recipe={recipe}></LikeField>
+                  )}
+                  <MadeRecipe recipe={data?.recipe} />
                   <RWebShare
                     data={{
                       text: recipe?.titleSeo,
@@ -236,7 +243,7 @@ const RecipeSinglePage = () => {
                       type="darkBlue"
                       rounded="lg"
                       haveIcon={true}
-                      className="ml-2 h-10"
+                      className="h-10"
                     >
                       <i className="bx bx-share bx-flip-horizontal bx-sm mr-2"></i>
                       partage

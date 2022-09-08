@@ -98,13 +98,6 @@ export const RegisterModal: React.FC<{
   ] = useMutation(CREATE_ACCOUNT, { errorPolicy: "all" });
 
   React.useEffect(() => {
-    if (window.pageYOffset > 0) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-
     if (createAccountData?.register?.success === false || error) {
       if (createAccountData?.register?.errors?.email?.[0]?.code === "unique") {
         setError("email", {

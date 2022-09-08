@@ -58,9 +58,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         <div
           className={`flex flex-col items-center pb-2 absolute right-0 mt-2 mr-3 w-8 h-${
             amount > 1 ? "14" : "8"
-          } rounded-2xl`}
+          } rounded-2xl bg-white`}
         >
-          <div className="absolute top-10">
+          <div className="absolute top-0">
             <IconContext.Provider value={{ className: "text-3.5xl text-blue" }}>
               <BsFillCheckCircleFill />
             </IconContext.Provider>
