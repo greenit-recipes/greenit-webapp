@@ -266,6 +266,7 @@ export const ModalEditCreatorProfile: React.FC<IModalEditCreatorProfile> = ({
 
                                 <p className="text-xs italic text-red">
                                   {
+                                    //@ts-ignore
                                     errors?.urlsSocialMedia?.[index]?.url
                                       ?.message
                                   }

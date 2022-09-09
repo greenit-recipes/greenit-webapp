@@ -411,7 +411,12 @@ const CreateRecipeForm: React.FC = () => {
         >
           Ajouter un ingrédient
         </div>
-        <p className="text-xs italic text-red">{errors.ingredients?.message}</p>
+        <p className="text-xs italic text-red">
+          {
+            //@ts-ignore
+            errors.ingredients?.message
+          }
+        </p>
       </div>
 
       <div className="mb-10">
@@ -451,7 +456,10 @@ const CreateRecipeForm: React.FC = () => {
                   />
 
                   <p className="text-xs italic text-red">
-                    {errors?.instructions?.[index]?.instruction?.message}
+                    {
+                      //@ts-ignore
+                      errors?.instructions?.[index]?.instruction?.message
+                    }
                   </p>
 
                   <div
@@ -495,7 +503,10 @@ const CreateRecipeForm: React.FC = () => {
                 {...register(`utensils.${index}.quantity`)}
               />
               <p className="text-xs italic text-red">
-                {errors?.utensils?.[index]?.quantity?.message}
+                {
+                  //@ts-ignore
+                  errors?.utensils?.[index]?.quantity?.message
+                }
               </p>
               <Controller
                 name={`utensils.${index}.name`}
@@ -526,7 +537,10 @@ const CreateRecipeForm: React.FC = () => {
                 }}
               />
               <p className="text-xs italic text-red">
-                {errors?.utensils?.[index]?.name?.message}
+                {
+                  //@ts-ignore
+                  errors?.utensils?.[index]?.name?.message
+                }
               </p>
               <div
                 onClick={() => utensilsRemove(index)}

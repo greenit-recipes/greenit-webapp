@@ -26,6 +26,7 @@ import authService, { CREATE_ACCOUNT } from "services/auth.service";
 import { Button, Footer, Navbar } from "../../components";
 import "./register.css";
 import { PellGreenit } from "../../components/layout/Editor/PellEditor";
+
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
@@ -296,7 +297,10 @@ const Register: React.FC = () => {
 
                           {errors?.urlsSocialMedia && (
                             <p className="mt-2 text-xs italic text-red">
-                              {errors?.urlsSocialMedia?.[index]?.url?.message}
+                              {
+                                //@ts-ignore
+                                errors?.urlsSocialMedia?.[index]?.url?.message
+                              }
                             </p>
                           )}
 
