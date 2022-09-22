@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   Footer,
+  Loading,
   Navbar,
   RecipeCard,
   SearchBar,
@@ -20,10 +21,28 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { ExploreMore } from "components/recipe/ExploreMore";
 import { SectionTitle } from "./Components/SectionTitle";
+import { useRecipesQuery } from "../../graphql";
+import { ReviewCard } from "./Components/ReviewCard";
 
 const MarketLandingPage = () => {
   const isMobile = useIsMobile();
   const [showModal, setShowModal] = useState(false);
+  const totalRecipeCards = isMobile ? 5 : 4;
+
+  const { data: dataBegginer } = useRecipesQuery({
+    variables: { first: 8, filter: { tags: ["Premiers pas"] } },
+  });
+
+  const { data: dataHome } = useRecipesQuery({
+    variables: { first: 8, filter: { category: ["Maison"] } },
+  });
+
+  if (!dataBegginer || !dataHome) {
+    return <Loading />;
+  }
+
+  const recipesBegginer = dataBegginer.allRecipes?.edges || [];
+  const dataHomes = dataHome.allRecipes?.edges || [];
 
   useEffect(() => {
     if (showModal) {
@@ -119,33 +138,205 @@ const MarketLandingPage = () => {
         <IngredientCard keyID={"MarketPage-IngredientCards"} />
       </Container>
 
+      <div className="h-full w-full bg-blueL my-10 flex flex-col items-center self-center">
+        <SectionTitle
+          title={"Les huiles végétales"}
+          subtitle={"l'indispensable de vos soins beauté"}
+        />
+        <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
+          <div className="flex gap-5 w-max ml-4 md:ml-0">
+            <IngredientCard keyID={"MarketPage-IngredientCards"} />
+            <IngredientCard keyID={"MarketPage-IngredientCards"} />
+            <IngredientCard keyID={"MarketPage-IngredientCards"} />
+            <IngredientCard keyID={"MarketPage-IngredientCards"} />
+            <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+          </div>
+        </Container>
+
+        <SectionTitle
+          title={"Les huiles essentielles"}
+          subtitle={"vive l'aromathérapie"}
+        />
+        <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
+          <div className="flex gap-5 w-max ml-4 md:ml-0">
+            <IngredientCard keyID={"MarketPage-IngredientCards"} />
+            <IngredientCard keyID={"MarketPage-IngredientCards"} />
+            <IngredientCard keyID={"MarketPage-IngredientCards"} />
+            <IngredientCard keyID={"MarketPage-IngredientCards"} />
+            <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+          </div>
+        </Container>
+      </div>
+
       <SectionTitle
-        title={"Les huiles végétales"}
-        subtitle={"l'indispensable de vos soins beauté"}
+        title={"Les recettes 100% débutants"}
+        subtitle={"idéal pour se lancer !"}
+        isMarginNeeded={false}
       />
-      <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
-        <div className="flex gap-5 w-max ml-4 md:ml-0">
-          <IngredientCard keyID={"MarketPage-IngredientCards"} />
-          <IngredientCard keyID={"MarketPage-IngredientCards"} />
-          <IngredientCard keyID={"MarketPage-IngredientCards"} />
-          <IngredientCard keyID={"MarketPage-IngredientCards"} />
-          <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+
+      <Container className="flex w-full lg:justify-center overflow-x-auto">
+        <div className="flex w-max ml-4 md:ml-0 p-4">
+          {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
+            <div className="flex mr-2">
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            </div>
+          ))}
+          <ExploreMore
+            filter="tags=Premiers pas"
+            id="landing-debutant-debutant"
+          />
         </div>
       </Container>
 
       <SectionTitle
-        title={"Les huiles essentielles"}
-        subtitle={"idéal pour se lancer !"}
+        title={"Tout pour la maison"}
+        subtitle={"recettes pour un ménage écolo !"}
+        isMarginNeeded={false}
       />
-      <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
-        <div className="flex gap-5 w-max ml-4 md:ml-0">
-          <IngredientCard keyID={"MarketPage-IngredientCards"} />
-          <IngredientCard keyID={"MarketPage-IngredientCards"} />
-          <IngredientCard keyID={"MarketPage-IngredientCards"} />
-          <IngredientCard keyID={"MarketPage-IngredientCards"} />
-          <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+      <Container className="flex w-full lg:justify-center overflow-x-auto">
+        <div className="flex w-max ml-4 md:ml-0 p-4">
+          {dataHomes?.slice(0, totalRecipeCards).map(recipe => (
+            <div className="flex mr-2">
+              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+            </div>
+          ))}
+          <ExploreMore filter="category=Maison" id="landing-maison-explorer" />
         </div>
       </Container>
+
+      <Button
+        id="LandingMarket-Decouvrir-Recettes"
+        type="darkBlue"
+        className="my-4"
+      >
+        Découvrir les recettes
+      </Button>
+
+      <div className="h-full w-full bg-greenL mt-10 flex flex-col items-center self-center pb-10">
+        <SectionTitle
+          title={"La communauté Greenit"}
+          subtitle={"nos avis sur Google"}
+        />
+        <Container className="flex flex-wrap gap-4 w-full justify-center lg:w-3/4">
+          <ReviewCard
+            PersonName={"Samantha"}
+            Review={
+              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+            }
+            Rating={"5/5"}
+          />
+          <ReviewCard
+            PersonName={"Samantha"}
+            Review={
+              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+            }
+            Rating={"5/5"}
+          />
+          <ReviewCard
+            PersonName={"Samantha"}
+            Review={
+              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+            }
+            Rating={"5/5"}
+          />
+          <ReviewCard
+            PersonName={"Samantha"}
+            Review={
+              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+            }
+            Rating={"5/5"}
+          />
+          <ReviewCard
+            PersonName={"Samantha"}
+            Review={
+              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+            }
+            Rating={"5/5"}
+          />
+          <ReviewCard
+            PersonName={"Samantha"}
+            Review={
+              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+            }
+            Rating={"5/5"}
+          />
+          <ReviewCard
+            PersonName={"Samantha"}
+            Review={
+              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+            }
+            Rating={"5/5"}
+          />
+          <ReviewCard
+            PersonName={"Samantha"}
+            Review={
+              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+            }
+            Rating={"5/5"}
+          />
+          <ReviewCard
+            PersonName={"Samantha"}
+            Review={
+              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+            }
+            Rating={"5/5"}
+          />
+          <ReviewCard
+            PersonName={"Samantha"}
+            Review={
+              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+            }
+            Rating={"5/5"}
+          />
+        </Container>
+      </div>
+
+      <div className="h-full w-full bg-white flex flex-col items-center self-center pb-10">
+        <Container className="flex flex-wrap gap-4 w-full justify-center lg:w-3/4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 w-full my-10">
+            <div className="flex flex-col text-center">
+              <i className="bx bxs-bookmark-heart text-5xl" />
+              <p className="font-diy text-3xl">Entreprise française</p>
+              <p>
+                Greenit est une entreprise française. Nous travaillons avec des
+                marques et des producteurs français !
+              </p>
+            </div>
+            <div className="flex flex-col text-center">
+              <i className="bx bxs-bookmark-heart text-5xl" />
+              <p className="font-diy text-3xl">Entreprise française</p>
+              <p>
+                Greenit est une entreprise française. Nous travaillons avec des
+                marques et des producteurs français !
+              </p>
+            </div>
+            <div className="flex flex-col text-center">
+              <i className="bx bxs-bookmark-heart text-5xl" />
+              <p className="font-diy text-3xl">Entreprise française</p>
+              <p>
+                Greenit est une entreprise française. Nous travaillons avec des
+                marques et des producteurs français !
+              </p>
+            </div>
+            <div className="flex flex-col text-center">
+              <i className="bx bxs-bookmark-heart text-5xl" />
+              <p className="font-diy text-3xl">Entreprise française</p>
+              <p>
+                Greenit est une entreprise française. Nous travaillons avec des
+                marques et des producteurs français !
+              </p>
+            </div>
+            <div className="flex flex-col text-center">
+              <i className="bx bxs-bookmark-heart text-5xl" />
+              <p className="font-diy text-3xl">Entreprise française</p>
+              <p>
+                Greenit est une entreprise française. Nous travaillons avec des
+                marques et des producteurs français !
+              </p>
+            </div>
+          </div>
+        </Container>
+      </div>
       <Footer />
     </div>
   );

@@ -20,12 +20,12 @@ export const IngredientCard: React.FC<IngredientCard> = ({
   return (
     <div
       id={keyID}
-      className="flex flex-col gap-1 | h-56 w-44 | transform sm:hover:scale-105 ease-linear transition-all duration-150"
+      className="flex flex-col gap-1 | h-56 w-44 md:h-60 md:w-48 | transform sm:hover:scale-105 ease-linear transition-all duration-150"
     >
       {!isCTA ? (
         <>
           <div className="flex flex-col gap-1 md:gap-2">
-            <div className="flex items-center h-32 w-44 rounded object-cover overflow-hidden">
+            <div className="flex items-center h-36 w-48 rounded object-cover overflow-hidden">
               <img
                 className="object-cover"
                 src={visage}
