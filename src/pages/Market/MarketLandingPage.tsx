@@ -9,6 +9,7 @@ import {
   SearchBar,
 } from "components";
 import { SlideBar } from "./Components/SlideBar";
+import { IngredientCard } from "./Components/IngredientCard";
 import useIsMobile from "hooks/isMobile";
 import {
   TopImageMarketMobile,
@@ -17,6 +18,8 @@ import {
 } from "icons";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { ExploreMore } from "components/recipe/ExploreMore";
+import { SectionTitle } from "./Components/SectionTitle";
 
 const MarketLandingPage = () => {
   const isMobile = useIsMobile();
@@ -98,6 +101,51 @@ const MarketLandingPage = () => {
         </div>
       </Container>
       <SlideBar keyID={"Landingpage-slideBar"} />
+
+      <SectionTitle
+        title={"Les produits phares"}
+        subtitle={"les incontournables"}
+      />
+      <Container className="flex flex-wrap gap-5 w-full justify-center lg:w-3/4">
+        <IngredientCard keyID={"MarketPage-IngredientCards"} />
+        <IngredientCard keyID={"MarketPage-IngredientCards"} />
+        <IngredientCard keyID={"MarketPage-IngredientCards"} />
+        <IngredientCard keyID={"MarketPage-IngredientCards"} />
+        <IngredientCard keyID={"MarketPage-IngredientCards"} />
+        <IngredientCard keyID={"MarketPage-IngredientCards"} />
+        <IngredientCard keyID={"MarketPage-IngredientCards"} />
+        <IngredientCard keyID={"MarketPage-IngredientCards"} />
+        <IngredientCard keyID={"MarketPage-IngredientCards"} />
+        <IngredientCard keyID={"MarketPage-IngredientCards"} />
+      </Container>
+
+      <SectionTitle
+        title={"Les huiles végétales"}
+        subtitle={"l'indispensable de vos soins beauté"}
+      />
+      <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
+        <div className="flex gap-5 w-max ml-4 md:ml-0">
+          <IngredientCard keyID={"MarketPage-IngredientCards"} />
+          <IngredientCard keyID={"MarketPage-IngredientCards"} />
+          <IngredientCard keyID={"MarketPage-IngredientCards"} />
+          <IngredientCard keyID={"MarketPage-IngredientCards"} />
+          <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+        </div>
+      </Container>
+
+      <SectionTitle
+        title={"Les huiles essentielles"}
+        subtitle={"idéal pour se lancer !"}
+      />
+      <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
+        <div className="flex gap-5 w-max ml-4 md:ml-0">
+          <IngredientCard keyID={"MarketPage-IngredientCards"} />
+          <IngredientCard keyID={"MarketPage-IngredientCards"} />
+          <IngredientCard keyID={"MarketPage-IngredientCards"} />
+          <IngredientCard keyID={"MarketPage-IngredientCards"} />
+          <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+        </div>
+      </Container>
       <Footer />
     </div>
   );

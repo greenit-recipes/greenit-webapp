@@ -7,8 +7,11 @@ interface SlideBar {
 
 export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
   return (
-    <div id={keyID} className="shadow-flat h-12 overflow-x-auto w-full">
-      <div className="flex flex-cols gap-2 w-max">
+    <div
+      id={keyID}
+      className="grid md:flex sticky top-10 md:top-14 z-30 items-center shadow-flat bg-white h-12 overflow-x-auto w-full md:justify-center"
+    >
+      <div className="flex flex-cols gap-4 w-max md:w-4/5 px-4">
         {[
           {
             title: "Tous les ingrédients",
@@ -31,7 +34,9 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
             link: "/market",
           },
         ].map((item, index) => (
-          <Link to={item.link}>{item.title}</Link>
+          <Link to={item.link} className="cursor-pointer">
+            <h4>{item.title}</h4>
+          </Link>
         ))}
       </div>
     </div>

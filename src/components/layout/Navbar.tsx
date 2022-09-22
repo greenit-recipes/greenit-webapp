@@ -156,11 +156,6 @@ export const Navbar: React.FC = () => {
                 </h2>
               </div>
             </Link>
-            <Link className="p-2" to={RouteName.startDiyGreenitFullXp}>
-              <h2 id="navbar-box-mobile" className="text-white">
-                Kit fait-maison
-              </h2>
-            </Link>
             <Link className="p-2" to={RouteName.starterPage}>
               <h2 id="navbar-getStarted-mobile" className="text-white">
                 Se lancer
@@ -456,11 +451,6 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
         </div>
-        <Link to={RouteName.startDiyGreenitFullXp}>
-          <NavButton id="navbar-box" type="black">
-            Kit fait-maison
-          </NavButton>
-        </Link>
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.starterPage}>
             <NavButton id="navbar-pageDebutant" type="blue">
