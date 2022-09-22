@@ -4,6 +4,7 @@ import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
 import { createBrowserHistory } from "history";
 import LandingPage from "pages/LandingPage/LandingPage";
+import MarketLandingPage from "pages/Market/MarketLandingPage";
 import React, { Suspense } from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
@@ -75,6 +76,7 @@ const greenitFullXpRoute = {
 
 export const RouteName = {
   accueil: "/",
+  market: "/market",
   resetPassword: "/reinitialisation-mot-de-passe", // no index
   tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
   accountCreated: "/compte-crée", // no index
@@ -117,6 +119,12 @@ const App: React.FC = () => {
             component={RecipeSinglePage}
             exact
           />
+          <PublicRoute
+            path={RouteName.market}
+            component={MarketLandingPage}
+            exact
+          />
+
           {/* START FULL XP */}
           <FullXPRoute
             path={RouteName.greenitFullXp}

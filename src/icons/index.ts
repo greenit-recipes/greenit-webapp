@@ -138,12 +138,17 @@ import BadgeControleMobile from "./Badge_controle_Mobile.png";
 import BadgeControleDesktop from "./Badge_controle_Desktop.png";
 import Badge100Mobile from "./Badge_100pc_Mobile.png";
 import Badge100Desktop from "./Badge_100pc_Desktop.png";
+import BadgeJeDebute from "./BadgeJeDebute.svg";
+
+// DECORATION TOP PAGES
+import TopImageMarketMobile from "./TopImage_Market_Mobile.svg";
+import TopImageMarketDesktopLeft from "./TopImageLeft_Market_Desktop.svg";
+import TopImageMarketDesktopRight from "./TopImageRight_Market_Desktop.svg";
 import TopImageMobile from "./TopImageLP_Mobile.svg";
 import TopImageDesktopLeft from "./TopImageLP_gauche.svg";
 import TopImageDesktopRight from "./TopImageLP_droite.svg";
 import LPImage4Desktop from "./LPImage_4_Desktop.svg";
 import ProjectTopImageDesktop from "./TopImageProject_desktop.svg";
-import BadgeJeDebute from "./BadgeJeDebute.svg";
 
 // FUll XP GREENIT
 import boxGreenit from "./GIFDesktop_Box_GIY.gif";
@@ -373,4 +378,7 @@ export {
   Gif_LDC,
   Gif_Personnalisation,
   Gif_Profil,
+  TopImageMarketMobile,
+  TopImageMarketDesktopLeft,
+  TopImageMarketDesktopRight,
 };

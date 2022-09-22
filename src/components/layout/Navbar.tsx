@@ -23,7 +23,8 @@ export const Navbar: React.FC = () => {
   const location = useLocation();
   const [showSearchBar, setShowSearchBar] = useState<boolean>(
     location.pathname !== RouteName.accueil &&
-      location.pathname !== RouteName.recipes,
+      location.pathname !== RouteName.recipes &&
+      location.pathname !== RouteName.market,
   );
   const [toggle, setToggle] = useState(false);
   const [hasUrl, setHasUrl] = useState(
@@ -131,6 +132,11 @@ export const Navbar: React.FC = () => {
         >
           <div className="flex flex-col">
             <SearchBar keyId="menu-searchBar-mobile" />
+            <Link className="p-2 mt-3" to={RouteName.market}>
+              <h2 id="navbar-market" className="text-white">
+                Marché
+              </h2>
+            </Link>
             <Link className="p-2 mt-3" to={RouteName.accueil}>
               <h2 id="navbar-home" className="text-white">
                 Accueil
@@ -225,6 +231,11 @@ export const Navbar: React.FC = () => {
           showSearchBar ? "[45%]" : "3/5"
         } h-full ml-4 justify-items-start`}
       >
+        <Link to={RouteName.market}>
+          <NavButton id="navbar-market" type="black">
+            Marché
+          </NavButton>
+        </Link>
         <Link to={RouteName.accueil}>
           <NavButton id="navbar-home" type="black">
             Accueil
