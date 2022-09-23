@@ -9,6 +9,7 @@ interface IngredientCard {
   isCTA?: boolean;
   filter?: string;
   keyID: string;
+  ingredient: any;
 }
 
 export const IngredientCard: React.FC<IngredientCard> = ({
@@ -16,6 +17,7 @@ export const IngredientCard: React.FC<IngredientCard> = ({
   keyID,
   isToltipActif,
   filter,
+  ingredient,
 }) => {
   return (
     <div
@@ -23,7 +25,11 @@ export const IngredientCard: React.FC<IngredientCard> = ({
       className="flex flex-col gap-1 | h-56 w-44 md:h-60 md:w-48 | transform sm:hover:scale-105 ease-linear transition-all duration-150"
     >
       {!isCTA ? (
-        <>
+        <Link
+          to={{
+            pathname: `${RouteName.market}/${ingredient}`,
+          }}
+        >
           <div className="flex flex-col gap-1 md:gap-2">
             <div className="flex items-center h-36 w-48 rounded object-cover overflow-hidden">
               <img
@@ -48,7 +54,7 @@ export const IngredientCard: React.FC<IngredientCard> = ({
               ></i>
             </Button>
           </div>
-        </>
+        </Link>
       ) : (
         <Link
           id={keyID}

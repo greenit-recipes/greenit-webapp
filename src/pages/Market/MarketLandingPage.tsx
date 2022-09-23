@@ -1,5 +1,3 @@
-import { useQuery } from "@apollo/client";
-import { RouteName } from "App";
 import {
   Button,
   Container,
@@ -23,6 +21,7 @@ import { ExploreMore } from "components/recipe/ExploreMore";
 import { SectionTitle } from "./Components/SectionTitle";
 import { useRecipesQuery } from "../../graphql";
 import { ReviewCard } from "./Components/ReviewCard";
+import { title } from "process";
 
 const MarketLandingPage = () => {
   const isMobile = useIsMobile();
@@ -126,16 +125,46 @@ const MarketLandingPage = () => {
         subtitle={"les incontournables"}
       />
       <Container className="flex flex-wrap gap-5 w-full justify-center lg:w-3/4">
-        <IngredientCard keyID={"MarketPage-IngredientCards"} />
-        <IngredientCard keyID={"MarketPage-IngredientCards"} />
-        <IngredientCard keyID={"MarketPage-IngredientCards"} />
-        <IngredientCard keyID={"MarketPage-IngredientCards"} />
-        <IngredientCard keyID={"MarketPage-IngredientCards"} />
-        <IngredientCard keyID={"MarketPage-IngredientCards"} />
-        <IngredientCard keyID={"MarketPage-IngredientCards"} />
-        <IngredientCard keyID={"MarketPage-IngredientCards"} />
-        <IngredientCard keyID={"MarketPage-IngredientCards"} />
-        <IngredientCard keyID={"MarketPage-IngredientCards"} />
+        <IngredientCard
+          ingredient={"ingredient"}
+          keyID={"MarketPage-IngredientCards"}
+        />
+        <IngredientCard
+          ingredient={"ingredient"}
+          keyID={"MarketPage-IngredientCards"}
+        />
+        <IngredientCard
+          ingredient={"ingredient"}
+          keyID={"MarketPage-IngredientCards"}
+        />
+        <IngredientCard
+          ingredient={"ingredient"}
+          keyID={"MarketPage-IngredientCards"}
+        />
+        <IngredientCard
+          ingredient={"ingredient"}
+          keyID={"MarketPage-IngredientCards"}
+        />
+        <IngredientCard
+          ingredient={"ingredient"}
+          keyID={"MarketPage-IngredientCards"}
+        />
+        <IngredientCard
+          ingredient={"ingredient"}
+          keyID={"MarketPage-IngredientCards"}
+        />
+        <IngredientCard
+          ingredient={"ingredient"}
+          keyID={"MarketPage-IngredientCards"}
+        />
+        <IngredientCard
+          ingredient={"ingredient"}
+          keyID={"MarketPage-IngredientCards"}
+        />
+        <IngredientCard
+          ingredient={"ingredient"}
+          keyID={"MarketPage-IngredientCards"}
+        />
       </Container>
 
       <div className="h-full w-full bg-blueL my-10 flex flex-col items-center self-center">
@@ -145,11 +174,27 @@ const MarketLandingPage = () => {
         />
         <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
           <div className="flex gap-5 w-max ml-4 md:ml-0">
-            <IngredientCard keyID={"MarketPage-IngredientCards"} />
-            <IngredientCard keyID={"MarketPage-IngredientCards"} />
-            <IngredientCard keyID={"MarketPage-IngredientCards"} />
-            <IngredientCard keyID={"MarketPage-IngredientCards"} />
-            <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+            <IngredientCard
+              ingredient={"ingredient"}
+              keyID={"MarketPage-IngredientCards"}
+            />
+            <IngredientCard
+              ingredient={"ingredient"}
+              keyID={"MarketPage-IngredientCards"}
+            />
+            <IngredientCard
+              ingredient={"ingredient"}
+              keyID={"MarketPage-IngredientCards"}
+            />
+            <IngredientCard
+              ingredient={"ingredient"}
+              keyID={"MarketPage-IngredientCards"}
+            />
+            <IngredientCard
+              ingredient={"ingredient"}
+              isCTA={true}
+              keyID={"MarketPage-IngredientCards"}
+            />
           </div>
         </Container>
 
@@ -159,11 +204,27 @@ const MarketLandingPage = () => {
         />
         <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
           <div className="flex gap-5 w-max ml-4 md:ml-0">
-            <IngredientCard keyID={"MarketPage-IngredientCards"} />
-            <IngredientCard keyID={"MarketPage-IngredientCards"} />
-            <IngredientCard keyID={"MarketPage-IngredientCards"} />
-            <IngredientCard keyID={"MarketPage-IngredientCards"} />
-            <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+            <IngredientCard
+              ingredient={"ingredient"}
+              keyID={"MarketPage-IngredientCards"}
+            />
+            <IngredientCard
+              ingredient={"ingredient"}
+              keyID={"MarketPage-IngredientCards"}
+            />
+            <IngredientCard
+              ingredient={"ingredient"}
+              keyID={"MarketPage-IngredientCards"}
+            />
+            <IngredientCard
+              ingredient={"ingredient"}
+              keyID={"MarketPage-IngredientCards"}
+            />
+            <IngredientCard
+              ingredient={"ingredient"}
+              isCTA={true}
+              keyID={"MarketPage-IngredientCards"}
+            />
           </div>
         </Container>
       </div>
@@ -267,73 +328,59 @@ const MarketLandingPage = () => {
             }
             Rating={"5/5"}
           />
-          <ReviewCard
-            PersonName={"Samantha"}
-            Review={
-              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-            }
-            Rating={"5/5"}
-          />
-          <ReviewCard
-            PersonName={"Samantha"}
-            Review={
-              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-            }
-            Rating={"5/5"}
-          />
-          <ReviewCard
-            PersonName={"Samantha"}
-            Review={
-              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-            }
-            Rating={"5/5"}
-          />
         </Container>
       </div>
 
       <div className="h-full w-full bg-white flex flex-col items-center self-center pb-10">
-        <Container className="flex flex-wrap gap-4 w-full justify-center lg:w-3/4">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 w-full my-10">
-            <div className="flex flex-col text-center">
-              <i className="bx bxs-bookmark-heart text-5xl" />
-              <p className="font-diy text-3xl">Entreprise française</p>
-              <p>
-                Greenit est une entreprise française. Nous travaillons avec des
-                marques et des producteurs français !
-              </p>
-            </div>
-            <div className="flex flex-col text-center">
-              <i className="bx bxs-bookmark-heart text-5xl" />
-              <p className="font-diy text-3xl">Entreprise française</p>
-              <p>
-                Greenit est une entreprise française. Nous travaillons avec des
-                marques et des producteurs français !
-              </p>
-            </div>
-            <div className="flex flex-col text-center">
-              <i className="bx bxs-bookmark-heart text-5xl" />
-              <p className="font-diy text-3xl">Entreprise française</p>
-              <p>
-                Greenit est une entreprise française. Nous travaillons avec des
-                marques et des producteurs français !
-              </p>
-            </div>
-            <div className="flex flex-col text-center">
-              <i className="bx bxs-bookmark-heart text-5xl" />
-              <p className="font-diy text-3xl">Entreprise française</p>
-              <p>
-                Greenit est une entreprise française. Nous travaillons avec des
-                marques et des producteurs français !
-              </p>
-            </div>
-            <div className="flex flex-col text-center">
-              <i className="bx bxs-bookmark-heart text-5xl" />
-              <p className="font-diy text-3xl">Entreprise française</p>
-              <p>
-                Greenit est une entreprise française. Nous travaillons avec des
-                marques et des producteurs français !
-              </p>
-            </div>
+        <Container className="flex flex-wrap gap-4 w-full justify-center lg:w-11/12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 | w-full px-4 my-4 lg:my-10 | lg:gap-3 ">
+            {[
+              {
+                icon: "bx bx-home-smile",
+                title: "Entreprise française",
+                text: "Greenit est une entreprise française. Nous travaillons avec des marques et des producteurs français !",
+              },
+              {
+                icon: "bx bx-phone-call",
+                title: "À votre écoute",
+                text: "Nous sommes à votre disposition pour quelconques questions. Nous nous engageons à vous répondre en moins de 48 h.",
+              },
+              {
+                icon: "bx bx-heart-circle",
+                title: "4.8/5 ★★★★★",
+                text: "Nos clients sont satisfaits ! Notre secret : nous mettons l’humain avant tout !",
+              },
+              {
+                icon: "bx bx-leaf",
+                title: "Ingrédients séléctionnés",
+                text: "Nous proposons des ingrédients de qualité avec un impact écologique le plus faible possible.",
+              },
+              {
+                icon: "bx bxs-group",
+                title: (
+                  <span>
+                    La 1ere communauté <br /> du fait-maison
+                  </span>
+                ),
+                text: "Greenit c’est +300 passionnés, cosmétologues, aromathérapeutes et qui développent la production maison.",
+              },
+              {
+                className: "sm:hidden",
+                icon: "bx bx-check-shield",
+                title: "Paiement sécurisé",
+                text: "Le paiement est 100 % sécurisé, nous utilisons la plateforme de paiement agrée Stripe.",
+              },
+            ].map((item, index) => (
+              <div
+                className={`flex flex-col text-center p-2 gap-2 ${item.className}`}
+              >
+                <i className={` ${item.icon} text-5xl`} />
+                <p className="font-diy leading-6 text-2xl lg:text-3xl">
+                  {item.title}
+                </p>
+                <p className="leading-5 text-sm">{item.text}</p>
+              </div>
+            ))}
           </div>
         </Container>
       </div>

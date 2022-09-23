@@ -34,7 +34,8 @@ const fetch = require("node-fetch").default;
           }
       
           const paramsConfig = {
-            "/recettes/:name": urlName
+            "/recettes/:name": urlName,
+           "/market/:name": urlName,
           };
           console.log('paramsConfig', paramsConfig)
           console.log('QUAND LE SITE MAP EST EN PROD VOUS DEVEZ PING GOOGLE QUE LE SITE MAP A CHANGE')

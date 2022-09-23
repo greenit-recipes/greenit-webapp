@@ -11,10 +11,11 @@ export const RouteName = {
   register: "/creation-compte",
   recipeCreated: "/ajout-recette", // no index
   ingredientPage: "/ingredients", // no index ( a activer quand on sort la page)
-  starterPage: "/page-debutant-diy", // no index ( a activer quand on sort la page)
+  starterPage: "/page-debutant-diy",
   why: "/projet",
   contact: "/contact",
   recipes: "/recettes",
+  market: "/market",
   createRecipe: "/creation-recette",
   profil: "/profil",
   tutoFullXpBeginner: "/tuto-box-débutant",
@@ -29,7 +30,8 @@ export default (
       <Route path={RouteName.contact} />
       <Route path={RouteName.recipes} />
       <Route path="/recettes/:name" />
-      <Route path={RouteName.ingredientPage} />
+      <Route path={RouteName.market} />
+      <Route path="/market/:name" />
       <Route path={RouteName.starterPage} />
       <Route path={RouteName.createRecipe} />
       <Route path={RouteName.recipeCreated} />

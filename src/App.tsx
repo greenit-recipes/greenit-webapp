@@ -23,9 +23,7 @@ const CreateRecipe = React.lazy(
 const RecipeCreatedPage = React.lazy(
   () => import("pages/CreateRecipe/CreateRecipeSuccess"),
 );
-const IngredientPage = React.lazy(
-  () => import("pages/IngredientSpace/IngredientPage"),
-);
+
 const ForgetPassword = React.lazy(() => import("pages/Login/ForgetPassword"));
 const DeleteProfil = React.lazy(() => import("pages/Profil/DeleteProfil"));
 const RecapPage = React.lazy(() => import("pages/RecapPage"));
@@ -65,6 +63,10 @@ const QRFullXp = React.lazy(
   () => import("./pages/GreenitFullXp/QRFullXp/QRFullXp"),
 );
 
+const IngredientSinglePage = React.lazy(
+  () => import("pages/Market/IngredientSinglePage"),
+);
+
 export const history = createBrowserHistory();
 
 const greenitFullXpRoute = {
@@ -85,7 +87,6 @@ export const RouteName = {
   register: "/creation-compte",
   recipeCreated: "/ajout-recette", // no index
   greenitFullXp: "/commande-box",
-  ingredientPage: "/ingredients", // no index ( a activer quand on sort la page)
   starterPage: "/page-debutant-diy",
   why: "/projet",
   contact: "/contact",
@@ -124,6 +125,11 @@ const App: React.FC = () => {
             component={MarketLandingPage}
             exact
           />
+          <PublicRoute
+            path="/market/:name"
+            component={IngredientSinglePage}
+            exact
+          />
 
           {/* START FULL XP */}
           <FullXPRoute
@@ -153,11 +159,6 @@ const App: React.FC = () => {
           <PublicRoute
             path="/personalizedSearch"
             component={PersonalizedSearch}
-            exact
-          />
-          <PublicRoute
-            path={RouteName.ingredientPage}
-            component={IngredientPage}
             exact
           />
           <PublicRoute
