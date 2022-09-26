@@ -1,12 +1,15 @@
 import { RouteName } from "App";
-import { Button, Container, Footer, Loading, Navbar } from "components";
+import { Footer, Loading, Navbar, RecipeCard } from "components";
+import { useRecipesQuery } from "../../graphql";
 import { getObjectSession } from "helpers/session-helper";
 import useIsMobile from "hooks/isMobile";
-import { corps, maison, retourIcon, visage } from "icons";
-import { useEffect, useState } from "react";
+import { visage } from "icons";
+import { SimilarRecipe } from "pages/recipe/SinglePage/SimilarRecipe/SimilarRecipe";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 import { AddtoCartBanner } from "./Components/AddtoCartBanner";
+import { IngredientCard } from "./Components/IngredientCard";
 import { MenuMultiSelect } from "./Components/MenuMultiSelect";
 
 const IngredientSinglePage = () => {
@@ -14,6 +17,18 @@ const IngredientSinglePage = () => {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory();
   const [toggle, setToggle] = useState(false);
+
+  const { data: dataById } = useRecipesQuery({
+    variables: { filter: { id: ["8485c5ae-4175-474b-9107-9aa306874c5f"] } },
+  });
+
+  if (!dataById) {
+    return <Loading />;
+  }
+
+  const dataByIds = dataById.allRecipes?.edges || [];
+
+  console.log(dataById);
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -199,10 +214,49 @@ const IngredientSinglePage = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap w-11/12 gap-4">
+      <div className="flex flex-col w-11/12 gap-4">
         <MenuMultiSelect />
-        <h3>Nos membres ont adoré :</h3>
+        <div className="flex flex-col gap-6">
+          <h3>Ingrédients associés :</h3>
+          <div className="flex flex-row gap-4">
+            <IngredientCard
+              keyID={"IngredientCard"}
+              ingredient={"ingredient"}
+            ></IngredientCard>
+
+            <IngredientCard
+              keyID={"IngredientCard"}
+              ingredient={"ingredient"}
+            ></IngredientCard>
+
+            <IngredientCard
+              keyID={"IngredientCard"}
+              ingredient={"ingredient"}
+            ></IngredientCard>
+
+            <IngredientCard
+              keyID={"IngredientCard"}
+              ingredient={"ingredient"}
+            ></IngredientCard>
+
+            <IngredientCard
+              keyID={"IngredientCard"}
+              ingredient={"ingredient"}
+              isCTA={true}
+            ></IngredientCard>
+          </div>
+        </div>
+        <div className="flex flex-col gap-6 mt-10">
+          <h3>Ingrédients associés :</h3>
+          <div className="flex flex-row gap-4">
+            <RecipeCard
+              recipe={dataByIds[0]?.node}
+              key={dataByIds[0]?.node?.id}
+            />
+          </div>
+        </div>
       </div>
+
       {isMobile && <AddtoCartBanner Formobile={true} />}
 
       <div className="mb-40"></div>
