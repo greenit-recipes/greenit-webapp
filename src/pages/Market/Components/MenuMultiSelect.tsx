@@ -12,10 +12,10 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({ title }) => {
   const [isCautionActive, setIsCautionActive] = useState(false);
   const [isBrandInfoActive, setIsBrandInfoActive] = useState(false);
   return (
-    <div className="flex flex-col">
+    <div className="grid">
       {isMobile() ? (
-        <div className="block overflow-x-auto w-full">
-          <div className="w-max flex pb-1">
+        <div className="overflow-x-auto w-full">
+          <div className="flex w-max pb-1">
             <button
               className={`flex px-6 bg-white items-center h-14 ${
                 isInfoActive
