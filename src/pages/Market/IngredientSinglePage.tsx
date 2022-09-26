@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { RouteName } from "App";
 import { Button, Container, Footer, Loading, Navbar } from "components";
+import { MenuMultiSelect } from "components/layout/MenuMultiSelect";
 import { getObjectSession } from "helpers/session-helper";
 import useIsMobile from "hooks/isMobile";
 import HTMLReactParser from "html-react-parser";
@@ -8,6 +9,7 @@ import { corps, maison, retourIcon, visage } from "icons";
 import { Body } from "node-fetch";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { IoInformationSharp } from "react-icons/io5";
 import { useHistory } from "react-router-dom";
 import { AddtoCartBanner } from "./Components/AddtoCartBanner";
 
@@ -16,6 +18,8 @@ const IngredientSinglePage = () => {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory();
   const [toggle, setToggle] = useState(false);
+
+  const MenuTitles = { 1: "Informations", 2: "lorem ipsum" };
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -201,6 +205,12 @@ const IngredientSinglePage = () => {
         </div>
       </div>
       {isMobile && <AddtoCartBanner Formobile={true} />}
+      <div className="flex overflow-x-auto w-full">
+        {Object.values(MenuTitles).map((value, index) => (
+          <MenuMultiSelect title={value} />
+        ))}
+      </div>
+
       <div className="mb-40"></div>
       <Footer />
     </div>

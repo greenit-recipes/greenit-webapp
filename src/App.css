@@ -377,3 +377,11 @@
 .large-modal {
   width: 60rem !important;
 }
+
+/* Multi select menu tabs styling */
+
+.selected-tab {
+  background: #000;
+  height: 100px;
+  color: #83d489;
+}
