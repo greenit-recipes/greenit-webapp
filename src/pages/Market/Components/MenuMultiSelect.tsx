@@ -19,7 +19,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({ title }) => {
             <button
               className={`flex px-6 bg-white items-center h-14 ${
                 isInfoActive
-                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-50"
+                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-20"
                   : "border-b-4 border-b-greyL"
               }`}
               onClick={() => {

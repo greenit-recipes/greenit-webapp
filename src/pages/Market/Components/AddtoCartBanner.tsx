@@ -30,7 +30,7 @@ export const AddtoCartBanner: React.FC<AddtoCartBanner> = ({
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-4 fixed bottom-0 w-full h-auto bg-yellowL rounded-md p-4">
+        <div className="grid grid-cols-2 gap-4 fixed bottom-0 w-full h-auto bg-yellowL rounded-md p-4 z-30">
           <div className="flex gap-2 items-center">
             <h2>4,60 €</h2>
             <p className="text-sm">Prix non-adhérent</p>
