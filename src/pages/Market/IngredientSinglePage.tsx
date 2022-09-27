@@ -1,10 +1,16 @@
 import { RouteName } from "App";
-import { Container, Footer, Loading, Navbar, RecipeCard } from "components";
+import {
+  Button,
+  Container,
+  Footer,
+  Loading,
+  Navbar,
+  RecipeCard,
+} from "components";
 import { useRecipesQuery } from "../../graphql";
 import { getObjectSession } from "helpers/session-helper";
 import useIsMobile from "hooks/isMobile";
 import { visage } from "icons";
-import { SimilarRecipe } from "pages/recipe/SinglePage/SimilarRecipe/SimilarRecipe";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
@@ -12,13 +18,14 @@ import { AddtoCartBanner } from "./Components/AddtoCartBanner";
 import { IngredientCard } from "./Components/IngredientCard";
 import { MenuMultiSelect } from "./Components/MenuMultiSelect";
 import { ReviewCard } from "./Components/ReviewCard";
-import { SectionTitle } from "./Components/SectionTitle";
+import { EngagementBanner } from "./Components/EngagementBanner";
+import { FAQMarket } from "./Components/FAQMarket/FAQMarket";
 
 const IngredientSinglePage = () => {
   const isMobile = useIsMobile();
   const [showModal, setShowModal] = useState(false);
   const history = useHistory();
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   const { data: dataById } = useRecipesQuery({
     variables: { filter: { id: ["8485c5ae-4175-474b-9107-9aa306874c5f"] } },
@@ -60,7 +67,7 @@ const IngredientSinglePage = () => {
         </div>
 
         {!isMobile ? (
-          <div className="grid grid-cols-3 grid-row-2 gap-4 w-1/3 h-fit">
+          <div className="grid grid-cols-3 grid-row-2 gap-4 w-2/5 h-fit">
             <img
               className="col-span-2 row-span-2 w-full rounded-md"
               src={visage}
@@ -191,7 +198,7 @@ const IngredientSinglePage = () => {
             </button>
           </div>
 
-          <div className="flex items-center justify-center gap-2 w-full">
+          <div className="flex items-center gap-2 w-full">
             {[
               {
                 icon: "bx bxs-check-shield",
@@ -224,7 +231,7 @@ const IngredientSinglePage = () => {
       <div className="flex flex-col | w-full lg:w-11/12 | gap-3 | pl-6 lg:pl-0">
         <h3>Ingrédients associés :</h3>
         <div className="w-full overflow-x-auto">
-          <div className="flex flex-row gap-8 w-max p-6">
+          <div className="flex flex-row gap-8 lg:gap-5 w-max p-6">
             <IngredientCard
               keyID={"IngredientCard"}
               ingredient={"ingredient"}
@@ -278,117 +285,83 @@ const IngredientSinglePage = () => {
         </div>
       </div>
 
-      <div className="h-full w-full bg-greenL mt-10 flex flex-col items-center self-center pb-10">
-        <SectionTitle
-          title={"La communauté Greenit"}
-          subtitle={"nos avis sur Google"}
-        />
-        <Container className="flex flex-wrap gap-4 w-full justify-center lg:w-3/4">
-          <ReviewCard
-            PersonName={"Samantha"}
-            Review={
-              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-            }
-            Rating={"5/5"}
-          />
-          <ReviewCard
-            PersonName={"Samantha"}
-            Review={
-              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-            }
-            Rating={"5/5"}
-          />
-          <ReviewCard
-            PersonName={"Samantha"}
-            Review={
-              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-            }
-            Rating={"5/5"}
-          />
-          <ReviewCard
-            PersonName={"Samantha"}
-            Review={
-              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-            }
-            Rating={"5/5"}
-          />
-          <ReviewCard
-            PersonName={"Samantha"}
-            Review={
-              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-            }
-            Rating={"5/5"}
-          />
-          <ReviewCard
-            PersonName={"Samantha"}
-            Review={
-              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-            }
-            Rating={"5/5"}
-          />
-          <ReviewCard
-            PersonName={"Samantha"}
-            Review={
-              "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-            }
-            Rating={"5/5"}
-          />
-        </Container>
-      </div>
+      <div className="grid justify-items-center bg-greenL w-full mt-10 py-6">
+        <div className="w-11/12 flex flex-col gap-4">
+          <h3>Avis et questions à propos de Greenit</h3>
+          <div className="flex flex-row w-full gap-2 items-center">
+            <div className="flex items-center | bg-green text-white rounded-br-md rounded-tl-md px-4 py-1">
+              <span className="font-normal">4.9/5</span>
+            </div>
+            <p className="text-sm w-14 text-center">5 avis</p>
 
-      <div className="h-full w-full bg-white flex flex-col items-center self-center pb-10">
-        <Container className="flex flex-wrap gap-4 w-full justify-center lg:w-11/12">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 | w-full px-4 my-4 lg:my-10 | lg:gap-3 ">
-            {[
-              {
-                icon: "bx bx-home-smile",
-                title: "Entreprise française",
-                text: "Greenit est une entreprise française. Nous travaillons avec des marques et des producteurs français !",
-              },
-              {
-                icon: "bx bx-phone-call",
-                title: "À votre écoute",
-                text: "Nous sommes à votre disposition pour quelconques questions. Nous nous engageons à vous répondre en moins de 48 h.",
-              },
-              {
-                icon: "bx bx-heart-circle",
-                title: "4.8/5 ★★★★★",
-                text: "Nos clients sont satisfaits ! Notre secret : nous mettons l’humain avant tout !",
-              },
-              {
-                icon: "bx bx-leaf",
-                title: "Ingrédients séléctionnés",
-                text: "Nous proposons des ingrédients de qualité avec un impact écologique le plus faible possible.",
-              },
-              {
-                icon: "bx bxs-group",
-                title: (
-                  <span>
-                    La 1ere communauté <br /> du fait-maison
-                  </span>
-                ),
-                text: "Greenit c’est +300 passionnés, cosmétologues, aromathérapeutes et qui développent la production maison.",
-              },
-              {
-                className: "sm:hidden",
-                icon: "bx bx-check-shield",
-                title: "Paiement sécurisé",
-                text: "Le paiement est 100 % sécurisé, nous utilisons la plateforme de paiement agrée Stripe.",
-              },
-            ].map((item, index) => (
-              <div
-                className={`flex flex-col text-center p-2 gap-2 ${item.className}`}
-              >
-                <i className={` ${item.icon} text-5xl`} />
-                <p className="font-diy leading-6 text-2xl lg:text-3xl">
-                  {item.title}
-                </p>
-                <p className="leading-5 text-sm">{item.text}</p>
+            {!isMobile && (
+              <div className="flex gap-4 w-full justify-end">
+                <Button className="w-40" type="darkBlue">
+                  Écrire un avis
+                </Button>
+                <Button className="w-40" type="darkBlue">
+                  Poser une question
+                </Button>
               </div>
-            ))}
+            )}
           </div>
-        </Container>
+
+          <Container className="flex flex-wrap gap-4 w-full mt-4">
+            <ReviewCard
+              PersonName={"Samantha"}
+              Review={
+                "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+              }
+              Rating={"4/5"}
+            />
+            <ReviewCard
+              PersonName={"Amélie"}
+              Review={
+                "Les recettes sont hypers accessibles, j’ai réalisé avec mes enfants, super activité !"
+              }
+              Rating={"5/5"}
+            />
+            <ReviewCard
+              PersonName={"Maxime"}
+              Review={
+                "Je soutiens le projet depuis ses débuts. La box est en continuité de rendre accessible le fait maison. Bravo"
+              }
+              Rating={"5/5"}
+            />
+            <ReviewCard
+              PersonName={"Valentine"}
+              Review={
+                "J’aime l’odeur de la lessive. Super pour une première fois."
+              }
+              Rating={"5/5"}
+            />
+            <ReviewCard
+              PersonName={"Maria"}
+              Review={"Simple et accessible. Je recommande."}
+              Rating={"5/5"}
+            />
+          </Container>
+
+          {isMobile && (
+            <div className="flex gap-4 w-full justify-center mt-4">
+              <Button className="w-40" type="darkBlue">
+                Écrire un avis
+              </Button>
+              <Button className="w-40" type="darkBlue">
+                Poser une question
+              </Button>
+            </div>
+          )}
+
+          <div className="flex flex-col gap-4 mt-4">
+            <h3>FAQ</h3>
+
+            <FAQMarket />
+          </div>
+        </div>
       </div>
+      <EngagementBanner />
+
       <Footer />
     </div>
   );
