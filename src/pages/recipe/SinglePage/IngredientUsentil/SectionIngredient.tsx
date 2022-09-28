@@ -432,7 +432,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                     </div>
                   )}
                 </div>
-                {data?.purchaseLink && (
+                {/*{data?.purchaseLink && (
                   <>
                     {!isMobile && (
                       <p className="self-start text-sm">
@@ -452,7 +452,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                       </a>
                     </div>
                   </>
-                )}
+                )}*/}
               </div>
             </div>
           </div>
