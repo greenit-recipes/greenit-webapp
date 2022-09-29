@@ -14,6 +14,7 @@ export const GET_ALL_INGREDIENTS = gql`
       price
       producer
       image
+      isForMarket
       tags {
         id
         name

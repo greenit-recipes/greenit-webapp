@@ -1,8 +1,6 @@
 import App from "App";
-import { gql, useQuery } from "@apollo/client";
-import { useRecipesQuery } from "../../graphql";
+import { useAllIngredientsQuery, useRecipesQuery } from "../../graphql";
 import { Helmet } from "react-helmet";
-import { GET_ALL_INGREDIENTS } from "./IngredientsRequest";
 import {
   Button,
   Container,
@@ -37,7 +35,10 @@ const MarketLandingPage = () => {
     variables: { first: 8, filter: { category: ["Maison"] } },
   });
 
-  const { loading, error, data } = useQuery(GET_ALL_INGREDIENTS);
+  const { loading, error, data } = useAllIngredientsQuery({
+    variables: { filter: { isForMarket: true } },
+  });
+  console.log(data);
 
   if (!dataBegginer || !dataHome) {
     return <Loading />;
@@ -45,14 +46,15 @@ const MarketLandingPage = () => {
   const recipesBegginer = dataBegginer.allRecipes?.edges || [];
   const dataHomes = dataHome.allRecipes?.edges || [];
 
-  const listIngredients = data?.allIngredients?.map((ingredient: any) => ({
+  const Ingredients = data?.allIngredients?.map((ingredient: any) => ({
     key: Math.random,
     name: ingredient?.name,
     description: ingredient?.description,
     tags: ingredient?.tags,
+    isForMarket: ingredient?.isForMarket,
   }));
 
-  console.log(listIngredients);
+  console.log(Ingredients);
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -125,19 +127,17 @@ const MarketLandingPage = () => {
       />
       <Container className="flex flex-wrap gap-5 w-full justify-center lg:w-3/4">
         <div className="grid grid-cols-2 mb-2 gap-x-1 sm:grid-cols-3">
-          {listIngredients
-            ?.slice(0, 6)
-            .map(
-              (Object: { name: string; description: string; tags: object }) => (
-                <IngredientCard
-                  key={Math.random()}
-                  name={Object?.name}
-                  description={Object?.description}
-                  tags={Object?.tags}
-                  keyID={"keyID"}
-                />
-              ),
-            )}
+          {Ingredients?.slice(0, 6).map(
+            (Object: { name: string; description: string; tags: object }) => (
+              <IngredientCard
+                key={Math.random()}
+                name={Object?.name}
+                description={Object?.description}
+                tags={Object?.tags}
+                keyID={"keyID"}
+              />
+            ),
+          )}
         </div>
       </Container>
       <div className="h-full w-full bg-blueL my-10 flex flex-col items-center self-center">
