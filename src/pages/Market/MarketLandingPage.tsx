@@ -22,6 +22,8 @@ import { ExploreMore } from "components/recipe/ExploreMore";
 import { SectionTitle } from "./Components/SectionTitle";
 import { ReviewCard } from "./Components/ReviewCard";
 import { Key, useEffect } from "react";
+import { Url } from "url";
+import { getImagePath } from "helpers/image.helper";
 
 const MarketLandingPage = () => {
   const isMobile = useIsMobile();
@@ -49,9 +51,9 @@ const MarketLandingPage = () => {
   const Ingredients = data?.allIngredients?.map((ingredient: any) => ({
     key: Math.random,
     name: ingredient?.name,
-    description: ingredient?.description,
-    tags: ingredient?.tags,
-    isForMarket: ingredient?.isForMarket,
+    price: ingredient?.price,
+    producer: ingredient?.producer,
+    image: ingredient?.image,
   }));
 
   console.log(Ingredients);
@@ -125,15 +127,21 @@ const MarketLandingPage = () => {
         title={"Les produits phares"}
         subtitle={"les incontournables"}
       />
-      <Container className="flex flex-wrap gap-5 w-full justify-center lg:w-3/4">
-        <div className="grid grid-cols-2 mb-2 gap-x-1 sm:grid-cols-3">
-          {Ingredients?.slice(0, 6).map(
-            (Object: { name: string; description: string; tags: object }) => (
+      <Container className="flex flex-wrap gap-5 w-full justify-center lg:justify-start lg:w-3/4">
+        <div className="grid grid-cols-2 mb-2 gap-6 sm:grid-cols-5">
+          {Ingredients?.slice(0, 8).map(
+            (Object: {
+              name: string;
+              price: string;
+              producer: string;
+              image: any;
+            }) => (
               <IngredientCard
                 key={Math.random()}
                 name={Object?.name}
-                description={Object?.description}
-                tags={Object?.tags}
+                price={Object?.price}
+                producer={Object?.producer}
+                image={Object?.image}
                 keyID={"keyID"}
               />
             ),
