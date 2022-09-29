@@ -26,43 +26,45 @@ export const IngredientCard: React.FC<IngredientCard> = ({
   filter,
 }) => {
   return (
-    <div>
+    <div className="relative">
       {!isCTA ? (
-        <Link
-          to={{
-            pathname: `${RouteName.market}/${name}`,
-          }}
-        >
-          <div
-            id={keyID}
-            className="relative transform sm:hover:scale-105 ease-linear transition-all duration-150"
+        <>
+          <Link
+            to={{
+              pathname: `${RouteName.market}/${name}`,
+            }}
           >
-            <div className="flex flex-col">
-              <div className="flex items-center h-36 w-48 lg:h-40 lg:w-562 rounded object-cover overflow-hidden">
-                <img
-                  className="w-full object-cover"
-                  src={getImagePath(image)}
-                  alt="photo de l'ingredient"
-                  loading="lazy"
-                />
+            <div
+              id={keyID}
+              className="relative transform sm:hover:scale-105 ease-linear transition-all duration-150"
+            >
+              <div className="flex flex-col w-44 lg:w-48 gap-1">
+                <div className="flex items-center h-36 w-44 lg:h-40 lg:w-48 rounded-md object-cover overflow-hidden">
+                  <img
+                    className="w-full object-cover shadow-flat"
+                    src={getImagePath(image)}
+                    alt="photo de l'ingredient"
+                    loading="lazy"
+                  />
+                </div>
+                <h4 className="leading-5 text-lg mt-1 lg:mt-2">{name}</h4>
+                <p className="w-2/3 leading-4 text-sm">{producer}</p>
+                <p className="font-medium text-lg">{price} €</p>
               </div>
-              <h4 className="leading-5 mt-2">{name}</h4>
-              <p className="w-2/3 leading-5 text-sm">{producer}</p>
-              <p>{price} €</p>
-              <Button
-                id="ingredient-card-addToCart"
-                type="darkBlueIcon"
-                className="absolute bottom-0 right-0 w-12 h-10"
-                haveIcon={true}
-              >
-                <i className={`bx bx-cart-download text-darkBlue text-2xl`}></i>
-                <i
-                  className={`bx bx-plus text-sm text-darkBlue absolute -top-0.5 right-0.5`}
-                ></i>
-              </Button>
             </div>
-          </div>
-        </Link>
+          </Link>
+          <Button
+            id="ingredient-card-addToCart"
+            type="darkBlueIcon"
+            className="absolute bottom-0 right-0 w-12 h-10"
+            haveIcon={true}
+          >
+            <i className={`bx bx-cart-download text-darkBlue text-2xl`}></i>
+            <i
+              className={`bx bx-plus text-sm text-darkBlue absolute -top-0.5 right-0.5`}
+            ></i>
+          </Button>
+        </>
       ) : (
         <Link
           id={keyID}

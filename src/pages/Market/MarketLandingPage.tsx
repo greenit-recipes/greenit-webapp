@@ -127,8 +127,8 @@ const MarketLandingPage = () => {
         title={"Les produits phares"}
         subtitle={"les incontournables"}
       />
-      <Container className="flex flex-wrap gap-5 w-full justify-center lg:justify-start lg:w-3/4">
-        <div className="grid grid-cols-2 mb-2 gap-6 sm:grid-cols-5">
+      <Container className="flex flex-wrap w-full justify-center lg:justify-start lg:w-3/4">
+        <div className="grid grid-cols-2 mb-2 gap-6 lg:gap-8 sm:grid-cols-3 lg:grid-cols-5">
           {Ingredients?.slice(0, 8).map(
             (Object: {
               name: string;
