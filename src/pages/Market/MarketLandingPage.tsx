@@ -2,7 +2,7 @@ import App from "App";
 import { gql, useQuery } from "@apollo/client";
 import { useRecipesQuery } from "../../graphql";
 import { Helmet } from "react-helmet";
-import { GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS } from "pages/CreateRecipe/CreateRecipeRequest";
+import { GET_ALL_INGREDIENTS } from "./IngredientsRequest";
 import {
   Button,
   Container,
@@ -23,7 +23,7 @@ import {
 import { ExploreMore } from "components/recipe/ExploreMore";
 import { SectionTitle } from "./Components/SectionTitle";
 import { ReviewCard } from "./Components/ReviewCard";
-import { useEffect } from "react";
+import { Key, useEffect } from "react";
 
 const MarketLandingPage = () => {
   const isMobile = useIsMobile();
@@ -37,9 +37,7 @@ const MarketLandingPage = () => {
     variables: { first: 8, filter: { category: ["Maison"] } },
   });
 
-  const { loading, error, data } = useQuery(
-    GET_ALL_CATEGORIES_TAGS_UTENSILS_INGREDIENTS,
-  );
+  const { loading, error, data } = useQuery(GET_ALL_INGREDIENTS);
 
   if (!dataBegginer || !dataHome) {
     return <Loading />;
@@ -47,12 +45,14 @@ const MarketLandingPage = () => {
   const recipesBegginer = dataBegginer.allRecipes?.edges || [];
   const dataHomes = dataHome.allRecipes?.edges || [];
 
-  const optionsIngredients = data?.allIngredients?.map((ingredient: any) => ({
-    value: ingredient?.name,
-    label: ingredient?.name,
+  const listIngredients = data?.allIngredients?.map((ingredient: any) => ({
+    key: Math.random,
+    name: ingredient?.name,
+    description: ingredient?.description,
+    tags: ingredient?.tags,
   }));
 
-  console.log(optionsIngredients);
+  console.log(listIngredients);
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -124,39 +124,35 @@ const MarketLandingPage = () => {
         subtitle={"les incontournables"}
       />
       <Container className="flex flex-wrap gap-5 w-full justify-center lg:w-3/4">
-        {/*{isMobile ? (
-          <div className="grid grid-cols-2 mb-2 gap-x-1 sm:grid-cols-3">
-            {data?.slice(0, 6).map((recipe, index: number) => (
-              <IngredientCard
-                ingredient={"ingredient"}
-                keyID={"MarketPage-IngredientCards"}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-4 justify-items-center gap-y-8 gap-x-2">
-            {recipes?.map(recipe => (
-              <IngredientCard
-                ingredient={"ingredient"}
-                keyID={"MarketPage-IngredientCards"}
-              />
-            ))}
-          </div>
-            )}*/}
+        <div className="grid grid-cols-2 mb-2 gap-x-1 sm:grid-cols-3">
+          {listIngredients
+            ?.slice(0, 6)
+            .map(
+              (Object: { name: string; description: string; tags: object }) => (
+                <IngredientCard
+                  key={Math.random()}
+                  name={Object?.name}
+                  description={Object?.description}
+                  tags={Object?.tags}
+                  keyID={"keyID"}
+                />
+              ),
+            )}
+        </div>
       </Container>
       <div className="h-full w-full bg-blueL my-10 flex flex-col items-center self-center">
         <SectionTitle
           title={"Les huiles végétales"}
           subtitle={"l'indispensable de vos soins beauté"}
         />
-        <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
+        {/*<Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
           <div className="flex gap-5 w-max ml-4 md:ml-0">
             <IngredientCard
               ingredient={"ingredient"}
               keyID={"MarketPage-IngredientCards"}
             />
             <IngredientCard
-              ingredient={"ingredient"}
+              ingredient={ingredient}
               keyID={"MarketPage-IngredientCards"}
             />
             <IngredientCard
@@ -173,13 +169,13 @@ const MarketLandingPage = () => {
               keyID={"MarketPage-IngredientCards"}
             />
           </div>
-        </Container>
+          </Container>*/}
 
         <SectionTitle
           title={"Les huiles essentielles"}
           subtitle={"vive l'aromathérapie"}
         />
-        <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
+        {/*<Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
           <div className="flex gap-5 w-max ml-4 md:ml-0">
             <IngredientCard
               ingredient={"ingredient"}
@@ -203,7 +199,7 @@ const MarketLandingPage = () => {
               keyID={"MarketPage-IngredientCards"}
             />
           </div>
-        </Container>
+        </Container>*/}
       </div>
       <SectionTitle
         title={"Les recettes 100% débutants"}
@@ -214,7 +210,7 @@ const MarketLandingPage = () => {
         <div className="flex w-max ml-4 md:ml-0 p-4">
           {recipesBegginer?.slice(0, totalRecipeCards).map(recipe => (
             <div className="flex mr-2">
-              <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+              <RecipeCard recipe={recipe?.node} key={Math.random()} />
             </div>
           ))}
           <ExploreMore
@@ -344,6 +340,7 @@ const MarketLandingPage = () => {
             ].map((item, index) => (
               <div
                 className={`flex flex-col text-center p-2 gap-2 ${item.className}`}
+                key={Math.random()}
               >
                 <i className={` ${item.icon} text-5xl`} />
                 <p className="font-diy leading-6 text-2xl lg:text-3xl">

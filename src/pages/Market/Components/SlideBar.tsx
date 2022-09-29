@@ -33,8 +33,8 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
             title: "Tous les ingrédients",
             link: "/market",
           },
-        ].map((item, index) => (
-          <Link to={item.link} className="cursor-pointer">
+        ].map((item, key) => (
+          <Link to={item.link} key={Math.random()} className="cursor-pointer">
             <h4>{item.title}</h4>
           </Link>
         ))}

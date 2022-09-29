@@ -228,7 +228,7 @@ const IngredientSinglePage = () => {
         <MenuMultiSelect />
       </div>
 
-      <div className="flex flex-col | w-full lg:w-11/12 | gap-3 | pl-6 lg:pl-0">
+      {/*<div className="flex flex-col | w-full lg:w-11/12 | gap-3 | pl-6 lg:pl-0">
         <h3>Ingrédients associés :</h3>
         <div className="w-full overflow-x-auto">
           <div className="flex flex-row gap-8 lg:gap-5 w-max p-6">
@@ -259,7 +259,7 @@ const IngredientSinglePage = () => {
             ></IngredientCard>
           </div>
         </div>
-      </div>
+            </div>*/}
 
       <div className="flex flex-col | w-full lg:w-11/12 | gap-3 | pl-6 lg:pl-0 mt-6">
         <h3>Recettes associées :</h3>

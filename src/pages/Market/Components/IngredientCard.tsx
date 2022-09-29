@@ -5,19 +5,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 interface IngredientCard {
-  isToltipActif?: boolean;
   isCTA?: boolean;
-  filter?: string;
   keyID: string;
-  ingredient: any;
+  name: string;
+  description: string;
+  tags?: object;
+  filter?: string;
 }
 
 export const IngredientCard: React.FC<IngredientCard> = ({
   isCTA,
   keyID,
-  isToltipActif,
+  name,
+  description,
+  tags,
   filter,
-  ingredient,
 }) => {
   return (
     <div
@@ -27,7 +29,7 @@ export const IngredientCard: React.FC<IngredientCard> = ({
       {!isCTA ? (
         <Link
           to={{
-            pathname: `${RouteName.market}/${ingredient}`,
+            pathname: `${RouteName.market}/${name}`,
           }}
         >
           <div className="flex flex-col gap-1 md:gap-2">
@@ -39,9 +41,8 @@ export const IngredientCard: React.FC<IngredientCard> = ({
                 loading="lazy"
               />
             </div>
-            <h4>Huile végétale d’avocat BIO</h4>
-            <p>Mycosmetik</p>
-            <h4>4,60 €</h4>
+            <h4>{name}</h4>
+            <p>{description}</p>
             <Button
               id="ingredient-card-addToCart"
               type="darkBlueIcon"
