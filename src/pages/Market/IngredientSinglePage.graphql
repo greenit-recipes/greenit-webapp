@@ -1,0 +1,25 @@
+query Ingredient($id: String!) {
+  ingredient(id: $id) {
+    id
+    urlId
+    name
+    description
+    informationMarket
+    indication
+    precaution
+    contenance
+    rating
+    price
+    producer
+    image
+    isForMarket
+    tags {
+      id
+      name
+    }
+    categoryIngredient {
+      id
+      name
+    }
+  }
+}

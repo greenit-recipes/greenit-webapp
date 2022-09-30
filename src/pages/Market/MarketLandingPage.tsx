@@ -1,5 +1,9 @@
 import App from "App";
-import { useAllIngredientsQuery, useRecipesQuery } from "../../graphql";
+import {
+  useAllIngredientsQuery,
+  useIngredientQuery,
+  useRecipesQuery,
+} from "../../graphql";
 import { Helmet } from "react-helmet";
 import {
   Button,
@@ -37,10 +41,17 @@ const MarketLandingPage = () => {
     variables: { first: 8, filter: { category: ["Maison"] } },
   });
 
-  const { loading, error, data } = useAllIngredientsQuery({
+  const { data: dataMarket } = useAllIngredientsQuery({
     variables: { filter: { isForMarket: true } },
   });
-  console.log(data);
+
+  const { data: dataVegetalOil } = useAllIngredientsQuery({
+    variables: { filter: { categoryIngredient: ["Autres"] } },
+  });
+
+  const { data: dataEssentialOils } = useAllIngredientsQuery({
+    variables: { filter: { categoryIngredient: ["Huiles essentielles"] } },
+  });
 
   if (!dataBegginer || !dataHome) {
     return <Loading />;
@@ -48,15 +59,37 @@ const MarketLandingPage = () => {
   const recipesBegginer = dataBegginer.allRecipes?.edges || [];
   const dataHomes = dataHome.allRecipes?.edges || [];
 
-  const Ingredients = data?.allIngredients?.map((ingredient: any) => ({
-    key: Math.random,
-    name: ingredient?.name,
-    price: ingredient?.price,
-    producer: ingredient?.producer,
-    image: ingredient?.image,
-  }));
+  const IngredientsMarket = dataMarket?.allIngredients?.map(
+    (ingredient: any) => ({
+      key: Math.random,
+      name: ingredient?.name,
+      price: ingredient?.price,
+      producer: ingredient?.producer,
+      image: ingredient?.image,
+      id: ingredient?.id,
+    }),
+  );
+  console.log(IngredientsMarket);
 
-  console.log(Ingredients);
+  const IngredientsVegetalOil = dataVegetalOil?.allIngredients?.map(
+    (ingredient: any) => ({
+      key: Math.random,
+      name: ingredient?.name,
+      price: ingredient?.price,
+      producer: ingredient?.producer,
+      image: ingredient?.image,
+    }),
+  );
+
+  const IngredientsEssentialOils = dataEssentialOils?.allIngredients?.map(
+    (ingredient: any) => ({
+      key: Math.random,
+      name: ingredient?.name,
+      price: ingredient?.price,
+      producer: ingredient?.producer,
+      image: ingredient?.image,
+    }),
+  );
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -129,22 +162,48 @@ const MarketLandingPage = () => {
       />
       <Container className="flex flex-wrap w-full justify-center lg:justify-start lg:w-3/4">
         <div className="grid grid-cols-2 mb-2 gap-6 lg:gap-8 sm:grid-cols-3 lg:grid-cols-5">
-          {Ingredients?.slice(0, 8).map(
-            (Object: {
-              name: string;
-              price: string;
-              producer: string;
-              image: any;
-            }) => (
-              <IngredientCard
-                key={Math.random()}
-                name={Object?.name}
-                price={Object?.price}
-                producer={Object?.producer}
-                image={Object?.image}
-                keyID={"keyID"}
-              />
-            ),
+          {!isMobile ? (
+            <>
+              {IngredientsMarket?.slice(0, 10).map(
+                (Object: {
+                  name: string;
+                  price: string;
+                  producer: string;
+                  image: any;
+                  id: string;
+                }) => (
+                  <IngredientCard
+                    key={Math.random()}
+                    name={Object?.name}
+                    price={Object?.price}
+                    producer={Object?.producer}
+                    image={Object?.image}
+                    keyID={"keyID"}
+                    id={Object?.id}
+                  />
+                ),
+              )}
+            </>
+          ) : (
+            <>
+              {IngredientsMarket?.slice(0, 8).map(
+                (Object: {
+                  name: string;
+                  price: string;
+                  producer: string;
+                  image: any;
+                }) => (
+                  <IngredientCard
+                    key={Math.random()}
+                    name={Object?.name}
+                    price={Object?.price}
+                    producer={Object?.producer}
+                    image={Object?.image}
+                    keyID={"keyID"}
+                  />
+                ),
+              )}
+            </>
           )}
         </div>
       </Container>
@@ -153,61 +212,55 @@ const MarketLandingPage = () => {
           title={"Les huiles végétales"}
           subtitle={"l'indispensable de vos soins beauté"}
         />
-        {/*<Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
+        <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
           <div className="flex gap-5 w-max ml-4 md:ml-0">
-            <IngredientCard
-              ingredient={"ingredient"}
-              keyID={"MarketPage-IngredientCards"}
-            />
-            <IngredientCard
-              ingredient={ingredient}
-              keyID={"MarketPage-IngredientCards"}
-            />
-            <IngredientCard
-              ingredient={"ingredient"}
-              keyID={"MarketPage-IngredientCards"}
-            />
-            <IngredientCard
-              ingredient={"ingredient"}
-              keyID={"MarketPage-IngredientCards"}
-            />
-            <IngredientCard
-              ingredient={"ingredient"}
-              isCTA={true}
-              keyID={"MarketPage-IngredientCards"}
-            />
+            {IngredientsVegetalOil?.slice(0, 5).map(
+              (Object: {
+                name: string;
+                price: string;
+                producer: string;
+                image: any;
+              }) => (
+                <IngredientCard
+                  key={Math.random()}
+                  name={Object?.name}
+                  price={Object?.price}
+                  producer={Object?.producer}
+                  image={Object?.image}
+                  keyID={"keyID"}
+                />
+              ),
+            )}
           </div>
-          </Container>*/}
+          <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+        </Container>
 
         <SectionTitle
           title={"Les huiles essentielles"}
           subtitle={"vive l'aromathérapie"}
         />
-        {/*<Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
+        <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
           <div className="flex gap-5 w-max ml-4 md:ml-0">
-            <IngredientCard
-              ingredient={"ingredient"}
-              keyID={"MarketPage-IngredientCards"}
-            />
-            <IngredientCard
-              ingredient={"ingredient"}
-              keyID={"MarketPage-IngredientCards"}
-            />
-            <IngredientCard
-              ingredient={"ingredient"}
-              keyID={"MarketPage-IngredientCards"}
-            />
-            <IngredientCard
-              ingredient={"ingredient"}
-              keyID={"MarketPage-IngredientCards"}
-            />
-            <IngredientCard
-              ingredient={"ingredient"}
-              isCTA={true}
-              keyID={"MarketPage-IngredientCards"}
-            />
+            {IngredientsEssentialOils?.slice(0, 5).map(
+              (Object: {
+                name: string;
+                price: string;
+                producer: string;
+                image: any;
+              }) => (
+                <IngredientCard
+                  key={Math.random()}
+                  name={Object?.name}
+                  price={Object?.price}
+                  producer={Object?.producer}
+                  image={Object?.image}
+                  keyID={"keyID"}
+                />
+              ),
+            )}
           </div>
-        </Container>*/}
+          <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+        </Container>
       </div>
       <SectionTitle
         title={"Les recettes 100% débutants"}

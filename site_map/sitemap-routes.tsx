@@ -31,7 +31,7 @@ export default (
       <Route path={RouteName.recipes} />
       <Route path="/recettes/:name" />
       <Route path={RouteName.market} />
-      <Route path="/market/:name" />
+      <Route path="/market/:id" />
       <Route path={RouteName.starterPage} />
       <Route path={RouteName.createRecipe} />
       <Route path={RouteName.recipeCreated} />

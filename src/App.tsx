@@ -126,7 +126,7 @@ const App: React.FC = () => {
             exact
           />
           <PublicRoute
-            path="/market/:name"
+            path="/market/:id"
             component={IngredientSinglePage}
             exact
           />

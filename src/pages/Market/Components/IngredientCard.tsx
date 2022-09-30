@@ -8,12 +8,13 @@ import { Url } from "url";
 
 interface IngredientCard {
   isCTA?: boolean;
-  keyID: string;
-  name: string;
-  price: string;
-  producer: string;
-  image: any;
+  keyID?: string;
+  name?: string;
+  price?: string;
+  producer?: string;
+  image?: any;
   filter?: string;
+  id?: string;
 }
 
 export const IngredientCard: React.FC<IngredientCard> = ({
@@ -24,6 +25,7 @@ export const IngredientCard: React.FC<IngredientCard> = ({
   producer,
   image,
   filter,
+  id,
 }) => {
   return (
     <div className="relative">
@@ -31,7 +33,7 @@ export const IngredientCard: React.FC<IngredientCard> = ({
         <>
           <Link
             to={{
-              pathname: `${RouteName.market}/${name}`,
+              pathname: `${RouteName.market}/${id}`,
             }}
           >
             <div
@@ -69,10 +71,10 @@ export const IngredientCard: React.FC<IngredientCard> = ({
         <Link
           id={keyID}
           to={`${RouteName.market}${filter && "?" + filter}`}
-          className="w-full h-full bg-white sm:hover:shadow-flat rounded-lg |
+          className="bg-white sm:hover:shadow-flat rounded-lg |
         transform sm:hover:scale-101 ease-linear transition-all duration-120"
         >
-          <div className="grid w-full h-full justify-center content-center">
+          <div className="grid w-44 lg:w-48 gap-1 justify-center content-center">
             <div className="flex flex-col h-20 justify-center">
               <i className="text-5xl bx bx-right-arrow-alt text-center mr-2"></i>
               <p className="text-md font-medium text-center">Explorer plus</p>

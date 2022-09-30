@@ -7,19 +7,24 @@ import {
   Navbar,
   RecipeCard,
 } from "components";
-import { useRecipesQuery } from "../../graphql";
+import {
+  AllIngredientsDocument,
+  useAllIngredientsQuery,
+  useIngredientQuery,
+} from "../../graphql";
 import { getObjectSession } from "helpers/session-helper";
 import useIsMobile from "hooks/isMobile";
 import { visage } from "icons";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { AddtoCartBanner } from "./Components/AddtoCartBanner";
 import { IngredientCard } from "./Components/IngredientCard";
 import { MenuMultiSelect } from "./Components/MenuMultiSelect";
 import { ReviewCard } from "./Components/ReviewCard";
 import { EngagementBanner } from "./Components/EngagementBanner";
 import { FAQMarket } from "./Components/FAQMarket/FAQMarket";
+import { getImagePath } from "helpers/image.helper";
 
 const IngredientSinglePage = () => {
   const isMobile = useIsMobile();
@@ -27,17 +32,32 @@ const IngredientSinglePage = () => {
   const history = useHistory();
   const [toggle, setToggle] = useState(true);
 
-  const { data: dataById } = useRecipesQuery({
-    variables: { filter: { id: ["8485c5ae-4175-474b-9107-9aa306874c5f"] } },
+  const { id } = useParams<{ id: string }>();
+  console.log(id);
+
+  const { data } = useIngredientQuery({
+    fetchPolicy: "no-cache",
+    variables: {
+      id: id,
+    },
+  });
+  console.log(data);
+
+  const { data: dataMarket } = useAllIngredientsQuery({
+    variables: { filter: { isForMarket: true } },
   });
 
-  if (!dataById) {
-    return <Loading />;
-  }
-
-  const dataByIds = dataById.allRecipes?.edges || [];
-
-  console.log(dataById);
+  const IngredientsMarket = dataMarket?.allIngredients?.map(
+    (ingredient: any) => ({
+      key: Math.random,
+      name: ingredient?.name,
+      price: ingredient?.price,
+      producer: ingredient?.producer,
+      image: ingredient?.image,
+      contenance: ingredient?.contenance,
+    }),
+  );
+  console.log(IngredientsMarket);
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -65,164 +85,154 @@ const IngredientSinglePage = () => {
         >
           <i className="bx bx-arrow-back text-3xl" />
         </div>
-
         {!isMobile ? (
-          <div className="grid grid-cols-3 grid-row-2 gap-4 w-2/5 h-fit">
-            <img
-              className="col-span-2 row-span-2 w-full rounded-md"
-              src={visage}
-              alt="img-ingredient"
-              loading="lazy"
-            />
-            <img
-              className="w-full rounded-md"
-              src={visage}
-              alt="img-ingredient"
-              loading="lazy"
-            />
-            <img
-              className="w-full rounded-md"
-              src={visage}
-              alt="img-ingredient"
-              loading="lazy"
-            />
+          <div className="grid grid-cols-3 grid-row-2 gap-4 w-5/12 h-fit">
+            {IngredientsMarket?.slice(2, 3).map((Object: { image: any }) => (
+              <img
+                className="col-span-2 row-span-2 h-full rounded-md"
+                src={getImagePath(Object?.image)}
+                alt="img-ingredient"
+                loading="lazy"
+              />
+            ))}
+            {IngredientsMarket?.slice(3, 5).map((Object: { image: any }) => (
+              <img
+                className="w-full rounded-md"
+                src={getImagePath(Object?.image)}
+                alt="img-ingredient"
+                loading="lazy"
+              />
+            ))}
           </div>
         ) : (
           <div className="w-full overflow-x-auto mt-8">
             <div className="flex w-max gap-4 pb-4">
-              <img
-                className="object-cover w-60 rounded-md"
-                src={visage}
-                alt="img-ingredient"
-                loading="lazy"
-              />
-              <img
-                className="object-cover w-60 rounded-md"
-                src={visage}
-                alt="img-ingredient"
-                loading="lazy"
-              />
-              <img
-                className="object-cover w-60 rounded-md"
-                src={visage}
-                alt="img-ingredient"
-                loading="lazy"
-              />
+              {IngredientsMarket?.slice(2, 5).map((Object: { image: any }) => (
+                <img
+                  className="object-cover w-60 rounded-md"
+                  src={getImagePath(Object?.image)}
+                  alt="img-ingredient"
+                  loading="lazy"
+                />
+              ))}
             </div>
           </div>
         )}
+        {IngredientsMarket?.slice(2, 3).map(
+          (Object: { name: string; producer: string }) => (
+            <div className="flex flex-col gap-3 mb-6 lg:w-1/2">
+              <h2>{Object?.name}</h2>
+              <p>{Object?.producer}</p>
+              <div className="flex gap-3">
+                <div className="flex border-1 br-darkBlue h-10 w-14 items-center justify-center rounded">
+                  <h4>5 ml</h4>
+                </div>
+                <div className="flex items-center | bg-yellow text-white rounded-br-md rounded-tl-md px-4 py-1">
+                  <span> ★ 5/5</span>
+                </div>
+              </div>
+              <div className="flex flex-wrap items-start gap-2">
+                {[
+                  {
+                    tag: "Cheveux : Abîmés",
+                  },
+                  {
+                    tag: "Peaux : Grasses",
+                  },
+                  {
+                    tag: "Stress",
+                  },
+                  {
+                    tag: "Pellicules",
+                  },
+                  { tag: "Tous les ingrédients" },
+                ]
+                  .slice(0, 4)
+                  .map((item, index) => (
+                    <>
+                      <div
+                        className="flex inline h-8 px-3 text-white rounded bg-darkBlue items-center"
+                        key={index}
+                      >
+                        <p>{item.tag}</p>
+                      </div>
+                    </>
+                  ))}
 
-        <div className="flex flex-col gap-3 mb-6 lg:w-1/2">
-          <h2>Huile végétale d’avocat BIO</h2>
-          <p>MyCosmetik</p>
-          <div className="flex gap-3">
-            <div className="flex border-1 br-darkBlue h-10 w-14 items-center justify-center rounded">
-              <h4>5 ml</h4>
+                {[
+                  {
+                    tag: "autre : autre",
+                  },
+                  {
+                    tag: "autre : autre",
+                  },
+                  {
+                    tag: "autre",
+                  },
+                  {
+                    tag: "autre",
+                  },
+                  { tag: "autre les ingrédients" },
+                  {
+                    tag: "autre",
+                  },
+                  {
+                    tag: "autre",
+                  },
+                  {
+                    tag: "autre",
+                  },
+                ]
+                  .slice(4)
+                  .map((item, index) => (
+                    <>
+                      <div
+                        className={
+                          toggle
+                            ? "hidden"
+                            : "visible" +
+                              " flex inline h-8 px-3 text-white rounded bg-darkBlue items-center"
+                        }
+                      >
+                        <p>{item.tag}</p>
+                      </div>
+                    </>
+                  ))}
+                <button
+                  className="flex cursor-pointer items-center underline m-2"
+                  onClick={() => setToggle(!toggle)}
+                >
+                  {toggle ? "voir plus" : "voir moins"}
+                </button>
+              </div>
+
+              <div className="flex items-center gap-2 w-full">
+                {[
+                  {
+                    icon: "bx bxs-check-shield",
+                    title: "paiement sécurisé",
+                  },
+                  {
+                    icon: "bx bx-home-smile",
+                    title: "entreprise française",
+                  },
+                  {
+                    icon: "bx bx-package",
+                    title: " expédition en 24h",
+                  },
+                ].map((item, index) => (
+                  <>
+                    <i className={`${item.icon} text-3xl`}></i>
+                    <p className="w-20 lg:w-fit lg:mr-3 leading-5 text-sm">
+                      {item.title}
+                    </p>
+                  </>
+                ))}
+              </div>
+              {!isMobile && <AddtoCartBanner Formobile={false} />}
             </div>
-            <div className="flex items-center | bg-yellow text-white rounded-br-md rounded-tl-md px-4 py-1">
-              <span> ★ 5/5</span>
-            </div>
-          </div>
-          <div className="flex flex-wrap items-start gap-2">
-            {[
-              {
-                tag: "Cheveux : Abîmés",
-              },
-              {
-                tag: "Peaux : Grasses",
-              },
-              {
-                tag: "Stress",
-              },
-              {
-                tag: "Pellicules",
-              },
-              { tag: "Tous les ingrédients" },
-            ]
-              .slice(0, 4)
-              .map((item, index) => (
-                <>
-                  <div
-                    className="flex inline h-8 px-3 text-white rounded bg-darkBlue items-center"
-                    key={index}
-                  >
-                    <p>{item.tag}</p>
-                  </div>
-                </>
-              ))}
-
-            {[
-              {
-                tag: "autre : autre",
-              },
-              {
-                tag: "autre : autre",
-              },
-              {
-                tag: "autre",
-              },
-              {
-                tag: "autre",
-              },
-              { tag: "autre les ingrédients" },
-              {
-                tag: "autre",
-              },
-              {
-                tag: "autre",
-              },
-              {
-                tag: "autre",
-              },
-            ]
-              .slice(4)
-              .map((item, index) => (
-                <>
-                  <div
-                    className={
-                      toggle
-                        ? "hidden"
-                        : "visible" +
-                          " flex inline h-8 px-3 text-white rounded bg-darkBlue items-center"
-                    }
-                  >
-                    <p>{item.tag}</p>
-                  </div>
-                </>
-              ))}
-            <button
-              className="flex cursor-pointer items-center underline m-2"
-              onClick={() => setToggle(!toggle)}
-            >
-              {toggle ? "voir plus" : "voir moins"}
-            </button>
-          </div>
-
-          <div className="flex items-center gap-2 w-full">
-            {[
-              {
-                icon: "bx bxs-check-shield",
-                title: "paiement sécurisé",
-              },
-              {
-                icon: "bx bx-home-smile",
-                title: "entreprise française",
-              },
-              {
-                icon: "bx bx-package",
-                title: " expédition en 24h",
-              },
-            ].map((item, index) => (
-              <>
-                <i className={`${item.icon} text-3xl`}></i>
-                <p className="w-20 lg:w-fit lg:mr-3 leading-5 text-sm">
-                  {item.title}
-                </p>
-              </>
-            ))}
-          </div>
-          {!isMobile && <AddtoCartBanner Formobile={false} />}
-        </div>
+          ),
+        )}
       </div>
       <div className="w-11/12 mb-10">
         <MenuMultiSelect />
@@ -264,24 +274,7 @@ const IngredientSinglePage = () => {
       <div className="flex flex-col | w-full lg:w-11/12 | gap-3 | pl-6 lg:pl-0 mt-6">
         <h3>Recettes associées :</h3>
         <div className="w-full overflow-x-auto">
-          <div className="flex flex-row gap-3 w-max p-6">
-            <RecipeCard
-              recipe={dataByIds[0]?.node}
-              key={dataByIds[0]?.node?.id}
-            />
-            <RecipeCard
-              recipe={dataByIds[0]?.node}
-              key={dataByIds[0]?.node?.id}
-            />
-            <RecipeCard
-              recipe={dataByIds[0]?.node}
-              key={dataByIds[0]?.node?.id}
-            />
-            <RecipeCard
-              recipe={dataByIds[0]?.node}
-              key={dataByIds[0]?.node?.id}
-            />
-          </div>
+          <div className="flex flex-row gap-3 w-max p-6"></div>
         </div>
       </div>
 
@@ -368,3 +361,10 @@ const IngredientSinglePage = () => {
 };
 
 export default IngredientSinglePage;
+function ingredient(arg0: { variables: { filter: { name: string } } }): {
+  loading: any;
+  error: any;
+  data: any;
+} {
+  throw new Error("Function not implemented.");
+}
