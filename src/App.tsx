@@ -64,7 +64,7 @@ const QRFullXp = React.lazy(
 );
 
 const IngredientSinglePage = React.lazy(
-  () => import("pages/Market/IngredientSinglePage"),
+  () => import("pages/Market/IngredientSinglePage/IngredientSinglePage"),
 );
 
 export const history = createBrowserHistory();
@@ -78,7 +78,7 @@ const greenitFullXpRoute = {
 
 export const RouteName = {
   accueil: "/",
-  market: "/market",
+  market: "/market", // no index
   resetPassword: "/reinitialisation-mot-de-passe", // no index
   tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
   accountCreated: "/compte-crée", // no index

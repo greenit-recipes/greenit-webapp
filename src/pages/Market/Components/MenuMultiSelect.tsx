@@ -1,11 +1,20 @@
 import isMobile from "hooks/isMobile";
+import HTMLReactParser from "html-react-parser";
 import { useState } from "react";
 
 interface MenuMultiSelect {
-  title?: string;
+  informationMarket: string;
+  indication: string;
+  precaution: string;
+  producer: string;
 }
 
-export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({ title }) => {
+export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
+  informationMarket,
+  indication,
+  precaution,
+  producer,
+}) => {
   //Tabs
   const [isInfoActive, setIsInfoActive] = useState(true);
   const [isIndicationsActive, setIsIndicationsActive] = useState(false);
@@ -159,82 +168,22 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({ title }) => {
       <div className="w-full mb-5 pt-4">
         {isInfoActive && (
           <div className="w-full px-4 lg:px-0">
-            <p>
-              L’huile végétale d’Avocat est un excellent adoucissant : elle
-              redonne de l’élasticité à la peau et lutte contre les rides. Elle
-              est très nourrissante (comme la majorité des huiles) et elle agit
-              particulièrement sur les peaux abîmées (les cicatrices d’acné par
-              exemple). C’est un véritable cocktail de vitamine E qui limite le
-              vieillissement cutané. Elle agit de la même façon sur les cheveux
-              avec un petit plus : elle stimule la pousse capillaire. L’huile
-              végétale d’Avocat est un excellent adoucissant : elle redonne de
-              l’élasticité à la peau et lutte contre les rides. Elle est très
-              nourrissante (comme la majorité des huiles) et elle agit
-              particulièrement sur les peaux abîmées (les cicatrices d’acné par
-              exemple). C’est un véritable cocktail de vitamine E qui limite le
-              vieillissement cutané. Elle agit de la même façon sur les cheveux
-              avec un petit plus : elle stimule la pousse capillaire.
-            </p>
+            <p>{HTMLReactParser(informationMarket)}</p>
           </div>
         )}
         {isIndicationsActive && (
-          <div className="w-full px-4 lg:px-0 text-red">
-            <p>
-              L’huile végétale d’Avocat est un excellent adoucissant : elle
-              redonne de l’élasticité à la peau et lutte contre les rides. Elle
-              est très nourrissante (comme la majorité des huiles) et elle agit
-              particulièrement sur les peaux abîmées (les cicatrices d’acné par
-              exemple). C’est un véritable cocktail de vitamine E qui limite le
-              vieillissement cutané. Elle agit de la même façon sur les cheveux
-              avec un petit plus : elle stimule la pousse capillaire. L’huile
-              végétale d’Avocat est un excellent adoucissant : elle redonne de
-              l’élasticité à la peau et lutte contre les rides. Elle est très
-              nourrissante (comme la majorité des huiles) et elle agit
-              particulièrement sur les peaux abîmées (les cicatrices d’acné par
-              exemple). C’est un véritable cocktail de vitamine E qui limite le
-              vieillissement cutané. Elle agit de la même façon sur les cheveux
-              avec un petit plus : elle stimule la pousse capillaire.
-            </p>
+          <div className="w-full px-4 lg:px-0">
+            <p>{HTMLReactParser(indication)}</p>
           </div>
         )}
         {isCautionActive && (
-          <div className="w-full px-4 lg:px-0 text-yellow">
-            <p>
-              L’huile végétale d’Avocat est un excellent adoucissant : elle
-              redonne de l’élasticité à la peau et lutte contre les rides. Elle
-              est très nourrissante (comme la majorité des huiles) et elle agit
-              particulièrement sur les peaux abîmées (les cicatrices d’acné par
-              exemple). C’est un véritable cocktail de vitamine E qui limite le
-              vieillissement cutané. Elle agit de la même façon sur les cheveux
-              avec un petit plus : elle stimule la pousse capillaire. L’huile
-              végétale d’Avocat est un excellent adoucissant : elle redonne de
-              l’élasticité à la peau et lutte contre les rides. Elle est très
-              nourrissante (comme la majorité des huiles) et elle agit
-              particulièrement sur les peaux abîmées (les cicatrices d’acné par
-              exemple). C’est un véritable cocktail de vitamine E qui limite le
-              vieillissement cutané. Elle agit de la même façon sur les cheveux
-              avec un petit plus : elle stimule la pousse capillaire.
-            </p>
+          <div className="w-full px-4 lg:px-0">
+            <p>{HTMLReactParser(precaution)}</p>
           </div>
         )}
         {isBrandInfoActive && (
-          <div className="w-full px-4 lg:px-0 text-green">
-            <p>
-              L’huile végétale d’Avocat est un excellent adoucissant : elle
-              redonne de l’élasticité à la peau et lutte contre les rides. Elle
-              est très nourrissante (comme la majorité des huiles) et elle agit
-              particulièrement sur les peaux abîmées (les cicatrices d’acné par
-              exemple). C’est un véritable cocktail de vitamine E qui limite le
-              vieillissement cutané. Elle agit de la même façon sur les cheveux
-              avec un petit plus : elle stimule la pousse capillaire. L’huile
-              végétale d’Avocat est un excellent adoucissant : elle redonne de
-              l’élasticité à la peau et lutte contre les rides. Elle est très
-              nourrissante (comme la majorité des huiles) et elle agit
-              particulièrement sur les peaux abîmées (les cicatrices d’acné par
-              exemple). C’est un véritable cocktail de vitamine E qui limite le
-              vieillissement cutané. Elle agit de la même façon sur les cheveux
-              avec un petit plus : elle stimule la pousse capillaire.
-            </p>
+          <div className="w-full px-4 lg:px-0">
+            <p>{HTMLReactParser(producer)}</p>
           </div>
         )}
       </div>

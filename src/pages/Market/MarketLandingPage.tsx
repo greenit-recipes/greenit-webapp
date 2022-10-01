@@ -25,9 +25,6 @@ import {
 import { ExploreMore } from "components/recipe/ExploreMore";
 import { SectionTitle } from "./Components/SectionTitle";
 import { ReviewCard } from "./Components/ReviewCard";
-import { Key, useEffect } from "react";
-import { Url } from "url";
-import { getImagePath } from "helpers/image.helper";
 
 const MarketLandingPage = () => {
   const isMobile = useIsMobile();
@@ -78,6 +75,7 @@ const MarketLandingPage = () => {
       price: ingredient?.price,
       producer: ingredient?.producer,
       image: ingredient?.image,
+      id: ingredient?.id,
     }),
   );
 
@@ -88,6 +86,7 @@ const MarketLandingPage = () => {
       price: ingredient?.price,
       producer: ingredient?.producer,
       image: ingredient?.image,
+      id: ingredient?.id,
     }),
   );
 
@@ -192,6 +191,7 @@ const MarketLandingPage = () => {
                   price: string;
                   producer: string;
                   image: any;
+                  id: string;
                 }) => (
                   <IngredientCard
                     key={Math.random()}
@@ -199,7 +199,7 @@ const MarketLandingPage = () => {
                     price={Object?.price}
                     producer={Object?.producer}
                     image={Object?.image}
-                    keyID={"keyID"}
+                    id={Object?.id}
                   />
                 ),
               )}
@@ -220,6 +220,7 @@ const MarketLandingPage = () => {
                 price: string;
                 producer: string;
                 image: any;
+                id: string;
               }) => (
                 <IngredientCard
                   key={Math.random()}
@@ -227,12 +228,12 @@ const MarketLandingPage = () => {
                   price={Object?.price}
                   producer={Object?.producer}
                   image={Object?.image}
-                  keyID={"keyID"}
+                  id={Object?.id}
                 />
               ),
             )}
           </div>
-          <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+          <IngredientCard isCTA={true} id={"MarketPage-IngredientCards"} />
         </Container>
 
         <SectionTitle
@@ -247,6 +248,7 @@ const MarketLandingPage = () => {
                 price: string;
                 producer: string;
                 image: any;
+                id: string;
               }) => (
                 <IngredientCard
                   key={Math.random()}
@@ -254,12 +256,12 @@ const MarketLandingPage = () => {
                   price={Object?.price}
                   producer={Object?.producer}
                   image={Object?.image}
-                  keyID={"keyID"}
+                  id={Object?.id}
                 />
               ),
             )}
           </div>
-          <IngredientCard isCTA={true} keyID={"MarketPage-IngredientCards"} />
+          <IngredientCard isCTA={true} id={"MarketPage-IngredientCards"} />
         </Container>
       </div>
       <SectionTitle

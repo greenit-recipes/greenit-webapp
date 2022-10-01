@@ -8,23 +8,25 @@ import {
   RecipeCard,
 } from "components";
 import {
-  AllIngredientsDocument,
   useAllIngredientsQuery,
   useIngredientQuery,
-} from "../../graphql";
+  useRecipesQuery,
+} from "../../../graphql";
 import { getObjectSession } from "helpers/session-helper";
 import useIsMobile from "hooks/isMobile";
 import { visage } from "icons";
 import { useState } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetTags } from "react-helmet";
 import { useHistory, useParams } from "react-router-dom";
-import { AddtoCartBanner } from "./Components/AddtoCartBanner";
-import { IngredientCard } from "./Components/IngredientCard";
-import { MenuMultiSelect } from "./Components/MenuMultiSelect";
-import { ReviewCard } from "./Components/ReviewCard";
-import { EngagementBanner } from "./Components/EngagementBanner";
-import { FAQMarket } from "./Components/FAQMarket/FAQMarket";
+import { AddtoCartBanner } from "../Components/AddtoCartBanner";
+import { IngredientCard } from "../Components/IngredientCard";
+import { MenuMultiSelect } from "../Components/MenuMultiSelect";
+import { ReviewCard } from "../Components/ReviewCard";
+import { EngagementBanner } from "../Components/EngagementBanner";
+import { FAQMarket } from "../Components/FAQMarket/FAQMarket";
 import { getImagePath } from "helpers/image.helper";
+import { IngredientAssociateSection } from "./IngredientAssociateSection";
+import { TypeOf } from "yup";
 
 const IngredientSinglePage = () => {
   const isMobile = useIsMobile();
@@ -33,7 +35,6 @@ const IngredientSinglePage = () => {
   const [toggle, setToggle] = useState(true);
 
   const { id } = useParams<{ id: string }>();
-  console.log(id);
 
   const { data } = useIngredientQuery({
     fetchPolicy: "no-cache",
@@ -41,23 +42,33 @@ const IngredientSinglePage = () => {
       id: id,
     },
   });
-  console.log(data);
 
-  const { data: dataMarket } = useAllIngredientsQuery({
-    variables: { filter: { isForMarket: true } },
+  const { data: RecipeSimilar } = useRecipesQuery({
+    variables: { first: 8, filter: { ingredients: ["Marc de café"] } }, //doesn't work !
   });
+  console.log(RecipeSimilar);
 
-  const IngredientsMarket = dataMarket?.allIngredients?.map(
-    (ingredient: any) => ({
-      key: Math.random,
-      name: ingredient?.name,
-      price: ingredient?.price,
-      producer: ingredient?.producer,
-      image: ingredient?.image,
-      contenance: ingredient?.contenance,
-    }),
-  );
-  console.log(IngredientsMarket);
+  if (!RecipeSimilar) {
+    return <Loading />;
+  }
+
+  const recipesSmiliar = RecipeSimilar.allRecipes?.edges || [];
+  console.log(recipesSmiliar);
+
+  const Ingredient = data?.ingredient?.map((ingredient: any) => ({
+    key: Math.random,
+    name: ingredient?.name,
+    image: ingredient?.image,
+    contenance: ingredient?.contenance,
+    informationMarket: ingredient?.informationMarket,
+    indication: ingredient?.indication,
+    precaution: ingredient?.precaution,
+    price: ingredient?.price,
+    producer: ingredient?.producer,
+    rating: ingredient?.rating,
+    tags: ingredient?.tags,
+    categoryIngredient: ingredient?.categoryIngredient,
+  }));
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -87,7 +98,7 @@ const IngredientSinglePage = () => {
         </div>
         {!isMobile ? (
           <div className="grid grid-cols-3 grid-row-2 gap-4 w-5/12 h-fit">
-            {IngredientsMarket?.slice(2, 3).map((Object: { image: any }) => (
+            {Ingredient?.map((Object: { image: any }) => (
               <img
                 className="col-span-2 row-span-2 h-full rounded-md"
                 src={getImagePath(Object?.image)}
@@ -95,7 +106,15 @@ const IngredientSinglePage = () => {
                 loading="lazy"
               />
             ))}
-            {IngredientsMarket?.slice(3, 5).map((Object: { image: any }) => (
+            {Ingredient?.map((Object: { image: any }) => (
+              <img
+                className="w-full rounded-md"
+                src={getImagePath(Object?.image)}
+                alt="img-ingredient"
+                loading="lazy"
+              />
+            ))}
+            {Ingredient?.map((Object: { image: any }) => (
               <img
                 className="w-full rounded-md"
                 src={getImagePath(Object?.image)}
@@ -107,7 +126,23 @@ const IngredientSinglePage = () => {
         ) : (
           <div className="w-full overflow-x-auto mt-8">
             <div className="flex w-max gap-4 pb-4">
-              {IngredientsMarket?.slice(2, 5).map((Object: { image: any }) => (
+              {Ingredient?.map((Object: { image: any }) => (
+                <img
+                  className="object-cover w-60 rounded-md"
+                  src={getImagePath(Object?.image)}
+                  alt="img-ingredient"
+                  loading="lazy"
+                />
+              ))}
+              {Ingredient?.map((Object: { image: any }) => (
+                <img
+                  className="object-cover w-60 rounded-md"
+                  src={getImagePath(Object?.image)}
+                  alt="img-ingredient"
+                  loading="lazy"
+                />
+              ))}
+              {Ingredient?.map((Object: { image: any }) => (
                 <img
                   className="object-cover w-60 rounded-md"
                   src={getImagePath(Object?.image)}
@@ -118,86 +153,45 @@ const IngredientSinglePage = () => {
             </div>
           </div>
         )}
-        {IngredientsMarket?.slice(2, 3).map(
-          (Object: { name: string; producer: string }) => (
+        {Ingredient?.map(
+          (Object: {
+            name: string;
+            producer: string;
+            contenance: string;
+            rating: string;
+            tags: Array<any>;
+          }) => (
             <div className="flex flex-col gap-3 mb-6 lg:w-1/2">
               <h2>{Object?.name}</h2>
               <p>{Object?.producer}</p>
               <div className="flex gap-3">
                 <div className="flex border-1 br-darkBlue h-10 w-14 items-center justify-center rounded">
-                  <h4>5 ml</h4>
+                  <h4>{Object?.contenance}</h4>
                 </div>
-                <div className="flex items-center | bg-yellow text-white rounded-br-md rounded-tl-md px-4 py-1">
-                  <span> ★ 5/5</span>
+                <div className="flex items-center | bg-green text-white rounded-br-md rounded-tl-md px-4 py-1">
+                  <span> ★ {Object?.rating}</span>
                 </div>
               </div>
               <div className="flex flex-wrap items-start gap-2">
-                {[
-                  {
-                    tag: "Cheveux : Abîmés",
-                  },
-                  {
-                    tag: "Peaux : Grasses",
-                  },
-                  {
-                    tag: "Stress",
-                  },
-                  {
-                    tag: "Pellicules",
-                  },
-                  { tag: "Tous les ingrédients" },
-                ]
-                  .slice(0, 4)
-                  .map((item, index) => (
-                    <>
-                      <div
-                        className="flex inline h-8 px-3 text-white rounded bg-darkBlue items-center"
-                        key={index}
-                      >
-                        <p>{item.tag}</p>
+                {Object?.tags.slice(0, 5).map(({ name, index }) => (
+                  <>
+                    <div
+                      className="flex inline h-8 px-3 text-white rounded bg-darkBlue items-center"
+                      key={index}
+                    >
+                      <p>{name}</p>
+                    </div>
+                  </>
+                ))}
+                {Object?.tags.slice(5).map(({ name, index }) => (
+                  <>
+                    <div className={toggle ? "hidden" : "visible"}>
+                      <div className=" flex inline h-8 px-3 text-white rounded bg-darkBlue items-center">
+                        <p>{name}</p>
                       </div>
-                    </>
-                  ))}
-
-                {[
-                  {
-                    tag: "autre : autre",
-                  },
-                  {
-                    tag: "autre : autre",
-                  },
-                  {
-                    tag: "autre",
-                  },
-                  {
-                    tag: "autre",
-                  },
-                  { tag: "autre les ingrédients" },
-                  {
-                    tag: "autre",
-                  },
-                  {
-                    tag: "autre",
-                  },
-                  {
-                    tag: "autre",
-                  },
-                ]
-                  .slice(4)
-                  .map((item, index) => (
-                    <>
-                      <div
-                        className={
-                          toggle
-                            ? "hidden"
-                            : "visible" +
-                              " flex inline h-8 px-3 text-white rounded bg-darkBlue items-center"
-                        }
-                      >
-                        <p>{item.tag}</p>
-                      </div>
-                    </>
-                  ))}
+                    </div>
+                  </>
+                ))}
                 <button
                   className="flex cursor-pointer items-center underline m-2"
                   onClick={() => setToggle(!toggle)}
@@ -235,46 +229,46 @@ const IngredientSinglePage = () => {
         )}
       </div>
       <div className="w-11/12 mb-10">
-        <MenuMultiSelect />
+        {Ingredient?.map(
+          (Object: {
+            informationMarket: string;
+            indication: string;
+            precaution: string;
+            producer: string;
+          }) => (
+            <MenuMultiSelect
+              informationMarket={Object?.informationMarket}
+              indication={Object?.indication}
+              precaution={Object?.precaution}
+              producer={Object?.producer}
+            />
+          ),
+        )}
       </div>
 
-      {/*<div className="flex flex-col | w-full lg:w-11/12 | gap-3 | pl-6 lg:pl-0">
+      <div className="flex flex-col | w-full lg:w-11/12 | gap-3 | pl-6 lg:pl-0">
         <h3>Ingrédients associés :</h3>
-        <div className="w-full overflow-x-auto">
-          <div className="flex flex-row gap-8 lg:gap-5 w-max p-6">
-            <IngredientCard
-              keyID={"IngredientCard"}
-              ingredient={"ingredient"}
-            ></IngredientCard>
-
-            <IngredientCard
-              keyID={"IngredientCard"}
-              ingredient={"ingredient"}
-            ></IngredientCard>
-
-            <IngredientCard
-              keyID={"IngredientCard"}
-              ingredient={"ingredient"}
-            ></IngredientCard>
-
-            <IngredientCard
-              keyID={"IngredientCard"}
-              ingredient={"ingredient"}
-            ></IngredientCard>
-
-            <IngredientCard
-              keyID={"IngredientCard"}
-              ingredient={"ingredient"}
-              isCTA={true}
-            ></IngredientCard>
-          </div>
-        </div>
-            </div>*/}
+        {Ingredient?.map(
+          //doesn't work !
+          (Object: { categoryIngredient: Object }) =>
+            (categoryIngredient: { name: string }) => {
+              <IngredientAssociateSection
+                categoryIngredient={categoryIngredient.name}
+              />;
+            },
+        )}
+      </div>
 
       <div className="flex flex-col | w-full lg:w-11/12 | gap-3 | pl-6 lg:pl-0 mt-6">
         <h3>Recettes associées :</h3>
         <div className="w-full overflow-x-auto">
-          <div className="flex flex-row gap-3 w-max p-6"></div>
+          <div className="flex flex-row gap-3 w-max p-6">
+            {/*{recipesSmiliar?.slice(0, 5).map(recipe => (//doesn't work !
+              <RecipeCard
+                recipe={recipe}
+              ></RecipeCard>
+          ))}*/}
+          </div>
         </div>
       </div>
 

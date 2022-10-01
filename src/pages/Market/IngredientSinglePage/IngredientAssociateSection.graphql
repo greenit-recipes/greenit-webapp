@@ -1,7 +1,6 @@
-query Ingredient($id: String!) {
-  ingredient(id: $id) {
+query allIngredients($filter: IngredientFilterInput) {
+  allIngredients(filter: $filter) {
     id
-    urlId
     name
     description
     informationMarket

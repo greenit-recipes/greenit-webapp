@@ -1,3 +1,4 @@
+import { RouteName } from "App";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -14,27 +15,32 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
       <div className="flex flex-cols gap-4 w-max md:w-4/5 px-4">
         {[
           {
-            title: "Tous les ingrédients",
-            link: "/market",
+            title: "Autres",
+            filter: "Autres",
           },
           {
             title: "Tous les ingrédients",
-            link: "/market",
+            filter: "ingredients",
           },
           {
             title: "Tous les ingrédients",
-            link: "/market",
+            filter: "/market",
           },
           {
             title: "Tous les ingrédients",
-            link: "/market",
+            filter: "/market",
           },
           {
             title: "Tous les ingrédients",
-            link: "/market",
+            filter: "/market",
           },
         ].map((item, key) => (
-          <Link to={item.link} key={Math.random()} className="cursor-pointer">
+          <Link
+            to={{
+              pathname: `${RouteName.market}`,
+            }}
+            className="cursor-pointer"
+          >
             <h4>{item.title}</h4>
           </Link>
         ))}

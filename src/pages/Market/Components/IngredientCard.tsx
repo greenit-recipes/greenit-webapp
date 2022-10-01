@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Url } from "url";
 
 interface IngredientCard {
+  id: string;
   isCTA?: boolean;
   keyID?: string;
   name?: string;
@@ -14,7 +15,6 @@ interface IngredientCard {
   producer?: string;
   image?: any;
   filter?: string;
-  id?: string;
 }
 
 export const IngredientCard: React.FC<IngredientCard> = ({
