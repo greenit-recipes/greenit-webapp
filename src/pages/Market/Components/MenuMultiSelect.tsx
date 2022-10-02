@@ -1,6 +1,6 @@
 import isMobile from "hooks/isMobile";
 import HTMLReactParser from "html-react-parser";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface MenuMultiSelect {
   informationMarket: string;
@@ -20,6 +20,35 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
   const [isIndicationsActive, setIsIndicationsActive] = useState(false);
   const [isCautionActive, setIsCautionActive] = useState(false);
   const [isBrandInfoActive, setIsBrandInfoActive] = useState(false);
+
+  var brandInfo = "cosmaé";
+  console.log(producer);
+
+  function setBrandinfo(brandInfo: string | null) {
+    if (brandInfo != null) {
+      brandInfo = "2";
+    } else if (producer === "Azoma-zone") {
+      brandInfo = "1";
+    } else if (producer === "cosmaé") {
+      brandInfo = "2";
+    } else if (producer === "mycometik") {
+      brandInfo = "3";
+    }
+    return () => brandInfo;
+  }
+
+  useEffect(() => {
+    setBrandinfo(brandInfo);
+    console.log(brandInfo);
+  }, [brandInfo]);
+
+  var up = 1;
+  useEffect(() => {
+    if (up === 1) {
+      brandInfo = "2";
+    }
+  });
+
   return (
     <div className="grid">
       {isMobile() ? (
@@ -183,7 +212,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
         )}
         {isBrandInfoActive && (
           <div className="w-full px-4 lg:px-0">
-            <p>{HTMLReactParser(producer)}</p>
+            <p>{HTMLReactParser(brandInfo)}</p>
           </div>
         )}
       </div>

@@ -16,7 +16,7 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
         {[
           {
             title: "Autres",
-            filter: "Autres",
+            filter: "ingredients",
           },
           {
             title: "Tous les ingrédients",
@@ -24,20 +24,20 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
           },
           {
             title: "Tous les ingrédients",
-            filter: "/market",
+            filter: "ingredients",
           },
           {
             title: "Tous les ingrédients",
-            filter: "/market",
+            filter: "ingredients",
           },
           {
             title: "Tous les ingrédients",
-            filter: "/market",
+            filter: "ingredients",
           },
         ].map((item, key) => (
           <Link
             to={{
-              pathname: `${RouteName.market}`,
+              pathname: `/${item.filter}`,
             }}
             className="cursor-pointer"
           >

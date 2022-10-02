@@ -15,7 +15,7 @@ import {
 import { getObjectSession } from "helpers/session-helper";
 import useIsMobile from "hooks/isMobile";
 import { visage } from "icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet, HelmetTags } from "react-helmet";
 import { useHistory, useParams } from "react-router-dom";
 import { AddtoCartBanner } from "../Components/AddtoCartBanner";
@@ -83,7 +83,13 @@ const IngredientSinglePage = () => {
         />
       </Helmet>
 
-      {isMobile && <AddtoCartBanner Formobile={true} />}
+      {isMobile && (
+        <div className="w-full">
+          {Ingredient?.map((Object: { price: string }) => (
+            <AddtoCartBanner price={Object?.price} Formobile={true} />
+          ))}
+        </div>
+      )}
 
       <div className="flex flex-wrap w-11/12 pt-4 lg:gap-10 lg:pt-14">
         <div
@@ -223,7 +229,14 @@ const IngredientSinglePage = () => {
                   </>
                 ))}
               </div>
-              {!isMobile && <AddtoCartBanner Formobile={false} />}
+
+              {!isMobile && (
+                <div>
+                  {Ingredient?.map((Object: { price: string }) => (
+                    <AddtoCartBanner price={Object?.price} Formobile={false} />
+                  ))}
+                </div>
+              )}
             </div>
           ),
         )}

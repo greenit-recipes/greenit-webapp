@@ -36,6 +36,7 @@ import { LikeField } from "./LikeField";
 import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
 import isMobile from "hooks/isMobile";
 import "./SinglePage.css";
+import { IngredientBuySection } from "./BuySection/IngredientBuySection";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
@@ -87,6 +88,17 @@ const RecipeSinglePage = () => {
     null,
   );
   const [numberModal, setNumberModal] = useState(0);
+
+  // Ingredients Market
+  console.log(data);
+  const ingredients = data?.recipe?.ingredients?.map((ingredients: any) => ({
+    key: Math.random,
+    name: ingredients?.name,
+    isForMarket: ingredients?.isForMarket,
+  }));
+  console.log(ingredients);
+
+  // check if any are isForMarket
 
   // Comments
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
@@ -588,6 +600,19 @@ const RecipeSinglePage = () => {
                   );
                 })}
               </div>
+            </div>
+            <div className="flex flex-col w-full h-60 bg-blue">
+              {ingredients?.map(
+                (Object: { name: string; isForMarket: boolean }) => {
+                  if (Object.isForMarket === true)
+                    return (
+                      <IngredientBuySection
+                        ingredientsForMarket={Object?.name}
+                      />
+                    );
+                },
+              )}{" "}
+              {/*make a list with all the values from the map then pass it to Singl? */}
             </div>
             <div className="flex flex-col mt-8">
               <h3 className="pb-2">Conseils de l'auteur</h3>

@@ -67,6 +67,8 @@ const IngredientSinglePage = React.lazy(
   () => import("pages/Market/IngredientSinglePage/IngredientSinglePage"),
 );
 
+const MarketListPage = React.lazy(() => import("pages/Market/MarketListPage"));
+
 export const history = createBrowserHistory();
 
 const greenitFullXpRoute = {
@@ -79,6 +81,7 @@ const greenitFullXpRoute = {
 export const RouteName = {
   accueil: "/",
   market: "/market", // no index
+  listpagemarket: "/ingredients", // no index
   resetPassword: "/reinitialisation-mot-de-passe", // no index
   tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
   accountCreated: "/compte-crée", // no index
@@ -128,6 +131,11 @@ const App: React.FC = () => {
           <PublicRoute
             path="/market/:id"
             component={IngredientSinglePage}
+            exact
+          />
+          <PublicRoute
+            path={RouteName.listpagemarket}
+            component={MarketListPage}
             exact
           />
 

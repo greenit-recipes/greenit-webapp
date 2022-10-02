@@ -1,0 +1,24 @@
+query allIngredients($filter: IngredientFilterInput) {
+  allIngredients(filter: $filter) {
+    id
+    name
+    description
+    informationMarket
+    indication
+    precaution
+    contenance
+    rating
+    price
+    producer
+    image
+    isForMarket
+    tags {
+      id
+      name
+    }
+    categoryIngredient {
+      id
+      name
+    }
+  }
+}
