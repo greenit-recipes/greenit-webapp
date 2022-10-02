@@ -44,7 +44,7 @@ const IngredientSinglePage = () => {
   });
 
   const { data: RecipeSimilar } = useRecipesQuery({
-    variables: { first: 8, filter: { ingredients: ["Marc de café"] } }, //doesn't work !
+    variables: { first: 8, filter: { ingredients: ["Beurre de Karité"] } }, //doesn't work !
   });
   console.log(RecipeSimilar);
 
@@ -69,6 +69,7 @@ const IngredientSinglePage = () => {
     tags: ingredient?.tags,
     categoryIngredient: ingredient?.categoryIngredient,
   }));
+  console.log(Ingredient);
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -261,14 +262,22 @@ const IngredientSinglePage = () => {
 
       <div className="flex flex-col | w-full lg:w-11/12 | gap-3 | pl-6 lg:pl-0">
         <h3>Ingrédients associés :</h3>
+
         {Ingredient?.map(
-          //doesn't work !
-          (Object: { categoryIngredient: Object }) =>
-            (categoryIngredient: { name: string }) => {
-              <IngredientAssociateSection
-                categoryIngredient={categoryIngredient.name}
-              />;
-            },
+          (Object: { categoryIngredient: any; name: string }) => (
+            <>
+              {Object &&
+              Object?.categoryIngredient &&
+              Object?.categoryIngredient?.["name"] ? (
+                <IngredientAssociateSection
+                  categoryIngredient={Object?.categoryIngredient?.["name"]}
+                  name={Object?.name}
+                />
+              ) : (
+                <></>
+              )}
+            </>
+          ),
         )}
       </div>
 
@@ -276,11 +285,13 @@ const IngredientSinglePage = () => {
         <h3>Recettes associées :</h3>
         <div className="w-full overflow-x-auto">
           <div className="flex flex-row gap-3 w-max p-6">
-            {/*{recipesSmiliar?.slice(0, 5).map(recipe => (//doesn't work !
-              <RecipeCard
-                recipe={recipe}
-              ></RecipeCard>
-          ))}*/}
+            {recipesSmiliar?.slice(0, 5).map(
+              (
+                recipe, //doesn't work !
+              ) => (
+                <RecipeCard recipe={recipe}></RecipeCard>
+              ),
+            )}
           </div>
         </div>
       </div>

@@ -21,33 +21,28 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
   const [isCautionActive, setIsCautionActive] = useState(false);
   const [isBrandInfoActive, setIsBrandInfoActive] = useState(false);
 
-  var brandInfo = "cosmaé";
-  console.log(producer);
+  const [brandInfo, setBrandinfo] = useState("Cosmaé");
 
-  function setBrandinfo(brandInfo: string | null) {
-    if (brandInfo != null) {
-      brandInfo = "2";
-    } else if (producer === "Azoma-zone") {
-      brandInfo = "1";
-    } else if (producer === "cosmaé") {
-      brandInfo = "2";
-    } else if (producer === "mycometik") {
-      brandInfo = "3";
+  function updateBrandinfo(brandInfo: string) {
+    switch (brandInfo) {
+      case "Aroma-zone":
+        return "Azoma-zone is well nowjsjsjsjs";
+      case "Cosmaé":
+        return "cosmaé is well nowjsjsjsjs";
+      case "mycometik":
+        return "test";
+      default:
+        return "Nothing found";
     }
-    return () => brandInfo;
   }
 
   useEffect(() => {
-    setBrandinfo(brandInfo);
-    console.log(brandInfo);
-  }, [brandInfo]);
-
-  var up = 1;
-  useEffect(() => {
-    if (up === 1) {
-      brandInfo = "2";
+    const updatedBrandInfo = updateBrandinfo(brandInfo);
+    if (updatedBrandInfo) {
+      setBrandinfo(updatedBrandInfo); // please update the current brandInfo state with the setBrandInfo function
     }
-  });
+    console.log(brandInfo);
+  }, []);
 
   return (
     <div className="grid">
