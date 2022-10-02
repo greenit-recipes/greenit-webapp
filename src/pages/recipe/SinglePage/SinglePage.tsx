@@ -601,19 +601,34 @@ const RecipeSinglePage = () => {
                 })}
               </div>
             </div>
-            <div className="flex flex-col w-full h-60 bg-blue">
-              {ingredients?.map(
-                (Object: { name: string; isForMarket: boolean }) => {
-                  if (Object.isForMarket === true)
-                    return (
-                      <IngredientBuySection
-                        ingredientsForMarket={Object?.name}
-                      />
-                    );
-                },
-              )}{" "}
-              {/*make a list with all the values from the map then pass it to Singl? */}
+          </div>
+          <div className="flex flex-col w-full bg-yellowL">
+            <div className="flex flex-col self-center w-5/6 mb-10 lg:w-4/6 pt-4 gap-2">
+              <h3>Panier recette</h3>
+              <p>Ingrédients</p>
+              <div className="flex gap-4 mt-4">
+                {ingredients?.map(
+                  (Object: { name: string; isForMarket: boolean }) => {
+                    if (Object.isForMarket === true)
+                      return (
+                        <IngredientBuySection
+                          ingredientsForMarket={Object?.name}
+                        />
+                      );
+                  },
+                )}{" "}
+                {/*Well made or it will crash ? */}
+              </div>
+              <div className="flex gap-4 mt-4 h-10">
+                <Button type="green" className="">
+                  <i className={`bx bx-cart-download text-2xl`} />
+                  Ajouter tout les ingrédients panier
+                </Button>
+                <Button type="darkBlue">Découvrez Greenit Market</Button>
+              </div>
             </div>
+          </div>
+          <div className="w-5/6 mb-10 lg:w-4/6">
             <div className="flex flex-col mt-8">
               <h3 className="pb-2">Conseils de l'auteur</h3>
               <p className="text-md">{recipe?.notesFromAuthor}</p>

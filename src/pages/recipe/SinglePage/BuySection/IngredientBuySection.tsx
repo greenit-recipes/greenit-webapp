@@ -1,5 +1,5 @@
-import { IngredientCard } from "pages/Market/Components/IngredientCard";
 import { useAllIngredientsQuery, useRecipesQuery } from "../../../../graphql";
+import { IngredientWidget } from "./IngredientWidget";
 
 interface IngredientBuySection {
   ingredientsForMarket: string;
@@ -27,27 +27,25 @@ export const IngredientBuySection: React.FC<IngredientBuySection> = ({
 
   return (
     <>
-      <div className="flex flex-col">
-        {IngredientBuySection?.map(
-          (Object: {
-            key: any;
-            name: string;
-            price: string;
-            producer: string;
-            image: any;
-            id: string;
-          }) => (
-            <IngredientCard
-              keyID={Object?.key}
-              name={Object?.name}
-              price={Object?.price}
-              producer={Object?.producer}
-              image={Object?.image}
-              id={Object?.id}
-            />
-          ),
-        )}
-      </div>
+      {IngredientBuySection?.map(
+        (Object: {
+          key: any;
+          name: string;
+          price: string;
+          producer: string;
+          image: any;
+          id: string;
+        }) => (
+          <IngredientWidget
+            keyID={Object?.key}
+            name={Object?.name}
+            price={Object?.price}
+            producer={Object?.producer}
+            image={Object?.image}
+            id={Object?.id}
+          />
+        ),
+      )}
     </>
   );
 };
