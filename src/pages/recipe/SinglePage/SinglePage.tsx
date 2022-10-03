@@ -97,6 +97,7 @@ const RecipeSinglePage = () => {
     key: Math.random,
     name: ingredients?.name,
     isForMarket: ingredients?.isForMarket,
+    price: ingredients?.price,
   }));
 
   const [showModalMarket, setShowModalMarket] = useState(false);
@@ -231,7 +232,7 @@ const RecipeSinglePage = () => {
             marginTop: sizeCretorHeader / 16 - (isMobile ? 5.5 : 9) + "rem",
           }}
         >
-          <div className="w-5/6 mb-10 lg:w-4/6">
+          <div className="w-11/12 mb-10 lg:w-4/6">
             <div className="w-full h-auto">
               <div className="justify-center">
                 <h1 className="mb-5 text-xl text-center lg:text-2xl font-medium">
@@ -492,6 +493,35 @@ const RecipeSinglePage = () => {
               parentFunction={refetchMe}
               recipe={recipe}
             />
+            {haveIngredientMarket && (
+              <div className="flex flex-col lg:flex-row w-full bg-yellowL pb-4 lg:p-4 h-max mb-10">
+                <p className="text-base p-3 w-full">
+                  Tu souhaites réaliser cette recette ? Ajoute ces ingrédients à
+                  ton panier
+                  {isMobile ? <span> 👇 </span> : <span> 👉 </span>}
+                </p>
+                <div className="flex self-center w-11/12 lg:max-w-20 h-10">
+                  <Button
+                    type="darkBlue"
+                    className="h-10 w-full max-w-26 lg:max-w-20"
+                    onClick={() => setShowModalMarket(true)}
+                  >
+                    <i className={`bx bx-cart-download text-2xl mr-2`} />
+                    Ajouter tout les ingrédients au panier
+                  </Button>
+                </div>
+
+                <Modal
+                  isCenter={true}
+                  onClose={() => setShowModalMarket(false)}
+                  show={showModalMarket}
+                >
+                  <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
+                    <ModalMarketTest />
+                  </div>
+                </Modal>
+              </div>
+            )}
             <div className="flex flex-col w-full h-full lg:flex-row">
               {isMobile && (
                 <>
@@ -648,6 +678,7 @@ const RecipeSinglePage = () => {
                   </Link>
                 </div>
               </div>
+
               <Modal
                 isCenter={true}
                 onClose={() => setShowModalMarket(false)}
@@ -659,7 +690,7 @@ const RecipeSinglePage = () => {
               </Modal>
             </div>
           )}
-          <div className="w-5/6 mb-10 lg:w-4/6">
+          <div className="w-11/12 mb-10 lg:w-4/6">
             <div className="flex flex-col mt-8">
               <h3 className="pb-2">Conseils de l'auteur</h3>
               <p className="text-md">{recipe?.notesFromAuthor}</p>
