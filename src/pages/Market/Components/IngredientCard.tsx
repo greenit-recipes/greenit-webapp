@@ -1,8 +1,10 @@
 import { RouteName } from "App";
 import { Button } from "components";
+import Modal from "components/layout/Modal/Modal";
+import { ModalMarketTest } from "components/layout/modalMarketTest";
 import { getImagePath } from "helpers/image.helper";
 import { visage } from "icons";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Url } from "url";
 
@@ -31,8 +33,10 @@ export const IngredientCard: React.FC<IngredientCard> = ({
   rating,
   isOnLandingPage,
 }) => {
+  const [showModalMarket, setShowModalMarket] = useState(false);
+
   return (
-    <div className="relative">
+    <div className="relative transform sm:hover:scale-105 ease-linear transition-all duration-150">
       {!isCTA ? (
         <>
           <Link
@@ -40,10 +44,7 @@ export const IngredientCard: React.FC<IngredientCard> = ({
               pathname: `${RouteName.market}/${id}`,
             }}
           >
-            <div
-              id={keyID}
-              className="relative transform sm:hover:scale-105 ease-linear transition-all duration-150"
-            >
+            <div id={keyID} className="relative">
               <div className="flex flex-col w-44 lg:w-52 gap-1">
                 <div className="flex relative items-center h-36 w-44 lg:h-40 lg:w-52 rounded-md object-cover overflow-hidden">
                   <img
@@ -71,12 +72,22 @@ export const IngredientCard: React.FC<IngredientCard> = ({
             type="darkBlueIcon"
             className="absolute bottom-0 right-0 w-12 h-10"
             haveIcon={true}
+            onClick={() => setShowModalMarket(true)}
           >
             <i className={`bx bx-cart-download text-darkBlue text-2xl`}></i>
             <i
               className={`bx bx-plus text-sm text-darkBlue absolute -top-0.5 right-0.5`}
             ></i>
           </Button>
+          <Modal
+            isCenter={true}
+            onClose={() => setShowModalMarket(false)}
+            show={showModalMarket}
+          >
+            <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
+              <ModalMarketTest />
+            </div>
+          </Modal>
         </>
       ) : (
         <Link

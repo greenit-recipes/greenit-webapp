@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { RouteName } from "App";
 import { Button } from "components";
-import React from "react";
+import React, { useState } from "react";
 import {
   formatShoppingList,
   getRandomKey,
@@ -10,7 +10,8 @@ import {
 import { SectionIngredient } from "../../recipe/SinglePage/IngredientUsentil/SectionIngredient";
 import useIsMobile from "../../../hooks/isMobile";
 import { RWebShare } from "react-web-share";
-import { ModalShoppingListPurchase } from "../ModalShoppingListPurchase";
+import Modal from "components/layout/Modal/Modal";
+import { ModalMarketTest } from "components/layout/modalMarketTest";
 
 interface TabLDCProps {
   hasLDC: boolean;
@@ -29,6 +30,8 @@ export const TabLDC: React.FC<TabLDCProps> = ({
   let isLDCactive = false;
 
   const isMobile = useIsMobile();
+
+  const [showModalMarket, setShowModalMarket] = useState(false);
 
   return (
     <div className="mx-10 md:mx-56">
@@ -75,17 +78,23 @@ export const TabLDC: React.FC<TabLDCProps> = ({
               </div>
             )}
             <div className="flex flex-col gap-3 items-center | mt-5">
-              <ModalShoppingListPurchase
-                btn={
-                  <Button
-                    className="h-10"
-                    type="green"
-                    id="profil-LDCtab-acheter"
-                  >
-                    Acheter maintenant
-                  </Button>
-                }
-              />
+              <Modal
+                isCenter={true}
+                onClose={() => setShowModalMarket(false)}
+                show={showModalMarket}
+              >
+                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
+                  <ModalMarketTest />
+                </div>
+              </Modal>
+              <Button
+                className="h-10"
+                type="green"
+                id="profil-LDCtab-acheter"
+                onClick={() => setShowModalMarket(true)}
+              >
+                Acheter maintenant
+              </Button>
 
               <RWebShare
                 data={{

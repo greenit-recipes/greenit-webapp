@@ -7,26 +7,19 @@ import {
   Navbar,
   RecipeCard,
 } from "components";
-import {
-  useAllIngredientsQuery,
-  useIngredientQuery,
-  useRecipesQuery,
-} from "../../../graphql";
+import { useIngredientQuery, useRecipesQuery } from "../../../graphql";
 import { getObjectSession } from "helpers/session-helper";
 import useIsMobile from "hooks/isMobile";
-import { visage } from "icons";
 import { useEffect, useState } from "react";
 import { Helmet, HelmetTags } from "react-helmet";
 import { useHistory, useParams } from "react-router-dom";
 import { AddtoCartBanner } from "../Components/AddtoCartBanner";
-import { IngredientCard } from "../Components/IngredientCard";
 import { MenuMultiSelect } from "../Components/MenuMultiSelect";
 import { ReviewCard } from "../Components/ReviewCard";
 import { EngagementBanner } from "../Components/EngagementBanner";
 import { FAQMarket } from "../Components/FAQMarket/FAQMarket";
 import { getImagePath } from "helpers/image.helper";
 import { IngredientAssociateSection } from "./IngredientAssociateSection";
-import { TypeOf } from "yup";
 
 const IngredientSinglePage = () => {
   const isMobile = useIsMobile();

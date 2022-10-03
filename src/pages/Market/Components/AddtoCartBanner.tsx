@@ -1,5 +1,7 @@
 import { Button } from "components";
-import React from "react";
+import Modal from "components/layout/Modal/Modal";
+import { ModalMarketTest } from "components/layout/modalMarketTest";
+import React, { useState } from "react";
 
 interface AddtoCartBanner {
   Formobile: boolean;
@@ -10,8 +12,20 @@ export const AddtoCartBanner: React.FC<AddtoCartBanner> = ({
   Formobile = true,
   price,
 }) => {
+  const [showModalMarket, setShowModalMarket] = useState(false);
+
   return (
     <>
+      <Modal
+        isCenter={true}
+        onClose={() => setShowModalMarket(false)}
+        show={showModalMarket}
+      >
+        <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
+          <ModalMarketTest />
+        </div>
+      </Modal>
+
       {!Formobile ? (
         <div className="grid grid-cols-2 gap-y-2 justify-center w-2/3 h-auto bg-yellowL rounded-md mt-4 p-4">
           <div className="flex flex-col col-span-2 items-center justify-center w-full">
@@ -22,7 +36,11 @@ export const AddtoCartBanner: React.FC<AddtoCartBanner> = ({
             <div className="flex border-1 bg-white rounded-md w-16 items-center justify-center">
               <h4> 1</h4>
             </div>
-            <Button className="w-full" type="darkBlue">
+            <Button
+              className="w-full"
+              type="darkBlue"
+              onClick={() => setShowModalMarket(true)}
+            >
               Ajouter au panier
             </Button>
           </div>
@@ -37,7 +55,11 @@ export const AddtoCartBanner: React.FC<AddtoCartBanner> = ({
             <div className="flex border-1 bg-white rounded-md w-16 items-center justify-center">
               <h4> 1</h4>
             </div>
-            <Button className="w-full" type="darkBlue">
+            <Button
+              className="w-full"
+              type="darkBlue"
+              onClick={() => setShowModalMarket(true)}
+            >
               Ajouter au panier
             </Button>
           </div>

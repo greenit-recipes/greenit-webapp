@@ -69,7 +69,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
             <button
               className={`flex px-6 bg-white items-center h-14 ${
                 isIndicationsActive
-                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-50"
+                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
                   : "border-b-4 border-b-greyL"
               }`}
               onClick={() => {
@@ -86,7 +86,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
             <button
               className={`flex px-6 bg-white items-center h-14 ${
                 isCautionActive
-                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-50"
+                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
                   : "border-b-4 border-b-greyL"
               }`}
               onClick={() => {
@@ -103,7 +103,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
             <button
               className={`flex px-6 bg-white items-center h-14 ${
                 isBrandInfoActive
-                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-50"
+                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
                   : "border-b-4 border-b-greyL"
               }`}
               onClick={() => {
@@ -123,7 +123,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
           <button
             className={`flex px-6 bg-white items-center h-14 ${
               isInfoActive
-                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-50"
+                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
                 : "border-b-4 border-b-greyL"
             }`}
             onClick={() => {
@@ -140,7 +140,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
           <button
             className={`flex px-6 bg-white items-center h-14 ${
               isIndicationsActive
-                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-50"
+                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
                 : "border-b-4 border-b-greyL"
             }`}
             onClick={() => {
@@ -157,7 +157,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
           <button
             className={`flex px-6 bg-white items-center h-14 ${
               isCautionActive
-                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-50"
+                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
                 : "border-b-4 border-b-greyL"
             }`}
             onClick={() => {
@@ -174,7 +174,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
           <button
             className={`flex px-6 bg-white items-center h-14 ${
               isBrandInfoActive
-                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-50"
+                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
                 : "border-b-4 border-b-greyL"
             }`}
             onClick={() => {

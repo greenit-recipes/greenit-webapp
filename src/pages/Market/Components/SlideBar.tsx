@@ -13,15 +13,19 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID, isMarketListPage }) => {
       id={keyID}
       className="grid md:flex sticky top-10 md:top-14 z-30 items-center shadow-flat bg-white h-12 overflow-x-auto w-full md:justify-center"
     >
-      <div className="flex flex-cols gap-7 w-max md:w-4/5 px-4">
+      <div className="flex flex-cols gap-7 w-max px-4">
+        <Link
+          to={{
+            pathname: `${RouteName.listpagemarket}/Tous les ingrédients`,
+          }}
+          className="cursor-pointer"
+        >
+          <h4>Tous les ingrédients</h4>
+        </Link>
         {[
           {
-            title: "Tous les ingrédients",
-            filter: "Tous les ingrédients",
-          },
-          {
-            title: "Huiles végétales",
-            filter: "Huiles végétales",
+            title: "Huiles végétales et beurres",
+            filter: "Huiles végétales et beurres",
           },
           {
             title: "Poudres et argiles",
@@ -32,18 +36,28 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID, isMarketListPage }) => {
             filter: "Huiles essentielles",
           },
           {
-            title: "Cadeaux et boxes",
-            filter: "Cadeaux et boxes",
+            title: "Hydrolats et eaux florales",
+            filter: "Hydrolats et eaux florales",
+          },
+          {
+            title: "Ingrédients cosmétiques",
+            filter: "Ingrédients cosmétiques",
+          },
+          {
+            title: "Ingrédients d'entretien",
+            filter: "Ingrédients d'entretien",
           },
         ].map((item, key) => (
-          <Link
-            to={{
-              pathname: `${RouteName.listpagemarket}/${item.filter}`,
-            }}
-            className="cursor-pointer"
-          >
-            <h4>{item.title}</h4>
-          </Link>
+          <>
+            <Link
+              to={{
+                pathname: `${RouteName.listpagemarket}/${item.filter}`,
+              }}
+              className="cursor-pointer"
+            >
+              <h4>{item.title}</h4>
+            </Link>
+          </>
         ))}
       </div>
     </div>

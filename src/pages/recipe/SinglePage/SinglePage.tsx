@@ -34,10 +34,10 @@ import { CircleGreenit } from "./CircleGreenit/CircleGreenit";
 import { HeaderRecipe } from "./HeaderRecipe/HeaderRecipe";
 import { LikeField } from "./LikeField";
 import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
-import isMobile from "hooks/isMobile";
 import "./SinglePage.css";
 import { IngredientBuySection } from "./BuySection/IngredientBuySection";
 import { ModalMarketTest } from "components/layout/modalMarketTest";
+import privacyPdf from "../../../privacy.pdf";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
@@ -642,10 +642,10 @@ const RecipeSinglePage = () => {
           </div>
           {haveIngredientMarket && (
             <div className="flex flex-col w-full bg-yellowL pb-20 lg:pb-10 h-max">
-              <div className="flex flex-col self-center w-5/6 lg:w-4/6 pt-4 gap-2">
-                <h3>Panier recette</h3>
-                <p>Ingrédients</p>
-                <div className="flex flex-col lg:flex-row gap-4 mt-4">
+              <div className="flex flex-col self-center w-11/12 lg:w-4/6 pt-4 lg:gap-2">
+                <h3>Panier pour la recette</h3>
+                <p>Ingrédients disponibles pour cette recette</p>
+                <div className="flex flex-col lg:flex-row gap-4 mt-6">
                   {ingredients?.map(
                     (Object: { name: string; isForMarket: boolean }) => {
                       {
@@ -695,17 +695,46 @@ const RecipeSinglePage = () => {
               <h3 className="pb-2">Conseils de l'auteur</h3>
               <p className="text-md">{recipe?.notesFromAuthor}</p>
             </div>
-            <div className="flex flex-col mt-8">
-              <p className="text-xs text-darkBlue">
-                Quelques précautions sont à prendre lors de la confection de vos
-                produits. Pour chaque recette postée, nous passons du temps à
-                les vérifier (et modifier si nécessaire). Toutefois, certaines
-                personnes peuvent réagir différemment. Il est recommandé de
-                tester les produits sur votre poignet 48 h avant l’utilisation
-                sur votre peau. Greenit n’est pas responsable en cas d’allergies
-                ou problèmes liés à l’exécution et application de la recette.
-              </p>
+          </div>
+          <div className="flex flex-col items-center w-full mb-10">
+            <div className="flex flex-col lg:flex-row w-11/12 lg:w-4/6 gap-0 lg:gap-4">
+              <h3 className="mr-4 mb-2">Précautions d’emploi</h3>
+              <a href={privacyPdf} target="_blank" rel="noreferrer">
+                <div className="flex inline items-center gap-1">
+                  <i className="bx bx-file-blank text-xl text-darkBlue"></i>
+                  <p className="text-sm font-medium">
+                    Mise en garde et précautions
+                  </p>
+                </div>
+              </a>
+              <a href={privacyPdf} target="_blank" rel="noreferrer">
+                <div className="flex inline items-center gap-1">
+                  <i className="bx bx-file-blank text-xl text-darkBlue"></i>
+                  <p className="text-sm font-medium">
+                    Règles d’hygiène avant et pendant la fabrication
+                  </p>
+                </div>
+              </a>
+              <a href={privacyPdf} target="_blank" rel="noreferrer">
+                <div className="flex inline items-center gap-1">
+                  <i className="bx bx-file-blank text-xl text-darkBlue"></i>
+                  <p className="text-sm font-medium">
+                    Traçabilité des produits
+                  </p>
+                </div>
+              </a>
             </div>
+            <p className="w-11/12 lg:w-4/6 text-sm mt-2">
+              Quelques précautions sont à prendre lors de la confection de vos
+              produits. Pour chaque recette postée, nous passons du temps à les
+              vérifier (et modifier si nécessaire). Toutefois, certaines
+              personnes peuvent réagir différemment. Il est recommandé de tester
+              les produits sur votre poignet 48h avant l’utilisation sur votre
+              peau. Greenit n’est pas responsable en cas d’allergies ou
+              problèmes lié à l’exécution de la recette.
+            </p>
+          </div>
+          <div className="w-11/12 mb-10 lg:w-4/6">
             {recipe && (
               <div className="flex flex-col mt-6 mb-5">
                 <h3 className="">Recettes similaires</h3>

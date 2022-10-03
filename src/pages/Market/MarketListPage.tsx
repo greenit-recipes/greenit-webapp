@@ -22,19 +22,6 @@ const MarketLandingPage = () => {
   const { data: AllIngredient } = useAllIngredientsQuery({
     variables: { filter: { isForMarket: true } },
   });
-  const { data: IngredientsOils } = useAllIngredientsQuery({
-    variables: { filter: { categoryIngredient: ["Huiles végétales"] } },
-  });
-  const { data: IngredientsPowder } = useAllIngredientsQuery({
-    variables: { filter: { categoryIngredient: ["Poudres et argiles"] } },
-  });
-  const { data: IngredientsHE } = useAllIngredientsQuery({
-    variables: { filter: { categoryIngredient: ["Huiles essentielles"] } },
-  });
-  const { data: IngredientsOther } = useAllIngredientsQuery({
-    variables: { filter: { categoryIngredient: ["Autres"] } },
-  });
-
   let IngredientsMarket = AllIngredient?.allIngredients?.map(
     (ingredient: any) => ({
       key: Math.random,
@@ -45,9 +32,15 @@ const MarketLandingPage = () => {
       id: ingredient?.id,
     }),
   );
+  console.log(IngredientsMarket);
 
+  {
+    /*
   useState(() => {
     if (category === "Tous les ingrédients") {
+      const { data: AllIngredient } = useAllIngredientsQuery({
+        variables: { filter: { isForMarket: true } },
+      });
       let IngredientsMarket = AllIngredient?.allIngredients?.map(
         (ingredient: any) => ({
           key: Math.random,
@@ -58,56 +51,11 @@ const MarketLandingPage = () => {
           id: ingredient?.id,
         }),
       );
-      return IngredientsMarket && console.log(IngredientsMarket);
-    } else if (category === "Huiles végétales") {
-      let IngredientsMarket = IngredientsOils?.allIngredients?.map(
-        (ingredient: any) => ({
-          key: Math.random,
-          name: ingredient?.name,
-          price: ingredient?.price,
-          producer: ingredient?.producer,
-          image: ingredient?.image,
-          id: ingredient?.id,
-        }),
-      );
-      return IngredientsMarket && console.log(IngredientsMarket);
-    } else if (category === "Poudres et argiles") {
-      var IngredientsMarket = IngredientsPowder?.allIngredients?.map(
-        (ingredient: any) => ({
-          key: Math.random,
-          name: ingredient?.name,
-          price: ingredient?.price,
-          producer: ingredient?.producer,
-          image: ingredient?.image,
-          id: ingredient?.id,
-        }),
-      );
-      return IngredientsMarket;
-    } else if (category === "Huiles essentielles") {
-      let IngredientsMarket = IngredientsHE?.allIngredients?.map(
-        (ingredient: any) => ({
-          key: Math.random,
-          name: ingredient?.name,
-          price: ingredient?.price,
-          producer: ingredient?.producer,
-          image: ingredient?.image,
-          id: ingredient?.id,
-        }),
-      );
-      return IngredientsMarket;
-    } else if (category === "Cadeaux et boxes") {
-      let IngredientsMarket = IngredientsOther?.allIngredients?.map(
-        (ingredient: any) => ({
-          key: Math.random,
-          name: ingredient?.name,
-          price: ingredient?.price,
-          producer: ingredient?.producer,
-          image: ingredient?.image,
-          id: ingredient?.id,
-        }),
-      );
-      return IngredientsMarket;
+      console.log(IngredientsMarket);
     } else {
+      const { data: AllIngredient } = useAllIngredientsQuery({
+        variables: { filter: { categoryIngredient: ["Autres"] } },
+      });
       let IngredientsMarket = AllIngredient?.allIngredients?.map(
         (ingredient: any) => ({
           key: Math.random,
@@ -118,9 +66,10 @@ const MarketLandingPage = () => {
           id: ingredient?.id,
         }),
       );
-      return IngredientsMarket;
+      console.log(IngredientsMarket);
     }
-  });
+  })*/
+  }
 
   return (
     <div className="flex flex-col | items-center self-center">
