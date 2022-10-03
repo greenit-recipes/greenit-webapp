@@ -134,16 +134,16 @@ const MarketLandingPage = () => {
           content="Votre espace de partage de recette DIY, des astuces écologiques pour la maison, des ateliers pour débuter dans le fait-maison et des pages sur les bienfaits des ingrédients."
         />
       </Helmet>
-      <div className="flex justify-center bg-yellowL h-28 lg:h-26 w-full">
-        <div className="grid w-10/12 lg:w-9/12 lg:grid-cols-2 items-center">
-          <div className="flex flex-col justify-center gap-1">
-            <h4>Démarre ton adhésion Greenit pour profiter des prix minis !</h4>
+      <div className="flex justify-center bg-yellowL h-32 lg:h-26 w-full">
+        <div className="flex w-11/12 lg:w-5/6 lg:grid-cols-2 items-center">
+          <div className="flex pt-5 pb-5 flex-col w-full justify-center gap-1">
+            <h4>Réaliser ses produits maison n’a jamais été si simple !</h4>
             <p className="leading-5 text-sm">
-              Bénéficie de tous les produits à prix cassés !
+              Découvrez une sélection d’huiles végétales, d’huiles essentielles,
+              d’ingrédients cosmétiques et d’entretien pour réaliser vos
+              produits du quotidien.
             </p>
           </div>
-          {/*
-          <Button type={"yellow"} className="h-10 self-start lg:self-center lg:justify-self-end">En savoir plus sur l’adhésion</Button>*/}
         </div>
       </div>
       <SlideBar keyID={""} isMarketListPage={true} />

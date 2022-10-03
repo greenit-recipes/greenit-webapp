@@ -115,7 +115,7 @@ const MarketLandingPage = () => {
       <Container className="flex flex-col items-center w-full | pb-10 md:pb-20 pt-4 | bg-yellowL">
         {isMobile ? (
           <img
-            className="absolute top-0 scale-110"
+            className="absolute -top-2 scale-100"
             alt="Communauté Greenit"
             src={TopImageMarketMobile}
             loading="lazy"
@@ -129,7 +129,7 @@ const MarketLandingPage = () => {
               loading="lazy"
             />
             <img
-              className="sm:opacity-10 lg:opacity-100 absolute top-1 -right-14 w-80"
+              className="sm:opacity-10 lg:opacity-100 absolute top-1 -right-0 w-80"
               alt="Communauté Greenit partie 2"
               src={TopImageMarketDesktopRight}
               loading="lazy"
@@ -142,14 +142,14 @@ const MarketLandingPage = () => {
             {!isMobile ? (
               <>
                 <span className="text-yellow trait-yellow-desktop">
-                  Greenit marché
+                  Greenit market
                 </span>
                 , le meilleur des cosmétiques <br /> naturels à petit prix !
               </>
             ) : (
               <>
                 <span className="text-yellow trait-yellow-mobile font-medium">
-                  Greenit marché,
+                  Greenit market,
                 </span>
                 <br />
                 <span className="font-medium">
