@@ -133,6 +133,12 @@ const App: React.FC = () => {
             component={IngredientSinglePage}
             exact
           />
+
+          <PublicRoute
+            path="/ingredients/:category"
+            component={MarketListPage}
+            exact
+          />
           <PublicRoute
             path={RouteName.listpagemarket}
             component={MarketListPage}

@@ -4,13 +4,29 @@ import { Button, Container, Footer, Loading, Navbar } from "components";
 import { IngredientCard } from "./Components/IngredientCard";
 import internal from "stream";
 import { SlideBar } from "./Components/SlideBar";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const MarketLandingPage = () => {
-  const { data: dataMarket } = useAllIngredientsQuery({
+  const { category } = useParams<{ category: string }>();
+
+  const { data: AllIngredient } = useAllIngredientsQuery({
     variables: { filter: { isForMarket: true } },
   });
+  const { data: IngredientsOils } = useAllIngredientsQuery({
+    variables: { filter: { categoryIngredient: ["Huiles végétales"] } },
+  });
+  const { data: IngredientsPowder } = useAllIngredientsQuery({
+    variables: { filter: { categoryIngredient: ["Poudres et argiles"] } },
+  });
+  const { data: IngredientsHE } = useAllIngredientsQuery({
+    variables: { filter: { categoryIngredient: ["Huiles essentielles"] } },
+  });
+  const { data: IngredientsOther } = useAllIngredientsQuery({
+    variables: { filter: { categoryIngredient: ["Autres"] } },
+  });
 
-  const IngredientsMarket = dataMarket?.allIngredients?.map(
+  let IngredientsMarket = AllIngredient?.allIngredients?.map(
     (ingredient: any) => ({
       key: Math.random,
       name: ingredient?.name,
@@ -21,7 +37,81 @@ const MarketLandingPage = () => {
     }),
   );
 
-  console.log(IngredientsMarket);
+  useState(() => {
+    if (category === "Tous les ingrédients") {
+      let IngredientsMarket = AllIngredient?.allIngredients?.map(
+        (ingredient: any) => ({
+          key: Math.random,
+          name: ingredient?.name,
+          price: ingredient?.price,
+          producer: ingredient?.producer,
+          image: ingredient?.image,
+          id: ingredient?.id,
+        }),
+      );
+      return IngredientsMarket && console.log(IngredientsMarket);
+    } else if (category === "Huiles végétales") {
+      let IngredientsMarket = IngredientsOils?.allIngredients?.map(
+        (ingredient: any) => ({
+          key: Math.random,
+          name: ingredient?.name,
+          price: ingredient?.price,
+          producer: ingredient?.producer,
+          image: ingredient?.image,
+          id: ingredient?.id,
+        }),
+      );
+      return IngredientsMarket && console.log(IngredientsMarket);
+    } else if (category === "Poudres et argiles") {
+      var IngredientsMarket = IngredientsPowder?.allIngredients?.map(
+        (ingredient: any) => ({
+          key: Math.random,
+          name: ingredient?.name,
+          price: ingredient?.price,
+          producer: ingredient?.producer,
+          image: ingredient?.image,
+          id: ingredient?.id,
+        }),
+      );
+      return IngredientsMarket;
+    } else if (category === "Huiles essentielles") {
+      let IngredientsMarket = IngredientsHE?.allIngredients?.map(
+        (ingredient: any) => ({
+          key: Math.random,
+          name: ingredient?.name,
+          price: ingredient?.price,
+          producer: ingredient?.producer,
+          image: ingredient?.image,
+          id: ingredient?.id,
+        }),
+      );
+      return IngredientsMarket;
+    } else if (category === "Cadeaux et boxes") {
+      let IngredientsMarket = IngredientsOther?.allIngredients?.map(
+        (ingredient: any) => ({
+          key: Math.random,
+          name: ingredient?.name,
+          price: ingredient?.price,
+          producer: ingredient?.producer,
+          image: ingredient?.image,
+          id: ingredient?.id,
+        }),
+      );
+      return IngredientsMarket;
+    } else {
+      let IngredientsMarket = AllIngredient?.allIngredients?.map(
+        (ingredient: any) => ({
+          key: Math.random,
+          name: ingredient?.name,
+          price: ingredient?.price,
+          producer: ingredient?.producer,
+          image: ingredient?.image,
+          id: ingredient?.id,
+        }),
+      );
+      return IngredientsMarket;
+    }
+  });
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -47,7 +137,7 @@ const MarketLandingPage = () => {
           <Button type={"yellow"} className="h-10 self-start lg:self-center lg:justify-self-end">En savoir plus sur l’adhésion</Button>*/}
         </div>
       </div>
-      <SlideBar keyID={""} />
+      <SlideBar keyID={""} isMarketListPage={true} />
 
       <Container className="my-10">
         <div className="grid grid-cols-2 mb-2 gap-6 lg:gap-8 sm:grid-cols-3 lg:grid-cols-5">

@@ -23,7 +23,7 @@ import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest
 import React, { createRef, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import ReactPlayer from "react-player/lazy";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import authService, { ME } from "services/auth.service";
 import * as yup from "yup";
@@ -37,6 +37,7 @@ import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
 import isMobile from "hooks/isMobile";
 import "./SinglePage.css";
 import { IngredientBuySection } from "./BuySection/IngredientBuySection";
+import { ModalMarketTest } from "components/layout/modalMarketTest";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
@@ -90,15 +91,23 @@ const RecipeSinglePage = () => {
   const [numberModal, setNumberModal] = useState(0);
 
   // Ingredients Market
-  console.log(data);
+  const [haveIngredientMarket, sethaveIngredientMarket] = useState(false);
+  // this above is to display or not the entire section
   const ingredients = data?.recipe?.ingredients?.map((ingredients: any) => ({
     key: Math.random,
     name: ingredients?.name,
     isForMarket: ingredients?.isForMarket,
   }));
-  console.log(ingredients);
 
-  // check if any are isForMarket
+  const [showModalMarket, setShowModalMarket] = useState(false);
+  // @ts-ignore
+
+  useEffect(() => {
+    ingredients?.forEach(data => {
+      if (data.isForMarket === true) return sethaveIngredientMarket(true);
+    });
+    console.log(haveIngredientMarket);
+  });
 
   // Comments
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
@@ -191,7 +200,6 @@ const RecipeSinglePage = () => {
   //Todo : refactor variable into contexts
 
   user.current = cloneDeep(dataUser?.me);
-  console.log(user.current);
 
   // @ts-ignore
   const { recipe } = data;
@@ -602,32 +610,55 @@ const RecipeSinglePage = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col w-full bg-yellowL">
-            <div className="flex flex-col self-center w-5/6 mb-10 lg:w-4/6 pt-4 gap-2">
-              <h3>Panier recette</h3>
-              <p>Ingrédients</p>
-              <div className="flex gap-4 mt-4">
-                {ingredients?.map(
-                  (Object: { name: string; isForMarket: boolean }) => {
-                    if (Object.isForMarket === true)
-                      return (
-                        <IngredientBuySection
-                          ingredientsForMarket={Object?.name}
-                        />
-                      );
-                  },
-                )}{" "}
-                {/*Well made or it will crash ? */}
+          {haveIngredientMarket && (
+            <div className="flex flex-col w-full bg-yellowL pb-20 lg:pb-10 h-max">
+              <div className="flex flex-col self-center w-5/6 lg:w-4/6 pt-4 gap-2">
+                <h3>Panier recette</h3>
+                <p>Ingrédients</p>
+                <div className="flex flex-col lg:flex-row gap-4 mt-4">
+                  {ingredients?.map(
+                    (Object: { name: string; isForMarket: boolean }) => {
+                      {
+                        if (Object.isForMarket === true)
+                          return (
+                            <IngredientBuySection
+                              ingredientsForMarket={Object?.name}
+                            />
+                          );
+                      }
+                    },
+                  )}
+                </div>
+                <div className="flex flex-col lg:flex-row gap-2 lg:gap-4 mt-4 h-10">
+                  <Button
+                    type="green"
+                    className="h-10 w-full max-w-26 lg:max-w-20"
+                    onClick={() => setShowModalMarket(true)}
+                  >
+                    <i className={`bx bx-cart-download text-2xl mr-2`} />
+                    Ajouter tout les ingrédients au panier
+                  </Button>
+                  <Link to={RouteName.market} className="w-full">
+                    <Button
+                      type="darkBlue"
+                      className="h-10 w-full max-w-26 lg:w-auto lg:max-w-20"
+                    >
+                      Découvrez Greenit Market
+                    </Button>
+                  </Link>
+                </div>
               </div>
-              <div className="flex gap-4 mt-4 h-10">
-                <Button type="green" className="">
-                  <i className={`bx bx-cart-download text-2xl`} />
-                  Ajouter tout les ingrédients panier
-                </Button>
-                <Button type="darkBlue">Découvrez Greenit Market</Button>
-              </div>
+              <Modal
+                isCenter={true}
+                onClose={() => setShowModalMarket(false)}
+                show={showModalMarket}
+              >
+                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
+                  <ModalMarketTest />
+                </div>
+              </Modal>
             </div>
-          </div>
+          )}
           <div className="w-5/6 mb-10 lg:w-4/6">
             <div className="flex flex-col mt-8">
               <h3 className="pb-2">Conseils de l'auteur</h3>

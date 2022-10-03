@@ -154,7 +154,7 @@ const MarketLandingPage = () => {
           <SearchBar keyId="MarketLanding-SearchBar" size="large" />
         </div>
       </Container>
-      <SlideBar keyID={"Landingpage-slideBar"} />
+      <SlideBar keyID={"Landingpage-slideBar"} isMarketListPage={false} />
       <SectionTitle
         title={"Les produits phares"}
         subtitle={"les incontournables"}

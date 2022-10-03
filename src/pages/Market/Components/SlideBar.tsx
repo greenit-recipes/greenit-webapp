@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 interface SlideBar {
   keyID: string;
+  isMarketListPage?: boolean;
 }
 
-export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
+export const SlideBar: React.FC<SlideBar> = ({ keyID, isMarketListPage }) => {
   return (
     <div
       id={keyID}
@@ -15,29 +16,29 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
       <div className="flex flex-cols gap-4 w-max md:w-4/5 px-4">
         {[
           {
-            title: "Autres",
-            filter: "ingredients",
+            title: "Tous les ingrédients",
+            filter: "Tous les ingrédients",
           },
           {
-            title: "Tous les ingrédients",
-            filter: "ingredients",
+            title: "Huiles végétales",
+            filter: "Huiles végétales",
           },
           {
-            title: "Tous les ingrédients",
-            filter: "ingredients",
+            title: "Poudres et argiles",
+            filter: "Poudres et argiles",
           },
           {
-            title: "Tous les ingrédients",
-            filter: "ingredients",
+            title: "Huiles essentielles",
+            filter: "Huiles essentielles",
           },
           {
-            title: "Tous les ingrédients",
-            filter: "ingredients",
+            title: "Cadeaux et boxes",
+            filter: "Cadeaux et boxes",
           },
         ].map((item, key) => (
           <Link
             to={{
-              pathname: `/${item.filter}`,
+              pathname: `${RouteName.listpagemarket}/${item.filter}`,
             }}
             className="cursor-pointer"
           >

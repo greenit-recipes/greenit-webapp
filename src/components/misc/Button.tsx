@@ -22,7 +22,7 @@ interface ButtonProps {
   onClick?: () => void;
   haveIcon?: boolean;
   disabled?: boolean;
-  href?: string;
+  href?: any;
   haveArrow?: boolean;
   isArrowDown?: boolean;
   isLoading?: boolean;
@@ -46,6 +46,7 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   haveIcon = false,
   id,
+  href,
   onClick,
   isOnClickActive = false,
   haveArrow,
@@ -162,6 +163,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       id={id}
       disabled={isLoading}
+      ref={href}
       className={`${className} flex justify-center items-center cursor-pointer
       text-sm ${
         haveIcon ? "px-3 py-0.5" : "px-3 py-2"

@@ -10,16 +10,9 @@ interface IngredientAssociateSection {
 export const IngredientAssociateSection: React.FC<
   IngredientAssociateSection
 > = ({ categoryIngredient, name }) => {
-  console.log(categoryIngredient);
-
   const { data: dataAssociate } = useAllIngredientsQuery({
     variables: { filter: { categoryIngredient: [categoryIngredient] } },
   });
-
-  useEffect(() => {
-    console.log("HERE!");
-    console.log(dataAssociate);
-  }, [dataAssociate]);
 
   const AssociateIngredients = dataAssociate?.allIngredients?.map(
     (ingredient: any) => ({
