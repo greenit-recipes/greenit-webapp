@@ -34,6 +34,15 @@ const IngredientSinglePage = () => {
   const history = useHistory();
   const [toggle, setToggle] = useState(true);
 
+  useEffect(() => {
+    if (window.pageYOffset > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
+
   const { id } = useParams<{ id: string }>();
 
   const { data } = useIngredientQuery({

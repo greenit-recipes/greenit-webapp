@@ -15,6 +15,8 @@ interface IngredientCard {
   producer?: string;
   image?: any;
   filter?: string;
+  rating?: string;
+  isOnLandingPage?: boolean;
 }
 
 export const IngredientCard: React.FC<IngredientCard> = ({
@@ -26,6 +28,8 @@ export const IngredientCard: React.FC<IngredientCard> = ({
   image,
   filter,
   id,
+  rating,
+  isOnLandingPage,
 }) => {
   return (
     <div className="relative">
@@ -40,18 +44,25 @@ export const IngredientCard: React.FC<IngredientCard> = ({
               id={keyID}
               className="relative transform sm:hover:scale-105 ease-linear transition-all duration-150"
             >
-              <div className="flex flex-col w-44 lg:w-48 gap-1">
-                <div className="flex items-center h-36 w-44 lg:h-40 lg:w-48 rounded-md object-cover overflow-hidden">
+              <div className="flex flex-col w-44 lg:w-52 gap-1">
+                <div className="flex relative items-center h-36 w-44 lg:h-40 lg:w-52 rounded-md object-cover overflow-hidden">
                   <img
-                    className="w-full object-cover shadow-flat"
+                    className="w-full object-cover shadow-flat rounded-md"
                     src={getImagePath(image)}
                     alt="photo de l'ingredient"
                     loading="lazy"
                   />
+                  {isOnLandingPage && (
+                    <div className="absolute bottom-0 right-0 items-center | bg-green text-white rounded-br-md rounded-tl-md px-3 py-2">
+                      <span> ★ {rating}</span>
+                    </div>
+                  )}
                 </div>
-                <h4 className="leading-5 text-lg mt-1 lg:mt-2">{name}</h4>
-                <p className="w-2/3 leading-4 text-sm">{producer}</p>
-                <p className="font-medium text-lg">{price} €</p>
+                <h4 className="text-left leading-5 text-lg mt-1 lg:mt-2">
+                  {name}
+                </h4>
+                <p className="text-left w-2/3 leading-4 text-sm">{producer}</p>
+                <p className="text-left font-medium text-lg">{price} €</p>
               </div>
             </div>
           </Link>

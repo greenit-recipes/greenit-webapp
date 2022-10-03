@@ -9,8 +9,6 @@ import React, { Suspense } from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import ReactDOM from "react-dom";
-import ModalPersonalizationPopUp from "./components/personalization/ModalPersonalizationPopUp";
 
 const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
 const ActivateAccount = React.lazy(() => import("pages/activate"));
