@@ -76,7 +76,6 @@ const MarketLandingPage = () => {
       id: ingredient?.id,
     }),
   );
-  console.log(IngredientsMarket);
 
   const IngredientsVegetalOil = dataVegetalOil?.allIngredients?.map(
     (ingredient: any) => ({
@@ -138,23 +137,23 @@ const MarketLandingPage = () => {
           </>
         )}
 
-        <div className={`relative mt-24 lg:mt-10 text-center`}>
-          <h1 className="text-2xl md:text-3xl">
+        <div className={`relative mt-20 md:mt-6 mb-6 text-center`}>
+          <h1 className="text-3xl">
             {!isMobile ? (
               <>
                 <span className="text-yellow trait-yellow-desktop">
                   Greenit marché
                 </span>
-                , le meilleur des <br />
-                cosmétiques naturels à petit prix !
+                , le meilleur des cosmétiques <br /> naturels à petit prix !
               </>
             ) : (
               <>
                 <span className="text-yellow trait-yellow-mobile font-medium">
-                  Greenit marché
+                  Greenit marché,
                 </span>
+                <br />
                 <span className="font-medium">
-                  , le meilleur des cosmétiques naturels à petit prix !
+                  le meilleur des cosmétiques <br /> naturelles à petit prix !
                 </span>
               </>
             )}
@@ -222,7 +221,7 @@ const MarketLandingPage = () => {
           />
           <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
             <div className="flex gap-5 w-max ml-4 md:ml-0">
-              {IngredientsVegetalOil?.slice(0, 5).map(
+              {IngredientsVegetalOil?.slice(0, 4).map(
                 (Object: {
                   name: string;
                   price: string;
@@ -241,7 +240,11 @@ const MarketLandingPage = () => {
                 ),
               )}
             </div>
-            <IngredientCard isCTA={true} id={"MarketPage-IngredientCards"} />
+            <IngredientCard
+              isCTA={true}
+              id={"MarketPage-IngredientCards"}
+              filter={"Huiles végétales"}
+            />
           </Container>
 
           <SectionTitle
@@ -250,7 +253,7 @@ const MarketLandingPage = () => {
           />
           <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
             <div className="flex gap-5 w-max ml-4 md:ml-0">
-              {IngredientsEssentialOils?.slice(0, 5).map(
+              {IngredientsEssentialOils?.slice(0, 4).map(
                 (Object: {
                   name: string;
                   price: string;
@@ -269,7 +272,11 @@ const MarketLandingPage = () => {
                 ),
               )}
             </div>
-            <IngredientCard isCTA={true} id={"MarketPage-IngredientCards"} />
+            <IngredientCard
+              isCTA={true}
+              id={"MarketPage-IngredientCards"}
+              filter={"Huiles essentielles"}
+            />
           </Container>
         </div>
         <SectionTitle

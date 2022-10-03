@@ -8,6 +8,15 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const MarketLandingPage = () => {
+  useEffect(() => {
+    if (window.pageYOffset > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
+
   const { category } = useParams<{ category: string }>();
 
   const { data: AllIngredient } = useAllIngredientsQuery({

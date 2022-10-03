@@ -51,18 +51,44 @@ const IngredientSinglePage = () => {
       id: id,
     },
   });
+  //
+  const [brandInfo, setBrandinfo] = useState("Cosmaé");
+
+  function updateBrandinfo(brandInfo: string) {
+    switch (brandInfo) {
+      case "Aroma-zone":
+        return "Azoma-zone is well nowjsjsjsjs";
+      case "Cosmaé":
+        return "cosmaé is well nowjsjsjsjs";
+      case "mycometik":
+        return "test";
+      default:
+        return "Nothing found";
+    }
+  }
+
+  useEffect(() => {
+    const updatedBrandInfo = updateBrandinfo(brandInfo);
+    if (updatedBrandInfo) {
+      setBrandinfo(updatedBrandInfo); // please update the current brandInfo state with the setBrandInfo function
+    }
+    console.log(brandInfo);
+  }, []);
+
+  const [IngredientName, setIngredientName] = useState("Beurre de Karité");
 
   const { data: RecipeSimilar } = useRecipesQuery({
-    variables: { first: 8, filter: { ingredients: ["Beurre de Karité"] } }, //doesn't work !
+    variables: { first: 8, filter: { ingredients: [IngredientName] } },
   });
+
   console.log(RecipeSimilar);
 
   if (!RecipeSimilar) {
     return <Loading />;
   }
+  const recipeSimilar = RecipeSimilar?.allRecipes?.edges || [];
 
-  const recipesSmiliar = RecipeSimilar.allRecipes?.edges || [];
-  console.log(recipesSmiliar);
+  console.log(recipeSimilar);
 
   const Ingredient = data?.ingredient?.map((ingredient: any) => ({
     key: Math.random,
@@ -78,7 +104,6 @@ const IngredientSinglePage = () => {
     tags: ingredient?.tags,
     categoryIngredient: ingredient?.categoryIngredient,
   }));
-  console.log(Ingredient);
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -294,13 +319,11 @@ const IngredientSinglePage = () => {
         <h3>Recettes associées :</h3>
         <div className="w-full overflow-x-auto">
           <div className="flex flex-row gap-3 w-max p-6">
-            {recipesSmiliar?.slice(0, 5).map(
-              (
-                recipe, //doesn't work !
-              ) => (
-                <RecipeCard recipe={recipe}></RecipeCard>
-              ),
-            )}
+            {recipeSimilar?.slice(0, 5).map(recipe => (
+              <div className="flex mr-2">
+                <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
