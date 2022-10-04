@@ -15,6 +15,7 @@ export const FAQMarket: React.FC<FAQMarket> = ({ className }) => {
   return (
     <div className="flex flex-col w-full">
       <button
+        id="FAQ-question1"
         className="grid grid-cols-6 w-full bg-white h-10 rounded-md px-3"
         onClick={() => {
           setIsQuestion1Active(!isQuestion1Active);
@@ -44,6 +45,7 @@ export const FAQMarket: React.FC<FAQMarket> = ({ className }) => {
         </div>
       </div>
       <button
+        id="FAQ-question2"
         className="grid grid-cols-6 w-full bg-white h-10 rounded-md px-3 mt-4"
         onClick={() => {
           setIsQuestion2Active(!isQuestion2Active);
@@ -72,6 +74,7 @@ export const FAQMarket: React.FC<FAQMarket> = ({ className }) => {
         </div>
       </div>
       <button
+        id="FAQ-question3"
         className="grid grid-cols-6 w-full bg-white h-10 rounded-md px-3 mt-4"
         onClick={() => {
           setIsQuestion3Active(!isQuestion3Active);
@@ -101,6 +104,7 @@ export const FAQMarket: React.FC<FAQMarket> = ({ className }) => {
       </div>
 
       <button
+        id="FAQ-question4"
         className="grid grid-cols-6 w-full bg-white h-10 rounded-md px-3 mt-4"
         onClick={() => {
           setIsQuestion4Active(!isQuestion4Active);

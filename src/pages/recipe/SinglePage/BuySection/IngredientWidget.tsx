@@ -30,7 +30,7 @@ export const IngredientWidget: React.FC<IngredientWidget> = ({
   return (
     <>
       <div
-        id={keyID}
+        id={`singlePage-ingredientWidget-${name}`}
         className="flex w-full lg:w-96 h-16 bg-white rounded-md gap-2 shadow-flat | transform sm:hover:scale-105 ease-linear transition-all duration-150"
       >
         <Link

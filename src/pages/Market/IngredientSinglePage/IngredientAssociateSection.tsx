@@ -1,5 +1,5 @@
 import { useAllIngredientsQuery } from "./../../../graphql";
-import React, { useEffect } from "react";
+import React from "react";
 import { IngredientCard } from "../Components/IngredientCard";
 
 interface IngredientAssociateSection {

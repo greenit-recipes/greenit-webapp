@@ -412,7 +412,11 @@ const LandingPage = () => {
                 )}
           </Container>
           <Link to={RouteName.market} className="self-center">
-            <Button type={"darkBlue"} id="?" className="w-40 self-center mt-4">
+            <Button
+              type={"darkBlue"}
+              id="landingPage-market-explorer-plus"
+              className="w-40 self-center mt-4"
+            >
               Explorer plus
             </Button>
           </Link>

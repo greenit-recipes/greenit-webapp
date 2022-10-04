@@ -3,10 +3,8 @@ import { Button } from "components";
 import Modal from "components/layout/Modal/Modal";
 import { ModalMarketTest } from "components/layout/Modal/modalMarketTest";
 import { getImagePath } from "helpers/image.helper";
-import { visage } from "icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Url } from "url";
 
 interface IngredientCard {
   id: string;
@@ -40,11 +38,12 @@ export const IngredientCard: React.FC<IngredientCard> = ({
       {!isCTA ? (
         <>
           <Link
+            id={`ingredientCard-${name}`}
             to={{
               pathname: `${RouteName.market}/${id}`,
             }}
           >
-            <div id={keyID} className="relative">
+            <button id={`ingredientCard-${name}`} className="relative">
               <div className="flex flex-col w-44 lg:w-52 gap-1">
                 <div className="flex relative items-center h-36 w-44 lg:h-40 lg:w-52 rounded-md object-cover overflow-hidden">
                   <img
@@ -65,10 +64,10 @@ export const IngredientCard: React.FC<IngredientCard> = ({
                 <p className="text-left w-2/3 leading-4 text-sm">{producer}</p>
                 <p className="text-left font-medium text-lg">{price} €</p>
               </div>
-            </div>
+            </button>
           </Link>
           <Button
-            id="ingredient-card-addToCart"
+            id="ingredientCard-addToCart"
             type="darkBlueIcon"
             className="absolute bottom-0 right-0 w-12 h-10"
             haveIcon={true}
@@ -91,8 +90,8 @@ export const IngredientCard: React.FC<IngredientCard> = ({
         </>
       ) : (
         <Link
-          id={keyID}
-          to={`${RouteName.listpagemarket}/${filter && filter}`}
+          id={`ingredientCardCTA-${filter}`}
+          to={`${RouteName.listpagemarket}/${filter}`}
           className="bg-white sm:hover:shadow-flat rounded-lg |
         transform sm:hover:scale-101 ease-linear transition-all duration-120"
         >

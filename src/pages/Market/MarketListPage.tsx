@@ -1,8 +1,7 @@
 import { useAllIngredientsQuery, useRecipesQuery } from "../../graphql";
 import { Helmet } from "react-helmet";
-import { Button, Container, Footer, Loading, Navbar } from "components";
+import { Container, Footer, Navbar } from "components";
 import { IngredientCard } from "./Components/IngredientCard";
-import internal from "stream";
 import { SlideBar } from "./Components/SlideBar";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";

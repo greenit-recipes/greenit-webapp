@@ -1,9 +1,4 @@
-import App from "App";
-import {
-  useAllIngredientsQuery,
-  useIngredientQuery,
-  useRecipesQuery,
-} from "../../graphql";
+import { useAllIngredientsQuery, useRecipesQuery } from "../../graphql";
 import { Helmet } from "react-helmet";
 import {
   Button,
@@ -12,7 +7,6 @@ import {
   Loading,
   Navbar,
   RecipeCard,
-  SearchBar,
 } from "components";
 import { SlideBar } from "./Components/SlideBar";
 import { IngredientCard } from "./Components/IngredientCard";
@@ -314,7 +308,7 @@ const MarketLandingPage = () => {
           </div>
         </Container>
         <Button
-          id="LandingMarket-Decouvrir-Recettes"
+          id="LandingMarket-decouvrir-recettes"
           type="darkBlue"
           className="my-4"
         >

@@ -37,6 +37,7 @@ export const AddtoCartBanner: React.FC<AddtoCartBanner> = ({
               <h4> 1</h4>
             </div>
             <Button
+              id="ingredientPage-Ajouer-au-panier"
               className="w-full"
               type="darkBlue"
               onClick={() => setShowModalMarket(true)}
@@ -56,6 +57,7 @@ export const AddtoCartBanner: React.FC<AddtoCartBanner> = ({
               <h4> 1</h4>
             </div>
             <Button
+              id="ingredientPage-Ajouer-au-panier"
               className="w-full"
               type="darkBlue"
               onClick={() => setShowModalMarket(true)}

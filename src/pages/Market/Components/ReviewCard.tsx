@@ -1,4 +1,4 @@
-import { nathalier, visage } from "icons";
+import { nathalier } from "icons";
 import React from "react";
 
 interface ReviewCard {

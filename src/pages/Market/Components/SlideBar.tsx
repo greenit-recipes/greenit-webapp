@@ -54,6 +54,7 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID, isMarketListPage }) => {
                 pathname: `${RouteName.listpagemarket}/${item.filter}`,
               }}
               className="cursor-pointer"
+              id={`SlideBar-categorie-${item.filter}`}
             >
               <h4>{item.title}</h4>
             </Link>

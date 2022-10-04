@@ -11,7 +11,7 @@ import { useIngredientQuery, useRecipesQuery } from "../../../graphql";
 import { getObjectSession } from "helpers/session-helper";
 import useIsMobile from "hooks/isMobile";
 import { useEffect, useState } from "react";
-import { Helmet, HelmetTags } from "react-helmet";
+import { Helmet } from "react-helmet";
 import { useHistory, useParams } from "react-router-dom";
 import { AddtoCartBanner } from "../Components/AddtoCartBanner";
 import { MenuMultiSelect } from "../Components/MenuMultiSelect";
@@ -20,7 +20,6 @@ import { EngagementBanner } from "../Components/EngagementBanner";
 import { FAQMarket } from "../Components/FAQMarket/FAQMarket";
 import { getImagePath } from "helpers/image.helper";
 import { IngredientAssociateSection } from "./IngredientAssociateSection";
-import { visage } from "icons";
 
 const IngredientSinglePage = () => {
   const isMobile = useIsMobile();
@@ -228,6 +227,7 @@ const IngredientSinglePage = () => {
                   </>
                 ))}
                 <button
+                  id="ingredientPage-tags-voir-plus"
                   className="flex cursor-pointer items-center underline m-2"
                   onClick={() => setToggle(!toggle)}
                 >
@@ -333,10 +333,18 @@ const IngredientSinglePage = () => {
 
             {!isMobile && (
               <div className="flex gap-4 w-full justify-end">
-                <Button className="w-40" type="darkBlue">
+                <Button
+                  className="w-40"
+                  type="darkBlue"
+                  id="ingredientPage-ecrire-avis"
+                >
                   Écrire un avis
                 </Button>
-                <Button className="w-40" type="darkBlue">
+                <Button
+                  className="w-40"
+                  type="darkBlue"
+                  id="ingredientPage-poser-question"
+                >
                   Poser une question
                 </Button>
               </div>
@@ -381,10 +389,18 @@ const IngredientSinglePage = () => {
 
           {isMobile && (
             <div className="flex gap-4 w-full justify-center mt-4">
-              <Button className="w-40" type="darkBlue">
+              <Button
+                className="w-40"
+                type="darkBlue"
+                id="ingredientPage-ecrire-avis"
+              >
                 Écrire un avis
               </Button>
-              <Button className="w-40" type="darkBlue">
+              <Button
+                className="w-40"
+                type="darkBlue"
+                id="ingredientPage-poser-question"
+              >
                 Poser une question
               </Button>
             </div>

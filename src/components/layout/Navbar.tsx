@@ -96,7 +96,10 @@ export const Navbar: React.FC = () => {
             <div className="grid w-full justify-items-end">
               <Link to={RouteName.profil}>
                 <div className="px-2 cursor-pointer">
-                  <i className="bx bxs-user text-blue text-3xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"></i>
+                  <i
+                    className="bx bxs-user text-blue text-3xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
+                    id="navBar-profil-loggedIn"
+                  ></i>
                 </div>
               </Link>
             </div>
@@ -136,9 +139,9 @@ export const Navbar: React.FC = () => {
               </h2>
             </Link>
             <Link className="p-2" to={RouteName.market}>
-              <h2 id="navbar-market" className="text-yellow">
+              <h2 id="navbar-market" className="text-white">
                 Market{" "}
-                <span className="text-sm font-light ml-1">
+                <span className="text-xs font-light" id="navbar-market">
                   {" "}
                   : ingrédients à petits prix
                 </span>
@@ -236,7 +239,7 @@ export const Navbar: React.FC = () => {
         <Link to={RouteName.market}>
           <NavButton id="navbar-market" type="black">
             Market{" "}
-            <span className="text-sm font-light ml-1">
+            <span className="text-sm font-light ml-1" id="navbar-market">
               {" "}
               : ingrédients à petits prix
             </span>
@@ -547,7 +550,10 @@ export const Navbar: React.FC = () => {
                 className="cursor-pointer pr-4"
                 onClick={() => setShowModalMarket(true)}
               >
-                <i className="bx bx-cart text-yellow text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"></i>
+                <i
+                  className="bx bx-cart text-yellow text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
+                  id="navBar-cart-notLogged"
+                ></i>
               </div>
               <Modal
                 isCenter={true}
@@ -580,7 +586,10 @@ export const Navbar: React.FC = () => {
                 className="cursor-pointer px-2"
                 onClick={() => setShowModalMarket(true)}
               >
-                <i className="bx bxs-cart text-yellow text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"></i>
+                <i
+                  className="bx bxs-cart text-yellow text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
+                  id="navBar-cart-LoggedIn"
+                ></i>
               </div>
               <Modal
                 isCenter={true}
@@ -593,7 +602,10 @@ export const Navbar: React.FC = () => {
               </Modal>
               <Link to={RouteName.profil}>
                 <div className="pl-2 pr-4 cursor-pointer">
-                  <i className="bx bxs-user text-blue text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"></i>
+                  <i
+                    className="bx bxs-user text-blue text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
+                    id="navBar-profil-LoggedIn"
+                  ></i>
                 </div>
               </Link>
             </>

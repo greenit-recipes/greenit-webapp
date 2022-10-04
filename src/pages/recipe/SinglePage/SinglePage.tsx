@@ -505,12 +505,13 @@ const RecipeSinglePage = () => {
                 </p>
                 <div className="flex self-center w-11/12 lg:max-w-20 h-10">
                   <Button
+                    id="singlePage-ajouter-ingredients-panier"
                     type="darkBlue"
                     className="h-10 w-full max-w-26 lg:max-w-20"
                     onClick={() => setShowModalMarket(true)}
                   >
                     <i className={`bx bx-cart-download text-2xl mr-2`} />
-                    Ajouter tout les ingrédients au panier
+                    Ajouter tous les ingrédients au panier
                   </Button>
                 </div>
 
@@ -664,6 +665,7 @@ const RecipeSinglePage = () => {
                 </div>
                 <div className="flex flex-col lg:flex-row gap-2 lg:gap-4 mt-4 h-10">
                   <Button
+                    id="singlePage-ajouter-ingredients-panier"
                     type="green"
                     className="h-10 w-full max-w-26 lg:max-w-20"
                     onClick={() => setShowModalMarket(true)}
@@ -673,10 +675,11 @@ const RecipeSinglePage = () => {
                   </Button>
                   <Link to={RouteName.market} className="w-full">
                     <Button
+                      id="singlePage-decouvrir-greenitMarket"
                       type="darkBlue"
                       className="h-10 w-full max-w-26 lg:w-auto lg:max-w-20"
                     >
-                      Découvrez Greenit Market
+                      Découvre Greenit Market
                     </Button>
                   </Link>
                 </div>

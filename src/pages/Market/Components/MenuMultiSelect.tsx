@@ -21,7 +21,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
   const [isCautionActive, setIsCautionActive] = useState(false);
   const [isBrandInfoActive, setIsBrandInfoActive] = useState(false);
 
-  const [brandInfo, setBrandinfo] = useState("Cosmaé");
+  const [brandInfo, setBrandinfo] = useState(producer);
 
   function updateBrandinfo(brandInfo: string) {
     switch (brandInfo) {
@@ -50,6 +50,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
         <div className="overflow-x-auto w-full">
           <div className="flex w-max pb-1">
             <button
+              id="ingredientPage-information"
               className={`flex px-6 bg-white items-center h-14 ${
                 isInfoActive
                   ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-20"
@@ -67,6 +68,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
             </button>
 
             <button
+              id="ingredientPage-indications"
               className={`flex px-6 bg-white items-center h-14 ${
                 isIndicationsActive
                   ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
@@ -84,6 +86,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
             </button>
 
             <button
+              id="ingredientPage-precaution"
               className={`flex px-6 bg-white items-center h-14 ${
                 isCautionActive
                   ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
@@ -101,6 +104,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
             </button>
 
             <button
+              id="ingredientPage-à-propos-de-la-marque"
               className={`flex px-6 bg-white items-center h-14 ${
                 isBrandInfoActive
                   ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
@@ -121,6 +125,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
       ) : (
         <div className="w-full flex pb-1">
           <button
+            id="ingredientPage-information"
             className={`flex px-6 bg-white items-center h-14 ${
               isInfoActive
                 ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
@@ -138,6 +143,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
           </button>
 
           <button
+            id="ingredientPage-indication"
             className={`flex px-6 bg-white items-center h-14 ${
               isIndicationsActive
                 ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
@@ -155,6 +161,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
           </button>
 
           <button
+            id="ingredientPage-precaution"
             className={`flex px-6 bg-white items-center h-14 ${
               isCautionActive
                 ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
@@ -172,6 +179,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
           </button>
 
           <button
+            id="ingredientPage-à-propos-de-la-marque"
             className={`flex px-6 bg-white items-center h-14 ${
               isBrandInfoActive
                 ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
