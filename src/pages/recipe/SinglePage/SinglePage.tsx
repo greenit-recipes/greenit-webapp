@@ -37,7 +37,8 @@ import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
 import "./SinglePage.css";
 import { IngredientBuySection } from "./BuySection/IngredientBuySection";
 import { ModalMarketTest } from "components/layout/Modal/modalMarketTest";
-import privacyPdf from "../../../privacy.pdf";
+import pdfhygienRules from "../../../pdfhygienRules.pdf";
+import precaution from "../../../precaution.pdf";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
@@ -90,7 +91,8 @@ const RecipeSinglePage = () => {
   );
   const [numberModal, setNumberModal] = useState(0);
 
-  // Ingredients Market
+  //END OF MARKET DISPLAY
+
   const [haveIngredientMarket, sethaveIngredientMarket] = useState(false);
   // this above is to display or not the entire section
   const ingredients = data?.recipe?.ingredients?.map((ingredients: any) => ({
@@ -109,6 +111,7 @@ const RecipeSinglePage = () => {
     });
     console.log(haveIngredientMarket);
   });
+  //END OF MARKET DISPLAY
 
   // Comments
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
@@ -699,7 +702,7 @@ const RecipeSinglePage = () => {
           <div className="flex flex-col items-center w-full mb-10">
             <div className="flex flex-col lg:flex-row w-11/12 lg:w-4/6 gap-0 lg:gap-4">
               <h3 className="mr-4 mb-2">Précautions d’emploi</h3>
-              <a href={privacyPdf} target="_blank" rel="noreferrer">
+              <a href={precaution} target="_blank" rel="noreferrer">
                 <div className="flex inline items-center gap-1">
                   <i className="bx bx-file-blank text-xl text-darkBlue"></i>
                   <p className="text-sm font-medium">
@@ -707,7 +710,7 @@ const RecipeSinglePage = () => {
                   </p>
                 </div>
               </a>
-              <a href={privacyPdf} target="_blank" rel="noreferrer">
+              <a href={pdfhygienRules} target="_blank" rel="noreferrer">
                 <div className="flex inline items-center gap-1">
                   <i className="bx bx-file-blank text-xl text-darkBlue"></i>
                   <p className="text-sm font-medium">
@@ -715,23 +718,17 @@ const RecipeSinglePage = () => {
                   </p>
                 </div>
               </a>
-              <a href={privacyPdf} target="_blank" rel="noreferrer">
-                <div className="flex inline items-center gap-1">
-                  <i className="bx bx-file-blank text-xl text-darkBlue"></i>
-                  <p className="text-sm font-medium">
-                    Traçabilité des produits
-                  </p>
-                </div>
-              </a>
             </div>
-            <p className="w-11/12 lg:w-4/6 text-sm mt-2">
-              Quelques précautions sont à prendre lors de la confection de vos
-              produits. Pour chaque recette postée, nous passons du temps à les
-              vérifier (et modifier si nécessaire). Toutefois, certaines
-              personnes peuvent réagir différemment. Il est recommandé de tester
-              les produits sur votre poignet 48h avant l’utilisation sur votre
-              peau. Greenit n’est pas responsable en cas d’allergies ou
-              problèmes lié à l’exécution de la recette.
+            <p className="w-11/12 lg:w-4/6 text-xs mt-2">
+              Les recettes sont des suggestions de mélange d’ingrédients
+              proposées à titre indicatif : tu peux changer ces ingrédients par
+              d’autres (voir alternatives sous les ingrédients). Les recettes
+              n’engagent pas notre responsabilité. Chaque recette postée est
+              vérifiée par nos soins et par la communauté : elles ne sont pas
+              destinées à des fins commerciales ni gracieuses. Leurs
+              réalisations restent sous ta responsabilité. Les ingrédients de la
+              recette peuvent être utilisés à nouveau pour les préparations de
+              ton choix.
             </p>
           </div>
           <div className="w-11/12 mb-10 lg:w-4/6">

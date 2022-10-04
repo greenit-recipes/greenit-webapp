@@ -75,12 +75,10 @@ const MarketLandingPage = () => {
     <div className="flex flex-col | items-center self-center">
       <Navbar />
       <Helmet>
-        <title>
-          Toutes vos recettes DIY pour une consommation fait-maison | Greenit
-        </title>
+        <title>Ingrédients pour la cosmétique maison | Greenit Market</title>
         <meta
           name="description"
-          content="Votre espace de partage de recette DIY, des astuces écologiques pour la maison, des ateliers pour débuter dans le fait-maison et des pages sur les bienfaits des ingrédients."
+          content="Découvrez une sélection d’huiles végétales, d’huiles essentielles, d’ingrédients cosmétiques et d’entretien pour réaliser vos produits du quotidien."
         />
       </Helmet>
       <div className="flex justify-center bg-yellowL h-32 lg:h-26 w-full">

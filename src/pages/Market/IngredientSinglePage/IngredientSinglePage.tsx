@@ -105,12 +105,12 @@ const IngredientSinglePage = () => {
     <div className="flex flex-col | items-center self-center">
       <Navbar />
       <Helmet>
-        <title>
-          Toutes vos recettes DIY pour une consommation fait-maison | Greenit
-        </title>
+        {Ingredient?.map((Object: { name: string }) => (
+          <title>{Object?.name} - Greenit Market</title>
+        ))}
         <meta
           name="description"
-          content="Votre espace de partage de recette DIY, des astuces écologiques pour la maison, des ateliers pour débuter dans le fait-maison et des pages sur les bienfaits des ingrédients."
+          content="Découvrez une sélection d’huiles végétales, beurres végétaux, macérât huileux, huiles essentielles, poudres végétales, argiles, base de préparation, ingrédients d’entretien..."
         />
       </Helmet>
 
