@@ -1,18 +1,7 @@
 import { RouteName } from "App";
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  FBIcon,
-  footerChat,
-  footerValues,
-  footerWorld,
-  InstagramIcon,
-  MailIcon,
-  pinterestIcon,
-  rondIcon,
-  tiktokIcon,
-} from "../../icons";
-import privacyPdf from "../../privacy.pdf";
+import privacyPdf from "../../privacy.pdf"; //no index
 
 export const Footer: React.FC = () => {
   return (
@@ -124,7 +113,7 @@ export const Footer: React.FC = () => {
           </div>
         ))}
       </div>
-      <a
+      <a //no index
         href={privacyPdf}
         target="_blank"
         rel="noreferrer"
