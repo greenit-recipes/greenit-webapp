@@ -87,6 +87,7 @@ const IngredientSinglePage = () => {
     key: Math.random,
     name: ingredient?.name,
     image: ingredient?.image,
+    image2: ingredient?.imageOptional2,
     contenance: ingredient?.contenance,
     informationMarket: ingredient?.informationMarket,
     indication: ingredient?.indication,
@@ -134,23 +135,23 @@ const IngredientSinglePage = () => {
           <div className="grid grid-cols-3 grid-row-2 gap-4 w-5/12 h-fit">
             {Ingredient?.map((Object: { image: any }) => (
               <img
-                className="col-span-2 row-span-2 h-full rounded-md"
+                className="w-86 object-cover col-span-2 row-span-2 h-full rounded-md"
                 src={getImagePath(Object?.image)}
+                alt="img-ingredient"
+                loading="lazy"
+              />
+            ))}
+            {Ingredient?.map((Object: { image2: any }) => (
+              <img
+                className="w-52 object-cover rounded-md"
+                src={getImagePath(Object?.image2)}
                 alt="img-ingredient"
                 loading="lazy"
               />
             ))}
             {Ingredient?.map((Object: { image: any }) => (
               <img
-                className="w-full rounded-md"
-                src={getImagePath(Object?.image)}
-                alt="img-ingredient"
-                loading="lazy"
-              />
-            ))}
-            {Ingredient?.map((Object: { image: any }) => (
-              <img
-                className="w-full rounded-md"
+                className="w-52 object-cover rounded-md"
                 src={getImagePath(Object?.image)}
                 alt="img-ingredient"
                 loading="lazy"
