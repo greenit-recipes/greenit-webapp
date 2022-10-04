@@ -11,7 +11,7 @@ import { SectionIngredient } from "../../recipe/SinglePage/IngredientUsentil/Sec
 import useIsMobile from "../../../hooks/isMobile";
 import { RWebShare } from "react-web-share";
 import Modal from "components/layout/Modal/Modal";
-import { ModalMarketTest } from "components/layout/modalMarketTest";
+import { ModalMarketTest } from "components/layout/Modal/modalMarketTest";
 
 interface TabLDCProps {
   hasLDC: boolean;

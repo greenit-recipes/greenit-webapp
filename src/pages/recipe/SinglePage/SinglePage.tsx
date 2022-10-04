@@ -36,7 +36,7 @@ import { LikeField } from "./LikeField";
 import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
 import "./SinglePage.css";
 import { IngredientBuySection } from "./BuySection/IngredientBuySection";
-import { ModalMarketTest } from "components/layout/modalMarketTest";
+import { ModalMarketTest } from "components/layout/Modal/modalMarketTest";
 import privacyPdf from "../../../privacy.pdf";
 
 const ModalLogGreenit = React.lazy(

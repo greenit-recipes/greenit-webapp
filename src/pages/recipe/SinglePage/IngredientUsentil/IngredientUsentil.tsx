@@ -84,7 +84,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
         <NotificationAlert
           key={getRandomKey("ldc-bulk-added")}
           type="success"
-          titre="Ajouté(s) aux ingrédients chez toi !"
+          title="Ajouté(s) aux ingrédients chez toi !"
           text="Retrouve ta liste dans ton profil."
         />,
         document.getElementById("notif"),
@@ -96,7 +96,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
         <NotificationAlert
           key={getRandomKey("ingredient-limit-reached-recipe")}
           type="alert"
-          titre="Tu as beaucoup d’ingrédients chez toi ?"
+          title="Tu as beaucoup d’ingrédients chez toi ?"
           text="Crée-toi un compte pour en ajouter plus !"
         />,
         document.getElementById("notif"),
@@ -108,7 +108,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
         <NotificationAlert
           key={getRandomKey("ldc-bulk-access")}
           type="alert"
-          titre="Tu n’as pas accès à la liste de course."
+          title="Tu n’as pas accès à la liste de course."
           text="Crée-toi un compte pour ajouter à ta liste !"
         />,
         document.getElementById("notif"),

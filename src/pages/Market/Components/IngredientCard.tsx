@@ -1,7 +1,7 @@
 import { RouteName } from "App";
 import { Button } from "components";
 import Modal from "components/layout/Modal/Modal";
-import { ModalMarketTest } from "components/layout/modalMarketTest";
+import { ModalMarketTest } from "components/layout/Modal/modalMarketTest";
 import { getImagePath } from "helpers/image.helper";
 import { visage } from "icons";
 import React, { useState } from "react";

@@ -14,7 +14,7 @@ import debounce from "lodash/debounce";
 import { useQuery } from "@apollo/client";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "../../pages/AutocompleteRequest";
 import Modal from "./Modal/Modal";
-import { ModalMarketTest } from "./modalMarketTest";
+import { ModalMarketTest } from "./Modal/modalMarketTest";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),

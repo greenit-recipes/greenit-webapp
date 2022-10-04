@@ -1,6 +1,6 @@
 import { Button } from "components";
 import Modal from "components/layout/Modal/Modal";
-import { ModalMarketTest } from "components/layout/modalMarketTest";
+import { ModalMarketTest } from "components/layout/Modal/modalMarketTest";
 import React, { useState } from "react";
 
 interface AddtoCartBanner {

@@ -114,7 +114,7 @@ const ActivateResetPassword: React.FC = () => {
         {dataResetPassword?.passwordReset?.success && (
           <NotificationAlert
             type="success"
-            titre="Mot de passe réinitialisé !"
+            title="Mot de passe réinitialisé !"
             text="Tu peux maintenant te connecter."
           ></NotificationAlert>
         )}

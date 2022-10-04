@@ -51,7 +51,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
         <NotificationAlert
           key={getRandomKey("recipe-favorite")}
           type="success"
-          titre="Recette ajoutée à tes favoris"
+          title="Recette ajoutée à tes favoris"
           text="Retrouve les dans ton profil !"
         />,
         document.getElementById("notif"),
@@ -64,7 +64,7 @@ export const FavouriteField: React.FC<IFavouriteField> = ({
         <NotificationAlert
           key={getRandomKey("recipe-favorite")}
           type="alert"
-          titre="Recette enlevée de tes favoris"
+          title="Recette enlevée de tes favoris"
         />,
         document.getElementById("notif"),
       );

@@ -209,6 +209,11 @@ import Gif_LDC from "./gif_ldc.gif";
 import Gif_Personnalisation from "./gif_personnalisation.gif";
 import Gif_Profil from "./gif_profil.gif";
 
+// Market
+import Market_Modal from "./MarketModal.svg";
+import BlueLCircle from "./BlueLCircle.svg";
+import MarketModal_Mobile from "./MarketModal_Mobile.svg";
+
 export {
   wellbeing,
   corps,
@@ -381,4 +386,7 @@ export {
   TopImageMarketMobile,
   TopImageMarketDesktopLeft,
   TopImageMarketDesktopRight,
+  Market_Modal,
+  BlueLCircle,
+  MarketModal_Mobile,
 };

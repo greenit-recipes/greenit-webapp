@@ -1,8 +1,5 @@
-import { RouteName } from "App";
-import { Button } from "components";
 import { nathalier, visage } from "icons";
 import React from "react";
-import { Link } from "react-router-dom";
 
 interface ReviewCard {
   PersonName: string;
