@@ -12,6 +12,7 @@ query Ingredient($id: String!) {
     producer
     image
     imageOptional2
+    imageOptional3
     isForMarket
     tags {
       id

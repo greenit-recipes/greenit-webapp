@@ -20,6 +20,7 @@ import { EngagementBanner } from "../Components/EngagementBanner";
 import { FAQMarket } from "../Components/FAQMarket/FAQMarket";
 import { getImagePath } from "helpers/image.helper";
 import { IngredientAssociateSection } from "./IngredientAssociateSection";
+import { visage } from "icons";
 
 const IngredientSinglePage = () => {
   const isMobile = useIsMobile();
@@ -88,6 +89,7 @@ const IngredientSinglePage = () => {
     name: ingredient?.name,
     image: ingredient?.image,
     image2: ingredient?.imageOptional2,
+    image3: ingredient?.imageOptional3,
     contenance: ingredient?.contenance,
     informationMarket: ingredient?.informationMarket,
     indication: ingredient?.indication,
@@ -132,28 +134,28 @@ const IngredientSinglePage = () => {
           <i className="bx bx-arrow-back text-3xl" />
         </div>
         {!isMobile ? (
-          <div className="grid grid-cols-3 grid-row-2 gap-4 w-5/12 h-fit">
+          <div className="grid grid-cols-3 grid-row-2 gap-4 sm:w-2/3 lg:w-5/12 h-fit">
             {Ingredient?.map((Object: { image: any }) => (
               <img
-                className="w-86 object-cover col-span-2 row-span-2 h-full rounded-md"
+                className="w-84 h-84 object-cover col-span-2 row-span-2 h-full rounded-md"
                 src={getImagePath(Object?.image)}
-                alt="img-ingredient"
+                alt={"photo de l'ingredient"}
                 loading="lazy"
               />
             ))}
             {Ingredient?.map((Object: { image2: any }) => (
               <img
-                className="w-52 object-cover rounded-md"
+                className="w-41 h-41 object-cover rounded-md"
                 src={getImagePath(Object?.image2)}
-                alt="img-ingredient"
+                alt={""}
                 loading="lazy"
               />
             ))}
-            {Ingredient?.map((Object: { image: any }) => (
+            {Ingredient?.map((Object: { image3: any }) => (
               <img
-                className="w-52 object-cover rounded-md"
-                src={getImagePath(Object?.image)}
-                alt="img-ingredient"
+                className="w-41 h-41 object-cover rounded-md"
+                src={getImagePath(Object?.image3)}
+                alt={""}
                 loading="lazy"
               />
             ))}
@@ -163,25 +165,23 @@ const IngredientSinglePage = () => {
             <div className="flex w-max gap-4 pb-4">
               {Ingredient?.map((Object: { image: any }) => (
                 <img
-                  className="object-cover w-60 rounded-md"
+                  className="object-cover w-60 h-60 rounded-md"
                   src={getImagePath(Object?.image)}
-                  alt="img-ingredient"
+                  alt="photo de l'ingredient"
                   loading="lazy"
                 />
               ))}
-              {Ingredient?.map((Object: { image: any }) => (
+              {Ingredient?.map((Object: { image2: any }) => (
                 <img
-                  className="object-cover w-60 rounded-md"
-                  src={getImagePath(Object?.image)}
-                  alt="img-ingredient"
+                  className="object-cover w-60 h-60 rounded-md"
+                  src={getImagePath(Object?.image2)}
                   loading="lazy"
                 />
               ))}
-              {Ingredient?.map((Object: { image: any }) => (
+              {Ingredient?.map((Object: { image3: any }) => (
                 <img
-                  className="object-cover w-60 rounded-md"
-                  src={getImagePath(Object?.image)}
-                  alt="img-ingredient"
+                  className="object-cover w-60 h-60 rounded-md"
+                  src={getImagePath(Object?.image3)}
                   loading="lazy"
                 />
               ))}

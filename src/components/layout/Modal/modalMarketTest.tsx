@@ -88,7 +88,7 @@ export const ModalMarketTest: React.FC<ModalMarketTest> = ({ className }) => {
         <input
           className="rounded-md text-sm h-11 w-full px-3 text-darkBlue min-w-18 border-1 border-darkBlue | focus:outline-none focus:shadow-outline z-10"
           id="landingPage-newsletter-email"
-          placeholder="Ton email pour recevoir la promotion"
+          placeholder="Ton e-mail pour recevoir la promotion"
           type="email"
           {...register("email")}
         ></input>
@@ -99,9 +99,8 @@ export const ModalMarketTest: React.FC<ModalMarketTest> = ({ className }) => {
         {errors.email?.message}
         {data?.createNewsletter?.success && (
           <NotificationAlert
-            isModal={true}
-            title="Merci"
-            text="Merci !"
+            title="Adresse e-mail bien reçue."
+            text="Tu receveras un code promo dès le lancement !"
             type={"success"}
           />
         )}

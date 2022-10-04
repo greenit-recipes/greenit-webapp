@@ -6,7 +6,6 @@ interface NotificationAlertProps {
   title?: string;
   type?: "success" | "alert" | "error";
   hidden?: boolean;
-  isModal?: boolean;
 }
 
 interface ButtonStyle {
@@ -20,7 +19,6 @@ export const NotificationAlert: React.FC<NotificationAlertProps> = ({
   title,
   type,
   hidden,
-  isModal,
 }) => {
   const style: ButtonStyle = {
     BgColor: "",
@@ -48,9 +46,9 @@ export const NotificationAlert: React.FC<NotificationAlertProps> = ({
 
   return (
     <div
-      className={`${hidden ? "hidden" : "notification"} fixed ${
-        !isModal ? "-right-1" : "right-4"
-      } w-auto h-auto rounded-lg p-3 md:p-4 ${style.BgColor}`}
+      className={`${
+        hidden ? "hidden" : "notification"
+      } fixed w-auto h-auto rounded-lg p-3 md:p-4 ${style.BgColor}`}
     >
       <div className="flex flex-row items-center">
         <i

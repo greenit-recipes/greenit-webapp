@@ -144,7 +144,7 @@ const MarketLandingPage = () => {
                 <span className="text-yellow trait-yellow-desktop">
                   Greenit market
                 </span>
-                , le meilleur des cosmétiques <br /> naturels à petit prix !
+                , le meilleur des cosmétiques <br /> maison à petit prix !
               </>
             ) : (
               <>
@@ -153,7 +153,7 @@ const MarketLandingPage = () => {
                 </span>
                 <br />
                 <span className="font-medium">
-                  le meilleur des cosmétiques <br /> naturelles à petit prix !
+                  le meilleur des cosmétiques <br /> maison à petit prix !
                 </span>
               </>
             )}
