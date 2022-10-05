@@ -15,13 +15,14 @@ export const RouteName = {
   why: "/projet",
   contact: "/contact",
   recipes: "/recettes",
-  market: "/market",
   createRecipe: "/creation-recette",
   profil: "/profil",
   tutoFullXpBeginner: "/tuto-box-débutant",
   startDiyGreenitFullXp: "/se-lancer-dans-le-fait-maison",
   findOUtMoreBoxGreentilFullXP: "/commande-info",
-  qrFullXp: "/bienvenue-box"
+  qrFullXp: "/bienvenue-box",
+  market: "/market",
+  listpagemarket: "/ingredients/:category_ingredient"
 };
 
 export default (
@@ -40,6 +41,10 @@ export default (
       {/*full xp*/}
       <Route path={RouteName.startDiyGreenitFullXp} />
       <Route path={RouteName.findOUtMoreBoxGreentilFullXP} />
-      <Route />
+
+      {/*market*/}
+      <Route path={RouteName.market} />
+      <Route path={RouteName.findOUtMoreBoxGreentilFullXP} />
+      <Route path="/market/:id" />
     </Route>
 );

@@ -79,7 +79,7 @@ const greenitFullXpRoute = {
 export const RouteName = {
   accueil: "/",
   market: "/market", // no index
-  listpagemarket: "/ingredients", // no index
+  listpagemarket: "/ingredients",
   resetPassword: "/reinitialisation-mot-de-passe", // no index
   tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
   accountCreated: "/compte-crée", // no index
@@ -134,11 +134,6 @@ const App: React.FC = () => {
 
           <PublicRoute
             path="/ingredients/:category_ingredient" //to change to categorySlug
-            component={MarketListPage}
-            exact
-          />
-          <PublicRoute
-            path={RouteName.listpagemarket}
             component={MarketListPage}
             exact
           />
