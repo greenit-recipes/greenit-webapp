@@ -65,7 +65,7 @@ const IngredientSinglePage = () => {
     <div className="flex flex-col | items-center self-center">
       <Navbar />
       <Helmet>
-        <title> {ingredient.name} | Greenit Market</title>
+        <title>{`${data?.ingredient?.name} | Greenit Market`}</title>
         <meta
           name="description"
           content="Découvrez une sélection d’huiles végétales, beurres végétaux, macérât huileux, huiles essentielles, poudres végétales, argiles, base de préparation, ingrédients d’entretien..."
