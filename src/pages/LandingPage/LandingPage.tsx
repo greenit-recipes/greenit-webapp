@@ -42,7 +42,7 @@ import "pages/LandingPage/LandingPage.css";
 import { IngredientCard } from "pages/Market/Components/IngredientCard";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
 import "pages/recipe/SinglePage/SinglePage.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import "react-multi-carousel/lib/styles.css";
 import { Link, useHistory } from "react-router-dom";

@@ -20,7 +20,7 @@ export const FilterBarSearch: React.FC<{
       <SearchBar
         keyId={keyId}
         customClassList={"z-40"}
-        size="small"
+        size="large"
         suggestionIsActive={true}
         suggestions={recipesAutoComplete}
         setValue={setSearch}
