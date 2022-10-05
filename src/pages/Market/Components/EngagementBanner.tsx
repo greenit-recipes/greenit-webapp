@@ -3,11 +3,19 @@ import React from "react";
 
 interface EngagementBanner {
   className?: string;
+  bgBlueL?: boolean;
 }
 
-export const EngagementBanner: React.FC<EngagementBanner> = ({ className }) => {
+export const EngagementBanner: React.FC<EngagementBanner> = ({
+  className,
+  bgBlueL,
+}) => {
   return (
-    <div className="h-full w-full bg-white flex flex-col items-center self-center pb-10">
+    <div
+      className={`h-full w-full ${
+        bgBlueL ? "bg-blueL" : "bg-white"
+      } flex flex-col items-center self-center pb-10`}
+    >
       <Container className="flex flex-wrap gap-4 w-full justify-center lg:w-11/12">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 | w-full px-4 my-4 lg:my-10 | lg:gap-3 ">
           {[

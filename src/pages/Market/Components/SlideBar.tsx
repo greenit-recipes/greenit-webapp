@@ -16,7 +16,7 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID, isMarketListPage }) => {
       <div className="flex flex-cols gap-7 w-max px-4">
         <Link
           to={{
-            pathname: `${RouteName.listpagemarket}/Tous les ingrédients`,
+            pathname: `${RouteName.listpagemarket}/Tous-les-ingrédients`,
           }}
           className="cursor-pointer"
         >
@@ -25,27 +25,27 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID, isMarketListPage }) => {
         {[
           {
             title: "Huiles végétales et beurres",
-            filter: "Huiles végétales et beurres",
+            filter: "Huiles-végétales-et-beurres",
           },
           {
             title: "Poudres et argiles",
-            filter: "Poudres et argiles",
+            filter: "Poudres-et-argiles",
           },
           {
             title: "Huiles essentielles",
-            filter: "Huiles essentielles",
+            filter: "Huiles-essentielles",
           },
           {
             title: "Hydrolats et eaux florales",
-            filter: "Hydrolats et eaux florales",
+            filter: "Hydrolats-eaux-florales",
           },
           {
             title: "Ingrédients cosmétiques",
-            filter: "Ingrédients cosmétiques",
+            filter: "Ingrédients-cosmétiques",
           },
           {
             title: "Ingrédients d'entretien",
-            filter: "Ingrédients d'entretien",
+            filter: "Ingrédients-entretien",
           },
         ].map((item, key) => (
           <>

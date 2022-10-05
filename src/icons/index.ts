@@ -1,14 +1,8 @@
-import { Icon } from "./../components/misc/Icon";
 // CATEGORIES
 import wellbeing from "./bien-être_icon.png";
 import corps from "./corps_recette.png";
 import visage from "./visage_recette.jpeg";
 import maison from "./maison_recette.png";
-
-//INGREDIENTS
-import ingredients1 from "./ingredients_1.png";
-import ingredients2 from "./ingredients_2.png";
-import ingredients3 from "./ingredients_3.png";
 
 // LOGO
 import logo from "./NewLogo_Small.svg";
@@ -219,9 +213,6 @@ export {
   corps,
   visage,
   maison,
-  ingredients1,
-  ingredients2,
-  ingredients3,
   logo,
   logoBig,
   premierspas,

@@ -133,7 +133,7 @@ const App: React.FC = () => {
           />
 
           <PublicRoute
-            path="/ingredients/:category"
+            path="/ingredients/:category_ingredient" //to change to categorySlug
             component={MarketListPage}
             exact
           />

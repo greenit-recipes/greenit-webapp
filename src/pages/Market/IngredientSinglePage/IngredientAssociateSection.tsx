@@ -3,8 +3,8 @@ import React from "react";
 import { IngredientCard } from "../Components/IngredientCard";
 
 interface IngredientAssociateSection {
-  categoryIngredient: string;
-  name: string;
+  categoryIngredient: any;
+  name: any;
 }
 
 export const IngredientAssociateSection: React.FC<
@@ -57,7 +57,10 @@ export const IngredientAssociateSection: React.FC<
             ),
           )}
 
-        <IngredientCard id="IngredientCard" isCTA={true}></IngredientCard>
+        <IngredientCard
+          filter={categoryIngredient}
+          isCTA={true}
+        ></IngredientCard>
       </div>
     </div>
   );

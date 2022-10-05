@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface IngredientCard {
-  id: string;
+  id?: string;
   isCTA?: boolean;
   keyID?: string;
   name?: string;

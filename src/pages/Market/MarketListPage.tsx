@@ -1,10 +1,15 @@
-import { useAllIngredientsQuery, useRecipesQuery } from "../../graphql";
+import {
+  AllIngredientsQuery,
+  useAllIngredientsQuery,
+  useRecipesQuery,
+} from "../../graphql";
 import { Helmet } from "react-helmet";
 import { Container, Footer, Navbar } from "components";
 import { IngredientCard } from "./Components/IngredientCard";
 import { SlideBar } from "./Components/SlideBar";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { EngagementBanner } from "./Components/EngagementBanner";
 
 const MarketLandingPage = () => {
   useEffect(() => {
@@ -16,12 +21,51 @@ const MarketLandingPage = () => {
     }
   }, []);
 
-  const { category } = useParams<{ category: string }>();
+  const { category_ingredient } = useParams<{ category_ingredient: string }>();
+  console.log(
+    "🚀 ~ file: MarketListPage.tsx ~ line 25 ~ MarketLandingPage ~ category_ingredient",
+    category_ingredient,
+  );
 
-  const { data: AllIngredient } = useAllIngredientsQuery({
+  const [categoryName, setcategoryName] = useState(category_ingredient);
+
+  function updateCategoryName(categoryName: string) {
+    switch (categoryName) {
+      case "Huiles-végétales-et-beurres":
+        return "Huiles végétales et beurres";
+      case "Poudres-et-argiles":
+        return "Poudres et argiles";
+      case "Huiles-essentielles":
+        return "Huiles essentielles";
+      case "Ingrédients-cosmétiques":
+        return "Ingrédients cosmétiquess";
+      case "Ingrédients-entretien":
+        return "Ingrédients d'entretien";
+      default:
+        return "Tous-les-ingrédients";
+    }
+  }
+
+  useEffect(() => {
+    const updatedcategoryName = updateCategoryName(categoryName);
+    if (updatedcategoryName) {
+      setcategoryName(updatedcategoryName);
+    }
+    console.log(categoryName);
+  }, []);
+
+  const dataAll = useAllIngredientsQuery({
     variables: { filter: { isForMarket: true } },
   });
-  let IngredientsMarket = AllIngredient?.allIngredients?.map(
+
+  const dataFiltered = useAllIngredientsQuery({
+    variables: { filter: { categoryIngredient: [categoryName] } },
+  });
+
+  let data =
+    category_ingredient == "Tous-les-ingrédients" ? dataAll : dataFiltered;
+
+  let IngredientsMarket = data?.data?.allIngredients?.map(
     (ingredient: any) => ({
       key: Math.random,
       name: ingredient?.name,
@@ -31,44 +75,10 @@ const MarketLandingPage = () => {
       id: ingredient?.id,
     }),
   );
-  console.log(IngredientsMarket);
-
-  {
-    /*
-  useState(() => {
-    if (category === "Tous les ingrédients") {
-      const { data: AllIngredient } = useAllIngredientsQuery({
-        variables: { filter: { isForMarket: true } },
-      });
-      let IngredientsMarket = AllIngredient?.allIngredients?.map(
-        (ingredient: any) => ({
-          key: Math.random,
-          name: ingredient?.name,
-          price: ingredient?.price,
-          producer: ingredient?.producer,
-          image: ingredient?.image,
-          id: ingredient?.id,
-        }),
-      );
-      console.log(IngredientsMarket);
-    } else {
-      const { data: AllIngredient } = useAllIngredientsQuery({
-        variables: { filter: { categoryIngredient: ["Autres"] } },
-      });
-      let IngredientsMarket = AllIngredient?.allIngredients?.map(
-        (ingredient: any) => ({
-          key: Math.random,
-          name: ingredient?.name,
-          price: ingredient?.price,
-          producer: ingredient?.producer,
-          image: ingredient?.image,
-          id: ingredient?.id,
-        }),
-      );
-      console.log(IngredientsMarket);
-    }
-  })*/
-  }
+  console.log(
+    "🚀 ~ file: MarketListPage.tsx ~ line 76 ~ MarketLandingPage ~ IngredientsMarket",
+    IngredientsMarket,
+  );
 
   return (
     <div className="flex flex-col | items-center self-center">
@@ -94,7 +104,7 @@ const MarketLandingPage = () => {
       </div>
       <SlideBar keyID={""} isMarketListPage={true} />
 
-      <Container className="my-10">
+      <Container className="mt-10 mb-40">
         <div className="grid grid-cols-2 mb-2 gap-6 lg:gap-8 sm:grid-cols-3 lg:grid-cols-5">
           <>
             {IngredientsMarket?.map(
@@ -119,6 +129,7 @@ const MarketLandingPage = () => {
           </>
         </div>
       </Container>
+      <EngagementBanner bgBlueL={true} />
       <Footer />
     </div>
   );

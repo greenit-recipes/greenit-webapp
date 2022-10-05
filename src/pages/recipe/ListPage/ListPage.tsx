@@ -96,8 +96,6 @@ const RecipeListPage = () => {
     numberOfIngredients: sessionFilter?.numberOfIngredients || [],
   });
 
-  console.log("currentFilters", currentFilters);
-
   const { error, loading, data, refetch, fetchMore } = useRecipesQuery({
     fetchPolicy: "cache-first",
     variables: {

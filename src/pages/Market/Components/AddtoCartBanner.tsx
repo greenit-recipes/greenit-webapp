@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 interface AddtoCartBanner {
   Formobile: boolean;
-  price: string;
+  price: any;
 }
 
 export const AddtoCartBanner: React.FC<AddtoCartBanner> = ({

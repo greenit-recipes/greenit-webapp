@@ -482,7 +482,7 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
         <div className="w-auto" id="navmenu">
-          <Link to={RouteName.why}>
+          <Link to={RouteName.why} className="sm:hidden lg:block">
             <NavButton id="navbar-project" type="darkBlue">
               Le projet
             </NavButton>

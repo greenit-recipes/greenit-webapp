@@ -21,28 +21,18 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
   const [isCautionActive, setIsCautionActive] = useState(false);
   const [isBrandInfoActive, setIsBrandInfoActive] = useState(false);
 
-  const [brandInfo, setBrandinfo] = useState(producer);
-
   function updateBrandinfo(brandInfo: string) {
     switch (brandInfo) {
-      case "Aroma-zone":
-        return "Azoma-zone is well nowjsjsjsjs";
+      case "Joli’Essence":
+        return "Marque du Laboratoire Propos’Nature, c’est au cœur de la Provence que Joli’Essence voit le jour en septembre 2013. Cette boutique en ligne, spécialisée dans la cosmétique maison naturelle, a une double vocation : mettre à disposition de tous des ingrédients naturels et bio et éduquer le grand public à leurs bienfaits et leur utilisation. Mission accomplie : aujourd’hui, Joli’essence vous propose + 200 ingrédients naturels et bio, du matériel de formulation de professionnel, ainsi que des kits pour s’initier facilement à la cosmétique maison.";
       case "Cosmaé":
-        return "cosmaé is well nowjsjsjsjs";
-      case "mycometik":
-        return "test";
+        return "Cosmaé est fabricant français d'ingrédients cosmétiques naturels, bio et durables. La marque vous propose tous les ingrédients et le matériel nécessaires à la fabrication de vos produits cosmétiques maison (crème, savon, shampooing, gel douche,…). Elle offre une multitude de recettes cosmétiques simples et rapides à réaliser soi-même, 100% certifiées pour assurer la sécurité des utilisateurs. Que vous soyez apprenti chimiste ou expert aguerri, la marque offre une multitude d'ingrédients cosmétiques, fabriqués dans son usine en Bretagne, dans une logique de développement durable avec une qualité professionnelle.";
+      case "MyCosmetik":
+        return "MyCosmetik est une marque dédiée à l'aromathérapie, aux produits naturels (huiles essentielles, végétales, hydrolats...) et aux cosmétiques maison. Ils proposent une gamme de soins qui se concentrent uniquement sur les besoins de la peau avec des ingrédients simples et efficaces. Une cosmétique écologique, qui n’utilise pas d’ingrédients synthétiques ou dérivés de la pétrochimie, sans composants inactifs (les paraffines, les silicones, …) ou toxiques (parabènes, poudres d’aluminium…). MyCosmetik prône l’authenticité des ingrédients naturels qu’elle utilise et la compréhension de leurs actions sur notre corps et notre esprit.";
       default:
-        return "Nothing found";
+        return "Information manquante";
     }
   }
-
-  useEffect(() => {
-    const updatedBrandInfo = updateBrandinfo(brandInfo);
-    if (updatedBrandInfo) {
-      setBrandinfo(updatedBrandInfo); // please update the current brandInfo state with the setBrandInfo function
-    }
-    console.log(brandInfo);
-  }, []);
 
   return (
     <div className="grid">
@@ -215,7 +205,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
         )}
         {isBrandInfoActive && (
           <div className="w-full px-4 lg:px-0">
-            <p>{HTMLReactParser(brandInfo)}</p>
+            <p>{HTMLReactParser(updateBrandinfo(producer))}</p>
           </div>
         )}
       </div>

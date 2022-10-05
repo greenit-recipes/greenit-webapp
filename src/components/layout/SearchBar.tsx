@@ -42,7 +42,9 @@ export const SearchBar: React.FC<{
 }) => {
   const isLarge = size === "large";
   const history = useHistory();
-  const totalSize = `w-full h-10 md:h-${isLarge ? "12" : "10"}`;
+  const totalSize = `w-${isLarge ? "full" : "60"} h-10 md:h-${
+    isLarge ? "12" : "10"
+  }`;
   const iconSize = `w-10 md:w-${isLarge ? "16" : "10"} h-10 md:h-${
     isLarge ? "12" : "10"
   }`;

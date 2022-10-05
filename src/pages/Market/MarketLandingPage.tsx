@@ -15,6 +15,11 @@ import {
   TopImageMarketMobile,
   TopImageMarketDesktopLeft,
   TopImageMarketDesktopRight,
+  nathalier,
+  defaultImageProfil,
+  domie,
+  fanny,
+  hugues,
 } from "icons";
 import { ExploreMore } from "components/recipe/ExploreMore";
 import { SectionTitle } from "./Components/SectionTitle";
@@ -235,7 +240,7 @@ const MarketLandingPage = () => {
             <IngredientCard
               isCTA={true}
               id={"MarketPage-IngredientCards"}
-              filter={"Huiles végétales"}
+              filter={"Huiles-végétales"}
             />
           </Container>
 
@@ -267,7 +272,7 @@ const MarketLandingPage = () => {
             <IngredientCard
               isCTA={true}
               id={"MarketPage-IngredientCards"}
-              filter={"Huiles essentielles"}
+              filter={"Huiles-essentielles"}
             />
           </Container>
         </div>
@@ -321,53 +326,56 @@ const MarketLandingPage = () => {
           />
           <Container className="flex flex-wrap gap-4 w-full justify-center lg:w-3/4">
             <ReviewCard
-              PersonName={"Samantha"}
-              Review={
+              image={nathalier}
+              personName={"Samantha"}
+              review={
                 "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
               }
-              Rating={"5/5"}
+              rating={"4/5"}
             />
             <ReviewCard
-              PersonName={"Samantha"}
-              Review={
-                "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+              image={domie}
+              personName={"Amélie"}
+              review={
+                "Les recettes sont hypers accessibles, j’ai réalisé avec mes enfants, super activité !"
               }
-              Rating={"5/5"}
+              rating={"5/5"}
             />
             <ReviewCard
-              PersonName={"Samantha"}
-              Review={
-                "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+              image={hugues}
+              personName={"Maxime"}
+              review={
+                "Je soutiens le projet depuis ses débuts. La box est en continuité de rendre accessible le fait maison. Bravo"
               }
-              Rating={"5/5"}
+              rating={"5/5"}
             />
             <ReviewCard
-              PersonName={"Samantha"}
-              Review={
-                "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+              image={defaultImageProfil}
+              personName={"Valentine"}
+              review={
+                "J’aime l’odeur de la lessive. Super pour une première fois."
               }
-              Rating={"5/5"}
+              rating={"5/5"}
             />
             <ReviewCard
-              PersonName={"Samantha"}
-              Review={
-                "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-              }
-              Rating={"5/5"}
+              image={defaultImageProfil}
+              personName={"Maria"}
+              review={"Simple et accessible. Je recommande."}
+              rating={"5/5"}
             />
             <ReviewCard
-              PersonName={"Samantha"}
-              Review={
-                "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
-              }
-              Rating={"5/5"}
+              image={fanny}
+              personName={"Maria"}
+              review={"Simple et accessible. Je recommande."}
+              rating={"5/5"}
             />
             <ReviewCard
-              PersonName={"Samantha"}
-              Review={
+              image={nathalier}
+              personName={"Samantha"}
+              review={
                 "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
               }
-              Rating={"5/5"}
+              rating={"5/5"}
             />
           </Container>
         </div>
