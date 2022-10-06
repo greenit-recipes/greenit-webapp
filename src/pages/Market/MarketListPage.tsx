@@ -1,8 +1,4 @@
-import {
-  AllIngredientsQuery,
-  useAllIngredientsQuery,
-  useRecipesQuery,
-} from "../../graphql";
+import { useAllIngredientsQuery } from "../../graphql";
 import { Helmet } from "react-helmet";
 import { Container, Footer, Navbar } from "components";
 import { IngredientCard } from "./Components/IngredientCard";
