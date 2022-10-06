@@ -38,13 +38,10 @@ import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
 import { Community } from "pages/LandingPage/Components/Community";
-import "pages/LandingPage/LandingPage.css";
 import { IngredientCard } from "pages/Market/Components/IngredientCard";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
-import "pages/recipe/SinglePage/SinglePage.css";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import "react-multi-carousel/lib/styles.css";
 import { Link, useHistory } from "react-router-dom";
 import { GET_FEATURE_BY_NAME } from "services/feature.service";
 import { landingPageCategories } from "utils";
@@ -737,7 +734,7 @@ const LandingPage = () => {
             Le DIY c’est reprendre le contôle {isMobile && <br></br>} sur sa
             consommation
           </h2>
-          <h2 className="font-diy text-2xl text-left no-margin">
+          <h2 className="font-diy text-2xl text-left ml-0">
             Le diy pour ta santé, ton bien-être et un mode de vie viable
           </h2>
         </div>

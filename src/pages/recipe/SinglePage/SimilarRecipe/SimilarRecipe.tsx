@@ -1,7 +1,6 @@
 import useIsMobile from "hooks/isMobile";
 import { RecipeCard } from "components";
 import { useRecipesQuery } from "../../../../graphql";
-import "./SimilarRecipe.css";
 import { ExploreMore } from "components/recipe/ExploreMore";
 
 interface ISimilarRecipe {

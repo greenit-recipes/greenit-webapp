@@ -14,6 +14,7 @@ import ReactDOM from "react-dom";
 import { NotificationAlert } from "components/layout/NotificationAlert";
 import authService from "services/auth.service";
 import { Link, useLocation } from "react-router-dom";
+import "../SinglePage.css";
 import {
   getRandomKey,
   hasIngredientOnList,
@@ -138,7 +139,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
   return (
     <>
       <div
-        className={`flex items-center btn-single-page ingredient-shadow max-h-32 mt-4 ${
+        className={`flex shadow-flat items-center max-h-32 mt-4 rounded-md ${
           !isMobile ? "cursor-pointer" : ""
         }`}
       >
