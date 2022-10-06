@@ -65,7 +65,7 @@ const MarketLandingPage = () => {
   const recipesBegginer = dataBegginer.allRecipes?.edges || [];
   const dataHomes = dataHome.allRecipes?.edges || [];
 
-  const IngredientsMarket = dataMarket?.allIngredients?.map(
+  const ingredientsMarket = dataMarket?.allIngredients?.map(
     (ingredient: any) => ({
       key: Math.random,
       name: ingredient?.name,
@@ -76,7 +76,7 @@ const MarketLandingPage = () => {
     }),
   );
 
-  const IngredientsVegetalOil = dataVegetalOil?.allIngredients?.map(
+  const ingredientsVegetalOil = dataVegetalOil?.allIngredients?.map(
     (ingredient: any) => ({
       key: Math.random,
       name: ingredient?.name,
@@ -87,7 +87,7 @@ const MarketLandingPage = () => {
     }),
   );
 
-  const IngredientsEssentialOils = dataEssentialOils?.allIngredients?.map(
+  const ingredientsEssentialOils = dataEssentialOils?.allIngredients?.map(
     (ingredient: any) => ({
       key: Math.random,
       name: ingredient?.name,
@@ -158,7 +158,7 @@ const MarketLandingPage = () => {
         </div>
       </Container>
       <div className="flex flex-col | items-center self-center bg-white w-full z-10">
-        <SlideBar keyID={"Landingpage-slideBar"} isMarketListPage={false} />
+        <SlideBar keyID={"Landingpage-slideBar"} />
         <SectionTitle
           title={"Les produits phares"}
           subtitle={"les incontournables"}
@@ -167,46 +167,50 @@ const MarketLandingPage = () => {
           <div className="grid grid-cols-2 mb-2 gap-6 lg:gap-8 sm:grid-cols-3 lg:grid-cols-5">
             {!isMobile ? (
               <>
-                {IngredientsMarket?.slice(0, 10).map(
-                  (Object: {
-                    name: string;
-                    price: string;
-                    producer: string;
-                    image: any;
-                    id: string;
-                  }) => (
-                    <IngredientCard
-                      key={Math.random()}
-                      name={Object?.name}
-                      price={Object?.price}
-                      producer={Object?.producer}
-                      image={Object?.image}
-                      keyID={"keyID"}
-                      id={Object?.id}
-                    />
-                  ),
-                )}
+                {ingredientsMarket
+                  ?.slice(0, 10)
+                  .map(
+                    (Object: {
+                      name: string;
+                      price: string;
+                      producer: string;
+                      image: any;
+                      id: string;
+                    }) => (
+                      <IngredientCard
+                        key={Math.random()}
+                        name={Object?.name}
+                        price={Object?.price}
+                        producer={Object?.producer}
+                        image={Object?.image}
+                        keyID={"keyID"}
+                        id={Object?.id}
+                      />
+                    ),
+                  )}
               </>
             ) : (
               <>
-                {IngredientsMarket?.slice(0, 8).map(
-                  (Object: {
-                    name: string;
-                    price: string;
-                    producer: string;
-                    image: any;
-                    id: string;
-                  }) => (
-                    <IngredientCard
-                      key={Math.random()}
-                      name={Object?.name}
-                      price={Object?.price}
-                      producer={Object?.producer}
-                      image={Object?.image}
-                      id={Object?.id}
-                    />
-                  ),
-                )}
+                {ingredientsMarket
+                  ?.slice(0, 8)
+                  .map(
+                    (Object: {
+                      name: string;
+                      price: string;
+                      producer: string;
+                      image: any;
+                      id: string;
+                    }) => (
+                      <IngredientCard
+                        key={Math.random()}
+                        name={Object?.name}
+                        price={Object?.price}
+                        producer={Object?.producer}
+                        image={Object?.image}
+                        id={Object?.id}
+                      />
+                    ),
+                  )}
               </>
             )}
           </div>
@@ -218,29 +222,35 @@ const MarketLandingPage = () => {
           />
           <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
             <div className="flex gap-5 w-max ml-4 md:ml-0">
-              {IngredientsVegetalOil?.slice(0, 4).map(
-                (Object: {
-                  name: string;
-                  price: string;
-                  producer: string;
-                  image: any;
-                  id: string;
-                }) => (
-                  <IngredientCard
-                    key={Math.random()}
-                    name={Object?.name}
-                    price={Object?.price}
-                    producer={Object?.producer}
-                    image={Object?.image}
-                    id={Object?.id}
-                  />
-                ),
-              )}
+              {ingredientsVegetalOil
+                ?.slice(0, 4)
+                .map(
+                  (Object: {
+                    name: string;
+                    price: string;
+                    producer: string;
+                    image: any;
+                    id: string;
+                  }) => (
+                    <IngredientCard
+                      key={Math.random()}
+                      name={Object?.name}
+                      price={Object?.price}
+                      producer={Object?.producer}
+                      image={Object?.image}
+                      id={Object?.id}
+                    />
+                  ),
+                )}
             </div>
             <IngredientCard
               isCTA={true}
               id={"MarketPage-IngredientCards"}
               filter={"Huiles-végétales"}
+              name={""}
+              price={""}
+              producer={""}
+              image={undefined}
             />
           </Container>
 
@@ -250,29 +260,35 @@ const MarketLandingPage = () => {
           />
           <Container className="flex w-full lg:justify-center overflow-x-auto pb-4">
             <div className="flex gap-5 w-max ml-4 md:ml-0">
-              {IngredientsEssentialOils?.slice(0, 4).map(
-                (Object: {
-                  name: string;
-                  price: string;
-                  producer: string;
-                  image: any;
-                  id: string;
-                }) => (
-                  <IngredientCard
-                    key={Math.random()}
-                    name={Object?.name}
-                    price={Object?.price}
-                    producer={Object?.producer}
-                    image={Object?.image}
-                    id={Object?.id}
-                  />
-                ),
-              )}
+              {ingredientsEssentialOils
+                ?.slice(0, 4)
+                .map(
+                  (Object: {
+                    name: string;
+                    price: string;
+                    producer: string;
+                    image: any;
+                    id: string;
+                  }) => (
+                    <IngredientCard
+                      key={Math.random()}
+                      name={Object?.name}
+                      price={Object?.price}
+                      producer={Object?.producer}
+                      image={Object?.image}
+                      id={Object?.id}
+                    />
+                  ),
+                )}
             </div>
             <IngredientCard
               isCTA={true}
               id={"MarketPage-IngredientCards"}
               filter={"Huiles-essentielles"}
+              name={""}
+              price={""}
+              producer={""}
+              image={undefined}
             />
           </Container>
         </div>

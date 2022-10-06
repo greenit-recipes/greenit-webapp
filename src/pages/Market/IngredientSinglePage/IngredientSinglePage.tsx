@@ -13,14 +13,7 @@ import { EngagementBanner } from "../Components/EngagementBanner";
 import { FAQMarket } from "../Components/FAQMarket/FAQMarket";
 import { getImagePath } from "helpers/image.helper";
 import { IngredientAssociateSection } from "./IngredientAssociateSection";
-import {
-  defaultImageProfil,
-  domie,
-  fanny,
-  hugues,
-  nathalier,
-  userlogo,
-} from "icons";
+import { defaultImageProfil, domie, fanny, hugues, nathalier } from "icons";
 
 const IngredientSinglePage = () => {
   const isMobile = useIsMobile();
@@ -45,20 +38,19 @@ const IngredientSinglePage = () => {
     },
   });
 
+  // ingredient is the main object used to display data expect for the tags
   const ingredient = data?.ingredient as any;
 
+  // const below is just to display the tags Array
   const tagsIngredient = data?.ingredient?.tags;
 
   // the part below is just for the RecipeWithIngredients
-
   const ingredientName = [data?.ingredient?.name] as any;
-
   const { data: recipesUsingIngredient } = useRecipesQuery({
     variables: {
       filter: { ingredients: ingredientName },
     },
   });
-
   const recipeSimilar = recipesUsingIngredient?.allRecipes?.edges || [];
 
   return (
@@ -100,7 +92,7 @@ const IngredientSinglePage = () => {
             />
             <img
               className="w-41 h-41 object-cover rounded-md"
-              src={getImagePath(`${ingredient?.imageOptional2}`)}
+              src={getImagePath(`${ingredient?.imageOptional2}`)} // if no image2 / 3 is not handled for now to refacto
               alt={""}
               loading="lazy"
             />
@@ -184,7 +176,7 @@ const IngredientSinglePage = () => {
               },
               {
                 icon: "bx bx-package",
-                title: " expédition en 24h",
+                title: "expédition en 24h",
               },
             ].map((item, index) => (
               <>
@@ -273,7 +265,7 @@ const IngredientSinglePage = () => {
               review={
                 "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
               }
-              rating={"4/5"}
+              rating={"★ 4/5"}
             />
             <ReviewCard
               image={domie}
@@ -281,7 +273,7 @@ const IngredientSinglePage = () => {
               review={
                 "Les recettes sont hypers accessibles, j’ai réalisé avec mes enfants, super activité !"
               }
-              rating={"5/5"}
+              rating={"★ 5/5"}
             />
             <ReviewCard
               image={hugues}
@@ -289,7 +281,7 @@ const IngredientSinglePage = () => {
               review={
                 "Je soutiens le projet depuis ses débuts. La box est en continuité de rendre accessible le fait maison. Bravo"
               }
-              rating={"5/5"}
+              rating={"★ 5/5"}
             />
             <ReviewCard
               image={defaultImageProfil}
@@ -297,19 +289,19 @@ const IngredientSinglePage = () => {
               review={
                 "J’aime l’odeur de la lessive. Super pour une première fois."
               }
-              rating={"5/5"}
+              rating={"★ 4.5/5"}
             />
             <ReviewCard
               image={defaultImageProfil}
               personName={"Maria"}
               review={"Simple et accessible. Je recommande."}
-              rating={"5/5"}
+              rating={"★ 5/5"}
             />
             <ReviewCard
               image={fanny}
               personName={"Maria"}
               review={"Simple et accessible. Je recommande."}
-              rating={"5/5"}
+              rating={"★ 5/5"}
             />
           </Container>
 

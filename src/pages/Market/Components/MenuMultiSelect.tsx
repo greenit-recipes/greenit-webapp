@@ -1,6 +1,6 @@
 import isMobile from "hooks/isMobile";
 import HTMLReactParser from "html-react-parser";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface MenuMultiSelect {
   informationMarket: string;
@@ -21,7 +21,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
   const [isCautionActive, setIsCautionActive] = useState(false);
   const [isBrandInfoActive, setIsBrandInfoActive] = useState(false);
 
-  function updateBrandinfo(brandInfo: string) {
+  const updateBrandinfo = (brandInfo: string) => {
     switch (brandInfo) {
       case "Joli’Essence":
         return "Marque du Laboratoire Propos’Nature, c’est au cœur de la Provence que Joli’Essence voit le jour en septembre 2013. Cette boutique en ligne, spécialisée dans la cosmétique maison naturelle, a une double vocation : mettre à disposition de tous des ingrédients naturels et bio et éduquer le grand public à leurs bienfaits et leur utilisation. Mission accomplie : aujourd’hui, Joli’essence vous propose + 200 ingrédients naturels et bio, du matériel de formulation de professionnel, ainsi que des kits pour s’initier facilement à la cosmétique maison.";
@@ -30,9 +30,9 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
       case "MyCosmetik":
         return "MyCosmetik est une marque dédiée à l'aromathérapie, aux produits naturels (huiles essentielles, végétales, hydrolats...) et aux cosmétiques maison. Ils proposent une gamme de soins qui se concentrent uniquement sur les besoins de la peau avec des ingrédients simples et efficaces. Une cosmétique écologique, qui n’utilise pas d’ingrédients synthétiques ou dérivés de la pétrochimie, sans composants inactifs (les paraffines, les silicones, …) ou toxiques (parabènes, poudres d’aluminium…). MyCosmetik prône l’authenticité des ingrédients naturels qu’elle utilise et la compréhension de leurs actions sur notre corps et notre esprit.";
       default:
-        return "Information manquante";
+        return "Information manquante.";
     }
-  }
+  };
 
   return (
     <div className="grid">

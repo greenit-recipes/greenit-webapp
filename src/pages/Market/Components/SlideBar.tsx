@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 
 interface SlideBar {
   keyID: string;
-  isMarketListPage?: boolean;
 }
 
-export const SlideBar: React.FC<SlideBar> = ({ keyID, isMarketListPage }) => {
+export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
   return (
     <div
       id={keyID}
@@ -47,18 +46,16 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID, isMarketListPage }) => {
             title: "Ingrédients d'entretien",
             filter: "Ingrédients-entretien",
           },
-        ].map((item, key) => (
-          <>
-            <Link
-              to={{
-                pathname: `${RouteName.listpagemarket}/${item.filter}`,
-              }}
-              className="cursor-pointer"
-              id={`SlideBar-categorie-${item.filter}`}
-            >
-              <h4>{item.title}</h4>
-            </Link>
-          </>
+        ].map(item => (
+          <Link
+            to={{
+              pathname: `${RouteName.listpagemarket}/${item.filter}`,
+            }}
+            className="cursor-pointer"
+            id={`SlideBar-categorie-${item.filter}`}
+          >
+            <h4>{item.title}</h4>
+          </Link>
         ))}
       </div>
     </div>

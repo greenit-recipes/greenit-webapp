@@ -34,7 +34,7 @@ export const AddtoCartBanner: React.FC<AddtoCartBanner> = ({
           </div>
           <div className="flex gap-2 col-span-2 w-full">
             <div className="flex border-1 bg-white rounded-md w-16 items-center justify-center">
-              <h4> 1</h4>
+              <h4> 1 </h4>
             </div>
             <Button
               id="ingredientPage-Ajouer-au-panier"

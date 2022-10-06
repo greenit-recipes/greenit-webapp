@@ -2,14 +2,10 @@ import { Container } from "components";
 import React from "react";
 
 interface EngagementBanner {
-  className?: string;
   bgBlueL?: boolean;
 }
 
-export const EngagementBanner: React.FC<EngagementBanner> = ({
-  className,
-  bgBlueL,
-}) => {
+export const EngagementBanner: React.FC<EngagementBanner> = ({ bgBlueL }) => {
   return (
     <div
       className={`h-full w-full ${

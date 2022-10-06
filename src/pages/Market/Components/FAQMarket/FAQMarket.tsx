@@ -1,4 +1,3 @@
-import HTMLReactParser from "html-react-parser";
 import { useState } from "react";
 import "../FAQMarket/FAQMarket.css";
 

@@ -91,8 +91,7 @@ const RecipeSinglePage = () => {
   );
   const [numberModal, setNumberModal] = useState(0);
 
-  //END OF MARKET DISPLAY
-
+  //START OF MARKET DISPLAY
   const [haveIngredientMarket, sethaveIngredientMarket] = useState(false);
   // this above is to display or not the entire section
   const ingredients = data?.recipe?.ingredients?.map((ingredients: any) => ({
@@ -101,10 +100,8 @@ const RecipeSinglePage = () => {
     isForMarket: ingredients?.isForMarket,
     price: ingredients?.price,
   }));
-
   const [showModalMarket, setShowModalMarket] = useState(false);
   // @ts-ignore
-
   useEffect(() => {
     ingredients?.forEach(data => {
       if (data.isForMarket === true) return sethaveIngredientMarket(true);
@@ -424,7 +421,7 @@ const RecipeSinglePage = () => {
                   {!isEmpty(recipe?.description) ? (
                     <div className="w-full lg:w-5/6">
                       {
-                        //Todo (zack): Find a better Regex pattern
+                        //Todo: Find a better Regex pattern
                         // @ts-ignore: Object is possibly 'null'.
                         // !isSeeMoreActive
                         //   ? (recipe &&

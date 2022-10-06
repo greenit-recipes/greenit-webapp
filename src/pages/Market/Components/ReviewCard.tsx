@@ -1,4 +1,3 @@
-import { nathalier } from "icons";
 import React from "react";
 
 interface ReviewCard {

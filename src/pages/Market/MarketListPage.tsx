@@ -17,15 +17,13 @@ const MarketLandingPage = () => {
     }
   }, []);
 
+  // this gets the url parameter to filter by category (coming from the slidebar.tsx)
   const { category_ingredient } = useParams<{ category_ingredient: string }>();
-  console.log(
-    "🚀 ~ file: MarketListPage.tsx ~ line 25 ~ MarketLandingPage ~ category_ingredient",
-    category_ingredient,
-  );
 
   const [categoryName, setcategoryName] = useState(category_ingredient);
 
-  function updateCategoryName(categoryName: string) {
+  // check the url parameter and chnage it to the correct coategory name
+  const updateCategoryName = (categoryName: string) => {
     switch (categoryName) {
       case "Huiles-végétales-et-beurres":
         return "Huiles végétales et beurres";
@@ -34,20 +32,19 @@ const MarketLandingPage = () => {
       case "Huiles-essentielles":
         return "Huiles essentielles";
       case "Ingrédients-cosmétiques":
-        return "Ingrédients cosmétiquess";
+        return "Ingrédients cosmétiques";
       case "Ingrédients-entretien":
         return "Ingrédients d'entretien";
       default:
         return "Tous-les-ingrédients";
     }
-  }
+  };
 
   useEffect(() => {
-    const updatedcategoryName = updateCategoryName(categoryName);
-    if (updatedcategoryName) {
-      setcategoryName(updatedcategoryName);
+    const updatedCategoryName = updateCategoryName(categoryName);
+    if (updatedCategoryName) {
+      setcategoryName(updatedCategoryName);
     }
-    console.log(categoryName);
   }, []);
 
   const dataAll = useAllIngredientsQuery({
@@ -61,7 +58,7 @@ const MarketLandingPage = () => {
   let data =
     category_ingredient == "Tous-les-ingrédients" ? dataAll : dataFiltered;
 
-  let IngredientsMarket = data?.data?.allIngredients?.map(
+  let ingredientsMarket = data?.data?.allIngredients?.map(
     (ingredient: any) => ({
       key: Math.random,
       name: ingredient?.name,
@@ -70,10 +67,6 @@ const MarketLandingPage = () => {
       image: ingredient?.image,
       id: ingredient?.id,
     }),
-  );
-  console.log(
-    "🚀 ~ file: MarketListPage.tsx ~ line 76 ~ MarketLandingPage ~ IngredientsMarket",
-    IngredientsMarket,
   );
 
   return (
@@ -98,12 +91,12 @@ const MarketLandingPage = () => {
           </div>
         </div>
       </div>
-      <SlideBar keyID={""} isMarketListPage={true} />
+      <SlideBar keyID={""} />
 
       <Container className="mt-10 mb-40">
         <div className="grid grid-cols-2 mb-2 gap-6 lg:gap-8 sm:grid-cols-3 lg:grid-cols-5">
           <>
-            {IngredientsMarket?.map(
+            {ingredientsMarket?.map(
               (Object: {
                 key: any;
                 name: string;

@@ -10,10 +10,10 @@ interface IngredientCard {
   id?: string;
   isCTA?: boolean;
   keyID?: string;
-  name?: string;
-  price?: string;
-  producer?: string;
-  image?: any;
+  name: string;
+  price: string;
+  producer: string;
+  image: any;
   filter?: string;
   rating?: string;
   isOnLandingPage?: boolean;
