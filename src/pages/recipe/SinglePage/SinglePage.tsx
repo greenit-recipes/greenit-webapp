@@ -23,7 +23,7 @@ import { ADD_COMMENT_TO_RECIPE } from "pages/recipe/SinglePage/SinglePageRequest
 import React, { createRef, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import ReactPlayer from "react-player/lazy";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import authService, { ME } from "services/auth.service";
 import * as yup from "yup";
@@ -34,8 +34,11 @@ import { CircleGreenit } from "./CircleGreenit/CircleGreenit";
 import { HeaderRecipe } from "./HeaderRecipe/HeaderRecipe";
 import { LikeField } from "./LikeField";
 import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
-import isMobile from "hooks/isMobile";
 import "./SinglePage.css";
+import { IngredientBuySection } from "./BuySection/IngredientBuySection";
+import { ModalMarketTest } from "components/layout/Modal/modalMarketTest";
+import pdfhygienRules from "../../../pdfhygienRules.pdf";
+import precaution from "../../../precaution.pdf";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
@@ -87,6 +90,25 @@ const RecipeSinglePage = () => {
     null,
   );
   const [numberModal, setNumberModal] = useState(0);
+
+  //START OF MARKET DISPLAY
+  const [haveIngredientMarket, sethaveIngredientMarket] = useState(false);
+  // this above is to display or not the entire section
+  const ingredients = data?.recipe?.ingredients?.map((ingredients: any) => ({
+    key: Math.random,
+    name: ingredients?.name,
+    isForMarket: ingredients?.isForMarket,
+    price: ingredients?.price,
+  }));
+  const [showModalMarket, setShowModalMarket] = useState(false);
+  // @ts-ignore
+  useEffect(() => {
+    ingredients?.forEach(data => {
+      if (data.isForMarket === true) return sethaveIngredientMarket(true);
+    });
+    console.log(haveIngredientMarket);
+  });
+  //END OF MARKET DISPLAY
 
   // Comments
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
@@ -179,7 +201,6 @@ const RecipeSinglePage = () => {
   //Todo : refactor variable into contexts
 
   user.current = cloneDeep(dataUser?.me);
-  console.log(user.current);
 
   // @ts-ignore
   const { recipe } = data;
@@ -211,7 +232,7 @@ const RecipeSinglePage = () => {
             marginTop: sizeCretorHeader / 16 - (isMobile ? 5.5 : 9) + "rem",
           }}
         >
-          <div className="w-5/6 mb-10 lg:w-4/6">
+          <div className="w-11/12 mb-10 lg:w-4/6">
             <div className="w-full h-auto">
               <div className="justify-center">
                 <h1 className="mb-5 text-xl text-center lg:text-2xl font-medium">
@@ -400,7 +421,7 @@ const RecipeSinglePage = () => {
                   {!isEmpty(recipe?.description) ? (
                     <div className="w-full lg:w-5/6">
                       {
-                        //Todo (zack): Find a better Regex pattern
+                        //Todo: Find a better Regex pattern
                         // @ts-ignore: Object is possibly 'null'.
                         // !isSeeMoreActive
                         //   ? (recipe &&
@@ -472,6 +493,36 @@ const RecipeSinglePage = () => {
               parentFunction={refetchMe}
               recipe={recipe}
             />
+            {haveIngredientMarket && (
+              <div className="flex flex-col lg:flex-row w-full bg-yellowL pb-4 lg:p-4 h-max mb-10">
+                <p className="text-base p-3 w-full">
+                  Tu souhaites réaliser cette recette ? Ajoute ces ingrédients à
+                  ton panier
+                  {isMobile ? <span> 👇 </span> : <span> 👉 </span>}
+                </p>
+                <div className="flex self-center w-11/12 lg:max-w-20 h-10">
+                  <Button
+                    id="singlePage-ajouter-ingredients-panier"
+                    type="darkBlue"
+                    className="h-10 w-full max-w-26 lg:max-w-20"
+                    onClick={() => setShowModalMarket(true)}
+                  >
+                    <i className={`bx bx-cart-download text-2xl mr-2`} />
+                    Ajouter tous les ingrédients au panier
+                  </Button>
+                </div>
+
+                <Modal
+                  isCenter={true}
+                  onClose={() => setShowModalMarket(false)}
+                  show={showModalMarket}
+                >
+                  <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
+                    <ModalMarketTest />
+                  </div>
+                </Modal>
+              </div>
+            )}
             <div className="flex flex-col w-full h-full lg:flex-row">
               {isMobile && (
                 <>
@@ -589,21 +640,98 @@ const RecipeSinglePage = () => {
                 })}
               </div>
             </div>
+          </div>
+          {haveIngredientMarket && (
+            <div className="flex flex-col w-full bg-yellowL pb-20 lg:pb-10 h-max">
+              <div className="flex flex-col self-center w-11/12 lg:w-4/6 pt-4 lg:gap-2">
+                <h3>Panier pour la recette</h3>
+                <p>Ingrédients disponibles pour cette recette</p>
+                <div className="flex flex-col lg:flex-row gap-4 mt-6">
+                  {ingredients?.map(
+                    (Object: { name: string; isForMarket: boolean }) => {
+                      {
+                        if (Object.isForMarket === true)
+                          return (
+                            <IngredientBuySection
+                              ingredientsForMarket={Object?.name}
+                            />
+                          );
+                      }
+                    },
+                  )}
+                </div>
+                <div className="flex flex-col lg:flex-row gap-2 lg:gap-4 mt-4 h-10">
+                  <Button
+                    id="singlePage-ajouter-ingredients-panier"
+                    type="green"
+                    className="h-10 w-full max-w-26 lg:max-w-20"
+                    onClick={() => setShowModalMarket(true)}
+                  >
+                    <i className={`bx bx-cart-download text-2xl mr-2`} />
+                    Ajouter tout les ingrédients au panier
+                  </Button>
+                  <Link to={RouteName.market} className="w-full">
+                    <Button
+                      id="singlePage-decouvrir-greenitMarket"
+                      type="darkBlue"
+                      className="h-10 w-full max-w-26 lg:w-auto lg:max-w-20"
+                    >
+                      Découvre Greenit Market
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
+              <Modal
+                isCenter={true}
+                onClose={() => setShowModalMarket(false)}
+                show={showModalMarket}
+              >
+                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
+                  <ModalMarketTest />
+                </div>
+              </Modal>
+            </div>
+          )}
+          <div className="w-11/12 mb-10 lg:w-4/6">
             <div className="flex flex-col mt-8">
               <h3 className="pb-2">Conseils de l'auteur</h3>
               <p className="text-md">{recipe?.notesFromAuthor}</p>
             </div>
-            <div className="flex flex-col mt-8">
-              <p className="text-xs text-darkBlue">
-                Quelques précautions sont à prendre lors de la confection de vos
-                produits. Pour chaque recette postée, nous passons du temps à
-                les vérifier (et modifier si nécessaire). Toutefois, certaines
-                personnes peuvent réagir différemment. Il est recommandé de
-                tester les produits sur votre poignet 48 h avant l’utilisation
-                sur votre peau. Greenit n’est pas responsable en cas d’allergies
-                ou problèmes liés à l’exécution et application de la recette.
-              </p>
+          </div>
+          <div className="flex flex-col items-center w-full mb-10">
+            <div className="flex flex-col lg:flex-row w-11/12 lg:w-4/6 gap-0 lg:gap-4">
+              <h3 className="mr-4 mb-2">Précautions d’emploi</h3>
+              <a href={precaution} target="_blank" rel="noreferrer">
+                <div className="flex inline items-center gap-1">
+                  <i className="bx bx-file-blank text-xl text-darkBlue"></i>
+                  <p className="text-sm font-medium">
+                    Mise en garde et précautions
+                  </p>
+                </div>
+              </a>
+              <a href={pdfhygienRules} target="_blank" rel="noreferrer">
+                <div className="flex inline items-center gap-1">
+                  <i className="bx bx-file-blank text-xl text-darkBlue"></i>
+                  <p className="text-sm font-medium">
+                    Règles d’hygiène avant et pendant la fabrication
+                  </p>
+                </div>
+              </a>
             </div>
+            <p className="w-11/12 lg:w-4/6 text-xs mt-2">
+              Les recettes sont des suggestions de mélange d’ingrédients
+              proposées à titre indicatif : tu peux changer ces ingrédients par
+              d’autres (voir alternatives sous les ingrédients). Les recettes
+              n’engagent pas notre responsabilité. Chaque recette postée est
+              vérifiée par nos soins et par la communauté : elles ne sont pas
+              destinées à des fins commerciales ni gracieuses. Leurs
+              réalisations restent sous ta responsabilité. Les ingrédients de la
+              recette peuvent être utilisés à nouveau pour les préparations de
+              ton choix.
+            </p>
+          </div>
+          <div className="w-11/12 mb-10 lg:w-4/6">
             {recipe && (
               <div className="flex flex-col mt-6 mb-5">
                 <h3 className="">Recettes similaires</h3>

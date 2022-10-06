@@ -3,7 +3,7 @@ import "components/layout/NotificationAlert.css";
 
 interface NotificationAlertProps {
   text?: string;
-  titre?: string;
+  title?: string;
   type?: "success" | "alert" | "error";
   hidden?: boolean;
 }
@@ -16,7 +16,7 @@ interface ButtonStyle {
 
 export const NotificationAlert: React.FC<NotificationAlertProps> = ({
   text,
-  titre,
+  title,
   type,
   hidden,
 }) => {
@@ -48,14 +48,14 @@ export const NotificationAlert: React.FC<NotificationAlertProps> = ({
     <div
       className={`${
         hidden ? "hidden" : "notification"
-      } fixed right-4 w-auto h-auto rounded-lg p-3 md:p-4 ${style.BgColor}`}
+      } fixed w-auto h-auto rounded-lg p-3 md:p-4 ${style.BgColor}`}
     >
       <div className="flex flex-row items-center">
         <i
           className={`${style.IconStyle} text-5xl ${style.IconColor} self-center mr-2 md:mr-4`}
         />
         <div className="flex flex-col text-left w-80 md:w-96">
-          <h3>{titre}</h3>
+          <h3>{title}</h3>
           <p>{text}</p>
         </div>
       </div>

@@ -86,7 +86,7 @@ export const StepConfirm: React.FC<StepConfirmProps> = ({
         <NotificationAlert
           key={getRandomKey("login")}
           type="alert"
-          titre="Connecte-toi pour les résultats !"
+          title="Connecte-toi pour les résultats !"
           text="Découvre une sélection de recettes adaptées."
         />,
         document.getElementById("notif"),
@@ -97,7 +97,7 @@ export const StepConfirm: React.FC<StepConfirmProps> = ({
         <NotificationAlert
           key={getRandomKey("particularity-saved")}
           type="success"
-          titre={
+          title={
             hasParticularities
               ? "Mise à jour de tes particularités !"
               : "Particularités enregistrées !"

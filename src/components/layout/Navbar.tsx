@@ -13,6 +13,8 @@ import { Loading } from "components/layout/Loading";
 import debounce from "lodash/debounce";
 import { useQuery } from "@apollo/client";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "../../pages/AutocompleteRequest";
+import Modal from "./Modal/Modal";
+import { ModalMarketTest } from "./Modal/modalMarketTest";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
@@ -23,7 +25,8 @@ export const Navbar: React.FC = () => {
   const location = useLocation();
   const [showSearchBar, setShowSearchBar] = useState<boolean>(
     location.pathname !== RouteName.accueil &&
-      location.pathname !== RouteName.recipes,
+      location.pathname !== RouteName.recipes &&
+      location.pathname !== RouteName.market,
   );
   const [toggle, setToggle] = useState(false);
   const [hasUrl, setHasUrl] = useState(
@@ -38,6 +41,9 @@ export const Navbar: React.FC = () => {
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const setSearchTermDebounced = debounce(setSearchTerm, 250);
+
+  const [showModalMarket, setShowModalMarket] = useState(false);
+  // @ts-ignore
 
   // Ne par run au premier lancement
   const { data: autoCompleteData, loading: autoCompleteLoading } = useQuery(
@@ -89,16 +95,12 @@ export const Navbar: React.FC = () => {
           {isLoggedIn ? (
             <div className="grid w-full justify-items-end">
               <Link to={RouteName.profil}>
-                <Button
-                  id="navbar-access-profil"
-                  type="blue"
-                  rounded="lg"
-                  className="mr-1"
-                >
-                  <h2 id="navbar-access-profil" className="text-xs">
-                    Profil
-                  </h2>
-                </Button>
+                <div className="px-2 cursor-pointer">
+                  <i
+                    className="bx bxs-user text-blue text-3xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
+                    id="navBar-profil-loggedIn"
+                  ></i>
+                </div>
               </Link>
             </div>
           ) : (
@@ -136,6 +138,15 @@ export const Navbar: React.FC = () => {
                 Accueil
               </h2>
             </Link>
+            <Link className="p-2" to={RouteName.market}>
+              <h2 id="navbar-market" className="text-white">
+                Market{" "}
+                <span className="text-xs font-light" id="navbar-market">
+                  {" "}
+                  : ingrédients à petits prix
+                </span>
+              </h2>
+            </Link>
             <Link
               className="p-2"
               to={RouteName.recipes}
@@ -149,11 +160,6 @@ export const Navbar: React.FC = () => {
                   Recettes
                 </h2>
               </div>
-            </Link>
-            <Link className="p-2" to={RouteName.startDiyGreenitFullXp}>
-              <h2 id="navbar-box-mobile" className="text-white">
-                Kit fait-maison
-              </h2>
             </Link>
             <Link className="p-2" to={RouteName.starterPage}>
               <h2 id="navbar-getStarted-mobile" className="text-white">
@@ -230,6 +236,15 @@ export const Navbar: React.FC = () => {
             Accueil
           </NavButton>
         </Link>
+        <Link to={RouteName.market}>
+          <NavButton id="navbar-market" type="black">
+            Market{" "}
+            <span className="text-sm font-light ml-1" id="navbar-market">
+              {" "}
+              : ingrédients à petits prix
+            </span>
+          </NavButton>
+        </Link>
         <div className="w-auto" id="navmenu_big">
           <Link to={RouteName.recipes} onClick={() => resetFilter()}>
             <NavButton id="navbar-recipes" type="green">
@@ -257,7 +272,7 @@ export const Navbar: React.FC = () => {
                   <Link
                     id="navbar-shareRecipe-logged"
                     to={RouteName.createRecipe}
-                    className="flex"
+                    className="flex sm:hidden lg:visible"
                   >
                     <h4
                       id="navbar-shareRecipe-logged"
@@ -270,7 +285,7 @@ export const Navbar: React.FC = () => {
                   <Link
                     id="navbar-shareRecipe"
                     to={RouteName.createRecipe}
-                    className="flex"
+                    className="flex sm:hidden lg:visible"
                   >
                     <h4
                       id="navbar-shareRecipe"
@@ -445,11 +460,6 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
         </div>
-        <Link to={RouteName.startDiyGreenitFullXp}>
-          <NavButton id="navbar-box" type="black">
-            Kit fait-maison
-          </NavButton>
-        </Link>
         <div className="w-auto" id="navmenu">
           <Link to={RouteName.starterPage}>
             <NavButton id="navbar-pageDebutant" type="blue">
@@ -472,7 +482,7 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
         <div className="w-auto" id="navmenu">
-          <Link to={RouteName.why}>
+          <Link to={RouteName.why} className="sm:hidden lg:block">
             <NavButton id="navbar-project" type="darkBlue">
               Le projet
             </NavButton>
@@ -502,7 +512,7 @@ export const Navbar: React.FC = () => {
       {/*Todo : Update width dynamically with custom breakpoints on smaller screens*/}
       <div
         className={`grid items-center ${
-          showSearchBar ? "grow" : "w-3/5"
+          showSearchBar ? "grow" : "sm: w-1/3 md:w-3/5"
         } justify-self-end `}
       >
         <div className="flex space-between items-center justify-self-end">
@@ -522,7 +532,7 @@ export const Navbar: React.FC = () => {
           {isLoggedIn ? (
             <Link to={RouteName.createRecipe} className="flex">
               <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
-                <div className="flex">
+                <div className="flex sm:hidden lg:block">
                   <Button
                     id="navbar-shareRecipe-logged"
                     type="darkBlue"
@@ -535,36 +545,70 @@ export const Navbar: React.FC = () => {
               </div>
             </Link>
           ) : (
-            <Link to={RouteName.createRecipe} className="flex">
-              <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
-                <div className="flex">
-                  <Button
-                    id="navbar-shareRecipe"
-                    type="darkBlue"
-                    rounded="lg"
-                    className="inline justify-end self-center | mr-2 cursor-pointer | h-10"
-                  >
-                    Partager une recette
-                  </Button>
-                </div>
+            <>
+              <div
+                className="cursor-pointer pr-4"
+                onClick={() => setShowModalMarket(true)}
+              >
+                <i
+                  className="bx bx-cart text-yellow text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
+                  id="navBar-cart-notLogged"
+                ></i>
               </div>
-            </Link>
+              <Modal
+                isCenter={true}
+                onClose={() => setShowModalMarket(false)}
+                show={showModalMarket}
+              >
+                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
+                  <ModalMarketTest />
+                </div>
+              </Modal>
+              <Link to={RouteName.createRecipe} className="flex">
+                <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
+                  <div className="flex sm:hidden lg:block">
+                    <Button
+                      id="navbar-shareRecipe"
+                      type="darkBlue"
+                      rounded="lg"
+                      className="inline justify-end self-center | mr-2 cursor-pointer | h-10"
+                    >
+                      Partager une recette
+                    </Button>
+                  </div>
+                </div>
+              </Link>
+            </>
           )}
           {isLoggedIn ? (
-            <Link to={RouteName.profil}>
-              <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
-                <div className="flex">
-                  <Button
-                    id="navbar-access-profil-logged"
-                    type="blue"
-                    rounded="lg"
-                    className="inline justify-end self-center | mr-4 cursor-pointer | h-10"
-                  >
-                    Profil
-                  </Button>
-                </div>
+            <>
+              <div
+                className="cursor-pointer px-2"
+                onClick={() => setShowModalMarket(true)}
+              >
+                <i
+                  className="bx bxs-cart text-yellow text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
+                  id="navBar-cart-LoggedIn"
+                ></i>
               </div>
-            </Link>
+              <Modal
+                isCenter={true}
+                onClose={() => setShowModalMarket(false)}
+                show={showModalMarket}
+              >
+                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
+                  <ModalMarketTest />
+                </div>
+              </Modal>
+              <Link to={RouteName.profil}>
+                <div className="pl-2 pr-4 cursor-pointer">
+                  <i
+                    className="bx bxs-user text-blue text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
+                    id="navBar-profil-LoggedIn"
+                  ></i>
+                </div>
+              </Link>
+            </>
           ) : (
             <Suspense fallback={<Loading />}>
               <ModalLogGreenit

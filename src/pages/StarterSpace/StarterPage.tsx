@@ -309,7 +309,6 @@ const StarterPage = () => {
               <Button
                 className="absolute bottom-0 right-0 mx-3 mb-1 md:mb-2 md:ml-2 shadow-flat"
                 type="darkBlue"
-                href="#"
                 onClick={() => {
                   window.open(
                     "https://greenitcommunity.com/recettes/creme-pour-le-corps-hydratante-a-la-vanille",
@@ -489,7 +488,6 @@ const StarterPage = () => {
                 <p className="text-center mb-4">9,40 €</p>
                 <Button
                   id="page-debutant-order-jolieessence"
-                  href="#"
                   onClick={() => {
                     window.open(
                       "https://www.mycosmetik.fr/#ae411                      ",
@@ -521,7 +519,6 @@ const StarterPage = () => {
               <Button
                 className="absolute bottom-0 right-0 mx-3 mb-1 md:mb-2 md:ml-2 shadow-flat"
                 type="darkBlue"
-                href="#"
                 onClick={() => {
                   window.open(
                     "https://greenitcommunity.com/recettes/lessive-express/",
@@ -719,7 +716,6 @@ const StarterPage = () => {
               <div>
                 <Button
                   id="page-debutant-order-biocop"
-                  href="#"
                   onClick={() => {
                     window.open(
                       "https://www.biocoop.fr/magasins-bio/Trouver-mon-magasin-Biocoop",

@@ -11,7 +11,7 @@ export const RouteName = {
   register: "/creation-compte",
   recipeCreated: "/ajout-recette", // no index
   ingredientPage: "/ingredients", // no index ( a activer quand on sort la page)
-  starterPage: "/page-debutant-diy", // no index ( a activer quand on sort la page)
+  starterPage: "/page-debutant-diy",
   why: "/projet",
   contact: "/contact",
   recipes: "/recettes",
@@ -20,7 +20,9 @@ export const RouteName = {
   tutoFullXpBeginner: "/tuto-box-débutant",
   startDiyGreenitFullXp: "/se-lancer-dans-le-fait-maison",
   findOUtMoreBoxGreentilFullXP: "/commande-info",
-  qrFullXp: "/bienvenue-box"
+  qrFullXp: "/bienvenue-box",
+  market: "/market",
+  listpagemarket: "/ingredients/:category_ingredient"
 };
 
 export default (
@@ -29,7 +31,6 @@ export default (
       <Route path={RouteName.contact} />
       <Route path={RouteName.recipes} />
       <Route path="/recettes/:name" />
-      <Route path={RouteName.ingredientPage} />
       <Route path={RouteName.starterPage} />
       <Route path={RouteName.createRecipe} />
       <Route path={RouteName.recipeCreated} />
@@ -40,6 +41,10 @@ export default (
       {/*full xp*/}
       <Route path={RouteName.startDiyGreenitFullXp} />
       <Route path={RouteName.findOUtMoreBoxGreentilFullXP} />
-      <Route />
+
+      {/*market*/}
+      <Route path={RouteName.market} />
+      <Route path={RouteName.findOUtMoreBoxGreentilFullXP} />
+      <Route path="/market/:id" />
     </Route>
 );

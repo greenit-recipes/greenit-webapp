@@ -1,14 +1,8 @@
-import { Icon } from "./../components/misc/Icon";
 // CATEGORIES
 import wellbeing from "./bien-être_icon.png";
 import corps from "./corps_recette.png";
 import visage from "./visage_recette.jpeg";
 import maison from "./maison_recette.png";
-
-//INGREDIENTS
-import ingredients1 from "./ingredients_1.png";
-import ingredients2 from "./ingredients_2.png";
-import ingredients3 from "./ingredients_3.png";
 
 // LOGO
 import logo from "./NewLogo_Small.svg";
@@ -138,12 +132,17 @@ import BadgeControleMobile from "./Badge_controle_Mobile.png";
 import BadgeControleDesktop from "./Badge_controle_Desktop.png";
 import Badge100Mobile from "./Badge_100pc_Mobile.png";
 import Badge100Desktop from "./Badge_100pc_Desktop.png";
+import BadgeJeDebute from "./BadgeJeDebute.svg";
+
+// DECORATION TOP PAGES
+import TopImageMarketMobile from "./TopImage_Market_Mobile.svg";
+import TopImageMarketDesktopLeft from "./TopImageLeft_Market_Desktop.svg";
+import TopImageMarketDesktopRight from "./TopImageRight_Market_Desktop.svg";
 import TopImageMobile from "./TopImageLP_Mobile.svg";
 import TopImageDesktopLeft from "./TopImageLP_gauche.svg";
 import TopImageDesktopRight from "./TopImageLP_droite.svg";
 import LPImage4Desktop from "./LPImage_4_Desktop.svg";
 import ProjectTopImageDesktop from "./TopImageProject_desktop.svg";
-import BadgeJeDebute from "./BadgeJeDebute.svg";
 
 // FUll XP GREENIT
 import boxGreenit from "./GIFDesktop_Box_GIY.gif";
@@ -204,14 +203,16 @@ import Gif_LDC from "./gif_ldc.gif";
 import Gif_Personnalisation from "./gif_personnalisation.gif";
 import Gif_Profil from "./gif_profil.gif";
 
+// Market
+import Market_Modal from "./MarketModal.svg";
+import BlueLCircle from "./BlueLCircle.svg";
+import MarketModal_Mobile from "./MarketModal_Mobile.svg";
+
 export {
   wellbeing,
   corps,
   visage,
   maison,
-  ingredients1,
-  ingredients2,
-  ingredients3,
   logo,
   logoBig,
   premierspas,
@@ -373,4 +374,10 @@ export {
   Gif_LDC,
   Gif_Personnalisation,
   Gif_Profil,
+  TopImageMarketMobile,
+  TopImageMarketDesktopLeft,
+  TopImageMarketDesktopRight,
+  Market_Modal,
+  BlueLCircle,
+  MarketModal_Mobile,
 };

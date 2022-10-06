@@ -1,22 +1,11 @@
 import { RouteName } from "App";
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  FBIcon,
-  footerChat,
-  footerValues,
-  footerWorld,
-  InstagramIcon,
-  MailIcon,
-  pinterestIcon,
-  rondIcon,
-  tiktokIcon,
-} from "../../icons";
-import privacyPdf from "../../privacy.pdf";
+import privacyPdf from "../../privacy.pdf"; //no index
 
 export const Footer: React.FC = () => {
   return (
-    <div className="h-auto w-full z-10 | flex flex-col | items-center | bg-darkBlue -mb-10">
+    <div className="h-auto w-full z-40 | flex flex-col | items-center | bg-darkBlue -mb-10">
       <div className="mb-4 w-full grid justify-items-center">
         <div className="flex mt-10">
           <Link to={RouteName.why}>
@@ -124,7 +113,7 @@ export const Footer: React.FC = () => {
           </div>
         ))}
       </div>
-      <a
+      <a //no index
         href={privacyPdf}
         target="_blank"
         rel="noreferrer"

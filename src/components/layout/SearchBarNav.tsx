@@ -41,7 +41,7 @@ export const SearchBarNav: React.FC<{
     }
   };
   return (
-    <div className="flex flex-row mr-2 border rounded-md h-9 w-56 border-grey">
+    <div className="flex flex-row mr-2 border rounded-md h-9 w-40 border-grey">
       <input
         type="text"
         className={`w-full h-full bg-transparent ml-2 | text-sm md:

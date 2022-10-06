@@ -22,7 +22,7 @@ interface ButtonProps {
   onClick?: () => void;
   haveIcon?: boolean;
   disabled?: boolean;
-  href?: string;
+  href?: any;
   haveArrow?: boolean;
   isArrowDown?: boolean;
   isLoading?: boolean;
@@ -46,6 +46,7 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   haveIcon = false,
   id,
+  href,
   onClick,
   isOnClickActive = false,
   haveArrow,
@@ -71,11 +72,11 @@ export const Button: React.FC<ButtonProps> = ({
       style.bgColor = "bg-white";
       break;
     case "yellow":
-      style.hoverBgColor = "hover:bg-yellow";
+      style.hoverBgColor = "bg-yellow";
+      style.textColor = "text-white";
       style.borderColor = "border-yellow";
-      style.hoverTextColor = "hover:text-white";
-      style.bgColor = "bg-yellow";
-      style.textColor = "text-yello";
+      style.hoverTextColor = "hover:text-yellow";
+      style.bgColor = "bg-white";
       break;
     case "orange":
       style.hoverBgColor = "hover:bg-orange";
@@ -162,15 +163,19 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       id={id}
       disabled={isLoading}
+      ref={href}
       className={`${className} flex justify-center items-center cursor-pointer
       text-sm ${
         haveIcon ? "px-3 py-0.5" : "px-3 py-2"
       }   border-2 border-transparent
       font-medium md:ease-linear transition-all duration-150
       hover:shadow-flat  ${
-        type === "green"
+        (type === "green"
           ? "hover:bg-white " + style.hoverTextColor
-          : "bg-white " + style.hoverTextColor + " active:bg-white"
+          : "bg-white " + style.hoverTextColor + " active:bg-white",
+        type === "yellow"
+          ? "hover:bg-white " + style.hoverTextColor
+          : "bg-white " + style.hoverTextColor + " active:bg-white")
       }
       ${style.borderColor}
       ${style.borderRadius}

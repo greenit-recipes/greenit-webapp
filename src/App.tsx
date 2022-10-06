@@ -4,12 +4,11 @@ import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
 import { createBrowserHistory } from "history";
 import LandingPage from "pages/LandingPage/LandingPage";
+import MarketLandingPage from "pages/Market/MarketLandingPage";
 import React, { Suspense } from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import ReactDOM from "react-dom";
-import ModalPersonalizationPopUp from "./components/personalization/ModalPersonalizationPopUp";
 
 const AccountCreated = React.lazy(() => import("pages/AccountCreated"));
 const ActivateAccount = React.lazy(() => import("pages/activate"));
@@ -22,9 +21,7 @@ const CreateRecipe = React.lazy(
 const RecipeCreatedPage = React.lazy(
   () => import("pages/CreateRecipe/CreateRecipeSuccess"),
 );
-const IngredientPage = React.lazy(
-  () => import("pages/IngredientSpace/IngredientPage"),
-);
+
 const ForgetPassword = React.lazy(() => import("pages/Login/ForgetPassword"));
 const DeleteProfil = React.lazy(() => import("pages/Profil/DeleteProfil"));
 const RecapPage = React.lazy(() => import("pages/RecapPage"));
@@ -64,6 +61,12 @@ const QRFullXp = React.lazy(
   () => import("./pages/GreenitFullXp/QRFullXp/QRFullXp"),
 );
 
+const IngredientSinglePage = React.lazy(
+  () => import("pages/Market/IngredientSinglePage/IngredientSinglePage"),
+);
+
+const MarketListPage = React.lazy(() => import("pages/Market/MarketListPage"));
+
 export const history = createBrowserHistory();
 
 const greenitFullXpRoute = {
@@ -75,6 +78,8 @@ const greenitFullXpRoute = {
 
 export const RouteName = {
   accueil: "/",
+  market: "/market", // no index
+  listpagemarket: "/ingredients",
   resetPassword: "/reinitialisation-mot-de-passe", // no index
   tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
   accountCreated: "/compte-crée", // no index
@@ -83,7 +88,6 @@ export const RouteName = {
   register: "/creation-compte",
   recipeCreated: "/ajout-recette", // no index
   greenitFullXp: "/commande-box",
-  ingredientPage: "/ingredients", // no index ( a activer quand on sort la page)
   starterPage: "/page-debutant-diy",
   why: "/projet",
   contact: "/contact",
@@ -117,6 +121,23 @@ const App: React.FC = () => {
             component={RecipeSinglePage}
             exact
           />
+          <PublicRoute
+            path={RouteName.market}
+            component={MarketLandingPage}
+            exact
+          />
+          <PublicRoute
+            path="/market/:id"
+            component={IngredientSinglePage}
+            exact
+          />
+
+          <PublicRoute
+            path="/ingredients/:category_ingredient" //to change to categorySlug
+            component={MarketListPage}
+            exact
+          />
+
           {/* START FULL XP */}
           <FullXPRoute
             path={RouteName.greenitFullXp}
@@ -145,11 +166,6 @@ const App: React.FC = () => {
           <PublicRoute
             path="/personalizedSearch"
             component={PersonalizedSearch}
-            exact
-          />
-          <PublicRoute
-            path={RouteName.ingredientPage}
-            component={IngredientPage}
             exact
           />
           <PublicRoute

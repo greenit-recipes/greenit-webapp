@@ -87,6 +87,30 @@
   height: 54px;
 }
 
+.trait-yellow-desktop:after {
+  background-image: url(./icons/trait-yellow-desktop.svg);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  bottom: 0;
+  width: 54px;
+  height: 54px;
+}
+
+.trait-yellow-mobile:after {
+  background-image: url(./icons/trait-yellow-desktop.svg);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 45px;
+  bottom: 0;
+  width: 54px;
+  height: 54px;
+}
+
 .arrow-img:hover::after {
   background-image: url(./icons/double-trait.svg);
   background-repeat: no-repeat;
@@ -352,4 +376,12 @@
 
 .large-modal {
   width: 60rem !important;
+}
+
+/* Multi select menu tabs styling */
+
+.selected-tab {
+  background: #000;
+  height: 100px;
+  color: #83d489;
 }

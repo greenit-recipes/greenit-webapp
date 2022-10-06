@@ -75,7 +75,7 @@ export const AskQuestion: React.FC = () => {
       {data?.emailAskQuestionStartePage?.success && (
         <NotificationAlert
           type="success"
-          titre="Ta question a bien été envoyée !"
+          title="Ta question a bien été envoyée !"
           text="Nous y répondrons d'ici 48 heures"
         />
       )}

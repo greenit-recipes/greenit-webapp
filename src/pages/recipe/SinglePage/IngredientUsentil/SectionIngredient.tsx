@@ -78,7 +78,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
               : "recipe",
           )}
           type="success"
-          titre="Ajouté(s) aux ingrédients chez toi !"
+          title="Ajouté(s) aux ingrédients chez toi !"
           text="Retrouve ta liste dans ton profil."
         />,
         document.getElementById("notif"),
@@ -95,7 +95,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
               : "recipe",
           )}
           type="success"
-          titre="Ajouté(s) à la liste de course !"
+          title="Ajouté(s) à la liste de course !"
           text="Retrouve ta liste dans ton profil."
         />,
         document.getElementById("notif"),
@@ -108,7 +108,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
         <NotificationAlert
           key={getRandomKey("ldc-updated")}
           type="success"
-          titre="Mise à jour de ta liste de course !"
+          title="Mise à jour de ta liste de course !"
           text="Ajoute des ingrédients depuis les recettes."
         />,
         document.getElementById("notif"),
@@ -121,7 +121,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
         <NotificationAlert
           key={getRandomKey("ingredient-card-ldc-access")}
           type="alert"
-          titre="Tu n’as pas accès à la liste de course."
+          title="Tu n’as pas accès à la liste de course."
           text="Crée-toi un compte pour ajouter à ta liste !"
         />,
         document.getElementById("notif"),
@@ -432,7 +432,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                     </div>
                   )}
                 </div>
-                {data?.purchaseLink && (
+                {/*{data?.purchaseLink && (
                   <>
                     {!isMobile && (
                       <p className="self-start text-sm">
@@ -452,7 +452,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                       </a>
                     </div>
                   </>
-                )}
+                )}*/}
               </div>
             </div>
           </div>

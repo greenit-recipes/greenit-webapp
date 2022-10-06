@@ -78,7 +78,7 @@ const ForgetPassword: React.FC = () => {
           {message && (
             <NotificationAlert
               type="success"
-              titre="L'email de réinitialisation a été envoyé !"
+              title="L'email de réinitialisation a été envoyé !"
               text="Jette aussi un coup d'oeil à tes spams 😉"
             ></NotificationAlert>
           )}

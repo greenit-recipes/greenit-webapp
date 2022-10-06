@@ -84,7 +84,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
         <NotificationAlert
           key={getRandomKey("ldc-bulk-added")}
           type="success"
-          titre="Ajouté(s) aux ingrédients chez toi !"
+          title="Ajouté(s) aux ingrédients chez toi !"
           text="Retrouve ta liste dans ton profil."
         />,
         document.getElementById("notif"),
@@ -96,7 +96,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
         <NotificationAlert
           key={getRandomKey("ingredient-limit-reached-recipe")}
           type="alert"
-          titre="Tu as beaucoup d’ingrédients chez toi ?"
+          title="Tu as beaucoup d’ingrédients chez toi ?"
           text="Crée-toi un compte pour en ajouter plus !"
         />,
         document.getElementById("notif"),
@@ -108,7 +108,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
         <NotificationAlert
           key={getRandomKey("ldc-bulk-access")}
           type="alert"
-          titre="Tu n’as pas accès à la liste de course."
+          title="Tu n’as pas accès à la liste de course."
           text="Crée-toi un compte pour ajouter à ta liste !"
         />,
         document.getElementById("notif"),
@@ -144,7 +144,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
   };
 
   return (
-    <div className="flex items-center mt-12 mb-12">
+    <div className="flex items-center mt-12 mb-4">
       <div className="w-full">
         <div className={`flex ${isIngredientSelected ? "" : ""}`}>
           <div
@@ -219,7 +219,8 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
             </div>
           ))}
         </div>
-        <div className="flex items-center justify-end space-x-2 md:space-x-4 | mt-5">
+        {/* Comment below just for the market test time */}
+        {/*<div className="flex items-center justify-end space-x-2 md:space-x-4 | mt-5">
           <span className="text-sm font-normal">
             {isBulkLDCActive ? "Retirer tout de " : "Ajouter tout à "}ma liste
             de course
@@ -272,7 +273,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
                    text-sm text-darkBlue absolute -top-0.5 right-0.5`}
             ></i>
           </Button>
-        </div>
+            </div>*/}
       </div>
     </div>
   );

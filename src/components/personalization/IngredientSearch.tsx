@@ -106,7 +106,7 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
         <NotificationAlert
           key={getRandomKey("ingredient-exist")}
           type="alert"
-          titre="Tu as déjà cet ingrédient dans ta liste !"
+          title="Tu as déjà cet ingrédient dans ta liste !"
           text="Tu peux ajouter d’autres ingrédients."
         />,
         document.getElementById("notif"),
@@ -118,7 +118,7 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
         <NotificationAlert
           key={getRandomKey("ingredient-limit-reached")}
           type="alert"
-          titre="Tu as beaucoup d’ingrédients chez toi ?"
+          title="Tu as beaucoup d’ingrédients chez toi ?"
           text="Crée-toi un compte pour en ajouter plus !"
         />,
         document.getElementById("notif"),
@@ -130,7 +130,7 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
         <NotificationAlert
           key={getRandomKey("ingredients-saved")}
           type="success"
-          titre="Mise à jour de tes ingrédients !"
+          title="Mise à jour de tes ingrédients !"
           text="Retrouve ta sélection de recettes adaptées."
         />,
         document.getElementById("notif"),
