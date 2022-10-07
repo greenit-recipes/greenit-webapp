@@ -20,6 +20,7 @@ import {
   domie,
   fanny,
   hugues,
+  anne,
 } from "icons";
 import { ExploreMore } from "components/recipe/ExploreMore";
 import { SectionTitle } from "./Components/SectionTitle";
@@ -361,15 +362,15 @@ const MarketLandingPage = () => {
               image={hugues}
               personName={"Maxime"}
               review={
-                "Je soutiens le projet depuis ses débuts. La box est en continuité de rendre accessible le fait maison. Bravo"
+                "Je soutiens le projet depuis ses débuts. Greenit rend accessible le fait maison ! Bravo"
               }
               rating={"5/5"}
             />
             <ReviewCard
               image={defaultImageProfil}
-              personName={"Valentine"}
+              personName={"Valentine92"}
               review={
-                "J’aime l’odeur de la lessive. Super pour une première fois."
+                "Très bonne qualité des produits. Super pour une première fois."
               }
               rating={"5/5"}
             />
@@ -381,15 +382,17 @@ const MarketLandingPage = () => {
             />
             <ReviewCard
               image={fanny}
-              personName={"Maria"}
-              review={"Simple et accessible. Je recommande."}
-              rating={"5/5"}
+              personName={"Fanny"}
+              review={
+                "Bonne experience, plus de produits disponibles serait encore mieux. "
+              }
+              rating={"4/5"}
             />
             <ReviewCard
-              image={nathalier}
-              personName={"Samantha"}
+              image={anne}
+              personName={"MLou"}
               review={
-                "Première fois que j’achète, je suis livrée en 4 jours ! Merci"
+                "J’ai bien été aiguillé pour mes premières recettes maison, merci !"
               }
               rating={"5/5"}
             />

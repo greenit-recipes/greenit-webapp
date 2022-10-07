@@ -7,13 +7,11 @@ import { FirstStep } from "pages/StarterSpace/component/FirstStep/FirstStep";
 import { SectionStarterPage } from "pages/StarterSpace/SectionStarterPage";
 import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
-import { RiShareForwardLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import authService from "services/auth.service";
 import { landingPageCategories } from "utils";
-import { Button, RecipeCard } from "../../components";
-import { useRecipesQuery } from "../../graphql";
+import { Button } from "../../components";
 import {
   Balance,
   BeurreKarite,
@@ -102,7 +100,7 @@ const StarterPage = () => {
         />
       </Helmet>
 
-      <Container className="flex justify-center w-full pt-10 pb-20 md:py-16 bg-yellowL">
+      <Container className="flex justify-center w-full pt-10 pb-20 md:py-16 bg-blueL">
         <div className="flex flex-col gap-2 w-10/12">
           <h1 className="font-medium">Comment se lancer ?</h1>
           <h3>
@@ -787,21 +785,28 @@ const StarterPage = () => {
                 url: window.location.href,
               }}
             >
-              <Button id="recette-partager" type="darkBlue" className="h-10">
+              <Button
+                id="starterPage-guide-partager"
+                type="darkBlue"
+                className="h-10"
+              >
                 <i className="bx bx-share bx-flip-horizontal bx-sm mr-2"></i>
                 Partager le guide
               </Button>
             </RWebShare>
             {isLoggedIn ? (
-              <Link className="mt-4" to={RouteName.profil}>
+              <Link
+                id="starterPage-access-profil-loggedIn"
+                to={RouteName.profil}
+              >
                 <Button id="SP_go_profil" type="blue">
-                  Accéder à mon espace DIY
+                  Accéder à mon profil
                 </Button>
               </Link>
             ) : (
               <ModalLogGreenit
                 btn={
-                  <Button id="SP_create_account" type="green">
+                  <Button id="starterPage-create-profil" type="blue">
                     Créer un profil
                   </Button>
                 }

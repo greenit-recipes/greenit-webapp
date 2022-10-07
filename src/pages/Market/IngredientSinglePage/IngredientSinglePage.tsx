@@ -13,7 +13,14 @@ import { EngagementBanner } from "../Components/EngagementBanner";
 import { FAQMarket } from "../Components/FAQMarket/FAQMarket";
 import { getImagePath } from "helpers/image.helper";
 import { IngredientAssociateSection } from "./IngredientAssociateSection";
-import { defaultImageProfil, domie, fanny, hugues, nathalier } from "icons";
+import {
+  anne,
+  defaultImageProfil,
+  domie,
+  fanny,
+  hugues,
+  nathalier,
+} from "icons";
 
 const IngredientSinglePage = () => {
   const isMobile = useIsMobile();
@@ -279,9 +286,9 @@ const IngredientSinglePage = () => {
               image={hugues}
               personName={"Maxime"}
               review={
-                "Je soutiens le projet depuis ses débuts. La box est en continuité de rendre accessible le fait maison. Bravo"
+                "Je soutiens le projet depuis ses débuts. Greenit rend accessible le fait maison ! Bravo"
               }
-              rating={"★ 5/5"}
+              rating={"5/5"}
             />
             <ReviewCard
               image={defaultImageProfil}
@@ -298,10 +305,12 @@ const IngredientSinglePage = () => {
               rating={"★ 5/5"}
             />
             <ReviewCard
-              image={fanny}
-              personName={"Maria"}
-              review={"Simple et accessible. Je recommande."}
-              rating={"★ 5/5"}
+              image={anne}
+              personName={"MLou"}
+              review={
+                "J’ai bien été aiguillé pour mes premières recettes maison, merci !"
+              }
+              rating={"5/5"}
             />
           </Container>
 

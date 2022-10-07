@@ -43,7 +43,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
               id="ingredientPage-information"
               className={`flex px-6 bg-white items-center h-14 ${
                 isInfoActive
-                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-20"
+                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-20 rounded-md"
                   : "border-b-4 border-b-greyL"
               }`}
               onClick={() => {
@@ -61,7 +61,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
               id="ingredientPage-indications"
               className={`flex px-6 bg-white items-center h-14 ${
                 isIndicationsActive
-                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
+                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-20 rounded-md"
                   : "border-b-4 border-b-greyL"
               }`}
               onClick={() => {
@@ -79,7 +79,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
               id="ingredientPage-precaution"
               className={`flex px-6 bg-white items-center h-14 ${
                 isCautionActive
-                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
+                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-20 rounded-md"
                   : "border-b-4 border-b-greyL"
               }`}
               onClick={() => {
@@ -97,7 +97,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
               id="ingredientPage-à-propos-de-la-marque"
               className={`flex px-6 bg-white items-center h-14 ${
                 isBrandInfoActive
-                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
+                  ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-20 rounded-md"
                   : "border-b-4 border-b-greyL"
               }`}
               onClick={() => {
@@ -118,7 +118,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
             id="ingredientPage-information"
             className={`flex px-6 bg-white items-center h-14 ${
               isInfoActive
-                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
+                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-20 rounded-md"
                 : "border-b-4 border-b-greyL"
             }`}
             onClick={() => {
@@ -136,7 +136,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
             id="ingredientPage-indication"
             className={`flex px-6 bg-white items-center h-14 ${
               isIndicationsActive
-                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
+                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-20 rounded-md"
                 : "border-b-4 border-b-greyL"
             }`}
             onClick={() => {
@@ -154,7 +154,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
             id="ingredientPage-precaution"
             className={`flex px-6 bg-white items-center h-14 ${
               isCautionActive
-                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
+                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-20 rounded-md"
                 : "border-b-4 border-b-greyL"
             }`}
             onClick={() => {
@@ -172,7 +172,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
             id="ingredientPage-à-propos-de-la-marque"
             className={`flex px-6 bg-white items-center h-14 ${
               isBrandInfoActive
-                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-30"
+                ? "border-b-4 border-b-darkBlue shadow-flat bg-white z-20 rounded-md"
                 : "border-b-4 border-b-greyL"
             }`}
             onClick={() => {

@@ -41,7 +41,7 @@ const AccountCreated: React.FC = () => {
               variables: { email: authService.getEmail() },
             });
           }}
-          type="green"
+          type="darkBlue"
         >
           Renvoyer l'email
         </Button>
