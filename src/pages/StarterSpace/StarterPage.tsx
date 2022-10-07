@@ -819,7 +819,7 @@ const StarterPage = () => {
         color="blueL"
         step={false}
         maintitle="Espace d'aide"
-        title="Des questions persistes, écris-nous !"
+        title="Des questions persistent, écris-nous !"
       ></SectionStarterPage>
       <h3 className="text-sm lg:text-lg font-light px-6 text-center mt-4 mb-6">
         👇 Ici 👇

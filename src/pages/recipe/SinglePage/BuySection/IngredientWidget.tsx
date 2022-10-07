@@ -49,9 +49,9 @@ export const IngredientWidget: React.FC<IngredientWidget> = ({
               loading="lazy"
             />
           </div>
-          <div className="flex items-center h-full w-3/4">
+          <div className="flex items-center h-16 w-3/4">
             <div className="flex flex-col items-center">
-              <h4 className="leading-4">{name}</h4>
+              <h4 className="leading-4 text-left">{name}</h4>
               <div className="flex gap-2 items-center self-start">
                 <p className="leading-4 text-sm">{producer}</p>
                 <p>|</p>
