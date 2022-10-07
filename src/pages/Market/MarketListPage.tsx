@@ -31,6 +31,8 @@ const MarketLandingPage = () => {
         return "Poudres et argiles";
       case "Huiles-essentielles":
         return "Huiles essentielles";
+      case "Hydrolats-eaux-florales":
+        return "Hydrolats et eaux florales";
       case "Ingrédients-cosmétiques":
         return "Ingrédients cosmétiques";
       case "Ingrédients-entretien":

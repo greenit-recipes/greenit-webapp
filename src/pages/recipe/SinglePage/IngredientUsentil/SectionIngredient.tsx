@@ -284,6 +284,7 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
               </div>
             )}
             <i
+              id="singlePage-open-dropdownIngredient"
               className={`bx bx-chevron-down bx-md mr-6 cursor-pointer ${
                 isArrowDown ? "section-arrow-up" : "section-arrow-down"
               }`}

@@ -26,6 +26,8 @@ import { ExploreMore } from "components/recipe/ExploreMore";
 import { SectionTitle } from "./Components/SectionTitle";
 import { ReviewCard } from "./Components/ReviewCard";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { RouteName } from "App";
 
 const MarketLandingPage = () => {
   const isMobile = useIsMobile();
@@ -53,7 +55,9 @@ const MarketLandingPage = () => {
   });
 
   const { data: dataVegetalOil } = useAllIngredientsQuery({
-    variables: { filter: { categoryIngredient: ["Autres"] } },
+    variables: {
+      filter: { categoryIngredient: ["Huiles végétales et beurres"] },
+    },
   });
 
   const { data: dataEssentialOils } = useAllIngredientsQuery({
@@ -307,7 +311,7 @@ const MarketLandingPage = () => {
             ))}
             <ExploreMore
               filter="tags=Premiers pas"
-              id="landing-debutant-debutant"
+              id="landing-explorer-recettes-premierPas"
             />
           </div>
         </Container>
@@ -325,17 +329,19 @@ const MarketLandingPage = () => {
             ))}
             <ExploreMore
               filter="category=Maison"
-              id="landing-maison-explorer"
+              id="landing-explorer-recettes-maison"
             />
           </div>
         </Container>
-        <Button
-          id="LandingMarket-decouvrir-recettes"
-          type="darkBlue"
-          className="my-4"
-        >
-          Découvrir les recettes
-        </Button>
+        <Link to={RouteName.recipes}>
+          <Button
+            id="LandingMarket-decouvrir-recettes"
+            type="darkBlue"
+            className="my-4"
+          >
+            Découvrir les recettes
+          </Button>
+        </Link>
         <div className="h-full w-full bg-greenL mt-10 flex flex-col items-center self-center pb-10">
           <SectionTitle
             title={"La communauté Greenit"}

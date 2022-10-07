@@ -19,7 +19,9 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
           }}
           className="cursor-pointer"
         >
-          <h4>Tous les ingrédients</h4>
+          <h4 id={`SlideBar-categorie-all-ingredients`}>
+            Tous les ingrédients
+          </h4>
         </Link>
         {[
           {
@@ -52,9 +54,8 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
               pathname: `${RouteName.listpagemarket}/${item.filter}`,
             }}
             className="cursor-pointer"
-            id={`SlideBar-categorie-${item.filter}`}
           >
-            <h4>{item.title}</h4>
+            <h4 id={`SlideBar-categorie-${item.filter}`}>{item.title}</h4>
           </Link>
         ))}
       </div>
