@@ -144,7 +144,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
   };
 
   return (
-    <div className="flex items-center mt-12 mb-4">
+    <div className="flex items-center mt-12 mb-8">
       <div className="w-full">
         <div className={`flex ${isIngredientSelected ? "" : ""}`}>
           <div

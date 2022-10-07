@@ -97,14 +97,14 @@ export const ModalMarketTest: React.FC<ModalMarketTest> = ({ className }) => {
           Ça m’intéresse !
         </Button>
         {errors.email?.message}
-        {data?.createNewsletter?.success && (
-          <NotificationAlert
-            title="Adresse e-mail bien reçue."
-            text="Tu receveras un code promo dès le lancement !"
-            type={"success"}
-          />
-        )}
       </form>
+      {data?.createNewsletter?.success && (
+        <NotificationAlert
+          title="Adresse e-mail bien reçue."
+          text="Tu receveras un code promo dès le lancement !"
+          type={"success"}
+        />
+      )}
     </Container>
   );
 };

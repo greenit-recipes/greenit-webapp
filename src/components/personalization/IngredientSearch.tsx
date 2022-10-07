@@ -11,6 +11,7 @@ import { NotificationAlert } from "../layout/NotificationAlert";
 import authService from "services/auth.service";
 import { getRandomKey } from "./PersonalizationHelper";
 import { useForceUpdate } from "../../hooks/useForceUpdate";
+import { Button } from "components/misc";
 
 interface IngredientSearchProps {
   ingredientsAtHome: any;
@@ -144,12 +145,12 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
   ]);
 
   return (
-    <div className="flex flex-col justify-center -mt-8 md:-mt-4 mx-12 md:mx-24 md:w-[700px]">
+    <div className="flex flex-col justify-center md:w-[700px] gap-2">
       <div className="flex justify-center text-center space-x-2 mb-3">
         <i className="bx bx-lemon text-xl mt-0.5"></i>
         <h2>Gérer mes ingrédients</h2>
       </div>
-      <div className="space-y-3 mb-5">
+      <div className="flex flex-col gap-3 text-left pl-6 mb-4">
         <h3>Les ingrédients chez moi</h3>
         <div className="md:w-1/2">
           <SearchBar
@@ -167,7 +168,7 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
         </div>
       </div>
       <div
-        className={`flex flex-col md:flex-row md:flex-wrap h-80 ${
+        className={`flex flex-col md:flex-row md:flex-wrap h-96 pl-6 ${
           ingredientAtHomeCurrent.length > 6 ? "md:h-[450px]" : "md:h-56"
         } msm:space-y-4 overflow-y-auto`}
       >
@@ -200,10 +201,11 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
           </div>
         ))}
       </div>
-      <div className="self-center">
-        <button
+      <div className="flex w-full justify-center">
+        <Button
+          type="green"
           id="modal-ingredients-chez-moi-valider"
-          className={`justify-center rounded-md shadow-md mt-2 p-2 h-10 flex w-full md:w-20 bg-green text-white`}
+          className={`justify-center w-40`}
           onClick={() => {
             if (isLoggedIn) {
               createOrDeleteIngredientAtHomeUser({
@@ -228,7 +230,7 @@ export const IngredientSearch: React.FC<IngredientSearchProps> = ({
           }}
         >
           Valider
-        </button>
+        </Button>
       </div>
     </div>
   );
