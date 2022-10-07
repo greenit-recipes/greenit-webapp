@@ -712,7 +712,7 @@ const RecipeSinglePage = () => {
                     onClick={() => setShowModalMarket(true)}
                   >
                     <i className={`bx bx-cart-download text-2xl mr-2`} />
-                    Ajouter tout les ingrédients au panier
+                    Ajouter tous les ingrédients au panier
                   </Button>
                   <Link to={RouteName.market} className="w-full">
                     <Button
@@ -720,7 +720,7 @@ const RecipeSinglePage = () => {
                       type="darkBlue"
                       className="h-10 w-full max-w-26 lg:w-auto lg:max-w-20"
                     >
-                      Découvre Greenit Market
+                      Découvrir Greenit Market
                     </Button>
                   </Link>
                 </div>

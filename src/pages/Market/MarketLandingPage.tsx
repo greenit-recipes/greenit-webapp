@@ -251,7 +251,7 @@ const MarketLandingPage = () => {
             <IngredientCard
               isCTA={true}
               id={"MarketPage-IngredientCards"}
-              filter={"Huiles-végétales"}
+              filter={"Huiles-végétales-et-beurres"}
               name={""}
               price={""}
               producer={""}
