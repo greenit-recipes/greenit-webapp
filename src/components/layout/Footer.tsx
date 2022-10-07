@@ -9,13 +9,19 @@ export const Footer: React.FC = () => {
       <div className="mb-4 w-full grid justify-items-center">
         <div className="flex mt-10">
           <Link to={RouteName.why}>
-            <h2 className="text-white md:text-xl self-center hover:text-yellow">
+            <h2
+              id="footer-projectInfo"
+              className="text-white md:text-xl self-center hover:text-yellow"
+            >
               Qui sommes-nous ?
             </h2>
           </Link>
           <h2 className="text-white md:text-xl self-center ml-6 mr-6"> | </h2>
           <Link to={RouteName.contact}>
-            <h2 className="text-white md:text-xl self-center hover:text-yellow">
+            <h2
+              id="footer-contact"
+              className="text-white md:text-xl self-center hover:text-yellow"
+            >
               Contacte-nous !{" "}
             </h2>
           </Link>

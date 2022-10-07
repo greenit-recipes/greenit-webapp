@@ -21,7 +21,10 @@ export const FAQMarket: React.FC<FAQMarket> = ({ className }) => {
           setIsQuestion1Active(!isQuestion1Active);
         }}
       >
-        <h4 className="col-span-5 text-start self-center font-regular">
+        <h4
+          id="FAQ-question1"
+          className="col-span-5 text-start self-center font-regular"
+        >
           Qui contacter en cas de questions ?
         </h4>
         {isQuestion1Active ? (
@@ -50,7 +53,10 @@ export const FAQMarket: React.FC<FAQMarket> = ({ className }) => {
           setIsQuestion2Active(!isQuestion2Active);
         }}
       >
-        <h4 className="col-span-5 text-start self-center font-regular">
+        <h4
+          id="FAQ-question2"
+          className="col-span-5 text-start self-center font-regular"
+        >
           Comment fonctionne la livraison ?
         </h4>
         {isQuestion2Active ? (
@@ -79,7 +85,10 @@ export const FAQMarket: React.FC<FAQMarket> = ({ className }) => {
           setIsQuestion3Active(!isQuestion3Active);
         }}
       >
-        <h4 className="col-span-5 text-start self-center font-regular">
+        <h4
+          id="FAQ-question3"
+          className="col-span-5 text-start self-center font-regular"
+        >
           Comment utiliser mon code de réduction ?
         </h4>
         {isQuestion3Active ? (
@@ -107,7 +116,10 @@ export const FAQMarket: React.FC<FAQMarket> = ({ className }) => {
           setIsQuestion4Active(!isQuestion4Active);
         }}
       >
-        <h4 className="col-span-5 text-start self-center font-regular">
+        <h4
+          id="FAQ-question4"
+          className="col-span-5 text-start self-center font-regular"
+        >
           Je souhaite retourner des produits, comment faire ?
         </h4>
         {isQuestion4Active ? (
@@ -131,13 +143,16 @@ export const FAQMarket: React.FC<FAQMarket> = ({ className }) => {
         </div>
       </div>
       <button
-        id="FAQ-question4"
+        id="FAQ-question5"
         className="grid grid-cols-6 w-full bg-white h-11 rounded-md px-3 mt-4"
         onClick={() => {
           setIsQuestion5Active(!isQuestion5Active);
         }}
       >
-        <h4 className="col-span-5 text-start self-center font-regular">
+        <h4
+          id="FAQ-question5"
+          className="col-span-5 text-start self-center font-regular"
+        >
           J’ai reçu un colis endommagé ou avec des produits manquants, que faire
           ?{" "}
         </h4>

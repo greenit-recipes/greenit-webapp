@@ -54,7 +54,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
                 isBrandInfoActive && setIsBrandInfoActive(!isBrandInfoActive);
               }}
             >
-              <h3>Informations</h3>
+              <h3 id="ingredientPage-information">Informations</h3>
             </button>
 
             <button
@@ -72,7 +72,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
                 isBrandInfoActive && setIsBrandInfoActive(!isBrandInfoActive);
               }}
             >
-              <h3>Indications</h3>
+              <h3 id="ingredientPage-indications">Indications</h3>
             </button>
 
             <button
@@ -90,7 +90,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
                 isBrandInfoActive && setIsBrandInfoActive(!isBrandInfoActive);
               }}
             >
-              <h3>Précautions d’utilisations</h3>
+              <h3 id="ingredientPage-precaution">Précautions d’utilisations</h3>
             </button>
 
             <button
@@ -108,7 +108,9 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
                 isInfoActive && setIsInfoActive(!isInfoActive);
               }}
             >
-              <h3>À propos de la marque</h3>
+              <h3 id="ingredientPage-à-propos-de-la-marque">
+                À propos de la marque
+              </h3>
             </button>
           </div>
         </div>
@@ -129,7 +131,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
               isBrandInfoActive && setIsBrandInfoActive(!isBrandInfoActive);
             }}
           >
-            <h4>Informations</h4>
+            <h4 id="ingredientPage-information">Informations</h4>
           </button>
 
           <button
@@ -147,7 +149,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
               isBrandInfoActive && setIsBrandInfoActive(!isBrandInfoActive);
             }}
           >
-            <h4>Indications</h4>
+            <h4 id="ingredientPage-indication">Indications</h4>
           </button>
 
           <button
@@ -165,7 +167,7 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
               isBrandInfoActive && setIsBrandInfoActive(!isBrandInfoActive);
             }}
           >
-            <h4>Précautions d’utilisations</h4>
+            <h4 id="ingredientPage-precaution">Précautions d’utilisations</h4>
           </button>
 
           <button
@@ -183,7 +185,9 @@ export const MenuMultiSelect: React.FC<MenuMultiSelect> = ({
               isInfoActive && setIsInfoActive(!isInfoActive);
             }}
           >
-            <h4>À propos de la marque</h4>
+            <h4 id="ingredientPage-à-propos-de-la-marque">
+              À propos de la marque
+            </h4>
           </button>
         </div>
       )}

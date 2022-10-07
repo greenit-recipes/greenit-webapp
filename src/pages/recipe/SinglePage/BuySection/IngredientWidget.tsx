@@ -29,11 +29,12 @@ export const IngredientWidget: React.FC<IngredientWidget> = ({
 
   return (
     <>
-      <div
+      <button
         id={`singlePage-ingredientWidget-${name}`}
         className="flex w-full lg:w-96 h-16 bg-white rounded-md gap-2 shadow-flat | transform sm:hover:scale-105 ease-linear transition-all duration-150"
       >
         <Link
+          id={`singlePage-ingredientWidget-${name}`}
           to={{
             pathname: `${RouteName.market}/${id}`,
           }}
@@ -41,6 +42,7 @@ export const IngredientWidget: React.FC<IngredientWidget> = ({
         >
           <div className="w-20 h-16">
             <img
+              id={`singlePage-ingredientWidget-${name}`}
               className="h-full object-cover rounded-md shadow-flat"
               src={getImagePath(image)}
               alt="photo de l'ingredient"
@@ -65,12 +67,16 @@ export const IngredientWidget: React.FC<IngredientWidget> = ({
           haveIcon={true}
           onClick={() => setShowModalMarket(true)}
         >
-          <i className={`bx bx-cart-download text-darkBlue text-2xl`}></i>
           <i
+            id="ingredient-card-addToCart"
+            className={`bx bx-cart-download text-darkBlue text-2xl`}
+          ></i>
+          <i
+            id="ingredient-card-addToCart"
             className={`bx bx-plus text-sm text-darkBlue absolute -top-0.5 right-0.5`}
           ></i>
         </Button>
-      </div>
+      </button>
 
       <Modal
         isCenter={true}

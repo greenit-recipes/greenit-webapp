@@ -38,7 +38,6 @@ export const IngredientCard: React.FC<IngredientCard> = ({
       {!isCTA ? (
         <>
           <Link
-            id={`ingredientCard-${name}`}
             to={{
               pathname: `${RouteName.market}/${id}`,
             }}
@@ -47,7 +46,8 @@ export const IngredientCard: React.FC<IngredientCard> = ({
               <div className="flex flex-col w-44 lg:w-52 gap-1">
                 <div className="flex relative items-center h-36 w-44 lg:h-40 lg:w-52 rounded-md object-cover overflow-hidden">
                   <img
-                    className="w-full object-cover shadow-flat rounded-md"
+                    id={`ingredientCard-${name}`}
+                    className="w-full object-cover rounded-md"
                     src={getImagePath(image)}
                     alt="photo de l'ingredient"
                     loading="lazy"
@@ -73,9 +73,13 @@ export const IngredientCard: React.FC<IngredientCard> = ({
             haveIcon={true}
             onClick={() => setShowModalMarket(true)}
           >
-            <i className={`bx bx-cart-download text-darkBlue text-2xl`}></i>
+            <i
+              className={`bx bx-cart-download text-darkBlue text-2xl`}
+              id="ingredientCard-addToCart"
+            ></i>
             <i
               className={`bx bx-plus text-sm text-darkBlue absolute -top-0.5 right-0.5`}
+              id="ingredientCard-addToCart"
             ></i>
           </Button>
           <Modal
@@ -90,12 +94,14 @@ export const IngredientCard: React.FC<IngredientCard> = ({
         </>
       ) : (
         <Link
-          id={`ingredientCardCTA-${filter}`}
           to={`${RouteName.listpagemarket}/${filter}`}
           className="bg-white sm:hover:shadow-flat rounded-lg |
         transform sm:hover:scale-101 ease-linear transition-all duration-120"
         >
-          <div className="grid h-full w-44 lg:w-52 gap-1 justify-center content-center">
+          <div
+            id={`ingredientCardCTA-${filter}`}
+            className="grid h-full w-44 lg:w-52 gap-1 justify-center content-center"
+          >
             <div className="flex flex-col h-20 justify-center">
               <i className="text-5xl bx bx-right-arrow-alt text-center mr-2"></i>
               <p className="text-md font-medium text-center">Explorer plus</p>

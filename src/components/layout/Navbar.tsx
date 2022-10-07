@@ -93,9 +93,15 @@ export const Navbar: React.FC = () => {
             </h5>
           </Link>
           {isLoggedIn ? (
-            <div className="grid w-full justify-items-end">
+            <div
+              id="navBar-profil-loggedIn"
+              className="grid w-full justify-items-end"
+            >
               <Link to={RouteName.profil}>
-                <div className="px-2 cursor-pointer">
+                <div
+                  id="navBar-profil-loggedIn"
+                  className="px-2 cursor-pointer"
+                >
                   <i
                     className="bx bxs-user text-blue text-3xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
                     id="navBar-profil-loggedIn"
@@ -601,7 +607,10 @@ export const Navbar: React.FC = () => {
                 </div>
               </Modal>
               <Link to={RouteName.profil}>
-                <div className="pl-2 pr-4 cursor-pointer">
+                <div
+                  id="navBar-profil-LoggedIn"
+                  className="pl-2 pr-4 cursor-pointer"
+                >
                   <i
                     className="bx bxs-user text-blue text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
                     id="navBar-profil-LoggedIn"

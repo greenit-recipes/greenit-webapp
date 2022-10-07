@@ -92,6 +92,9 @@ const RecipeSinglePage = () => {
   const [numberModal, setNumberModal] = useState(0);
 
   //START OF MARKET DISPLAY
+  const [isGelDeLin, setIsGelDeLin] = useState(false);
+  const recipeName = data?.recipe?.name;
+
   const [haveIngredientMarket, sethaveIngredientMarket] = useState(false);
   // this above is to display or not the entire section
   const ingredients = data?.recipe?.ingredients?.map((ingredients: any) => ({
@@ -106,7 +109,9 @@ const RecipeSinglePage = () => {
     ingredients?.forEach(data => {
       if (data.isForMarket === true) return sethaveIngredientMarket(true);
     });
-    console.log(haveIngredientMarket);
+    {
+      if (recipeName === "Gel de lin maison") return setIsGelDeLin(true);
+    }
   });
   //END OF MARKET DISPLAY
 
@@ -211,6 +216,45 @@ const RecipeSinglePage = () => {
       <HelmetRecipe recipe={recipe} />
       <div className="flex flex-col | items-center">
         <Navbar />
+        {isGelDeLin && (
+          <div className="fixed bottom-0 w-full h-28 md:h-20 bg-yellowL z-30 shadow-flat">
+            <div className="flex flex-col lg:flex-row w-full bg-yellowL pb-4 lg:p-4 h-max mb-10 md:justify-center">
+              <p className="md:hidden text-base py-2 w-full text-center font-medium">
+                Nous venons de lancer Greenit Market ! 🥑 🎁
+                <br /> Découvre nos produits 👇
+              </p>
+              <p className="hidden md:block text-base py-2 text-center font-medium mr-10">
+                Nous venons de lancer Greenit Market ! 🥑 🎁 &nbsp; &nbsp;
+                &nbsp; Découvre nos produits 👉
+              </p>
+              <div className="flex self-center md:self-start w-11/12 lg:max-w-20 h-10">
+                <Link
+                  to={RouteName.market}
+                  className="w-full"
+                  id="singlePage-GelDeLin-CTA"
+                >
+                  <Button
+                    id="singlePage-GelDeLin-CTA"
+                    type="darkBlue"
+                    className="h-10 w-full max-w-26 lg:w-auto lg:max-w-20"
+                  >
+                    Explorer les produits disponibles
+                  </Button>
+                </Link>
+              </div>
+
+              <Modal
+                isCenter={true}
+                onClose={() => setShowModalMarket(false)}
+                show={showModalMarket}
+              >
+                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
+                  <ModalMarketTest />
+                </div>
+              </Modal>
+            </div>
+          </div>
+        )}
         <div
           className="absolute left-0 z-20 grid w-8 h-8 ml-3 rounded-full cursor-pointer top-14 lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
           onClick={() => {
@@ -646,7 +690,7 @@ const RecipeSinglePage = () => {
               <div className="flex flex-col self-center w-11/12 lg:w-4/6 pt-4 lg:gap-2">
                 <h3>Panier pour la recette</h3>
                 <p>Ingrédients disponibles pour cette recette</p>
-                <div className="flex flex-col lg:flex-row gap-4 mt-6">
+                <div className="flex flex-wrap gap-4 mt-6">
                   {ingredients?.map(
                     (Object: { name: string; isForMarket: boolean }) => {
                       {
