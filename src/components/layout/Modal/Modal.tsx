@@ -51,7 +51,7 @@ const Modal = (props: any) => {
           <div className="modal-footer">
             <button
               onClick={props.onClose}
-              id="modal-fermer-login-register"
+              id="modal-button-fermer"
               className="button"
             >
               Fermer

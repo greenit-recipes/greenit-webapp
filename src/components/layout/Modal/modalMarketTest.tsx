@@ -93,7 +93,7 @@ export const ModalMarketTest: React.FC<ModalMarketTest> = ({ className }) => {
           {...register("email")}
         ></input>
 
-        <Button type="yellow" className="mt-2 z-10">
+        <Button id="modalMarket-interest" type="yellow" className="mt-2 z-10">
           Ça m’intéresse !
         </Button>
         {errors.email?.message}
