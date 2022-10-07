@@ -75,15 +75,15 @@ const ForgetPassword: React.FC = () => {
           <div className="flex items-center justify-between">
             <Button type="darkBlue">Envoyer</Button>
           </div>
-          {message && (
-            <NotificationAlert
-              type="success"
-              title="L'email de réinitialisation a été envoyé !"
-              text="Jette aussi un coup d'oeil à tes spams 😉"
-            ></NotificationAlert>
-          )}
         </form>
       </div>
+      {message && (
+        <NotificationAlert
+          type="success"
+          title="L'email de réinitialisation a été envoyé !"
+          text="Jette aussi un coup d'oeil à tes spams 😉"
+        ></NotificationAlert>
+      )}
     </div>
   );
 };

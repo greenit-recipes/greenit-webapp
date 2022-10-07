@@ -48,20 +48,24 @@ export const NotificationAlert: React.FC<NotificationAlertProps> = ({
     <div
       className={`${
         hidden ? "hidden" : "notification"
-      } fixed w-auto h-auto rounded-lg p-3 md:p-4 ${style.BgColor}`}
+      } w-full fixed grid justify-items-center`}
     >
-      <div className="flex flex-row items-center">
-        <i
-          className={`${style.IconStyle} text-5xl ${style.IconColor} self-center mr-2 md:mr-4`}
-        />
-        <div className="flex flex-col text-left w-80 md:w-96">
-          <h3>{title}</h3>
-          <p>{text}</p>
-        </div>
-      </div>
       <div
-        className={`absolute right-6 rotate-45 ${style.BgColor} w-8 h-4`}
-      ></div>
+        className={`relative self-center w-auto h-auto rounded-lg p-3 md:p-4 ${style.BgColor}`}
+      >
+        <div className="flex flex-row items-center">
+          <i
+            className={`${style.IconStyle} text-5xl ${style.IconColor} self-center mr-2 md:mr-4`}
+          />
+          <div className="flex flex-col text-left w-80 md:w-96">
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </div>
+        </div>
+        <div
+          className={`absolute right-6 rotate-45 ${style.BgColor} w-8 h-4`}
+        ></div>
+      </div>
     </div>
   );
 };
