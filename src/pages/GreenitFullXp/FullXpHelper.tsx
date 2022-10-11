@@ -5,21 +5,6 @@ import {
 } from "icons";
 import { RecipeDifficulty } from "../../graphql";
 
-const userGreenit = {
-  author: {
-    id: "38b3dc6d-a3f5-4f65-85ea-a765d140584f",
-    imageProfile: "user/Greenit/profil/newlogocolor.png",
-    username: "Greenit",
-    biographie:
-      "Le Marmiton des produits d'hygiène 🍀 Répandre un mode de consommation artisanale et plus respectueux de l'environnement ! Découvrez toutes nos recettes sur Greenit Community et des astuces sur nos réseaux !",
-    urlsSocialMedia: [
-      { url: "https://www.instagram.com/greenitcommunity/" },
-      { url: "https://www.tiktok.com/@greenitcommunity" },
-      { url: "https://www.facebook.com/greenitcommunity" },
-    ],
-  },
-};
-
 export const recipesBegginerFullXp = [
   {
     id: "3b349672-a3b4-4eb5-a063-41eb79e5b542",
@@ -53,105 +38,15 @@ export const recipesBegginerFullXp = [
   },
 ];
 
-export const ingredientBeginner = [
-  {
-    amount: "20 g",
-    name: "Beurre de karité",
-    description:
-      "L’incontournable du DIY ! Le beurre de karité protège et cicatrise : il combat les agressions extérieures et réduit les sensibilités. Des études prouvent même que le beurre de karité protège de certains rayons UV. Il est nourrissant et hydratant : il renforce notre barrière cutanée et limite les pertes naturelles en eau. Il est beaucoup utilisé pour les lèvres gercées et les crevasses. Bourré en vitamines E, le beurre de karité est un excellent antioxydant ! Enfin, il pénètre rapidement dans l’épiderme pour action rapide et durable.",
-    alternative:
-      "De la même espèce, le beurre de karité nilotica offre une texture plus souple. On peut le substituer avec d’autres beurres végétaux : cacao, mangue…",
-    image: "ingredient/beurre_de_karite.jpeg",
-  },
-  {
-    amount: "50 g",
-    name: "Tensioactif Coco Sulfate",
-    description:
-      "Le tensioactif permet de lier une phase aqueuse et une phase huileuse et de rendre la préparation solide. Il s'agit d'un dérivé d'huile de coco. Il est très apprécié pour ses propriétés moussantes et lavantes. Il reste moins polluant que beaucoup de tensioactifs utilisés pour les produits conventionnels.",
-    alternative:
-      "D'autres tensioactifs sont utilisés : SCI, SLMI (pour les savons et shampooings doux).",
-    image: "ingredient/tensioactif_coco_sulfate.jpg",
-  },
-  {
-    amount: "1 g",
-    name: "Conservateur végétal",
-    description:
-      "À chaque émulsion (mélange eau et huile), il est vivement recommandé d’utiliser un conservateur ! Un conservateur d’origine végétale est préférable. Le conservateur Cosgard ou Geogard : il est composé d’acide benzylique, acide déhydroacétique et eau. C’est le conservateur de référence en DIY.",
-    alternative:
-      "Des autres conservateurs existent : on apprécie l’extrait de pépins de pamplemousse !",
-    image: "ingredient/conservateur_vegetal.jpeg",
-  },
-  {
-    amount: "5 g",
-    name: "Cire émulsifiante végétale",
-    description:
-      "La cire émulsifiante permet de mélanger une phase aqueuse avec une phase huileuse. En d'autres termes, c'est l'œuf de la mayonnaise. C'est le support de la préparation ! La cire n°3 donne une texture assez légère et elle est très facile à utiliser pour ceux et celles qui débutent en émulsion.",
-    alternative:
-      "Les cires émulsifiantes peuvent se substituer entre elles : certaines sont plus épaisses, plus aérées ou plus pénétrantes. Les quantités d'eau et d'huile changent en fonction des cires !",
-    image: "ingredient/cire_emulsifiante_n3.jpg",
-  },
-  {
-    amount: "80 g",
-    name: "Savon de Marseille (en copeaux)",
-    description:
-      "Il est multi-usage ! Aussi bien utilisée pour les lessives, les nettoyants pour une maison plus écologique. Il est dégraissant et nettoyant, il est très efficace poour tout type de lavage : vaisselle, linge et surface. Il est biodégrable et non-polluant. Et avec ça, on lui reconnaît de nombreuses propriétés pour le soin du corps. Hypoallergénique, le savon de Marseille est très doux pour se laver. Il est efficace en cas d’eczéma et irritations de la peau.",
-    alternative:
-      "Le savon noir est un bon substitut au savon de Marseille, pour ses qualités de détergent.",
-    image: "ingredient/savon_de_marseille__en_copeaux_.jpeg",
-  },
-  {
-    amount: "95 ml",
-    name: "Hydrolat de ciste ladanifère",
-    description:
-      "L'hydrolat de ciste a une odeur boisée-ambrée assez particulière. Il est également apprécié pour ses qualités astringentes et purifiantes exceptionnelles. Il apaise les peaux sensibles et calme les rougeurs.",
-    alternative:
-      "D'autres alternatives : Hydrolat de Géranium, Hélichryse Italienne...",
-    image: "ingredient/hydrolat_ciste.jpg",
-  },
-  {
-    amount: "30 g",
-    name: "Bicarbonate de soude",
-    description:
-      "Pour une maison écologique, rien de mieux que le bicarbonate de soude ! Il est multi-usage : il nettoie, dégraisse et entretient les machines/robinetterie. Il fait briller toutes les surfaces. Il est aussi apprécié en tant que désodorisant dans les lessives, il vient d’ailleurs booster son efficacité ! C’est un très bon détachant. Le plus, le bicarbonate de soude se conserve très longtemps. Il existe deux types de bicarbonate de soude : celui utilisé pour la maison (plus détergent) et l’alimentaire (plus doux pour un usage cosmétique ou soin buccal).",
-    alternative:
-      "Difficile de trouver une alternative ! D’autres actifs peuvent être utilisés : cristaux de soude, percabonate de soude, acide citrique.",
-    image: "ingredient/bicarbonate_de_soude.jpeg",
-  },
-];
+export const tagsBox = ["Se lancer", "Débutant", "Cadeaux", "Facile"];
 
-export const ustensilsBeginner = [
+export const boxInfo = [
   {
-    amount: "1",
-    name: "Moule",
-    image: "utensil/moule_s_.jpeg",
-  },
-  {
-    amount: "1",
-    name: "Pot 100 ml",
-    image: "utensil/pot_100_ml.jpeg",
-  },
-];
-
-export const ustensilsAlreadyHaveBeginner = [
-  {
-    amount: "1",
-    name: "Fouet",
-    image: "utensil/fouet.jpeg",
-  },
-  {
-    amount: "2",
-    name: "Bols",
-    subName: "qui vont au bain-marie",
-    image: "utensil/bols_en_inox_100_ml.jpeg",
-  },
-  {
-    amount: "1",
-    name: "Casserole",
-    image: "utensil/casserole.jpeg",
-  },
-  {
-    amount: "2",
-    name: "Bouteilles de 1 L",
-    image: "utensil/bouteille_1l.jpeg",
+    Information:
+      "Ce coffret permet de réaliser 3 recettes maison spécialement conçues pour les débutants. Vous trouverez tout le nécessaire pour réaliser 3 recettes du quotidien : <br/><br/> 🌱Une crème de jour pour avoir la peau toute douce, <br/> ⭐️Un savon solide tout-en-un, pour se laver les cheveux et le corps. Objectif : zéro-déchet ! <br/> 🌿Une lessive senteur florale pour des vêtements propres <br/><br/> Les recettes sont simples, rapides (en moyenne moins de 15 minutes) et validées par notre communauté. <br/><br/> Le plus de ce coffret ? <br/> - Nous vous envoyons uniquement le nécessaire : le coffret est garantie sans gâchis, ni stock d’ingrédients. <br/>- Nos contenants sont en verre réutilisables ! <br/><br/>Comment ça fonctionne ? <br/>À la suite de la réception de votre coffret, connectez-vous au site greenitcommunity.com et accédez à un espace dédié à vos premiers pas : nous vous proposons les trois recettes en vidéos, ainsi qu’une vidéo « Premiers Pas ». Nous intégrons également un espace pour répondre à vos questions. <br/><br/>La livraison est assurée en une semaine (jours ouvrés).",
+    Indications:
+      "Niveau : débutant / Temps de réalisation : 15 min max par recette / Quantité réalisée : 100 g de crème de jour, 2 x 1L lessive maison, 70 g de savon / Conservation : 6 à 12 mois (réalisé dans de parfaites conditions d’hygiène et stocké à l’abri de la chaleur et de la lumière) <br/>Le coffret est constitué de 7 ingrédients et de 2 ustensiles : <br/><br/> <br/>Beurre de Karité Bio (20 g)  <br/>Tensioactif coco sulfate (50 g) <br/>Conservateur Cosgard (1 g) <br/>Cire émulsifiante (5 g) <br/>Savon de Marseille en copeaux Bio (80 g) <br/>Hydrolat de Ciste Ladanifère Bio (95 ml) <br/>Bicarbonate de soude (30 g) <br/>Moule (1 unité) <br/>Pot de 100 ml en verre (1 unité) <br/><br/>Les ustensiles à trouver chez vous : 1 fouet, 2 bols qui vont au bain-marie, 1 casserole, 2 bouteilles de 1 litre. <br/><br/>",
+    Precaution:
+      "Règles d’hygiène : <br/> - Avant la préparation, lavez-vous les mains et/ou portez des gants. Enlevez les bijoux et attachez vos cheveux.  <br/>- Nettoyez et désinfectez votre plan de travail, vos ustensiles et contenants. <br/><br/> Précautions d’emploi :<br/>- Pour éviter tout risque de projection et de brûlures, portez des lunettes de protection et vêtements couvrants. <br/>- Respectez les conseils, modes opératoires et dosages recommandés.  <br/>- Certains produits même naturels peuvent être allergisants. Pour chaque recette postée, nous passons du temps à les vérifier (et modifier si nécessaire). Toutefois, certaines personnes peuvent réagir différemment. Il est recommandé de tester les produits sur votre poignet 48 h avant l’utilisation sur votre peau. <br/>- Assurez-vous que le résultat correspond à ce que vous deviez obtenir : aspect, couleur, odeur. En cas de mauvais résultat, n’utilisez pas le mélange.  <br/>- Usage externe uniquement. Ne pas avaler. Ne pas inhaler. Évitez le contact avec les yeux.  <br/>- Tenir hors de vue et de portée des enfants.  <br/><br/>Étiquetage : <br/> - Vos préparations doivent être étiquetées et datées : nom du produit, date de fabrication, limite de conservation, contenance.  <br/>- Vous pouvez également utiliser un cahier de suivi des recettes ! <br/><br/> Conservation : <br/>Respectez la conservation indiquée sur les recettes. Ces recettes se conservent à température ambiante (les conditions d’hygiène et stockée à l’abri de la chaleur). Si la préparation change de couleur, odeurs ou texture, jetez votre préparation. ",
   },
 ];

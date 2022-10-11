@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { RouteName } from "../../../App";
 import { logo } from "../../../icons";
@@ -7,7 +6,7 @@ import { NumberedCircle } from "../../../components/misc/NumberedCircle";
 import { Helmet } from "react-helmet";
 import ModalLogGreenit from "../../../components/layout/ModalLogGreenit/ModalLogGreenit";
 import useIsMobile from "../../../hooks/isMobile";
-import { Navbar } from "components";
+import { Button, Navbar } from "components";
 
 const QRFullXp = () => {
   const isMobile = useIsMobile();
@@ -58,14 +57,13 @@ const QRFullXp = () => {
             <ModalLogGreenit
               btn={
                 <>
-                  <button
+                  <Button
+                    type="darkBlue"
                     id="bienvenue-box-creer-un-compte"
-                    className="h-10 rounded-md bg-green w-72 md:w-60 drop-shadow-lg"
+                    className="h-10"
                   >
-                    <h2 id="" className="text-white">
-                      Créer un compte
-                    </h2>
-                  </button>
+                    Créer un compte
+                  </Button>
                 </>
               }
             ></ModalLogGreenit>
@@ -78,14 +76,13 @@ const QRFullXp = () => {
             <ModalLogGreenit
               btn={
                 <>
-                  <button
+                  <Button
+                    type="blue"
                     id="bienvenue-box-se-connecter"
-                    className="h-10 rounded-md bg-blue w-72 md:w-60 drop-shadow-lg"
+                    className="h-10"
                   >
-                    <h2 id="" className="text-white">
-                      Se connecter
-                    </h2>
-                  </button>
+                    Se connecter
+                  </Button>
                 </>
               }
               isModalLogin={true}

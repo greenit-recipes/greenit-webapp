@@ -5,9 +5,7 @@ import { getRandomKey } from "components/personalization/PersonalizationHelper";
 import { ADD_OR_REMOVE_FAVORITE_RECIPE } from "pages/CreateRecipe/CreateRecipeRequest";
 import React, { Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { classNames } from "react-select/dist/declarations/src/utils";
 import authService from "services/auth.service";
-import { likedIconOff, likedIconOn } from "../../icons";
 import { NotificationAlert } from "./NotificationAlert";
 
 const ModalLogGreenit = React.lazy(

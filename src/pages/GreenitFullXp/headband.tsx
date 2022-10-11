@@ -1,40 +1,40 @@
 import React from "react";
-import "./fullXp.css";
-import "App.css";
-import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
-import CheckoutFullXp from "pages/GreenitFullXp/CheckoutFullXp/CheckoutFullXp";
+import CheckoutButtonFullXp from "pages/GreenitFullXp/CheckoutFullXp/CheckoutButtonFullXp";
 interface IHeadBand {
-  setNavigation: any;
-  currentPositionMenu: number;
-  idButton?: string;
+  Formobile: boolean;
 }
 
-const HeadBand: React.FC<IHeadBand> = ({
-  setNavigation,
-  currentPositionMenu,
-  idButton,
-}) => {
+const HeadBand: React.FC<IHeadBand> = ({ Formobile }) => {
   return (
-    <div className="headband h-16 pb-2 bg-white">
-      <div>
-        <p className="fontQSemibold">Box Premiers Pas</p>
-        <h3 className="fontQSbold text-green">20 € la box</h3>
-      </div>
-
-      {currentPositionMenu === 1 ? (
-        <CheckoutFullXp />
+    <>
+      {!Formobile ? (
+        <div className="grid grid-cols-2 gap-y-2 justify-center w-2/3 h-auto bg-yellowL rounded-md mt-4 p-4">
+          <div className="flex flex-col col-span-2 items-center justify-center w-full">
+            <h2>20 €</h2>
+            <p className="text-sm">Prix sans livraison</p>
+          </div>
+          <div className="flex gap-2 col-span-2 w-full">
+            <div className="flex border-1 bg-white rounded-md w-16 items-center justify-center">
+              <h4> 1 </h4>
+            </div>
+            <CheckoutButtonFullXp />
+          </div>
+        </div>
       ) : (
-        <button
-          id={`${idButton}-box-commande-etape-suivante`}
-          className="h-10 rounded-lg bg-green w-32 lg:w-72 text-white"
-          onClick={() => {
-            setNavigation(menuFullXp[currentPositionMenu + 1].name);
-          }}
-        >
-          Étape suivante
-        </button>
+        <div className="grid grid-cols-2 gap-4 fixed bottom-0 w-full h-auto bg-yellowL rounded-md p-4 z-30">
+          <div className="flex col-span-2 gap-2 items-center justify-center w-full">
+            <h2>20 €</h2>
+            <p className="text-sm">Prix sans livraison</p>
+          </div>
+          <div className="flex gap-2 col-span-2 w-full">
+            <div className="flex border-1 bg-white rounded-md w-16 items-center justify-center">
+              <h4> 1</h4>
+            </div>
+            <CheckoutButtonFullXp />
+          </div>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -5,11 +5,9 @@ import {
   boxIngredientLessive,
   boxIngredientSavon,
   corps,
-  fridge,
   maison,
   premierspas,
   visage,
-  zeroWaste,
 } from "icons";
 
 export const getBreakpoint = (screen = "") => {

@@ -3,19 +3,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import {
   confirmpwd,
-  creator,
-  explorer,
-  fblogo,
-  instalogo,
   loginMail,
   loginPassword,
   mdpNonVisible,
   mdpVisible,
-  pintlogo,
-  tiktoklogo,
   userlogo,
-  wwwlogo,
-  ytlogo,
 } from "icons";
 import { schemaRegisterCreatorProfil } from "pages/Register/registerHelper";
 import React, { useEffect, useState } from "react";
@@ -196,7 +188,7 @@ const Register: React.FC = () => {
                 <img
                   className="mr-2 md:w-6 md:h-6"
                   src={userlogo}
-                  alt="icone email"
+                  alt="icone user"
                 />
                 <input
                   className="w-full px-3 border rounded-md py-1 focus:outline-none focus:shadow-outline "

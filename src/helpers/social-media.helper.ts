@@ -1,4 +1,3 @@
-import { wwwlogo } from "icons";
 import { forEach, includes } from "lodash";
 
 const socialMedia = {

@@ -6,7 +6,7 @@ interface IMenuFullXp {
 }
 const MenuFullXp: React.FC<IMenuFullXp> = ({ setNavigation }) => {
   return (
-    <div className="flex flex-wrap self-center ml-12 mt-12 mb-8  sm:space-x-4 rounded-3xl bg-inactive">
+    <div className="hidden">
       {menuFullXp.map((item, index) => (
         <div
           className={` ${

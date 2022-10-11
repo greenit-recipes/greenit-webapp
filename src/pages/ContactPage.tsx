@@ -1,14 +1,6 @@
 import { useEffect } from "react";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "components/layout/Footer";
-import {
-  pinterestIcon,
-  tiktokIcon,
-  InstagramIcon,
-  MailIcon,
-  FBIcon,
-  rondIcon,
-} from "../icons";
 import { Helmet } from "react-helmet";
 import isMobile from "hooks/isMobile";
 import { AskQuestion } from "./StarterSpace/component/AskQuestion/AskQuestion";
