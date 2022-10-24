@@ -529,14 +529,14 @@ const LandingPage = () => {
                   className="mr-3"
                   id="landing-page-box-button-je-commande"
                   type="green"
-                  onClick={() => history.push(RouteName.startDiyGreenitFullXp)}
+                  onClick={() => history.push(RouteName.greenitFullXp)}
                 >
                   Je commande
                 </Button>
                 <Button
                   id="landing-box-button-en-savoir-plus"
                   type="darkBlue"
-                  onClick={() => history.push(RouteName.startDiyGreenitFullXp)} // Mettre la bonne route
+                  onClick={() => history.push(RouteName.greenitFullXp)}
                 >
                   En savoir plus
                 </Button>

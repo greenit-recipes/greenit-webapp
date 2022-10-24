@@ -3,7 +3,7 @@ import { RouteName } from "App";
 import "App.css";
 import { Button, Loading, RecipeCard } from "components";
 import { getImagePath } from "helpers/image.helper";
-import { Cooking, defaultImageProfil, likedIconOff, likedIconOn } from "icons";
+import { defaultImageProfil } from "icons";
 import { cloneDeep, isEmpty } from "lodash";
 import { ExplorateurProfil } from "pages/Profil/ExplorateurProfil";
 import { ModalImageProfil } from "pages/Profil/ModalImageProfil";
@@ -296,11 +296,7 @@ const ProfilPage: React.FC = () => {
                     appuie sur le coeur de la recette
                   </h3>
                   <div>
-                    <img
-                      className="w-12 h-12"
-                      src={likedIconOff}
-                      alt="like icon off"
-                    />
+                    <i className={`bx bx-bookmark-heart bx-sm`}></i>
                   </div>
                   <Link to={RouteName.recipes}>
                     <Button

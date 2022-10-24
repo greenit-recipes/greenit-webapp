@@ -11,7 +11,7 @@ import {
   BadgeControleMobile,
   TopImageMobile,
   ProjectTopImageDesktop,
-  boxFullXp,
+  logoBig,
 } from "../../../icons";
 import { Helmet } from "react-helmet";
 import { CircleGreenit } from "./CircleGreenit/CircleGreenit";
@@ -269,7 +269,7 @@ const WhyPage: React.FC = () => {
         </div>
         <div className="grid md:gap-10 md:flex md:flex-rows mb-10 md:mt-10 justify-center">
           <img
-            src={boxFullXp}
+            src={logoBig}
             className="flex rounded-full justify-self-center w-40 md:w-80 md:h-80 my-4"
           ></img>
           <div className="flex flex-col p-4 md:justify-center">

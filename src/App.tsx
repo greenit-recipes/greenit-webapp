@@ -47,16 +47,6 @@ const TutoFullXpBeginner = React.lazy(
   () => import("./pages/Profil/TutoFullXpBeginner/tutoFullXpBeginner"),
 );
 
-const StartDiyGreenitFullXp = React.lazy(
-  () => import("./pages/GreenitFullXp/StartDiy/StartDiyGreenitFullXp"),
-);
-const FindOutMoreBoxGreentilFullXP = React.lazy(
-  () =>
-    import(
-      "./pages/GreenitFullXp/FindOutMoreFullXp/FindOutMoreBoxGreentilFullXP"
-    ),
-);
-
 const QRFullXp = React.lazy(
   () => import("./pages/GreenitFullXp/QRFullXp/QRFullXp"),
 );
@@ -71,8 +61,6 @@ export const history = createBrowserHistory();
 
 const greenitFullXpRoute = {
   tutoFullXpBeginner: "/tuto-box-débutant", // no index
-  startDiyGreenitFullXp: "/se-lancer-dans-le-fait-maison",
-  findOUtMoreBoxGreentilFullXP: "/commande-info",
   qrFullXp: "/bienvenue-box", //no index
 };
 
@@ -146,23 +134,13 @@ const App: React.FC = () => {
           />
 
           <FullXPRoute path={RouteName.qrFullXp} component={QRFullXp} exact />
-          <FullXPRoute // faire un composant qui filtre sur si le mec est isBox ou non
+          <FullXPRoute
             path={RouteName.tutoFullXpBeginner}
             component={TutoFullXpBeginner}
             exact
           />
-          <FullXPRoute
-            path={RouteName.startDiyGreenitFullXp}
-            component={StartDiyGreenitFullXp}
-            exact
-          />
-
-          <FullXPRoute
-            path={RouteName.findOUtMoreBoxGreentilFullXP}
-            component={FindOutMoreBoxGreentilFullXP}
-            exact
-          />
           {/* END FULL XP */}
+
           <PublicRoute
             path="/personalizedSearch"
             component={PersonalizedSearch}

@@ -1,5 +1,4 @@
 import { Redirect, Route } from "react-router-dom";
-import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_FEATURE_BY_NAME } from "../../services/feature.service";
 import { Loading } from "../layout";

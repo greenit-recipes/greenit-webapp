@@ -3,15 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { RouteName } from "App";
 import { Button } from "components";
 import useIsMobile from "hooks/isMobile";
-import {
-  confirmpwd,
-  gifModalProfil,
-  loginMail,
-  loginPassword,
-  mdpNonVisible,
-  mdpVisible,
-  userlogo,
-} from "icons";
+import { mdpNonVisible, mdpVisible } from "icons";
 import { omit } from "lodash";
 import {
   optionsUserCategoryAge,
@@ -48,9 +40,8 @@ import {
 
 export const RegisterModal: React.FC<{
   loginOpen: any;
-  enabledGif?: boolean;
   enabledSectionIcon?: boolean;
-}> = ({ loginOpen, enabledGif = false, enabledSectionIcon = true }) => {
+}> = ({ loginOpen, enabledSectionIcon = true }) => {
   const {
     register,
     handleSubmit,
@@ -366,14 +357,6 @@ export const RegisterModal: React.FC<{
             )}
 
             <div className="w-full text-darkBlue-700 separator mt-4">OU</div>
-
-            {enabledGif && (
-              <img
-                className="mr-2 w-60 h-70 "
-                src={gifModalProfil}
-                alt="gif email"
-              />
-            )}
 
             <div className="px-4">
               <form

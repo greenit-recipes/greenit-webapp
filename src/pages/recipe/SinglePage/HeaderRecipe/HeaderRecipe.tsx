@@ -1,5 +1,5 @@
 import { UserBadge } from "components/layout/UserBadge";
-import { getLogoAndNameByUrl } from "helpers/social-media.helper";
+import { getLogoAndNameByUrl } from "../../../../helpers/social-media.helper";
 import HTMLReactParser from "html-react-parser";
 import { rondIcon } from "icons";
 import { isEmpty } from "lodash";
@@ -65,7 +65,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
                           ></img>
 
                           <i
-                            className={`bx  mt-1 ${
+                            className={`bx mt-1 ${
                               getLogoAndNameByUrl(data?.url)?.icon
                             } bx-sm`}
                           ></i>

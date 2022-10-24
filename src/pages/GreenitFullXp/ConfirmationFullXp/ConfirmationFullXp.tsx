@@ -11,18 +11,12 @@ import { boxFullXpIngredients } from "utils";
 import { NumberedCircle } from "components/misc/NumberedCircle";
 import Auth from "services/auth.service";
 import { boxConfirmation, arrowFullXp, arrowFullXpMobile } from "icons";
-import { FaPlay } from "react-icons/fa";
-import "../fullXp.css";
+import { Button } from "components";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
 );
 
-//Todo (zack) create UI breakpoint variables for programmatic responsiveness
-/*Todo (zack) Refactor later */
-//Ingredients are hard coded for now since the box we're selling is fixed
-
-//Todo (zack) bug : confirmation redirects to root when logged in
 const ConfirmationFullXp: React.FC = () => {
   const isMobile = useIsMobile();
   const isLoggedIn = Auth.isLoggedIn();
@@ -35,63 +29,52 @@ const ConfirmationFullXp: React.FC = () => {
     persistBoxPurchaseOnConfirmation(isLoggedIn, hasPurchasedBeginnerBox);
   }, []);
 
-  //Todo: (zack) create custom themes for fonts (should it be pixel perfect ?)
   return (
     <div className="flex flex-col lg:flex-row items-start justify-around">
       <div className="flex flex-col mlg:self-center mlg:text-center mx-9 mt-2 md:mt-16 lg:ml-32">
         <div>
-          <h1 className="text-2xl font-semibold mb-3">
-            Confirmation de commande
-          </h1>
-
-          <h2 className="text-green text-base md:text-xl font-semibold mb-4">
-            Merci !
-          </h2>
-
-          <h3 className="text-base font-medium md:font-normal mb-6">
+          <h2>Confirmation de commande</h2>
+          <p className="text-sm mt-2">
             Tu recevras un email de confirmation de ta commande dans les
-            prochaines minutes.
-            <br />
-            Regarde également tes spams 😉
-          </h3>
+            prochaines minutes. <br />
+            Regarde également tes spams.
+          </p>
         </div>
 
         {isLoggedIn ? (
-          !isMobile && (
-            <>
-              <h3 className="text-base font-medium md:font-normal mb-6">
-                Une fois que tu as reçu ta box, rendez-vous sur ton profil pour
-                avoir
-                {!isMobile ? <br /> : <span className="mx-0.5"></span>}
-                accès aux recettes et aux vidéos d’accompagnement !
-              </h3>
-              <Link to={RouteName.profil}>
-                <button
-                  id="commande-box-confirmation-mon-espace-diy"
-                  className="h-10 rounded-md bg-green md:w-72 drop-shadow-lg"
-                >
-                  <h2 className="text-white">Mon espace DIY</h2>
-                </button>
-              </Link>
-            </>
-          )
+          <>
+            <h4 className="my-6 md:w-2/3 leading-5">
+              Une fois que tu as reçu ta box, rendez-vous sur ton profil pour
+              avoir accès aux recettes et aux vidéos d’accompagnement !
+            </h4>
+            <Link to={RouteName.profil}>
+              <Button
+                type="blue"
+                id="commande-box-confirmation-mon-espace-diy"
+                className="h-10 mb-10 w-full md:w-40"
+              >
+                Mon espace DIY
+              </Button>
+            </Link>
+          </>
         ) : (
-          <div className="flex flex-col">
-            <h2 className="text-blue text-base md:text-xl font-semibold mb-4">
+          <div className="flex flex-col mt-6">
+            <h4 className="text-blue mb-4">
               Crée-toi un compte pour avoir accès aux recettes
               {!isMobile ? <br /> : <span className="mx-0.5"></span>}
               et aux vidéos d’accompagnement !
-            </h2>
+            </h4>
             <div className="relative">
               <ModalLogGreenit
                 btn={
                   <>
-                    <button
+                    <Button
+                      type="darkBlue"
                       id="commande-box-confirmation-creer-un-compte"
-                      className="self-center md:self-start h-10 rounded-md bg-blue w-72 md:w-52 drop-shadow-lg mb-6"
+                      className="h-10 lg:w-60"
                     >
-                      <h2 className="text-white">Créer un compte</h2>
-                    </button>
+                      Créer un compte
+                    </Button>
                   </>
                 }
               ></ModalLogGreenit>
@@ -104,27 +87,27 @@ const ConfirmationFullXp: React.FC = () => {
               )}
             </div>
             {/* Image placeholder */}
-            <div className="relative self-center md:self-start rounded-lg bg-blueL mb-7 md:mb-6">
+            <div className="relative self-center md:self-start rounded-lg bg-blueL my-8">
+              {!isMobile && (
+                <img
+                  src={arrowFullXp}
+                  alt="flèche"
+                  className="absolute -top-4 -right-6 arrow-desktop"
+                />
+              )}
               <img
                 src={boxConfirmation}
                 alt="Confirmation Box Full Xp"
                 className="object-cover w-52 h-36 rounded-lg"
               />
-              <FaPlay className="absolute text-white text-2xl top-14 play-button" />
-              {!isMobile && (
-                <img
-                  src={arrowFullXp}
-                  alt="flèche"
-                  className="absolute arrow-desktop"
-                />
-              )}
+              <i className="bx bx-play-circle text-white text-5xl absolute right-20 top-12 z-20"></i>
             </div>
           </div>
         )}
 
         {!isMobile && (
           <>
-            <h3 className="text-base font-normal mt-11 mb-6">
+            <h4 className="mb-40">
               Une question ? Écris nous à
               <a
                 href="mailto:hello@greenitcommunity.com"
@@ -132,14 +115,12 @@ const ConfirmationFullXp: React.FC = () => {
               >
                 hello@greenitcommunity.com
               </a>
-            </h3>
+            </h4>
           </>
         )}
       </div>
-      <div className="flex mlg:items-center justify-center flex-col w-full md:mt-12 lg:w-4/12 bg-blueL lg:rounded-3xl lg:mr-24 py-6">
-        <h1 className="text-lg md:text-2xl font-semibold mb-3 px-10">
-          Bientôt chez toi 😉
-        </h1>
+      <div className="flex mlg:items-center justify-center flex-col w-full md:mt-12 lg:w-4/12 bg-blueL lg:rounded-md lg:mr-24 py-6">
+        <h2 className="text-lg md:text-xl mb-3 px-10">Bientôt chez toi 😉</h2>
 
         <div
           className={`flex flex-wrap justify-center mt-4 md:space-x-8 lg:space-x-4 lg:px-8`}
@@ -156,29 +137,15 @@ const ConfirmationFullXp: React.FC = () => {
       </div>
       {/*Todo : Find a better alternative*/}
       {isMobile && (
-        <div className="text-center mt-10">
-          <h3 className="text-base font-normal mb-6">
-            Une question ? Écris nous à
-            <a
-              href="mailto:hello@greenitcommunity.com"
-              className="inline-block ml-1 hover:text-green"
-            >
-              hello@greenitcommunity.com
-            </a>
-          </h3>
-          {isLoggedIn && (
-            <Link to={RouteName.profil}>
-              <button
-                id=""
-                className="h-10 rounded-md bg-green w-72 drop-shadow-lg"
-              >
-                <h2 id="" className="text-white">
-                  Mon espace DIY
-                </h2>
-              </button>
-            </Link>
-          )}
-        </div>
+        <h4 className="mt-12 mb-20 text-center w-10/12 self-center">
+          Une question ? Écris nous à
+          <a
+            href="mailto:hello@greenitcommunity.com"
+            className="inline-block ml-1 hover:text-green"
+          >
+            hello@greenitcommunity.com
+          </a>
+        </h4>
       )}
     </div>
   );

@@ -1,5 +1,4 @@
 import { Button, Container, Footer, Navbar } from "components";
-import { MailIcon } from "icons";
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";

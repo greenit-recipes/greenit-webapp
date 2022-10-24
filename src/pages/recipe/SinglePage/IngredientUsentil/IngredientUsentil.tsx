@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { SectionIngredient } from "./SectionIngredient";
 import { SectionUstensil } from "./SectionUsentil";
 import { Button } from "components";
 import {
@@ -12,6 +11,10 @@ import { cloneDeep } from "lodash";
 import authService from "services/auth.service";
 import ReactDOM from "react-dom";
 import { NotificationAlert } from "components/layout/NotificationAlert";
+
+const SectionIngredient = React.lazy(
+  () => import("pages/recipe/SinglePage/IngredientUsentil/SectionIngredient"),
+);
 
 interface IIngredientUsentil {
   recipe: any;
@@ -176,41 +179,28 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
         </div>
 
         <div className={`${isIngredientSelected ? "" : "hidden"}`}>
-          {
-            //Todo : update bulk icon active
-            recipe.ingredients.map((item: any, index: any) => {
-              isLDCactive = hasIngredientOnList(
-                ingredientShoppingList,
-                item.id,
-              );
-              isICMactive = hasIngredientOnList(
-                ingredientAtHomeCurrent,
-                item.id,
-              );
-              if (isLDCactive) {
-                ingredientShoppingListOperations.potentialDeletions.push(
-                  item.id,
-                );
-              } else {
-                ingredientShoppingListOperations.potentialAdditions.push(
-                  item.id,
-                );
-              }
-              return (
-                <div key={index}>
-                  <SectionIngredient
-                    isIngredientListUserActive={true}
-                    parentFunction={
-                      isLoggedIn ? parentFunction : updateIngredientAtHome
-                    }
-                    data={item}
-                    isLDCactive={isLDCactive}
-                    isICMactive={isICMactive}
-                  />
-                </div>
-              );
-            })
-          }
+          {recipe.ingredients.map((item: any, index: any) => {
+            isLDCactive = hasIngredientOnList(ingredientShoppingList, item.id);
+            isICMactive = hasIngredientOnList(ingredientAtHomeCurrent, item.id);
+            if (isLDCactive) {
+              ingredientShoppingListOperations.potentialDeletions.push(item.id);
+            } else {
+              ingredientShoppingListOperations.potentialAdditions.push(item.id);
+            }
+            return (
+              <div key={index}>
+                <SectionIngredient
+                  isIngredientListUserActive={true}
+                  parentFunction={
+                    isLoggedIn ? parentFunction : updateIngredientAtHome
+                  }
+                  data={item}
+                  isLDCactive={isLDCactive}
+                  isICMactive={isICMactive}
+                />
+              </div>
+            );
+          })}
         </div>
         <div className={`${isIngredientSelected ? "hidden" : ""}`}>
           {recipe.utensils.map((item: any, index: any) => (

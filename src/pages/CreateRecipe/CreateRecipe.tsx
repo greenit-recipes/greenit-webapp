@@ -11,14 +11,6 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import authService from "services/auth.service";
 import * as yup from "yup";
-import {
-  fblogo,
-  instalogo,
-  pintlogo,
-  tiktoklogo,
-  wwwlogo,
-  ytlogo,
-} from "../../icons";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
