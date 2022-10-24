@@ -14,13 +14,6 @@ const ConfirmationFullXp = React.lazy(
   () => import("pages/GreenitFullXp/ConfirmationFullXp/ConfirmationFullXp"),
 );
 
-const BALALAL = React.lazy(
-  () =>
-    import(
-      "pages/GreenitFullXp/IngredientUstensilFullXp/IngredientUsentilFullXp"
-    ),
-);
-
 const GenericFullXp = () => {
   //Initialize default state of the menu
   const confirmationMenu = menuFullXp[2].name;

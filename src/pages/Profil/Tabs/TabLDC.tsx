@@ -7,7 +7,7 @@ import {
   getRandomKey,
   hasIngredientOnList,
 } from "components/personalization/PersonalizationHelper";
-import { SectionIngredient } from "../../recipe/SinglePage/IngredientUsentil/SectionIngredient";
+import SectionIngredient from "../../recipe/SinglePage/IngredientUsentil/SectionIngredient";
 import useIsMobile from "../../../hooks/isMobile";
 import { RWebShare } from "react-web-share";
 import Modal from "components/layout/Modal/Modal";

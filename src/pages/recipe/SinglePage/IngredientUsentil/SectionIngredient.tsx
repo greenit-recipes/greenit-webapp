@@ -29,7 +29,7 @@ interface ISectionIngredient {
   isIngredientListUserActive?: boolean;
 }
 
-export const SectionIngredient: React.FC<ISectionIngredient> = ({
+const SectionIngredient: React.FC<ISectionIngredient> = ({
   data,
   className,
   isICMactive = false,
@@ -463,3 +463,5 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
     </>
   );
 };
+
+export default SectionIngredient;
