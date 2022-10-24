@@ -1,7 +1,6 @@
 import { Footer, Loading, Navbar } from "components";
 import { previousPath } from "helpers/route-helper";
 import { findIndex } from "lodash";
-import MenuFullXp from "pages/GreenitFullXp/MenuFullXp/MenuFullXP";
 import { menuFullXp } from "pages/GreenitFullXp/MenuFullXp/MenuHelper";
 import React, { Suspense, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -9,6 +8,7 @@ import useIsMobile from "../../hooks/isMobile";
 import { useHistory } from "react-router-dom";
 import { getMenuStep } from "../../helpers/beginnerbox.helper";
 import BoxSinglePage from "./BoxSinglePage/BoxSinglePage";
+import MenuFullXp from "./MenuFullXp/MenuFullXp";
 
 const ConfirmationFullXp = React.lazy(
   () => import("pages/GreenitFullXp/ConfirmationFullXp/ConfirmationFullXp"),
