@@ -30,7 +30,7 @@ interface ISectionIngredient {
   isIngredientListUserActive?: boolean;
 }
 
-const SectionIngredient: React.FC<ISectionIngredient> = ({
+export const SectionIngredient: React.FC<ISectionIngredient> = ({
   data,
   className,
   isICMactive = false,
@@ -137,7 +137,6 @@ const SectionIngredient: React.FC<ISectionIngredient> = ({
     isLDCAccessNotifActive,
   ]);
 
-  console.log(data);
   return (
     <>
       <div
@@ -286,7 +285,6 @@ const SectionIngredient: React.FC<ISectionIngredient> = ({
               </div>
             )}
             <i
-              id="singlePage-open-dropdownIngredient"
               className={`bx bx-chevron-down bx-md mr-6 cursor-pointer ${
                 isArrowDown ? "section-arrow-up" : "section-arrow-down"
               }`}
@@ -416,6 +414,7 @@ const SectionIngredient: React.FC<ISectionIngredient> = ({
             <div>{data?.alternative && HTMLReactParser(data?.alternative)}</div>
             <div className="flex-col items-center pt-4 pb-6 lg:flex-row">
               <h4 className="fontQSemibold">Où acheter ?</h4>
+              <div className="flex flex-col md:flex-row md:items-center md:space-x-10"></div>
               <div className="flex flex-col md:flex-row md:items-center md:space-x-10">
                 <div className="flex-col pt-2">
                   {data?.isForMarket ? (
@@ -441,6 +440,7 @@ const SectionIngredient: React.FC<ISectionIngredient> = ({
                     </div>
                   )}
                 </div>
+
                 {/*{data?.purchaseLink && (
                   <>
                     {!isMobile && (
@@ -470,5 +470,3 @@ const SectionIngredient: React.FC<ISectionIngredient> = ({
     </>
   );
 };
-
-export default SectionIngredient;
