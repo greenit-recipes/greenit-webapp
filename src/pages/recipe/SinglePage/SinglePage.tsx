@@ -216,16 +216,25 @@ const RecipeSinglePage = () => {
       <HelmetRecipe recipe={recipe} />
       <div className="flex flex-col | items-center">
         <Navbar />
+        <div
+          className="absolute left-0 z-20 grid w-8 h-8 ml-3 rounded-full cursor-pointer top-14 lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
+          onClick={() => {
+            if (getObjectSession("pathname"))
+              history.goBack(); // need to have previous path
+            else history.push(RouteName.recipes);
+          }}
+        >
+          <img alt="Retour icon" loading="lazy" src={retourIcon} />
+        </div>
+        <HeaderRecipe parentFcn={setSizeCretorHeader} recipe={recipe} />
         {isGelDeLin && (
-          <div className="fixed bottom-0 w-full h-28 md:h-20 bg-yellowL z-30 shadow-flat">
+          <div className="fixed bottom-0 w-full h-24 md:h-20 bg-yellowL z-30 shadow-flat">
             <div className="flex flex-col lg:flex-row w-full bg-yellowL pb-4 lg:p-4 h-max mb-10 md:justify-center">
               <p className="md:hidden text-base py-2 w-full text-center font-medium">
-                Nous venons de lancer Greenit Market ! 🥑 🎁
-                <br /> Découvre nos produits 👇
+                Découvre nos produits et bénéficie de -15% au lancement 👇
               </p>
               <p className="hidden md:block text-base py-2 text-center font-medium mr-10">
-                Nous venons de lancer Greenit Market ! 🥑 🎁 &nbsp; &nbsp;
-                &nbsp; Découvre nos produits 👉
+                Découvre nos produits et bénéficie de -15% au lancement 👉
               </p>
               <div className="flex self-center md:self-start w-11/12 lg:max-w-20 h-10">
                 <Link
@@ -238,7 +247,7 @@ const RecipeSinglePage = () => {
                     type="darkBlue"
                     className="h-10 w-full max-w-26 lg:w-auto lg:max-w-20"
                   >
-                    Explorer les produits disponibles
+                    Explorer les produits du Market ! 🥑 🎁
                   </Button>
                 </Link>
               </div>
@@ -255,21 +264,37 @@ const RecipeSinglePage = () => {
             </div>
           </div>
         )}
-        <div
-          className="absolute left-0 z-20 grid w-8 h-8 ml-3 rounded-full cursor-pointer top-14 lg:w-14 lg:h-14 lg:p-2 lg:top-24 lg:ml-8 lg:bg-white lg:shadow-md"
-          onClick={() => {
-            if (getObjectSession("pathname"))
-              history.goBack(); // need to have previous path
-            else history.push(RouteName.recipes);
-          }}
-        >
-          <img alt="Retour icon" loading="lazy" src={retourIcon} />
-        </div>
-        <HeaderRecipe
-          parentFcn={setSizeCretorHeader}
-          recipe={recipe}
-          className=""
-        />
+        {haveIngredientMarket && (
+          <div className="z-50 fixed bottom-0 w-full h-auto">
+            <div className="flex flex-col lg:flex-row justify-center bg-yellowL pb-2 lg:p-4 h-max w-full md:gap-6">
+              <p className="text-sm text-center p-3">
+                Pour réaliser cette recette ajoute les ingrédients à ton panier
+                {isMobile ? <span> 👇 </span> : <span> 👉 </span>}
+              </p>
+              <div className="flex self-center w-11/12 lg:max-w-20 h-10">
+                <Button
+                  id="singlePage-ajouter-ingredients-panier"
+                  type="darkBlue"
+                  className="h-10 w-full max-w-26 lg:max-w-20"
+                  onClick={() => setShowModalMarket(true)}
+                >
+                  <i className={`bx bx-cart-download text-2xl mr-2`} />
+                  Ajouter tous les ingrédients au panier
+                </Button>
+              </div>
+
+              <Modal
+                isCenter={true}
+                onClose={() => setShowModalMarket(false)}
+                show={showModalMarket}
+              >
+                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
+                  <ModalMarketTest />
+                </div>
+              </Modal>
+            </div>
+          </div>
+        )}
         <div
           className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage"
           style={{
@@ -537,36 +562,7 @@ const RecipeSinglePage = () => {
               parentFunction={refetchMe}
               recipe={recipe}
             />
-            {haveIngredientMarket && (
-              <div className="flex flex-col lg:flex-row w-full bg-yellowL pb-4 lg:p-4 h-max mb-10">
-                <p className="text-base p-3 w-full">
-                  Tu souhaites réaliser cette recette ? Ajoute ces ingrédients à
-                  ton panier
-                  {isMobile ? <span> 👇 </span> : <span> 👉 </span>}
-                </p>
-                <div className="flex self-center w-11/12 lg:max-w-20 h-10">
-                  <Button
-                    id="singlePage-ajouter-ingredients-panier"
-                    type="darkBlue"
-                    className="h-10 w-full max-w-26 lg:max-w-20"
-                    onClick={() => setShowModalMarket(true)}
-                  >
-                    <i className={`bx bx-cart-download text-2xl mr-2`} />
-                    Ajouter tous les ingrédients au panier
-                  </Button>
-                </div>
 
-                <Modal
-                  isCenter={true}
-                  onClose={() => setShowModalMarket(false)}
-                  show={showModalMarket}
-                >
-                  <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
-                    <ModalMarketTest />
-                  </div>
-                </Modal>
-              </div>
-            )}
             <div className="flex flex-col w-full h-full lg:flex-row">
               {isMobile && (
                 <>

@@ -80,6 +80,9 @@ module.exports = {
                 '64': '16rem',
                 '96': '24rem',
             },
+            minHeight: {
+                '40': '10rem',
+            },
             margin: {
                 '100': '33rem',
                 '99': '28rem',

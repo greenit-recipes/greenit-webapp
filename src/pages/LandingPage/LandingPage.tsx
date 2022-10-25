@@ -483,7 +483,7 @@ const LandingPage = () => {
       </Container>
       <Container
         className="flex flex-col justify-center items-center md:items-start | md:px-4
-         | text-center md:text-left w-full | bg-yellowL"
+         | text-center md:text-left w-full | bg-greenL"
       >
         <div className="lg:w-10/12 mt-12 mb-12 lg:ml-24">
           <div className="md:flex md:justify-start md:space-x-4">

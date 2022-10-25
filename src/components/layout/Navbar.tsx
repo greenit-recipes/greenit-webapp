@@ -1,7 +1,7 @@
 import { RouteName } from "App";
 import "components/layout/Navbar.css";
 import React, { Suspense, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import authService from "services/auth.service";
 import { SearchBar } from ".";
 import { Button } from "../";
@@ -23,6 +23,7 @@ const ModalLogGreenit = React.lazy(
 export const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const location = useLocation();
+  const history = useHistory();
   const [showSearchBar, setShowSearchBar] = useState<boolean>(
     location.pathname !== RouteName.accueil &&
       location.pathname !== RouteName.recipes &&
@@ -167,6 +168,16 @@ export const Navbar: React.FC = () => {
                 </h2>
               </div>
             </Link>
+
+            <div className="border-b-2 border-transparent p-2">
+              <h2
+                id="navbar-box-mobile"
+                className="text-white focus:text-green"
+                onClick={() => history.push(RouteName.greenitFullXp)}
+              >
+                Notre kit débutant
+              </h2>
+            </div>
             <Link className="p-2" to={RouteName.starterPage}>
               <h2 id="navbar-getStarted-mobile" className="text-white">
                 Se lancer

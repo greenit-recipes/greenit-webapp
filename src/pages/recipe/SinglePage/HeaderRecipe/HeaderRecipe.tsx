@@ -7,13 +7,11 @@ import { useEffect, useState } from "react";
 import "./HeaderRecipe.css";
 
 interface IHeaderRecipe {
-  className?: string;
   recipe: any;
   parentFcn?: any;
 }
 
 export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
-  className,
   recipe,
   parentFcn,
 }) => {
@@ -29,7 +27,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
           setHeight(divElement?.clientHeight);
         console.log("divElement.clientHeight", divElement?.clientHeight);
       }}
-      className="fixed z-0 grid w-full pb-20 justify-items-center bg-yellowL lg:mt-2"
+      className="fixed top-0 z-0 grid w-full pb-20 justify-items-center bg-yellowL lg:mt-2"
     >
       <div className="flex mt-20 items-center justify-center mb-10">
         <UserBadge

@@ -1,4 +1,5 @@
 import { useAllIngredientsQuery, useRecipesQuery } from "../../graphql";
+import { RouteName } from "App";
 import { Helmet } from "react-helmet";
 import {
   Button,
@@ -21,17 +22,20 @@ import {
   fanny,
   hugues,
   anne,
+  boxOpen,
 } from "icons";
 import { ExploreMore } from "components/recipe/ExploreMore";
 import { SectionTitle } from "./Components/SectionTitle";
 import { ReviewCard } from "./Components/ReviewCard";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { RouteName } from "App";
+import { Link, useHistory } from "react-router-dom";
+import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
+import { CTASubscribe } from "./Components/CTASubscribe";
 
 const MarketLandingPage = () => {
   const isMobile = useIsMobile();
   const totalRecipeCards = isMobile ? 5 : 4;
+  const history = useHistory();
 
   useEffect(() => {
     if (window.pageYOffset > 0) {
@@ -220,7 +224,8 @@ const MarketLandingPage = () => {
             )}
           </div>
         </Container>
-        <div className="h-full w-full bg-blueL my-10 flex flex-col items-center self-center">
+        <CTASubscribe />
+        <div className="h-full w-full bg-blueL flex flex-col items-center self-center">
           <SectionTitle
             title={"Les huiles végétales"}
             subtitle={"l'indispensable de vos soins beauté"}
@@ -297,6 +302,70 @@ const MarketLandingPage = () => {
             />
           </Container>
         </div>
+        <Container
+          className="flex flex-col justify-center items-center md:items-start | md:px-4 mb-10
+         | text-center md:text-left w-full | bg-yellowL"
+        >
+          <div className="lg:w-10/12 mt-12 mb-12 lg:ml-24">
+            <div className="md:flex md:justify-start md:space-x-4">
+              <h2 className="text-xl md:text-2xl">
+                Le kit fait-maison idéal pour débuter
+              </h2>
+              <h2 className="text-xl md:text-2xl | mb-6 font-diy text-2xl">
+                mes premiers pas
+              </h2>
+            </div>
+            <div className="md:flex md:items-center">
+              <div className="flex justify-center mb-3">
+                <img
+                  src={boxOpen}
+                  className="w-56 h-56 md:w-64 md:h-64 md:mr-24"
+                  alt={`Box greenit`}
+                />
+              </div>
+              <div>
+                <div className="flex msm:justify-between md:space-x-24 mt-4">
+                  {recipesBegginerFullXp?.map(recipe => (
+                    <div className="ml-9">
+                      <img
+                        src={recipe.miniatureImage}
+                        className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover"
+                        alt={recipe.name}
+                      />
+                      <p>{recipe.name}</p>
+                    </div>
+                  ))}
+                </div>
+                <h4 className="mt-9 mb-4 font-medium text-lg">
+                  L’essentiel pour réaliser 3 recettes validées{" "}
+                  {isMobile && <br></br>} par la communauté !
+                </h4>
+                <p>Garantie pas de gâchis et avec des contenants en verre !</p>
+                <p className="mb-6">
+                  Résultat, c’est 11 substances toxiques épargnées, 154 g de
+                  {isMobile && <br></br>} plastique évités et 32 % d’économie
+                </p>
+                <div className="flex justify-center md:justify-start">
+                  <Button
+                    className="mr-3"
+                    id="landing-page-box-button-je-commande"
+                    type="green"
+                    onClick={() => history.push(RouteName.greenitFullXp)}
+                  >
+                    Je commande
+                  </Button>
+                  <Button
+                    id="landing-box-button-en-savoir-plus"
+                    type="darkBlue"
+                    onClick={() => history.push(RouteName.greenitFullXp)}
+                  >
+                    En savoir plus
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
         <SectionTitle
           title={"Les recettes 100% débutants"}
           subtitle={"idéal pour se lancer !"}

@@ -50,35 +50,36 @@ export const ModalMarketTest: React.FC<ModalMarketTest> = ({ className }) => {
       itemsCenter
     >
       {isMobile ? (
-        <img src={MarketModal_Mobile} className="absolute top-10 z-0"></img>
+        <img src={MarketModal_Mobile} className="absolute top-30 z-0"></img>
       ) : (
         <img
           src={Market_Modal}
-          className="w-3/5 absolute top-4 z-0 scale-105"
+          className="w-3/5 absolute top-28 z-0 scale-105"
         ></img>
       )}
-      <div className="z-20 fixed top-40">
-        <h1 className="leading-7">
-          <span className="text-yellow">Greenit Market</span> est <br /> en
-          construction ! 👷
-        </h1>
+      <div className="z-20 fixed top-10">
+        <h2 className="leading-6">
+          <span className="text-yellow"> Greenit Market</span> est en
+          construction !
+        </h2>
         <h5 className="text-sm leading-5 mt-2">
           L’achat des ingrédients sera disponible
           <br />
-          en décembre 2022.{" "}
+          en décembre 2022.
         </h5>
-        <p className="font-diy text-lg mt-2">on travaille dur pour ça !</p>
       </div>
-      <div className="h-72 md:h-80"></div>
-      <h4 className="z-10 leading-6">
-        Pour te remercier de ta confiance, <br /> nous t'offrons
-      </h4>
+      <h3 className="mt-28 z-10 leading-6">
+        Pour te remercier de ta <br /> confiance, nous t'offrons
+      </h3>
       <div className="flex mt-3 z-10">
-        <i className="bx bxs-discount rotate-90 text-3xl mt-1"></i>
-        <h1 className="text-3xl"> -15 %</h1>
+        <i className="bx bxs-discount rotate-90 text-4xl mt-3"></i>
+        <h1 className="text-5xl"> -15 %</h1>
       </div>
-      <p className="text-sm z-10">sur ta première commande</p>
-      <img src={BlueLCircle} className="absolute bottom-44 z-0" />
+      <p className="text-sm z-10 mt-4">
+        lors du futur lancement <br />
+        de Greenit Market
+      </p>
+      <div className="h-24 md:h-36"></div>
 
       <form
         className="flex flex-col mt-4 mb-4 md:w-1/2"
