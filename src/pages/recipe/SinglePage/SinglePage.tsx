@@ -234,10 +234,10 @@ const RecipeSinglePage = () => {
           <div className="fixed bottom-0 w-full h-24 md:h-20 bg-yellowL z-30 shadow-flat">
             <div className="flex flex-col lg:flex-row w-full bg-yellowL pb-4 lg:p-4 h-max mb-10 md:justify-center">
               <p className="md:hidden text-base py-2 w-full text-center font-medium">
-                Découvre nos produits et bénéficie de -15% au lancement 👇
+                Greenit Market : bénéficie de -15% au lancement 👇
               </p>
               <p className="hidden md:block text-base py-2 text-center font-medium mr-10">
-                Découvre nos produits et bénéficie de -15% au lancement 👉
+                Greenit Market : bénéficie de -15% au lancement 👉
               </p>
               <div className="flex self-center md:self-start w-11/12 lg:max-w-20 h-10">
                 <Link
