@@ -12,8 +12,6 @@ export const IngredientBuySection: React.FC<IngredientBuySection> = ({
     variables: { filter: { name: ingredientsForMarket } },
   });
 
-  console.log(dataIngredientBuySection);
-
   const IngredientBuySection = dataIngredientBuySection?.allIngredients?.map(
     (ingredient: any) => ({
       key: Math.random,
@@ -37,7 +35,7 @@ export const IngredientBuySection: React.FC<IngredientBuySection> = ({
           id: string;
         }) => (
           <IngredientWidget
-            keyID={Object?.key}
+            key={Object?.key}
             name={Object?.name}
             price={Object?.price}
             producer={Object?.producer}

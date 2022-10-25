@@ -11,10 +11,7 @@ import { cloneDeep } from "lodash";
 import authService from "services/auth.service";
 import ReactDOM from "react-dom";
 import { NotificationAlert } from "components/layout/NotificationAlert";
-
-const SectionIngredient = React.lazy(
-  () => import("pages/recipe/SinglePage/IngredientUsentil/SectionIngredient"),
-);
+import { SectionIngredient } from "./SectionIngredient";
 
 interface IIngredientUsentil {
   recipe: any;

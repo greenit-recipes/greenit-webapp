@@ -7,11 +7,11 @@ import {
   getRandomKey,
   hasIngredientOnList,
 } from "components/personalization/PersonalizationHelper";
-import SectionIngredient from "../../recipe/SinglePage/IngredientUsentil/SectionIngredient";
 import useIsMobile from "../../../hooks/isMobile";
 import { RWebShare } from "react-web-share";
 import Modal from "components/layout/Modal/Modal";
 import { ModalMarketTest } from "components/layout/Modal/modalMarketTest";
+import { SectionIngredient } from "pages/recipe/SinglePage/IngredientUsentil/SectionIngredient";
 
 interface TabLDCProps {
   hasLDC: boolean;

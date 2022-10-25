@@ -29,7 +29,7 @@ export const IngredientWidget: React.FC<IngredientWidget> = ({
 
   return (
     <>
-      <button
+      <div
         id={`singlePage-ingredientWidget-${name}`}
         className="flex w-full lg:w-96 h-16 bg-white rounded-md gap-2 shadow-flat | transform sm:hover:scale-105 ease-linear transition-all duration-150"
       >
@@ -76,7 +76,7 @@ export const IngredientWidget: React.FC<IngredientWidget> = ({
             className={`bx bx-plus text-sm text-darkBlue absolute -top-0.5 right-0.5`}
           ></i>
         </Button>
-      </button>
+      </div>
 
       <Modal
         isCenter={true}

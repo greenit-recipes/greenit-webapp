@@ -352,13 +352,6 @@ const MarketLandingPage = () => {
                     type="green"
                     onClick={() => history.push(RouteName.greenitFullXp)}
                   >
-                    Je commande
-                  </Button>
-                  <Button
-                    id="landing-box-button-en-savoir-plus"
-                    type="darkBlue"
-                    onClick={() => history.push(RouteName.greenitFullXp)}
-                  >
                     En savoir plus
                   </Button>
                 </div>

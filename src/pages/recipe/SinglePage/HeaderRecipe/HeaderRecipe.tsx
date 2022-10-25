@@ -1,5 +1,5 @@
 import { UserBadge } from "components/layout/UserBadge";
-import { getLogoAndNameByUrl } from "../../../../helpers/social-media.helper";
+import { getLogoAndNameByUrl } from "helpers/social-media.helper";
 import HTMLReactParser from "html-react-parser";
 import { rondIcon } from "icons";
 import { isEmpty } from "lodash";
@@ -7,11 +7,13 @@ import { useEffect, useState } from "react";
 import "./HeaderRecipe.css";
 
 interface IHeaderRecipe {
+  className?: string;
   recipe: any;
   parentFcn?: any;
 }
 
 export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
+  className,
   recipe,
   parentFcn,
 }) => {
@@ -25,9 +27,8 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
       ref={divElement => {
         if (divElement && divElement.clientHeight !== 0)
           setHeight(divElement?.clientHeight);
-        console.log("divElement.clientHeight", divElement?.clientHeight);
       }}
-      className="fixed top-0 z-0 grid w-full pb-20 justify-items-center bg-yellowL lg:mt-2"
+      className="fixed z-0 grid w-full pb-20 justify-items-center bg-yellowL lg:mt-2"
     >
       <div className="flex mt-20 items-center justify-center mb-10">
         <UserBadge
@@ -63,7 +64,7 @@ export const HeaderRecipe: React.FC<IHeaderRecipe> = ({
                           ></img>
 
                           <i
-                            className={`bx mt-1 ${
+                            className={`bx  mt-1 ${
                               getLogoAndNameByUrl(data?.url)?.icon
                             } bx-sm`}
                           ></i>

@@ -273,7 +273,7 @@ const LandingPage = () => {
           </div>
 
           <div className="flex flex-row gap-2 w-9/12 sm:w-auto md:my-8 mx-12">
-            <div className="w-full md:w-3/5">
+            <div className="w-full md:w-80">
               <SearchBar
                 keyId="landing-page-searchBar"
                 suggestionIsActive={true}
@@ -529,13 +529,6 @@ const LandingPage = () => {
                   className="mr-3"
                   id="landing-page-box-button-je-commande"
                   type="green"
-                  onClick={() => history.push(RouteName.greenitFullXp)}
-                >
-                  Je commande
-                </Button>
-                <Button
-                  id="landing-box-button-en-savoir-plus"
-                  type="darkBlue"
                   onClick={() => history.push(RouteName.greenitFullXp)}
                 >
                   En savoir plus

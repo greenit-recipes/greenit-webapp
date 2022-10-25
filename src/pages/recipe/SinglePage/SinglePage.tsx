@@ -119,7 +119,6 @@ const RecipeSinglePage = () => {
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
   const [nbrComment, setNbrComment] = useState(data?.recipe?.numberOfComments);
   const [sizeCretorHeader, setSizeCretorHeader] = useState(0);
-
   const isLoggedIn = authService.isLoggedIn();
   const [videoDuration, setVideoDuration] = useState<number>(0);
 
@@ -226,7 +225,11 @@ const RecipeSinglePage = () => {
         >
           <img alt="Retour icon" loading="lazy" src={retourIcon} />
         </div>
-        <HeaderRecipe parentFcn={setSizeCretorHeader} recipe={recipe} />
+        <HeaderRecipe
+          parentFcn={setSizeCretorHeader}
+          recipe={recipe}
+          className=""
+        />
         {isGelDeLin && (
           <div className="fixed bottom-0 w-full h-24 md:h-20 bg-yellowL z-30 shadow-flat">
             <div className="flex flex-col lg:flex-row w-full bg-yellowL pb-4 lg:p-4 h-max mb-10 md:justify-center">
@@ -265,10 +268,10 @@ const RecipeSinglePage = () => {
           </div>
         )}
         {haveIngredientMarket && (
-          <div className="z-50 fixed bottom-0 w-full h-auto">
+          <div className="z-30 fixed bottom-0 w-full h-auto">
             <div className="flex flex-col lg:flex-row justify-center bg-yellowL pb-2 lg:p-4 h-max w-full md:gap-6">
               <p className="text-sm text-center p-3">
-                Pour réaliser cette recette ajoute les ingrédients à ton panier
+                Pour réaliser cette recette, ajoute les ingrédients à ton panier
                 {isMobile ? <span> 👇 </span> : <span> 👉 </span>}
               </p>
               <div className="flex self-center w-11/12 lg:max-w-20 h-10">
@@ -279,7 +282,7 @@ const RecipeSinglePage = () => {
                   onClick={() => setShowModalMarket(true)}
                 >
                   <i className={`bx bx-cart-download text-2xl mr-2`} />
-                  Ajouter tous les ingrédients au panier
+                  Ajouter les ingrédients au panier
                 </Button>
               </div>
 
