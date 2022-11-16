@@ -10,7 +10,6 @@ export const RouteName = {
     "/activate/mot-de-passe-oublié/:tokenActivationAccount", // no index
   register: "/creation-compte",
   recipeCreated: "/ajout-recette", // no index
-  ingredientPage: "/ingredients", // no index ( a activer quand on sort la page)
   starterPage: "/page-debutant-diy",
   why: "/projet",
   contact: "/contact",
@@ -19,8 +18,6 @@ export const RouteName = {
   profil: "/profil",
   tutoFullXpBeginner: "/tuto-box-débutant",
   qrFullXp: "/bienvenue-box",
-  market: "/market",
-  listpagemarket: "/ingredients/:category_ingredient",
   boxFullXP: "/commande-box"
 };
 
@@ -41,8 +38,5 @@ export default (
       {/*box selling*/}
       <Route path={RouteName.boxFullXP} />
       
-      {/*market*/}
-      <Route path={RouteName.market} />
-      <Route path="/market/:id" />
     </Route>
 );

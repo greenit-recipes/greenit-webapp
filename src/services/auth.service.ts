@@ -178,6 +178,7 @@ export const ME = gql`
         isSupermarket
         isOnline
         isProductor
+        purchaseLink
       }
       isRecipeMadeBeginnerBox
       recipeAuthor {

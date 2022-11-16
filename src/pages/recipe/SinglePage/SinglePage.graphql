@@ -15,7 +15,7 @@ query recipe($urlId: String!) {
       isSupermarket
       isOnline
       isProductor
-      isForMarket
+      purchaseLink
     }
     utensils {
       id
