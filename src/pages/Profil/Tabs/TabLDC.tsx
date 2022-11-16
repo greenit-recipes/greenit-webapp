@@ -72,28 +72,22 @@ export const TabLDC: React.FC<TabLDCProps> = ({
             {isMobile && (
               <div className="flex items-center mt-2">
                 <p className="text-sm">
-                  Pour enlever un ingrédient, appuie dessus et clique sur{" "}
+                  Pour enlever un ingrédient, clique dessus puis sur{" "}
                 </p>
                 <i className="bx bx-cart-download text-3xl text-blue"></i>
               </div>
             )}
-            <div className="flex flex-col gap-3 items-center | mt-5">
-              <Modal
-                isCenter={true}
-                onClose={() => setShowModalMarket(false)}
-                show={showModalMarket}
-              >
-                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
-                  <ModalMarketTest />
-                </div>
-              </Modal>
+            <div className="flex flex-col md:flex-row gap-3 items-center | mt-5">
               <Button
-                className="h-10"
+                className="h-10 w-full md:w-80"
                 type="green"
                 id="profil-LDCtab-acheter"
-                onClick={() => setShowModalMarket(true)}
+                onClick={() => {
+                  window.open("https://www.joliessence.com/?ae=108");
+                }}
               >
-                Acheter maintenant
+                <i className="bx bx-cart text-2xl mt-0.5 mr-2"></i>
+                Acheter chez notre partenaire
               </Button>
 
               <RWebShare
@@ -104,13 +98,13 @@ export const TabLDC: React.FC<TabLDCProps> = ({
                 }}
               >
                 <Button
-                  className="h-10 w-38"
+                  className="h-10 w-full md:w-80"
                   haveIcon={true}
                   type="darkBlue"
                   id="profil-LDCtab-envoyer"
                 >
-                  <i className="bx bx-share text-2xl mt-0.5 mr-2 flipIcon"></i>
-                  Me l’envoyer
+                  <i className="bx bx-mail-send text-2xl mt-0.5 mr-2"></i>
+                  Recevoir ma liste de course
                 </Button>
               </RWebShare>
             </div>

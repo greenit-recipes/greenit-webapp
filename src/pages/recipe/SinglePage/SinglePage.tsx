@@ -35,8 +35,6 @@ import { HeaderRecipe } from "./HeaderRecipe/HeaderRecipe";
 import { LikeField } from "./LikeField";
 import { SimilarRecipe } from "./SimilarRecipe/SimilarRecipe";
 import "./SinglePage.css";
-import { IngredientBuySection } from "./BuySection/IngredientBuySection";
-import { ModalMarketTest } from "components/layout/Modal/modalMarketTest";
 import pdfhygienRules from "../../../pdfhygienRules.pdf";
 import precaution from "../../../precaution.pdf";
 
@@ -90,30 +88,6 @@ const RecipeSinglePage = () => {
     null,
   );
   const [numberModal, setNumberModal] = useState(0);
-
-  //START OF MARKET DISPLAY
-  const [isGelDeLin, setIsGelDeLin] = useState(false);
-  const recipeName = data?.recipe?.name;
-
-  const [haveIngredientMarket, sethaveIngredientMarket] = useState(false);
-  // this above is to display or not the entire section
-  const ingredients = data?.recipe?.ingredients?.map((ingredients: any) => ({
-    key: Math.random,
-    name: ingredients?.name,
-    isForMarket: ingredients?.isForMarket,
-    price: ingredients?.price,
-  }));
-  const [showModalMarket, setShowModalMarket] = useState(false);
-  // @ts-ignore
-  useEffect(() => {
-    ingredients?.forEach(data => {
-      if (data.isForMarket === true) return sethaveIngredientMarket(true);
-    });
-    {
-      if (recipeName === "Gel de lin maison") return setIsGelDeLin(true);
-    }
-  });
-  //END OF MARKET DISPLAY
 
   // Comments
   const [addCommentToRecipe] = useMutation(ADD_COMMENT_TO_RECIPE);
@@ -230,74 +204,7 @@ const RecipeSinglePage = () => {
           recipe={recipe}
           className=""
         />
-        {isGelDeLin && (
-          <div className="fixed bottom-0 w-full h-24 md:h-20 bg-yellowL z-30 shadow-flat">
-            <div className="flex flex-col lg:flex-row w-full bg-yellowL pb-4 lg:p-4 h-max mb-10 md:justify-center">
-              <p className="md:hidden text-base py-2 w-full text-center font-medium">
-                Greenit Market : bénéficie de -15% au lancement 👇
-              </p>
-              <p className="hidden md:block text-base py-2 text-center font-medium mr-10">
-                Greenit Market : bénéficie de -15% au lancement 👉
-              </p>
-              <div className="flex self-center md:self-start w-11/12 lg:max-w-20 h-10">
-                <Link
-                  to={RouteName.market}
-                  className="w-full"
-                  id="singlePage-GelDeLin-CTA"
-                >
-                  <Button
-                    id="singlePage-GelDeLin-CTA"
-                    type="darkBlue"
-                    className="h-10 w-full max-w-26 lg:w-auto lg:max-w-20"
-                  >
-                    Explorer les produits du Market ! 🥑 🎁
-                  </Button>
-                </Link>
-              </div>
 
-              <Modal
-                isCenter={true}
-                onClose={() => setShowModalMarket(false)}
-                show={showModalMarket}
-              >
-                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
-                  <ModalMarketTest />
-                </div>
-              </Modal>
-            </div>
-          </div>
-        )}
-        {haveIngredientMarket && (
-          <div className="z-30 fixed bottom-0 w-full h-auto">
-            <div className="flex flex-col lg:flex-row justify-center bg-yellowL pb-2 lg:p-4 h-max w-full md:gap-6">
-              <p className="text-sm text-center p-3">
-                Pour réaliser cette recette, ajoute les ingrédients à ton panier
-                {isMobile ? <span> 👇 </span> : <span> 👉 </span>}
-              </p>
-              <div className="flex self-center w-11/12 lg:max-w-20 h-10">
-                <Button
-                  id="singlePage-ajouter-ingredients-panier"
-                  type="darkBlue"
-                  className="h-10 w-full max-w-26 lg:max-w-20"
-                  onClick={() => setShowModalMarket(true)}
-                >
-                  <i className={`bx bx-cart-download text-2xl mr-2`} />
-                  Ajouter les ingrédients au panier
-                </Button>
-              </div>
-
-              <Modal
-                isCenter={true}
-                onClose={() => setShowModalMarket(false)}
-                show={showModalMarket}
-              >
-                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
-                  <ModalMarketTest />
-                </div>
-              </Modal>
-            </div>
-          </div>
-        )}
         <div
           className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage"
           style={{
@@ -684,58 +591,7 @@ const RecipeSinglePage = () => {
               </div>
             </div>
           </div>
-          {haveIngredientMarket && (
-            <div className="flex flex-col w-full bg-yellowL pb-20 lg:pb-10 h-max">
-              <div className="flex flex-col self-center w-11/12 lg:w-4/6 pt-4 lg:gap-2">
-                <h3>Panier pour la recette</h3>
-                <p>Ingrédients disponibles pour cette recette</p>
-                <div className="flex flex-wrap gap-4 mt-6">
-                  {ingredients?.map(
-                    (Object: { name: string; isForMarket: boolean }) => {
-                      {
-                        if (Object.isForMarket === true)
-                          return (
-                            <IngredientBuySection
-                              ingredientsForMarket={Object?.name}
-                            />
-                          );
-                      }
-                    },
-                  )}
-                </div>
-                <div className="flex flex-col lg:flex-row gap-2 lg:gap-4 mt-4 h-10">
-                  <Button
-                    id="singlePage-ajouter-ingredients-panier"
-                    type="green"
-                    className="h-10 w-full max-w-26 lg:max-w-20"
-                    onClick={() => setShowModalMarket(true)}
-                  >
-                    <i className={`bx bx-cart-download text-2xl mr-2`} />
-                    Ajouter tous les ingrédients au panier
-                  </Button>
-                  <Link to={RouteName.market} className="w-full">
-                    <Button
-                      id="singlePage-decouvrir-greenitMarket"
-                      type="darkBlue"
-                      className="h-10 w-full max-w-26 lg:w-auto lg:max-w-20"
-                    >
-                      Découvrir Greenit Market
-                    </Button>
-                  </Link>
-                </div>
-              </div>
 
-              <Modal
-                isCenter={true}
-                onClose={() => setShowModalMarket(false)}
-                show={showModalMarket}
-              >
-                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
-                  <ModalMarketTest />
-                </div>
-              </Modal>
-            </div>
-          )}
           <div className="w-11/12 mb-10 lg:w-4/6">
             <div className="flex flex-col mt-8">
               <h3 className="pb-2">Conseils de l'auteur</h3>

@@ -166,7 +166,7 @@ const ProfilPage: React.FC = () => {
             id="profil-carnettab"
             className={`flex justify-center md:items-center md:space-x-2 w-1/4 ${
               isDashboardActive
-                ? "border-l-2 border-b-4 border-l-white border-b-darkBlue shadow-xl "
+                ? "border-b-4 border-b-darkBlue shadow-xl "
                 : "border-b-4 border-greyL"
             } py-2 | cursor-pointer`}
             onClick={() => {

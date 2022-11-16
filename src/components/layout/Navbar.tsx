@@ -13,8 +13,6 @@ import { Loading } from "components/layout/Loading";
 import debounce from "lodash/debounce";
 import { useQuery } from "@apollo/client";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "../../pages/AutocompleteRequest";
-import Modal from "./Modal/Modal";
-import { ModalMarketTest } from "./Modal/modalMarketTest";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
@@ -26,8 +24,7 @@ export const Navbar: React.FC = () => {
   const history = useHistory();
   const [showSearchBar, setShowSearchBar] = useState<boolean>(
     location.pathname !== RouteName.accueil &&
-      location.pathname !== RouteName.recipes &&
-      location.pathname !== RouteName.market,
+      location.pathname !== RouteName.recipes,
   );
   const [toggle, setToggle] = useState(false);
   const [hasUrl, setHasUrl] = useState(
@@ -43,7 +40,6 @@ export const Navbar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const setSearchTermDebounced = debounce(setSearchTerm, 250);
 
-  const [showModalMarket, setShowModalMarket] = useState(false);
   // @ts-ignore
 
   // Ne par run au premier lancement
@@ -145,15 +141,6 @@ export const Navbar: React.FC = () => {
                 Accueil
               </h2>
             </Link>
-            <Link className="p-2" to={RouteName.market}>
-              <h2 id="navbar-market" className="text-white">
-                Market{" "}
-                <span className="text-xs font-light" id="navbar-market">
-                  {" "}
-                  : ingrédients à petits prix
-                </span>
-              </h2>
-            </Link>
             <Link
               className="p-2"
               to={RouteName.recipes}
@@ -251,15 +238,6 @@ export const Navbar: React.FC = () => {
         <Link to={RouteName.accueil}>
           <NavButton id="navbar-home" type="black">
             Accueil
-          </NavButton>
-        </Link>
-        <Link to={RouteName.market}>
-          <NavButton id="navbar-market" type="black">
-            Market{" "}
-            <span className="text-sm font-light ml-1" id="navbar-market">
-              {" "}
-              : ingrédients à petits prix
-            </span>
           </NavButton>
         </Link>
         <div className="w-auto" id="navmenu_big">
@@ -563,24 +541,6 @@ export const Navbar: React.FC = () => {
             </Link>
           ) : (
             <>
-              <div
-                className="cursor-pointer pr-4"
-                onClick={() => setShowModalMarket(true)}
-              >
-                <i
-                  className="bx bx-cart text-yellow text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
-                  id="navBar-cart-notLogged"
-                ></i>
-              </div>
-              <Modal
-                isCenter={true}
-                onClose={() => setShowModalMarket(false)}
-                show={showModalMarket}
-              >
-                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
-                  <ModalMarketTest />
-                </div>
-              </Modal>
               <Link to={RouteName.createRecipe} className="flex">
                 <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
                   <div className="flex sm:hidden lg:block">
@@ -599,24 +559,6 @@ export const Navbar: React.FC = () => {
           )}
           {isLoggedIn ? (
             <>
-              <div
-                className="cursor-pointer px-2"
-                onClick={() => setShowModalMarket(true)}
-              >
-                <i
-                  className="bx bxs-cart text-yellow text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
-                  id="navBar-cart-LoggedIn"
-                ></i>
-              </div>
-              <Modal
-                isCenter={true}
-                onClose={() => setShowModalMarket(false)}
-                show={showModalMarket}
-              >
-                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
-                  <ModalMarketTest />
-                </div>
-              </Modal>
               <Link to={RouteName.profil}>
                 <div
                   id="navBar-profil-LoggedIn"
