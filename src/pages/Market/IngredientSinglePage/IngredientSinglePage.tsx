@@ -81,9 +81,8 @@ const IngredientSinglePage = () => {
         <div
           className="absolute flex justify-center left-0 top-12 lg:top-16 z-20 bg-white w-10 h-10 ml-3 rounded-full cursor-pointer"
           onClick={() => {
-            if (getObjectSession("pathname"))
-              history.goBack(); // need to have previous path
-            else history.push(RouteName.market);
+            if (getObjectSession("pathname")) history.goBack(); // need to have previous path
+            //else history.push(RouteName.market);
           }}
         >
           <i className="bx bx-arrow-back text-3xl" />

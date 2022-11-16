@@ -35,7 +35,7 @@ export const IngredientCard: React.FC<IngredientCard> = ({
 
   return (
     <div className="relative transform sm:hover:scale-105 ease-linear transition-all duration-150">
-      {!isCTA ? (
+      {/*{!isCTA ? (
         <>
           <Link
             to={{
@@ -108,7 +108,7 @@ export const IngredientCard: React.FC<IngredientCard> = ({
             </div>
           </div>
         </Link>
-      )}
+      )}*/}
     </div>
   );
 };

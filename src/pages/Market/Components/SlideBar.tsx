@@ -15,7 +15,7 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
       <div className="flex flex-cols gap-7 w-max px-4">
         <Link
           to={{
-            pathname: `${RouteName.listpagemarket}/Tous-les-ingrédients`,
+            pathname: `${RouteName.accueil}/Tous-les-ingrédients`,
           }}
           className="cursor-pointer"
         >
@@ -51,7 +51,7 @@ export const SlideBar: React.FC<SlideBar> = ({ keyID }) => {
         ].map(item => (
           <Link
             to={{
-              pathname: `${RouteName.listpagemarket}/${item.filter}`,
+              pathname: `${RouteName.accueil}/${item.filter}`,
             }}
             className="cursor-pointer"
           >
