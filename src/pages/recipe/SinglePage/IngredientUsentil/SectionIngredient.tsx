@@ -68,7 +68,15 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
   const [isLDCUpdatedNotifActive, setIsLDCUpdatedNotifActive] = useState(false);
   const [isLDCAccessNotifActive, setIsLDCAccessNotifActive] = useState(false);
 
+  const [hasPurchaseLink, setHasPurchaseLink] = useState(false);
+  const [isOnline, setisOnline] = useState(false);
+  const [isSupermarket, setisSupermarket] = useState(false);
+
   useEffect(() => {
+    if (data.purchaseLink) return setHasPurchaseLink(true);
+    if (data.isOnline === true) return setisOnline(true);
+    if ((data.isSupermarket = true)) return setisSupermarket(true);
+
     if (isICMAddedNotifActive) {
       ReactDOM.render(
         <NotificationAlert
@@ -412,43 +420,39 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
             <div>{data?.alternative && HTMLReactParser(data?.alternative)}</div>
             <div className="flex-col items-center mt-4 pb-4 lg:flex-row">
               <h4 className="fontQSemibold">Où acheter ?</h4>
-              <div className="flex gap-6 mt-2 md:items-center">
-                {data?.isOnline && (
-                  <div className="flex items-center gap-2">
-                    <i className="bx bx-cart text-4xl"></i>
-                    <div className="flex">
-                      <p className="text-sm">En ligne</p>
-                    </div>
-                  </div>
-                )}
-                {data?.isSupermarket && (
-                  <div className="flex items-center gap-2">
-                    <i className="bx bx-store text-4xl"></i>
-                    <div className="flex flex-col">
-                      <p className="text-sm">Biocop &</p>
-                      <p className="text-sm">Supermarché</p>
-                    </div>
-                  </div>
-                )}
-                {data?.purchaseLink && (
+              <div className="flex gap-6 mt-4 md:items-center">
+                {hasPurchaseLink ? (
+                  <Button
+                    id="recipepage-ingredients-commanderBoutton"
+                    type="darkBlue"
+                    rounded="lg"
+                    className="flex gap-2 h-12 w-full md:w-80"
+                    onClick={() => {
+                      window.open(data?.purchaseLink);
+                    }}
+                  >
+                    <i className="bx bx-cart text-3xl"></i>
+                    Commander chez notre partenaire
+                  </Button>
+                ) : (
                   <>
-                    {!isMobile && (
-                      <p className="self-start text-sm">
-                        Nous conseillons notre marque partenaire pour
-                        l’accessibilité et la qualité des produits. 👉
-                      </p>
+                    {!isOnline && (
+                      <div className="flex items-center gap-2">
+                        <i className="bx bx-cart text-4xl"></i>
+                        <div className="flex">
+                          <p className="text-sm">En ligne</p>
+                        </div>
+                      </div>
                     )}
-                    <div className="md:self-start flex md:h-10 msm:mt-2 msm:justify-center">
-                      <a href={data?.purchaseLink} target="_blank">
-                        <Button
-                          id="recipepage-ingredients-commanderBoutton"
-                          type="red"
-                          rounded="lg"
-                        >
-                          Commander
-                        </Button>
-                      </a>
-                    </div>
+                    {!isSupermarket && (
+                      <div className="flex items-center gap-2">
+                        <i className="bx bx-store text-4xl"></i>
+                        <div className="flex flex-col">
+                          <p className="text-sm">Biocop &</p>
+                          <p className="text-sm">Supermarché</p>
+                        </div>
+                      </div>
+                    )}
                   </>
                 )}
               </div>
