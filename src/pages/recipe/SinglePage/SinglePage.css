@@ -7,11 +7,6 @@
   overflow: hidden;
 }
 
-.rounded-singlePage {
-  border-radius: 30px 30px 0px 0px;
-  box-shadow: 0px 0px 12px 2px #00000029;
-}
-
 .btn-single-page {
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 4px;

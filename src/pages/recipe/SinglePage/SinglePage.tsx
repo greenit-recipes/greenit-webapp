@@ -206,51 +206,51 @@ const RecipeSinglePage = () => {
         />
 
         <div
-          className="w-full flex flex-col | items-center pt-10 z-20 bg-white rounded-singlePage"
+          className="w-full flex flex-col | items-center z-20 bg-white rounded-t-2xl shadow-flat"
           style={{
             marginTop: sizeCretorHeader / 16 - (isMobile ? 5.5 : 9) + "rem",
           }}
         >
+          <div className="justify-center bg-white py-4 w-full sticky top-10 z-20 rounded-t-2xl">
+            <h1 className="mb-4 text-xl text-center lg:text-2xl font-medium">
+              {recipe?.name}
+            </h1>
+            <div className="flex gap-3 items-center justify-center">
+              <FavouriteField
+                isToltipActif={false}
+                isRecipePage={true}
+                isBtnDesing={true}
+                customClassName="flex"
+                recipe={data?.recipe}
+              ></FavouriteField>
+              {isMobile ? (
+                <div className="hidden" />
+              ) : (
+                <LikeField recipe={recipe}></LikeField>
+              )}
+              <MadeRecipe recipe={data?.recipe} />
+              <RWebShare
+                data={{
+                  text: recipe?.titleSeo,
+                  url: window.location.href,
+                  title: recipe?.name,
+                }}
+              >
+                <Button
+                  id="recette-partager"
+                  type="darkBlue"
+                  rounded="lg"
+                  haveIcon={true}
+                  className="h-10"
+                >
+                  <i className="bx bx-share bx-flip-horizontal bx-sm mr-2"></i>
+                  partage
+                </Button>
+              </RWebShare>
+            </div>
+          </div>
           <div className="w-11/12 mb-10 lg:w-4/6">
             <div className="w-full h-auto">
-              <div className="justify-center">
-                <h1 className="mb-5 text-xl text-center lg:text-2xl font-medium">
-                  {recipe?.name}
-                </h1>
-                <div className="flex gap-3 items-center justify-center mb-0 md:mb-10">
-                  <FavouriteField
-                    isToltipActif={false}
-                    isRecipePage={true}
-                    isBtnDesing={true}
-                    customClassName="flex"
-                    recipe={data?.recipe}
-                  ></FavouriteField>
-                  {isMobile ? (
-                    <div className="hidden" />
-                  ) : (
-                    <LikeField recipe={recipe}></LikeField>
-                  )}
-                  <MadeRecipe recipe={data?.recipe} />
-                  <RWebShare
-                    data={{
-                      text: recipe?.titleSeo,
-                      url: window.location.href,
-                      title: recipe?.name,
-                    }}
-                  >
-                    <Button
-                      id="recette-partager"
-                      type="darkBlue"
-                      rounded="lg"
-                      haveIcon={true}
-                      className="h-10"
-                    >
-                      <i className="bx bx-share bx-flip-horizontal bx-sm mr-2"></i>
-                      partage
-                    </Button>
-                  </RWebShare>
-                </div>
-              </div>
               <Modal onClose={() => setShowModal(false)} show={showModal}>
                 <ModalKpi
                   substances={recipe?.substances}
@@ -322,7 +322,7 @@ const RecipeSinglePage = () => {
                 </div>
               )}
               {/* Description + image */}
-              <div className="flex flex-col mt-8 lg:flex-row md">
+              <div className="flex flex-col lg:flex-row md">
                 <div className="flex w-full">
                   <img
                     // @ts-ignore
