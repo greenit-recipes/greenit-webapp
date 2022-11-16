@@ -3,7 +3,6 @@ import useIsMobile from "hooks/isMobile";
 import HTMLReactParser from "html-react-parser";
 import React, { useEffect, useRef, useState } from "react";
 import { RiComputerLine } from "react-icons/ri";
-import { BsShop } from "react-icons/bs";
 import { Button } from "components";
 import { useMutation } from "@apollo/client";
 import {
@@ -411,31 +410,26 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
             </div>
             <h4 className="pt-4 fontQSemibold">Alternatives</h4>
             <div>{data?.alternative && HTMLReactParser(data?.alternative)}</div>
-            <div className="flex-col items-center pt-4 pb-6 lg:flex-row">
+            <div className="flex-col items-center mt-4 pb-4 lg:flex-row">
               <h4 className="fontQSemibold">Où acheter ?</h4>
-              <div className="flex flex-col md:flex-row md:items-center md:space-x-10"></div>
-              <div className="flex flex-col md:flex-row md:items-center md:space-x-10">
-                {/*{data?.purchaseLink && (
-                  <>
-                    {!isMobile && (
-                      <p className="self-start text-sm">
-                        Nous conseillons notre marque partenaire pour
-                        l’accessibilité et la qualité des produits. 👉
-                      </p>
-                    )}
-                    <div className="md:self-start flex md:h-10 msm:mt-2 msm:justify-center">
-                      <a href={data?.purchaseLink} target="_blank">
-                        <Button
-                          id="recipepage-ingredients-commanderBoutton"
-                          type="blue"
-                          rounded="lg"
-                        >
-                          Commander
-                        </Button>
-                      </a>
+              <div className="flex gap-6 mt-2 md:items-center">
+                {data?.isOnline && (
+                  <div className="flex items-center gap-2">
+                    <i className="bx bx-cart text-4xl"></i>
+                    <div className="flex">
+                      <p className="text-sm">En ligne</p>
                     </div>
-                  </>
-                )}*/}
+                  </div>
+                )}
+                {data?.isSupermarket && (
+                  <div className="flex items-center gap-2">
+                    <i className="bx bx-store text-4xl"></i>
+                    <div className="flex flex-col">
+                      <p className="text-sm">Biocop &</p>
+                      <p className="text-sm">Supermarché</p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
