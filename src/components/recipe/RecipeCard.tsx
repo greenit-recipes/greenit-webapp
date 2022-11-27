@@ -53,7 +53,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       id={`${id}-recipe-card`}
       className="transform sm:hover:scale-105 ease-linear relative transition-all duration-150 px-1 mb-8 lg:mb-0"
     >
-      {/*Code below is just for the bowx selling part*/}
+      {/*Code below is just for the box selling part*/}
       {amount && (
         <div
           className={`flex flex-col items-center pb-2 absolute right-0 mt-2 mr-3 w-8 h-${
