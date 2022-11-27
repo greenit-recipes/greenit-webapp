@@ -12,10 +12,10 @@ import {
   BoxSavon,
   Box,
 } from "icons";
-import { EngagementBanner } from "pages/Market/Components/EngagementBanner";
-import { FAQMarket } from "pages/Market/Components/FAQMarket/FAQMarket";
-import { MenuMultiSelect } from "pages/Market/Components/MenuMultiSelect";
-import { ReviewCard } from "pages/Market/Components/ReviewCard";
+import { EngagementBanner } from "../MarketComponents/EngagementBanner";
+import { FAQMarket } from "../MarketComponents/FAQMarket/FAQMarket";
+import { MenuMultiSelect } from "../MarketComponents/MenuMultiSelect";
+import { ReviewCard } from "../MarketComponents/ReviewCard";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { tagsBox, boxInfo, recipesBegginerFullXp } from "../FullXpHelper";
