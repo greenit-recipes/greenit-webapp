@@ -38,6 +38,7 @@ import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
 import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
 import { Community } from "pages/LandingPage/Components/Community";
+import { IngredientCard } from "pages/Market/Components/IngredientCard";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -119,6 +120,24 @@ const LandingPage = () => {
   const { data: dataNbrLikes } = useRecipesQuery({
     variables: { first: 8, filter: { isOrderByNumberLike: true } },
   });
+
+  //Query for Market section
+
+  const { data: dataMarket } = useAllIngredientsQuery({
+    variables: { filter: { isForMarket: true } },
+  });
+
+  const IngredientsMarket = dataMarket?.allIngredients?.map(
+    (ingredient: any) => ({
+      key: Math.random,
+      name: ingredient?.name,
+      price: ingredient?.price,
+      producer: ingredient?.producer,
+      image: ingredient?.image,
+      id: ingredient?.id,
+      rating: ingredient?.rating,
+    }),
+  );
 
   const [showModalComingSoon, setShowModalComingSoon] = useState(false);
 
@@ -281,7 +300,7 @@ const LandingPage = () => {
           </div>
           <div className="text-center my-5">
             <h4 className="font-semibold text-xl">
-              Notre sélection de la semaine
+              Notre sélection de recettes
             </h4>
           </div>
           {isMobile ? (
@@ -321,6 +340,85 @@ const LandingPage = () => {
           </div>
         </Container>
       </div>
+
+      <Container
+        className="flex flex-col items-center | w-full
+         | py-16 bg-yellowL"
+      >
+        <div className="flex flex-col gap-5 w-11/12 lg:w-10/12 bg-yellowL">
+          <div className="flex flex-col md:flex-row md:self-start gap-3 text-center">
+            {isMobile ? (
+              <h2 className="text-xl md:text-2xl font-semibold">
+                Découvrez <span className="text-yellow">Greenit Market,</span>
+                <br />
+                vos ingrédients à petits prix !
+              </h2>
+            ) : (
+              <h2 className="text-xl md:text-2xl font-semibold">
+                Découvrez <span className="text-yellow">Greenit Market</span>,
+                vos ingrédients à petits prix !
+              </h2>
+            )}
+            <h2 className="font-diy text-3xl">
+              les incontournables du fait-maison
+            </h2>
+          </div>
+          <Container className="grid grid-cols-2 lg:grid-cols-5 gap-6 self-center w-fit pb-4">
+            {isMobile
+              ? IngredientsMarket?.slice(0, 6).map(
+                  (Object: {
+                    name: string;
+                    price: string;
+                    producer: string;
+                    image: any;
+                    id: string;
+                    rating: string;
+                  }) => (
+                    <IngredientCard
+                      key={Math.random()}
+                      name={Object?.name}
+                      price={Object?.price}
+                      producer={Object?.producer}
+                      image={Object?.image}
+                      id={Object?.id}
+                      rating={Object?.rating}
+                      isOnLandingPage={true}
+                    />
+                  ),
+                )
+              : IngredientsMarket?.slice(0, 5).map(
+                  (Object: {
+                    name: string;
+                    price: string;
+                    producer: string;
+                    image: any;
+                    id: string;
+                    rating: string;
+                  }) => (
+                    <IngredientCard
+                      key={Math.random()}
+                      name={Object?.name}
+                      price={Object?.price}
+                      producer={Object?.producer}
+                      image={Object?.image}
+                      id={Object?.id}
+                      rating={Object?.rating}
+                      isOnLandingPage={true}
+                    />
+                  ),
+                )}
+          </Container>
+          <Link to={RouteName.market} className="self-center">
+            <Button
+              type={"darkBlue"}
+              id="landingPage-market-explorer-plus"
+              className="w-40 self-center mt-4"
+            >
+              Explorer plus
+            </Button>
+          </Link>
+        </div>
+      </Container>
 
       <Container
         className="flex flex-col justify-center items-center | md:px-4

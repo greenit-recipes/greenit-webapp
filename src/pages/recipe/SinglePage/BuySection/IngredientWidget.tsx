@@ -36,7 +36,7 @@ export const IngredientWidget: React.FC<IngredientWidget> = ({
         <Link
           id={`singlePage-ingredientWidget-${name}`}
           to={{
-            pathname: `${RouteName.accueil}/${id}`,
+            pathname: `${RouteName.market}/${id}`,
           }}
           className="flex gap-2 w-full"
         >

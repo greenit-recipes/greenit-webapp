@@ -206,6 +206,61 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
             </div>
           ))}
         </div>
+        {/* Comment below just for the market test time */}
+        {/*<div className="flex items-center justify-end space-x-2 md:space-x-4 | mt-5">
+          <span className="text-sm font-normal">
+            {isBulkLDCActive ? "Retirer tout de " : "Ajouter tout à "}ma liste
+            de course
+          </span>
+          <Button
+            id="recipepage-ingredientall-LDC"
+            className={`relative px-4 mr-3 shadow-md ${
+              isBulkLDCActive && "border-blue"
+            } hover:text-blue active:border-blue active:bg-white`}
+            haveIcon={true}
+            type="darkBlueIcon"
+            onClick={() => {
+              if (isLoggedIn) {
+                setIsBulkLDCActive(!isBulkLDCActive);
+                !isBulkLDCActive &&
+                  !isLDCBulkAddedNotifActive &&
+                  setIsLDCBulkAddedNotifActive(true);
+                const ingredientShoppingListCurrent = {
+                  additions: [],
+                  deletions: [],
+                };
+                if (!isBulkLDCActive) {
+                  ingredientShoppingListCurrent.additions =
+                    ingredientShoppingListOperations.potentialAdditions;
+                } else {
+                  ingredientShoppingListCurrent.deletions =
+                    ingredientShoppingListOperations.potentialDeletions;
+                }
+                createOrDeleteIngredientShoppingList({
+                  variables: {
+                    ingredientShoppingList: ingredientShoppingListCurrent,
+                  },
+                }).then(() => {
+                  parentFunction ? parentFunction() : null;
+                });
+              } else {
+                setIsLDCAccessNotifActive(true);
+              }
+            }}
+          >
+            <i
+              className={`bx bx-cart-download ${
+                isBulkLDCActive ? "text-blue" : "text-darkBlue"
+              }  text-2xl`}
+            ></i>
+            <i
+              className={`bx ${
+                isBulkLDCActive ? "bx-minus text-blue" : "bx-plus text-darkBlue"
+              }
+                   text-sm text-darkBlue absolute -top-0.5 right-0.5`}
+            ></i>
+          </Button>
+            </div>*/}
       </div>
     </div>
   );

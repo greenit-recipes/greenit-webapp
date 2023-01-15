@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./FAQMarket.css";
+import "../FAQMarket/FAQMarket.css";
 
 interface FAQMarket {
   className?: string;
