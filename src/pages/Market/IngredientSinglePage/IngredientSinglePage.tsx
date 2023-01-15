@@ -1,55 +1,111 @@
 import { RouteName } from "App";
-import { RecipeCard, Button, Container } from "components";
+import { Button, Container, Footer, Navbar, RecipeCard } from "components";
+import { useIngredientQuery, useRecipesQuery } from "../../../graphql";
+import { getObjectSession } from "helpers/session-helper";
 import useIsMobile from "hooks/isMobile";
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { Link, useHistory, useParams } from "react-router-dom";
+import { AddtoCartBanner } from "../Components/AddtoCartBanner";
+import { MenuMultiSelect } from "../Components/MenuMultiSelect";
+import { ReviewCard } from "../Components/ReviewCard";
+import { EngagementBanner } from "../Components/EngagementBanner";
+import { FAQMarket } from "../Components/FAQMarket/FAQMarket";
+import { getImagePath } from "helpers/image.helper";
+import { IngredientAssociateSection } from "./IngredientAssociateSection";
 import {
-  visage,
-  nathalier,
-  domie,
-  hugues,
-  defaultImageProfil,
   anne,
-  BoxCreme,
-  BoxSavon,
-  Box,
+  defaultImageProfil,
+  domie,
+  fanny,
+  hugues,
+  nathalier,
 } from "icons";
-import { EngagementBanner } from "pages/Market/Components/EngagementBanner";
-import { FAQMarket } from "pages/Market/Components/FAQMarket/FAQMarket";
-import { MenuMultiSelect } from "pages/Market/Components/MenuMultiSelect";
-import { ReviewCard } from "pages/Market/Components/ReviewCard";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { tagsBox, boxInfo, recipesBegginerFullXp } from "../FullXpHelper";
-import HeadBand from "../headband";
 
-const CheckoutFullXp: React.FC = () => {
-  const [toggle, setToggle] = useState(true);
+const IngredientSinglePage = () => {
   const isMobile = useIsMobile();
+  const history = useHistory();
+  const [toggle, setToggle] = useState(true);
+
+  useEffect(() => {
+    if (window.pageYOffset > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
+
+  const { id } = useParams<{ id: string }>();
+
+  const { data } = useIngredientQuery({
+    fetchPolicy: "no-cache",
+    variables: {
+      id: id,
+    },
+  });
+
+  // ingredient is the main object used to display data expect for the tags
+  const ingredient = data?.ingredient as any;
+
+  // const below is just to display the tags Array
+  const tagsIngredient = data?.ingredient?.tags;
+
+  // the part below is just for the RecipeWithIngredients
+  const ingredientName = [data?.ingredient?.name] as any;
+  const { data: recipesUsingIngredient } = useRecipesQuery({
+    variables: {
+      filter: { ingredients: ingredientName },
+    },
+  });
+  const recipeSimilar = recipesUsingIngredient?.allRecipes?.edges || [];
 
   return (
     <div className="flex flex-col | items-center self-center">
+      <Navbar />
+      <Helmet>
+        <title>{`${data?.ingredient?.name} | Greenit Market`}</title>
+        <meta
+          name="description"
+          content="Découvrez une sélection d’huiles végétales, beurres végétaux, macérât huileux, huiles essentielles, poudres végétales, argiles, base de préparation, ingrédients d’entretien..."
+        />
+      </Helmet>
+
       {isMobile && (
         <div className="w-full">
-          <HeadBand Formobile={true} />
+          <AddtoCartBanner price={data?.ingredient?.price} Formobile={true} />
         </div>
       )}
+
       <div className="flex flex-wrap w-11/12 pt-4 lg:gap-10 lg:pt-14">
+        <div
+          className="absolute flex justify-center left-0 top-12 lg:top-16 z-20 bg-white w-10 h-10 ml-3 rounded-full cursor-pointer"
+          onClick={() => {
+            if (getObjectSession("pathname"))
+              history.goBack(); // need to have previous path
+            else history.push(RouteName.market);
+          }}
+        >
+          <i className="bx bx-arrow-back text-3xl" />
+        </div>
+
         {!isMobile ? (
           <div className="grid grid-cols-3 grid-row-2 gap-4 sm:w-2/3 lg:w-5/12 h-fit">
             <img
               className="w-84 h-84 object-cover col-span-2 row-span-2 h-full rounded-md"
-              src={Box}
+              src={getImagePath(`${ingredient?.image}`)}
               alt={"photo de l'ingredient"}
               loading="lazy"
             />
             <img
               className="w-41 h-41 object-cover rounded-md"
-              src={BoxCreme}
+              src={getImagePath(`${ingredient?.imageOptional2}`)} // if no image2 / 3 is not handled for now to refacto
               alt={""}
               loading="lazy"
             />
             <img
               className="w-41 h-41 object-cover rounded-md"
-              src={BoxSavon}
+              src={getImagePath(`${ingredient?.imageOptional3}`)}
               alt={""}
               loading="lazy"
             />
@@ -59,43 +115,43 @@ const CheckoutFullXp: React.FC = () => {
             <div className="flex w-max gap-4 pb-4">
               <img
                 className="object-cover w-60 h-60 rounded-md"
-                src={Box}
+                src={getImagePath(`${ingredient?.image}`)}
                 alt="photo de l'ingredient"
                 loading="lazy"
               />
               <img
                 className="object-cover w-60 h-60 rounded-md"
-                src={BoxCreme}
+                src={getImagePath(`${ingredient?.imageOptional2}`)}
                 loading="lazy"
               />
               <img
                 className="object-cover w-60 h-60 rounded-md"
-                src={BoxSavon}
+                src={getImagePath(`${ingredient?.imageOptional3}`)}
                 loading="lazy"
               />
             </div>
           </div>
         )}
         <div className="flex flex-col gap-3 mb-6 lg:w-1/2">
-          <h2>{"Coffret DIY « Premiers Pas » - 3 recettes pour débuter"}</h2>
-          <p>{"Greenit Community"}</p>
+          <h2>{ingredient?.name}</h2>
+          <p>{ingredient?.producer}</p>
 
           <div className="flex gap-3">
             <div className="flex border-1 br-darkBlue h-10 w-14 items-center justify-center rounded">
-              <h4>{"1"}</h4>
+              <h4>{ingredient?.contenance}</h4>
             </div>
             <div className="flex items-center | bg-green text-white rounded-br-md rounded-tl-md px-4 py-1">
-              <span> ★ {"4.9/5"}</span>
+              <span> ★ {ingredient?.rating}</span>
             </div>
           </div>
 
           <div className="flex flex-wrap items-start gap-2">
-            {tagsBox.slice(0, 4).map(tags => (
+            {tagsIngredient?.slice(0, 4).map((Object: { name: string }) => (
               <div className="flex inline h-8 px-3 text-white rounded bg-darkBlue items-center">
-                <p>{tags}</p>
+                <p>{Object?.name}</p>
               </div>
             ))}
-            {tagsBox?.slice(4, 8).map(tags => (
+            {tagsIngredient?.slice(4, 8).map((Object: { name: string }) => (
               <div
                 className={
                   toggle
@@ -103,7 +159,7 @@ const CheckoutFullXp: React.FC = () => {
                     : "visible flex inline h-8 px-3 text-white rounded bg-darkBlue items-center"
                 }
               >
-                <p>{tags}</p>
+                <p>{Object?.name}</p>
               </div>
             ))}
             <button
@@ -138,31 +194,38 @@ const CheckoutFullXp: React.FC = () => {
               </>
             ))}
           </div>
+
           {!isMobile && (
             <div>
-              <HeadBand Formobile={false} />
+              <AddtoCartBanner price={ingredient?.price} Formobile={false} />
             </div>
           )}
         </div>
       </div>
       <div className="w-11/12 mb-10">
-        {boxInfo.slice(0, 4).map(boxInfo => (
-          <MenuMultiSelect
-            informationMarket={boxInfo.Information}
-            indication={boxInfo.Indications}
-            precaution={boxInfo.Precaution}
-            producer={"Greenit Community"}
-          ></MenuMultiSelect>
-        ))}
+        <MenuMultiSelect
+          informationMarket={`${ingredient?.informationMarket}`}
+          indication={`${ingredient?.indication}`}
+          precaution={`${ingredient?.precaution}`}
+          producer={`${ingredient?.producer}`}
+        ></MenuMultiSelect>
+      </div>
+      <div className="flex flex-col | w-full lg:w-11/12 | gap-3 | pl-6 lg:pl-0">
+        <h3>Ingrédients associés :</h3>
+
+        <IngredientAssociateSection
+          categoryIngredient={ingredient?.categoryIngredient?.["name"]}
+          name={ingredient?.name}
+        />
       </div>
 
       <div className="flex flex-col | w-full lg:w-11/12 | gap-3 | pl-6 lg:pl-0 mt-6">
         <h3>Recettes associées :</h3>
         <div className="w-full overflow-x-auto">
           <div className="flex flex-row gap-3 w-max p-6">
-            {recipesBegginerFullXp?.slice(0, 5).map(recipe => (
+            {recipeSimilar?.slice(0, 5).map(recipe => (
               <div className="flex mr-2">
-                <RecipeCard recipe={recipe} key={recipe.id} />
+                <RecipeCard recipe={recipe?.node} key={recipe?.node?.id} />
               </div>
             ))}
           </div>
@@ -283,8 +346,9 @@ const CheckoutFullXp: React.FC = () => {
         </div>
       </div>
       <EngagementBanner />
+      <Footer />
     </div>
   );
 };
 
-export default CheckoutFullXp;
+export default IngredientSinglePage;

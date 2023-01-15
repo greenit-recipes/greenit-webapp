@@ -4,6 +4,7 @@ import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
 import { createBrowserHistory } from "history";
 import LandingPage from "pages/LandingPage/LandingPage";
+import MarketLandingPage from "pages/Market/MarketLandingPage";
 import React, { Suspense } from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
@@ -50,6 +51,12 @@ const QRFullXp = React.lazy(
   () => import("./pages/GreenitFullXp/QRFullXp/QRFullXp"),
 );
 
+const IngredientSinglePage = React.lazy(
+  () => import("pages/Market/IngredientSinglePage/IngredientSinglePage"),
+);
+
+const MarketListPage = React.lazy(() => import("pages/Market/MarketListPage"));
+
 export const history = createBrowserHistory();
 
 const greenitFullXpRoute = {
@@ -59,6 +66,8 @@ const greenitFullXpRoute = {
 
 export const RouteName = {
   accueil: "/",
+  market: "/market", // no index
+  listpagemarket: "/ingredients",
   resetPassword: "/reinitialisation-mot-de-passe", // no index
   tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
   accountCreated: "/compte-crée", // no index
@@ -98,6 +107,22 @@ const App: React.FC = () => {
           <PublicRoute
             path="/recettes/:name"
             component={RecipeSinglePage}
+            exact
+          />
+          <PublicRoute
+            path={RouteName.market}
+            component={MarketLandingPage}
+            exact
+          />
+          <PublicRoute
+            path="/market/:id"
+            component={IngredientSinglePage}
+            exact
+          />
+
+          <PublicRoute
+            path="/ingredients/:category_ingredient" //to change to categorySlug
+            component={MarketListPage}
             exact
           />
 
