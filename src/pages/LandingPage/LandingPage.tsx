@@ -53,7 +53,6 @@ const LandingPage = () => {
   const history = useHistory();
   const totalRecipeCards = isMobile ? 5 : 4;
   /* Feature Flag Start*/
-  //Create an easier API for feature flags
   const { loading: loadingOutOfStock, data: dataOutOfStock } = useQuery(
     GET_FEATURE_BY_NAME,
     {
@@ -125,7 +124,6 @@ const LandingPage = () => {
 
   useEffect(() => {
     if (showModal) {
-      // à voir
       document.body.classList.add("no-scroll");
 
       return () => {
@@ -137,7 +135,6 @@ const LandingPage = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const setSearchTermDebounced = debounce(setSearchTerm, 250);
 
-  // Ne par run au premier lancement
   const { data: autoCompleteData, loading: autoCompleteLoading } = useQuery(
     SEARCH_AUTO_COMPLETE_RECIPE,
     {
@@ -189,23 +186,6 @@ const LandingPage = () => {
           content="Votre espace de partage de recette DIY, des astuces écologiques pour la maison, des ateliers pour débuter dans le fait-maison et des pages sur les bienfaits des ingrédients."
         />
       </Helmet>
-      {/* dataFullXP?.featureFlag?.isActive && (
-        <>
-          <GreenitFullXpHeadband
-            isOutOfStock={dataOutOfStock?.featureFlag?.isActive}
-            showModal={setShowModalComingSoon}
-          />
-          <Modal
-            isCenter={true}
-            onClose={() => setShowModalComingSoon(false)}
-            show={showModalComingSoon}
-          >
-            <GreenitFullXpModal
-              isOutOfStock={dataOutOfStock?.featureFlag?.isActive}
-            />
-          </Modal>
-        </>
-      ) */}
       <div className="realtive bg-greenL w-full">
         <Container
           className="flex flex-col items-center | md:px-4
@@ -490,7 +470,6 @@ const LandingPage = () => {
                       />
                     </div>
                   ))}
-                {/*Todo: Fill category later*/}
                 {isMobile && (
                   <ExploreMore
                     filter="category=Avec les ingrédients de la cuisine"
@@ -516,7 +495,6 @@ const LandingPage = () => {
                         />
                       </div>
                     ))}
-                  {/*Todo: Fill category later*/}
                   {isMobile && (
                     <ExploreMore
                       filter="category=Avec les ingrédients de la cuisine"
@@ -552,7 +530,6 @@ const LandingPage = () => {
           {isMobile && <br />} des donateurs, des débutants. . .
         </h2>
       </Container>
-      {/*Todo: Refactor later*/}
       <Community isMobile={isMobile} />
       <div className="relative">
         <img

@@ -11,7 +11,7 @@ import { NotificationAlert } from "components/layout/NotificationAlert";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("L'email est obligatoire."),
-}); // _ - .
+});
 
 const ForgetPassword: React.FC = () => {
   const {

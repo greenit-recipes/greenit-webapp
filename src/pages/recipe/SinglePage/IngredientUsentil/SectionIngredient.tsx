@@ -435,28 +435,6 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
                     )}
                   </div>
                 </div>
-
-                {/*{data?.purchaseLink && (
-                  <>
-                    {!isMobile && (
-                      <p className="self-start text-sm">
-                        Nous conseillons notre marque partenaire pour
-                        l’accessibilité et la qualité des produits. 👉
-                      </p>
-                    )}
-                    <div className="md:self-start flex md:h-10 msm:mt-2 msm:justify-center">
-                      <a href={data?.purchaseLink} target="_blank">
-                        <Button
-                          id="recipepage-ingredients-commanderBoutton"
-                          type="blue"
-                          rounded="lg"
-                        >
-                          Commander
-                        </Button>
-                      </a>
-                    </div>
-                  </>
-                )}*/}
               </div>
             </div>
           </div>
