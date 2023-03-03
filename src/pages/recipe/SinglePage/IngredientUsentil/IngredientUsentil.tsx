@@ -206,8 +206,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
             </div>
           ))}
         </div>
-        {/* Comment below just for the market test time */}
-        {/*<div className="flex items-center justify-end space-x-2 md:space-x-4 | mt-5">
+        <div className="flex items-center justify-end space-x-2 md:space-x-4 | mt-5">
           <span className="text-sm font-normal">
             {isBulkLDCActive ? "Retirer tout de " : "Ajouter tout à "}ma liste
             de course
@@ -260,7 +259,7 @@ export const IngredientUsentil: React.FC<IIngredientUsentil> = ({
                    text-sm text-darkBlue absolute -top-0.5 right-0.5`}
             ></i>
           </Button>
-            </div>*/}
+        </div>
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ export interface NumberedCircleProps extends CircleProps {
   quantity: number;
 }
 
-//Todo (zack) Parameterize circle's size
 export const NumberedCircle: React.FC<NumberedCircleProps> = ({
   name,
   icon,

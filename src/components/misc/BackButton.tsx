@@ -7,7 +7,6 @@ interface BackButtonProps {
   idButton?: string;
 }
 
-//Todo : Make the button customizable with custom props
 export const BackButton: React.FC<BackButtonProps> = ({
   styleCSS,
   idButton,

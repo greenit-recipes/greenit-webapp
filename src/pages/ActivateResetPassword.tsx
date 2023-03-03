@@ -31,7 +31,7 @@ const schema = yup.object().shape({
       [yup.ref("password"), null],
       "Les mots de passe ne correspondent pas.",
     ),
-}); // _ - .
+});
 
 const ActivateResetPassword: React.FC = () => {
   const {

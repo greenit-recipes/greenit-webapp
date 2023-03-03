@@ -21,7 +21,6 @@ export const ModalLogGreenit: React.FC<IModalLogGreenit> = ({
 
   useEffect(() => {
     if (showModal) {
-      // à voir
       document.body.classList.add("no-scroll");
 
       return () => {

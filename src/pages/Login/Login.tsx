@@ -28,7 +28,7 @@ const schema = yup.object().shape({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/,
       "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule.",
     ),
-}); // _ - .
+});
 
 const Login: React.FC = () => {
   if (window.pageYOffset > 0) {

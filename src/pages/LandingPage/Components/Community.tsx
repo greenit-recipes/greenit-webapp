@@ -1,4 +1,3 @@
-//Todo : Use typescript path lib scoping for cleaner paths
 import { clone, filter, includes } from "lodash";
 
 import {
@@ -179,7 +178,6 @@ const communityMembers = [
 export const Community: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
   const [numeros, setNumeros] = useState<any>([0, 1, 2, 3, 4, 5]);
   function randomIntFromInterval(min: any, max: any) {
-    // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
@@ -193,7 +191,6 @@ export const Community: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
   }
 
   useEffect(() => {
-    // create interval
     const interval = setTimeout(() => {
       const rndInt = randomIntFromInterval(0, 5);
       const currentNums = numeros;

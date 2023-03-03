@@ -4,7 +4,6 @@ import {
   setObjectFilterSession,
 } from "helpers/session-helper";
 import { useHistory } from "react-router-dom";
-//Todo : Use typescript path lib scoping for cleaner paths
 import { Circle, CircleProps } from "../../../components/misc/Circle";
 
 export const CategoryCircle: React.FC<CircleProps> = ({
