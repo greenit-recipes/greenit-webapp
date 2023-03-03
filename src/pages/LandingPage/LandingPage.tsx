@@ -44,7 +44,7 @@ import { Link, useHistory } from "react-router-dom";
 import { GET_FEATURE_BY_NAME } from "services/feature.service";
 import { landingPageCategories } from "utils";
 import ModalPersonalization from "../../components/personalization/ModalPersonalization";
-import { useAllIngredientsQuery, useRecipesQuery } from "../../graphql";
+import { useRecipesQuery } from "../../graphql";
 import { CategoryCircle } from "./Components/CategoryCircle";
 import { Newsletter } from "./Components/Newsletter";
 
