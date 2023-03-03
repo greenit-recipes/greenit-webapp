@@ -307,9 +307,7 @@ class Auth {
       includes(pathname, "activate") ||
       includes(pathname, RouteName.tokenActivationAccount) ||
       includes(pathname, RouteName.accueil) ||
-      pathname === RouteName.register ||
-      //Full Xp Params
-      pathname === RouteName.qrFullXp
+      pathname === RouteName.register
     );
   }
 

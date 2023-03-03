@@ -36,9 +36,7 @@ import {
 } from "icons";
 import debounce from "lodash/debounce";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "pages/AutocompleteRequest";
-import { recipesBegginerFullXp } from "pages/GreenitFullXp/FullXpHelper";
 import { Community } from "pages/LandingPage/Components/Community";
-import { IngredientCard } from "pages/Market/Components/IngredientCard";
 import { CircleGreenit } from "pages/recipe/SinglePage/CircleGreenit/CircleGreenit";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -120,24 +118,6 @@ const LandingPage = () => {
   const { data: dataNbrLikes } = useRecipesQuery({
     variables: { first: 8, filter: { isOrderByNumberLike: true } },
   });
-
-  //Query for Market section
-
-  const { data: dataMarket } = useAllIngredientsQuery({
-    variables: { filter: { isForMarket: true } },
-  });
-
-  const IngredientsMarket = dataMarket?.allIngredients?.map(
-    (ingredient: any) => ({
-      key: Math.random,
-      name: ingredient?.name,
-      price: ingredient?.price,
-      producer: ingredient?.producer,
-      image: ingredient?.image,
-      id: ingredient?.id,
-      rating: ingredient?.rating,
-    }),
-  );
 
   const [showModalComingSoon, setShowModalComingSoon] = useState(false);
 
@@ -342,85 +322,6 @@ const LandingPage = () => {
       </div>
 
       <Container
-        className="flex flex-col items-center | w-full
-         | py-16 bg-yellowL"
-      >
-        <div className="flex flex-col gap-5 w-11/12 lg:w-10/12 bg-yellowL">
-          <div className="flex flex-col md:flex-row md:self-start gap-3 text-center">
-            {isMobile ? (
-              <h2 className="text-xl md:text-2xl font-semibold">
-                Découvrez <span className="text-yellow">Greenit Market,</span>
-                <br />
-                vos ingrédients à petits prix !
-              </h2>
-            ) : (
-              <h2 className="text-xl md:text-2xl font-semibold">
-                Découvrez <span className="text-yellow">Greenit Market</span>,
-                vos ingrédients à petits prix !
-              </h2>
-            )}
-            <h2 className="font-diy text-3xl">
-              les incontournables du fait-maison
-            </h2>
-          </div>
-          <Container className="grid grid-cols-2 lg:grid-cols-5 gap-6 self-center w-fit pb-4">
-            {isMobile
-              ? IngredientsMarket?.slice(0, 6).map(
-                  (Object: {
-                    name: string;
-                    price: string;
-                    producer: string;
-                    image: any;
-                    id: string;
-                    rating: string;
-                  }) => (
-                    <IngredientCard
-                      key={Math.random()}
-                      name={Object?.name}
-                      price={Object?.price}
-                      producer={Object?.producer}
-                      image={Object?.image}
-                      id={Object?.id}
-                      rating={Object?.rating}
-                      isOnLandingPage={true}
-                    />
-                  ),
-                )
-              : IngredientsMarket?.slice(0, 5).map(
-                  (Object: {
-                    name: string;
-                    price: string;
-                    producer: string;
-                    image: any;
-                    id: string;
-                    rating: string;
-                  }) => (
-                    <IngredientCard
-                      key={Math.random()}
-                      name={Object?.name}
-                      price={Object?.price}
-                      producer={Object?.producer}
-                      image={Object?.image}
-                      id={Object?.id}
-                      rating={Object?.rating}
-                      isOnLandingPage={true}
-                    />
-                  ),
-                )}
-          </Container>
-          <Link to={RouteName.market} className="self-center">
-            <Button
-              type={"darkBlue"}
-              id="landingPage-market-explorer-plus"
-              className="w-40 self-center mt-4"
-            >
-              Explorer plus
-            </Button>
-          </Link>
-        </div>
-      </Container>
-
-      <Container
         className="flex flex-col justify-center items-center | md:px-4
          | mt-20 sm:mt-12 mb-12 text-center sm:w-full lg:w-10/12 | relative"
       >
@@ -481,63 +382,7 @@ const LandingPage = () => {
           type de peau + type de cheveux + {!isMobile && <br />} particularités
         </h2>
       </Container>
-      <Container
-        className="flex flex-col justify-center items-center md:items-start | md:px-4
-         | text-center md:text-left w-full | bg-greenL"
-      >
-        <div className="lg:w-10/12 mt-12 mb-12 lg:ml-24">
-          <div className="md:flex md:justify-start md:space-x-4">
-            <h2 className="text-xl md:text-2xl">
-              Le kit fait-maison idéal pour débuter
-            </h2>
-            <h2 className="text-xl md:text-2xl | mb-6 font-diy text-2xl">
-              mes premiers pas
-            </h2>
-          </div>
-          <div className="md:flex md:items-center">
-            <div className="flex justify-center mb-3">
-              <img
-                src={boxOpen}
-                className="w-56 h-56 md:w-64 md:h-64 md:mr-24"
-                alt={`Box greenit`}
-              />
-            </div>
-            <div>
-              <div className="flex msm:justify-between md:space-x-24 mt-4">
-                {recipesBegginerFullXp?.map(recipe => (
-                  <div className="ml-9">
-                    <img
-                      src={recipe.miniatureImage}
-                      className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover"
-                      alt={recipe.name}
-                    />
-                    <p>{recipe.name}</p>
-                  </div>
-                ))}
-              </div>
-              <h4 className="mt-9 mb-4 font-medium text-lg">
-                L’essentiel pour réaliser 3 recettes validées{" "}
-                {isMobile && <br></br>} par la communauté !
-              </h4>
-              <p>Garantie pas de gâchis et avec des contenants en verre !</p>
-              <p className="mb-6">
-                Résultat, c’est 11 substances toxiques épargnées, 154 g de
-                {isMobile && <br></br>} plastique évités et 32 % d’économie
-              </p>
-              <div className="flex justify-center md:justify-start">
-                <Button
-                  className="mr-3"
-                  id="landing-page-box-button-je-commande"
-                  type="green"
-                  onClick={() => history.push(RouteName.greenitFullXp)}
-                >
-                  En savoir plus
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Container>
+
       <Container
         className="flex flex-col items-center | lg:px-4
          | pt-9 text-center bg-blueL w-full relative | pb-5"

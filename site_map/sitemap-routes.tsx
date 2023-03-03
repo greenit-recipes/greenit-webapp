@@ -17,11 +17,6 @@ export const RouteName = {
   recipes: "/recettes",
   createRecipe: "/creation-recette",
   profil: "/profil",
-  tutoFullXpBeginner: "/tuto-box-débutant",
-  qrFullXp: "/bienvenue-box",
-  market: "/market",
-  listpagemarket: "/ingredients/:category_ingredient",
-  boxFullXP: "/commande-box"
 };
 
 export default (
@@ -37,12 +32,5 @@ export default (
       <Route path={RouteName.resetPassword} />
       <Route path={RouteName.profil} />
       <Route path={RouteName.accountCreated} />
-
-      {/*box selling*/}
-      <Route path={RouteName.boxFullXP} />
-      
-      {/*market*/}
-      <Route path={RouteName.market} />
-      <Route path="/market/:id" />
     </Route>
 );

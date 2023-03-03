@@ -4,7 +4,6 @@ import PrivateRoute from "components/route/PrivateRoute";
 import PublicRoute from "components/route/PublicRoute";
 import { createBrowserHistory } from "history";
 import LandingPage from "pages/LandingPage/LandingPage";
-import MarketLandingPage from "pages/Market/MarketLandingPage";
 import React, { Suspense } from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
@@ -40,34 +39,11 @@ const RecipeListPage = React.lazy(
 );
 const Register = React.lazy(() => import("./pages/Register/register"));
 const WhyPage = React.lazy(() => import("./pages/recipe/SinglePage/WhyPage"));
-const GreenitFullXp = React.lazy(
-  () => import("./pages/GreenitFullXp/genericFullXp"),
-);
-const TutoFullXpBeginner = React.lazy(
-  () => import("./pages/Profil/TutoFullXpBeginner/tutoFullXpBeginner"),
-);
-
-const QRFullXp = React.lazy(
-  () => import("./pages/GreenitFullXp/QRFullXp/QRFullXp"),
-);
-
-const IngredientSinglePage = React.lazy(
-  () => import("pages/Market/IngredientSinglePage/IngredientSinglePage"),
-);
-
-const MarketListPage = React.lazy(() => import("pages/Market/MarketListPage"));
 
 export const history = createBrowserHistory();
 
-const greenitFullXpRoute = {
-  tutoFullXpBeginner: "/tuto-box-débutant", // no index
-  qrFullXp: "/bienvenue-box", //no index
-};
-
 export const RouteName = {
   accueil: "/",
-  market: "/market", // no index
-  listpagemarket: "/ingredients",
   resetPassword: "/reinitialisation-mot-de-passe", // no index
   tokenActivationAccount: "/activate/:tokenActivationAccount", // no index
   accountCreated: "/compte-crée", // no index
@@ -75,7 +51,6 @@ export const RouteName = {
     "/activate/mot-de-passe-oublié/:tokenActivationAccount", // no index
   register: "/creation-compte",
   recipeCreated: "/ajout-recette", // no index
-  greenitFullXp: "/commande-box",
   starterPage: "/page-debutant-diy",
   why: "/projet",
   contact: "/contact",
@@ -84,7 +59,6 @@ export const RouteName = {
   profil: "/profil",
   recap: "/recap",
   deleteProfil: "/supprimer-compte", // no index
-  ...greenitFullXpRoute,
 };
 
 const App: React.FC = () => {
@@ -109,37 +83,6 @@ const App: React.FC = () => {
             component={RecipeSinglePage}
             exact
           />
-          <PublicRoute
-            path={RouteName.market}
-            component={MarketLandingPage}
-            exact
-          />
-          <PublicRoute
-            path="/market/:id"
-            component={IngredientSinglePage}
-            exact
-          />
-
-          <PublicRoute
-            path="/ingredients/:category_ingredient" //to change to categorySlug
-            component={MarketListPage}
-            exact
-          />
-
-          {/* START FULL XP */}
-          <FullXPRoute
-            path={RouteName.greenitFullXp}
-            component={GreenitFullXp}
-            exact
-          />
-
-          <FullXPRoute path={RouteName.qrFullXp} component={QRFullXp} exact />
-          <FullXPRoute
-            path={RouteName.tutoFullXpBeginner}
-            component={TutoFullXpBeginner}
-            exact
-          />
-          {/* END FULL XP */}
 
           <PublicRoute
             path="/personalizedSearch"

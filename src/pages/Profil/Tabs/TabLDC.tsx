@@ -10,7 +10,6 @@ import {
 import useIsMobile from "../../../hooks/isMobile";
 import { RWebShare } from "react-web-share";
 import Modal from "components/layout/Modal/Modal";
-import { ModalMarketTest } from "components/layout/Modal/modalMarketTest";
 import { SectionIngredient } from "pages/recipe/SinglePage/IngredientUsentil/SectionIngredient";
 
 interface TabLDCProps {
@@ -30,8 +29,6 @@ export const TabLDC: React.FC<TabLDCProps> = ({
   let isLDCactive = false;
 
   const isMobile = useIsMobile();
-
-  const [showModalMarket, setShowModalMarket] = useState(false);
 
   return (
     <div className="mx-10 md:mx-56">
@@ -78,24 +75,6 @@ export const TabLDC: React.FC<TabLDCProps> = ({
               </div>
             )}
             <div className="flex flex-col gap-3 items-center | mt-5">
-              <Modal
-                isCenter={true}
-                onClose={() => setShowModalMarket(false)}
-                show={showModalMarket}
-              >
-                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
-                  <ModalMarketTest />
-                </div>
-              </Modal>
-              <Button
-                className="h-10"
-                type="green"
-                id="profil-LDCtab-acheter"
-                onClick={() => setShowModalMarket(true)}
-              >
-                Acheter maintenant
-              </Button>
-
               <RWebShare
                 data={{
                   text: formatShoppingList(ingredientShoppingList),

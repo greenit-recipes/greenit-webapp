@@ -8,13 +8,11 @@ import { Button } from "../";
 import useIsMobile from "../../hooks/isMobile";
 import { logo } from "../../icons";
 import { NavButton } from "../misc/NavButton";
-import { hasBoxBeginnerUrl } from "../../helpers/beginnerbox.helper";
 import { Loading } from "components/layout/Loading";
 import debounce from "lodash/debounce";
 import { useQuery } from "@apollo/client";
 import { SEARCH_AUTO_COMPLETE_RECIPE } from "../../pages/AutocompleteRequest";
 import Modal from "./Modal/Modal";
-import { ModalMarketTest } from "./Modal/modalMarketTest";
 
 const ModalLogGreenit = React.lazy(
   () => import("components/layout/ModalLogGreenit/ModalLogGreenit"),
@@ -26,24 +24,15 @@ export const Navbar: React.FC = () => {
   const history = useHistory();
   const [showSearchBar, setShowSearchBar] = useState<boolean>(
     location.pathname !== RouteName.accueil &&
-      location.pathname !== RouteName.recipes &&
-      location.pathname !== RouteName.market,
+      location.pathname !== RouteName.recipes,
   );
   const [toggle, setToggle] = useState(false);
-  const [hasUrl, setHasUrl] = useState(
-    !!(
-      hasBoxBeginnerUrl() &&
-      (localStorage.getItem("isBeginnerBox") === "true" ||
-        localStorage.setItem("isBeginnerBox", "true"))
-    ),
-  );
 
   const isLoggedIn = authService.isLoggedIn();
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const setSearchTermDebounced = debounce(setSearchTerm, 250);
 
-  const [showModalMarket, setShowModalMarket] = useState(false);
   // @ts-ignore
 
   // Ne par run au premier lancement
@@ -124,7 +113,6 @@ export const Navbar: React.FC = () => {
                       Créer un profil
                     </Button>
                   }
-                  show={hasUrl}
                 ></ModalLogGreenit>
               </Suspense>
             </div>
@@ -145,15 +133,7 @@ export const Navbar: React.FC = () => {
                 Accueil
               </h2>
             </Link>
-            <Link className="p-2" to={RouteName.market}>
-              <h2 id="navbar-market" className="text-white">
-                Market{" "}
-                <span className="text-xs font-light" id="navbar-market">
-                  {" "}
-                  : ingrédients à petits prix
-                </span>
-              </h2>
-            </Link>
+
             <Link
               className="p-2"
               to={RouteName.recipes}
@@ -169,15 +149,6 @@ export const Navbar: React.FC = () => {
               </div>
             </Link>
 
-            <div className="border-b-2 border-transparent p-2">
-              <h2
-                id="navbar-box-mobile"
-                className="text-white focus:text-green"
-                onClick={() => history.push(RouteName.greenitFullXp)}
-              >
-                Notre kit débutant
-              </h2>
-            </div>
             <Link className="p-2" to={RouteName.starterPage}>
               <h2 id="navbar-getStarted-mobile" className="text-white">
                 Se lancer
@@ -215,10 +186,9 @@ export const Navbar: React.FC = () => {
               <Suspense fallback={<Loading />}>
                 <ModalLogGreenit
                   isModalLogin={true}
-                  show={hasUrl}
                   btn={
                     <div className="p-2">
-                      <h2 className="text-white">Se connecter</h2>{" "}
+                      <h2 className="text-white">Se connecter</h2>
                     </div>
                   }
                 ></ModalLogGreenit>
@@ -253,15 +223,7 @@ export const Navbar: React.FC = () => {
             Accueil
           </NavButton>
         </Link>
-        <Link to={RouteName.market}>
-          <NavButton id="navbar-market" type="black">
-            Market{" "}
-            <span className="text-sm font-light ml-1" id="navbar-market">
-              {" "}
-              : ingrédients à petits prix
-            </span>
-          </NavButton>
-        </Link>
+
         <div className="w-auto" id="navmenu_big">
           <Link to={RouteName.recipes} onClick={() => resetFilter()}>
             <NavButton id="navbar-recipes" type="green">
@@ -563,24 +525,6 @@ export const Navbar: React.FC = () => {
             </Link>
           ) : (
             <>
-              <div
-                className="cursor-pointer pr-4"
-                onClick={() => setShowModalMarket(true)}
-              >
-                <i
-                  className="bx bx-cart text-yellow text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
-                  id="navBar-cart-notLogged"
-                ></i>
-              </div>
-              <Modal
-                isCenter={true}
-                onClose={() => setShowModalMarket(false)}
-                show={showModalMarket}
-              >
-                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
-                  <ModalMarketTest />
-                </div>
-              </Modal>
               <Link to={RouteName.createRecipe} className="flex">
                 <div className="transition-all duration-150 ease-linear rounded-full cursor-pointer">
                   <div className="flex sm:hidden lg:block">
@@ -598,41 +542,20 @@ export const Navbar: React.FC = () => {
             </>
           )}
           {isLoggedIn ? (
-            <>
+            <Link to={RouteName.profil}>
               <div
-                className="cursor-pointer px-2"
-                onClick={() => setShowModalMarket(true)}
+                id="navBar-profil-LoggedIn"
+                className="pl-2 pr-4 cursor-pointer"
               >
                 <i
-                  className="bx bxs-cart text-yellow text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
-                  id="navBar-cart-LoggedIn"
+                  className="bx bxs-user text-blue text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
+                  id="navBar-profil-LoggedIn"
                 ></i>
               </div>
-              <Modal
-                isCenter={true}
-                onClose={() => setShowModalMarket(false)}
-                show={showModalMarket}
-              >
-                <div className="flex flex-col items-center p-4 text-center md:w-[800px]">
-                  <ModalMarketTest />
-                </div>
-              </Modal>
-              <Link to={RouteName.profil}>
-                <div
-                  id="navBar-profil-LoggedIn"
-                  className="pl-2 pr-4 cursor-pointer"
-                >
-                  <i
-                    className="bx bxs-user text-blue text-4xl hover:transition-all hover:scale-105 hover:duration-150 hover:ease-linear"
-                    id="navBar-profil-LoggedIn"
-                  ></i>
-                </div>
-              </Link>
-            </>
+            </Link>
           ) : (
             <Suspense fallback={<Loading />}>
               <ModalLogGreenit
-                show={hasUrl}
                 btn={
                   <div className="flex">
                     <Button

@@ -74,23 +74,11 @@ import Badge100Desktop from "./Badge_100pc_Desktop.png";
 import BadgeJeDebute from "./BadgeJeDebute.svg";
 
 // DECORATION TOP PAGES
-import TopImageMarketMobile from "./TopImage_Market_Mobile.svg";
-import TopImageMarketDesktopLeft from "./TopImageLeft_Market_Desktop.svg";
-import TopImageMarketDesktopRight from "./TopImageRight_Market_Desktop.svg";
 import TopImageMobile from "./TopImageLP_Mobile.svg";
 import TopImageDesktopLeft from "./TopImageLP_gauche.svg";
 import TopImageDesktopRight from "./TopImageLP_droite.svg";
 import LPImage4Desktop from "./LPImage_4_Desktop.svg";
 import ProjectTopImageDesktop from "./TopImageProject_desktop.svg";
-
-// FUll XP GREENIT
-import boxIngredientCreme from "./image_creme.png";
-import boxIngredientLessive from "./image_lessive.png";
-import boxIngredientSavon from "./image_savon.png";
-
-import arrowFullXpMobile from "./arrow-mobile-fullxp.png";
-import arrowFullXp from "./arrow-desktop-fullxp.png";
-import boxConfirmation from "./confirmation-fullxp.png";
 
 import rondIcon from "./rond-icon.svg";
 
@@ -134,16 +122,6 @@ import Gif_ICM from "./gif_icm.gif";
 import Gif_LDC from "./gif_ldc.gif";
 import Gif_Personnalisation from "./gif_personnalisation.gif";
 import Gif_Profil from "./gif_profil.gif";
-
-// Market
-import Market_Modal from "./MarketModal.svg";
-import BlueLCircle from "./BlueLCircle.svg";
-import MarketModal_Mobile from "./MarketModal_Mobile.svg";
-
-//BOX SECTION
-import Box from "./Box.jpg";
-import BoxCreme from "./Box_creme.jpg";
-import BoxSavon from "./Box_savon.jpg";
 
 export {
   wellbeing,
@@ -191,12 +169,6 @@ export {
   confirmpwd,
   loginMail,
   loginPassword,
-  boxIngredientCreme,
-  boxIngredientLessive,
-  boxIngredientSavon,
-  boxConfirmation,
-  arrowFullXp,
-  arrowFullXpMobile,
   rondIcon,
   boxOpen,
   BadgeSavonMobile,
@@ -249,14 +221,5 @@ export {
   Gif_LDC,
   Gif_Personnalisation,
   Gif_Profil,
-  TopImageMarketMobile,
-  TopImageMarketDesktopLeft,
-  TopImageMarketDesktopRight,
-  Market_Modal,
-  BlueLCircle,
-  MarketModal_Mobile,
   GreenitTeam,
-  Box,
-  BoxCreme,
-  BoxSavon,
 };
