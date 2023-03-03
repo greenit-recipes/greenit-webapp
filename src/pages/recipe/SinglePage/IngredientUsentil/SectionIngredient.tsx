@@ -19,7 +19,6 @@ import {
   getRandomKey,
   hasIngredientOnList,
 } from "../../../../components/personalization/PersonalizationHelper";
-import { IngredientBuySection } from "../BuySection/IngredientBuySection";
 
 interface ISectionIngredient {
   className?: string;
@@ -417,28 +416,24 @@ export const SectionIngredient: React.FC<ISectionIngredient> = ({
               <div className="flex flex-col md:flex-row md:items-center md:space-x-10"></div>
               <div className="flex flex-col md:flex-row md:items-center md:space-x-10">
                 <div className="flex-col pt-2">
-                  {data?.isForMarket ? (
-                    <IngredientBuySection ingredientsForMarket={data.name} />
-                  ) : (
-                    <div>
-                      {data?.isSupermarket && (
-                        <div className="flex items-center ml-6">
-                          <BsShop className="w-8 h-8 mr-2" />
-                          <div>
-                            Biocop
-                            <br />
-                            Supermarché
-                          </div>
+                  <div>
+                    {data?.isSupermarket && (
+                      <div className="flex items-center ml-6">
+                        <BsShop className="w-8 h-8 mr-2" />
+                        <div>
+                          Biocop
+                          <br />
+                          Supermarché
                         </div>
-                      )}
-                      {data?.isOnline && (
-                        <div className="flex items-center ml-6 mr-2 w-24">
-                          <RiComputerLine className="w-8 h-8 mr-2" />
-                          <div>En ligne</div>
-                        </div>
-                      )}
-                    </div>
-                  )}
+                      </div>
+                    )}
+                    {data?.isOnline && (
+                      <div className="flex items-center ml-6 mr-2 w-24">
+                        <RiComputerLine className="w-8 h-8 mr-2" />
+                        <div>En ligne</div>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/*{data?.purchaseLink && (

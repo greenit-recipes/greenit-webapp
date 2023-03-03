@@ -18,7 +18,6 @@ import { CreatorProfil } from "./CreatorProfil";
 import "./Profil.css";
 import Modal from "components/layout/Modal/Modal";
 import { ModalProfil } from "pages/Profil/ModalProfil";
-import { ProfilGreenitFullXp } from "pages/Profil/ProfilGreenitFullXp";
 import { useRecipesQuery } from "../../graphql";
 import TabPersonalization from "./Tabs/TabPersonalization";
 import TabICM from "./Tabs/TabICM";
@@ -264,13 +263,6 @@ const ProfilPage: React.FC = () => {
                 parentFunction={refetch}
                 recipeMadeUser={user?.recipeMadeUser}
               ></ExplorateurProfil>
-
-              {user?.isBeginnerBox && (
-                <ProfilGreenitFullXp
-                  parentFunction={refetch}
-                  isRecipeMadeBeginnerBox={user?.isRecipeMadeBeginnerBox}
-                ></ProfilGreenitFullXp>
-              )}
 
               {/* Bookmarks */}
               <div className="w-full flex flex-col items-center justify-center | mt-6 mb-4">
